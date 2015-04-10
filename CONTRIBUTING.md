@@ -7,5 +7,5 @@ Your pull request should:
 
 * Include a description of what your change intends to do
 * Have clear commit messages 
-    * e.g. "New Topic", "Fix type", "Add code samples"
+    * e.g. "New Topic", "Fix typo", "Add code samples"
 * For code samples, please make sure they compile against the latest released TypeScript compiler version.

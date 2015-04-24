@@ -273,7 +273,14 @@ interface Counter {
     reset(): void;
 }
 
-var c: Counter;
+function getCounter():Counter{
+    var counter = <Counter>function(start:number){};
+    counter.interval = 123;
+    counter.reset = function(){};
+    return counter;
+}
+
+var c: Counter = getCounter();
 c(10);
 c.reset();
 c.interval = 5.0;

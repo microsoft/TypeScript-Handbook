@@ -22,7 +22,7 @@ var greeter = new Greeter("world");
 
 The syntax should look very familiar if you've used C# or Java before. We declare a new class `Greeter`. This class has three members, a property called `greeting`, a constructor, and a method `greet`. 
 
-You'll notice that in the class when we refer to one of the members of the class we prepend 'this.'. This denotes that it's a member access.
+You'll notice that in the class when we refer to one of the members of the class we prepend `this.`. This denotes that it's a member access.
 
 In the last line we construct an instance of the Greeter class using `new`. This calls into the constructor we defined earlier, creating a new object with the Greeter shape, and running the constructor to initialize it.
 
@@ -188,7 +188,7 @@ Note: Accessors require you to set the compiler to output ECMAScript 5.
 
 # Static Properties
 
-Up to this point, we've only talked about the _instance_ members of the class, those that show up on the object when its instantiated. We can also create _static_ members of a class, those that are visible on the class itself rather than on the instances. In this example, we use `static` on the origin, as it's a general value for all grids. Each instance accesses this value through prepending the name of the class. Similarly to prepending 'this.' in front of instance accesses, here we prepend 'Grid.' in front of static accesses.
+Up to this point, we've only talked about the _instance_ members of the class, those that show up on the object when its instantiated. We can also create _static_ members of a class, those that are visible on the class itself rather than on the instances. In this example, we use `static` on the origin, as it's a general value for all grids. Each instance accesses this value through prepending the name of the class. Similarly to prepending `this.` in front of instance accesses, here we prepend `Grid.` in front of static accesses.
 
 ```
 class Grid {

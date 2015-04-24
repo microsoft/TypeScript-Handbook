@@ -77,7 +77,7 @@ To merge the namespaces, type definitions from exported interfaces declared in e
 
 To merge the value, at each declaration site, if a module already exists with the given name, it is further extended by taking the existing module and adding the exported members of the second module to the first.
 
-The declaration merge of 'Animals' in this example:
+The declaration merge of `Animals` in this example:
 ```
 module Animals {
     export class Zebra { }

@@ -16,7 +16,7 @@ function identity(arg: number): number {
 }
 ```
 
-Or, we could describe the identity function using the 'any' type:
+Or, we could describe the identity function using the `any` type:
 
 ```
 function identity(arg: any): any {
@@ -24,7 +24,7 @@ function identity(arg: any): any {
 }
 ```
 
-While using 'any' is certainly generic in that will accept any and all types for the type of 'arg', we actually are losing the information about what that type was when the function returns. If we passed in a number, the only information we have is that any type could be returned.
+While using `any` is certainly generic in that will accept any and all types for the type of `arg`, we actually are losing the information about what that type was when the function returns. If we passed in a number, the only information we have is that any type could be returned.
 
 Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned. Here, we will use a _type variable_, a special kind of variable that works on types rather than values.
 
@@ -34,9 +34,9 @@ function identity<T>(arg: T): T {
 }
 ```
 
-We've now added a type variable 'T' to the identity function. This 'T' allows us to capture the type the user provides (eg, number), so that we can use that information later. Here, we use 'T' again as the return type. On inspection, we can now see the same type is used for the argument and the return type. This allows us to traffic that type information in one side of the function and out the other.
+We've now added a type variable `T` to the identity function. This `T` allows us to capture the type the user provides (eg, number), so that we can use that information later. Here, we use `T` again as the return type. On inspection, we can now see the same type is used for the argument and the return type. This allows us to traffic that type information in one side of the function and out the other.
 
-We say that this version of the 'identity' function is generic, as it works over a range of types. Unlike using 'any', it's also just as precise (ie, it doesn't lose any information) as the first 'identity' function that used numbers for the argument and return type.
+We say that this version of the `identity` function is generic, as it works over a range of types. Unlike using `any`, it's also just as precise (ie, it doesn't lose any information) as the first `identity` function that used numbers for the argument and return type.
 
 Once we've written the generic identity function, we can call it in one of two ways. The first way is to pass all of the arguments, including the type argument, to the function:
 
@@ -44,7 +44,7 @@ Once we've written the generic identity function, we can call it in one of two w
 var output = identity<string>("myString");  // type of output will be 'string'
 ```
 
-Here we explicitly set 'T' to be string as one of the arguments to the function call, denoted using the <> around the arguments rather than ().
+Here we explicitly set `T` to be string as one of the arguments to the function call, denoted using the <> around the arguments rather than ().
 
 The second way is also perhaps the most common. Here we use /type argument inference/, that is, we want the compiler to set the value of T for us automatically based on the type of the argument we pass in:
 
@@ -52,13 +52,13 @@ The second way is also perhaps the most common. Here we use /type argument infer
 var output = identity("myString");  // type of output will be 'string'
 ```
 
-Notice that we didn't have explicitly pass the type in the angle brackets (<>), the compiler just looked at the value "myString", and set T to its type. While type argument inference can be a helpful tool to keep code shorter and more readable, you may need to explicitly pass in the type arguments as we did in the previous example when the compiler fails to infer the type, as may happen in more complex examples.
+Notice that we didn't have explicitly pass the type in the angle brackets (<>), the compiler just looked at the value `"myString"`, and set T to its type. While type argument inference can be a helpful tool to keep code shorter and more readable, you may need to explicitly pass in the type arguments as we did in the previous example when the compiler fails to infer the type, as may happen in more complex examples.
 
 # Working with Generic Type Variables
 
-When you begin to use generics, you'll notice that when you create generic functions like 'identity', the compiler will enforce that you use any generically typed parameters in the body of the function correctly. That is, that you actually treat these parameters as if they could be any and all types.
+When you begin to use generics, you'll notice that when you create generic functions like `identity`, the compiler will enforce that you use any generically typed parameters in the body of the function correctly. That is, that you actually treat these parameters as if they could be any and all types.
 
-Let's take our 'identity' function from earlier:
+Let's take our `identity` function from earlier:
 
 ```
 function identity<T>(arg: T): T {
@@ -66,7 +66,7 @@ function identity<T>(arg: T): T {
 }
 ```
 
-What if want to also log the length of the argument 'arg' to the console with each call. We might be tempted to write this:
+What if want to also log the length of the argument `arg` to the console with each call. We might be tempted to write this:
 
 ```
 function loggingIdentity<T>(arg: T): T {
@@ -75,7 +75,7 @@ function loggingIdentity<T>(arg: T): T {
 }
 ```
 
-When we do, the compiler will give us an error that we're using the ".length" member of 'arg', but nowhere have we said that 'arg' has this member. Remember, we said earlier that these type variables stand in for any and all types, so someone using this function could have passed in a 'number' instead, which does not have a ".length" member.
+When we do, the compiler will give us an error that we're using the `.length` member of `arg`, but nowhere have we said that `arg` has this member. Remember, we said earlier that these type variables stand in for any and all types, so someone using this function could have passed in a `number` instead, which does not have a `.length` member.
 
 Let's say that we've actually intended this function to work on arrays of T rather that T directly. Since we're working with arrays, the .length member should be available. We can describe this just like we would create arrays of other types:
 
@@ -86,7 +86,7 @@ function loggingIdentity<T>(arg: T[]): T[] {
 }
 ```
 
-You can read the type of logging Identity as "the generic function loggingIdentity, takes a type parameter T, and an argument 'arg' which is an array of these T's, and returns an array of T's. If we passed in an array of numbers, we'd get an array of numbers back out, as T would bind to number. This allows us to use our generic type variable 'T' as part of the types we're working with, rather than the whole type, giving us greater flexibility.
+You can read the type of logging Identity as "the generic function `loggingIdentity`, takes a type parameter `T`, and an argument `arg` which is an array of these `T`s, and returns an array of `T`s. If we passed in an array of numbers, we'd get an array of numbers back out, as `T` would bind to `number`. This allows us to use our generic type variable `T` as part of the types we're working with, rather than the whole type, giving us greater flexibility.
 
 We can alternatively write the sample example this way:
 
@@ -97,7 +97,7 @@ function loggingIdentity<T>(arg: Array<T>): Array<T> {
 }
 ```
 
-You may already be familiar with this style of type from other languages. In the next section, we'll cover how you can create your own generic types like Array<T>.
+You may already be familiar with this style of type from other languages. In the next section, we'll cover how you can create your own generic types like `Array<T>`.
 
 # Generic Types
 
@@ -161,7 +161,7 @@ function identity<T>(arg: T): T {
 var myIdentity: GenericIdentityFn<number> = identity;
 ```
 
-Notice that our example has changed to be something slightly different. Instead of describing a generic function, we now have a non-generic function signature that is a part of a generic type. When we use GenericIdentityFn, we now will also need to specify the corresponding type argument (here: number), effectively locking in what the underlying call signature will use. Understanding when to put the type parameter directly on the call signature and when to put it on the interface itself will be helpful in describing what aspects of a type are generic.
+Notice that our example has changed to be something slightly different. Instead of describing a generic function, we now have a non-generic function signature that is a part of a generic type. When we use `GenericIdentityFn`, we now will also need to specify the corresponding type argument (here: `number`), effectively locking in what the underlying call signature will use. Understanding when to put the type parameter directly on the call signature and when to put it on the interface itself will be helpful in describing what aspects of a type are generic.
 
 In addition to generic interfaces, we can also create generic classes. Note that it is not possible to create generic enums and modules.
 
@@ -180,7 +180,7 @@ myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function(x, y) { return x + y; };
 ```
 
-This is a pretty literal use of the 'GenericNumber' class, but you may have noticed that nothing is restricting is to only use the 'number' type. We could have instead used 'string' or even more complex objects.
+This is a pretty literal use of the `GenericNumber` class, but you may have noticed that nothing is restricting is to only use the `number` type. We could have instead used `string` or even more complex objects.
 
 ```
 var stringNumeric = new GenericNumber<string>();
@@ -196,7 +196,7 @@ As we covered in [Classes|Classes in TypeScript], a class has two side to its ty
 
 # Generic Constraints
 
-If you remember from an earlier example, you may sometimes want to write a generic function that works on a set of types where you have some knowledge about what capabilities that set of types will have. In our 'loggingIdentity' example, we wanted to be able access the ".length" property of 'arg', but the compiler could not prove that every type had a ".length" property, so it warns us that we can't make this assumption.
+If you remember from an earlier example, you may sometimes want to write a generic function that works on a set of types where you have some knowledge about what capabilities that set of types will have. In our `loggingIdentity` example, we wanted to be able access the `.length` property of `arg`, but the compiler could not prove that every type had a `.length` property, so it warns us that we can't make this assumption.
 
 ```
 function loggingIdentity<T>(arg: T): T {
@@ -205,9 +205,9 @@ function loggingIdentity<T>(arg: T): T {
 }
 ```
 
-Instead of working with any and all types, we'd like to constrain this function to work with any and all types that also have the ".length" property. As long as the type has this member, we'll allow it, but it's required to have at least this member. To do so, we must list our requirement as a constraint on what T can be.
+Instead of working with any and all types, we'd like to constrain this function to work with any and all types that also have the `.length` property. As long as the type has this member, we'll allow it, but it's required to have at least this member. To do so, we must list our requirement as a constraint on what T can be.
 
-To do so, we'll create an interface that describes our constraint. Here, we'll create an interface that has a single ".length" property and then we'll use this interface and the {{extends}} keyword to denote our constraint:
+To do so, we'll create an interface that describes our constraint. Here, we'll create an interface that has a single `.length` property and then we'll use this interface and the {{extends}} keyword to denote our constraint:
 
 ```
 interface Lengthwise {
@@ -252,7 +252,7 @@ function find<T>(n: T, s: Findable<T>) {
 find(giraffe, myAnimals);
 ```
 
-_Note:_ The above is not strictly identical, as the return type of the first function could have returned 'U', which the second function pattern does not provide a means to do.
+_Note:_ The above is not strictly identical, as the return type of the first function could have returned `U`, which the second function pattern does not provide a means to do.
 
 !# Using Class Types in Generics
 

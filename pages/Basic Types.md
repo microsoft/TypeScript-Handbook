@@ -43,7 +43,7 @@ var list:Array<number> = [1, 2, 3];
 
 # Enum
 
-A helpful addition to the standard set of datatypes from JavaScript is the 'enum'. Like languages like C#, an enum is a way of giving more friendly names to sets of numeric values.
+A helpful addition to the standard set of datatypes from JavaScript is the `enum`. Like languages like C#, an enum is a way of giving more friendly names to sets of numeric values.
 
 ```ts
 enum Color {Red, Green, Blue};
@@ -95,7 +95,7 @@ list[1] = 100;
 
 # Void
 
-Perhaps the opposite in some ways to `any` is 'void', the absence of having any type at all. You may commonly see this as the return type of functions that do not return a value:
+Perhaps the opposite in some ways to `any` is `void`, the absence of having any type at all. You may commonly see this as the return type of functions that do not return a value:
 
 ```ts
 function warnUser(): void {

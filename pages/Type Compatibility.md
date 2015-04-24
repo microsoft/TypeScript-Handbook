@@ -206,7 +206,7 @@ x = y;  // error, x and y are not compatible
 
 In this way, a generic type that has its type arguments specified acts just like a non-generic type.
 
-For generic types that do not have their type arguments specified, compatibility is checked by specifying 'any' in place of all unspecified type arguments. The resulting types are then checked for compatibility, just as in the non-generic case.
+For generic types that do not have their type arguments specified, compatibility is checked by specifying `any` in place of all unspecified type arguments. The resulting types are then checked for compatibility, just as in the non-generic case.
 
 For example,
 
@@ -226,6 +226,6 @@ identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
 
 ## Subtype vs Assignment
 
-So far, we've used 'compatible', which is not a term defined in the language spec. In TypeScript, there are two kinds of compatibility: subtype and assignment. These differ only in that assignment extends subtype compatibility with rules to allow assignment to and from 'any' and to and from enum with corresponding numeric values.
+So far, we've used 'compatible', which is not a term defined in the language spec. In TypeScript, there are two kinds of compatibility: subtype and assignment. These differ only in that assignment extends subtype compatibility with rules to allow assignment to and from `any` and to and from enum with corresponding numeric values.
 
 Different places in the language use one of the two compatibility mechanisms, depending on the situation. For practical purposes, type compatibility is dictated by assignment compatibility even in the cases of the {{implements}} and {{extends}} clauses. For more information, see the [url:TypeScript spec|http://go.microsoft.com/fwlink/?LinkId=267121].

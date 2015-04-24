@@ -48,7 +48,7 @@ window.onmousedown = function(mouseEvent) {
 };
 ```
 
-For the code above to give the type error, the TypeScript type checker used the type of the Window.onmousedown function to infer the type of the function expression on the right hand side of the assignment. When it did so, it was able to infer the type of the `mouseeVent` parameter. If this function expression were not in a contextually typed position, the `mouseeVent` parameter would have type `any`, and no error would have been issued.
+For the code above to give the type error, the TypeScript type checker used the type of the `Window.onmousedown` function to infer the type of the function expression on the right hand side of the assignment. When it did so, it was able to infer the type of the `mouseEvent` parameter. If this function expression were not in a contextually typed position, the `mouseEvent` parameter would have type `any`, and no error would have been issued.
 
 If the contextually typed expression contains explicit type information, the contextual type is ignored. Had we written the above example:
 
@@ -68,4 +68,4 @@ function createZoo(): Animal[] {
 }
 ```
 
-In this example, best common type has a set of four candidates: Animal, Rhino, Elephant, and Snake. Of these, Animal can be chosen by the best common type algorithm.
+In this example, best common type has a set of four candidates: `Animal`, `Rhino`, `Elephant`, and `Snake`. Of these, `Animal` can be chosen by the best common type algorithm.

@@ -148,7 +148,7 @@ First, we can use concatenated output using the _--out_ flag to compile all of t
 The compiler will automatically order the output file based on the reference tags present in the files. You can also specify each file individually:
 `tsc --out sample.js Validation.ts LettersOnlyValidator.ts ZipCodeValidator.ts Test.ts`
 
-Alternatively, we can use per-file compilation (the default) to emit one JavaScript file for each  input file. If multiple JS files get produced, we'll need to use _<script>_ tags on our webpage to load each emitted file in the appropriate order, for example:
+Alternatively, we can use per-file compilation (the default) to emit one JavaScript file for each input file. If multiple JS files get produced, we'll need to use _<script>_ tags on our webpage to load each emitted file in the appropriate order, for example:
 
 !!!!! MyTestPage.html (excerpt)
 ``` 
@@ -388,7 +388,7 @@ declare var d3: D3.Base;
 ``` 
 
 !!! Ambient External Modules
-In node.js, most tasks are accomplished by loading one or more modules. We could define each module in its own .d.ts file with top-level export declarations, but it's more convenient to write them as one larger .d.ts file. To do so, we use the quoted name of the module, which will be available to a later import.  For example:
+In node.js, most tasks are accomplished by loading one or more modules. We could define each module in its own .d.ts file with top-level export declarations, but it's more convenient to write them as one larger .d.ts file. To do so, we use the quoted name of the module, which will be available to a later import. For example:
 
 !!!!! node.d.ts (simplified excerpt)
 ``` 

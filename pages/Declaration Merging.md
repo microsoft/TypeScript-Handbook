@@ -23,7 +23,7 @@ Understanding what is created with each declaration will help you understand wha
 
 The simplest, and perhaps most common, type of declaration merging is interface merging. At the most basic level, the merge mechanically joins the members of both declarations into a single interface with the same name.
 
-```
+```TypeScript
 interface Box {
     height: number;
     width: number;
@@ -42,7 +42,7 @@ For function members, each function member of the same name is treated as descri
 
 That is, in the example:
 
-```
+```TypeScript
 interface Document {
     createElement(tagName: any): Element;
 }
@@ -58,7 +58,7 @@ interface Document {
 
 The two interfaces will merge to create a single declaration. otice that the elements of each group maintains the same order, just the groups themselves are merged with later overload sets coming first:
 
-```
+```TypeScript
 interface Document {
     createElement(tagName: "div"): HTMLDivElement;
     createElement(tagName: "span"): HTMLSpanElement;
@@ -78,7 +78,8 @@ To merge the namespaces, type definitions from exported interfaces declared in e
 To merge the value, at each declaration site, if a module already exists with the given name, it is further extended by taking the existing module and adding the exported members of the second module to the first.
 
 The declaration merge of `Animals` in this example:
-```
+
+```TypeScript
 module Animals {
     export class Zebra { }
 }
@@ -91,7 +92,7 @@ module Animals {
 
 is equivalent to:
 
-```
+```TypeScript
 module Animals {
     export interface Legged { numberOfLegs: number; }
 
@@ -104,7 +105,7 @@ This model of module merging is a helpful starting place, but to get a more comp
 
 We can see this more clearly in this example:
 
-```
+```TypeScript
 module Animal {
     var haveMuscles = true;
 
@@ -128,7 +129,7 @@ Modules are flexible enough to also merge with other types of declarations. To d
 
 The first module merge we'll cover is merging a module with a class. This gives the user a way of describing inner classes.
 
-```
+```TypeScript
 class Album {
     label: Album.AlbumLabel;
 }
@@ -141,7 +142,7 @@ The visibility rules for merged members is the same as described in the 'Merging
 
 In addition to the pattern of inner classes, you may also be familiar with JavaScript practice of creating a function and then extending the function further by adding properties onto the function. TypeScript uses declaration merging to build up definitions like this in a type-safe way.
 
-```
+```TypeScript
 function buildLabel(name: string): string {
     return buildLabel.prefix + name + buildLabel.suffix;
 }
@@ -156,7 +157,7 @@ alert(buildLabel("Sam Smith"));
 
 Similarly, modules can be used to extend enums with static members:
 
-```
+```TypeScript
 enum Color {
     red = 1,
     green = 2,

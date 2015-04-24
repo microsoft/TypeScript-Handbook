@@ -6,7 +6,7 @@ Traditional JavaScript focuses on functions and prototype-based inheritance as t
 
 Let's take a look at a simple class-based example:
 
-```ts
+```TypeScript
 class Greeter {
     greeting: string;
     constructor(message: string) {
@@ -32,7 +32,7 @@ In TypeScript, we can use common object-oriented patterns. Of course, one of the
 
 Let's take a look at an example:
 
-```ts
+```TypeScript
 class Animal {
     name:string;
     constructor(theName: string) { this.name = theName; }
@@ -75,7 +75,7 @@ You may have noticed in the above examples we haven't had to use the word `publi
 
 You may still mark members a private, so you control what is publicly visible outside of your class. We could have written the `Animal` class from the previous section like so:
 
-```ts
+```TypeScript
 class Animal {
     private name:string;
     constructor(theName: string) { this.name = theName; }
@@ -93,7 +93,7 @@ When comparing types that have `private` members, we treat these differently. Fo
 
 Let's look at an example to better see how this plays out in practice:
 
-```ts
+```TypeScript
 class Animal {
     private name:string;
     constructor(theName: string) { this.name = theName; }
@@ -122,7 +122,7 @@ In this example, we have an `Animal` and a `Rhino`, with `Rhino` being a subclas
 
 The keywords `public` and `private` also give you a shorthand for creating and initializing members of your class, by creating parameter properties. The properties let you can create and initialize a member in one step. Here's a further revision of the previous example. Notice how we drop `theName` altogether and just use the shortened 'private name: string' parameter on the constructor to create and initialize the `name` member.
 
-```
+```TypeScript
 class Animal {
     constructor(private name: string) { }
     move(meters: number) {
@@ -139,7 +139,7 @@ TypeScript supports getters/setters as a way of intercepting accesses to a membe
 
 Let's convert a simple class to use `get` and `set`. First, let's start with an example without getters and setters.
 
-```
+```TypeScript
 class Employee {
     fullName: string;
 }
@@ -155,7 +155,7 @@ While allowing people to randomly set fullName directly is pretty handy, this mi
 
 In this version, we check to make sure the user has a secret passcode available before we allow them to modify the employee. We do this by replacing the direct access to fullName with a `set` that will check the passcode. We add a corresponding `get` to allow the previous example to continue to work seamlessly.
 
-```
+```TypeScript
 var passcode = "secret passcode";
 
 class Employee {
@@ -190,7 +190,7 @@ Note: Accessors require you to set the compiler to output ECMAScript 5.
 
 Up to this point, we've only talked about the _instance_ members of the class, those that show up on the object when its instantiated. We can also create _static_ members of a class, those that are visible on the class itself rather than on the instances. In this example, we use `static` on the origin, as it's a general value for all grids. Each instance accesses this value through prepending the name of the class. Similarly to prepending `this.` in front of instance accesses, here we prepend `Grid.` in front of static accesses.
 
-```
+```TypeScript
 class Grid {
     static origin = {x: 0, y: 0};
     calculateDistanceFromOrigin(point: {x: number; y: number;}) {
@@ -214,7 +214,7 @@ alert(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 
 When you declare a class in TypeScript, you are actually creating multiple declarations at the same time. The first is the type of the _instance_ of the class.
 
-```
+```TypeScript
 class Greeter {
     greeting: string;
     constructor(message: string) {
@@ -234,7 +234,7 @@ Here, when we say `var greeter: Greeter`, we're using `Greeter` as the type of i
  
 We're also creating another value that we call the _constructor function_. This is the function that is called when we `new` up instances of the class. To see what this looks like in practice, let's take a look at the JavaScript created by the above example:
 
-```
+```TypeScript
 var Greeter = (function () {
     function Greeter(message) {
         this.greeting = message;
@@ -254,7 +254,7 @@ Here, `var Greeter` is going to be assigned the constructor function. When we ca
 
 Let's modify the example a bit to show this difference:
 
-```
+```TypeScript
 class Greeter {
     static standardGreeting = "Hello, there";
     greeting: string;
@@ -286,7 +286,7 @@ Next, we then use the class directly. Here we create a new variable called `gree
 
 As we said in the previous section, a class declaration creates two things: a type representing instances of the class and a constructor function. Because classes create types, you can use them in the same places you would be able to use interfaces.
 
-```
+```TypeScript
 class Point {
     x: number;
     y: number;

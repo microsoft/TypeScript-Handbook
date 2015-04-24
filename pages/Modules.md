@@ -5,7 +5,7 @@ This post outlines the various ways to organize your code using modules in TypeS
 Let's start with the program we'll be using as our example throughout this page. We've written a small set of simplistic string validators, like you might use when checking a user's input on a form in a webpage or checking the format of an externally-provided data file.
 
 !!!!! Validators in a single file
-```
+```TypeScript
 interface StringValidator {
     isAcceptable(s: string): boolean;
 }
@@ -45,7 +45,7 @@ As we add more validators, we're going to want to have some kind of organization
 In this example, we've moved all the Validator-related types into a module called _Validation_. Because we want the interfaces and classes here to be visible outside the module, we preface them with _export_. Conversely, the variables _lettersRegexp_ and _numberRegexp_ are implementation details, so they are left unexported and will not be visible to code outside the module. In the test code at the bottom of the file, we now need to qualify the names of the types when used outside the module, e.g. _Validation.LettersOnlyValidator_.
 
 !!!!! Modularized Validators
-```
+```TypeScript
 module Validation {
     export interface StringValidator {
         isAcceptable(s: string): boolean;
@@ -88,7 +88,7 @@ Here, we've split our Validation module across many files. Even though the files
 
 !!! Multi-file internal modules
 !!!!! Validation.ts
-```
+```TypeScript
 module Validation {
     export interface StringValidator {
         isAcceptable(s: string): boolean;
@@ -96,7 +96,7 @@ module Validation {
 }
 ```
 !!!!! LettersOnlyValidator.ts
-```
+```TypeScript
 /// <reference path="Validation.ts" />
 module Validation {
     var lettersRegexp = /^[A-Za-z]+$/;
@@ -109,7 +109,7 @@ module Validation {
 ```
 
 !!!!! ZipCodeValidator.ts
-```
+```TypeScript
 /// <reference path="Validation.ts" />
 module Validation {
     var numberRegexp = /^[0-9]+$/;
@@ -122,7 +122,7 @@ module Validation {
 ```
 
 !!!!! Test.ts
-```
+```TypeScript
 /// <reference path="Validation.ts" />
 /// <reference path="LettersOnlyValidator.ts" />
 /// <reference path="ZipCodeValidator.ts" />
@@ -151,7 +151,7 @@ The compiler will automatically order the output file based on the reference tag
 Alternatively, we can use per-file compilation (the default) to emit one JavaScript file for each input file. If multiple JS files get produced, we'll need to use _<script>_ tags on our webpage to load each emitted file in the appropriate order, for example:
 
 !!!!! MyTestPage.html (excerpt)
-```
+```TypeScript
     <script src="Validation.js" type="text/javascript" />
     <script src="LettersOnlyValidator.js" type="text/javascript" />
     <script src="ZipCodeValidator.js" type="text/javascript" />
@@ -167,7 +167,7 @@ Below, we have converted the previous example to use external modules. Notice th
 
 The reference tags have been replaced with _import_ statements that specify the dependencies between modules. The _import_ statement has two parts: the name that the module will be known by in this file, and the require keyword that specifies the path to the required module:
 
-```
+```TypeScript
 import someMod = require('someModule');
 ```
 
@@ -180,14 +180,14 @@ tsc --module commonjs Test.ts
 When compiled, each external module will become a separate .js file. Similar to reference tags, the compiler will follow _import_ statements to compile dependent files.
 
 !!!!! Validation.ts
-```
+```TypeScript
 export interface StringValidator {
     isAcceptable(s: string): boolean;
 }
 ```
 
 !!!!! LettersOnlyValidator.ts
-```
+```TypeScript
 import validation = require('./Validation');
 var lettersRegexp = /^[A-Za-z]+$/;
 export class LettersOnlyValidator implements validation.StringValidator {
@@ -198,7 +198,7 @@ export class LettersOnlyValidator implements validation.StringValidator {
 ```
 
 !!!!! ZipCodeValidator.ts
-```
+```TypeScript
 import validation = require('./Validation');
 var numberRegexp = /^[0-9]+$/;
 export class ZipCodeValidator implements validation.StringValidator {
@@ -209,7 +209,7 @@ export class ZipCodeValidator implements validation.StringValidator {
 ```
 
 !!!!! Test.ts
-```
+```TypeScript
 import validation = require('./Validation');
 import zip = require('./ZipCodeValidator');
 import letters = require('./LettersOnlyValidator');
@@ -234,20 +234,20 @@ Depending on the module target specified during compilation, the compiler will g
 This simple example shows how the names used during importing and exporting get translated into the module loading code.
 
 !!!!! SimpleModule.ts
-```
+```TypeScript
 import m = require('mod');
 export var t = m.something + 1;
 ```
 
 !!!!! AMD / RequireJS SimpleModule.js:
-```
+```TypeScript
 define(["require", "exports", 'mod'], function(require, exports, m) {
     exports.t = m.something + 1;
 });
 ```
 
 !!!!! CommonJS / Node SimpleModule.js:
-```
+```TypeScript
 var m = require('mod');
 exports.t = m.something + 1;
 ```
@@ -260,14 +260,14 @@ The export = syntax specifies a single object that is exported from the module. 
 Below, we've simplified the Validator implementations to only export a single object from each module using the export = syntax. This simplifies the consumption code – instead of referring to `zip.ZipCodeValidator`, we can simply refer to `zipValidator`.
 
 !!!!! Validation.ts
-```
+```TypeScript
 export interface StringValidator {
     isAcceptable(s: string): boolean;
 }
 ```
 
 !!!!! LettersOnlyValidator.ts
-```
+```TypeScript
 import validation = require('./Validation');
 var lettersRegexp = /^[A-Za-z]+$/;
 class LettersOnlyValidator implements validation.StringValidator {
@@ -279,7 +279,7 @@ export = LettersOnlyValidator;
 ```
 
 !!!!! ZipCodeValidator.ts
-```
+```TypeScript
 import validation = require('./Validation');
 var numberRegexp = /^[0-9]+$/;
 class ZipCodeValidator implements validation.StringValidator {
@@ -291,7 +291,7 @@ export = ZipCodeValidator;
 ```
 
 !!!!! Test.ts
-```
+```TypeScript
 import validation = require('./Validation');
 import zipValidator = require('./ZipCodeValidator');
 import lettersValidator = require('./LettersOnlyValidator');
@@ -314,7 +314,7 @@ strings.forEach(s => {
 Another way that you can simplify working with either kind of module is to use _import q = x.y.z_ to create shorter names for commonly-used objects. Not to be confused with the _import x = require('name')_ syntax used to load external modules, this syntax simply creates an alias for the specified symbol. You can use these sorts of imports (commonly referred to as aliases) for any kind of identifier, including objects created from external module imports.
 
 !!!!! Basic Aliasing
-```
+```TypeScript
 module Shapes {
     export module Polygons {
         export class Triangle { }
@@ -338,7 +338,7 @@ The core idea of the pattern is that the _import id = require('...')_ statement 
 To maintain type safety, we can use the _typeof_ keyword. The _typeof_ keyword, when used in a type position, produces the type of a value, in this case the type of the external module.
 
 !!!!! Dynamic Module Loading in node.js
-```
+```TypeScript
 declare var require;
 import Zip = require('./ZipCodeValidator');
 if (needZipValidation) {
@@ -348,7 +348,7 @@ if (needZipValidation) {
 ```
 
 !!!!! Sample: Dynamic Module Loading in require.js
-```
+```TypeScript
 declare var require;
 import Zip = require('./ZipCodeValidator');
 if (needZipValidation) {
@@ -365,7 +365,7 @@ To describe the shape of libraries not written in TypeScript, we need to declare
 The popular library D3 defines its functionality in a global object called `D3`. Because this library is loaded through a _script_ tag (instead of a module loader), its declaration uses internal modules to define its shape. For the TypeScript compiler to see this shape, we use an ambient internal module declaration. For example:
 
 !!!!! D3.d.ts (simplified excerpt)
-```
+```TypeScript
 declare module D3 {
     export interface Selectors {
         select: {
@@ -391,7 +391,7 @@ declare var d3: D3.Base;
 In node.js, most tasks are accomplished by loading one or more modules. We could define each module in its own .d.ts file with top-level export declarations, but it's more convenient to write them as one larger .d.ts file. To do so, we use the quoted name of the module, which will be available to a later import. For example:
 
 !!!!! node.d.ts (simplified excerpt)
-```
+```TypeScript
 declare module "url" {
     export interface Url {
         protocol?: string;
@@ -411,7 +411,7 @@ declare module "path" {
 
 Now we can _/// <reference>_ node.d.ts and then load the modules using e.g. _import url = require('url');_.
 
-```
+```TypeScript
 ///<reference path="node.d.ts"/>
 import url = require("url");
 var myUrl = url.parse("http://www.typescriptlang.org");
@@ -431,7 +431,7 @@ The second is by finding a .d.ts file, similar to above, except that instead of 
 The final way is by seeing an "ambient external module declaration", where we 'declare' a module with a matching quoted name.
 
 !!!!! myModules.d.ts
-```
+```TypeScript
 // In a .d.ts file or .ts file that is not an external module:
 declare module "SomeModule" {
     export function fn(): string;
@@ -439,7 +439,7 @@ declare module "SomeModule" {
 ```
 
 !!!!! myOtherModule.ts
-```
+```TypeScript
 /// <reference path="myModules.d.ts" />
 import m = require("SomeModule");
 ```
@@ -450,7 +450,7 @@ The reference tag here allows us to locate the declaration file that contains th
 If you're converting a program from internal modules to external modules, it can be easy to end up with a file that looks like this:
 
 !!!!! shapes.ts
-```
+```TypeScript
 export module Shapes {
     export class Triangle { /* ... */ }
     export class Square { /* ... */ }
@@ -459,7 +459,7 @@ export module Shapes {
 
 The top-level module here _Shapes_ wraps up _Triangle_ and _Square_ for no reason. This is confusing and annoying for consumers of your module:
 !!!!! shapeConsumer.ts
-```
+```TypeScript
 import shapes = require('./shapes');
 var t = new shapes.Shapes.Triangle(); // shapes.Shapes?
 ```
@@ -470,13 +470,13 @@ To reiterate why you shouldn't try to namespace your external module contents, t
 
 Revised Example:
 !!!!! shapes.ts
-```
+```TypeScript
 export class Triangle { /* ... */ }
 export class Square { /* ... */ }
 ```
 
 !!!!! shapeConsumer.ts
-```
+```TypeScript
 import shapes = require('./shapes');
 var t = new shapes.Triangle();
 ```

@@ -18,7 +18,7 @@ function add(x, y) {
 var myAdd = function(x, y) { return x+y; };
 ```
 
-Just as in JavaScript, functions can return to variables outside of the function body. When they do so, they're said to `capture` these variables. While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript. 
+Just as in JavaScript, functions can return to variables outside of the function body. When they do so, they're said to `capture` these variables. While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.
 
 ```
 var z = 100;
@@ -46,21 +46,21 @@ We can add types to each of the parameters and then to the function itself to ad
 
 !# Writing the function type
 
-Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type. 
+Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type.
 
 ```
-var myAdd: (x:number, y:number)=>number = 
+var myAdd: (x:number, y:number)=>number =
     function(x: number, y: number): number { return x+y; };
 ```
 
 A function's type has the same two parts: the type of the arguments and the return type. When writing out the whole function type, both parts are required. We write out the parameter types just like a parameter list, giving each parameter a name and a type. This name is just to help with readability. We could have instead written:
 
 ```
-var myAdd: (baseValue:number, increment:number)=>number = 
+var myAdd: (baseValue:number, increment:number)=>number =
     function(x: number, y: number): number { return x+y; };
 ```
 
-As long as the parameter types line up, it's considered a valid type for the function, regardless of the names you give the parameters in the function type. 
+As long as the parameter types line up, it's considered a valid type for the function, regardless of the names you give the parameters in the function type.
 
 The second part is the return type. We make it clear which is the return type by using a fat arrow (=>) between the parameters and the return type. As mentioned before, this is a required part of the function type, so if the function doesn't return a value, you would use `void` instead of leaving it off.
 
@@ -75,7 +75,7 @@ In playing with the example, you may notice that the TypeScript compiler can fig
 var myAdd = function(x: number, y: number): number { return x+y; };
 
 // The parameters `x` and `y` have the type number
-var myAdd: (baseValue:number, increment:number)=>number = 
+var myAdd: (baseValue:number, increment:number)=>number =
     function(x, y) { return x+y; };
 ```
 
@@ -124,7 +124,7 @@ var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
 var result3 = buildName("Bob", "Adams");  // ah, just right
 ```
 
-Just as with optional parameters, default parameters must come after required parameters in the parameter list. 
+Just as with optional parameters, default parameters must come after required parameters in the parameter list.
 
 Optional parameters and default parameters also share what the type looks like. Both:
 
@@ -154,7 +154,7 @@ function buildName(firstName: string, ...restOfName: string[]) {
 var employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
 
-Rest parameters are treated as a boundless number of optional parameters. You may leave them off, or have as many as you want. The compiler will build an array of the arguments you pass to the function under the name given after the ellipsis (...), allowing you to use it in your function. 
+Rest parameters are treated as a boundless number of optional parameters. You may leave them off, or have as many as you want. The compiler will build an array of the arguments you pass to the function under the name given after the ellipsis (...), allowing you to use it in your function.
 
 The ellipsis is also used in the type of the function with rest parameters:
 
@@ -168,7 +168,7 @@ var buildNameFun: (fname: string, ...rest: string[])=>string = buildName;
 
 # Lambdas and using `this`
 
-How `this` works in JavaScript functions is a common theme in programmers coming to JavaScript. Indeed, learning how to use it is something of a rite of passage as developers become more accustomed to working in JavaScript. Since TypeScript is a superset of JavaScript, TypeScript developers also need to learn how to use `this` and how to spot when it's not being used correctly. A whole article could be written on how to use `this` in JavaScript, and many have. Here, we'll focus on some of the basics. 
+How `this` works in JavaScript functions is a common theme in programmers coming to JavaScript. Indeed, learning how to use it is something of a rite of passage as developers become more accustomed to working in JavaScript. Since TypeScript is a superset of JavaScript, TypeScript developers also need to learn how to use `this` and how to spot when it's not being used correctly. A whole article could be written on how to use `this` in JavaScript, and many have. Here, we'll focus on some of the basics.
 
 In JavaScript, `this` is a variable that's set when a function is called. This makes it a very powerful and flexible feature, but it comes at the cost of always having to know about the context that a function is executing in. This can be notoriously confusing, when, for example, when a function is used as a callback.
 
@@ -225,7 +225,7 @@ For more information on ways to think about `this`, you can read Yahuda Katz's [
 
 # Overloads
 
-JavaScript is inherently a very dynamic language. It's not uncommon for a single JavaScript function to return different types of objects based on the shape of the arguments passed in. 
+JavaScript is inherently a very dynamic language. It's not uncommon for a single JavaScript function to return different types of objects based on the shape of the arguments passed in.
 
 ```
 var suits = ["hearts", "spades", "clubs", "diamonds"];
@@ -283,7 +283,7 @@ var pickedCard2 = pickCard(15);
 alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 ```
 
-With this change, the overloads now give us type-checked calls to the `pickCard` function. 
+With this change, the overloads now give us type-checked calls to the `pickCard` function.
 
 In order for the compiler to pick the correct typecheck, it follows a similar process to the underlying JavaScript. It looks at the overload list, and proceeding with the first overload attempts to call the function with the provided parameters. If it finds a match, it picks this overload as the correct overload. For this reason, its customary to order overloads from most specific to least specific.
 

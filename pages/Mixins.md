@@ -13,9 +13,9 @@ class Disposable {
     dispose() {
         this.isDisposed = true;
     }
- 
+
 }
- 
+
 // Activatable Mixin
 class Activatable {
     isActive: boolean;
@@ -26,16 +26,16 @@ class Activatable {
         this.isActive = false;
     }
 }
- 
+
 class SmartObject implements Disposable, Activatable {
     constructor() {
         setInterval(() => console.log(this.isActive + " : " + this.isDisposed), 500);
     }
- 
+
     interact() {
         this.activate();
     }
- 
+
     // Disposable
     isDisposed: boolean = false;
     dispose: () => void;
@@ -45,10 +45,10 @@ class SmartObject implements Disposable, Activatable {
     deactivate: () => void;
 }
 applyMixins(SmartObject, [Disposable, Activatable])
- 
+
 var smartObj = new SmartObject();
 setTimeout(() => smartObj.interact(), 1000);
- 
+
 ////////////////////////////////////////
 // In your runtime library somewhere
 ////////////////////////////////////////
@@ -58,7 +58,7 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             derivedCtor.prototype[name] = baseCtor.prototype[name];
         })
-    }); 
+    });
 }
 ```
 
@@ -73,9 +73,9 @@ class Disposable {
     dispose() {
         this.isDisposed = true;
     }
- 
+
 }
- 
+
 // Activatable Mixin
 class Activatable {
     isActive: boolean;
@@ -94,7 +94,7 @@ Next, we'll create the class that will handle the combination of the two mixins.
 class SmartObject implements Disposable, Activatable {
 ```
 
-The first thing you may notice in the above is that instead of using `extends`, we use `implements`. This treats the classes as interfaces, and only uses the types behind Disposable and Activatable rather than the implementation. This means that we'll have to provide the implementation in class. Except, that's exactly what we want to avoid by using mixins. 
+The first thing you may notice in the above is that instead of using `extends`, we use `implements`. This treats the classes as interfaces, and only uses the types behind Disposable and Activatable rather than the implementation. This means that we'll have to provide the implementation in class. Except, that's exactly what we want to avoid by using mixins.
 
 To satisfy this requirement, we create stand-in properties and their types for the members that will come from our mixins. This satisfies the compiler that these members will be available at runtime. This lets us still get the benefit of the mixins, albeit with a some bookkeeping overhead.
 
@@ -115,14 +115,14 @@ applyMixins(SmartObject, [Disposable, Activatable])
 ```
 
 Lastly, we create a helper function that will do the mixing for us. This will run through the properties of each of the mixins and copy them over to the target of the mixins, filling out the stand-in properties with their implementations.
- 
+
 ```
 function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             derivedCtor.prototype[name] = baseCtor.prototype[name];
         })
-    }); 
+    });
 }
 
 ```

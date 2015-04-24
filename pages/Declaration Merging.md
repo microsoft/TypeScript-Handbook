@@ -4,7 +4,7 @@ Some of the unique concepts in TypeScript come from the need to describe what is
 
 First, before we get into how declarations merge, let's first describe what we mean by 'declaration merging'.
 
-For the purposes of this article, declaration merging specifically means that the compiler is doing the work of merging two separate declarations declared with the same name into a single definition. This merged definition has the features of both of the original declarations. Declaration merging is not limited to just two declarations, as any number of declarations can be merged. 
+For the purposes of this article, declaration merging specifically means that the compiler is doing the work of merging two separate declarations declared with the same name into a single definition. This merged definition has the features of both of the original declarations. Declaration merging is not limited to just two declarations, as any number of declarations can be merged.
 
 # Basic Concepts
 
@@ -38,7 +38,7 @@ var box: Box = {height: 5, width: 6, scale: 10};
 
 Non-function members of the interfaces must be unique. The compiler will issue an error if the interfaces both declare a non-function member of the same name.
 
-For function members, each function member of the same name is treated as describing an overload of the same function. Of note, too, is that in the case of interface A merging with later interface A (here called A'), the overload set of A' will have a higher precedence than that of interface A. 
+For function members, each function member of the same name is treated as describing an overload of the same function. Of note, too, is that in the case of interface A merging with later interface A (here called A'), the overload set of A' will have a higher precedence than that of interface A.
 
 That is, in the example:
 
@@ -50,7 +50,7 @@ interface Document {
     createElement(tagName: string): HTMLElement;
 }
 interface Document {
-    createElement(tagName: "div"): HTMLDivElement; 
+    createElement(tagName: "div"): HTMLDivElement;
     createElement(tagName: "span"): HTMLSpanElement;
     createElement(tagName: "canvas"): HTMLCanvasElement;
 }
@@ -60,7 +60,7 @@ The two interfaces will merge to create a single declaration. otice that the ele
 
 ```
 interface Document {
-    createElement(tagName: "div"): HTMLDivElement; 
+    createElement(tagName: "div"): HTMLDivElement;
     createElement(tagName: "span"): HTMLSpanElement;
     createElement(tagName: "canvas"): HTMLCanvasElement;
     createElement(tagName: string): HTMLElement;
@@ -75,7 +75,7 @@ Similarly to interfaces, modules of the same name will also merge their members.
 
 To merge the namespaces, type definitions from exported interfaces declared in each module are themselves merged, forming a single namespace with merged interface definitions inside.
 
-To merge the value, at each declaration site, if a module already exists with the given name, it is further extended by taking the existing module and adding the exported members of the second module to the first. 
+To merge the value, at each declaration site, if a module already exists with the given name, it is further extended by taking the existing module and adding the exported members of the second module to the first.
 
 The declaration merge of 'Animals' in this example:
 ```
@@ -94,7 +94,7 @@ is equivalent to:
 ```
 module Animals {
     export interface Legged { numberOfLegs: number; }
-    
+
     export class Zebra { }
     export class Dog { }
 }
@@ -139,7 +139,7 @@ module Album {
 
 The visibility rules for merged members is the same as described in the 'Merging Modules' section, so we must export the AlbumLabel class for the merged class to see it. The end result is a class managed inside of another class. You can also use modules to add more static members to an existing class.
 
-In addition to the pattern of inner classes, you may also be familiar with JavaScript practice of creating a function and then extending the function further by adding properties onto the function. TypeScript uses declaration merging to build up definitions like this in a type-safe way. 
+In addition to the pattern of inner classes, you may also be familiar with JavaScript practice of creating a function and then extending the function further by adding properties onto the function. TypeScript uses declaration merging to build up definitions like this in a type-safe way.
 
 ```
 function buildLabel(name: string): string {

@@ -257,7 +257,7 @@ In the previous example, when we consumed each validator, each module only expor
 
 The export = syntax specifies a single object that is exported from the module. This can be a class, interface, module, function, or enum. When imported, the exported symbol is consumed directly and is not qualified by any name.
 
-Below, we've simplified the Validator implementations to only export a single object from each module using the export = syntax. This simplifies the consumption code – instead of referring to 'zip.ZipCodeValidator', we can simply refer to 'zipValidator'.
+Below, we've simplified the Validator implementations to only export a single object from each module using the export = syntax. This simplifies the consumption code – instead of referring to `zip.ZipCodeValidator`, we can simply refer to `zipValidator`.
 
 !!!!! Validation.ts
 ```TypeScript
@@ -362,7 +362,7 @@ if (needZipValidation) {
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes. Because most JavaScript libraries expose only a few top-level objects, modules are a good way to represent them. We call declarations that don't define an implementation "ambient". Typically these are defined in .d.ts files. If you're familiar with C/C++, you can think of these as .h files or 'extern'. Let's look at a few examples with both internal and external examples.
 
 !!! Ambient Internal Modules
-The popular library D3 defines its functionality in a global object called 'D3'. Because this library is loaded through a _script_ tag (instead of a module loader), its declaration uses internal modules to define its shape. For the TypeScript compiler to see this shape, we use an ambient internal module declaration. For example:
+The popular library D3 defines its functionality in a global object called `D3`. Because this library is loaded through a _script_ tag (instead of a module loader), its declaration uses internal modules to define its shape. For the TypeScript compiler to see this shape, we use an ambient internal module declaration. For example:
 
 !!!!! D3.d.ts (simplified excerpt)
 ```TypeScript

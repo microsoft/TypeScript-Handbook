@@ -95,7 +95,7 @@ var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
 var result3 = buildName("Bob", "Adams");  // ah, just right
 ```
 
-In JavaScript, every parameter is considered optional, and users may leave them off as they see fit. When they do, they're assumed to be undefined. We can get this functionality in TypeScript by using the '?' beside parameters we want optional. For example, let's say we want the last name to be optional:
+In JavaScript, every parameter is considered optional, and users may leave them off as they see fit. When they do, they're assumed to be undefined. We can get this functionality in TypeScript by using the `?` beside parameters we want optional. For example, let's say we want the last name to be optional:
 
 ```TypeScript
 function buildName(firstName: string, lastName?: string) {
@@ -112,7 +112,7 @@ var result3 = buildName("Bob", "Adams");  // ah, just right
 
 Optional parameters must follow required parameters. Had we wanted to make the first name optional rather than the last name, we would need to change the order of parameters in the function, putting the first name last in the list.
 
-In TypeScript, we can also set up a value that an optional parameter will have if the user does not provide one. These are called default parameters. Let's take the previous example and default the last name to "Smith".
+In TypeScript, we can also set up a value that an optional parameter will have if the user does not provide one. These are called default parameters. Let's take the previous example and default the last name to `"Smith"`.
 
 ```TypeScript
 function buildName(firstName: string, lastName = "Smith") {
@@ -221,7 +221,7 @@ var pickedCard = cardPicker();
 alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
 
-For more information on ways to think about `this`, you can read Yahuda Katz's [url:Understanding JavaScript Function Invocation and “this”|http:// yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/].
+For more information on ways to think about `this`, you can read Yehuda Katz's [url:Understanding JavaScript Function Invocation and "this"|http:// yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/].
 
 # Overloads
 

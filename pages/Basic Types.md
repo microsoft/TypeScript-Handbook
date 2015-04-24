@@ -35,7 +35,7 @@ TypeScript, like JavaScript, allows you to work with arrays of values. Array typ
 var list:number[] = [1, 2, 3];
 ```
 
-The second way uses a generic array type, Array<elemType>:
+The second way uses a generic array type, `Array<elemType>`:
 
 ```TypeScript
 var list:Array<number> = [1, 2, 3];
@@ -43,14 +43,14 @@ var list:Array<number> = [1, 2, 3];
 
 # Enum
 
-A helpful addition to the standard set of datatypes from JavaScript is the 'enum'. Like languages like C#, an enum is a way of giving more friendly names to sets of numeric values.
+A helpful addition to the standard set of datatypes from JavaScript is the `enum`. Like languages like C#, an enum is a way of giving more friendly names to sets of numeric values.
 
 ```TypeScript
 enum Color {Red, Green, Blue};
 var c: Color = Color.Green;
 ```
 
-By default, enums begin numbering their members starting at 0. You can change this by manually setting the value of one its members. For example, we can start the previous example at 1 instead of 0:
+By default, enums begin numbering their members starting at `0`. You can change this by manually setting the value of one its members. For example, we can start the previous example at `1` instead of `0`:
 
 ```TypeScript
 enum Color {Red = 1, Green, Blue};
@@ -64,7 +64,7 @@ enum Color {Red = 1, Green = 2, Blue = 4};
 var c: Color = Color.Green;
 ```
 
-A handy feature of enums is that you can also go from a numeric value to the name of that value in the enum. For example, if we had the value 2 but weren't sure which that mapped to in the Color enum above, we could look up the corresponding name:
+A handy feature of enums is that you can also go from a numeric value to the name of that value in the enum. For example, if we had the value `2` but weren't sure which that mapped to in the `Color` enum above, we could look up the corresponding name:
 
 ```TypeScript
 enum Color {Red = 1, Green, Blue};
@@ -95,7 +95,7 @@ list[1] = 100;
 
 # Void
 
-Perhaps the opposite in some ways to `any` is 'void', the absence of having any type at all. You may commonly see this as the return type of functions that do not return a value:
+Perhaps the opposite in some ways to `any` is `void`, the absence of having any type at all. You may commonly see this as the return type of functions that do not return a value:
 
 ```TypeScript
 function warnUser(): void {

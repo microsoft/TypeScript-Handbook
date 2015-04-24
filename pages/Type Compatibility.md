@@ -24,7 +24,7 @@ TypeScript's structural type system was designed based on how JavaScript code is
 TypeScript's type system allows certain operations that can't be known at compile-time to be safe. When a type system has this property, it is said to not be "sound". The places where TypeScript allows unsound behavior were carefully considered, and throughout this document we'll explain where these happen and the motivating scenarios behind them.
 
 # Starting out
-The basic rule for TypeScript's structural type system is that x is compatible with y if y has at least the same members as x. For example:
+The basic rule for TypeScript's structural type system is that `x` is compatible with `y` if `y` has at least the same members as `x`. For example:
 
 ```
 interface Named {
@@ -37,7 +37,7 @@ var y = { name: 'Alice', location: 'Seattle' };
 x = y;
 ```
 
-To check whether y can be assigned to x, the compiler checks each property of x to find a corresponding compatible property in y. In this case, y must have a member called 'name' that is a string. It does, so the assignment is allowed.
+To check whether ``y can be assigned to `x`, the compiler checks each property of x to find a corresponding compatible property in `y`. In this case, `y` must have a member called `name` that is a string. It does, so the assignment is allowed.
 
 The same rule for assignment is used when checking function call arguments:
 
@@ -48,7 +48,7 @@ function greet(n: Named) {
 greet(y); // OK
 ```
 
-Note that 'y' has an extra 'location' property, but this does not create an error. Only members of the target type ('Named' in this case) are considered when checking for compatibility.
+Note that `y` has an extra `location` property, but this does not create an error. Only members of the target type (`Named` in this case) are considered when checking for compatibility.
 
 This comparison process proceeds recursively, exploring the type of each member and sub-member.
 
@@ -121,7 +121,7 @@ When comparing functions for compatibility, optional and required parameters are
 
 When a function has a rest parameter, it is treated as if it were an infinite series of optional parameters.
 
-This is unsound from a type system perspective, but from a runtime point of view the idea of an optional parameter is generally not well-enforced since passing 'undefined' in that position is equivalent for most functions.
+This is unsound from a type system perspective, but from a runtime point of view the idea of an optional parameter is generally not well-enforced since passing `undefined` in that position is equivalent for most functions.
 
 The motivating example is the common pattern of a function that takes a callback and invokes it with some predictable (to the programmer) but unknown (to the type system) number of arguments:
 

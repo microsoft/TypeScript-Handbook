@@ -37,7 +37,7 @@ var y = { name: 'Alice', location: 'Seattle' };
 x = y;
 ```
 
-To check whether ``y can be assigned to `x`, the compiler checks each property of x to find a corresponding compatible property in `y`. In this case, `y` must have a member called `name` that is a string. It does, so the assignment is allowed.
+To check whether `y` can be assigned to `x`, the compiler checks each property of `x` to find a corresponding compatible property in `y`. In this case, `y` must have a member called `name` that is a string. It does, so the assignment is allowed.
 
 The same rule for assignment is used when checking function call arguments:
 
@@ -63,11 +63,11 @@ y = x; // OK
 x = y; // Error
 ```
 
-To check if x is assignable to y, we first look at the parameter list. Each parameter in y must have a corresponding parameter in x with a compatible type. Note that the names of the parameters are not considered, only their types. In this case, every parameter of x has a corresponding compatible parameter in y, so the assignment is allowed.
+To check if `x` is assignable to `y`, we first look at the parameter list. Each parameter in `y` must have a corresponding parameter in `x` with a compatible type. Note that the names of the parameters are not considered, only their types. In this case, every parameter of x has a corresponding compatible parameter in `y`, so the assignment is allowed.
 
 The second assignment is an error, because y has a required second parameter that 'x' does not have, so the assignment is disallowed.
 
-You may be wondering why we allow 'discarding' parameters like in the example y = x. The reason is that assignment is allowed is that ignoring extra function parameters is actually quite common in JavaScript. For example, Array#forEach provides three arguments to the callback function: the array element, its index, and the containing array. Nevertheless, it's very useful to provide a callback that only uses the first argument:
+You may be wondering why we allow 'discarding' parameters like in the example `y = x`. The reason is that assignment is allowed is that ignoring extra function parameters is actually quite common in JavaScript. For example, `Array#forEach` provides three arguments to the callback function: the array element, its index, and the containing array. Nevertheless, it's very useful to provide a callback that only uses the first argument:
 
 ```
 var items = [1, 2, 3];

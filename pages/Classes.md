@@ -24,7 +24,7 @@ The syntax should look very familiar if you've used C# or Java before. We declar
 
 You'll notice that in the class when we refer to one of the members of the class we prepend `this.`. This denotes that it's a member access.
 
-In the last line we construct an instance of the Greeter class using `new`. This calls into the constructor we defined earlier, creating a new object with the Greeter shape, and running the constructor to initialize it.
+In the last line we construct an instance of the `Greeter` class using `new`. This calls into the constructor we defined earlier, creating a new object with the `Greeter` shape, and running the constructor to initialize it.
 
 # Inheritance
 
@@ -230,7 +230,7 @@ greeter = new Greeter("world");
 alert(greeter.greet());
 ```
 
-Here, when we say 'var greeter: Greeter', we're using Greeter as the type of instances of the class Greeter. This is almost second nature to programmers from other object-oriented languages. 
+Here, when we say `var greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`. This is almost second nature to programmers from other object-oriented languages. 
  
 We're also creating another value that we call the _constructor function_. This is the function that is called when we `new` up instances of the class. To see what this looks like in practice, let's take a look at the JavaScript created by the above example:
 
@@ -280,7 +280,7 @@ alert(greeter2.greet());
 
 In this example, `greeter1` works similarly to before. We instantiate the `Greeter` class, and use this object. This we have seen before.
 
-Next, we then use the class directly. Here we create a new variable called `greeterMaker`. This variable will hold the class itself, or said another way its constructor function. Here we use 'typeof Greeter', that is "give me the type of the Greeter class itself" rather than the instance type. Or, more precisely, "give me the type of the symbol called Greeter", which is the type of the constructor function. This type will contain all of the static members of Greeter along with the constructor that creates instances of the Greeter class. We show this by using `new` on `greeterMaker`, creating new instances of `Greeter` and invoking them as before.
+Next, we then use the class directly. Here we create a new variable called `greeterMaker`. This variable will hold the class itself, or said another way its constructor function. Here we use `typeof Greeter`, that is "give me the type of the `Greeter` class itself" rather than the instance type. Or, more precisely, "give me the type of the symbol called Greeter", which is the type of the constructor function. This type will contain all of the static members of Greeter along with the constructor that creates instances of the `Greeter` class. We show this by using `new` on `greeterMaker`, creating new instances of `Greeter` and invoking them as before.
 
 ## Using a class as an interface
 

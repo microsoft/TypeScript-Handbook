@@ -50,7 +50,7 @@ enum Color {Red, Green, Blue};
 var c: Color = Color.Green;
 ```
 
-By default, enums begin numbering their members starting at 0. You can change this by manually setting the value of one its members. For example, we can start the previous example at 1 instead of 0:
+By default, enums begin numbering their members starting at `0`. You can change this by manually setting the value of one its members. For example, we can start the previous example at `1` instead of `0`:
 
 ```ts
 enum Color {Red = 1, Green, Blue};
@@ -64,7 +64,7 @@ enum Color {Red = 1, Green = 2, Blue = 4};
 var c: Color = Color.Green;
 ```
 
-A handy feature of enums is that you can also go from a numeric value to the name of that value in the enum. For example, if we had the value 2 but weren't sure which that mapped to in the Color enum above, we could look up the corresponding name:
+A handy feature of enums is that you can also go from a numeric value to the name of that value in the enum. For example, if we had the value `2` but weren't sure which that mapped to in the `Color` enum above, we could look up the corresponding name:
 
 ```ts
 enum Color {Red = 1, Green, Blue};

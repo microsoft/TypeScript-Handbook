@@ -38,7 +38,7 @@ var box: Box = {height: 5, width: 6, scale: 10};
 
 Non-function members of the interfaces must be unique. The compiler will issue an error if the interfaces both declare a non-function member of the same name.
 
-For function members, each function member of the same name is treated as describing an overload of the same function. Of note, too, is that in the case of interface A merging with later interface A (here called A'), the overload set of A' will have a higher precedence than that of interface A.
+For function members, each function member of the same name is treated as describing an overload of the same function. Of note, too, is that in the case of interface `A` merging with later interface `A` (here called `A'`), the overload set of `A'` will have a higher precedence than that of interface `A`.
 
 That is, in the example:
 
@@ -77,7 +77,7 @@ To merge the namespaces, type definitions from exported interfaces declared in e
 
 To merge the value, at each declaration site, if a module already exists with the given name, it is further extended by taking the existing module and adding the exported members of the second module to the first.
 
-The declaration merge of 'Animals' in this example:
+The declaration merge of `Animals` in this example:
 ```
 module Animals {
     export class Zebra { }

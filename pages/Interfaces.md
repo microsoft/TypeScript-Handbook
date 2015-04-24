@@ -1,8 +1,8 @@
 # Introduction
 
-One of TypeScript's core principles is that type-checking focuses on the `shape` that values have. This is sometimes called "duck typing" or "structural subtyping". In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining contracts within your code as well as contracts with code outside of your project. 
+One of TypeScript's core principles is that type-checking focuses on the `shape` that values have. This is sometimes called "duck typing" or "structural subtyping". In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining contracts within your code as well as contracts with code outside of your project.
 
-# Our First Interface 
+# Our First Interface
 
 The easiest way to see how interfaces work is to start with a simple example:
 
@@ -15,7 +15,7 @@ var myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
-The type-checker checks the call to `printLabel`. The `printLabel` function has a single parameter that requires that the object passed in has a property called `label` of type string. Notice that our object actually has more properties than this, but the compiler only checks to that _at least_ the ones required are present and match the types required. 
+The type-checker checks the call to `printLabel`. The `printLabel` function has a single parameter that requires that the object passed in has a property called `label` of type string. Notice that our object actually has more properties than this, but the compiler only checks to that _at least_ the ones required are present and match the types required.
 
 We can write the same example again, this time using an interface to describe the requirement of having the `label` property that is a string:
 
@@ -61,7 +61,7 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
 var mySquare = createSquare({color: "black"});
 ```
 
-Interfaces with optional properties are written similar to other interfaces, which each optional property denoted with a '?' as part of the property declaration. 
+Interfaces with optional properties are written similar to other interfaces, which each optional property denoted with a '?' as part of the property declaration.
 
 The advantage of optional properties is that you can describe these possibly available properties while still also catching properties that you know are not expected to be available. For example, had we mistyped the name of the property we passed to `createSquare`, we would get an error message letting us know:
 
@@ -82,7 +82,7 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
   return newSquare;
 }
 
-var mySquare = createSquare({color: "black"});  
+var mySquare = createSquare({color: "black"});
 ```
 
 # Function Types
@@ -141,7 +141,7 @@ interface StringArray {
 var myArray: StringArray;
 myArray = ["Bob", "Fred"];
 ```
- 
+
 There are two types of supported index types: string and number. It is possible to support both types of index, with the restriction that the type returned from the numeric index must be a subtype of the type returned from the string index.
 
 While index signatures are a powerful way to describe the array and `dictionary` pattern, they also enforce that all properties match their return type. In this example, the property does not match the more general index, and the type-checker gives an error:
@@ -150,7 +150,7 @@ While index signatures are a powerful way to describe the array and `dictionary`
 interface Dictionary {
   [index: string]: string;
   length: number;    // error, the type of `length` is not a subtype of the indexer
-} 
+}
 ```
 
 # Class Types
@@ -164,7 +164,7 @@ interface ClockInterface {
     currentTime: Date;
 }
 
-class Clock implements ClockInterface  {
+class Clock implements ClockInterface {
     currentTime: Date;
     constructor(h: number, m: number) { }
 }
@@ -178,7 +178,7 @@ interface ClockInterface {
     setTime(d: Date);
 }
 
-class Clock implements ClockInterface  {
+class Clock implements ClockInterface {
     currentTime: Date;
     setTime(d: Date) {
         this.currentTime = d;
@@ -197,7 +197,7 @@ interface ClockInterface {
     new (hour: number, minute: number);
 }
 
-class Clock implements ClockInterface  {
+class Clock implements ClockInterface {
     currentTime: Date;
     constructor(h: number, m: number) { }
 }
@@ -212,7 +212,7 @@ interface ClockStatic {
     new (hour: number, minute: number);
 }
 
-class Clock  {
+class Clock {
     currentTime: Date;
     constructor(h: number, m: number) { }
 }
@@ -262,7 +262,7 @@ square.penWidth = 5.0;
 
 # Hybrid Types
 
-As we mentioned earlier, interfaces can describe the rich types present in real world JavaScript. Because of JavaScript's dynamic and flexible nature, you may occasionally encounter an object that works as a combination of some of the types described above. 
+As we mentioned earlier, interfaces can describe the rich types present in real world JavaScript. Because of JavaScript's dynamic and flexible nature, you may occasionally encounter an object that works as a combination of some of the types described above.
 
 One such example is an object that acts as both a function and an object, with additional properties:
 

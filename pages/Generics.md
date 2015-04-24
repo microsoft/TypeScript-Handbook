@@ -6,7 +6,7 @@ In languages like C# and Java, one of the main tools in the toolbox for creating
 
 # Hello World of Generics
 
-To start off, let's do the "hello world" of generics: the identity function. The identity function is a function that will return back whatever is passed in. You can think of this in a similar way to the 'echo' command. 
+To start off, let's do the "hello world" of generics: the identity function. The identity function is a function that will return back whatever is passed in. You can think of this in a similar way to the 'echo' command.
 
 Without generics, we would either have to give the identity function a specific type:
 
@@ -24,9 +24,9 @@ function identity(arg: any): any {
 }
 ```
 
-While using 'any' is certainly generic in that will accept any and all types for the type of 'arg', we actually are losing the information about what that type was when the function returns. If we passed in a number, the only information we have is that any type could be returned. 
+While using 'any' is certainly generic in that will accept any and all types for the type of 'arg', we actually are losing the information about what that type was when the function returns. If we passed in a number, the only information we have is that any type could be returned.
 
-Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned. Here, we will use a _type variable_, a special kind of variable that works on types rather than values. 
+Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned. Here, we will use a _type variable_, a special kind of variable that works on types rather than values.
 
 ```
 function identity<T>(arg: T): T {
@@ -75,7 +75,7 @@ function loggingIdentity<T>(arg: T): T {
 }
 ```
 
-When we do, the compiler will give us an error that we're using the ".length" member of 'arg', but nowhere have we said that 'arg' has this member. Remember, we said earlier that these type variables stand in for any and all types, so someone using this function could have passed in a 'number' instead, which does not have a ".length" member. 
+When we do, the compiler will give us an error that we're using the ".length" member of 'arg', but nowhere have we said that 'arg' has this member. Remember, we said earlier that these type variables stand in for any and all types, so someone using this function could have passed in a 'number' instead, which does not have a ".length" member.
 
 Let's say that we've actually intended this function to work on arrays of T rather that T directly. Since we're working with arrays, the .length member should be available. We can describe this just like we would create arrays of other types:
 
@@ -86,7 +86,7 @@ function loggingIdentity<T>(arg: T[]): T[] {
 }
 ```
 
-You can read the type of logging Identity as "the generic function loggingIdentity, takes a type parameter T, and an argument 'arg' which is an array of these T's, and returns an array of T's. If we passed in an array of numbers, we'd get an array of numbers back out, as T would bind to number. This allows us to use our generic type variable 'T' as part of the types we're working with, rather than the whole type, giving us greater flexibility. 
+You can read the type of logging Identity as "the generic function loggingIdentity, takes a type parameter T, and an argument 'arg' which is an array of these T's, and returns an array of T's. If we passed in an array of numbers, we'd get an array of numbers back out, as T would bind to number. This allows us to use our generic type variable 'T' as part of the types we're working with, rather than the whole type, giving us greater flexibility.
 
 We can alternatively write the sample example this way:
 
@@ -147,7 +147,7 @@ function identity<T>(arg: T): T {
 var myIdentity: GenericIdentityFn = identity;
 ```
 
-In a similar example, we may want to move the generic parameter to be a parameter of the whole interface. This lets us see what type(s) we're generic over (eg Dictionary<string> rather than just Dictionary). This makes the type parameter visible to all the other members of the interface. 
+In a similar example, we may want to move the generic parameter to be a parameter of the whole interface. This lets us see what type(s) we're generic over (eg Dictionary<string> rather than just Dictionary). This makes the type parameter visible to all the other members of the interface.
 
 ```
 interface GenericIdentityFn<T> {
@@ -229,7 +229,7 @@ loggingIdentity(3);  // Error, number doesn't have a .length property
 Instead, we need to pass in values whose type has all the required properties:
 
 ```
-loggingIdentity({length: 10, value: 3});  
+loggingIdentity({length: 10, value: 3});
 ```
 
 !# Using Type Parameters in Generic Constraints
@@ -239,16 +239,16 @@ In some cases, it may be useful to declare a type parameter that is constrained 
 ```
 function find<T, U extends Findable<T>>(n: T, s: U) {   // errors because type parameter used in constraint
   // ...
-} 
+}
 find (giraffe, myAnimals);
 ```
 
 You can achieve the pattern above by replacing the type parameter with its constraint. Rewriting the example above,
 
 ```
-function find<T>(n: T, s: Findable<T>) {   
+function find<T>(n: T, s: Findable<T>) {
   // ...
-} 
+}
 find(giraffe, myAnimals);
 ```
 
@@ -259,7 +259,7 @@ _Note:_ The above is not strictly identical, as the return type of the first fun
 When creating factories in TypeScript using generics, it is necessary to refer to class types by their constructor functions. For example,
 
 ```
-function create<T>(c: {new(): T; }): T { 
+function create<T>(c: {new(): T; }): T {
     return new c();
 }
 ```
@@ -272,7 +272,7 @@ class BeeKeeper {
 }
 
 class ZooKeeper {
-    nametag: string; 
+    nametag: string;
 }
 
 class Animal {
@@ -287,7 +287,7 @@ class Lion extends Animal {
     keeper: ZooKeeper;
 }
 
-function findKeeper<A extends Animal, K> (a: {new(): A; 
+function findKeeper<A extends Animal, K> (a: {new(): A;
     prototype: {keeper: K}}): K {
 
     return a.prototype.keeper;

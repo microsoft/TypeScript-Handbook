@@ -2,7 +2,7 @@
 
 Type compatibility in TypeScript is based on structural subtyping. Structural typing is a way of relating types based solely on their members. This is in contrast with nominal typing. Consider the following code:
 
-```
+```TypeScript
 interface Named {
     name: string;
 }
@@ -26,7 +26,7 @@ TypeScript’s type system allows certain operations that can’t be known at compil
 # Starting out
 The basic rule for TypeScript’s structural type system is that x is compatible with y if y has at least the same members as x. For example:
 
-```
+```TypeScript
 interface Named {
     name: string;
 }
@@ -41,7 +41,7 @@ To check whether y can be assigned to x, the compiler checks each property of x 
 
 The same rule for assignment is used when checking function call arguments:
 
-```
+```TypeScript
 function greet(n: Named) {
     alert('Hello, ' + n.name);
 }
@@ -55,7 +55,7 @@ This comparison process proceeds recursively, exploring the type of each member 
 # Comparing two functions
 While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible. Let’s start with a basic example of two functions that differ only in their argument lists:
 
-```
+```TypeScript
 var x = (a: number) => 0;
 var y = (b: number, s: string) => 0;
 
@@ -69,7 +69,7 @@ The second assignment is an error, because y has a required second parameter tha
 
 You may be wondering why we allow ‘discarding’ parameters like in the example y = x. The reason is that assignment is allowed is that ignoring extra function parameters is actually quite common in JavaScript. For example, Array#forEach provides three arguments to the callback function: the array element, its index, and the containing array. Nevertheless, it’s very useful to provide a callback that only uses the first argument:
 
-```
+```TypeScript
 var items = [1, 2, 3];
 
 // Don't force these extra arguments
@@ -81,7 +81,7 @@ items.forEach((item) => console.log(item));
 
 Now let’s look at how return types are treated, using two functions that differ only by their return type:
 
-```
+```TypeScript
 var x = () => ({name: 'Alice'});
 var y = () => ({name: 'Alice', location: 'Seattle'});
 
@@ -94,7 +94,7 @@ The type system enforces that the source function’s return type be a subtype of 
 ## Function Argument Bivariance
 When comparing the types of function parameters, assignment succeeds if either the source parameter is assignable to the target parameter, or vice versa. This is unsound because a caller might end up being given a function that takes a more specialized type, but invokes the function with a less specialized type. In practice, this sort of error is rare, and allowing this enables many common JavaScript patterns. A brief example:
 
-```
+```TypeScript
 enum EventType { Mouse, Keyboard }
 
 interface Event { timestamp: number; }
@@ -125,7 +125,7 @@ This is unsound from a type system perspective, but from a runtime point of view
 
 The motivating example is the common pattern of a function that takes a callback and invokes it with some predictable (to the programmer) but unknown (to the type system) number of arguments:
 
-```
+```TypeScript
 function invokeLater(args: any[], callback: (...args: any[]) => void) {
     /* ... Invoke callback with 'args' ... */
 }
@@ -145,7 +145,7 @@ When a function has overloads, each overload in the source type must be matched 
 
 Enums are compatible with numbers, and numbers are compatible with enums. Enum values from different enum types are considered incompatible. For example,
 
-```
+```TypeScript
 enum Status { Ready, Waiting };
 enum Color { Red, Blue, Green };
 
@@ -157,7 +157,7 @@ status = Color.Green;  //error
 
 Classes work similarly to object literal types and interfaces with one exception: they have both a static and an instance type. When comparing two objects of a class type, only members of the instance are compared. Static members and constructors do not affect compatibility.
 
-```
+```TypeScript
 class Animal {
     feet: number;
     constructor(name: string, numFeet: number) { }
@@ -183,7 +183,7 @@ Private members in a class affect their compatibility. When an instance of a cla
 
 Because TypeScript is a structural type system, type parameters only affect the resulting type when consumed as part of the type of a member. For example,
 
-```
+```TypeScript
 interface Empty<T> {
 }
 var x: Empty<number>;
@@ -194,7 +194,7 @@ x = y;  // okay, y matches structure of x
 
 In the above, x and y are compatible because their structures do not use the type argument in a differentiating way. Changing this example by adding a member to Empty<T> shows how this works:
 
-```
+```TypeScript
 interface NotEmpty<T> {
     data: T;
 }
@@ -210,7 +210,7 @@ For generic types that do not have their type arguments specified, compatibility
 
 For example,
 
-```
+```TypeScript
 var identity = function<T>(x: T): T {
     // ...
 }

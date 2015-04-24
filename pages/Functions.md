@@ -8,7 +8,7 @@ To begin, just as in JavaScript, TypeScript functions can be created both as a n
 
 To quickly recap what these two approaches look like in JavaScript:
 
-```
+```TypeScript
 // Named function
 function add(x, y) {
     return x+y;
@@ -20,7 +20,7 @@ var myAdd = function(x, y) { return x+y; };
 
 Just as in JavaScript, functions can return to variables outside of the function body. When they do so, they're said to `capture` these variables. While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.
 
-```
+```TypeScript
 var z = 100;
 
 function addToZ(x, y) {
@@ -34,7 +34,7 @@ function addToZ(x, y) {
 
 Let's add types to our simple examples from earlier:
 
-```
+```TypeScript
 function add(x: number, y: number): number {
     return x+y;
 }
@@ -48,14 +48,14 @@ We can add types to each of the parameters and then to the function itself to ad
 
 Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type.
 
-```
+```TypeScript
 var myAdd: (x:number, y:number)=>number =
     function(x: number, y: number): number { return x+y; };
 ```
 
 A function's type has the same two parts: the type of the arguments and the return type. When writing out the whole function type, both parts are required. We write out the parameter types just like a parameter list, giving each parameter a name and a type. This name is just to help with readability. We could have instead written:
 
-```
+```TypeScript
 var myAdd: (baseValue:number, increment:number)=>number =
     function(x: number, y: number): number { return x+y; };
 ```
@@ -70,7 +70,7 @@ Of note, only the parameters and the return type make up the function type. Capt
 
 In playing with the example, you may notice that the TypeScript compiler can figure out the type if you have types on one side of the equation but not the other:
 
-```
+```TypeScript
 // myAdd has the full function type
 var myAdd = function(x: number, y: number): number { return x+y; };
 
@@ -85,7 +85,7 @@ This is called 'contextual typing', a form of type inference. This helps cut dow
 
 Unlike JavaScript, in TypeScript every parameter to a function is assumed to be required by the function. This doesn't mean that it isn't a `null` value, but rather, when the function is called the compiler will check that the user has provided a value for each parameter. The compiler also assumes that these parameters are the only parameters that will be passed to the function. In short, the number of parameters to the function has to match the number of parameters the function expects.
 
-```
+```TypeScript
 function buildName(firstName: string, lastName: string) {
     return firstName + " " + lastName;
 }
@@ -97,7 +97,7 @@ var result3 = buildName("Bob", "Adams");  // ah, just right
 
 In JavaScript, every parameter is considered optional, and users may leave them off as they see fit. When they do, they're assumed to be undefined. We can get this functionality in TypeScript by using the '?' beside parameters we want optional. For example, let's say we want the last name to be optional:
 
-```
+```TypeScript
 function buildName(firstName: string, lastName?: string) {
     if (lastName)
         return firstName + " " + lastName;
@@ -114,7 +114,7 @@ Optional parameters must follow required parameters. Had we wanted to make the f
 
 In TypeScript, we can also set up a value that an optional parameter will have if the user does not provide one. These are called default parameters. Let's take the previous example and default the last name to "Smith".
 
-```
+```TypeScript
 function buildName(firstName: string, lastName = "Smith") {
     return firstName + " " + lastName;
 }
@@ -128,13 +128,13 @@ Just as with optional parameters, default parameters must come after required pa
 
 Optional parameters and default parameters also share what the type looks like. Both:
 
-```
+```TypeScript
 function buildName(firstName: string, lastName?: string) {
 ```
 
 and
 
-```
+```TypeScript
 function buildName(firstName: string, lastName = "Smith") {
 ```
 
@@ -146,7 +146,7 @@ Required, optional, and default parameters all have one thing in common: they're
 
 In TypeScript, you can gather these arguments together into a variable:
 
-```
+```TypeScript
 function buildName(firstName: string, ...restOfName: string[]) {
 	return firstName + " " + restOfName.join(" ");
 }
@@ -158,7 +158,7 @@ Rest parameters are treated as a boundless number of optional parameters. You ma
 
 The ellipsis is also used in the type of the function with rest parameters:
 
-```
+```TypeScript
 function buildName(firstName: string, ...restOfName: string[]) {
 	return firstName + " " + restOfName.join(" ");
 }
@@ -174,7 +174,7 @@ In JavaScript, `this` is a variable that's set when a function is called. This m
 
 Let's look at an example:
 
-```
+```TypeScript
 var deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
@@ -200,7 +200,7 @@ We can fix this by making sure the function is bound to the correct `this` befor
 
 To fix this, we switching the function expression to use the lambda syntax ( ()=>{} ) rather than the JavaScript function expression. This will automatically capture the `this` available when the function is created rather than when it is invoked:
 
-```
+```TypeScript
 var deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
@@ -227,7 +227,7 @@ For more information on ways to think about `this`, you can read Yahuda Katz's [
 
 JavaScript is inherently a very dynamic language. It's not uncommon for a single JavaScript function to return different types of objects based on the shape of the arguments passed in.
 
-```
+```TypeScript
 var suits = ["hearts", "spades", "clubs", "diamonds"];
 
 function pickCard(x): any {
@@ -256,7 +256,7 @@ Here the `pickCard` function will return two different things based on what the 
 
 The answer is to supply multiple function types for the same function as a list of overloads. This list is what the compiler will use to resolve function calls. Let's create a list of overloads that describe what our `pickCard` accepts and what it returns.
 
-```
+```TypeScript
 var suits = ["hearts", "spades", "clubs", "diamonds"];
 
 function pickCard(x: {suit: string; card: number; }[]): number;

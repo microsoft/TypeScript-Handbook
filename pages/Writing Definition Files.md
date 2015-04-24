@@ -21,20 +21,20 @@ When writing definition files, it's important to remember TypeScript's rules for
 
 *Anonymously-typed var*
 
-```
+```TypeScript
 declare var MyPoint: { x: number; y: number; };
 ```
 
 *Interfaced-typed var*
 
-```
+```TypeScript
 interface SomePoint { x: number; y: number; }
 declare var MyPoint: SomePoint;
 ```
 
 From a consumption side these declarations are identical, but the type {{SomePoint}} can be extended through interface merging:
 
-```
+```TypeScript
 interface SomePoint { z: number; }
 MyPoint.z = 4; // OK
 ```
@@ -51,7 +51,7 @@ As an example, the following two declarations are nearly equivalent from a consu
 
 *Standard*
 
-```
+```TypeScript
 class A {
     static st: string;
     inst: number;
@@ -61,7 +61,7 @@ class A {
 
 *Decomposed*
 
-```
+```TypeScript
 interface A_Static {
     new(m: any): A_Instance;
     st: string;
@@ -89,7 +89,7 @@ Let's jump in to the examples section. For each example, sample _usage_ of the l
 ## Options Objects
 
 *Usage*
-```
+```TypeScript
 animalFactory.create("dog");
 animalFactory.create("giraffe", { name: "ronald" });
 animalFactory.create("panda", { name: "bob", height: 400 });
@@ -98,7 +98,7 @@ animalFactory.create("cat", { height: 32 });
 ```
 
 *Typing*
-```
+```TypeScript
 module animalFactory {
     interface AnimalOptions {
         name: string;
@@ -111,13 +111,13 @@ module animalFactory {
 
 ## Functions with Properties
 *Usage*
-```
+```TypeScript
 zooKeeper.workSchedule = "morning";
 zooKeeper(giraffeCage);
 ```
 
 *Typing*
-```
+```TypeScript
 // Note: Function must precede module
 function zooKeeper(cage: AnimalCage);
 module zooKeeper {
@@ -127,7 +127,7 @@ module zooKeeper {
 
 ## New + callable methods
 *Usage*
-```
+```TypeScript
 var w = widget(32, 16);
 var y = new widget("sprocket");
 // w and y are both widgets
@@ -136,7 +136,7 @@ y.sprock();
 ```
 
 *Typing*
-```
+```TypeScript
 interface Widget {
     sprock(): void;
 }
@@ -151,7 +151,7 @@ declare var widget: WidgetFactory;
 
 ## Global / External-agnostic Libraries
 *Usage*
-```
+```TypeScript
 // Either
 import x = require('zoo');
 x.open();
@@ -160,7 +160,7 @@ zoo.open();
 ```
 
 *Typing*
-```
+```TypeScript
 module zoo {
   function open(): void;
 }
@@ -172,7 +172,7 @@ declare module "zoo" {
 
 ## Single Complex Object in External Modules
 *Usage*
-```
+```TypeScript
 // Super-chainable library for eagles
 import eagle = require('./eagle');
 // Call directly
@@ -184,7 +184,7 @@ eagle.favorite = 'golden';
 ```
 
 *Typing*
-```
+```TypeScript
 // Note: can use any name here, but has to be the same throughout this file
 declare function eagle(name: string): eagle;
 declare module eagle {
@@ -200,12 +200,12 @@ export = eagle;
 
 ## Callbacks
 *Usage*
-```
+```TypeScript
 addLater(3, 4, (x) => console.log('x = ' + x));
 ```
 
 *Typing*
-```
+```TypeScript
 // Note: 'void' return type is preferred here
 function addLater(x: number, y: number, (sum: number) => void): void;
 ```

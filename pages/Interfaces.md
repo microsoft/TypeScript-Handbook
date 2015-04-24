@@ -6,7 +6,7 @@ One of TypeScript's core principles is that type-checking focuses on the `shape`
 
 The easiest way to see how interfaces work is to start with a simple example:
 
-```
+```TypeScript
 function printLabel(labelledObj: {label: string}) {
   console.log(labelledObj.label);
 }
@@ -19,7 +19,7 @@ The type-checker checks the call to `printLabel`. The `printLabel` function has 
 
 We can write the same example again, this time using an interface to describe the requirement of having the `label` property that is a string:
 
-```
+```TypeScript
 interface LabelledValue {
   label: string;
 }
@@ -41,7 +41,7 @@ Not all properties of an interface may be required. Some exist under certain con
 
 Here's as example of this pattern:
 
-```
+```TypeScript
 interface SquareConfig {
   color?: string;
   width?: number;
@@ -65,7 +65,7 @@ Interfaces with optional properties are written similar to other interfaces, whi
 
 The advantage of optional properties is that you can describe these possibly available properties while still also catching properties that you know are not expected to be available. For example, had we mistyped the name of the property we passed to `createSquare`, we would get an error message letting us know:
 
-```
+```TypeScript
 interface SquareConfig {
   color?: string;
   width?: number;
@@ -91,7 +91,7 @@ Interfaces are capable of describing the wide range of shapes that JavaScript ob
 
 To describe a function type with an interface, we give the interface a call signature. This is like a function declaration with only the parameter list and return type given.
 
-```
+```TypeScript
 interface SearchFunc {
   (source: string, subString: string): boolean;
 }
@@ -99,7 +99,7 @@ interface SearchFunc {
 
 Once defined, we can use this function type interface like we would other interfaces. Here, we show how you can create a variable of a function type and assign it a function value of the same type.
 
-```
+```TypeScript
 var mySearch: SearchFunc;
 mySearch = function(source: string, subString: string) {
   var result = source.search(subString);
@@ -114,7 +114,7 @@ mySearch = function(source: string, subString: string) {
 
 For function types to correctly type-check, the name of the parameters do not need to match. We could have, for example, written the above example like this:
 
-```
+```TypeScript
 var mySearch: SearchFunc;
 mySearch = function(src: string, sub: string) {
   var result = src.search(sub);
@@ -133,7 +133,7 @@ Function parameters are checked one at a time, with the type in each correspondi
 
 Similarly to how we can use interfaces to describe function types, we can also describe array types. Array types have an `index` type that describes the types allowed to index the object, along with the corresponding return type for accessing the index.
 
-```
+```TypeScript
 interface StringArray {
   [index: number]: string;
 }
@@ -146,7 +146,7 @@ There are two types of supported index types: string and number. It is possible 
 
 While index signatures are a powerful way to describe the array and `dictionary` pattern, they also enforce that all properties match their return type. In this example, the property does not match the more general index, and the type-checker gives an error:
 
-```
+```TypeScript
 interface Dictionary {
   [index: string]: string;
   length: number;    // error, the type of `length` is not a subtype of the indexer
@@ -159,7 +159,7 @@ interface Dictionary {
 
 One of the most common uses of interfaces in languages like C# and Java, that of explicitly enforcing that a class meets a particular contract, is also possible in TypeScript.
 
-```
+```TypeScript
 interface ClockInterface {
     currentTime: Date;
 }
@@ -172,7 +172,7 @@ class Clock implements ClockInterface {
 
 You can also describe methods in an interface that are implemented in the class, as we do with `setTime` in the below example:
 
-```
+```TypeScript
 interface ClockInterface {
     currentTime: Date;
     setTime(d: Date);
@@ -192,7 +192,7 @@ Interfaces describe the public side of the class, rather than both the public an
 !# Difference between static/instance side of class
 When working with classes and interfaces, it helps to keep in mind that a class has _two_ types: the type of the static side and the type of the instance side. You may notice that if you create an interface with a construct signature and try to create a class that implements this interface you get an error:
 
-```
+```TypeScript
 interface ClockInterface {
     new (hour: number, minute: number);
 }
@@ -207,7 +207,7 @@ This is because when a class implements an interface, only the instance side of 
 
 Instead, you would need to work with the `static` side of the class directly. In this example, we work with the class directly:
 
-```
+```TypeScript
 interface ClockStatic {
     new (hour: number, minute: number);
 }
@@ -225,7 +225,7 @@ var newClock = new cs(7, 30);
 
 Like classes, interfaces can extend each other. This handles the task of copying the members of one interface into another, allowing you more freedom in how you separate your interfaces into reusable components.
 
-```
+```TypeScript
 interface Shape {
     color: string;
 }
@@ -241,7 +241,7 @@ square.sideLength = 10;
 
 An interface can extend multiple interfaces, creating a combination of all of the interfaces.
 
-```
+```TypeScript
 interface Shape {
     color: string;
 }
@@ -266,7 +266,7 @@ As we mentioned earlier, interfaces can describe the rich types present in real 
 
 One such example is an object that acts as both a function and an object, with additional properties:
 
-```
+```TypeScript
 interface Counter {
     (start: number): string;
     interval: number;

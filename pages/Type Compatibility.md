@@ -192,7 +192,7 @@ var y: Empty<string>;
 x = y;  // okay, y matches structure of x
 ```
 
-In the above, x and y are compatible because their structures do not use the type argument in a differentiating way. Changing this example by adding a member to Empty<T> shows how this works:
+In the above, `x` and `y` are compatible because their structures do not use the type argument in a differentiating way. Changing this example by adding a member to `Empty<T>` shows how this works:
 
 ```
 interface NotEmpty<T> {

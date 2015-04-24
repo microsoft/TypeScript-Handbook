@@ -35,7 +35,7 @@ TypeScript, like JavaScript, allows you to work with arrays of values. Array typ
 var list:number[] = [1, 2, 3];
 ```
 
-The second way uses a generic array type, Array<elemType>:
+The second way uses a generic array type, `Array<elemType>`:
 
 ```ts
 var list:Array<number> = [1, 2, 3];

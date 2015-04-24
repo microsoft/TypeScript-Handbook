@@ -284,7 +284,7 @@ Next, we then use the class directly. Here we create a new variable called `gree
 
 ## Using a class as an interface
 
-As we said in the previous section, a class declaration creates two things: a type representing instances of the class and a constructor function. Because classes create types, you can use them in the same places  you would be able to use interfaces.
+As we said in the previous section, a class declaration creates two things: a type representing instances of the class and a constructor function. Because classes create types, you can use them in the same places you would be able to use interfaces.
 
 ```
 class Point {

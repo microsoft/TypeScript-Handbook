@@ -13,7 +13,7 @@ When defining interfaces (for example, "options" objects), you have a choice abo
 
 ## Callbacks
 
-Many JavaScript libraries take a function as a parameter, then invoke that function later with a known set of arguments. When writing the function signatures for these types, *do not* mark those parameters as optional. The right way to think of this is _"What parameters will be provided?"_, not _"What parameters will be consumed?"_. While TypeScript 0.9.7 and above does not enforce that the optionality, bivariance on argument optionality might be enforced by an external linter.
+Many JavaScript libraries take a function as a parameter, then invoke that function later with a known set of arguments. When writing the function signatures for these types, *do not* mark those parameters as optional. The right way to think of this is *"What parameters will be provided?"*, not *"What parameters will be consumed?"*. While TypeScript 0.9.7 and above does not enforce that the optionality, bivariance on argument optionality might be enforced by an external linter.
 
 ## Extensibility and Declaration Merging
 
@@ -45,7 +45,7 @@ Whether or not you want your declarations to be extensible in this way is a bit 
 
 Classes in TypeScript create two separate types: the instance type, which defines what members an instance of a class has, and the constructor function type, which defines what members the class constructor function has. The constructor function type is also known as the "static side" type because it includes static members of the class.
 
-While you can reference the static side of a class using the {{typeof}} keyword, it is sometimes useful or necessary when writing definition files to use the _decomposed class_ pattern which explicitly separates the instance and static types of class.
+While you can reference the static side of a class using the {{typeof}} keyword, it is sometimes useful or necessary when writing definition files to use the *decomposed class* pattern which explicitly separates the instance and static types of class.
 
 As an example, the following two declarations are nearly equivalent from a consumption perspective:
 
@@ -84,7 +84,7 @@ In general, do not prefix interfaces with {{I}} (e.g. {{IColor}}). Because the c
 
 # Examples
 
-Let's jump in to the examples section. For each example, sample _usage_ of the library is provided, followed by the definition code that accurately types the usage. When there are multiple good representations, more than one definition sample might be listed.
+Let's jump in to the examples section. For each example, sample *usage* of the library is provided, followed by the definition code that accurately types the usage. When there are multiple good representations, more than one definition sample might be listed.
 
 ## Options Objects
 

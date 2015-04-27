@@ -26,7 +26,7 @@ function identity(arg: any): any {
 
 While using `any` is certainly generic in that will accept any and all types for the type of `arg`, we actually are losing the information about what that type was when the function returns. If we passed in a number, the only information we have is that any type could be returned.
 
-Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned. Here, we will use a _type variable_, a special kind of variable that works on types rather than values.
+Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned. Here, we will use a *type variable*, a special kind of variable that works on types rather than values.
 
 ```TypeScript
 function identity<T>(arg: T): T {
@@ -252,7 +252,7 @@ function find<T>(n: T, s: Findable<T>) {
 find(giraffe, myAnimals);
 ```
 
-_Note:_ The above is not strictly identical, as the return type of the first function could have returned `U`, which the second function pattern does not provide a means to do.
+*Note:* The above is not strictly identical, as the return type of the first function could have returned `U`, which the second function pattern does not provide a means to do.
 
 !# Using Class Types in Generics
 

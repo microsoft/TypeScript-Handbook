@@ -34,7 +34,7 @@ function identity<T>(arg: T): T {
 }
 ```
 
-We've now added a type variable `T` to the identity function. This `T` allows us to capture the type the user provides (eg, number), so that we can use that information later. Here, we use `T` again as the return type. On inspection, we can now see the same type is used for the argument and the return type. This allows us to traffic that type information in one side of the function and out the other.
+We've now added a type variable `T` to the identity function. This `T` allows us to capture the type the user provides (e.g. number), so that we can use that information later. Here, we use `T` again as the return type. On inspection, we can now see the same type is used for the argument and the return type. This allows us to traffic that type information in one side of the function and out the other.
 
 We say that this version of the `identity` function is generic, as it works over a range of types. Unlike using `any`, it's also just as precise (ie, it doesn't lose any information) as the first `identity` function that used numbers for the argument and return type.
 
@@ -147,7 +147,7 @@ function identity<T>(arg: T): T {
 var myIdentity: GenericIdentityFn = identity;
 ```
 
-In a similar example, we may want to move the generic parameter to be a parameter of the whole interface. This lets us see what type(s) we're generic over (eg `Dictionary<string>` rather than just `Dictionary`). This makes the type parameter visible to all the other members of the interface.
+In a similar example, we may want to move the generic parameter to be a parameter of the whole interface. This lets us see what type(s) we're generic over (e.g. `Dictionary<string>` rather than just `Dictionary`). This makes the type parameter visible to all the other members of the interface.
 
 ```TypeScript
 interface GenericIdentityFn<T> {

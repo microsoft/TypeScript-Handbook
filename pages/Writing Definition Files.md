@@ -210,4 +210,4 @@ addLater(3, 4, (x) => console.log('x = ' + x));
 function addLater(x: number, y: number, (sum: number) => void): void;
 ```
 
-Please post a comment [here|https://github.com/Microsoft/TypeScript/issues] if there's a pattern you'd like to see documented# We'll add to this as we can.
+Please post a comment [here|https://github.com/Microsoft/TypeScript/issues] if there's a pattern you'd like to see documented! We'll add to this as we can.

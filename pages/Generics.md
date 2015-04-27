@@ -26,7 +26,7 @@ function identity(arg: any): any {
 
 While using `any` is certainly generic in that will accept any and all types for the type of `arg`, we actually are losing the information about what that type was when the function returns. If we passed in a number, the only information we have is that any type could be returned.
 
-Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned. Here, we will use a _type variable_, a special kind of variable that works on types rather than values.
+Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned. Here, we will use a *type variable*, a special kind of variable that works on types rather than values.
 
 ```TypeScript
 function identity<T>(arg: T): T {
@@ -34,7 +34,7 @@ function identity<T>(arg: T): T {
 }
 ```
 
-We've now added a type variable `T` to the identity function. This `T` allows us to capture the type the user provides (eg, number), so that we can use that information later. Here, we use `T` again as the return type. On inspection, we can now see the same type is used for the argument and the return type. This allows us to traffic that type information in one side of the function and out the other.
+We've now added a type variable `T` to the identity function. This `T` allows us to capture the type the user provides (e.g. number), so that we can use that information later. Here, we use `T` again as the return type. On inspection, we can now see the same type is used for the argument and the return type. This allows us to traffic that type information in one side of the function and out the other.
 
 We say that this version of the `identity` function is generic, as it works over a range of types. Unlike using `any`, it's also just as precise (ie, it doesn't lose any information) as the first `identity` function that used numbers for the argument and return type.
 
@@ -147,7 +147,7 @@ function identity<T>(arg: T): T {
 var myIdentity: GenericIdentityFn = identity;
 ```
 
-In a similar example, we may want to move the generic parameter to be a parameter of the whole interface. This lets us see what type(s) we're generic over (eg `Dictionary<string>` rather than just `Dictionary`). This makes the type parameter visible to all the other members of the interface.
+In a similar example, we may want to move the generic parameter to be a parameter of the whole interface. This lets us see what type(s) we're generic over (e.g. `Dictionary<string>` rather than just `Dictionary`). This makes the type parameter visible to all the other members of the interface.
 
 ```TypeScript
 interface GenericIdentityFn<T> {
@@ -207,7 +207,7 @@ function loggingIdentity<T>(arg: T): T {
 
 Instead of working with any and all types, we'd like to constrain this function to work with any and all types that also have the `.length` property. As long as the type has this member, we'll allow it, but it's required to have at least this member. To do so, we must list our requirement as a constraint on what T can be.
 
-To do so, we'll create an interface that describes our constraint. Here, we'll create an interface that has a single `.length` property and then we'll use this interface and the {{extends}} keyword to denote our constraint:
+To do so, we'll create an interface that describes our constraint. Here, we'll create an interface that has a single `.length` property and then we'll use this interface and the `extends` keyword to denote our constraint:
 
 ```TypeScript
 interface Lengthwise {
@@ -252,7 +252,7 @@ function find<T>(n: T, s: Findable<T>) {
 find(giraffe, myAnimals);
 ```
 
-_Note:_ The above is not strictly identical, as the return type of the first function could have returned `U`, which the second function pattern does not provide a means to do.
+*Note:* The above is not strictly identical, as the return type of the first function could have returned `U`, which the second function pattern does not provide a means to do.
 
 !# Using Class Types in Generics
 

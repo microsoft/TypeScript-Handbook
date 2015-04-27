@@ -75,7 +75,7 @@ alert(colorName);
 
 # Any
 
-We may need to describe the type of variables that we may not know when we are writing the application. These values may come from dynamic content, eg from the user or 3rd party library. In these cases, we want to opt-out of type-checking and let the values pass through compile-time checks. To do so, we label these with the `any` type:
+We may need to describe the type of variables that we may not know when we are writing the application. These values may come from dynamic content, e.g. from the user or 3rd party library. In these cases, we want to opt-out of type-checking and let the values pass through compile-time checks. To do so, we label these with the `any` type:
 
 ```TypeScript
 var notSure: any = 4;

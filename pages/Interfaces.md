@@ -15,7 +15,7 @@ var myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
-The type-checker checks the call to `printLabel`. The `printLabel` function has a single parameter that requires that the object passed in has a property called `label` of type string. Notice that our object actually has more properties than this, but the compiler only checks to that _at least_ the ones required are present and match the types required.
+The type-checker checks the call to `printLabel`. The `printLabel` function has a single parameter that requires that the object passed in has a property called `label` of type string. Notice that our object actually has more properties than this, but the compiler only checks to that *at least* the ones required are present and match the types required.
 
 We can write the same example again, this time using an interface to describe the requirement of having the `label` property that is a string:
 
@@ -61,7 +61,7 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
 var mySquare = createSquare({color: "black"});
 ```
 
-Interfaces with optional properties are written similar to other interfaces, which each optional property denoted with a '?' as part of the property declaration.
+Interfaces with optional properties are written similar to other interfaces, which each optional property denoted with a `?` as part of the property declaration.
 
 The advantage of optional properties is that you can describe these possibly available properties while still also catching properties that you know are not expected to be available. For example, had we mistyped the name of the property we passed to `createSquare`, we would get an error message letting us know:
 
@@ -127,7 +127,7 @@ mySearch = function(src: string, sub: string) {
 }
 ```
 
-Function parameters are checked one at a time, with the type in each corresponding parameter position checked against each other. Here, also, the return type of our function expression is implied by the values it returns (here _false_ and _true_). Had the function expression returned numbers or strings, the type-checker would have warned us that return type doesn't match the return type described in the SearchFunc interface.
+Function parameters are checked one at a time, with the type in each corresponding parameter position checked against each other. Here, also, the return type of our function expression is implied by the values it returns (here *false* and *true*). Had the function expression returned numbers or strings, the type-checker would have warned us that return type doesn't match the return type described in the SearchFunc interface.
 
 # Array Types
 
@@ -190,7 +190,7 @@ class Clock implements ClockInterface {
 Interfaces describe the public side of the class, rather than both the public and private side. This prohibits you from using them to check that a class also has particular types for the private side of the class instance.
 
 !# Difference between static/instance side of class
-When working with classes and interfaces, it helps to keep in mind that a class has _two_ types: the type of the static side and the type of the instance side. You may notice that if you create an interface with a construct signature and try to create a class that implements this interface you get an error:
+When working with classes and interfaces, it helps to keep in mind that a class has *two* types: the type of the static side and the type of the instance side. You may notice that if you create an interface with a construct signature and try to create a class that implements this interface you get an error:
 
 ```TypeScript
 interface ClockInterface {

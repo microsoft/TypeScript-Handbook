@@ -13,7 +13,7 @@ When defining interfaces (for example, "options" objects), you have a choice abo
 
 ## Callbacks
 
-Many JavaScript libraries take a function as a parameter, then invoke that function later with a known set of arguments. When writing the function signatures for these types, *do not* mark those parameters as optional. The right way to think of this is _"What parameters will be provided?"_, not _"What parameters will be consumed?"_. While TypeScript 0.9.7 and above does not enforce that the optionality, bivariance on argument optionality might be enforced by an external linter.
+Many JavaScript libraries take a function as a parameter, then invoke that function later with a known set of arguments. When writing the function signatures for these types, *do not* mark those parameters as optional. The right way to think of this is *"What parameters will be provided?"*, not *"What parameters will be consumed?"*. While TypeScript 0.9.7 and above does not enforce that the optionality, bivariance on argument optionality might be enforced by an external linter.
 
 ## Extensibility and Declaration Merging
 
@@ -32,7 +32,7 @@ interface SomePoint { x: number; y: number; }
 declare var MyPoint: SomePoint;
 ```
 
-From a consumption side these declarations are identical, but the type {{SomePoint}} can be extended through interface merging:
+From a consumption side these declarations are identical, but the type `SomePoint` can be extended through interface merging:
 
 ```TypeScript
 interface SomePoint { z: number; }
@@ -45,7 +45,7 @@ Whether or not you want your declarations to be extensible in this way is a bit 
 
 Classes in TypeScript create two separate types: the instance type, which defines what members an instance of a class has, and the constructor function type, which defines what members the class constructor function has. The constructor function type is also known as the "static side" type because it includes static members of the class.
 
-While you can reference the static side of a class using the {{typeof}} keyword, it is sometimes useful or necessary when writing definition files to use the _decomposed class_ pattern which explicitly separates the instance and static types of class.
+While you can reference the static side of a class using the `typeof` keyword, it is sometimes useful or necessary when writing definition files to use the *decomposed class* pattern which explicitly separates the instance and static types of class.
 
 As an example, the following two declarations are nearly equivalent from a consumption perspective:
 
@@ -73,18 +73,18 @@ declare var A: A_Static;
 ```
 
 The trade-offs here are as follows:
-* Standard classes can be inherited from using {{extends}}; decomposed classes cannot. This might change in later version of TypeScript if arbitrary {{extends}} expressions are allowed.
+* Standard classes can be inherited from using `extends`; decomposed classes cannot. This might change in later version of TypeScript if arbitrary `extends` expressions are allowed.
 * It is possible to add members later (through declaration merging) to the static side of both standard and decomposed classes
 * It is possible to add instance members to decomposed classes, but not standard classes
 * You'll need to come up with sensible names for more types when writing a decomposed class
 
 ## Naming Conventions
 
-In general, do not prefix interfaces with {{I}} (e.g. {{IColor}}). Because the concept of an interface in TypeScript is much more broad than in C# or Java, the {{IFoo}} naming convention is not broadly useful.
+In general, do not prefix interfaces with `I` (e.g. `IColor`). Because the concept of an interface in TypeScript is much more broad than in C# or Java, the `IFoo` naming convention is not broadly useful.
 
 # Examples
 
-Let's jump in to the examples section. For each example, sample _usage_ of the library is provided, followed by the definition code that accurately types the usage. When there are multiple good representations, more than one definition sample might be listed.
+Let's jump in to the examples section. For each example, sample *usage* of the library is provided, followed by the definition code that accurately types the usage. When there are multiple good representations, more than one definition sample might be listed.
 
 ## Options Objects
 
@@ -210,4 +210,4 @@ addLater(3, 4, (x) => console.log('x = ' + x));
 function addLater(x: number, y: number, (sum: number) => void): void;
 ```
 
-Please post a comment [here|https://github.com/Microsoft/TypeScript/issues] if there's a pattern you'd like to see documented# We'll add to this as we can.
+Please post a comment [here|https://github.com/Microsoft/TypeScript/issues] if there's a pattern you'd like to see documented! We'll add to this as we can.

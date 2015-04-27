@@ -188,7 +188,7 @@ Note: Accessors require you to set the compiler to output ECMAScript 5.
 
 # Static Properties
 
-Up to this point, we've only talked about the _instance_ members of the class, those that show up on the object when its instantiated. We can also create _static_ members of a class, those that are visible on the class itself rather than on the instances. In this example, we use `static` on the origin, as it's a general value for all grids. Each instance accesses this value through prepending the name of the class. Similarly to prepending `this.` in front of instance accesses, here we prepend `Grid.` in front of static accesses.
+Up to this point, we've only talked about the *instance* members of the class, those that show up on the object when its instantiated. We can also create *static* members of a class, those that are visible on the class itself rather than on the instances. In this example, we use `static` on the origin, as it's a general value for all grids. Each instance accesses this value through prepending the name of the class. Similarly to prepending `this.` in front of instance accesses, here we prepend `Grid.` in front of static accesses.
 
 ```TypeScript
 class Grid {
@@ -212,7 +212,7 @@ alert(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 
 ## Constructor functions
 
-When you declare a class in TypeScript, you are actually creating multiple declarations at the same time. The first is the type of the _instance_ of the class.
+When you declare a class in TypeScript, you are actually creating multiple declarations at the same time. The first is the type of the *instance* of the class.
 
 ```TypeScript
 class Greeter {
@@ -232,7 +232,7 @@ alert(greeter.greet());
 
 Here, when we say `var greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`. This is almost second nature to programmers from other object-oriented languages. 
  
-We're also creating another value that we call the _constructor function_. This is the function that is called when we `new` up instances of the class. To see what this looks like in practice, let's take a look at the JavaScript created by the above example:
+We're also creating another value that we call the *constructor function*. This is the function that is called when we `new` up instances of the class. To see what this looks like in practice, let's take a look at the JavaScript created by the above example:
 
 ```TypeScript
 var Greeter = (function () {
@@ -250,7 +250,7 @@ greeter = new Greeter("world");
 alert(greeter.greet());
 ```
 
-Here, `var Greeter` is going to be assigned the constructor function. When we call `new` and run this function, we get an instance of the class. The constructor function also contains all of the static members of the class. Another way to think of each class is that there is an _instance_ side and a _static_ side.
+Here, `var Greeter` is going to be assigned the constructor function. When we call `new` and run this function, we get an instance of the class. The constructor function also contains all of the static members of the class. Another way to think of each class is that there is an *instance* side and a *static* side.
 
 Let's modify the example a bit to show this difference:
 

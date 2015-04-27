@@ -32,7 +32,7 @@ interface SomePoint { x: number; y: number; }
 declare var MyPoint: SomePoint;
 ```
 
-From a consumption side these declarations are identical, but the type {{SomePoint}} can be extended through interface merging:
+From a consumption side these declarations are identical, but the type `SomePoint` can be extended through interface merging:
 
 ```TypeScript
 interface SomePoint { z: number; }
@@ -45,7 +45,7 @@ Whether or not you want your declarations to be extensible in this way is a bit 
 
 Classes in TypeScript create two separate types: the instance type, which defines what members an instance of a class has, and the constructor function type, which defines what members the class constructor function has. The constructor function type is also known as the "static side" type because it includes static members of the class.
 
-While you can reference the static side of a class using the {{typeof}} keyword, it is sometimes useful or necessary when writing definition files to use the *decomposed class* pattern which explicitly separates the instance and static types of class.
+While you can reference the static side of a class using the `typeof` keyword, it is sometimes useful or necessary when writing definition files to use the *decomposed class* pattern which explicitly separates the instance and static types of class.
 
 As an example, the following two declarations are nearly equivalent from a consumption perspective:
 
@@ -73,14 +73,14 @@ declare var A: A_Static;
 ```
 
 The trade-offs here are as follows:
-* Standard classes can be inherited from using {{extends}}; decomposed classes cannot. This might change in later version of TypeScript if arbitrary {{extends}} expressions are allowed.
+* Standard classes can be inherited from using `extends`; decomposed classes cannot. This might change in later version of TypeScript if arbitrary `extends` expressions are allowed.
 * It is possible to add members later (through declaration merging) to the static side of both standard and decomposed classes
 * It is possible to add instance members to decomposed classes, but not standard classes
 * You'll need to come up with sensible names for more types when writing a decomposed class
 
 ## Naming Conventions
 
-In general, do not prefix interfaces with {{I}} (e.g. {{IColor}}). Because the concept of an interface in TypeScript is much more broad than in C# or Java, the {{IFoo}} naming convention is not broadly useful.
+In general, do not prefix interfaces with `I` (e.g. `IColor`). Because the concept of an interface in TypeScript is much more broad than in C# or Java, the `IFoo` naming convention is not broadly useful.
 
 # Examples
 

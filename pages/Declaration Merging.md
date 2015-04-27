@@ -121,7 +121,7 @@ module Animal {
 }
 ```
 
-Because {{haveMuscles}} is not exported, only the {{animalsHaveMuscles}} function that shares the same un-merged module can see the symbol. The {{doAnimalsHaveMuscles}} function, even though it's part of the merged Animal module can not see this un-exported member.
+Because `haveMuscles` is not exported, only the `animalsHaveMuscles` function that shares the same un-merged module can see the symbol. The `doAnimalsHaveMuscles` function, even though it's part of the merged Animal module can not see this un-exported member.
 
 # Merging Modules with Classes, Functions, and Enums
 

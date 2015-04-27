@@ -30,7 +30,7 @@ Because the best common type has to be chosen from the provided candidate types,
 var zoo = [new Rhino(), new Elephant(), new Snake()];
 ```
 
-Ideally, we may want `zoo` to be inferred as an {{Animal[]}}, but because there is no object that is strictly of type `Animal` in the array, we make no inference about the array element type. To correct this, instead explicitly provide the type when no one type is a super type of all other candidates:
+Ideally, we may want `zoo` to be inferred as an `Animal[]`, but because there is no object that is strictly of type `Animal` in the array, we make no inference about the array element type. To correct this, instead explicitly provide the type when no one type is a super type of all other candidates:
 
 ```TypeScript
 var zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];

@@ -61,7 +61,7 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
 var mySquare = createSquare({color: "black"});
 ```
 
-Interfaces with optional properties are written similar to other interfaces, which each optional property denoted with a '?' as part of the property declaration.
+Interfaces with optional properties are written similar to other interfaces, which each optional property denoted with a `?` as part of the property declaration.
 
 The advantage of optional properties is that you can describe these possibly available properties while still also catching properties that you know are not expected to be available. For example, had we mistyped the name of the property we passed to `createSquare`, we would get an error message letting us know:
 

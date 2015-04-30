@@ -19,13 +19,13 @@ Many JavaScript libraries take a function as a parameter, then invoke that funct
 
 When writing definition files, it's important to remember TypeScript's rules for extending existing objects. You might have a choice of declaring a variable using an anonymous type or an interface type:
 
-### Anonymously-typed var
+#### Anonymously-typed var
 
 ```TypeScript
 declare var MyPoint: { x: number; y: number; };
 ```
 
-### Interfaced-typed var
+#### Interfaced-typed var
 
 ```TypeScript
 interface SomePoint { x: number; y: number; }
@@ -49,7 +49,7 @@ While you can reference the static side of a class using the `typeof` keyword, i
 
 As an example, the following two declarations are nearly equivalent from a consumption perspective:
 
-### Standard
+#### Standard
 
 ```TypeScript
 class A {
@@ -59,7 +59,7 @@ class A {
 }
 ```
 
-### Decomposed
+#### Decomposed
 
 ```TypeScript
 interface A_Static {
@@ -88,7 +88,7 @@ Let's jump in to the examples section. For each example, sample *usage* of the l
 
 ## Options Objects
 
-### Usage
+#### Usage
 
 ```TypeScript
 animalFactory.create("dog");
@@ -98,7 +98,7 @@ animalFactory.create("panda", { name: "bob", height: 400 });
 animalFactory.create("cat", { height: 32 });
 ```
 
-### Typing
+#### Typing
 
 ```TypeScript
 module animalFactory {
@@ -113,14 +113,14 @@ module animalFactory {
 
 ## Functions with Properties
 
-### Usage
+#### Usage
 
 ```TypeScript
 zooKeeper.workSchedule = "morning";
 zooKeeper(giraffeCage);
 ```
 
-### Typing
+#### Typing
 
 ```TypeScript
 // Note: Function must precede module
@@ -132,7 +132,7 @@ module zooKeeper {
 
 ## New + callable methods
 
-### Usage
+#### Usage
 
 ```TypeScript
 var w = widget(32, 16);
@@ -142,7 +142,7 @@ w.sprock();
 y.sprock();
 ```
 
-### Typing
+#### Typing
 
 ```TypeScript
 interface Widget {
@@ -159,7 +159,7 @@ declare var widget: WidgetFactory;
 
 ## Global / External-agnostic Libraries
 
-### Usage
+#### Usage
 
 ```TypeScript
 // Either
@@ -169,7 +169,7 @@ x.open();
 zoo.open();
 ```
 
-### Typing
+#### Typing
 
 ```TypeScript
 module zoo {
@@ -183,7 +183,7 @@ declare module "zoo" {
 
 ## Single Complex Object in External Modules
 
-### Usage
+#### Usage
 
 ```TypeScript
 // Super-chainable library for eagles
@@ -196,7 +196,7 @@ var eddie = new eagle(1000);
 eagle.favorite = 'golden';
 ```
 
-### Typing
+#### Typing
 
 ```TypeScript
 // Note: can use any name here, but has to be the same throughout this file
@@ -214,13 +214,13 @@ export = eagle;
 
 ## Callbacks
 
-### Usage
+#### Usage
 
 ```TypeScript
 addLater(3, 4, (x) => console.log('x = ' + x));
 ```
 
-### Typing
+#### Typing
 
 ```TypeScript
 // Note: 'void' return type is preferred here

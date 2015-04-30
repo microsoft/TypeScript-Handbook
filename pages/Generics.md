@@ -232,7 +232,7 @@ Instead, we need to pass in values whose type has all the required properties:
 loggingIdentity({length: 10, value: 3});
 ```
 
-!# Using Type Parameters in Generic Constraints
+## Using Type Parameters in Generic Constraints
 
 In some cases, it may be useful to declare a type parameter that is constrained by another type parameter. For example,
 
@@ -254,7 +254,7 @@ find(giraffe, myAnimals);
 
 *Note:* The above is not strictly identical, as the return type of the first function could have returned `U`, which the second function pattern does not provide a means to do.
 
-!# Using Class Types in Generics
+## Using Class Types in Generics
 
 When creating factories in TypeScript using generics, it is necessary to refer to class types by their constructor functions. For example,
 

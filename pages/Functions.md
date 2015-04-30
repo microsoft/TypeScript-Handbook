@@ -30,7 +30,7 @@ function addToZ(x, y) {
 
 # Function Types
 
-!# Typing the function
+## Typing the function
 
 Let's add types to our simple examples from earlier:
 
@@ -44,7 +44,7 @@ var myAdd = function(x: number, y: number): number { return x+y; };
 
 We can add types to each of the parameters and then to the function itself to add a return type. TypeScript can figure the return type out by looking at the return statements, so we can also optionally leave this off in many cases.
 
-!# Writing the function type
+## Writing the function type
 
 Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type.
 
@@ -66,7 +66,7 @@ The second part is the return type. We make it clear which is the return type by
 
 Of note, only the parameters and the return type make up the function type. Captured variables are not reflected in the type. In effect, captured variables are part of the 'hidden state' of any function and do not make up its API.
 
-!# Inferring the types
+## Inferring the types
 
 In playing with the example, you may notice that the TypeScript compiler can figure out the type if you have types on one side of the equation but not the other:
 

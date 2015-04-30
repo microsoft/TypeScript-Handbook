@@ -155,7 +155,7 @@ interface Dictionary {
 
 # Class Types
 
-!# Implementing an interface
+## Implementing an interface
 
 One of the most common uses of interfaces in languages like C# and Java, that of explicitly enforcing that a class meets a particular contract, is also possible in TypeScript.
 
@@ -189,7 +189,7 @@ class Clock implements ClockInterface {
 
 Interfaces describe the public side of the class, rather than both the public and private side. This prohibits you from using them to check that a class also has particular types for the private side of the class instance.
 
-!# Difference between static/instance side of class
+## Difference between static/instance side of class
 When working with classes and interfaces, it helps to keep in mind that a class has *two* types: the type of the static side and the type of the instance side. You may notice that if you create an interface with a construct signature and try to create a class that implements this interface you get an error:
 
 ```TypeScript

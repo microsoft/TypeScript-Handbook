@@ -221,7 +221,7 @@ var pickedCard = cardPicker();
 alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
 
-For more information on ways to think about `this`, you can read Yehuda Katz's [url:Understanding JavaScript Function Invocation and "this"|http:// yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/].
+For more information on ways to think about `this`, you can read Yehuda Katz's [Understanding JavaScript Function Invocation and "this"](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/).
 
 # Overloads
 

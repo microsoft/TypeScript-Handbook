@@ -221,7 +221,7 @@ var pickedCard = cardPicker();
 alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
 
-For more information on ways to think about `this`, you can read Yehuda Katz's [url:Understanding JavaScript Function Invocation and "this"|http:// yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/].
+For more information on ways to think about `this`, you can read Yehuda Katz's [Understanding JavaScript Function Invocation and "this"](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/).
 
 # Overloads
 
@@ -287,5 +287,5 @@ With this change, the overloads now give us type-checked calls to the `pickCard`
 
 In order for the compiler to pick the correct typecheck, it follows a similar process to the underlying JavaScript. It looks at the overload list, and proceeding with the first overload attempts to call the function with the provided parameters. If it finds a match, it picks this overload as the correct overload. For this reason, its customary to order overloads from most specific to least specific.
 
-Note that the 'function pickCard(x): any' piece is not part of the overload list, so it only has two overloads: one that takes an object and one that takes a number. Calling `pickCard` with any other parameter types would cause an error.
+Note that the `function pickCard(x): any` piece is not part of the overload list, so it only has two overloads: one that takes an object and one that takes a number. Calling `pickCard` with any other parameter types would cause an error.
 

@@ -68,16 +68,17 @@ This example covers quite a bit of the inheritance features in TypeScript that a
 
 The example also shows off being able to override methods in the base class with methods that are specialized for the subclass. Here both `Snake` and `Horse` create a `move` method that overrides the `move` from `Animal`, giving it functionality specific to each class.
 
-# Private/Public modifiers
+# Public, private, and protected modifiers
 
-## Public by default
-You may have noticed in the above examples we haven't had to use the word `public` to make any of the members of the class visible. Languages like C# require that each member be explicitly labelled `public` to be visible. In TypeScript, each member is public by default. 
+## `public` by default
 
-You may still mark members a private, so you control what is publicly visible outside of your class. We could have written the `Animal` class from the previous section like so:
+You may have noticed in the above examples we haven't had to use the word `public` to make any of the members of the class visible to the outside. Languages like C# require that each member be explicitly labeled `public` to be visible. In TypeScript, each member is `public` by default.
+
+You may still mark members `private` or `protected`, so you control what is publicly visible outside of your class. We could have written the `Animal` class from the previous section like so:
 
 ```TypeScript
 class Animal {
-    private name:string;
+    private name: string;
     constructor(theName: string) { this.name = theName; }
     move(meters: number) {
         alert(this.name + " moved " + meters + "m.");
@@ -85,17 +86,28 @@ class Animal {
 }
 ```
 
-## Understanding private
+## Understanding `private`
+
+When a member is marked `private`, it cannot be accessed from outside of its containing class. For example:
+
+```TypeScript
+class Animal {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+new Animal().name; // Error: 'name' is private;
+```
 
 TypeScript is a structural type system. When we compare two different types, regardless of where they came from, if the types of each member are compatible, then we say the types themselves are compatible. 
 
-When comparing types that have `private` members, we treat these differently. For two types to be considered compatible, if one of them has a private member, then the other must have a private member that originated in the same declaration. 
+However, when comparing types that have `private` and `protected` members, we treat these types differently. For two types to be considered compatible, if one of them has a `private` member, then the other must have a `private` member that originated in the same declaration. The same applies to `protected` members.
 
 Let's look at an example to better see how this plays out in practice:
 
 ```TypeScript
 class Animal {
-    private name:string;
+    private name: string;
     constructor(theName: string) { this.name = theName; }
 }
 
@@ -104,7 +116,7 @@ class Rhino extends Animal {
 }
 
 class Employee {
-    private name:string;
+    private name: string;
     constructor(theName: string) { this.name = theName; }	
 }
 
@@ -116,11 +128,11 @@ animal = rhino;
 animal = employee; // Error: Animal and Employee are not compatible
 ```
 
-In this example, we have an `Animal` and a `Rhino`, with `Rhino` being a subclass of `Animal`. We also have a new class `Employee` that looks identical to `Animal` in terms of shape. We create some instances of these classes and then try to assign them to each other to see what will happen. Because `Animal` and `Rhino` share the private side of their shape from the same declaration of `private name: string` in `Animal`, they are compatible. However, this is not the case for `Employee`. When we try to assign from an `Employee` to `Animal` we get an error that these types are not compatible. Even though `Employee` also has a private member called `name`, it is not the same one as the one created in `Animal`. 
+In this example, we have an `Animal` and a `Rhino`, with `Rhino` being a subclass of `Animal`. We also have a new class `Employee` that looks identical to `Animal` in terms of shape. We create some instances of these classes and then try to assign them to each other to see what will happen. Because `Animal` and `Rhino` share the `private` side of their shape from the same declaration of `private name: string` in `Animal`, they are compatible. However, this is not the case for `Employee`. When we try to assign from an `Employee` to `Animal` we get an error that these types are not compatible. Even though `Employee` also has a `private` member called `name`, it is not the same one as the one created in `Animal`.
 
 ## Parameter properties
 
-The keywords `public` and `private` also give you a shorthand for creating and initializing members of your class, by creating parameter properties. The properties let you can create and initialize a member in one step. Here's a further revision of the previous example. Notice how we drop `theName` altogether and just use the shortened 'private name: string' parameter on the constructor to create and initialize the `name` member.
+Accessibility modifiers also give you a shorthand for creating and initializing members of your class by using *parameter properties*. In our last example, we had to declare a private member `name` and a constructor parameter `theName`, and we then immediately set `name` to `theName`. The turns out to be a very common practice. Parameter properties let you can create and initialize a member in one step and in one place. Here's a further revision of the previous example:
 
 ```TypeScript
 class Animal {
@@ -131,7 +143,9 @@ class Animal {
 }
 ```
 
-Using `private` in this way creates and initializes a private member, and similarly for `public`. 
+. Notice how we dropped `theName` altogether and just use the shortened 'private name: string' parameter on the constructor to create and initialize the `name` member. We've consolidated the declarations and assignment into one location.
+
+Using `private` on a parameter property creates and initializes a private member, and likewise for `public` and `protected`.
 
 # Accessors
 

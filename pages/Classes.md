@@ -132,7 +132,7 @@ In this example, we have an `Animal` and a `Rhino`, with `Rhino` being a subclas
 
 ## Parameter properties
 
-Accessibility modifiers also give you a shorthand for creating and initializing members of your class by using *parameter properties*. In our last example, we had to declare a private member `name` and a constructor parameter `theName`, and we then immediately set `name` to `theName`. The turns out to be a very common practice. Parameter properties let you can create and initialize a member in one step and in one place. Here's a further revision of the previous example:
+In our last example, we had to declare a private member `name` and a constructor parameter `theName`, and we then immediately set `name` to `theName`. This turns out to be a very common practice. *Parameter properties* let you create and initialize a member in one place. Here's a further revision of the previous example using a parameter property:
 
 ```TypeScript
 class Animal {
@@ -143,9 +143,9 @@ class Animal {
 }
 ```
 
-. Notice how we dropped `theName` altogether and just use the shortened 'private name: string' parameter on the constructor to create and initialize the `name` member. We've consolidated the declarations and assignment into one location.
+Notice how we dropped `theName` altogether and just use the shortened `private name: string` parameter on the constructor to create and initialize the `name` member. We've consolidated the declarations and assignment into one location.
 
-Using `private` on a parameter property creates and initializes a private member, and likewise for `public` and `protected`.
+Parameter properties are declared by prefixing a constructor parameter with an accessibility modifier. Using `private` for a parameter property declares and initializes a private member; likewise, the same is done for `public` and `protected`.
 
 # Accessors
 

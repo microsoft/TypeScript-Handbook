@@ -130,9 +130,39 @@ animal = employee; // Error: Animal and Employee are not compatible
 
 In this example, we have an `Animal` and a `Rhino`, with `Rhino` being a subclass of `Animal`. We also have a new class `Employee` that looks identical to `Animal` in terms of shape. We create some instances of these classes and then try to assign them to each other to see what will happen. Because `Animal` and `Rhino` share the `private` side of their shape from the same declaration of `private name: string` in `Animal`, they are compatible. However, this is not the case for `Employee`. When we try to assign from an `Employee` to `Animal` we get an error that these types are not compatible. Even though `Employee` also has a `private` member called `name`, it is not the same one as the one created in `Animal`.
 
+## Understanding `protected`
+
+The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can be accessed from subclasses extend from the containing class. For example,
+
+```TypeScript
+class Person {
+    protected name: string;
+    constructor(name: string) { this.name = name; }
+}
+
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name)
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return "Hello, my name is " + this.name + " and I work in " + this.department + ".";
+    }
+}
+
+var howard = new Employee("Howard", "Sales");
+console.log(howard.getElevatorPitch());
+console.log(howard.name); // error
+```
+
+Notice that while we can't use `name` from outside of `Person`, we can still use it in `Employee` because it derives from `Person`.
+
 ## Parameter properties
 
-In our last example, we had to declare a private member `name` and a constructor parameter `theName`, and we then immediately set `name` to `theName`. This turns out to be a very common practice. *Parameter properties* let you create and initialize a member in one place. Here's a further revision of the previous example using a parameter property:
+In our last example, we had to declare a private member `name` and a constructor parameter `theName`, and we then immediately set `name` to `theName`. This turns out to be a very common practice. *Parameter properties* let you create and initialize a member in one place. Here's a further revision of the previous `Animal` class using a parameter property:
 
 ```TypeScript
 class Animal {

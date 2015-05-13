@@ -72,13 +72,13 @@ The example also shows off being able to override methods in the base class with
 
 ## `public` by default
 
-You may have noticed in the above examples we haven't had to use the word `public` to make any of the members of the class visible to the outside. Languages like C# require that each member be explicitly labeled `public` to be visible. In TypeScript, each member is `public` by default.
+In our examples, we've been able to freely access the members that we declared throughout our programs. If you're familiar with classes in other languages, you may have noticed in the above examples we haven't had to use the word `public` to accomplish this; for instance, C# requires that each member be explicitly labeled `public` to be visible. In TypeScript, each member is `public` by default.
 
-You may still mark members `private` or `protected`, so you control what is publicly visible outside of your class. We could have written the `Animal` class from the previous section like so:
+You may still mark a member `public` explicitly, and it fact, it is good practice to do so. We could have written the `Animal` class from the previous section in the following way:
 
 ```TypeScript
 class Animal {
-    private name: string;
+    public name: string;
     constructor(theName: string) { this.name = theName; }
     move(meters: number) {
         alert(this.name + " moved " + meters + "m.");

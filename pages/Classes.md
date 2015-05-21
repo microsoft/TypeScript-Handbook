@@ -70,7 +70,7 @@ The example also shows off being able to override methods in the base class with
 
 # Public, private, and protected modifiers
 
-## `public` by default
+## Public by default
 
 In our examples, we've been able to freely access the members that we declared throughout our programs. If you're familiar with classes in other languages, you may have noticed in the above examples we haven't had to use the word `public` to accomplish this; for instance, C# requires that each member be explicitly labeled `public` to be visible. In TypeScript, each member is `public` by default.
 
@@ -96,7 +96,7 @@ class Animal {
     constructor(theName: string) { this.name = theName; }
 }
 
-new Animal().name; // Error: 'name' is private;
+new Animal("cat").name; // Error: 'name' is private;
 ```
 
 TypeScript is a structural type system. When we compare two different types, regardless of where they came from, if the types of each member are compatible, then we say the types themselves are compatible. 
@@ -112,7 +112,7 @@ class Animal {
 }
 
 class Rhino extends Animal {
-	constructor() { super("Rhino"); }
+    constructor() { super("Rhino"); }
 }
 
 class Employee {
@@ -132,7 +132,7 @@ In this example, we have an `Animal` and a `Rhino`, with `Rhino` being a subclas
 
 ## Understanding `protected`
 
-The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can be accessed from subclasses extend from the containing class. For example,
+The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can also be accessed by instances of deriving classes. For example,
 
 ```TypeScript
 class Person {
@@ -158,7 +158,7 @@ console.log(howard.getElevatorPitch());
 console.log(howard.name); // error
 ```
 
-Notice that while we can't use `name` from outside of `Person`, we can still use it in `Employee` because it derives from `Person`.
+Notice that while we can't use `name` from outside of `Person`, we can still use it from within an instance method of `Employee` because `Employee` derives from `Person`.
 
 ## Parameter properties
 

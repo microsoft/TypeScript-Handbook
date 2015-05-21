@@ -36,24 +36,24 @@ Let's take a look at an example:
 class Animal {
     name:string;
     constructor(theName: string) { this.name = theName; }
-    move(meters: number = 0) {
-        alert(this.name + " moved " + meters + "m.");
+    move(distanceInMeters: number = 0) {
+        alert(`${this.name} moved ${distanceInMeters}m.");
     }
 }
 
 class Snake extends Animal {
     constructor(name: string) { super(name); }
-    move(meters = 5) {
+    move(distanceInMeters = 5) {
         alert("Slithering...");
-        super.move(meters);
+        super.move(distanceInMeters);
     }
 }
 
 class Horse extends Animal {
     constructor(name: string) { super(name); }
-    move(meters = 45) {
+    move(distanceInMeters = 45) {
         alert("Galloping...");
-        super.move(meters);
+        super.move(distanceInMeters);
     }
 }
 
@@ -80,8 +80,8 @@ You may still mark a member `public` explicitly, and it fact, it is good practic
 class Animal {
     public name: string;
     constructor(theName: string) { this.name = theName; }
-    move(meters: number) {
-        alert(this.name + " moved " + meters + "m.");
+    move(distanceInMeters: number) {
+        alert(`${this.name} moved ${distanceInMeters}m.");
     }
 }
 ```
@@ -96,7 +96,7 @@ class Animal {
     constructor(theName: string) { this.name = theName; }
 }
 
-new Animal("cat").name; // Error: 'name' is private;
+new Animal("Cat").name; // Error: 'name' is private;
 ```
 
 TypeScript is a structural type system. When we compare two different types, regardless of where they came from, if the types of each member are compatible, then we say the types themselves are compatible. 
@@ -149,7 +149,7 @@ class Employee extends Person {
     }
 
     public getElevatorPitch() {
-        return "Hello, my name is " + this.name + " and I work in " + this.department + ".";
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
     }
 }
 
@@ -167,8 +167,8 @@ In our last example, we had to declare a private member `name` and a constructor
 ```TypeScript
 class Animal {
     constructor(private name: string) { }
-    move(meters: number) {
-        alert(this.name + " moved " + meters + "m.");
+    move(distanceInMeters: number) {
+        alert(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
 ```

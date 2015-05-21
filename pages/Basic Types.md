@@ -20,11 +20,31 @@ var height: number = 6;
 
 # String
 
-Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data. As in other languages, we use the type `string` to refer to these textual datatypes. Just like JavaScript, TypeScript also uses the double quote (") or single quote (') to surround string data.
+Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data.
+As in other languages, we use the type `string` to refer to these textual datatypes.
+Just like JavaScript, TypeScript also uses the double quote (`"`) or single quote (`'`) to surround string data.
 
 ```TypeScript
 var name: string = "bob";
 name = 'smith';
+```
+
+You can also use *template strings*, which can span multiple lines and have embedded expressions.
+These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are  
+
+```TypeScript
+var name: string = `Gene`;
+var age: number = 37;
+var sentence: string = `Hello, my name is ${ name }.
+
+I'll be ${ age + 1 } years old next month.
+```
+
+This is equivalent to declaring `sentence` like so:
+
+```TypeScript
+var sentence: string = "Hello, my name is " + name + ".\n\n" +
+    "I'll be " + (age + 1) + " years old next month."
 ```
 
 # Array
@@ -32,13 +52,13 @@ name = 'smith';
 TypeScript, like JavaScript, allows you to work with arrays of values. Array types can be written in one of two ways. In the first, you use the type of the elements followed by `[]` to denote an array of that element type:
 
 ```TypeScript
-var list:number[] = [1, 2, 3];
+var list: number[] = [1, 2, 3];
 ```
 
 The second way uses a generic array type, `Array<elemType>`:
 
 ```TypeScript
-var list:Array<number> = [1, 2, 3];
+var list: Array<number> = [1, 2, 3];
 ```
 
 # Enum
@@ -88,7 +108,7 @@ The `any` type is a powerful way to work with existing JavaScript, allowing you 
 The `any` type is also handy if you know some part of the type, but perhaps not all of it. For example, you may have an array but the array has a mix of different types:
 
 ```TypeScript
-var list:any[] = [1, true, "free"];
+var list: any[] = [1, true, "free"];
 
 list[1] = 100;
 ```

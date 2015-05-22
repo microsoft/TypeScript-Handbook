@@ -1,0 +1,28 @@
+{
+    "name": "TypeScript-Handbook",
+    "version": "1.5.2",
+    "description": "A comprehensive guide to the TypeScript language.",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Microsoft/TypeScript-Handbook"
+    },
+    "keywords": [
+        "TypeScript",
+        "ts",
+        "JavaScript",
+        "js",
+        "handbook",
+        "tutorial"
+        "guide",
+        "book"
+    ],
+    "author": "Microsoft Corp.",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/Microsoft/TypeScript-Handbook/issues"
+    },
+    "homepage": "https://github.com/Microsoft/TypeScript-Handbook"
+}

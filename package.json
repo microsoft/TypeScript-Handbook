@@ -3,7 +3,6 @@
     "version": "1.5.2",
     "description": "A comprehensive guide to the TypeScript language.",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
         "type": "git",
@@ -15,7 +14,7 @@
         "JavaScript",
         "js",
         "handbook",
-        "tutorial"
+        "tutorial",
         "guide",
         "book"
     ],

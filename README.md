@@ -10,7 +10,7 @@ You will need [Node.js and npm](https://nodejs.org/) before starting.
 First install gitbook through `npm`.
 
 ```sh
-npm install -g gitbook
+npm install -g gitbook-cli
 ```
 
 Note, on certain systems, you may need to raise your permissions with a command like `sudo`.

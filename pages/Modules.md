@@ -151,14 +151,15 @@ tsc --out sample.js Test.ts
 
 The compiler will automatically order the output file based on the reference tags present in the files. You can also specify each file individually:
 
-```
+```sh
 tsc --out sample.js Validation.ts LettersOnlyValidator.ts ZipCodeValidator.ts Test.ts
 ```
 
 Alternatively, we can use per-file compilation (the default) to emit one JavaScript file for each input file. If multiple JS files get produced, we'll need to use `<script>` tags on our webpage to load each emitted file in the appropriate order, for example:
 
-!!!!! MyTestPage.html (excerpt)
-```TypeScript
+MyTestPage.html
+
+```HTML
     <script src="Validation.js" type="text/javascript" />
     <script src="LettersOnlyValidator.js" type="text/javascript" />
     <script src="ZipCodeValidator.js" type="text/javascript" />
@@ -181,9 +182,11 @@ import someMod = require('someModule');
 We specify which objects are visible outside the module by using the `export` keyword on a top-level declaration, similarly to how `export` defined the public surface area of an internal module.
 
 To compile, we must specify a module target on the command line. For node.js, use `--module commonjs`; for require.js, use `--module amd`. For example:
-{{
+
+```sh
 tsc --module commonjs Test.ts
-}}
+```
+
 When compiled, each external module will become a separate .js file. Similar to reference tags, the compiler will follow `import` statements to compile dependent files.
 
 !!!!! Validation.ts

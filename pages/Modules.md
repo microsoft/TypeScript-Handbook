@@ -49,7 +49,7 @@ strings.forEach(s => {
 As we add more validators, we're going to want to have some kind of organization scheme so that we can keep track of our types and not worry about name collisions with other objects.
 Instead of putting lots of different names into the global namespace, let's wrap up our objects into a module.
 
-In this example, we'll move all validator-related types into a module called `Validation`.
+In this example, we'll move all validator-related entities into a module called `Validation`.
 Because we want the interfaces and classes here to be visible outside the module, we preface them with `export`.
 Conversely, the variables `lettersRegexp` and `numberRegexp` are implementation details, so they are left unexported and will not be visible to code outside the module.
 In the test code at the bottom of the file, we now need to qualify the names of the types when used outside the module, e.g. `Validation.LettersOnlyValidator`.

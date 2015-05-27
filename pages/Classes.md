@@ -37,7 +37,7 @@ class Animal {
     name:string;
     constructor(theName: string) { this.name = theName; }
     move(distanceInMeters: number = 0) {
-        alert(`${this.name} moved ${distanceInMeters}m.");
+        alert(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
 
@@ -81,7 +81,7 @@ class Animal {
     public name: string;
     constructor(theName: string) { this.name = theName; }
     move(distanceInMeters: number) {
-        alert(`${this.name} moved ${distanceInMeters}m.");
+        alert(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
 ```

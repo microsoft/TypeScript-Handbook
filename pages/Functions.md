@@ -163,11 +163,11 @@ function buildName(firstName: string, lastName = "Smith") {
 ```
 
 share the same type `(firstName: string, lastName?: string) => string`.
-The default value of the default parameter disappears, leaving only the knowledge that the parameter is optional.
+The default value of `lastName` disappears in the type, only leaving behind the fact that the parameter is optional.
 
 # Rest Parameters
 
-Required, optional, and default parameters all have one thing in common: they're about talking about one parameter at a time.
+Required, optional, and default parameters all have one thing in common: they talk about one parameter at a time.
 Sometimes, you want to work with multiple parameters as a group, or you may not know how many parameters a function will ultimately take.
 In JavaScript, you can work with the arguments direction using the `arguments` variable that is visible inside every function body.
 
@@ -181,9 +181,9 @@ function buildName(firstName: string, ...restOfName: string[]) {
 var employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
 
-Rest parameters are treated as a boundless number of optional parameters.
-You may leave them off, or have as many as you want.
-The compiler will build an array of the arguments you pass to the function under the name given after the ellipsis (`...`), allowing you to use it in your function.
+*Rest parameters* are treated as a boundless number of optional parameters.
+When passing arguments for a rest parameter, can use as many as you want; you can even pass none.
+The compiler will build an array of the arguments passed in with the name given after the ellipsis (`...`), allowing you to use it in your function.
 
 The ellipsis is also used in the type of the function with rest parameters:
 

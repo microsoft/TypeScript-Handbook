@@ -271,7 +271,8 @@ strings.forEach(s => {
 
 ## Code Generation for External Modules
 
-Depending on the module target specified during compilation, the compiler will generate appropriate code for either node.js (commonjs) or require.js (AMD) module-loading systems. For more information on what the `define` and `require` calls in the generated code do, consult the documentation for each module loader.
+Depending on the module target specified during compilation, the compiler will generate appropriate code for either node.js (commonjs) or require.js (AMD) module-loading systems.
+For more information on what the `define` and `require` calls in the generated code do, consult the documentation for each module loader.
 
 This simple example shows how the names used during importing and exporting get translated into the module loading code.
 
@@ -382,7 +383,9 @@ import polygons = Shapes.Polygons;
 var sq = new polygons.Square(); // Same as 'new Shapes.Polygons.Square()'
 ```
 
-Notice that we don't use the `require` keyword; instead we assign directly from the qualified name of the symbol we're importing. This is similar to using `var`, but also works on the type and namespace meanings of the imported symbol. Importantly, for values, `import` is a distinct reference from the original symbol, so changes to an aliased `var` will not be reflected in the original variable.
+Notice that we don't use the `require` keyword; instead we assign directly from the qualified name of the symbol we're importing.
+This is similar to using `var`, but also works on the type and namespace meanings of the imported symbol.
+Importantly, for values, `import` is a distinct reference from the original symbol, so changes to an aliased `var` will not be reflected in the original variable.
 
 # Optional Module Loading and Other Advanced Loading Scenarios
 
@@ -398,7 +401,8 @@ The module loader is invoked (through require) dynamically, as shown in the if b
 This leverages the reference-culling optimization so that the module is only loaded when needed.
 For this pattern to work, it's important that the symbol defined via import is only used in type positions (i.e. never in a position that would be emitted into the JavaScript).
 
-To maintain type safety, we can use the `typeof` keyword. The `typeof` keyword, when used in a type position, produces the type of a value, in this case the type of the external module.
+To maintain type safety, we can use the `typeof` keyword.
+The `typeof` keyword, when used in a type position, produces the type of a value, in this case the type of the external module.
 
 ##### Dynamic Module Loading in node.js
 
@@ -555,7 +559,8 @@ var t = new shapes.Shapes.Triangle(); // shapes.Shapes?
 A key feature of external modules in TypeScript is that two different external modules will never contribute names to the same scope.
 Because the consumer of an external module decides what name to assign it, there's no need to proactively wrap up the exported symbols in a namespace.
 
-To reiterate why you shouldn't try to namespace your external module contents, the general idea of namespacing is to provide logical grouping of constructs and to prevent name collisions. Because the external module file itself is already a logical grouping, and its top-level name is defined by the code that imports it, it's unnecessary to use an additional module layer for exported objects.
+To reiterate why you shouldn't try to namespace your external module contents, the general idea of namespacing is to provide logical grouping of constructs and to prevent name collisions.
+Because the external module file itself is already a logical grouping, and its top-level name is defined by the code that imports it, it's unnecessary to use an additional module layer for exported objects.
 
 Here's a revised example:
 

@@ -162,7 +162,7 @@ and
 function buildName(firstName: string, lastName = "Smith") {
 ```
 
-share the same type "(firstName: string, lastName?: string) => string".
+share the same type `(firstName: string, lastName?: string) => string`.
 The default value of the default parameter disappears, leaving only the knowledge that the parameter is optional.
 
 # Rest Parameters

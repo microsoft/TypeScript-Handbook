@@ -194,7 +194,7 @@ declare module "zoo" {
 }
 ```
 
-## Single Complex Object in External Modules
+## Single Complex Object in Modules
 
 #### Usage
 

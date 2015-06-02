@@ -204,8 +204,8 @@ If multiple JS files get produced, we'll need to use `<script>` tags on our webp
 # Going Modular
 
 TypeScript also has the concept of modules.
-Modules are used in two cases: node.js and require.js.
-Applications not using node.js or require.js do not need to use modules and can best be organized using the namespaces, outlined above.
+Modules are used in two cases: Node.js and require.js.
+Applications not using Node.js or require.js do not need to use modules and can best be organized using the namespaces, outlined above.
 
 When using modules, relationships between files are specified in terms of imports and exports at the file level.
 In TypeScript, any file containing a top-level `import` or `export` is considered a module.
@@ -222,7 +222,7 @@ import someMod = require('someModule');
 
 We specify which objects are visible outside the module by using the `export` keyword on a top-level declaration, similarly to how `export` defined the public surface area of a namespace.
 
-To compile, we must specify a module target on the command line. For node.js, use `--module commonjs`; for require.js, use `--module amd`. For example:
+To compile, we must specify a module target on the command line. For Node.js, use `--module commonjs`; for require.js, use `--module amd`. For example:
 
 ```Shell
 tsc --module commonjs Test.ts
@@ -286,7 +286,7 @@ strings.forEach(s => {
 
 ## Code Generation for Modules
 
-Depending on the module target specified during compilation, the compiler will generate appropriate code for either node.js (commonjs) or require.js (AMD) module-loading systems.
+Depending on the module target specified during compilation, the compiler will generate appropriate code for either Node.js (commonjs) or require.js (AMD) module-loading systems.
 For more information on what the `define` and `require` calls in the generated code do, consult the documentation for each module loader.
 
 This simple example shows how the names used during importing and exporting get translated into the module loading code.
@@ -420,7 +420,7 @@ For this pattern to work, it's important that the symbol defined via an `import`
 To maintain type safety, we can use the `typeof` keyword.
 The `typeof` keyword, when used in a type position, produces the type of a value, in this case the type of the module.
 
-##### Dynamic Module Loading in node.js
+##### Dynamic Module Loading in Node.js
 
 ```TypeScript
 declare var require;

@@ -488,7 +488,7 @@ declare var d3: D3.Base;
 
 In Node.js, most tasks are accomplished by loading one or more modules.
 We could define each module in its own `.d.ts` file with top-level export declarations, but it's more convenient to write them as one larger `.d.ts` file.
-To do so, we use a construct similar to namespaces, but we use the `module` keyword and the quoted name of the module which will be available to a later import.
+To do so, we use a construct similar to ambient namespaces, but we use the `module` keyword and the quoted name of the module which will be available to a later import.
 For example:
 
 ##### node.d.ts (simplified excerpt)

@@ -11,7 +11,7 @@ If you're vaguely familiar with these terms, it's important to note that in Type
 "Internal modules" are now "namespaces".
 "External modules" are now simply "modules", as to align with ECMAScript 6's terminology.
 
-Additionally, anywhere the `module` keyword was used for an internal module, the `namespace` keyword can and should be used instead.
+Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
 
 This avoids confusing new users by overloading them with similarly named terms.
 

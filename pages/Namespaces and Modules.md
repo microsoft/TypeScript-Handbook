@@ -322,7 +322,7 @@ This can be a class, interface, namespace, function, or enum.
 When imported, the exported symbol is consumed directly and is not qualified by any name.
 
 Below, we've simplified the Validator implementations to only export a single object from each module using the `export =` syntax.
-This simplifies the consumption code – instead of referring to `zip.ZipCodeValidator`, we can simply refer to `zipValidator`.
+This simplifies the consumption code Â– instead of referring to `zip.ZipCodeValidator`, we can simply refer to `zipValidator`.
 
 ##### Validation.ts
 
@@ -409,7 +409,7 @@ In some cases, you may want to only load a module under some conditions.
 In TypeScript, we can use the pattern shown below to implement this and other advanced loading scenarios to directly invoke the module loaders without losing type safety.
 
 The compiler detects whether each module is used in the emitted JavaScript.
-For modules that are only used as part of the type system, no `require` calls are emitted.
+If a module identifier is only ever used in type annotations and never as an expression then no `require` call is emitted for that module.
 This culling of unused references is a good performance optimization, and also allows for optional loading of those modules.
 
 The core idea of the pattern is that the `import id = require('...')` statement gives us access to the types exposed by the module.

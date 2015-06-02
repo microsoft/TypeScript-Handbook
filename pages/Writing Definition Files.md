@@ -12,9 +12,9 @@ The examples below will be written as if you were reading documentation that pre
 
 ## Namespacing
 
-When defining interfaces (for example, "options" objects), you have a choice about whether to put these types inside a module or not.
+When defining interfaces (for example, "options" objects), you have a choice about whether to put these types inside a namespace or not.
 This is largely a judgement call -- if the consumer is likely to often declare variables or parameters of that type, and the type can be named without risk of colliding with other types, prefer placing it in the global namespace.
-If the type is not likely to be referenced directly, or can't be named with a reasonably unique name, do use a module to prevent it from colliding with other types.
+If the type is not likely to be referenced directly, or can't be named with a reasonably unique name, do use a namespace to prevent it from colliding with other types.
 
 ## Callbacks
 
@@ -114,7 +114,7 @@ animalFactory.create("cat", { height: 32 });
 #### Typing
 
 ```TypeScript
-module animalFactory {
+namespace animalFactory {
     interface AnimalOptions {
         name: string;
         height?: number;
@@ -136,9 +136,9 @@ zooKeeper(giraffeCage);
 #### Typing
 
 ```TypeScript
-// Note: Function must precede module
+// Note: Function must precede namespace
 function zooKeeper(cage: AnimalCage);
-module zooKeeper {
+namespace zooKeeper {
     var workSchedule: string;
 }
 ```
@@ -185,7 +185,7 @@ zoo.open();
 #### Typing
 
 ```TypeScript
-module zoo {
+namespace zoo {
   function open(): void;
 }
 
@@ -214,7 +214,7 @@ eagle.favorite = 'golden';
 ```TypeScript
 // Note: can use any name here, but has to be the same throughout this file
 declare function eagle(name: string): eagle;
-declare module eagle {
+declare namespace eagle {
     var favorite: string;
     function fly(): void;
 }
@@ -230,7 +230,7 @@ export = eagle;
 #### Usage
 
 ```TypeScript
-addLater(3, 4, (x) => console.log('x = ' + x));
+addLater(3, 4, x => console.log('x = ' + x));
 ```
 
 #### Typing

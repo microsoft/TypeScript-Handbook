@@ -190,7 +190,7 @@ When we use `GenericIdentityFn`, we now will also need to specify the correspond
 Understanding when to put the type parameter directly on the call signature and when to put it on the interface itself will be helpful in describing what aspects of a type are generic.
 
 In addition to generic interfaces, we can also create generic classes.
-Note that it is not possible to create generic enums and modules.
+Note that it is not possible to create generic enums and namespaces.
 
 # Generic Classes
 

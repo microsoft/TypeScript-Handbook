@@ -322,7 +322,7 @@ This can be a class, interface, namespace, function, or enum.
 When imported, the exported symbol is consumed directly and is not qualified by any name.
 
 Below, we've simplified the Validator implementations to only export a single object from each module using the `export =` syntax.
-This simplifies the consumption code  instead of referring to `zip.ZipCodeValidator`, we can simply refer to `zipValidator`.
+This simplifies the consumption code - instead of referring to `zip.ZipCodeValidator`, we can simply refer to `zipValidator`.
 
 ##### Validation.ts
 

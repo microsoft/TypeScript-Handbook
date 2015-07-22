@@ -66,7 +66,7 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 
 # Understanding the sample
 
-The code sample starts with the two classes that will act is our mixins.
+The code sample starts with the two classes that will act as our mixins.
 You can see each one is focused on a particular activity or capability.
 We'll later mix these together to form a new class from both capabilities.
 

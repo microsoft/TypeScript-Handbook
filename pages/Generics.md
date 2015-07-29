@@ -79,7 +79,7 @@ function identity<T>(arg: T): T {
 }
 ```
 
-What if we want to also log the length of the argument `arg` to the console with each call.
+What if we want to also log the length of the argument `arg` to the console with each call?
 We might be tempted to write this:
 
 ```TypeScript

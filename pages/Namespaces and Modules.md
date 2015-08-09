@@ -463,7 +463,7 @@ For example, we could begin writing it as follows:
 
 <!-- TODO: This is not at all how it's done on DT - do we want to change this? -->
 ```TypeScript
-declare namespace d3 {
+declare namespace D3 {
     export interface Selectors {
         select: {
             (selector: string): Selection;

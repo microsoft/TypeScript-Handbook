@@ -204,7 +204,7 @@ A whole article could be written on how to use `this` in JavaScript, and many ha
 
 In JavaScript, `this` is a variable that's set when a function is called.
 This makes it a very powerful and flexible feature, but it comes at the cost of always having to know about the context that a function is executing in.
-This can be notoriously confusing, when, for example, when a function is used as a callback.
+This can be notoriously confusing when, for instance, a function is used as a callback.
 
 Let's look at an example:
 
@@ -235,7 +235,7 @@ This happens as a result of calling `cardPicker()`. Here, there is no dynamic bi
 We can fix this by making sure the function is bound to the correct `this` before we return the function to be used later.
 This way, regardless of how its later used, it will still be able to see the original `deck` object.
 
-To fix this, we switching the function expression to use the lambda syntax ( () => {} ) rather than the JavaScript function expression.
+To fix this, we switch the function expression to use the arrow syntax (`() => {}`) rather than the JavaScript function expression.
 This will automatically capture the `this` available when the function is created rather than when it is invoked:
 
 ```TypeScript

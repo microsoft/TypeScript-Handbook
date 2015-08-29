@@ -294,7 +294,7 @@ alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 Here the `pickCard` function will return two different things based on what the user has passed in.
 If the users passes in an object that represents the deck, the function will pick the card.
 If the user picks the card, we tell them which card they've picked.
-But how do we describe this to the type system.
+But how do we describe this to the type system?
 
 The answer is to supply multiple function types for the same function as a list of overloads.
 This list is what the compiler will use to resolve function calls.

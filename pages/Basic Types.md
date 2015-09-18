@@ -32,7 +32,7 @@ name = 'smith';
 ```
 
 You can also use *template strings*, which can span multiple lines and have embedded expressions.
-These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are  
+These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are of the form `${ expr }`
 
 ```TypeScript
 var name: string = `Gene`;

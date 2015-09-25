@@ -91,7 +91,7 @@ var items = [1, 2, 3];
 items.forEach((item, index, array) => console.log(item));
 
 // Should be OK!
-items.forEach((item) => console.log(item));
+items.forEach(item => console.log(item));
 ```
 
 Now let's look at how return types are treated, using two functions that differ only by their return type:

@@ -10,7 +10,7 @@ The easiest way to see how interfaces work is to start with a simple example:
 
 ```TypeScript
 function printLabel(labelledObj: {label: string}) {
-  console.log(labelledObj.label);
+    console.log(labelledObj.label);
 }
 
 var myObj = {size: 10, label: "Size 10 Object"};
@@ -25,11 +25,11 @@ We can write the same example again, this time using an interface to describe th
 
 ```TypeScript
 interface LabelledValue {
-  label: string;
+    label: string;
 }
 
 function printLabel(labelledObj: LabelledValue) {
-  console.log(labelledObj.label);
+    console.log(labelledObj.label);
 }
 
 var myObj = {size: 10, label: "Size 10 Object"};
@@ -52,19 +52,19 @@ Here's as example of this pattern:
 
 ```TypeScript
 interface SquareConfig {
-  color?: string;
-  width?: number;
+    color?: string;
+    width?: number;
 }
 
 function createSquare(config: SquareConfig): {color: string; area: number} {
-  var newSquare = {color: "white", area: 100};
-  if (config.color) {
-    newSquare.color = config.color;
-  }
-  if (config.width) {
-    newSquare.area = config.width * config.width;
-  }
-  return newSquare;
+    var newSquare = {color: "white", area: 100};
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
 }
 
 var mySquare = createSquare({color: "black"});
@@ -77,8 +77,8 @@ For example, had we mistyped the name of the property we passed to `createSquare
 
 ```TypeScript
 interface SquareConfig {
-  color?: string;
-  width?: number;
+    color?: string;
+    width?: number;
 }
 
 function createSquare(config: SquareConfig): {color: string; area: number} {
@@ -105,7 +105,7 @@ This is like a function declaration with only the parameter list and return type
 
 ```TypeScript
 interface SearchFunc {
-  (source: string, subString: string): boolean;
+    (source: string, subString: string): boolean;
 }
 ```
 
@@ -115,13 +115,13 @@ Here, we show how you can create a variable of a function type and assign it a f
 ```TypeScript
 var mySearch: SearchFunc;
 mySearch = function(source: string, subString: string) {
-  var result = source.search(subString);
-  if (result == -1) {
-    return false;
-  }
-  else {
-    return true;
-  }
+    var result = source.search(subString);
+    if (result == -1) {
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 ```
 
@@ -131,13 +131,13 @@ We could have, for example, written the above example like this:
 ```TypeScript
 var mySearch: SearchFunc;
 mySearch = function(src: string, sub: string) {
-  var result = src.search(sub);
-  if (result == -1) {
-    return false;
-  }
-  else {
-    return true;
-  }
+    var result = src.search(sub);
+    if (result == -1) {
+        return false;
+    }
+    else {
+        return true;
+    }
 }
 ```
 
@@ -152,7 +152,7 @@ Array types have an `index` type that describes the types allowed to index the o
 
 ```TypeScript
 interface StringArray {
-  [index: number]: string;
+    [index: number]: string;
 }
 
 var myArray: StringArray;
@@ -167,8 +167,8 @@ In this example, the property does not match the more general index, and the typ
 
 ```TypeScript
 interface Dictionary {
-  [index: string]: string;
-  length: number;    // error, the type of `length` is not a subtype of the indexer
+    [index: string]: string;
+    length: number;    // error, the type of `length` is not a subtype of the indexer
 }
 ```
 

@@ -197,11 +197,12 @@ a = s;  //OK
 s = a;  //OK
 ```
 
-## Private members in classes
+## Private and protected members in classes
 
-Private members in a class affect their compatibility.
-When an instance of a class is checked for compatibility, if it contains a private member, the target type must also contain a private member that originated from the same class.
-This allows, for example, a class to be assignment compatible with its super class but not with classes from a different inheritance hierarchy which otherwise have the same shape.
+Private and protected members in a class affect their compatibility.
+When an instance of a class is checked for compatibility, if the instance contains a private member, then the target type must also contain a private member that originated from the same class.
+Likewise, the same applies for an instance with a protected member.
+This allows a class to be assignment compatible with its super class, but *not* with classes from a different inheritance hierarchy which otherwise have the same shape.
 
 # Generics
 

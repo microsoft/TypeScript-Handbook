@@ -22,7 +22,9 @@ Lastly, declarations that create a value are those that are visible in the outpu
 |------------------|:---------:|:----:|:-----:|
 | Namespace        |     X     |      |   X   |
 | Class            |           |   X  |   X   |
+| Enum             |           |   X  |   X   |
 | Interface        |           |   X  |       |
+| Type Alias       |           |   X  |       |
 | Function         |           |      |   X   |
 | Variable         |           |      |   X   |
 

@@ -13,16 +13,18 @@ Declaration merging is not limited to just two declarations, as any number of de
 
 # Basic Concepts
 
-In TypeScript, a declaration exists in one of three groups: namespace/module, type, or value.
-Declarations that create a namespace/module are accessed using a dotted notation when writing a type.
-Declarations that create a type do just that, create a type that is visible with the declared shape and bound to the given name.
-Lastly, declarations create a value are those that are visible in the output JavaScript (e.g. functions and variables).
+In TypeScript, a declaration exists in one of three groups: namespace, type, or value.
+Declarations that create a namespace are accessed using a dotted notation when writing a type.
+Declarations that create a type do just that: create a type that is visible with the declared shape and bound to the given name.
+Lastly, declarations that create a value are those that are visible in the output JavaScript (e.g. functions and variables).
 
 | Declaration Type | Namespace | Type | Value |
 |------------------|:---------:|:----:|:-----:|
-| Module           |     X     |      |   X   |
+| Namespace        |     X     |      |   X   |
 | Class            |           |   X  |   X   |
+| Enum             |           |   X  |   X   |
 | Interface        |           |   X  |       |
+| Type Alias       |           |   X  |       |
 | Function         |           |      |   X   |
 | Variable         |           |      |   X   |
 
@@ -82,23 +84,23 @@ interface Document {
 ```
 
 
-# Merging Modules
+# Merging Namespaces
 
-Similarly to interfaces, modules of the same name will also merge their members.
-Since modules create both a namespace and a value, we need to understand how both merge.
+Similarly to interfaces, namespaces of the same name will also merge their members.
+Since namespaces create both a namespace and a value, we need to understand how both merge.
 
-To merge the namespaces, type definitions from exported interfaces declared in each module are themselves merged, forming a single namespace with merged interface definitions inside.
+To merge the namespaces, type definitions from exported interfaces declared in each namespace are themselves merged, forming a single namespace with merged interface definitions inside.
 
-To merge the value, at each declaration site, if a module already exists with the given name, it is further extended by taking the existing module and adding the exported members of the second module to the first.
+To merge the value, at each declaration site, if a namespace already exists with the given name, it is further extended by taking the existing namespace and adding the exported members of the second namespace to the first.
 
 The declaration merge of `Animals` in this example:
 
 ```TypeScript
-module Animals {
+namespace Animals {
     export class Zebra { }
 }
 
-module Animals {
+namespace Animals {
     export interface Legged { numberOfLegs: number; }
     export class Dog { }
 }
@@ -107,7 +109,7 @@ module Animals {
 is equivalent to:
 
 ```TypeScript
-module Animals {
+namespace Animals {
     export interface Legged { numberOfLegs: number; }
 
     export class Zebra { }
@@ -115,13 +117,13 @@ module Animals {
 }
 ```
 
-This model of module merging is a helpful starting place, but to get a more complete picture we need to also understand what happens with non-exported members.
-Non-exported members are only visible in the original (un-merged) module. This means that after merging, merged members that came from other declarations can not see non-exported members.
+This model of namespace merging is a helpful starting place, but to get a more complete picture we need to also understand what happens with non-exported members.
+Non-exported members are only visible in the original (un-merged) namespace. This means that after merging, merged members that came from other declarations can not see non-exported members.
 
 We can see this more clearly in this example:
 
 ```TypeScript
-module Animal {
+namespace Animal {
     var haveMuscles = true;
 
     export function animalsHaveMuscles() {
@@ -129,37 +131,37 @@ module Animal {
     }
 }
 
-module Animal {
+namespace Animal {
     export function doAnimalsHaveMuscles() {
         return haveMuscles;  // <-- error, haveMuscles is not visible here
     }
 }
 ```
 
-Because `haveMuscles` is not exported, only the `animalsHaveMuscles` function that shares the same un-merged module can see the symbol.
-The `doAnimalsHaveMuscles` function, even though it's part of the merged Animal module can not see this un-exported member.
+Because `haveMuscles` is not exported, only the `animalsHaveMuscles` function that shares the same un-merged namespace can see the symbol.
+The `doAnimalsHaveMuscles` function, even though it's part of the merged `Animal` namespace can not see this un-exported member.
 
-# Merging Modules with Classes, Functions, and Enums
+# Merging Namespaces with Classes, Functions, and Enums
 
-Modules are flexible enough to also merge with other types of declarations.
-To do so, the module declaration must follow the declaration it will merge with. The resulting declaration has properties of both declaration types.
+Namespaces are flexible enough to also merge with other types of declarations.
+To do so, the namespace declaration must follow the declaration it will merge with. The resulting declaration has properties of both declaration types.
 TypeScript uses this capability to model some of patterns in JavaScript as well as other programming languages.
 
-The first module merge we'll cover is merging a module with a class.
+The first namespace merge we'll cover is merging a namespace with a class.
 This gives the user a way of describing inner classes.
 
 ```TypeScript
 class Album {
     label: Album.AlbumLabel;
 }
-module Album {
+namespace Album {
     export class AlbumLabel { }
 }
 ```
 
-The visibility rules for merged members is the same as described in the 'Merging Modules' section, so we must export the `AlbumLabel` class for the merged class to see it.
+The visibility rules for merged members is the same as described in the 'Merging Namespaces' section, so we must export the `AlbumLabel` class for the merged class to see it.
 The end result is a class managed inside of another class.
-You can also use modules to add more static members to an existing class.
+You can also use namespaces to add more static members to an existing class.
 
 In addition to the pattern of inner classes, you may also be familiar with JavaScript practice of creating a function and then extending the function further by adding properties onto the function.
 TypeScript uses declaration merging to build up definitions like this in a type-safe way.
@@ -169,7 +171,7 @@ function buildLabel(name: string): string {
     return buildLabel.prefix + name + buildLabel.suffix;
 }
 
-module buildLabel {
+namespace buildLabel {
     export var suffix = "";
     export var prefix = "Hello, ";
 }
@@ -177,7 +179,7 @@ module buildLabel {
 alert(buildLabel("Sam Smith"));
 ```
 
-Similarly, modules can be used to extend enums with static members:
+Similarly, namespaces can be used to extend enums with static members:
 
 ```TypeScript
 enum Color {
@@ -186,7 +188,7 @@ enum Color {
     blue = 4
 }
 
-module Color {
+namespace Color {
     export function mixColor(colorName: string) {
         if (colorName == "yellow") {
             return Color.red + Color.green;

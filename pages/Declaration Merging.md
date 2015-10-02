@@ -13,10 +13,11 @@ Declaration merging is not limited to just two declarations, as any number of de
 
 # Basic Concepts
 
-In TypeScript, a declaration exists in one of three groups: namespace, type, or value.
-Declarations that create a namespace are accessed using a dotted notation when writing a type.
-Declarations that create a type do just that, create a type that is visible with the declared shape and bound to the given name.
-Lastly, declarations create a value are those that are visible in the output JavaScript (e.g. functions and variables).
+In TypeScript, a declaration creates objects in at least one of three groups: namespace, type, or value.
+Namespace-creating declarations create a namespace, which contains types that are accessed using a dotted notation.
+Type-creating declarations do just that, they create a type that is visible with the declared shape and bound to the given name.
+Lastly, value-creating declarations create values that are visible in the output JavaScript.
+Functions and variables are the simplest value-creating declarations, but namespaces and classes also create values.
 
 | Declaration Type | Namespace | Type | Value |
 |------------------|:---------:|:----:|:-----:|

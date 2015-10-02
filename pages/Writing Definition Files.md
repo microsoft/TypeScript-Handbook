@@ -1,23 +1,32 @@
 # Introduction
-When using an external JavaScript library, or new host API, you'll need to use a declaration file (.d.ts) to describe the shape of that library. This guide covers a few high-level concepts specific to writing definition files, then proceeds with a number of examples that show how to transcribe various concepts to their matching definition file descriptions.
+When using an external JavaScript library, or new host API, you'll need to use a declaration file (.d.ts) to describe the shape of that library.
+This guide covers a few high-level concepts specific to writing definition files, then proceeds with a number of examples that show how to transcribe various concepts to their matching definition file descriptions.
 
 # Guidelines and Specifics
 
 ## Workflow
 
-The best way to write a .d.ts file is to start from the documentation of the library, not the code. Working from the documentation ensures the surface you present isn't muddied with implementation details, and is typically much easier to read than JS code. The examples below will be written as if you were reading documentation that presented example calling code.
+The best way to write a .d.ts file is to start from the documentation of the library, not the code.
+Working from the documentation ensures the surface you present isn't muddied with implementation details, and is typically much easier to read than JS code.
+The examples below will be written as if you were reading documentation that presented example calling code.
 
 ## Namespacing
 
-When defining interfaces (for example, "options" objects), you have a choice about whether to put these types inside a module or not. This is largely a judgement call -- if the consumer is likely to often declare variables or parameters of that type, and the type can be named without risk of colliding with other types, prefer placing it in the global namespace. If the type is not likely to be referenced directly, or can't be named with a reasonably unique name, do use a module to prevent it from colliding with other types.
+When defining interfaces (for example, "options" objects), you have a choice about whether to put these types inside a namespace or not.
+This is largely a judgement call -- if the consumer is likely to often declare variables or parameters of that type, and the type can be named without risk of colliding with other types, prefer placing it in the global namespace.
+If the type is not likely to be referenced directly, or can't be named with a reasonably unique name, do use a namespace to prevent it from colliding with other types.
 
 ## Callbacks
 
-Many JavaScript libraries take a function as a parameter, then invoke that function later with a known set of arguments. When writing the function signatures for these types, *do not* mark those parameters as optional. The right way to think of this is *"What parameters will be provided?"*, not *"What parameters will be consumed?"*. While TypeScript 0.9.7 and above does not enforce that the optionality, bivariance on argument optionality might be enforced by an external linter.
+Many JavaScript libraries take a function as a parameter, then invoke that function later with a known set of arguments.
+When writing the function signatures for these types, *do not* mark those parameters as optional.
+The right way to think of this is *"What parameters will be provided?"*, not *"What parameters will be consumed?"*.
+While TypeScript 0.9.7 and above does not enforce that the optionality, bivariance on argument optionality might be enforced by an external linter.
 
 ## Extensibility and Declaration Merging
 
-When writing definition files, it's important to remember TypeScript's rules for extending existing objects. You might have a choice of declaring a variable using an anonymous type or an interface type:
+When writing definition files, it's important to remember TypeScript's rules for extending existing objects.
+You might have a choice of declaring a variable using an anonymous type or an interface type:
 
 #### Anonymously-typed var
 
@@ -39,11 +48,13 @@ interface SomePoint { z: number; }
 MyPoint.z = 4; // OK
 ```
 
-Whether or not you want your declarations to be extensible in this way is a bit of a judgement call. As always, try to represent the intent of the library here.
+Whether or not you want your declarations to be extensible in this way is a bit of a judgement call.
+As always, try to represent the intent of the library here.
 
 ## Class Decomposition
 
-Classes in TypeScript create two separate types: the instance type, which defines what members an instance of a class has, and the constructor function type, which defines what members the class constructor function has. The constructor function type is also known as the "static side" type because it includes static members of the class.
+Classes in TypeScript create two separate types: the instance type, which defines what members an instance of a class has, and the constructor function type, which defines what members the class constructor function has.
+The constructor function type is also known as the "static side" type because it includes static members of the class.
 
 While you can reference the static side of a class using the `typeof` keyword, it is sometimes useful or necessary when writing definition files to use the *decomposed class* pattern which explicitly separates the instance and static types of class.
 
@@ -80,11 +91,13 @@ The trade-offs here are as follows:
 
 ## Naming Conventions
 
-In general, do not prefix interfaces with `I` (e.g. `IColor`). Because the concept of an interface in TypeScript is much more broad than in C# or Java, the `IFoo` naming convention is not broadly useful.
+In general, do not prefix interfaces with `I` (e.g. `IColor`).
+Because the concept of an interface in TypeScript is much more broad than in C# or Java, the `IFoo` naming convention is not broadly useful.
 
 # Examples
 
-Let's jump in to the examples section. For each example, sample *usage* of the library is provided, followed by the definition code that accurately types the usage. When there are multiple good representations, more than one definition sample might be listed.
+Let's jump in to the examples section. For each example, sample *usage* of the library is provided, followed by the definition code that accurately types the usage.
+When there are multiple good representations, more than one definition sample might be listed.
 
 ## Options Objects
 
@@ -101,7 +114,7 @@ animalFactory.create("cat", { height: 32 });
 #### Typing
 
 ```TypeScript
-module animalFactory {
+namespace animalFactory {
     interface AnimalOptions {
         name: string;
         height?: number;
@@ -123,9 +136,9 @@ zooKeeper(giraffeCage);
 #### Typing
 
 ```TypeScript
-// Note: Function must precede module
+// Note: Function must precede namespace
 function zooKeeper(cage: AnimalCage);
-module zooKeeper {
+namespace zooKeeper {
     var workSchedule: string;
 }
 ```
@@ -172,7 +185,7 @@ zoo.open();
 #### Typing
 
 ```TypeScript
-module zoo {
+namespace zoo {
   function open(): void;
 }
 
@@ -181,7 +194,7 @@ declare module "zoo" {
 }
 ```
 
-## Single Complex Object in External Modules
+## Single Complex Object in Modules
 
 #### Usage
 
@@ -201,7 +214,7 @@ eagle.favorite = 'golden';
 ```TypeScript
 // Note: can use any name here, but has to be the same throughout this file
 declare function eagle(name: string): eagle;
-declare module eagle {
+declare namespace eagle {
     var favorite: string;
     function fly(): void;
 }
@@ -217,7 +230,7 @@ export = eagle;
 #### Usage
 
 ```TypeScript
-addLater(3, 4, (x) => console.log('x = ' + x));
+addLater(3, 4, x => console.log('x = ' + x));
 ```
 
 #### Typing
@@ -227,4 +240,5 @@ addLater(3, 4, (x) => console.log('x = ' + x));
 function addLater(x: number, y: number, (sum: number) => void): void;
 ```
 
-Please post a comment [here|https://github.com/Microsoft/TypeScript/issues] if there's a pattern you'd like to see documented! We'll add to this as we can.
+Please post a comment [here](https://github.com/Microsoft/TypeScript-Handbook/issues) if there's a pattern you'd like to see documented!
+We'll add to this as we can.

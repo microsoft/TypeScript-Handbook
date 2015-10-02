@@ -1,7 +1,7 @@
 * [Basic Types](./Basic Types.md)
 * [Interfaces](./Interfaces.md)
 * [Classes](./Classes.md)
-* [Modules](./Modules.md)
+* [Namespaces and Modules](./Namespaces and Modules.md)
 * [Functions](./Functions.md)
 * [Generics](./Generics.md)
 * [Mixins](./Mixins.md)

@@ -25,7 +25,7 @@ That means that we can call it with an argument that's neither a `number` nor a 
 let indentedString = padLeft("Hello world", true); // passes at compile time, fails at runtime.
 ```
 
-Instead of `any`, we can use a *union type* for `padding`:
+Instead of `any`, we can use a *union type* for the `padding` parameter:
 
 ```TypeScript
 /**
@@ -71,7 +71,74 @@ On the other hand, in the example above `Bird` has a member named `fly`.
 We can't be sure whether a variable typed as `Bird | Fish` has a `fly` method.
 If the variable is really a `B` at runtime, then calling `pet.fly()` will fail.  
 
-# Type Guards
+# Type Guards and Differentiating Types
+
+Union types are useful for modeling situations when values can overlap in the types they can take on.
+What happens when we need to know specifically whether we have a `Fish`?
+A common idiom in JavaScript to differentiate between two possible values is to check for the presence of a member.
+As we mentioned, you can only access members that are guaranteed to be in all the constituents of a union type.
+
+```TypeScript
+let pet = getSmallPet();
+
+// Each of these property accesses will cause an error
+if (pet.swim) {
+    pet.swim();
+}
+else if (pet.fly) {
+    pet.fly();
+}
+```
+
+To get the same code working, we'll need to use a type assertion:
+
+```TypeScript
+let pet = getSmallPet();
+
+if ((<Fish>pet).swim) {
+    (<Fish>pet).swim();
+}
+else {
+    (<Bird>pet).fly();
+}
+```
+
+## User Defined Type Guards
+
+Notice that we had to use type assertions several times.
+It would be much better if once we performed the check, we could know the type of `pet` within each branch.
+
+It just so happens that TypeScript has something called a *type guard*.
+A type guard is some expression that performs a runtime check that guarantees the type in some scope.
+We can write a type guard using a regular function:
+
+```TypeScript
+function isFish(pet: Fish | Bird): pet is Fish {
+    return (<Fish>pet).swim !== undefined;
+}
+```
+
+Any time `isFish` is used on a variable name, TypeScript will know that variable has that specific type. 
+
+```TypeScript
+// Both calls to 'swim' and 'fly' are now okay.
+
+if (isFish(pet) {
+    pet.swim();
+}
+else {
+    pet.fly();
+}
+```
+
+Notice that TypeScript not only knows that `pet` is a `Fish` in the `if` branch;
+it also knows that in the `else` branch, you *don't* have a `Fish`, so you must have a `Bird`.
+
+## `typeof` type guards
+
+TODO
+
+## `instanceof` type guards
 
 TODO
 
@@ -83,14 +150,19 @@ Type aliases are sometimes similar to interfaces, but can name primitives, union
 ```TypeScript
 type XCoord = number;
 type YCoord = number;
-type Coordinate = { x: XCoord; y: YCoord };
+
+type XCoord = { x: XCoord };
+type XYCoord = { x: XCoord; y: YCoord };
+type XYZCoord = { x: XCoord; y: YCoord; z: number };
+
+type Coordinate = XCoord | XYCoord | XYZCoord;
 type CoordList = Coordinate[];
 
-let coord: CoordList = [{ x: 10, y: 10}, { x: 0, y: 42 }];
+let coord: CoordList = [{ x: 10, y: 10}, { x: 0, y: 42, z: 10 }, { x: 5 }];
 ```
 
-Aliasing `number` like in the above example doesn't actually create a new type - it creates a new *name* to refer to that type.
-So `10` is a perfectly valid `XCoord` and `YCoord` (and perhaps dangerously, `XCoord` is a perfectly valid `YCoord`).
+Aliasing doesn't actually create a new type - it creates a new *name* to refer to that type.
+So `10` is a perfectly valid `XCoord` and `YCoord` because they both just refer to `number`.
 Aliasing a primitive is not terribly useful, though it can be used as a form of documentation.
 
 Just like interfaces, type aliases can also be generic - we can just add type parameters and use them on the right side of the alias declaration:
@@ -99,7 +171,7 @@ Just like interfaces, type aliases can also be generic - we can just add type pa
 type Container<T> = { value: T };
 ```
 
-We can also have a type alias refer to itself in a property, 
+We can also have a type alias refer to itself in a property:
 
 ```TypeScript
 type Tree<T> = {
@@ -109,10 +181,10 @@ type Tree<T> = {
 }
 ```
 
-Unfortunately, it's not possible for a type alias to appear anywhere else on the right side of the declaration:
+However, it's not possible for a type alias to appear anywhere else on the right side of the declaration:
 
 ```TypeScript
-type Yikes = Array<Yikes>; // errors
+type Yikes = Array<Yikes>; // error
 ```
 
 ## Interfaces vs. Type Aliases

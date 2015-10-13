@@ -295,15 +295,49 @@ import $, {ajax} from "JQuery";
 import $, * as JQuery from "JQuery";
 ```
 
-* TypeScript-specific imports
 
-TypeScript introduced module support before ECMAScript 2016; for backward-compatibility purposes this import form is still supported.  Using this form will import all contents of a module into a single variable that can be used to reference other module exports.
+### `export =` and `import = require()`
+
+CommonJs and AMD module formats allow replacing the module export and exporting a single object. This has been replaced with `default` export in ECMAScript 2015. The two are not compatible however. 
+TypeScript supports `export =` to model native CommonJs and AMD modules.
+
+The `export =` syntax specifies a single object that is exported from the module.
+This can be a class, interface, namespace, function, or enum.
+
+When imported, the exported symbol is consumed directly and is not qualified by any name.
+
+When importing a module using `export =`, TypeScript-specific `import var = require('module')` must be used to import the module.
+
+**ZipCodeValidator.ts**
+
+```TypeScript
+var numberRegexp = /^[0-9]+$/;
+class ZipCodeValidator {
+    isAcceptable(s: string) {
+        return s.length === 5 && numberRegexp.test(s);
+    }
+}
+export = ZipCodeValidator;
+```
+
+**Test.ts**
 
 ```ts
-import validator = require("ZipCodeValidator");
+import zip = require('./ZipCodeValidator');
 
-var myValidator = new validator.ZipCodeValidator();
+// Some samples to try
+var strings = ['Hello', '98052', '101'];
+
+// Validators to use
+var validator = new zip.ZipCodeValidator();
+
+// Show whether each string passed each validator
+strings.forEach(s => {
+  console.log(`'${s}' ${validator.isAcceptable(s) ? ' matches' : ' does not match'}`);
+});
 ```
+
+
 
 Below, we have converted the previous example to use modules.
 Notice that we do not have to use a `module` keyword - the files themselves constitute a module and are identified by their filenames.

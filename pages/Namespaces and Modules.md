@@ -11,13 +11,28 @@ We'll also go over some advanced topics of how to use namespaces and modules, an
 See the [[Modules]] documentation for more information about modules.
 See the [[Namespaces]] documentation for more information about namespaces.
 
+
 # Using Namespaces
 
-// TODO: when to use namespaces
+Namespaces are simply named JavaScript object in the global namespace. 
+This makes namespaces a very simple construct to use. 
+They can span multiple files, and can be concatenated using `--outFile`.
+Namespaces can be a good way to structure your code in a Web Application, with all dependencies included as `<script>` tags in your html page.
+
+Just like all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.
 
 # Going modular
 
-// TODO: when to use modules
+Just like namespaces, modules can contain both code and declarations. 
+The main difference is that modules *declare* their dependencies.  
+
+Modules also adds the dependency on a module loader (such as CommonJs/requirejs). 
+For a small JS application this might not be optimal, but for larger applications, the cost comes with long term modularity and maintainability benefits.
+Modules provide for better code reuse, stronger isolation and better bundling optimization tooling support.
+
+Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine implementations.
+
+For new projects modules would be the recommended code organization mechanism.
 
 # Pitfalls of Namespaces and Modules
 

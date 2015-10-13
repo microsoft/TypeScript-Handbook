@@ -171,7 +171,7 @@ class Employee extends Person {
     private department: string;
 
     constructor(name: string, department: string) {
-        super(name)
+        super(name);
         this.department = department;
     }
 

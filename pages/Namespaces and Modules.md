@@ -215,13 +215,67 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
 
 ### Export
 
-* Export declaration
+* Exporting a declaration
 
-* export a value 
+  Any declaration can be exported by adding the `export` keyword, e.g variable, class, function, enum, interface, type alias, etc..
 
-* export from another module
+  **Validation.ts**
+  ```ts
+  export interface StringValidator {
+      isAcceptable(s: string): boolean;
+  }
+  ```
 
-* export *
+  **ZipCodeValidator.ts**
+  ```ts
+  export const numberRegexp = /^[0-9]+$/;
+  
+  export class ZipCodeValidator implements StringValidator {
+      isAcceptable(s: string) {
+          return s.length === 5 && numberRegexp.test(s);
+      }
+  }
+  ```
+
+* Export statments
+
+  Export statements are handy when exports need to be renamed, so the above example can be written as:
+  
+  ```ts
+   class ZipCodeValidator implements StringValidator {
+      isAcceptable(s: string) {
+          return s.length === 5 && numberRegexp.test(s);
+      }
+  }
+
+  export {ZipCodeValidator};
+  export {ZipCodeValidator as mainValidator};
+  ```
+
+* Re-exports
+
+  Often modules extend other modules, and partially expose some of their features. 
+  A re-export does not import it locally, or introduce a local variable.
+
+  ```ts
+  export class ParseIntBasedZipCodeValidator {
+      isAcceptable(s: string) {
+          return s.length === 5 && parseInt(s).toString() === s;;
+      }
+  }
+  
+  // Export original validator but rename it
+  export {ZipCodeValidator as RegExpBasedZipCodeValidator} from "ZipCodeValidator";
+  ```
+
+  Optionally, a module can warp one or more modules and expose all thier exports using `export * from "module"` syntax.
+  **AllValidators.ts**
+  ```ts
+  export * from "StringValidator"; // exports interface StringValidator
+  export * from "LettersOnlyValidator"; // exports class LettersOnlyValidator 
+  export * from "ZipCodeValidator";  // exports class ZipCodeValidator
+  
+  ```
 
 #### `default` export
 
@@ -252,6 +306,12 @@ const numberRegexp = /^[0-9]+$/;
 export default function (s: string) {
     return s.length === 5 && numberRegexp.test(s);
 }
+```
+
+`default` exports can also be just values:
+
+```ts
+export default "123";
 ```
 
 ### Import

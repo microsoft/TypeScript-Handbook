@@ -25,21 +25,21 @@ var options = {
     MD023: true, // Headers must start at the beginning of the line
     MD024: false, // Multiple headers with the same content
     MD025: false, // Multiple top level headers in the same document
-    MD026: false, // Trailing punctuation in header
-    MD027: false, // Multiple spaces after blockquote symbol
+    MD026: ".,;:!?", // Trailing punctuation in header
+    MD027: true, // Multiple spaces after blockquote symbol
     MD028: false, // Blank line inside blockquote
-    MD029: false, // Ordered list item prefix
-    MD030: false, // Spaces after list markers
-    MD031: false, // Fenced code blocks should be surrounded by blank lines
-    MD032: false, // Lists should be surrounded by blank lines
+    MD029: "ordered", // Ordered list item prefix
+    MD030: true, // Spaces after list markers
+    MD031: true, // Fenced code blocks should be surrounded by blank lines
+    MD032: true, // Lists should be surrounded by blank lines
     MD033: false, // Inline HTML
-    MD034: false, // Bare URL used
+    MD034: true, // Bare URL used
     MD035: false, // Horizontal rule style
     MD036: false, // Emphasis used instead of a header
-    MD037: false, // Spaces inside emphasis markers
+    MD037: true, // Spaces inside emphasis markers
     MD038: false, // Spaces inside code span elements
-    MD039: false, // Spaces inside link text
-    MD040: false, // Fenced code blocks should have a language specified
+    MD039: true, // Spaces inside link text
+    MD040: true, // Fenced code blocks should have a language specified
     MD041: false, // First line in file should be a top level header
   }
 };

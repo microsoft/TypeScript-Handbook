@@ -14,10 +14,17 @@ var isDone: boolean = false;
 # Number
 
 As in JavaScript, all numbers in TypeScript are floating point values.
-These floating point numbers get the type `number`.
+These floating point numbers get the type `number`. In Addition to hexadecimal and decimal literal, TypeScript also
+supports binary and octal literal introduced in ECMAScript 2015.
 
 ```TypeScript
 var height: number = 6;
+var hexLiteral1 = 0x9837abdef;
+var hexLiteral2= 0X9837ABDEf;
+var binaryLiteral1 = 0b0010;
+var binaryLiteral2 = 0B1010;
+var octalLiteral1 = 0o74563;
+var octalLiteral2 = 0O46732;
 ```
 
 # String

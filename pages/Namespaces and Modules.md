@@ -1,5 +1,5 @@
 > **A note about terminology:**
-Its important to note that in TypeScript 1.5, the nomenclature has changed.
+It's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
 "External modules" are now simply "modules", as to align with [ECMAScript 2015 (also known as ES6)](http://www.ecma-international.org/ecma-262/6.0/)'s terminology.
 
@@ -9,7 +9,7 @@ This post outlines the various ways to organize your code using namespaces and m
 We'll also go over some advanced topics of how to use namespaces and modules, and address some common pitfalls when using them in TypeScript.
 
 See the [[Modules]] documentation for more information about modules.
-See the [[Namesapces]] documentation for more infromation about namespaces.
+See the [[Namespaces]] documentation for more information about namespaces.
 
 # Using Namespaces
 

@@ -1,5 +1,5 @@
 > **A note about terminology:**
-Its important to note that in TypeScript 1.5, the nomenclature has changed.
+It's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
 "External modules" are now simply "modules", as to align with [ECMAScript 2015 (also known as ES6)](http://www.ecma-international.org/ecma-262/6.0/)'s terminology.
 
@@ -22,7 +22,7 @@ In TypeScript just as in ECMAScript 2015, any file containing a top-level `impor
 
 ## Exporting a declaration
 
-Any declaration can be exported by adding the `export` keyword, e.g variable, class, function, enum, interface, type alias, etc..
+Any declaration can be exported by adding the `export` keyword, e.g. variable, class, function, enum, interface, type alias, etc...
 
 ##### Validation.ts
 ```ts
@@ -42,7 +42,7 @@ export class ZipCodeValidator implements StringValidator {
 }
 ```
 
-## Export statments
+## Export statements
 
 Export statements are handy when exports need to be renamed, so the above example can be written as:
 
@@ -134,7 +134,7 @@ import $ from "JQuery";
 $("button.continue").html( "Next Step..." );
 ```
 
-Classes and function declarations can be authored directelly in default exports:
+Classes and function declarations can be authored directly in default exports:
 
 ##### ZipCodeValidator.ts
 ```ts
@@ -384,7 +384,7 @@ In some cases, you may want to only load a module under some conditions.
 In TypeScript, we can use the pattern shown below to implement this and other advanced loading scenarios to directly invoke the module loaders without losing type safety.
 
 The compiler detects whether each module is used in the emitted JavaScript.
-If a module identifier is only ever used in type annotations and never as an expression then no `require` call is emitted for that module.
+If a module identifier is only ever used in type annotations and never as an expression, then no `require` call is emitted for that module.
 This culling of unused references is a good performance optimization, and also allows for optional loading of those modules.
 
 The core idea of the pattern is that the `import id = require("...")` statement gives us access to the types exposed by the module.
@@ -440,8 +440,8 @@ if (needZipValidation) {
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
 Because most JavaScript libraries expose only a few top-level objects, namespaces and modules are a good way to represent them.
-We call declarations that don"t define an implementation "ambient".
-Typically these are defined in `.d.ts` files.
+We call declarations that don't define an implementation "ambient".
+Typically, these are defined in `.d.ts` files.
 If you're familiar with C/C++, you can think of these as `.h` files.
 Let's look at a few examples.
 

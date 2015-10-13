@@ -1,12 +1,12 @@
 > **A note about terminology:**
-Its important to note that in TypeScript 1.5, the nomenclature has changed.
+It's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
 "External modules" are now simply "modules", as to align with [ECMAScript 2015 (also known as ES6)](http://www.ecma-international.org/ecma-262/6.0/)'s terminology.
 
 # Introduction
 This post outlines the various ways to organize your code using namespaces (previously "internal modules") in TypeScript.
 
-As we just alluded to changes in termenology, for the purposes of this document "internal modules" are now refered to as "namespaces".
+As we just alluded to changes in terminology, for the purposes of this document "internal modules" are now referred to as "namespaces".
 
 Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
 
@@ -14,7 +14,7 @@ This avoids confusing new users by overloading them with similarly named terms.
 
 # First steps
 
-Let's start with the program we"ll be using as our example throughout this page.
+Let's start with the program we'll be using as our example throughout this page.
 We've written a small set of simplistic string validators, as you might write to check a user's input on a form in a webpage or check the format of an externally-provided data file.
 
 ## Validators in a single file
@@ -58,7 +58,7 @@ strings.forEach(s => {
 As we add more validators, we're going to want to have some kind of organization scheme so that we can keep track of our types and not worry about name collisions with other objects.
 Instead of putting lots of different names into the global namespace, let's wrap up our objects into a namespace.
 
-In this example, we"ll move all validator-related entities into a namespace called `Validation`.
+In this example, we'll move all validator-related entities into a namespace called `Validation`.
 Because we want the interfaces and classes here to be visible outside the namespace, we preface them with `export`.
 Conversely, the variables `lettersRegexp` and `numberRegexp` are implementation details, so they are left unexported and will not be visible to code outside the namespace.
 In the test code at the bottom of the file, we now need to qualify the names of the types when used outside the namespace, e.g. `Validation.LettersOnlyValidator`.
@@ -103,13 +103,13 @@ strings.forEach(s => {
 
 # Splitting Across Files
 
-As our application grows, we"ll want to split the code across multiple files to make it easier to maintain.
+As our application grows, we'll want to split the code across multiple files to make it easier to maintain.
 
 ## Multi-file namespaces
 
-Here, we"ll split our `Validation` namespace across many files.
+Here, we'll split our `Validation` namespace across many files.
 Even though the files are separate, they can each contribute to the same namespace and can be consumed as if they were all defined in one place.
-Because there are dependencies between files, we"ll add reference tags to tell the compiler about the relationships between the files.
+Because there are dependencies between files, we'll add reference tags to tell the compiler about the relationships between the files.
 Our test code is otherwise unchanged.
 
 ##### Validation.ts
@@ -171,7 +171,7 @@ strings.forEach(s => {
 });
 ```
 
-Once there are multiple files involved, we"ll need to make sure all of the compiled code gets loaded.
+Once there are multiple files involved, we'll need to make sure all of the compiled code gets loaded.
 There are two ways of doing this.
 
 First, we can use concatenated output using the `--outFile` flag to compile all of the input files into a single JavaScript output file:
@@ -187,7 +187,7 @@ tsc --outFile sample.js Validation.ts LettersOnlyValidator.ts ZipCodeValidator.t
 ```
 
 Alternatively, we can use per-file compilation (the default) to emit one JavaScript file for each input file.
-If multiple JS files get produced, we"ll need to use `<script>` tags on our webpage to load each emitted file in the appropriate order, for example:
+If multiple JS files get produced, we'll need to use `<script>` tags on our webpage to load each emitted file in the appropriate order, for example:
 
 ##### MyTestPage.html (excerpt)
 
@@ -216,7 +216,7 @@ import polygons = Shapes.Polygons;
 var sq = new polygons.Square(); // Same as "new Shapes.Polygons.Square()"
 ```
 
-Notice that we don"t use the `require` keyword; instead we assign directly from the qualified name of the symbol we're importing.
+Notice that we don't use the `require` keyword; instead we assign directly from the qualified name of the symbol we're importing.
 This is similar to using `var`, but also works on the type and namespace meanings of the imported symbol.
 Importantly, for values, `import` is a distinct reference from the original symbol, so changes to an aliased `var` will not be reflected in the original variable.
 
@@ -225,7 +225,7 @@ Importantly, for values, `import` is a distinct reference from the original symb
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
 Because most JavaScript libraries expose only a few top-level objects, namespaces and modules are a good way to represent them.
-We call declarations that don"t define an implementation "ambient".
+We call declarations that don't define an implementation "ambient".
 Typically these are defined in `.d.ts` files.
 If you're familiar with C/C++, you can think of these as `.h` files.
 Let's look at a few examples.

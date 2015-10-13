@@ -215,6 +215,38 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
 
 ### Export
 
+
+#### `default` export
+
+Each module can optionally export `default` export. `default` exports are marked with the keyword `default`; and there can only be one `default` export per module. `default` exports are imported using a different import form, see below for more details.
+`default` export is really handy for modules that have a single entry point, for instance JQuery would have a `default` export of `$`.
+
+```ts
+var $: JQuery;
+export default $;
+```
+
+Classes and function declarations can be authored directelly in default exports:
+
+```ts
+export default class ZipCodeValidator {
+    static numberRegexp = /^[0-9]+$/;
+    isAcceptable(s: string) {
+        return s.length === 5 && ZipCodeValidator.numberRegexp.test(s);
+    }
+}
+```
+
+or
+
+```ts
+const numberRegexp = /^[0-9]+$/;
+
+export default function (s: string) {
+    return s.length === 5 && numberRegexp.test(s);
+}
+```
+
 ### Import
 
 * Import the entire module into a single variable, and use it to access the module exports: 
@@ -251,16 +283,16 @@ import "my-module.js";
 
 
 ```ts
-import validator from "ZipCodeValidator";
+import $ from "JQuery";
 
-var myValidator = new validator();
+$("button.continue").html( "Next Step..." );
 ```
 
 * Combining `default` imports with other import forms:
 
 ```ts
-import validator, {ZipCodeValidator} from "ZipCodeValidator";
-import validator, * as ns from "ZipCodeValidator";
+import $, {ajax} from "JQuery";
+import $, * as JQuery from "JQuery";
 ```
 
 * TypeScript-specific imports

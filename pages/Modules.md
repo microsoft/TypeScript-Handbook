@@ -5,7 +5,7 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 
 # Introduction
 
-TypeScript as well as JavaScript, starting with the ES 2015, have the concept of modules.
+TypeScript as well as JavaScript, starting with the ECMAScript 2015, have the concept of modules.
 
 Modules are executed within their own scope, and not in the global scope; this means that variables, functions, classes, etc., declared in a module are not visible outside the module unless they are explicitly exported using one of the `export` forms, discussed below. 
 Conversely, to consume a variable, function, class, interface, etc., exported from a different module, it has to be imported using one of the `import` forms discussed below.

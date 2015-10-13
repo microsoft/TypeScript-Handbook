@@ -1,19 +1,19 @@
 # Introduction
 
 With the introduction of Classes in TypeScript and ES6, there now exist certain scenarios that require additional features to support annotating or modifying classes and class members.
-*Decorators* provide a way to add both annotations and a metaprogramming syntax for class declarations and members.
+*Decorators* provide a way to add both annotations and a meta-programming syntax for class declarations and members.
 *Decorators* are a [stage 1 proposal](https://github.com/wycats/javascript-decorators/blob/master/README.md) for JavaScript and are available as an experimental feature of TypeScript.
 
-> Decorators are an experimental feature that may change in future releases.
+> NOTE&emsp; Decorators are an experimental feature that may change in future releases.
 
-To enable experimental support for *Decorators*, you must enable the `experimentalDecorators` compiler option either on the commandline or in your `tsconfig.json`:
+To enable experimental support for *Decorators*, you must enable the `experimentalDecorators` compiler option either on the command line or in your `tsconfig.json`:
 
-**command line**
+**Command Line**:
 ```
 tsc --target ES5 --experimentalDecorators
 ```
 
-**tsconfig.json**
+**tsconfig.json**:
 ```json
 {
     "compilerOptions": {
@@ -25,15 +25,10 @@ tsc --target ES5 --experimentalDecorators
 
 # Decorators
 
-A *Decorator* is a special kind of declaration that can be attached to a class declaration, method, accessor, property, or parameter.
-Decorators use the form:
+A *Decorator* is a special kind of declaration that can be attached to a [class declaration](#class-decorators), [method](#method-decorators), [accessor](#accessor-decorators), [property](#property-decorators), or [parameter](#parameter-decorators).
+Decorators use the form `@expression`, where `expression` must evaluate to a function that will be called at runtime with information about the decorated declaration.
 
-&emsp;&emsp;*Decorator* **:** &emsp;`@`&emsp;*LeftHandSideExpression*
-
-The *LeftHandSideExpression* here must evaluate to a function that will be called at runtime with information about the decorated declaration.
-So a decorator that would call the `sealed` function would be written as: `@sealed`.
-
-Since the *Decorator* is called as a function, we might write the `sealed` function as follows:
+For example, given the decorator `@sealed` we might write the `sealed` function as follows:
 
 ```ts
 function sealed(target) {
@@ -41,7 +36,7 @@ function sealed(target) {
 }
 ```
 
-> You can see a more detailed example of a decorator in [Class Decorators](#class-decorators), below.
+> NOTE&emsp; You can see a more detailed example of a decorator in [Class Decorators](#class-decorators), below.
 
 ## Decorator Factories
 
@@ -58,24 +53,28 @@ function color(value: string) { // this is the decorator factory
 }
 ```
 
-> You can see a more detailed example of a decorator factory in [Method/Accessor Decorators](#method-accessor-decorators), below.
+> NOTE&emsp; You can see a more detailed example of a decorator factory in [Method Decorators](#method-decorators), below.
 
 ## Decorator Composition
 
 Multiple decorators can be applied to a declaration, as in the following examples: 
 
 * On a single line:
+
   ```ts
-  @f @g declaration
+  @f @g x
   ```
+
 * On multiple lines:
+
   ```ts
   @f
   @g
-  declaration
+  x
   ```
 
-When multiple decorators apply to a single declaration, their evaluation is similar to [function composition in mathematics](http://en.wikipedia.org/wiki/Function_composition). 
+When multiple decorators apply to a single declaration, their evaluation is similar to [function composition in mathematics](http://en.wikipedia.org/wiki/Function_composition). In this model, when composing functions *f* and *g*, the resulting composite (*f* ∘ *g*)(*x*) is equivalent to *f*(*g*(*x*)).
+    
 As such, the following steps are performed when evaluating multiple decorators on a single declaration in TypeScript: 
 
 1. The expressions for each decorator are evaluated top-to-bottom.
@@ -117,8 +116,8 @@ f(): called
 
 There is also a well defined order to how decorators applied to various declarations inside of a class are applied. 
 
-1. *Parameter Decorators*, followed by *Method* or *Property Decorators* are applied for each instance member.
-2. *Parameter Decorators*, followed by *Method* or *Property Decorators* are applied for each static member.
+1. *Parameter Decorators*, followed by *Method*, *Accessor*, or *Property Decorators* are applied for each instance member.
+2. *Parameter Decorators*, followed by *Method*, *Accessor*, or *Property Decorators* are applied for each static member.
 3. *Parameter Decorators* are applied for the constructor.
 4. *Class Decorators* are applied for the class.
 
@@ -156,15 +155,11 @@ function sealed(constructor: Function) {
 
 When `@sealed` is executed, it will seal both the constructor and its prototype.
 
-## Method/Accessor Decorators
+## Method Decorators
 
-A *Method* or *Accessor Decorator* is declared just before a method or accessor declaration, respectively.
-The *Method* or *Accessor Decorator* is applied to the *Property Descriptor* for the method, and can be used to observe, modify, or replace a method definition.
-A *Method* or *Accessor Decorator* cannot be used in a declaration file, on an overload, or in any other ambient context (such as in a `declare` class).
-
-> TypeScript disallows decorating both the `get` and `set` accessor for a single member.
-  Instead, all decorators for the member must be applied to the first accessor specified in document order.
-> This is because decorators apply to a *Property Descriptor*, which combines both the `get` and `set` accessor, not each declaration separately.
+A *Method Decorator* is declared just before a method declaration.
+The decorator is applied to the *Property Descriptor* for the method, and can be used to observe, modify, or replace a method definition.
+A *Method Decorator* cannot be used in a declaration file, on an overload, or in any other ambient context (such as in a `declare` class).
 
 The expression for the *Method Decorator* will be called as a function at runtime, with the following three arguments:
 
@@ -172,7 +167,7 @@ The expression for the *Method Decorator* will be called as a function at runtim
 2. The name of the method.
 3. The *Property Descriptor* for the method.
 
-> The *Property Descriptor* will be `undefined` if your script target is less than `ES5`.
+> NOTE&emsp; The *Property Descriptor* will be `undefined` if your script target is less than `ES5`.
 
 If the *Method Decorator* returns a value, it will be used as the *Property Descriptor* for the method.
 
@@ -204,6 +199,55 @@ function enumerable(value: boolean) {
 
 The `@enumerable(false)` decorator here is a [Decorator Factory](#decorator-factories).
 When the `@enumerable(false)` decorator is called, it modifies the `enumerable` property of the property descriptor.
+
+## Accessor Decorators
+
+An *Accessor Decorator* is declared just before an accessor declaration.
+The decorator is applied to the *Property Descriptor* for the accessor and can be used to observe, modify, or replace an accessor's definitions.
+An *Accessor Decorator* cannot be used in a declaration file, or in any other ambient context (such as in a `declare` class).
+
+> NOTE&emsp; TypeScript disallows decorating both the `get` and `set` accessor for a single member.
+  Instead, all decorators for the member must be applied to the first accessor specified in document order.
+> This is because decorators apply to a *Property Descriptor*, which combines both the `get` and `set` accessor, not each declaration separately.
+
+The expression for the *Accessor Decorator* will be called as a function at runtime, with the following three arguments:
+
+1. Either the constructor function of the class for a static member, or the prototype of the class for an instance member.
+2. The name of the member.
+3. The *Property Descriptor* for the member.
+
+> NOTE&emsp; The *Property Descriptor* will be `undefined` if your script target is less than `ES5`.
+
+If the *Accessor Decorator* returns a value, it will be used as the *Property Descriptor* for the member.
+
+The following is an example of an *Accessor Decorator* (`@configurable`) applied to the `Point` class:
+
+```ts
+class Point {
+    private _x: number;
+    private _y: number;
+    constructor(x: number, y: number) {
+        this._x = x;
+        this._y = y;
+    }
+    
+    @configurable(false)
+    get x() { return this._x; }
+    
+    @configurable(false)
+    get y() { return this._y; }
+}
+```
+
+We can define the `@configurable` decorator using the following function declaration:
+
+```ts
+function configurable(value: boolean) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        descriptor.configurable = value;
+    };
+}
+```
 
 ## Property Decorators
 
@@ -256,7 +300,7 @@ The `@format("Hello, %s")` decorator here is a [Decorator Factory](#decorator-fa
 When `@format("Hello, %s")` is called, it adds a metadata entry for the property using the `Reflect.metadata` function from the `reflect-metadata` library.
 When `getFormat` is called, it reads the metadata value for the format.
 
-> This example requires the `reflect-metadata` library.
+> NOTE&emsp; This example requires the `reflect-metadata` library.
   See [Metadata](#metadata) for more information about the `reflect-metadata` library.
 
 ## Parameter Decorators
@@ -319,7 +363,7 @@ function validate(target: any, propertyName: string, descriptor: TypedPropertyDe
 The `@required` decorator adds a metadata entry that marks the parameter as required.
 The `@validate` decorator then wraps the existing `greet` method in a function that validates the arguments before invoking the original method.
 
-> This example requires the `reflect-metadata` library.
+> NOTE&emsp; This example requires the `reflect-metadata` library.
   See [Metadata](#metadata) for more information about the `reflect-metadata` library.
 
 ## Metadata
@@ -335,7 +379,24 @@ npm i reflect-metadata --save
 ```
 
 TypeScript includes experimental support for emitting certain types of metadata for declarations that have decorators.
-To enable this experimental support, you must set the `emitDecoratorMetadata` compiler option either on the commandline or in your `tsconfig.json`.
+To enable this experimental support, you must set the `emitDecoratorMetadata` compiler option either on the command line or in your `tsconfig.json`:
+
+**Command Line**:
+```
+tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata
+```
+
+**tsconfig.json**:
+```json
+{
+    "compilerOptions": {
+        "target": "ES5",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    }
+}
+```
+
 When enabled, as long as the `reflect-metadata` library has been imported, additional design-time type information will be exposed at runtime.
 
 We can see this in action in the following example:
@@ -393,4 +454,4 @@ class Line {
 
 ```
 
-> Decorator Metadata is an experimental feature and may introduce breaking changes in future releases.
+> NOTE&emsp; Decorator Metadata is an experimental feature and may introduce breaking changes in future releases.

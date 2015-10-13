@@ -7,14 +7,14 @@ Perhaps you want to use a tool like [browserify](http://browserify.org/) or [web
 
 # Identifying incompatibilities
 
-TypeScript users may be familiar with a TS construct called `namespace`s (previously detnoted with the `module` keyword).
+TypeScript users may be familiar with a TS construct called `namespace`s (previously denoted with the `module` keyword).
 This construct lends itself to a certain way of organizing programs, and sees considerable use in organizing large applications.
-`namespace`s see use in programs and libraries which wish to group similar functions, variables, classes, interfaces, and types in a block with mutual visibility of all members.
+Programs and libraries use `namespace`s to group similar functions, variables, classes, interfaces, and types in a block with mutual visibility of all members.
 This block may be split across many individual `namespace` declarations across many files within a program.
 
 Thinking in terms of ECMAScript modules, `namespace`s would muddle the very explicit module boundaries within a program - anything within a namespace is supposed to have visibility on all the other exported members of the namespace.
 This implicit merging can, in turn, result implicit circularities without strict discipline on a developer's part, and can result in load-order dependent behavior in the compiled code.
-Part of TypeScript's affordances for modules is an understanding of their _scope_ - that is to say that types defined within a module are confined to the module unless explicitly exported.
+Part of TypeScript's affordances for modules is an understanding of their *scope* -- that is to say that types defined within a module are confined to the module unless explicitly exported.
 This does not bode well for `namespace`s, as it means that there is no easy way to structure your program using `namespace`s within a module-based world.
 So how do we migrate away from `namespace`s to the explicit dependencies required by ECMAScript modules?
 
@@ -77,7 +77,7 @@ So how do we migrate away from `namespace`s to the explicit dependencies require
 
 # Caveats
 
-When migrating to modules from namespaces, there is no longer a way to perform interface merging across files. If youe program relied on interface merging, you should consider rearchitecting to use generics or composition, rather than interface merging, prior to migrating.
+When migrating to modules from namespaces, there is no longer a way to perform interface merging across files. If your program relied on interface merging, you should consider rearchitecting to use generics or composition, rather than interface merging, prior to migrating.
 
 `namespace`s will not merge across files if you choose to retain any inside your modules.
 If you have mutually dependent nested namespaces spread across multiple files, consider extracting such structures into sperate files (one per namespace) prior to migrating, then migrating them as above.

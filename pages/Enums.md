@@ -1,7 +1,7 @@
 # Enums
 
 Enums allow us to define a set of named numeric constants. 
-An enum can be defined using `enum` keyword.
+An enum can be defined using the `enum` keyword.
 
 ```TypeScript
 enum Direction {
@@ -19,12 +19,12 @@ An enum member is considered constant if:
     * It does not have an initializer and the preceding enum member was constant. 
       In this case the value of the current enum member will be the value of the preceding enum member plus one.
       One exception to this rule is the first element on an enum. 
-      If it does not have initializer it is assigned value `0`.
+      If it does not have initializer it is assigned the value `0`.
     * The enum member is initialized with a constant enum expression. 
-      A constant enum expression is a subset of TypeScript expressions that can be fully evaluated in compile time.
-      Expression is constant enum expression if it is either:
+      A constant enum expression is a subset of TypeScript expressions that can be fully evaluated at compile time.
+      An expression is a constant enum expression if it is either:
         * numeric literal
-        * reference to previosly defined constant enum member (it can be defined in different enum).
+        * reference to previously defined constant enum member (it can be defined in different enum).
           If member is defined in the same enum it can be referenced using unqualified name.
         * parenthesized constant enum expression
         * `+`, `-`, `~` unary operators applied to constant enum expression

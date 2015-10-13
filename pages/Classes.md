@@ -43,14 +43,14 @@ class Animal {
     name:string;
     constructor(theName: string) { this.name = theName; }
     move(distanceInMeters: number = 0) {
-        alert(`${this.name} moved ${distanceInMeters}m.`);
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
 
 class Snake extends Animal {
     constructor(name: string) { super(name); }
     move(distanceInMeters = 5) {
-        alert("Slithering...");
+        console.log("Slithering...");
         super.move(distanceInMeters);
     }
 }
@@ -58,7 +58,7 @@ class Snake extends Animal {
 class Horse extends Animal {
     constructor(name: string) { super(name); }
     move(distanceInMeters = 45) {
-        alert("Galloping...");
+        console.log("Galloping...");
         super.move(distanceInMeters);
     }
 }
@@ -100,7 +100,7 @@ class Animal {
     public name: string;
     public constructor(theName: string) { this.name = theName; }
     public move(distanceInMeters: number) {
-        alert(`${this.name} moved ${distanceInMeters}m.`);
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
 ```
@@ -197,7 +197,7 @@ Here's a further revision of the previous `Animal` class using a parameter prope
 class Animal {
     constructor(private name: string) { }
     move(distanceInMeters: number) {
-        alert(`${this.name} moved ${distanceInMeters}m.`);
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
 ```
@@ -224,7 +224,7 @@ class Employee {
 var employee = new Employee();
 employee.fullName = "Bob Smith";
 if (employee.fullName) {
-    alert(employee.fullName);
+    console.log(employee.fullName);
 }
 ```
 
@@ -249,7 +249,7 @@ class Employee {
             this._fullName = newName;
         }
         else {
-            alert("Error: Unauthorized update of employee!");
+            console.log("Error: Unauthorized update of employee!");
         }
     }
 }
@@ -257,11 +257,11 @@ class Employee {
 var employee = new Employee();
 employee.fullName = "Bob Smith";
 if (employee.fullName) {
-    alert(employee.fullName);
+    console.log(employee.fullName);
 }
 ```
 
-To prove to ourselves that our accessor is now checking the passcode, we can modify the passcode and see that when it doesn't match we instead get the alert box warning us we don't have access to update the employee.
+To prove to ourselves that our accessor is now checking the passcode, we can modify the passcode and see that when it doesn't match we instead get the message warning us we don't have access to update the employee.
 
 Note: Accessors require you to set the compiler to output ECMAScript 5 or higher.
 
@@ -287,8 +287,8 @@ class Grid {
 var grid1 = new Grid(1.0);  // 1x scale
 var grid2 = new Grid(5.0);  // 5x scale
 
-alert(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
-alert(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 ```
 
 # Advanced Techniques
@@ -311,7 +311,7 @@ class Greeter {
 
 var greeter: Greeter;
 greeter = new Greeter("world");
-alert(greeter.greet());
+console.log(greeter.greet());
 ```
 
 Here, when we say `var greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.
@@ -334,7 +334,7 @@ var Greeter = (function () {
 
 var greeter;
 greeter = new Greeter("world");
-alert(greeter.greet());
+console.log(greeter.greet());
 ```
 
 Here, `var Greeter` is going to be assigned the constructor function.
@@ -360,12 +360,12 @@ class Greeter {
 
 var greeter1: Greeter;
 greeter1 = new Greeter();
-alert(greeter1.greet());
+console.log(greeter1.greet());
 
 var greeterMaker: typeof Greeter = Greeter;
 greeterMaker.standardGreeting = "Hey there!";
 var greeter2:Greeter = new greeterMaker();
-alert(greeter2.greet());
+console.log(greeter2.greet());
 ```
 
 In this example, `greeter1` works similarly to before.

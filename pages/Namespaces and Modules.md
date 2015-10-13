@@ -203,13 +203,75 @@ If multiple JS files get produced, we'll need to use `<script>` tags on our webp
 
 # Going Modular
 
-TypeScript also has the concept of modules.
-Modules are used in two cases: Node.js and require.js.
-Applications not using Node.js or require.js do not need to use modules and can best be organized using the namespaces, outlined above.
+TypeScript as well as JavaScript, starting with the ES 2015, have the concept of modules.
 
-When using modules, relationships between files are specified in terms of imports and exports at the file level.
+Modules are executed within their own scope, and not in the global scope; this means that variables, functions, classes, etc., declared in a module are not visible outside the module unless they are explicitly exported using one of the `export` forms, discussed below. Conversely, to consume a variable, function, class, interface, etc., exported from a different module, it has to be imported using one of the `import` forms discussed below.
 
-In TypeScript just as in ES2016 JavaScript, any file containing a top-level `import` or `export` is considered a module.
+Modules are declarative; the relationships between modules are specified in terms of imports and exports at the file level.
+
+Modules require using a module loader. At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it. Common module loaders used in the JavaScript are [CommonJS](https://en.wikipedia.org/wiki/CommonJS) for Node.js applications, and [require.js](http://requirejs.org/) for Web applications.
+ 
+In TypeScript just as in ES2015, any file containing a top-level `import` or `export` is considered a module.
+
+### Export
+
+### Import
+
+* Import the entire module into a single variable, and use it to access the module exports: 
+
+```ts
+import * as validator from "ZipCodeValidator";
+
+var myValidator = new validator.ZipCodeValidator();
+```
+
+* Import a single export from a module. 
+
+```ts
+import {ZipCodeValidator} from "ZipCodeValidator";
+
+var myValidator = new ZipCodeValidator();
+```
+
+* Import a single export from a module, and rename it as well:
+
+```ts
+import {ZipCodeValidator as ZCV} from "ZipCodeValidator";
+
+var myValidator = new ZCV();
+```
+
+* Import a module for side-effects only:
+
+```ts
+import "my-module.js";
+```
+
+* Importing `default` export of a module
+
+
+```ts
+import validator from "ZipCodeValidator";
+
+var myValidator = new validator();
+```
+
+* Combining `default` imports with other import forms:
+
+```ts
+import validator, {ZipCodeValidator} from "ZipCodeValidator";
+import validator, * as ns from "ZipCodeValidator";
+```
+
+* TypeScript-specific imports
+
+TypeScript introduced module support before ECMAScript 2016; for backward-compatibility purposes this import form is still supported.  Using this form will import all contents of a module into a single variable that can be used to reference other module exports.
+
+```ts
+import validator = require("ZipCodeValidator");
+
+var myValidator = new validator.ZipCodeValidator();
+```
 
 Below, we have converted the previous example to use modules.
 Notice that we do not have to use a `module` keyword - the files themselves constitute a module and are identified by their filenames.

@@ -277,43 +277,6 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
   
   ```
 
-#### `default` export
-
-Each module can optionally export `default` export. `default` exports are marked with the keyword `default`; and there can only be one `default` export per module. `default` exports are imported using a different import form, see below for more details.
-`default` export is really handy for modules that have a single entry point, for instance JQuery would have a `default` export of `$`.
-
-```ts
-var $: JQuery;
-export default $;
-```
-
-Classes and function declarations can be authored directelly in default exports:
-
-```ts
-export default class ZipCodeValidator {
-    static numberRegexp = /^[0-9]+$/;
-    isAcceptable(s: string) {
-        return s.length === 5 && ZipCodeValidator.numberRegexp.test(s);
-    }
-}
-```
-
-or
-
-```ts
-const numberRegexp = /^[0-9]+$/;
-
-export default function (s: string) {
-    return s.length === 5 && numberRegexp.test(s);
-}
-```
-
-`default` exports can also be just values:
-
-```ts
-export default "123";
-```
-
 ### Import
 
 * Import a single export from a module
@@ -346,21 +309,81 @@ export default "123";
   import "my-module.js";
   ```
 
-* Importing `default` export of a module
+### `default` export
 
-  ```ts
-  import $ from "JQuery";
-  
-  $("button.continue").html( "Next Step..." );
-  ```
+Each module can optionally export a `default` export. 
+`default` exports are marked with the keyword `default`; and there can only be one `default` export per module. `default` exports are imported using a different import form.
 
-  `default` imports with other import forms
+`default` export is really handy for modules that have a single entry point, for instance JQuery would have a `default` export of `$`.
 
-  ```ts
-  import $, {ajax} from "JQuery";
-  import $, * as JQuery from "JQuery";
-  ```
+**JQuery.ts**
+```ts
+var $: JQuery;
+export default $;
+```
 
+**App.ts**
+```ts
+import $ from "JQuery";
+
+$("button.continue").html( "Next Step..." );
+```
+
+Classes and function declarations can be authored directelly in default exports:
+
+**ZipCodeValidator.ts**
+```ts
+export default class ZipCodeValidator {
+    static numberRegexp = /^[0-9]+$/;
+    isAcceptable(s: string) {
+        return s.length === 5 && ZipCodeValidator.numberRegexp.test(s);
+    }
+}
+```
+
+**Test.ts**
+```ts
+import validator from "ZipCodeValidator";
+
+var validator = new validator();
+```
+
+or
+
+**StaticZipCodeValidator.ts**
+```ts
+const numberRegexp = /^[0-9]+$/;
+
+export default function (s: string) {
+    return s.length === 5 && numberRegexp.test(s);
+}
+```
+
+**Test.ts**
+```ts
+import validate from "StaticZipCodeValidator";
+
+var strings = ['Hello', '98052', '101'];
+
+// Use function validate
+strings.forEach(s => {
+  console.log(`'${s}' ${validate(s) ? ' matches' : ' does not match'}`);
+});
+```
+
+`default` exports can also be just values:
+
+**OneTwoThree.ts**
+```ts
+export default "123";
+```
+
+**Log.ts**
+```ts
+import num from "OneTwoThree";
+
+console.log(num); // "123"
+```
 
 ### `export =` and `import = require()`
 

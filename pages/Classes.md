@@ -23,7 +23,7 @@ var greeter = new Greeter("world");
 ```
 
 The syntax should look very familiar if you've used C# or Java before.
-We declare a new class `Greeter`. This class has three members, a property called `greeting`, a constructor, and a method `greet`. 
+We declare a new class `Greeter`. This class has three members, a property called `greeting`, a constructor, and a method `greet`.
 
 You'll notice that in the class when we refer to one of the members of the class we prepend `this.`.
 This denotes that it's a member access.
@@ -111,7 +111,7 @@ new Animal("Cat").name; // Error: 'name' is private;
 ```
 
 TypeScript is a structural type system.
-When we compare two different types, regardless of where they came from, if the types of each member are compatible, then we say the types themselves are compatible. 
+When we compare two different types, regardless of where they came from, if the types of each member are compatible, then we say the types themselves are compatible.
 
 However, when comparing types that have `private` and `protected` members, we treat these types differently.
 For two types to be considered compatible, if one of them has a `private` member, then the other must have a `private` member that originated in the same declaration.
@@ -131,7 +131,7 @@ class Rhino extends Animal {
 
 class Employee {
     private name: string;
-    constructor(theName: string) { this.name = theName; }	
+    constructor(theName: string) { this.name = theName; }
 }
 
 var animal = new Animal("Goat");
@@ -220,7 +220,7 @@ if (employee.fullName) {
 }
 ```
 
-While allowing people to randomly set fullName directly is pretty handy, this might get us in trouble if we people can change names on a whim. 
+While allowing people to randomly set fullName directly is pretty handy, this might get us in trouble if we people can change names on a whim.
 
 In this version, we check to make sure the user has a secret passcode available before we allow them to modify the employee.
 We do this by replacing the direct access to fullName with a `set` that will check the passcode.
@@ -235,7 +235,7 @@ class Employee {
     get fullName(): string {
         return this._fullName;
     }
-	
+
     set fullName(newName: string) {
         if (passcode && passcode == "secret passcode") {
             this._fullName = newName;
@@ -307,8 +307,8 @@ alert(greeter.greet());
 ```
 
 Here, when we say `var greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.
-This is almost second nature to programmers from other object-oriented languages. 
- 
+This is almost second nature to programmers from other object-oriented languages.
+
 We're also creating another value that we call the *constructor function*.
 This is the function that is called when we `new` up instances of the class.
 To see what this looks like in practice, let's take a look at the JavaScript created by the above example:
@@ -390,3 +390,45 @@ interface Point3d extends Point {
 var point3d: Point3d = {x: 1, y: 2, z: 3};
 ```
 
+## Implementing interfaces
+A class declaration can also implement interfaces in the `implements` clause.
+The class needs to provide an implementation for the properties of every interface in the `implements` clause.
+
+```ts
+interface Kid {
+    name: string;
+    age: number;
+    learn: () => void;
+}
+
+interface Programmer {
+    favoriteLanguage: string;
+}
+
+class CoolKid implements Kid, Programmer {
+	constructor(public name: string, public age: number) { }
+
+    public favoriteLanguage = "TypeScript";
+    public learn() { console.log("Just learned more about TypeScript class!"); }
+}
+```
+
+There are several tips regaruding using `implements` for interfaces and classes declarations:
+
+1. The `implements` can only be used in class declarations, and it can be followed by both classes and interfaces.
+In comparison, `extends` can be used in both class and interface declarations.
+However when used in an interface declaration, `extends` can be followed by interfaces or classes; when in class declaration, `extends` can only be followed by classes.
+
+2. The derived class type must be assignable to the interface or classes it implements.
+For example, a class cannot implement an interface with a call signature, because the class won't be assignable to the interface type.
+    ```ts
+    interface foo {
+        (): void;
+    }
+
+    class Bar implements foo {
+        // Error: Class 'Bar' incorrectly implements interface foo.
+    }
+    ```
+
+More details about class heritage can be found in the [specification](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#811-class-heritage-specification).

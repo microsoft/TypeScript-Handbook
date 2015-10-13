@@ -83,4 +83,4 @@ When migrating to modules from namespaces, there is no longer a way to perform i
 If you have mutually dependent nested namespaces spread across multiple files, consider extracting such structures into sperate files (one per namespace) prior to migrating, then migrating them as above.
 
 
-For a larger example of a project undergoing a migration like this, see [`tslint`](https://github.com/palantir/tslint/pull/726);
+For a larger example of a project undergoing a migration like this, see [`tslint`](https://github.com/palantir/tslint/pull/726).

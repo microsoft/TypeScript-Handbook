@@ -1,7 +1,7 @@
 # Introduction
 
 Traditional JavaScript focuses on functions and prototype-based inheritance as the basic means of building up reusable components, but this may feel a bit awkward to programmers more comfortable with an object-oriented approach, where classes inherit functionality and objects are built from these classes.
-Starting with ECMAScript 6, the next version of JavaScript, JavaScript programmers will be able to build their applications using this object-oriented class-based approach.
+Starting with ECMAScript 2015, also known as ECMAScript 6, JavaScript programmers will be able to build their applications using this object-oriented class-based approach.
 In TypeScript, we allow developers to use these techniques now, and compile them down to JavaScript that works across all major browsers and platforms, without having to wait for the next version of JavaScript.
 
 # Classes
@@ -22,8 +22,8 @@ class Greeter {
 var greeter = new Greeter("world");
 ```
 
-The syntax should look very familiar if you've used C# or Java before.
-We declare a new class `Greeter`. This class has three members, a property called `greeting`, a constructor, and a method `greet`. 
+The syntax should look familiar if you've used C# or Java before.
+We declare a new class `Greeter`. This class has three members: a property called `greeting`, a constructor, and a method `greet`. 
 
 You'll notice that in the class when we refer to one of the members of the class we prepend `this.`.
 This denotes that it's a member access.
@@ -70,11 +70,19 @@ sam.move();
 tom.move(34);
 ```
 
-This example covers quite a bit of the inheritance features in TypeScript that are common to other languages.
-Here we see using the `extends` keywords to create a subclass. You can see this where `Horse` and `Snake` subclass the base class `Animal` and gain access to its features.
+This example covers quite a few of the inheritance features in TypeScript that are common to other languages.
+Here we see the `extends` keywords used to create a subclass. You can see this where `Horse` and `Snake` subclass the base class `Animal` and gain access to its features.
 
-The example also shows off being able to override methods in the base class with methods that are specialized for the subclass.
+The example also shows how to override methods in the base class with methods that are specialized for the subclass.
 Here both `Snake` and `Horse` create a `move` method that overrides the `move` from `Animal`, giving it functionality specific to each class.
+Note that even though `tom` is declared as an `Animal`, since its value is a `Horse`, when `tom.move(34)` calls the overriding method in `Horse`:
+
+```
+Slithering...
+Sammy the Python moved 5m.
+Galloping...
+Tommy the Palomino moved 34m.
+```
 
 # Public, private, and protected modifiers
 
@@ -84,14 +92,14 @@ In our examples, we've been able to freely access the members that we declared t
 If you're familiar with classes in other languages, you may have noticed in the above examples we haven't had to use the word `public` to accomplish this; for instance, C# requires that each member be explicitly labeled `public` to be visible.
 In TypeScript, each member is `public` by default.
 
-You may still mark a member `public` explicitly, and it fact, it is good practice to do so.
+You may still mark a member `public` explicitly.
 We could have written the `Animal` class from the previous section in the following way:
 
 ```TypeScript
 class Animal {
     public name: string;
-    constructor(theName: string) { this.name = theName; }
-    move(distanceInMeters: number) {
+    public constructor(theName: string) { this.name = theName; }
+    public move(distanceInMeters: number) {
         alert(`${this.name} moved ${distanceInMeters}m.`);
     }
 }
@@ -111,7 +119,7 @@ new Animal("Cat").name; // Error: 'name' is private;
 ```
 
 TypeScript is a structural type system.
-When we compare two different types, regardless of where they came from, if the types of each member are compatible, then we say the types themselves are compatible. 
+When we compare two different types, regardless of where they came from, if the types of all members are compatible, then we say the types themselves are compatible. 
 
 However, when comparing types that have `private` and `protected` members, we treat these types differently.
 For two types to be considered compatible, if one of them has a `private` member, then the other must have a `private` member that originated in the same declaration.
@@ -255,7 +263,7 @@ if (employee.fullName) {
 
 To prove to ourselves that our accessor is now checking the passcode, we can modify the passcode and see that when it doesn't match we instead get the alert box warning us we don't have access to update the employee.
 
-Note: Accessors require you to set the compiler to output ECMAScript 5.
+Note: Accessors require you to set the compiler to output ECMAScript 5 or higher.
 
 # Static Properties
 

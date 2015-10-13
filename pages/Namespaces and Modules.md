@@ -9,7 +9,7 @@ We'll also go over some advanced topics of how to use namespaces and modules, an
 We just alluded to "internal modules" and "external modules".
 If you're vaguely familiar with these terms, it's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
-"External modules" are now simply "modules", as to align with [ECMAScript 2016](http://www.ecma-international.org/ecma-262/6.0/)'s terminology.
+"External modules" are now simply "modules", as to align with [ECMAScript 2015 (also known as ES6)](http://www.ecma-international.org/ecma-262/6.0/)'s terminology.
 
 Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
 
@@ -208,7 +208,8 @@ Modules are used in two cases: Node.js and require.js.
 Applications not using Node.js or require.js do not need to use modules and can best be organized using the namespaces, outlined above.
 
 When using modules, relationships between files are specified in terms of imports and exports at the file level.
-In TypeScript, any file containing a top-level `import` or `export` is considered a module.
+
+In TypeScript just as in ES2016 JavaScript, any file containing a top-level `import` or `export` is considered a module.
 
 Below, we have converted the previous example to use modules.
 Notice that we do not have to use a `module` keyword - the files themselves constitute a module and are identified by their filenames.

@@ -6,7 +6,7 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 # Introduction
 This post outlines the various ways to organize your code using namespaces (previously "internal modules") in TypeScript.
 
-As we just alluded to changes in terminology, for the purposes of this document "internal modules" are now referred to as "namespaces".
+As we alluded in our note about terminology, "internal modules" are now referred to as "namespaces".
 
 Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
 
@@ -224,7 +224,8 @@ Importantly, for values, `import` is a distinct reference from the original symb
 # Working with Other JavaScript Libraries
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
-Because most JavaScript libraries expose only a few top-level objects, namespaces and modules are a good way to represent them.
+Because most JavaScript libraries expose only a few top-level objects, namespaces are a good way to represent them.
+
 We call declarations that don't define an implementation "ambient".
 Typically these are defined in `.d.ts` files.
 If you're familiar with C/C++, you can think of these as `.h` files.

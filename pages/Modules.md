@@ -12,9 +12,9 @@ Conversely, to consume a variable, function, class, interface, etc., exported fr
 
 Modules are declarative; the relationships between modules are specified in terms of imports and exports at the file level.
 
-Modules require using a module loader. 
+Modules import each other using a module loader. 
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it. 
-Common module loaders used in the JavaScript are [CommonJS](https://en.wikipedia.org/wiki/CommonJS) for Node.js applications, and [require.js](http://requirejs.org/) for Web applications.
+Common module loaders used in JavaScript are [CommonJS](https://en.wikipedia.org/wiki/CommonJS) for Node.js applications, and [require.js](http://requirejs.org/) for Web applications.
  
 In TypeScript just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 
@@ -22,9 +22,10 @@ In TypeScript just as in ECMAScript 2015, any file containing a top-level `impor
 
 ## Exporting a declaration
 
-Any declaration can be exported by adding the `export` keyword, e.g. variable, class, function, enum, interface, type alias, etc...
+Any declaration can be exported by adding the `export` keyword, e.g. variable, class, function, enum, interface, type alias, etc.
 
 ##### Validation.ts
+
 ```ts
 export interface StringValidator {
     isAcceptable(s: string): boolean;
@@ -32,6 +33,7 @@ export interface StringValidator {
 ```
 
 ##### ZipCodeValidator.ts
+
 ```ts
 export const numberRegexp = /^[0-9]+$/;
 
@@ -44,7 +46,7 @@ export class ZipCodeValidator implements StringValidator {
 
 ## Export statements
 
-Export statements are handy when exports need to be renamed, so the above example can be written as:
+Export statements are handy when exports need to be renamed for consumers, so the above example can be written as:
 
 ```ts
  class ZipCodeValidator implements StringValidator {
@@ -62,6 +64,7 @@ Often modules extend other modules, and partially expose some of their features.
 A re-export does not import it locally, or introduce a local variable.
 
 ##### ParseIntBasedZipCodeValidator.ts
+
 ```ts
 export class ParseIntBasedZipCodeValidator {
     isAcceptable(s: string) {
@@ -72,9 +75,11 @@ export class ParseIntBasedZipCodeValidator {
 // Export original validator but rename it
 export {ZipCodeValidator as RegExpBasedZipCodeValidator} from "./ZipCodeValidator";
 ```
-Optionally, a module can warp one or more modules and expose all thier exports using `export * from "module"` syntax.
+
+Optionally, a module can warp one or more modules and combine all their exports using `export * from "module"` syntax.
 
 ##### AllValidators.ts
+
 ```ts
 export * from "./StringValidator"; // exports interface StringValidator
 export * from "./LettersOnlyValidator"; // exports class LettersOnlyValidator 
@@ -82,6 +87,9 @@ export * from "./ZipCodeValidator";  // exports class ZipCodeValidator
 ```
 
 # Import
+
+Importing is just about as easy as exporting from an module. 
+Importing an exported declaration is done through using one of the `import` forms below:
 
 ## Import a single export from a module
 
@@ -92,6 +100,7 @@ var myValidator = new ZipCodeValidator();
 ```
 
 imports can also be renamed
+
 ```ts
 import { ZipCodeValidator as ZCV } from "./ZipCodeValidator";
 var myValidator = new ZCV();
@@ -106,37 +115,43 @@ var myValidator = new validator.ZipCodeValidator();
 
 ## Import a module for side-effects only
 
-Though not recommended practice, some modules setup some global state that can be used by other modules.
-These modules may not have any exports. 
+Though not recommended practice, some modules set up some global state that can be used by other modules.
+These modules may not have any exports, or the consumer is not interested in any of their exports.
 To import these modules, use:
 
 ```ts
 import "./my-module.js";
 ```
 
-# `default` export
+# Default exports
 
 Each module can optionally export a `default` export. 
-`default` exports are marked with the keyword `default`; and there can only be one `default` export per module. `default` exports are imported using a different import form.
+Default exports are marked with the keyword `default`; and there can only be one `default` export per module. 
+`default` exports are imported using a different import form.
 
-`default` export is really handy for modules that have a single entry point, for instance JQuery would have a `default` export of `$`.
+`default` exports are really handy.
+For instance, a library like JQuery might have a default export of `jQuery` or `$`, which we'd probably also import under the name `$` or `jQuery`.
 
 ##### JQuery.d.ts
+
 ```ts
 declare var $: JQuery;
 export default $;
 ```
 
 ##### App.ts
+
 ```ts
 import $ from "JQuery";
 
 $("button.continue").html( "Next Step..." );
 ```
 
-Classes and function declarations can be authored directly in default exports:
+Classes and function declarations can be authored directly as default exports.
+Defualt export class and function declaration names are optional.
 
 ##### ZipCodeValidator.ts
+
 ```ts
 export default class ZipCodeValidator {
     static numberRegexp = /^[0-9]+$/;
@@ -147,6 +162,7 @@ export default class ZipCodeValidator {
 ```
 
 ##### Test.ts
+
 ```ts
 import validator from "./ZipCodeValidator";
 
@@ -156,6 +172,7 @@ var validator = new validator();
 or
 
 ##### StaticZipCodeValidator.ts
+
 ```ts
 const numberRegexp = /^[0-9]+$/;
 
@@ -165,6 +182,7 @@ export default function (s: string) {
 ```
 
 ##### Test.ts
+
 ```ts
 import validate from "./StaticZipCodeValidator";
 
@@ -179,11 +197,13 @@ strings.forEach(s => {
 `default` exports can also be just values:
 
 ##### OneTwoThree.ts
+
 ```ts
 export default "123";
 ```
 
 ##### Log.ts
+
 ```ts
 import num from "./OneTwoThree";
 
@@ -192,15 +212,14 @@ console.log(num); // "123"
 
 # `export =` and `import = require()`
 
-CommonJS and AMD module formats allow replacing the module export and exporting a single object. 
-This has been replaced with `default` export in ECMAScript 2015. 
-The two are not compatible however. 
-TypeScript supports `export =` to model native CommonJs and AMD modules.
+Both CommonJS and AMD generally have the concept of an `exports` object which contains all exports from a module.
+
+They also support replacing the `exports` object with a custom single object.
+Default exports are meant to act as a replacement for this behavior; however, the two an incompatible.
+TypeScript supports `export =` to module the traditional CommonJS and AMD workflow.
 
 The `export =` syntax specifies a single object that is exported from the module.
 This can be a class, interface, namespace, function, or enum.
-
-When imported, the exported symbol is consumed directly and is not qualified by any name.
 
 When importing a module using `export =`, TypeScript-specific `import var = require("module")` must be used to import the module.
 
@@ -236,7 +255,7 @@ strings.forEach(s => {
 
 # Code Generation for Modules
 
-Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic modules ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs) (system), or native [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
+Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
 For more information on what the `define`, `require` and `register` calls in the generated code do, consult the documentation for each module loader.
 
 This simple example shows how the names used during importing and exporting get translated into the module loading code.
@@ -309,7 +328,8 @@ export var t = something + 1;
 
 Below, we've consolidated the Validator implementations used in previous examples to only export a single named export from each module.
 
-To compile, we must specify a module target on the command line. For Node.js, use `--module commonjs`; for require.js, use `--module amd`. For example:
+To compile, we must specify a module target on the command line. For Node.js, use `--module commonjs`; 
+for require.js, use `--module amd`. For example:
 
 ```Shell
 tsc --module commonjs Test.ts
@@ -384,12 +404,12 @@ In some cases, you may want to only load a module under some conditions.
 In TypeScript, we can use the pattern shown below to implement this and other advanced loading scenarios to directly invoke the module loaders without losing type safety.
 
 The compiler detects whether each module is used in the emitted JavaScript.
-If a module identifier is only ever used in type annotations and never as an expression, then no `require` call is emitted for that module.
-This culling of unused references is a good performance optimization, and also allows for optional loading of those modules.
+If a module identifier is only ever used as part of a type annotations and never as an expression, then no `require` call is emitted for that module.
+This elision of unused references is a good performance optimization, and also allows for optional loading of those modules.
 
 The core idea of the pattern is that the `import id = require("...")` statement gives us access to the types exposed by the module.
 The module loader is invoked (through `require`) dynamically, as shown in the `if` blocks below.
-This leverages the reference-culling optimization so that the module is only loaded when needed.
+This leverages the reference-elision optimization so that the module is only loaded when needed.
 For this pattern to work, it's important that the symbol defined via an `import` is only used in type positions (i.e. never in a position that would be emitted into the JavaScript).
 
 To maintain type safety, we can use the `typeof` keyword.
@@ -439,7 +459,7 @@ if (needZipValidation) {
 # Working with Other JavaScript Libraries
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
-Because most JavaScript libraries expose only a few top-level objects, namespaces and modules are a good way to represent them.
+
 We call declarations that don't define an implementation "ambient".
 Typically, these are defined in `.d.ts` files.
 If you're familiar with C/C++, you can think of these as `.h` files.
@@ -472,7 +492,7 @@ declare module "path" {
 }
 ```
 
-Now we can `/// <reference>` node.d.ts and then load the modules using e.g. `import url = require("url");`.
+Now we can `/// <reference>` `node.d.ts` and then load the modules using `import url = require("url");`.
 
 ```ts
 /// <reference path="node.d.ts"/>

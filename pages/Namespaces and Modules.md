@@ -265,15 +265,15 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
   }
   
   // Export original validator but rename it
-  export {ZipCodeValidator as RegExpBasedZipCodeValidator} from "ZipCodeValidator";
+  export {ZipCodeValidator as RegExpBasedZipCodeValidator} from "./ZipCodeValidator";
   ```
 
   Optionally, a module can warp one or more modules and expose all thier exports using `export * from "module"` syntax.
   **AllValidators.ts**
   ```ts
-  export * from "StringValidator"; // exports interface StringValidator
-  export * from "LettersOnlyValidator"; // exports class LettersOnlyValidator 
-  export * from "ZipCodeValidator";  // exports class ZipCodeValidator
+  export * from "./StringValidator"; // exports interface StringValidator
+  export * from "./LettersOnlyValidator"; // exports class LettersOnlyValidator 
+  export * from "./ZipCodeValidator";  // exports class ZipCodeValidator
   
   ```
 
@@ -282,7 +282,7 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
 * Import a single export from a module
 
   ```ts
-  import {ZipCodeValidator} from "ZipCodeValidator";
+  import {ZipCodeValidator} from "./ZipCodeValidator";
   
   var myValidator = new ZipCodeValidator();
   ```
@@ -290,7 +290,7 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
   imports can also be renamed
 
   ```ts
-  import {ZipCodeValidator as ZCV} from "ZipCodeValidator";
+  import {ZipCodeValidator as ZCV} from "./ZipCodeValidator";
 
   var myValidator = new ZCV();
   ```
@@ -298,7 +298,7 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
 * Import the entire module into a single variable, and use it to access the module exports
 
   ```ts
-  import * as validator from "ZipCodeValidator";
+  import * as validator from "./ZipCodeValidator";
 
   var myValidator = new validator.ZipCodeValidator();
   ```
@@ -306,7 +306,7 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
 * Import a module for side-effects only
 
   ```ts
-  import "my-module.js";
+  import "./my-module.js";
   ```
 
 ### `default` export
@@ -316,9 +316,9 @@ Each module can optionally export a `default` export.
 
 `default` export is really handy for modules that have a single entry point, for instance JQuery would have a `default` export of `$`.
 
-**JQuery.ts**
+**JQuery.d.ts**
 ```ts
-var $: JQuery;
+declare var $: JQuery;
 export default $;
 ```
 
@@ -343,7 +343,7 @@ export default class ZipCodeValidator {
 
 **Test.ts**
 ```ts
-import validator from "ZipCodeValidator";
+import validator from "./ZipCodeValidator";
 
 var validator = new validator();
 ```
@@ -361,7 +361,7 @@ export default function (s: string) {
 
 **Test.ts**
 ```ts
-import validate from "StaticZipCodeValidator";
+import validate from "./StaticZipCodeValidator";
 
 var strings = ['Hello', '98052', '101'];
 
@@ -380,7 +380,7 @@ export default "123";
 
 **Log.ts**
 ```ts
-import num from "OneTwoThree";
+import num from "./OneTwoThree";
 
 console.log(num); // "123"
 ```

@@ -129,6 +129,11 @@ A *Class Decorator* cannot be used in a declaration file, or in any other ambien
 
 The expression for the *Class Decorator* will be called as a function at runtime, with the constructor of the decorated class as its only argument.
 
+If the *Class Decorator* returns a value, it will replace the class declaration with the provided constructor function.
+
+> NOTE&nbsp; Should you chose to return a new constructor function, you must take care to maintain the original prototype.
+  The logic that applies decorators at runtime will **not** do this for you.
+
 The following is an example of a *Class Decorator* (`@sealed`) applied to the `Greeter` class:
 
 ```ts
@@ -170,6 +175,8 @@ The expression for the *Method Decorator* will be called as a function at runtim
 > NOTE&emsp; The *Property Descriptor* will be `undefined` if your script target is less than `ES5`.
 
 If the *Method Decorator* returns a value, it will be used as the *Property Descriptor* for the method.
+
+> NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
 
 The following is an example of a *Method Decorator* (`@enumerable`) applied to the `Greeter` class:
 
@@ -220,6 +227,8 @@ The expression for the *Accessor Decorator* will be called as a function at runt
 
 If the *Accessor Decorator* returns a value, it will be used as the *Property Descriptor* for the member.
 
+> NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
+
 The following is an example of an *Accessor Decorator* (`@configurable`) applied to the `Point` class:
 
 ```ts
@@ -262,6 +271,10 @@ The expression for the *Property Decorator* will be called as a function at runt
 A *Property Descriptor* is not provided as an argument to a *Property Decorator* due to how property decorators are initialized in TypeScript.
 This is because there is currently no mechanism to describe an instance property when defining members of a prototype, and no way to observe or modify the initializer for a property.
 As such, a *Property Decorator* can only be used to observe that a property of a specific name has been declared for a class.
+
+If the *Property Descriptor* returns a value, it will be used as the *Property Descriptor* for the member.
+
+> NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
 
 We can use this information to record metadata about the property, as in the following example:
 
@@ -314,7 +327,7 @@ The expression for the *Parameter Decorator* will be called as a function at run
 1. The function containing the decorated parameter.
 2. The ordinal index of the parameter in the function's parameter list.
 
-A *Parameter Decorator* can only be used to observe that a parameter has been declared on a method. 
+A *Parameter Decorator* can only be used to observe that a parameter has been declared on a method. The return value of the *Parameter Decorator* is ignored.
 
 The following is an example of a *Parameter Decorator* (`@required`) applied to `Greeter` class:
 

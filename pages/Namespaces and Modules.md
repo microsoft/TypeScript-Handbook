@@ -215,6 +215,13 @@ In TypeScript just as in ES2015, any file containing a top-level `import` or `ex
 
 ### Export
 
+* Export declaration
+
+* export a value 
+
+* export from another module
+
+* export *
 
 #### `default` export
 
@@ -249,15 +256,7 @@ export default function (s: string) {
 
 ### Import
 
-* Import the entire module into a single variable, and use it to access the module exports: 
-
-  ```ts
-  import * as validator from "ZipCodeValidator";
-
-  var myValidator = new validator.ZipCodeValidator();
-  ```
-
-* Import a single export from a module. 
+* Import a single export from a module
 
   ```ts
   import {ZipCodeValidator} from "ZipCodeValidator";
@@ -265,7 +264,7 @@ export default function (s: string) {
   var myValidator = new ZipCodeValidator();
   ```
 
-* Import a single export from a module, and rename it as well:
+  imports can also be renamed
 
   ```ts
   import {ZipCodeValidator as ZCV} from "ZipCodeValidator";
@@ -273,7 +272,15 @@ export default function (s: string) {
   var myValidator = new ZCV();
   ```
 
-* Import a module for side-effects only:
+* Import the entire module into a single variable, and use it to access the module exports
+
+  ```ts
+  import * as validator from "ZipCodeValidator";
+
+  var myValidator = new validator.ZipCodeValidator();
+  ```
+
+* Import a module for side-effects only
 
   ```ts
   import "my-module.js";
@@ -285,9 +292,9 @@ export default function (s: string) {
   import $ from "JQuery";
   
   $("button.continue").html( "Next Step..." );
-```
+  ```
 
-* Combining `default` imports with other import forms:
+  `default` imports with other import forms
 
   ```ts
   import $, {ajax} from "JQuery";

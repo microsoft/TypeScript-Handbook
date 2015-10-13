@@ -427,6 +427,34 @@ strings.forEach(s => {
 ```
 
 
+## Code Generation for Modules
+
+Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic modules ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs) (system), or native [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
+For more information on what the `define`, `require` and `register` calls in the generated code do, consult the documentation for each module loader.
+
+This simple example shows how the names used during importing and exporting get translated into the module loading code.
+
+##### SimpleModule.ts
+
+```TypeScript
+import {something} from './mod';
+export var t = something + 1;
+```
+
+##### AMD / RequireJS SimpleModule.js:
+
+```JavaScript
+define(["require", "exports", 'mod'], function(require, exports, m) {
+    exports.t = m.something + 1;
+});
+```
+
+##### CommonJS / Node SimpleModule.js:
+
+```JavaScript
+var m = require('mod');
+exports.t = m.something + 1;
+```
 
 Below, we have converted the previous example to use modules.
 Notice that we do not have to use a `module` keyword - the files themselves constitute a module and are identified by their filenames.
@@ -519,16 +547,57 @@ export var t = m.something + 1;
 ##### AMD / RequireJS SimpleModule.js:
 
 ```JavaScript
-define(["require", "exports", 'mod'], function(require, exports, m) {
-    exports.t = m.something + 1;
+define(["require", "exports", './mod'], function (require, exports, mod_1) {
+    exports.t = mod_1.something + 1;
 });
 ```
 
 ##### CommonJS / Node SimpleModule.js:
 
 ```JavaScript
-var m = require('mod');
-exports.t = m.something + 1;
+var mod_1 = require('./mod');
+exports.t = mod_1.something + 1;
+```
+
+##### UMD SimpleModule.js:
+
+```JavaScript
+(function (factory) {
+    if (typeof module === 'object' && typeof module.exports === 'object') {
+        var v = factory(require, exports); if (v !== undefined) module.exports = v;
+    }
+    else if (typeof define === 'function' && define.amd) {
+        define(["require", "exports", './mod'], factory);
+    }
+})(function (require, exports) {
+    var mod_1 = require('./mod');
+    exports.t = mod_1.something + 1;
+});
+```
+
+##### System SimpleModule.js:
+
+```JavaScript
+System.register(['./mod'], function(exports_1) {
+    var mod_1;
+    var t;
+    return {
+        setters:[
+            function (mod_1_1) {
+                mod_1 = mod_1_1;
+            }],
+        execute: function() {
+            exports_1("t", t = mod_1.something + 1);
+        }
+    }
+});
+```
+
+##### Native ECMAScript 2015 modules SimpleModule.js:
+
+```JavaScript
+import { something } from './mod';
+export var t = something + 1;
 ```
 
 # Export =

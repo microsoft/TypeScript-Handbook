@@ -251,49 +251,48 @@ export default function (s: string) {
 
 * Import the entire module into a single variable, and use it to access the module exports: 
 
-```ts
-import * as validator from "ZipCodeValidator";
+  ```ts
+  import * as validator from "ZipCodeValidator";
 
-var myValidator = new validator.ZipCodeValidator();
-```
+  var myValidator = new validator.ZipCodeValidator();
+  ```
 
 * Import a single export from a module. 
 
-```ts
-import {ZipCodeValidator} from "ZipCodeValidator";
-
-var myValidator = new ZipCodeValidator();
-```
+  ```ts
+  import {ZipCodeValidator} from "ZipCodeValidator";
+  
+  var myValidator = new ZipCodeValidator();
+  ```
 
 * Import a single export from a module, and rename it as well:
 
-```ts
-import {ZipCodeValidator as ZCV} from "ZipCodeValidator";
+  ```ts
+  import {ZipCodeValidator as ZCV} from "ZipCodeValidator";
 
-var myValidator = new ZCV();
-```
+  var myValidator = new ZCV();
+  ```
 
 * Import a module for side-effects only:
 
-```ts
-import "my-module.js";
-```
+  ```ts
+  import "my-module.js";
+  ```
 
 * Importing `default` export of a module
 
-
-```ts
-import $ from "JQuery";
-
-$("button.continue").html( "Next Step..." );
+  ```ts
+  import $ from "JQuery";
+  
+  $("button.continue").html( "Next Step..." );
 ```
 
 * Combining `default` imports with other import forms:
 
-```ts
-import $, {ajax} from "JQuery";
-import $, * as JQuery from "JQuery";
-```
+  ```ts
+  import $, {ajax} from "JQuery";
+  import $, * as JQuery from "JQuery";
+  ```
 
 
 ### `export =` and `import = require()`

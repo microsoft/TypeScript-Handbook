@@ -9,7 +9,7 @@ We'll also go over some advanced topics of how to use namespaces and modules, an
 We just alluded to "internal modules" and "external modules".
 If you're vaguely familiar with these terms, it's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
-"External modules" are now simply "modules", as to align with ECMAScript 6's terminology.
+"External modules" are now simply "modules", as to align with [ECMAScript 2016](http://www.ecma-international.org/ecma-262/6.0/)'s terminology.
 
 Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
 

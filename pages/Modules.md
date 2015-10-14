@@ -7,8 +7,8 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 
 Starting with the ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
 
-Modules are executed within their own scope, and not in the global scope; this means that variables, functions, classes, etc., declared in a module are not visible outside the module unless they are explicitly exported using one of the [`export` forms](#Export). 
-Conversely, to consume a variable, function, class, interface, etc., exported from a different module, it has to be imported using one of the [`import` forms](#Import).
+Modules are executed within their own scope, and not in the global scope; this means that variables, functions, classes, etc., declared in a module are not visible outside the module unless they are explicitly exported using one of the [`export` forms](#export). 
+Conversely, to consume a variable, function, class, interface, etc., exported from a different module, it has to be imported using one of the [`import` forms](#import).
 
 Modules are declarative; the relationships between modules are specified in terms of imports and exports at the file level.
 

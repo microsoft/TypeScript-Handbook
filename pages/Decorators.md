@@ -1,12 +1,12 @@
 # Introduction
 
 With the introduction of Classes in TypeScript and ES6, there now exist certain scenarios that require additional features to support annotating or modifying classes and class members.
-*Decorators* provide a way to add both annotations and a meta-programming syntax for class declarations and members.
-*Decorators* are a [stage 1 proposal](https://github.com/wycats/javascript-decorators/blob/master/README.md) for JavaScript and are available as an experimental feature of TypeScript.
+Decorators provide a way to add both annotations and a meta-programming syntax for class declarations and members.
+Decorators are a [stage 1 proposal](https://github.com/wycats/javascript-decorators/blob/master/README.md) for JavaScript and are available as an experimental feature of TypeScript.
 
 > NOTE&emsp; Decorators are an experimental feature that may change in future releases.
 
-To enable experimental support for *Decorators*, you must enable the `experimentalDecorators` compiler option either on the command line or in your `tsconfig.json`:
+To enable experimental support for decorators, you must enable the `experimentalDecorators` compiler option either on the command line or in your `tsconfig.json`:
 
 **Command Line**:
 ```
@@ -40,8 +40,8 @@ function sealed(target) {
 
 ## Decorator Factories
 
-If we want to customize how a decorator is applied to a declaration, we can write a *Decorator Factory*.
-A *Decorator Factory* is simply a function that returns the expression that will be called at runtime.
+If we want to customize how a decorator is applied to a declaration, we can write a decorator factory.
+A *Decorator Factory* is simply a function that returns the expression that will be called by the decorator at runtime.
 
 We can write a decorator factory in the following fashion:
 
@@ -80,7 +80,7 @@ As such, the following steps are performed when evaluating multiple decorators o
 1. The expressions for each decorator are evaluated top-to-bottom.
 2. The results are then called as functions from bottom-to-top.
 
-If we were to use decorator factories, we can observe this evaluation order with the following example:
+If we were to use [decorator factories](#decorator-factories), we can observe this evaluation order with the following example:
 
 ```ts
 function f() {
@@ -114,7 +114,7 @@ f(): called
 
 ## Decorator Evaluation
 
-There is also a well defined order to how decorators applied to various declarations inside of a class are applied. 
+There is a well defined order to how decorators applied to various declarations inside of a class are applied:
 
 1. *Parameter Decorators*, followed by *Method*, *Accessor*, or *Property Decorators* are applied for each instance member.
 2. *Parameter Decorators*, followed by *Method*, *Accessor*, or *Property Decorators* are applied for each static member.
@@ -124,17 +124,17 @@ There is also a well defined order to how decorators applied to various declarat
 ## Class Decorators
 
 A *Class Decorator* is declared just before a class declaration.
-The *Class Decorator* is applied to the constructor of the class and can be used to observe, modify, or replace a class definition.
-A *Class Decorator* cannot be used in a declaration file, or in any other ambient context (such as on a `declare` class).
+The class decorator is applied to the constructor of the class and can be used to observe, modify, or replace a class definition.
+A class decorator cannot be used in a declaration file, or in any other ambient context (such as on a `declare` class).
 
-The expression for the *Class Decorator* will be called as a function at runtime, with the constructor of the decorated class as its only argument.
+The expression for the class decorator will be called as a function at runtime, with the constructor of the decorated class as its only argument.
 
-If the *Class Decorator* returns a value, it will replace the class declaration with the provided constructor function.
+If the class decorator returns a value, it will replace the class declaration with the provided constructor function.
 
 > NOTE&nbsp; Should you chose to return a new constructor function, you must take care to maintain the original prototype.
   The logic that applies decorators at runtime will **not** do this for you.
 
-The following is an example of a *Class Decorator* (`@sealed`) applied to the `Greeter` class:
+The following is an example of a class decorator (`@sealed`) applied to the `Greeter` class:
 
 ```ts
 @sealed
@@ -149,7 +149,7 @@ class Greeter {
 }
 ```
 
-The `@sealed` decorator could be defined using the following function declaration: 
+We can define the `@sealed` decorator using the following function declaration: 
 
 ```ts
 function sealed(constructor: Function) {
@@ -164,21 +164,21 @@ When `@sealed` is executed, it will seal both the constructor and its prototype.
 
 A *Method Decorator* is declared just before a method declaration.
 The decorator is applied to the *Property Descriptor* for the method, and can be used to observe, modify, or replace a method definition.
-A *Method Decorator* cannot be used in a declaration file, on an overload, or in any other ambient context (such as in a `declare` class).
+A method decorator cannot be used in a declaration file, on an overload, or in any other ambient context (such as in a `declare` class).
 
-The expression for the *Method Decorator* will be called as a function at runtime, with the following three arguments:
+The expression for the method decorator will be called as a function at runtime, with the following three arguments:
 
-1. Either the constructor function of the class for a static method, or the prototype of the class for an instance method.
-2. The name of the method.
-3. The *Property Descriptor* for the method.
+1. Either the constructor function of the class for a static member, or the prototype of the class for an instance member.
+2. The name of the member.
+3. The *Property Descriptor* for the member.
 
 > NOTE&emsp; The *Property Descriptor* will be `undefined` if your script target is less than `ES5`.
 
-If the *Method Decorator* returns a value, it will be used as the *Property Descriptor* for the method.
+If the method decorator returns a value, it will be used as the *Property Descriptor* for the method.
 
 > NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
 
-The following is an example of a *Method Decorator* (`@enumerable`) applied to the `Greeter` class:
+The following is an example of a method decorator (`@enumerable`) applied to a method on the `Greeter` class:
 
 ```ts
 class Greeter {
@@ -204,20 +204,20 @@ function enumerable(value: boolean) {
 } 
 ```
 
-The `@enumerable(false)` decorator here is a [Decorator Factory](#decorator-factories).
+The `@enumerable(false)` decorator here is a [decorator factory](#decorator-factories).
 When the `@enumerable(false)` decorator is called, it modifies the `enumerable` property of the property descriptor.
 
 ## Accessor Decorators
 
 An *Accessor Decorator* is declared just before an accessor declaration.
-The decorator is applied to the *Property Descriptor* for the accessor and can be used to observe, modify, or replace an accessor's definitions.
-An *Accessor Decorator* cannot be used in a declaration file, or in any other ambient context (such as in a `declare` class).
+The accessor decorator is applied to the *Property Descriptor* for the accessor and can be used to observe, modify, or replace an accessor's definitions.
+An accessor decorator cannot be used in a declaration file, or in any other ambient context (such as in a `declare` class).
 
 > NOTE&emsp; TypeScript disallows decorating both the `get` and `set` accessor for a single member.
   Instead, all decorators for the member must be applied to the first accessor specified in document order.
 > This is because decorators apply to a *Property Descriptor*, which combines both the `get` and `set` accessor, not each declaration separately.
 
-The expression for the *Accessor Decorator* will be called as a function at runtime, with the following three arguments:
+The expression for the accessor decorator will be called as a function at runtime, with the following three arguments:
 
 1. Either the constructor function of the class for a static member, or the prototype of the class for an instance member.
 2. The name of the member.
@@ -225,11 +225,11 @@ The expression for the *Accessor Decorator* will be called as a function at runt
 
 > NOTE&emsp; The *Property Descriptor* will be `undefined` if your script target is less than `ES5`.
 
-If the *Accessor Decorator* returns a value, it will be used as the *Property Descriptor* for the member.
+If the accessor decorator returns a value, it will be used as the *Property Descriptor* for the member.
 
 > NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
 
-The following is an example of an *Accessor Decorator* (`@configurable`) applied to the `Point` class:
+The following is an example of an accessor decorator (`@configurable`) applied to a member of the `Point` class:
 
 ```ts
 class Point {
@@ -261,18 +261,18 @@ function configurable(value: boolean) {
 ## Property Decorators
 
 A *Property Decorator* is declared just before a property declaration.
-A *Property Decorator* cannot be used in a declaration file, or in any other ambient context (such as in a `declare` class).
+A property decorator cannot be used in a declaration file, or in any other ambient context (such as in a `declare` class).
 
-The expression for the *Property Decorator* will be called as a function at runtime, with the following two arguments:
+The expression for the property decorator will be called as a function at runtime, with the following two arguments:
 
-1. Either the constructor function of the class for a static property, or the prototype of the class for an instance property.
-2. The name of the property.
+1. Either the constructor function of the class for a static member, or the prototype of the class for an instance member.
+2. The name of the member.
 
-A *Property Descriptor* is not provided as an argument to a *Property Decorator* due to how property decorators are initialized in TypeScript.
-This is because there is currently no mechanism to describe an instance property when defining members of a prototype, and no way to observe or modify the initializer for a property.
-As such, a *Property Decorator* can only be used to observe that a property of a specific name has been declared for a class.
+> NOTE&emsp; A *Property Descriptor* is not provided as an argument to a property decorator due to how property decorators are initialized in TypeScript.
+  This is because there is currently no mechanism to describe an instance property when defining members of a prototype, and no way to observe or modify the initializer for a property.
+  As such, a property decorator can only be used to observe that a property of a specific name has been declared for a class.
 
-If the *Property Descriptor* returns a value, it will be used as the *Property Descriptor* for the member.
+If the property decorator returns a value, it will be used as the *Property Descriptor* for the member.
 
 > NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
 
@@ -309,7 +309,7 @@ function getFormat(target: any, propertyKey: string) {
 }
 ```
 
-The `@format("Hello, %s")` decorator here is a [Decorator Factory](#decorator-factories).
+The `@format("Hello, %s")` decorator here is a [decorator factory](#decorator-factories).
 When `@format("Hello, %s")` is called, it adds a metadata entry for the property using the `Reflect.metadata` function from the `reflect-metadata` library.
 When `getFormat` is called, it reads the metadata value for the format.
 
@@ -319,17 +319,19 @@ When `getFormat` is called, it reads the metadata value for the format.
 ## Parameter Decorators
 
 A *Parameter Decorator* is declared just before a parameter declaration.
-The *Parameter Decorator* is applied to the function for a class constructor or method declaration.
-A *Parameter Decorator* cannot be used in a declaration file, an overload, or in any other ambient context (such as in a `declare` class).
+The parameter decorator is applied to the function for a class constructor or method declaration.
+A parameter decorator cannot be used in a declaration file, an overload, or in any other ambient context (such as in a `declare` class).
 
-The expression for the *Parameter Decorator* will be called as a function at runtime, with the following two arguments:
+The expression for the parameter decorator will be called as a function at runtime, with the following two arguments:
 
 1. The function containing the decorated parameter.
 2. The ordinal index of the parameter in the function's parameter list.
 
-A *Parameter Decorator* can only be used to observe that a parameter has been declared on a method. The return value of the *Parameter Decorator* is ignored.
+> NOTE&emsp; A parameter decorator can only be used to observe that a parameter has been declared on a method. 
 
-The following is an example of a *Parameter Decorator* (`@required`) applied to `Greeter` class:
+The return value of the parameter decorator is ignored.
+
+The following is an example of a parameter decorator (`@required`) applied to parameter of a member of the `Greeter` class:
 
 ```ts
 class Greeter {
@@ -382,8 +384,8 @@ The `@validate` decorator then wraps the existing `greet` method in a function t
 ## Metadata
 
 Some examples use the `reflect-metadata` library which adds a polyfill for an [experimental metadata API](https://github.com/rbuckton/ReflectDecorators).
-This library is not yet part of the JavaScript standard.
-However, once Decorators are officially adopted as part of the JavaScript standard these extensions will be proposed for adoption.
+This library is not yet part of the ECMAScript (JavaScript) standard.
+However, once decorators are officially adopted as part of the ECMAScript standard these extensions will be proposed for adoption.
 
 You can install this library via npm:
 
@@ -467,4 +469,4 @@ class Line {
 
 ```
 
-> NOTE&emsp; Decorator Metadata is an experimental feature and may introduce breaking changes in future releases.
+> NOTE&emsp; Decorator metadata is an experimental feature and may introduce breaking changes in future releases.

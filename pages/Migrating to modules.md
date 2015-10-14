@@ -57,7 +57,7 @@ So how do we migrate away from `namespace`s to the explicit dependencies require
   we can rewrite as:
   ```ts
   import {Data} from "../foo";
-  import {CentralProcessingUnit, Baz} from "./bar";
+  import {CentralProcessingUnit} from "./bar";
   import * as Baz from "./baz";
   export function process(computer: Computer, data: Data): number {
     computer

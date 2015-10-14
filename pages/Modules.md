@@ -5,16 +5,16 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 
 # Introduction
 
-TypeScript as well as JavaScript, starting with the ECMAScript 2015, have the concept of modules.
+Starting with the ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
 
-Modules are executed within their own scope, and not in the global scope; this means that variables, functions, classes, etc., declared in a module are not visible outside the module unless they are explicitly exported using one of the `export` forms, discussed below. 
-Conversely, to consume a variable, function, class, interface, etc., exported from a different module, it has to be imported using one of the `import` forms discussed below.
+Modules are executed within their own scope, and not in the global scope; this means that variables, functions, classes, etc., declared in a module are not visible outside the module unless they are explicitly exported using one of the [`export` forms](#Export). 
+Conversely, to consume a variable, function, class, interface, etc., exported from a different module, it has to be imported using one of the [`import` forms](#Import).
 
 Modules are declarative; the relationships between modules are specified in terms of imports and exports at the file level.
 
-Modules import each other using a module loader. 
+Modules import one another using a module loader. 
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it. 
-Common module loaders used in JavaScript are [CommonJS](https://en.wikipedia.org/wiki/CommonJS) for Node.js applications, and [require.js](http://requirejs.org/) for Web applications.
+Common module loaders used in JavaScript are [CommonJS module loader](https://en.wikipedia.org/wiki/CommonJS) for Node.js applications, and [require.js](http://requirejs.org/) for Web applications.
  
 In TypeScript just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 
@@ -76,7 +76,7 @@ export class ParseIntBasedZipCodeValidator {
 export {ZipCodeValidator as RegExpBasedZipCodeValidator} from "./ZipCodeValidator";
 ```
 
-Optionally, a module can warp one or more modules and combine all their exports using `export * from "module"` syntax.
+Optionally, a module can wrap one or more modules and combine all their exports using `export * from "module"` syntax.
 
 ##### AllValidators.ts
 

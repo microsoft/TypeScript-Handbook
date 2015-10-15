@@ -290,6 +290,49 @@ var grid2 = new Grid(5.0);  // 5x scale
 console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
 console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 ```
+# Abstract Classes
+
+Abstract classes are base classes from which other classes may be derived. They may not be instantiated directly.
+They operate similar to abstract classes in other popular languages such as C# and Java. Unlike an interface, an
+abstract class may contain implementation details for it's members. The `abstract` keyword is used to define
+abstract classes as well as abstract methods within an abstract class.
+
+Methods within an abstract class that are marked as abstract do not contain an implementation and must be implemented
+in derived classes.
+
+Classes derived from abstract classes that also contain constructor functions must call `super()` which will execute
+the constructor function on the abstract base class.
+
+```TypeScript
+abstract class DepartmentBase {
+	
+	constructor(public name: string) {
+	}
+	
+	PrintName(): void {
+		console.log('Department name: ' + this.name);
+	}
+	
+	abstract PrintMeeting(): void; // must be implemented in derived classes
+}
+
+class AccountingDepartment extends DepartmentBase {
+	
+	constructor() {
+		super('Accounting and Auditing'); // constructors in derived classes must call super()
+	}
+	
+	PrintMeeting(): void {
+		console.log('The Accounting Department meets each Monday at 10am.');
+	}
+}
+
+let dept: DepartmentBase = new DepartmentBase(); // error: cannot create an instance of an abstract class
+
+let acctDept: AccountingDepartment = new AccountingDepartment();
+acctDept.PrintName();
+acctDept.PrintMeeting();
+```
 
 # Advanced Techniques
 

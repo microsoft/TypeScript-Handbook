@@ -18,10 +18,10 @@ These floating point numbers get the type `number`.
 In addition to hexadecimal and decimal literals, TypeScript also supports binary and octal literals introduced in ECMAScript 2015.
 
 ```TypeScript
-var decLiteral = 6;
-var hexLiteral = 0x9837abdef;
-var binaryLiteral = 0b0010;
-var octalLiteral = 0o74563;
+var decLiteral: number = 6;
+var hexLiteral: number = 0x9837abdef;
+var binaryLiteral: number = 0b0010;
+var octalLiteral: number = 0o74563;
 ```
 
 # String

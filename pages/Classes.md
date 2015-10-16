@@ -77,6 +77,8 @@ The example also shows how to override methods in the base class with methods th
 Here both `Snake` and `Horse` create a `move` method that overrides the `move` from `Animal`, giving it functionality specific to each class.
 Note that even though `tom` is declared as an `Animal`, since its value is a `Horse`, when `tom.move(34)` calls the overriding method in `Horse`:
 
+Derived classes that contain constructor functions must call `super()` which will execute the constructor function on the base class.
+
 ```
 Slithering...
 Sammy the Python moved 5m.
@@ -292,46 +294,59 @@ console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 ```
 # Abstract Classes
 
-Abstract classes are base classes from which other classes may be derived. They may not be instantiated directly.
-They operate similar to abstract classes in other popular languages such as C# and Java. Unlike an interface, an
-abstract class may contain implementation details for it's members. The `abstract` keyword is used to define
-abstract classes as well as abstract methods within an abstract class.
-
-Methods within an abstract class that are marked as abstract do not contain an implementation and must be implemented
-in derived classes.
-
-Classes derived from abstract classes that also contain constructor functions must call `super()` which will execute
-the constructor function on the abstract base class.
+Abstract classes are base classes from which other classes may be derived.
+They may not be instantiated directly.
+Unlike an interface, an abstract class may contain implementation details for its members.
+The `abstract` keyword is used to define abstract classes as well as abstract methods within an abstract class.
 
 ```TypeScript
-abstract class DepartmentBase {
+abstract class Animal {
+    abstract makeSound(): void;
+    move(): void {
+        console.log('roaming the earth...');
+    }
+}
+```
+
+Methods within an abstract class that are marked as abstract do not contain an implementation and must be implemented in derived classes.
+Abstract methods share a similar syntax to interface methods.
+Both define the signature of a method without including a method body.
+However, abstract methods must include the `abstract` keyword and may optionally contain access modifiers.
+
+```TypeScript
+abstract class Department {
 	
-	constructor(public name: string) {
-	}
+    constructor(public name: string) {
+    }
 	
-	PrintName(): void {
-		console.log('Department name: ' + this.name);
-	}
+    printName(): void {
+        console.log('Department name: ' + this.name);
+    }
 	
-	abstract PrintMeeting(): void; // must be implemented in derived classes
+    abstract printMeeting(): void; // must be implemented in derived classes
 }
 
-class AccountingDepartment extends DepartmentBase {
+class AccountingDepartment extends Department {
 	
-	constructor() {
-		super('Accounting and Auditing'); // constructors in derived classes must call super()
-	}
+    constructor() {
+        super('Accounting and Auditing'); // constructors in derived classes must call super()
+    }
 	
-	PrintMeeting(): void {
-		console.log('The Accounting Department meets each Monday at 10am.');
-	}
+    printMeeting(): void {
+        console.log('The Accounting Department meets each Monday at 10am.');
+    }
+	
+    generateReports(): void {
+        console.log('Generating accounting reports...');
+    }
 }
 
-let dept: DepartmentBase = new DepartmentBase(); // error: cannot create an instance of an abstract class
-
-let acctDept: AccountingDepartment = new AccountingDepartment();
-acctDept.PrintName();
-acctDept.PrintMeeting();
+let department: Department; // ok to create a reference to an abstract type
+department = new Department(); // error: cannot create an instance of an abstract class
+department = new AccountingDepartment(); // ok to create and assign a non-abstract subclass
+department.printName();
+department.printMeeting();
+department.generateReports(); // error: method doesn't exist on declared abstract type
 ```
 
 # Advanced Techniques

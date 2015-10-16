@@ -44,6 +44,7 @@ Here, it's only the shape that matters. If the object we pass to the function me
 It's worth pointing out that the type-checker does not require that these properties come in any sort of order, only that the properties the interface requires are present and have the required type.
 
 # Optional Properties
+
 Not all properties of an interface may be required.
 Some exist under certain conditions or may not be there at all.
 These optional properties are popular when creating patterns like "option bags" where you pass an object to a function that only has a couple of properties filled in.
@@ -142,7 +143,7 @@ mySearch = function(src: string, sub: string): boolean {
 }
 ```
 
-Function parameters are checked one at a time, with the type in each corresponding parameter position checked against each other. 
+Function parameters are checked one at a time, with the type in each corresponding parameter position checked against each other.
 If you do not want to specify types at all, Typescript's contextual typing can infer the argument types since the function value is assigned directly to a variable of type `SearchFunc`.
 Here, also, the return type of our function expression is implied by the values it returns (here `false` and `true`).
 Had the function expression returned numbers or strings, the type-checker would have warned us that return type doesn't match the return type described in the `SearchFunc` interface.
@@ -177,7 +178,7 @@ myArray = ["Bob", "Fred"];
 There are two types of supported index types: string and number.
 It is possible to support both types of indexers, with the restriction that the type returned from the numeric indexer must be a subtype of the type returned from the string indexer.
 
-While string index signatures are a powerful way to describe the "dictionary" pattern, they also enforce that all properties match their return type. 
+While string index signatures are a powerful way to describe the "dictionary" pattern, they also enforce that all properties match their return type.
 This is because a string index declares that `obj.property` is also available as `obj["property"]`.
 In this example, `length`'s type does not match the string index's type, and the type-checker gives an error:
 
@@ -246,7 +247,7 @@ This is because when a class implements an interface, only the instance side of 
 Since the constructor sits in the static side, it is not included in this check.
 
 Instead, you would need to work with the static side of the class directly.
-In this example, we define two interfaces, `ClockConstructor` for the constructor and `ClockInterface` for the instance methods. 
+In this example, we define two interfaces, `ClockConstructor` for the constructor and `ClockInterface` for the instance methods.
 Then for convenience we define a constructor function `createClock` that creates instances of of the type that is passed to it. 
 
 ```TypeScript
@@ -344,40 +345,44 @@ When interacting with 3rd-party JavaScript, you may need to use patterns like th
 
 # Interfaces Extending Classes
 
-When an interface type extends a class type it inherits the members of the class but not their implementations. 
-It is as if the interface had declared all of the members of the class without providing an implementation. 
-Interfaces inherit even the private and protected members of a base class. 
+When an interface type extends a class type it inherits the members of the class but not their implementations.
+It is as if the interface had declared all of the members of the class without providing an implementation.
+Interfaces inherit even the private and protected members of a base class.
 This means that when you create an interface that extends a class with private or protected members, that interface type can only be implemented by that class or a subclass of it.
 
-This is useful when you have a large inheritance hierarchy, but want to specify that your code works with only subclasses that have certain properties. The subclasses don't have to be related besides inheriting from the base class.
+This is useful when you have a large inheritance hierarchy, but want to specify that your code works with only subclasses that have certain properties.
+The subclasses don't have to be related besides inheriting from the base class.
 For example:
 
 ```TypeScript
-class Control {  
-    private state: any; 
+class Control {
+    private state: any;
 }
 
-interface SelectableControl extends Control {  
-    select(): void;  
+interface SelectableControl extends Control {
+    select(): void;
 }
 
-class Button extends Control {  
-    select() { }  
+class Button extends Control {
+    select() { }
 }
-class TextBox extends Control {  
-    select() { }  
+
+class TextBox extends Control {
+    select() { }
 }
-class Image extends Control {  
+
+class Image extends Control {
 }
-class Location {  
-    select() { }  
+
+class Location {
+    select() { }
 }
 ```
 
-In the above example, 'SelectableControl' contains all of the members of 'Control', including the private 'state' property. 
-Since 'state' is a private member it is only possible for descendants of 'Control' to implement 'SelectableControl'. 
+In the above example, 'SelectableControl' contains all of the members of 'Control', including the private 'state' property.
+Since 'state' is a private member it is only possible for descendants of 'Control' to implement 'SelectableControl'.
 This is because only descendants of 'Control' will have a 'state' private member that originates in the same declaration, which is a requirement for private members to be compatible.
 
-Within the 'Control' class it is possible to access the 'state' private member through an instance of 'SelectableControl'. 
-Effectively, a 'SelectableControl' acts like a 'Control' that is known to have a 'select' method. 
+Within the 'Control' class it is possible to access the 'state' private member through an instance of 'SelectableControl'.
+Effectively, a 'SelectableControl' acts like a 'Control' that is known to have a 'select' method.
 The 'Button' and 'TextBox' classes are subtypes of 'SelectableControl' (because they both inherit from 'Control' and have a 'select' method), but the 'Image' and 'Location' classes are not.

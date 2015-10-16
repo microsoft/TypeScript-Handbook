@@ -77,7 +77,7 @@ The example also shows how to override methods in the base class with methods th
 Here both `Snake` and `Horse` create a `move` method that overrides the `move` from `Animal`, giving it functionality specific to each class.
 Note that even though `tom` is declared as an `Animal`, since its value is a `Horse`, when `tom.move(34)` calls the overriding method in `Horse`:
 
-```
+```Text
 Slithering...
 Sammy the Python moved 5m.
 Galloping...
@@ -315,8 +315,8 @@ console.log(greeter.greet());
 ```
 
 Here, when we say `var greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.
-This is almost second nature to programmers from other object-oriented languages. 
- 
+This is almost second nature to programmers from other object-oriented languages.
+
 We're also creating another value that we call the *constructor function*.
 This is the function that is called when we `new` up instances of the class.
 To see what this looks like in practice, let's take a look at the JavaScript created by the above example:

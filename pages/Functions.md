@@ -175,7 +175,7 @@ In TypeScript, you can gather these arguments together into a variable:
 
 ```TypeScript
 function buildName(firstName: string, ...restOfName: string[]) {
-	return firstName + " " + restOfName.join(" ");
+    return firstName + " " + restOfName.join(" ");
 }
 
 var employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
@@ -189,7 +189,7 @@ The ellipsis is also used in the type of the function with rest parameters:
 
 ```TypeScript
 function buildName(firstName: string, ...restOfName: string[]) {
-	return firstName + " " + restOfName.join(" ");
+    return firstName + " " + restOfName.join(" ");
 }
 
 var buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
@@ -216,7 +216,7 @@ var deck = {
         return function() {
             var pickedCard = Math.floor(Math.random() * 52);
             var pickedSuit = Math.floor(pickedCard / 13);
-			
+
             return {suit: this.suits[pickedSuit], card: pickedCard % 13};
         }
     }
@@ -247,7 +247,7 @@ var deck = {
         return () => {
             var pickedCard = Math.floor(Math.random() * 52);
             var pickedSuit = Math.floor(pickedCard / 13);
-			
+
             return {suit: this.suits[pickedSuit], card: pickedCard % 13};
         }
     }

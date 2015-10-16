@@ -2,15 +2,15 @@ var markdownlint = require("markdownlint");
 var glob = require("glob");
 
 var options = {
-  files: glob.sync("**/*.md", {ignore: "node_modules/**/*"}),
+  files: glob.sync("**/*.md", { ignore: "node_modules/**/*" }),
   config: {
     MD001: false, // Header levels should only increment by one level at a time
     MD002: false, // First header should be a h1 header
     MD003: false, // Header style
-    MD004: "asterisk", // Unordered list style
+    MD004: { style: "asterisk" }, // Unordered list style
     MD005: true, // Inconsistent indentation for list items at the same level
     MD006: true, // Consider starting bulleted lists at the beginning of the line
-    MD007: 4, // Unordered list indentation
+    MD007: { indent: 4 }, // Unordered list indentation
     MD009: true, // Trailing spaces
     MD010: true, // Hard tabs
     MD011: true, // Reversed link syntax
@@ -25,10 +25,10 @@ var options = {
     MD023: true, // Headers must start at the beginning of the line
     MD024: false, // Multiple headers with the same content
     MD025: false, // Multiple top level headers in the same document
-    MD026: ".,;:!?", // Trailing punctuation in header
+    MD026: { punctuation: ".,;:!?" }, // Trailing punctuation in header
     MD027: true, // Multiple spaces after blockquote symbol
     MD028: false, // Blank line inside blockquote
-    MD029: "ordered", // Ordered list item prefix
+    MD029: { style: "ordered" }, // Ordered list item prefix
     MD030: true, // Spaces after list markers
     MD031: true, // Fenced code blocks should be surrounded by blank lines
     MD032: true, // Lists should be surrounded by blank lines

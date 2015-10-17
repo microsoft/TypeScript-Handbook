@@ -311,7 +311,7 @@ abstract class Animal {
 Methods within an abstract class that are marked as abstract do not contain an implementation and must be implemented in derived classes.
 Abstract methods share a similar syntax to interface methods.
 Both define the signature of a method without including a method body.
-However, abstract methods must include the `abstract` keyword and may optionally contain access modifiers.
+However, abstract methods must include the `abstract` keyword and may optionally include access modifiers.
 
 ```TypeScript
 abstract class Department {

@@ -292,6 +292,7 @@ var grid2 = new Grid(5.0);  // 5x scale
 console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
 console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 ```
+
 # Abstract Classes
 
 Abstract classes are base classes from which other classes may be derived.
@@ -315,27 +316,27 @@ However, abstract methods must include the `abstract` keyword and may optionally
 
 ```TypeScript
 abstract class Department {
-	
+
     constructor(public name: string) {
     }
-	
+
     printName(): void {
         console.log('Department name: ' + this.name);
     }
-	
+
     abstract printMeeting(): void; // must be implemented in derived classes
 }
 
 class AccountingDepartment extends Department {
-	
+
     constructor() {
         super('Accounting and Auditing'); // constructors in derived classes must call super()
     }
-	
+
     printMeeting(): void {
         console.log('The Accounting Department meets each Monday at 10am.');
     }
-	
+
     generateReports(): void {
         console.log('Generating accounting reports...');
     }

@@ -298,7 +298,7 @@ import m = require('mod');
 export var t = m.something + 1;
 ```
 
-##### AMD / RequireJS SimpleModule.js:
+##### AMD / RequireJS SimpleModule.js
 
 ```JavaScript
 define(["require", "exports", 'mod'], function(require, exports, m) {
@@ -306,7 +306,7 @@ define(["require", "exports", 'mod'], function(require, exports, m) {
 });
 ```
 
-##### CommonJS / Node SimpleModule.js:
+##### CommonJS / Node SimpleModule.js
 
 ```JavaScript
 var m = require('mod');
@@ -314,6 +314,7 @@ exports.t = m.something + 1;
 ```
 
 # Export =
+
 In the previous example, when we consumed each validator, each module only exported one value.
 In cases like this, it's cumbersome to work with these symbols through their qualified name when a single identifier would do just as well.
 
@@ -462,6 +463,7 @@ For example, we could begin writing it as follows:
 ##### D3.d.ts (simplified excerpt)
 
 <!-- TODO: This is not at all how it's done on DT - do we want to change this? -->
+
 ```TypeScript
 declare namespace D3 {
     export interface Selectors {
@@ -559,6 +561,7 @@ This is how the node.d.ts file that several of the TypeScript samples use is con
 If you're converting a program from namespaces to modules, it can be easy to end up with a file that looks like this:
 
 ##### shapes.ts
+
 ```TypeScript
 export namespace Shapes {
     export class Triangle { /* ... */ }
@@ -570,6 +573,7 @@ The top-level module here `Shapes` wraps up `Triangle` and `Square` for no reaso
 This is confusing and annoying for consumers of your module:
 
 ##### shapeConsumer.ts
+
 ```TypeScript
 import shapes = require('./shapes');
 var t = new shapes.Shapes.Triangle(); // shapes.Shapes?
@@ -591,6 +595,7 @@ export class Square { /* ... */ }
 ```
 
 ##### shapeConsumer.ts
+
 ```TypeScript
 import shapes = require('./shapes');
 var t = new shapes.Triangle();

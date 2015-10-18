@@ -23,7 +23,7 @@ var greeter = new Greeter("world");
 ```
 
 The syntax should look familiar if you've used C# or Java before.
-We declare a new class `Greeter`. This class has three members: a property called `greeting`, a constructor, and a method `greet`. 
+We declare a new class `Greeter`. This class has three members: a property called `greeting`, a constructor, and a method `greet`.
 
 You'll notice that in the class when we refer to one of the members of the class we prepend `this.`.
 This denotes that it's a member access.
@@ -79,7 +79,7 @@ Note that even though `tom` is declared as an `Animal`, since its value is a `Ho
 
 Derived classes that contain constructor functions must call `super()` which will execute the constructor function on the base class.
 
-```
+```Text
 Slithering...
 Sammy the Python moved 5m.
 Galloping...
@@ -121,7 +121,7 @@ new Animal("Cat").name; // Error: 'name' is private;
 ```
 
 TypeScript is a structural type system.
-When we compare two different types, regardless of where they came from, if the types of all members are compatible, then we say the types themselves are compatible. 
+When we compare two different types, regardless of where they came from, if the types of all members are compatible, then we say the types themselves are compatible.
 
 However, when comparing types that have `private` and `protected` members, we treat these types differently.
 For two types to be considered compatible, if one of them has a `private` member, then the other must have a `private` member that originated in the same declaration.
@@ -141,7 +141,7 @@ class Rhino extends Animal {
 
 class Employee {
     private name: string;
-    constructor(theName: string) { this.name = theName; }	
+    constructor(theName: string) { this.name = theName; }
 }
 
 var animal = new Animal("Goat");
@@ -230,7 +230,7 @@ if (employee.fullName) {
 }
 ```
 
-While allowing people to randomly set fullName directly is pretty handy, this might get us in trouble if we people can change names on a whim. 
+While allowing people to randomly set fullName directly is pretty handy, this might get us in trouble if we people can change names on a whim.
 
 In this version, we check to make sure the user has a secret passcode available before we allow them to modify the employee.
 We do this by replacing the direct access to fullName with a `set` that will check the passcode.
@@ -245,7 +245,7 @@ class Employee {
     get fullName(): string {
         return this._fullName;
     }
-	
+
     set fullName(newName: string) {
         if (passcode && passcode == "secret passcode") {
             this._fullName = newName;
@@ -373,8 +373,8 @@ console.log(greeter.greet());
 ```
 
 Here, when we say `var greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.
-This is almost second nature to programmers from other object-oriented languages. 
- 
+This is almost second nature to programmers from other object-oriented languages.
+
 We're also creating another value that we call the *constructor function*.
 This is the function that is called when we `new` up instances of the class.
 To see what this looks like in practice, let's take a look at the JavaScript created by the above example:

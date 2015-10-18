@@ -15,9 +15,13 @@ var isDone: boolean = false;
 
 As in JavaScript, all numbers in TypeScript are floating point values.
 These floating point numbers get the type `number`.
+In addition to hexadecimal and decimal literals, TypeScript also supports binary and octal literals introduced in ECMAScript 2015.
 
 ```TypeScript
-var height: number = 6;
+var decLiteral: number = 6;
+var hexLiteral: number = 0x9837abdef;
+var binaryLiteral: number = 0b0010;
+var octalLiteral: number = 0o74563;
 ```
 
 # String
@@ -115,7 +119,7 @@ notSure = false; // okay, definitely a boolean
 ```
 
 The `any` type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type-checking during compilation.
-You might expect `Object` to play a similar role, as it does in other languages. 
+You might expect `Object` to play a similar role, as it does in other languages.
 But variables of type `Object` only allow you to assign any value to them -- you can't call arbitrary methods on them, even ones that actually exist:
 
 ```TypeScript
@@ -123,7 +127,7 @@ var notSure: any = 4;
 notSure.ifItExists(); // okay, ifItExists might exist at runtime
 notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
 var prettySure: Object = 4;
-prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'. 
+prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
 ```
 
 The `any` type is also handy if you know some part of the type, but perhaps not all of it.

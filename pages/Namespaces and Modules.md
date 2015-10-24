@@ -76,6 +76,7 @@ This is how the node.d.ts file that several of the TypeScript samples use is con
 If you're converting a program from namespaces to modules, it can be easy to end up with a file that looks like this:
 
 ##### shapes.ts
+
 ```TypeScript
 export namespace Shapes {
     export class Triangle { /* ... */ }
@@ -87,6 +88,7 @@ The top-level module here `Shapes` wraps up `Triangle` and `Square` for no reaso
 This is confusing and annoying for consumers of your module:
 
 ##### shapeConsumer.ts
+
 ```TypeScript
 import shapes = require('./shapes');
 var t = new shapes.Shapes.Triangle(); // shapes.Shapes?
@@ -108,6 +110,7 @@ export class Square { /* ... */ }
 ```
 
 ##### shapeConsumer.ts
+
 ```TypeScript
 import shapes = require('./shapes');
 var t = new shapes.Triangle();

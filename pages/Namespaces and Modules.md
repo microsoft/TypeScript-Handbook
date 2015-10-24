@@ -14,8 +14,8 @@ See the [[Namespaces]] documentation for more information about namespaces.
 
 # Using Namespaces
 
-Namespaces are simply named JavaScript object in the global namespace. 
-This makes namespaces a very simple construct to use. 
+Namespaces are simply named JavaScript object in the global namespace.
+This makes namespaces a very simple construct to use.
 They can span multiple files, and can be concatenated using `--outFile`.
 Namespaces can be a good way to structure your code in a Web Application, with all dependencies included as `<script>` tags in your html page.
 
@@ -23,10 +23,10 @@ Just like all global namespace pollution, it can be hard to identify component d
 
 # Going modular
 
-Just like namespaces, modules can contain both code and declarations. 
-The main difference is that modules *declare* their dependencies.  
+Just like namespaces, modules can contain both code and declarations.
+The main difference is that modules *declare* their dependencies.
 
-Modules also adds the dependency on a module loader (such as CommonJs/requirejs). 
+Modules also adds the dependency on a module loader (such as CommonJs/requirejs).
 For a small JS application this might not be optimal, but for larger applications, the cost comes with long term modularity and maintainability benefits.
 Modules provide for better code reuse, stronger isolation and better bundling optimization tooling support.
 

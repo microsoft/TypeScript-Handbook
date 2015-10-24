@@ -12,10 +12,10 @@ Conversely, to consume a variable, function, class, interface, etc. exported fro
 
 Modules are declarative; the relationships between modules are specified in terms of imports and exports at the file level.
 
-Modules import one another using a module loader. 
-At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it. 
+Modules import one another using a module loader.
+At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
 Common module loaders used in JavaScript are [CommonJS module loader](https://en.wikipedia.org/wiki/CommonJS) for Node.js applications, and [require.js](http://requirejs.org/) for Web applications.
- 
+
 In TypeScript just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 
 # Export
@@ -60,7 +60,7 @@ export { ZipCodeValidator as mainValidator };
 
 ## Re-exports
 
-Often modules extend other modules, and partially expose some of their features. 
+Often modules extend other modules, and partially expose some of their features.
 A re-export does not import it locally, or introduce a local variable.
 
 ##### ParseIntBasedZipCodeValidator.ts
@@ -68,7 +68,7 @@ A re-export does not import it locally, or introduce a local variable.
 ```ts
 export class ParseIntBasedZipCodeValidator {
     isAcceptable(s: string) {
-        return s.length === 5 && parseInt(s).toString() === s;;
+        return s.length === 5 && parseInt(s).toString() === s;
     }
 }
 
@@ -82,13 +82,13 @@ Optionally, a module can wrap one or more modules and combine all their exports 
 
 ```ts
 export * from "./StringValidator"; // exports interface StringValidator
-export * from "./LettersOnlyValidator"; // exports class LettersOnlyValidator 
+export * from "./LettersOnlyValidator"; // exports class LettersOnlyValidator
 export * from "./ZipCodeValidator";  // exports class ZipCodeValidator
 ```
 
 # Import
 
-Importing is just about as easy as exporting from an module. 
+Importing is just about as easy as exporting from an module.
 Importing an exported declaration is done through using one of the `import` forms below:
 
 ## Import a single export from a module
@@ -125,8 +125,8 @@ import "./my-module.js";
 
 # Default exports
 
-Each module can optionally export a `default` export. 
-Default exports are marked with the keyword `default`; and there can only be one `default` export per module. 
+Each module can optionally export a `default` export.
+Default exports are marked with the keyword `default`; and there can only be one `default` export per module.
 `default` exports are imported using a different import form.
 
 `default` exports are really handy.
@@ -267,7 +267,7 @@ import m = require("mod");
 export var t = m.something + 1;
 ```
 
-##### AMD / RequireJS SimpleModule.js:
+##### AMD / RequireJS SimpleModule.js
 
 ```js
 define(["require", "exports", "./mod"], function (require, exports, mod_1) {
@@ -275,14 +275,14 @@ define(["require", "exports", "./mod"], function (require, exports, mod_1) {
 });
 ```
 
-##### CommonJS / Node SimpleModule.js:
+##### CommonJS / Node SimpleModule.js
 
 ```js
 var mod_1 = require("./mod");
 exports.t = mod_1.something + 1;
 ```
 
-##### UMD SimpleModule.js:
+##### UMD SimpleModule.js
 
 ```js
 (function (factory) {
@@ -298,7 +298,7 @@ exports.t = mod_1.something + 1;
 });
 ```
 
-##### System SimpleModule.js:
+##### System SimpleModule.js
 
 ```js
 System.register(["./mod"], function(exports_1) {
@@ -316,19 +316,18 @@ System.register(["./mod"], function(exports_1) {
 });
 ```
 
-##### Native ECMAScript 2015 modules SimpleModule.js:
+##### Native ECMAScript 2015 modules SimpleModule.js
 
 ```js
 import { something } from "./mod";
 export var t = something + 1;
 ```
 
-
 # Simple Example
 
 Below, we've consolidated the Validator implementations used in previous examples to only export a single named export from each module.
 
-To compile, we must specify a module target on the command line. For Node.js, use `--module commonjs`; 
+To compile, we must specify a module target on the command line. For Node.js, use `--module commonjs`;
 for require.js, use `--module amd`. For example:
 
 ```Shell

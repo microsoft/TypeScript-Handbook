@@ -15,9 +15,13 @@ var isDone: boolean = false;
 
 As in JavaScript, all numbers in TypeScript are floating point values.
 These floating point numbers get the type `number`.
+In addition to hexadecimal and decimal literals, TypeScript also supports binary and octal literals introduced in ECMAScript 2015.
 
 ```TypeScript
-var height: number = 6;
+var decLiteral: number = 6;
+var hexLiteral: number = 0x9837abdef;
+var binaryLiteral: number = 0b0010;
+var octalLiteral: number = 0o74563;
 ```
 
 # String
@@ -92,7 +96,7 @@ var c: Color = Color.Green;
 ```
 
 A handy feature of enums is that you can also go from a numeric value to the name of that value in the enum.
-For example, if we had the value `2` but weren't sure which that mapped to in the `Color` enum above, we could look up the corresponding name:
+For example, if we had the value `2` but weren't sure what that mapped to in the `Color` enum above, we could look up the corresponding name:
 
 ```TypeScript
 enum Color {Red = 1, Green, Blue};
@@ -103,8 +107,8 @@ alert(colorName);
 
 # Any
 
-We may need to describe the type of variables that we may not know when we are writing the application.
-These values may come from dynamic content, e.g. from the user or 3rd party library.
+We may need to describe the type of variables that we do not know when we are writing an application.
+These values may come from dynamic content, e.g. from the user or a 3rd party library.
 In these cases, we want to opt-out of type-checking and let the values pass through compile-time checks.
 To do so, we label these with the `any` type:
 
@@ -115,6 +119,16 @@ notSure = false; // okay, definitely a boolean
 ```
 
 The `any` type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type-checking during compilation.
+You might expect `Object` to play a similar role, as it does in other languages.
+But variables of type `Object` only allow you to assign any value to them -- you can't call arbitrary methods on them, even ones that actually exist:
+
+```TypeScript
+var notSure: any = 4;
+notSure.ifItExists(); // okay, ifItExists might exist at runtime
+notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
+var prettySure: Object = 4;
+prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
+```
 
 The `any` type is also handy if you know some part of the type, but perhaps not all of it.
 For example, you may have an array but the array has a mix of different types:
@@ -127,11 +141,17 @@ list[1] = 100;
 
 # Void
 
-Perhaps the opposite in some ways to `any` is `void`, the absence of having any type at all.
+`void` is a little like the opposite of `any`: the absence of having any type at all.
 You may commonly see this as the return type of functions that do not return a value:
 
 ```TypeScript
 function warnUser(): void {
     alert("This is my warning message");
 }
+```
+
+Declaring variables of type `void` is not useful because you can only assign `undefined` or `null` to them:
+
+```TypeScript
+var unusable: void = undefined;
 ```

@@ -1,4 +1,5 @@
 # Introduction
+
 When using an external JavaScript library, or new host API, you'll need to use a declaration file (.d.ts) to describe the shape of that library.
 This guide covers a few high-level concepts specific to writing definition files, then proceeds with a number of examples that show how to transcribe various concepts to their matching definition file descriptions.
 
@@ -84,6 +85,7 @@ declare var A: A_Static;
 ```
 
 The trade-offs here are as follows:
+
 * Standard classes can be inherited from using `extends`; decomposed classes cannot. This might change in later version of TypeScript if arbitrary `extends` expressions are allowed.
 * It is possible to add members later (through declaration merging) to the static side of both standard and decomposed classes
 * It is possible to add instance members to decomposed classes, but not standard classes

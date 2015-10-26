@@ -501,6 +501,8 @@ var myUrl = URL.parse("http://www.typescriptlang.org");
 
 # Modules and Namespaces
 
+> For more discussion about modules and namespaces see [[Modules and Namespaces]]
+
 ## How do I use namespaces with TypeScript modules
 
 > **Do not use "namespaces" in external modules. Don't do this. Seriously. Stop.**

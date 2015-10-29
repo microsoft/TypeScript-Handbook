@@ -69,6 +69,35 @@ The second way uses a generic array type, `Array<elemType>`:
 var list: Array<number> = [1, 2, 3];
 ```
 
+# Tuple
+
+Tuple types allow you to express an array where the type of a fixed number of elements is known, but need not be the same. 
+For example, you may want to represent an array with a `string` at position 0 and a `number` at position 1:
+
+```ts
+// Declare a tuple type
+var x: [string, number];
+// Initialize it
+x = ['hello', 10]; // OK
+// Initialize it incorrectly
+x = [10, 'hello']; // Error
+```
+
+When accessing an element with a known index, the correct type is retrieved:
+
+```ts
+console.log(x[0].substr(1)); // OK
+console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
+```
+
+When accessing an element outside the set of known indices, a union type is used instead:
+
+```ts
+x[3] = 'world'; // OK, string can be assigned to (string | number)
+console.log(x[5].toString()); // OK, 'string' and 'number' both have toString
+x[6] = true; // Error, boolean isn't (string | number)
+```
+
 # Enum
 
 A helpful addition to the standard set of datatypes from JavaScript is the `enum`.

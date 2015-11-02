@@ -72,7 +72,7 @@ var list: Array<number> = [1, 2, 3];
 # Tuple
 
 Tuple types allow you to express an array where the type of a fixed number of elements is known, but need not be the same.
-For example, you may want to represent an array with a `string` at position 0 and a `number` at position 1:
+For example, you may want to represent a value as a pair of a `string` and a `number`:
 
 ```TypeScript
 // Declare a tuple type
@@ -97,6 +97,8 @@ x[3] = 'world'; // OK, string can be assigned to (string | number)
 console.log(x[5].toString()); // OK, 'string' and 'number' both have toString
 x[6] = true; // Error, boolean isn't (string | number)
 ```
+
+Union types are an advanced topic that we'll cover in a later chapter.
 
 # Enum
 

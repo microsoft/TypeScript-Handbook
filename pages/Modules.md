@@ -503,6 +503,16 @@ var myUrl = URL.parse("http://www.typescriptlang.org");
 
 ## Export as close to top-level as possible
 
+Consumers of your module should have as little friction as possible when using things that you export.
+Adding too many levels of nesting tends to be cumbersome, so think carefully about how you want to structure things.
+
+Exporting a namespace from your module is an example of adding too many layers of nesting.
+While namespaces sometimes have their uses, they add an extra level of indirection when using modules.
+This can quickly becomes a pain point for users, and is usually unnecessary.
+
+Static methods on an exported class have a similar problem - the class itself adds a layer of nesting.
+Unless it increases expressivity or intent in a clearly useful way, consider simply exporting a helper function.
+
 ### If you're only exporting a single `class` or `function`, use `export default`
 
 #### MyClass.ts

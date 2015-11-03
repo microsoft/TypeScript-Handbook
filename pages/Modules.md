@@ -563,7 +563,7 @@ export default class SomeType {
 export default function getThing() { return 'thing'; }
 ```
 
-#### Consumption.ts
+#### Customer.ts
 
 ```ts
 import t from "./MyClass";
@@ -583,7 +583,7 @@ export class SomeType { /* ... */ }
 export function someFunc() { /* ... */ }
 ```
 
-#### Consumption.ts
+#### Customer.ts
 
 ```ts
 import { SomeType, SomeFunc } from "./MyThings";
@@ -605,7 +605,7 @@ export module Plants {
 }
 ```
 
-#### Consumption.ts
+#### Customer.ts
 
 ```ts
 import * as g from "./MyLargeModule.ts";
@@ -698,7 +698,7 @@ export function test(c: Calculator, input: string) {
 }
 ```
 
-Here is a simple test for the calcultor using the exposed `test` function.
+Here is a simple test for the calculator using the exposed `test` function.
 
 #### TestCalculator.ts
 
@@ -710,7 +710,7 @@ var c = new Calculator();
 test(c, "1+2*33/11="); // prints 9
 ```
 
-Now to extend this to a add support for input with numbers in bases other than 10, lets create `ProgrammerCalculator.ts`
+Now to extend this to add support for input with numbers in bases other than 10, let's create `ProgrammerCalculator.ts`
 
 #### ProgrammerCalculator.ts
 

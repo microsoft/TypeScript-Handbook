@@ -14,7 +14,7 @@ The type of the `x` variable is inferred to be `number`.
 This kind of inference takes place when initializing variables and members, setting parameter default values, and determining function return types.
 
 In most cases, type inference is straightforward.
-In the following sections, we'll explore some of the nuance in how types are inferred.
+In the following sections, we'll explore some of the nuances in how types are inferred.
 
 # Best common type
 

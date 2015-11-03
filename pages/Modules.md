@@ -551,7 +551,7 @@ var x = new SomeType();
 var y = someFunc();
 ```
 
-### Use the namespace import pattern if you're importing a large number of things 
+### Use the namespace import pattern if you're importing a large number of things
 
 #### MyLargeModule.ts
 

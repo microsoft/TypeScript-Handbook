@@ -515,6 +515,11 @@ Unless it increases expressivity or intent in a clearly useful way, consider sim
 
 ### If you're only exporting a single `class` or `function`, use `export default`
 
+Just as "exporting near the top-level" reduces friction on your module's consumers, so does introducing a default export.
+If a module's primary purpose is to house one specific export, then you should consider exporting it as a default export.
+This makes both importing and actually using the import a little easier.
+For example:
+
 #### MyClass.ts
 
 ```ts
@@ -538,7 +543,7 @@ var x = new t();
 console.log(f());
 ```
 
-This is optimal for consumers. They can name your type whatever they want (t in this case) and don't have to do any extraneous dotting to find your objects.
+This is optimal for consumers. They can name your type whatever they want (`t` in this case) and don't have to do any excessive dotting to find your objects.
 
 ### If you're exporting multiple objects, put them all at top-level
 

@@ -1,7 +1,7 @@
 > **A note about terminology:**
 It's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
-"External modules" are now simply "modules", as to align with [ECMAScript 2015 (also known as ES6)](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
+"External modules" are now simply "modules", as to align with [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
 
 # Introduction
 
@@ -14,15 +14,15 @@ Modules are declarative; the relationships between modules are specified in term
 
 Modules import one another using a module loader.
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
-Common module loaders used in JavaScript are [CommonJS module loader](https://en.wikipedia.org/wiki/CommonJS) for Node.js applications, and [require.js](http://requirejs.org/) for Web applications.
+Well-known modules loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
 
-In TypeScript just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
+In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 
 # Export
 
 ## Exporting a declaration
 
-Any declaration can be exported by adding the `export` keyword, e.g. variable, class, function, enum, interface, type alias, etc.
+Any declaration (such as a variable, function, class, type alias, or interface) can be exported by adding the `export` keyword.
 
 ##### Validation.ts
 

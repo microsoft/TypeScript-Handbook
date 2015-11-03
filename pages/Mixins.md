@@ -106,7 +106,7 @@ Except, that's exactly what we want to avoid by using mixins.
 
 To satisfy this requirement, we create stand-in properties and their types for the members that will come from our mixins.
 This satisfies the compiler that these members will be available at runtime.
-This lets us still get the benefit of the mixins, albeit with a some bookkeeping overhead.
+This lets us still get the benefit of the mixins, albeit with some bookkeeping overhead.
 
 ```TypeScript
 // Disposable

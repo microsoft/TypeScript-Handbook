@@ -499,51 +499,7 @@ import * as URL from "url";
 var myUrl = URL.parse("http://www.typescriptlang.org");
 ```
 
-# Modules and Namespaces
-
-> For more discussion about modules and namespaces see [[Modules and Namespaces]]
-
-## How do I use namespaces with TypeScript modules
-
-> **Do not use "namespaces" in external modules. Don't do this. Seriously. Stop.**
-
-Now that we've got that out of the way, let's talk about why you shouldn't be trying to use the concept of a "namespace" across multiple external modules.
-
-#### These Aren't the Concepts You're Looking For
-
-We need to go back to the origins of why namespaces exist in the first place and examine whether those reasons make sense for external modules.
-
-*Organization*: Namespaces are handy for grouping together logically-related objects and types.
-For example, in C#, you're going to find all the collection types in System.Collections.
-By organizing our types into hierarchical namespaces, we provide a good "discovery" experience for users of those types.
-
-*Name Conflicts*: Namespaces are important to avoid naming collisions. For example, you might have `My.Application.Customer.AddForm` and `My.Application.Order.AddForm` -- two types with the same name, but a different namespace.
-In a language where all identifiers exist in the same root scope and all assemblies load all types, it's critical to have everything be in a namespace.
-
-Do those reasons make sense in external modules?
-
-*Organization*: External modules are already present in a file system, necessarily.
-We have to resolve them by path and filename, so there's a logical organization scheme for us to use.
-We can have a /collections/generic/ folder with a list module in it.
-
-*Name Conflicts*: This doesn't apply at all in external modules.
-Within a module, there's no plausible reason to have two objects with the same name.
-From the consumption side, the consumer of any given module gets to pick the name that they will use to refer to the module, so accidental naming conflicts are impossible.
-
-Even if you don't believe that those reasons are adequately addressed by how modules work, the "solution" of trying to use namespaces in external modules doesn't even work.
-
-#### Modules are Their Own Box
-
-You've probably had something similar happen in real life: You order a few things on Amazon, and each item shows up in its own box, with a smaller box inside, with your item wrapped in its own packaging.
-Even if the interior boxes are similar, the shipments are not usefully "combined".
-
-Going with the box analogy, the key observation is that modules are their own box.
-It might be a very complex item with lots of functionality, but any given external module is its own box.
-
-
-# Guidance for External Modules
-
-Now that we've figured out that we don't need to use 'namespaces', how should we organize our modules? Some guiding principles and examples follow.
+# Guidance for structuring modules
 
 ## Export as close to top-level as possible
 
@@ -583,6 +539,8 @@ export class SomeType { /* ... */ }
 export function someFunc() { /* ... */ }
 ```
 
+### When importing explicitlly name imported names
+
 #### Customer.ts
 
 ```ts
@@ -591,25 +549,21 @@ var x = new SomeType();
 var y = someFunc();
 ```
 
-### If you're exporting a large number of things, only then should you use the `namespace` keyword
+### If you're importing a large number of things, use the namespace import pattern
 
 #### MyLargeModule.ts
 
 ```ts
-export module Animals {
-  export class Dog { ... }
-  export class Cat { ... }
-}
-export module Plants {
-  export class Tree { ... }
-}
+export class Dog { ... }
+export class Cat { ... }
+export class Tree { ... }
 ```
 
 #### Customer.ts
 
 ```ts
 import * as g from "./MyLargeModule.ts";
-var x = new g.Animals.Dog();
+var x = new g.Dog();
 ```
 
 ## Re-export to extend
@@ -756,6 +710,27 @@ import { Calculator, test } from "./ProgrammerCalculator";
 var c = new Calculator(2);
 test(c, "001+010="); // prints 3
 ```
+
+## Do not use namespaces in modules
+
+When first moving to a module-based organization, a common tendency is to wrap exports in an additional layer of namespaces.
+Modules have their own scope, and only exported declarations are visible from outside the module.
+With this in mind, namespace provide very little, if any, value when working with modules.
+
+On the organization front, namespaces are handy for grouping together logically-related objects and types in the global scope.
+For example, in C#, you're going to find all the collection types in System.Collections.
+By organizing our types into hierarchical namespaces, we provide a good "discovery" experience for users of those types.
+Modules, on the other hand, are already present in a file system, necessarily.
+We have to resolve them by path and filename, so there's a logical organization scheme for us to use.
+We can have a /collections/generic/ folder with a list module in it.
+
+Namespaces are important to avoid naming collisions in the global scope.
+For example, you might have `My.Application.Customer.AddForm` and `My.Application.Order.AddForm` -- two types with the same name, but a different namespace.
+This, however, is not an issue with modules.
+Within a module, there's no plausible reason to have two objects with the same name.
+From the consumption side, the consumer of any given module gets to pick the name that they will use to refer to the module, so accidental naming conflicts are impossible.
+
+> For more discussion about modules and namespaces see [[Modules and Namespaces]]
 
 ## Red Flags
 

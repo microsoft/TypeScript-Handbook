@@ -539,7 +539,9 @@ export class SomeType { /* ... */ }
 export function someFunc() { /* ... */ }
 ```
 
-### When importing explicitlly name imported names
+Conversly when importing:
+
+### Explicitlly list imported names
 
 #### Customer.ts
 
@@ -549,7 +551,7 @@ var x = new SomeType();
 var y = someFunc();
 ```
 
-### If you're importing a large number of things, use the namespace import pattern
+### Use the namespace import pattern if you're importing a large number of things 
 
 #### MyLargeModule.ts
 
@@ -557,13 +559,14 @@ var y = someFunc();
 export class Dog { ... }
 export class Cat { ... }
 export class Tree { ... }
+export class Flower { ... }
 ```
 
 #### Customer.ts
 
 ```ts
-import * as g from "./MyLargeModule.ts";
-var x = new g.Dog();
+import * as myLargeModule from "./MyLargeModule.ts";
+var x = new myLargeModule.Dog();
 ```
 
 ## Re-export to extend

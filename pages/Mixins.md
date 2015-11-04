@@ -46,7 +46,7 @@ class SmartObject implements Disposable, Activatable {
     activate: () => void;
     deactivate: () => void;
 }
-applyMixins(SmartObject, [Disposable, Activatable])
+applyMixins(SmartObject, [Disposable, Activatable]);
 
 var smartObj = new SmartObject();
 setTimeout(() => smartObj.interact(), 1000);
@@ -59,7 +59,7 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             derivedCtor.prototype[name] = baseCtor.prototype[name];
-        })
+        });
     });
 }
 ```
@@ -121,7 +121,7 @@ deactivate: () => void;
 Finally, we mix our mixins into the class, creating the full implementation.
 
 ```TypeScript
-applyMixins(SmartObject, [Disposable, Activatable])
+applyMixins(SmartObject, [Disposable, Activatable]);
 ```
 
 Lastly, we create a helper function that will do the mixing for us.
@@ -132,7 +132,7 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             derivedCtor.prototype[name] = baseCtor.prototype[name];
-        })
+        });
     });
 }
 

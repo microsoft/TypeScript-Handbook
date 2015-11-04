@@ -534,7 +534,7 @@ export default class SomeType {
 export default function getThing() { return 'thing'; }
 ```
 
-#### Customer.ts
+#### Consumer.ts
 
 ```ts
 import t from "./MyClass";
@@ -558,7 +558,7 @@ Conversly when importing:
 
 ### Explicitlly list imported names
 
-#### Customer.ts
+#### Consumer.ts
 
 ```ts
 import { SomeType, SomeFunc } from "./MyThings";
@@ -577,7 +577,7 @@ export class Tree { ... }
 export class Flower { ... }
 ```
 
-#### Customer.ts
+#### Consumer.ts
 
 ```ts
 import * as myLargeModule from "./MyLargeModule.ts";

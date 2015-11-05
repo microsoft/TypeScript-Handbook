@@ -30,7 +30,7 @@ Modules also adds the dependency on a module loader (such as CommonJs/requirejs)
 For a small JS application this might not be optimal, but for larger applications, the cost comes with long term modularity and maintainability benefits.
 Modules provide for better code reuse, stronger isolation and better bundling optimization tooling support.
 
-Also worth noting that, for NodeJs applications, modules are the default and the recommended approach to structure your code.
+Also worth noting that, for Node.js applications, modules are the default and the recommended approach to structure your code.
 
 Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine implementations.
 

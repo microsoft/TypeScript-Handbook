@@ -259,7 +259,7 @@ interface ClockInterface {
 }
 
 function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
-    return new ctor(hour, number);
+    return new ctor(hour, minute);
 }
 
 class DigitalClock implements ClockInterface {

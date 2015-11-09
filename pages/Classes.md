@@ -230,10 +230,10 @@ if (employee.fullName) {
 }
 ```
 
-While allowing people to randomly set fullName directly is pretty handy, this might get us in trouble if people can change names on a whim.
+While allowing people to randomly set `fullName` directly is pretty handy, this might get us in trouble if people can change names on a whim.
 
 In this version, we check to make sure the user has a secret passcode available before we allow them to modify the employee.
-We do this by replacing the direct access to fullName with a `set` that will check the passcode.
+We do this by replacing the direct access to `fullName` with a `set` that will check the passcode.
 We add a corresponding `get` to allow the previous example to continue to work seamlessly.
 
 ```TypeScript

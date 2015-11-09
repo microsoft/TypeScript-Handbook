@@ -49,7 +49,7 @@ Not all properties of an interface may be required.
 Some exist under certain conditions or may not be there at all.
 These optional properties are popular when creating patterns like "option bags" where you pass an object to a function that only has a couple of properties filled in.
 
-Here's as example of this pattern:
+Here's an example of this pattern:
 
 ```TypeScript
 interface SquareConfig {

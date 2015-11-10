@@ -54,7 +54,7 @@ The final way is by seeing an "ambient module declaration", where we `declare` a
 
 ##### myModules.d.ts
 
-```TypeScript
+```ts
 // In a .d.ts file or .ts file that is not a module:
 declare module "SomeModule" {
     export function fn(): string;
@@ -63,7 +63,7 @@ declare module "SomeModule" {
 
 ##### myOtherModule.ts
 
-```TypeScript
+```ts
 /// <reference path="myModules.d.ts" />
 import m = require("SomeModule");
 ```
@@ -77,7 +77,7 @@ If you're converting a program from namespaces to modules, it can be easy to end
 
 ##### shapes.ts
 
-```TypeScript
+```ts
 export namespace Shapes {
     export class Triangle { /* ... */ }
     export class Square { /* ... */ }
@@ -89,7 +89,7 @@ This is confusing and annoying for consumers of your module:
 
 ##### shapeConsumer.ts
 
-```TypeScript
+```ts
 import shapes = require('./shapes');
 var t = new shapes.Shapes.Triangle(); // shapes.Shapes?
 ```
@@ -104,14 +104,14 @@ Here's a revised example:
 
 ##### shapes.ts
 
-```TypeScript
+```ts
 export class Triangle { /* ... */ }
 export class Square { /* ... */ }
 ```
 
 ##### shapeConsumer.ts
 
-```TypeScript
+```ts
 import shapes = require('./shapes');
 var t = new shapes.Triangle();
 ```

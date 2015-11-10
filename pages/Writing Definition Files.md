@@ -31,20 +31,20 @@ You might have a choice of declaring a variable using an anonymous type or an in
 
 #### Anonymously-typed var
 
-```TypeScript
+```ts
 declare var MyPoint: { x: number; y: number; };
 ```
 
 #### Interfaced-typed var
 
-```TypeScript
+```ts
 interface SomePoint { x: number; y: number; }
 declare var MyPoint: SomePoint;
 ```
 
 From a consumption side these declarations are identical, but the type `SomePoint` can be extended through interface merging:
 
-```TypeScript
+```ts
 interface SomePoint { z: number; }
 MyPoint.z = 4; // OK
 ```
@@ -63,7 +63,7 @@ As an example, the following two declarations are nearly equivalent from a consu
 
 #### Standard
 
-```TypeScript
+```ts
 class A {
     static st: string;
     inst: number;
@@ -73,7 +73,7 @@ class A {
 
 #### Decomposed
 
-```TypeScript
+```ts
 interface A_Static {
     new(m: any): A_Instance;
     st: string;
@@ -105,7 +105,7 @@ When there are multiple good representations, more than one definition sample mi
 
 #### Usage
 
-```TypeScript
+```ts
 animalFactory.create("dog");
 animalFactory.create("giraffe", { name: "ronald" });
 animalFactory.create("panda", { name: "bob", height: 400 });
@@ -115,7 +115,7 @@ animalFactory.create("cat", { height: 32 });
 
 #### Typing
 
-```TypeScript
+```ts
 namespace animalFactory {
     interface AnimalOptions {
         name: string;
@@ -130,14 +130,14 @@ namespace animalFactory {
 
 #### Usage
 
-```TypeScript
+```ts
 zooKeeper.workSchedule = "morning";
 zooKeeper(giraffeCage);
 ```
 
 #### Typing
 
-```TypeScript
+```ts
 // Note: Function must precede namespace
 function zooKeeper(cage: AnimalCage);
 namespace zooKeeper {
@@ -149,7 +149,7 @@ namespace zooKeeper {
 
 #### Usage
 
-```TypeScript
+```ts
 var w = widget(32, 16);
 var y = new widget("sprocket");
 // w and y are both widgets
@@ -159,7 +159,7 @@ y.sprock();
 
 #### Typing
 
-```TypeScript
+```ts
 interface Widget {
     sprock(): void;
 }
@@ -176,7 +176,7 @@ declare var widget: WidgetFactory;
 
 #### Usage
 
-```TypeScript
+```ts
 // Either
 import x = require('zoo');
 x.open();
@@ -186,7 +186,7 @@ zoo.open();
 
 #### Typing
 
-```TypeScript
+```ts
 namespace zoo {
   function open(): void;
 }
@@ -200,7 +200,7 @@ declare module "zoo" {
 
 #### Usage
 
-```TypeScript
+```ts
 // Super-chainable library for eagles
 import eagle = require('./eagle');
 // Call directly
@@ -213,7 +213,7 @@ eagle.favorite = 'golden';
 
 #### Typing
 
-```TypeScript
+```ts
 // Note: can use any name here, but has to be the same throughout this file
 declare function eagle(name: string): eagle;
 declare namespace eagle {
@@ -231,13 +231,13 @@ export = eagle;
 
 #### Usage
 
-```TypeScript
+```ts
 addLater(3, 4, x => console.log('x = ' + x));
 ```
 
 #### Typing
 
-```TypeScript
+```ts
 // Note: 'void' return type is preferred here
 function addLater(x: number, y: number, (sum: number) => void): void;
 ```

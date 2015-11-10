@@ -8,7 +8,7 @@ In TypeScript, interfaces fill the role of naming these types, and are a powerfu
 
 The easiest way to see how interfaces work is to start with a simple example:
 
-```TypeScript
+```ts
 function printLabel(labelledObj: {label: string}) {
     console.log(labelledObj.label);
 }
@@ -23,7 +23,7 @@ Notice that our object actually has more properties than this, but the compiler 
 
 We can write the same example again, this time using an interface to describe the requirement of having the `label` property that is a string:
 
-```TypeScript
+```ts
 interface LabelledValue {
     label: string;
 }
@@ -51,7 +51,7 @@ These optional properties are popular when creating patterns like "option bags" 
 
 Here's an example of this pattern:
 
-```TypeScript
+```ts
 interface SquareConfig {
     color?: string;
     width?: number;
@@ -76,7 +76,7 @@ Interfaces with optional properties are written similar to other interfaces, wit
 The advantage of optional properties is that you can describe these possibly available properties while still also preventing use of properties that are not part of the interface.
 For example, had we mistyped the name of the `color` property in `createSquare`, we would get an error message letting us know:
 
-```TypeScript
+```ts
 interface SquareConfig {
     color?: string;
     width?: number;
@@ -105,7 +105,7 @@ In addition to describing an object with properties, interfaces are also capable
 To describe a function type with an interface, we give the interface a call signature.
 This is like a function declaration with only the parameter list and return type given. Each parameter in the parameter list requires both name and type.
 
-```TypeScript
+```ts
 interface SearchFunc {
     (source: string, subString: string): boolean;
 }
@@ -114,7 +114,7 @@ interface SearchFunc {
 Once defined, we can use this function type interface like we would other interfaces.
 Here, we show how you can create a variable of a function type and assign it a function value of the same type.
 
-```TypeScript
+```ts
 var mySearch: SearchFunc;
 mySearch = function(source: string, subString: string) {
     var result = source.search(subString);
@@ -130,7 +130,7 @@ mySearch = function(source: string, subString: string) {
 For function types to correctly type-check, the name of the parameters do not need to match.
 We could have, for example, written the above example like this:
 
-```TypeScript
+```ts
 var mySearch: SearchFunc;
 mySearch = function(src: string, sub: string): boolean {
     var result = src.search(sub);
@@ -148,7 +148,7 @@ If you do not want to specify types at all, Typescript's contextual typing can i
 Here, also, the return type of our function expression is implied by the values it returns (here `false` and `true`).
 Had the function expression returned numbers or strings, the type-checker would have warned us that return type doesn't match the return type described in the `SearchFunc` interface.
 
-```TypeScript
+```ts
 var mySearch: SearchFunc;
 mySearch = function(src, sub) {
     var result = src.search(sub);
@@ -166,7 +166,7 @@ mySearch = function(src, sub) {
 Similarly to how we can use interfaces to describe function types, we can also describe array types.
 Array types have an `index` type that describes the types allowed to index the object, along with the corresponding return type for accessing the index.
 
-```TypeScript
+```ts
 interface StringArray {
     [index: number]: string;
 }
@@ -182,7 +182,7 @@ While string index signatures are a powerful way to describe the "dictionary" pa
 This is because a string index declares that `obj.property` is also available as `obj["property"]`.
 In this example, `length`'s type does not match the string index's type, and the type-checker gives an error:
 
-```TypeScript
+```ts
 interface NumberDictionary {
     [index: string]: number;
     length: number;    // ok, length is a number
@@ -196,7 +196,7 @@ interface NumberDictionary {
 
 One of the most common uses of interfaces in languages like C# and Java, that of explicitly enforcing that a class meets a particular contract, is also possible in TypeScript.
 
-```TypeScript
+```ts
 interface ClockInterface {
     currentTime: Date;
 }
@@ -209,7 +209,7 @@ class Clock implements ClockInterface {
 
 You can also describe methods in an interface that are implemented in the class, as we do with `setTime` in the below example:
 
-```TypeScript
+```ts
 interface ClockInterface {
     currentTime: Date;
     setTime(d: Date);
@@ -232,7 +232,7 @@ This prohibits you from using them to check that a class also has particular typ
 When working with classes and interfaces, it helps to keep in mind that a class has *two* types: the type of the static side and the type of the instance side.
 You may notice that if you create an interface with a construct signature and try to create a class that implements this interface you get an error:
 
-```TypeScript
+```ts
 interface ClockConstructor {
     new (hour: number, minute: number);
 }
@@ -250,7 +250,7 @@ Instead, you would need to work with the static side of the class directly.
 In this example, we define two interfaces, `ClockConstructor` for the constructor and `ClockInterface` for the instance methods.
 Then for convenience we define a constructor function `createClock` that creates instances of of the type that is passed to it.
 
-```TypeScript
+```ts
 interface ClockConstructor {
     new (hour: number, minute: number): ClockInterface;
 }
@@ -286,7 +286,7 @@ Because `createClock`'s first parameter is of type `ClockConstructor`, in `creat
 Like classes, interfaces can extend each other.
 This allows you to copy the members of one interface into another, which gives you more flexibility in how you separate your interfaces into reusable components.
 
-```TypeScript
+```ts
 interface Shape {
     color: string;
 }
@@ -302,7 +302,7 @@ square.sideLength = 10;
 
 An interface can extend multiple interfaces, creating a combination of all of the interfaces.
 
-```TypeScript
+```ts
 interface Shape {
     color: string;
 }
@@ -328,7 +328,7 @@ Because of JavaScript's dynamic and flexible nature, you may occasionally encoun
 
 One such example is an object that acts as both a function and an object, with additional properties:
 
-```TypeScript
+```ts
 interface Counter {
     (start: number): string;
     interval: number;
@@ -354,7 +354,7 @@ This is useful when you have a large inheritance hierarchy, but want to specify 
 The subclasses don't have to be related besides inheriting from the base class.
 For example:
 
-```TypeScript
+```ts
 class Control {
     private state: any;
 }

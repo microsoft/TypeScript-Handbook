@@ -8,7 +8,7 @@ In TypeScript, we allow developers to use these techniques now, and compile them
 
 Let's take a look at a simple class-based example:
 
-```TypeScript
+```ts
 class Greeter {
     greeting: string;
     constructor(message: string) {
@@ -38,7 +38,7 @@ Of course, one of the most fundamental patterns in class-based programming is be
 
 Let's take a look at an example:
 
-```TypeScript
+```ts
 class Animal {
     name:string;
     constructor(theName: string) { this.name = theName; }
@@ -97,7 +97,7 @@ In TypeScript, each member is `public` by default.
 You may still mark a member `public` explicitly.
 We could have written the `Animal` class from the previous section in the following way:
 
-```TypeScript
+```ts
 class Animal {
     public name: string;
     public constructor(theName: string) { this.name = theName; }
@@ -111,7 +111,7 @@ class Animal {
 
 When a member is marked `private`, it cannot be accessed from outside of its containing class. For example:
 
-```TypeScript
+```ts
 class Animal {
     private name: string;
     constructor(theName: string) { this.name = theName; }
@@ -129,7 +129,7 @@ The same applies to `protected` members.
 
 Let's look at an example to better see how this plays out in practice:
 
-```TypeScript
+```ts
 class Animal {
     private name: string;
     constructor(theName: string) { this.name = theName; }
@@ -163,7 +163,7 @@ Even though `Employee` also has a `private` member called `name`, it's not the a
 
 The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can also be accessed by instances of deriving classes. For example,
 
-```TypeScript
+```ts
 class Person {
     protected name: string;
     constructor(name: string) { this.name = name; }
@@ -195,7 +195,7 @@ In our last example, we had to declare a private member `name` and a constructor
 This turns out to be a very common practice. *Parameter properties* let you create and initialize a member in one place.
 Here's a further revision of the previous `Animal` class using a parameter property:
 
-```TypeScript
+```ts
 class Animal {
     constructor(private name: string) { }
     move(distanceInMeters: number) {
@@ -218,7 +218,7 @@ This gives you a way of having finer-grained control over how a member is access
 Let's convert a simple class to use `get` and `set`.
 First, let's start with an example without getters and setters.
 
-```TypeScript
+```ts
 class Employee {
     fullName: string;
 }
@@ -236,7 +236,7 @@ In this version, we check to make sure the user has a secret passcode available 
 We do this by replacing the direct access to `fullName` with a `set` that will check the passcode.
 We add a corresponding `get` to allow the previous example to continue to work seamlessly.
 
-```TypeScript
+```ts
 var passcode = "secret passcode";
 
 class Employee {
@@ -275,7 +275,7 @@ In this example, we use `static` on the origin, as it's a general value for all 
 Each instance accesses this value through prepending the name of the class.
 Similarly to prepending `this.` in front of instance accesses, here we prepend `Grid.` in front of static accesses.
 
-```TypeScript
+```ts
 class Grid {
     static origin = {x: 0, y: 0};
     calculateDistanceFromOrigin(point: {x: number; y: number;}) {
@@ -300,7 +300,7 @@ They may not be instantiated directly.
 Unlike an interface, an abstract class may contain implementation details for its members.
 The `abstract` keyword is used to define abstract classes as well as abstract methods within an abstract class.
 
-```TypeScript
+```ts
 abstract class Animal {
     abstract makeSound(): void;
     move(): void {
@@ -314,7 +314,7 @@ Abstract methods share a similar syntax to interface methods.
 Both define the signature of a method without including a method body.
 However, abstract methods must include the `abstract` keyword and may optionally include access modifiers.
 
-```TypeScript
+```ts
 abstract class Department {
 
     constructor(public name: string) {
@@ -357,7 +357,7 @@ department.generateReports(); // error: method doesn't exist on declared abstrac
 When you declare a class in TypeScript, you are actually creating multiple declarations at the same time.
 The first is the type of the *instance* of the class.
 
-```TypeScript
+```ts
 class Greeter {
     greeting: string;
     constructor(message: string) {
@@ -380,7 +380,7 @@ We're also creating another value that we call the *constructor function*.
 This is the function that is called when we `new` up instances of the class.
 To see what this looks like in practice, let's take a look at the JavaScript created by the above example:
 
-```TypeScript
+```ts
 var Greeter = (function () {
     function Greeter(message) {
         this.greeting = message;
@@ -403,7 +403,7 @@ Another way to think of each class is that there is an *instance* side and a *st
 
 Let's modify the example a bit to show this difference:
 
-```TypeScript
+```ts
 class Greeter {
     static standardGreeting = "Hello, there";
     greeting: string;
@@ -444,7 +444,7 @@ We show this by using `new` on `greeterMaker`, creating new instances of `Greete
 As we said in the previous section, a class declaration creates two things: a type representing instances of the class and a constructor function.
 Because classes create types, you can use them in the same places you would be able to use interfaces.
 
-```TypeScript
+```ts
 class Point {
     x: number;
     y: number;

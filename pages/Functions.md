@@ -102,7 +102,7 @@ This helps cut down on the amount of effort to keep your program typed.
 In TypeScript, every parameter is assumed to be required by the function.
 This doesn't mean that it can't be given `null` or `undefined`, but rather, when the function is called the compiler will check that the user has provided a value for each parameter.
 The compiler also assumes that these parameters are the only parameters that will be passed to the function.
-In short, the number of arguments when calling a function has to match the number of parameters the function expects.
+In short, the number of arguments given to a function has to match the number of parameters the function expects.
 
 ```ts
 function buildName(firstName: string, lastName: string) {
@@ -114,9 +114,9 @@ var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
 var result3 = buildName("Bob", "Adams");         // ah, just right
 ```
 
-In JavaScript, every parameter is optional in a sense, and users may leave them off as they see fit.
-When they do, they're assumed to be `undefined`.
-We can get this functionality in TypeScript by adding a `?` to the end of parameters we want optional.
+In JavaScript, every parameter is optional, and users may leave them off as they see fit.
+When they do, their value is `undefined`.
+We can get this functionality in TypeScript by adding a `?` to the end of parameters we want to be optional.
 For example, let's say we want the last name parameter from above to be optional:
 
 ```ts
@@ -135,7 +135,7 @@ var result3 = buildName("Bob", "Adams");         // ah, just right
 Any optional parameters must follow required parameters.
 Had we wanted to make the first name optional rather than the last name, we would need to change the order of parameters in the function, putting the first name last in the list.
 
-In TypeScript, we can also set up a value that parameter will have if the user does not provide one, or if the user passes `undefined` in its place.
+In TypeScript, we can also set a value that a parameter will be assigned if the user does not provide one, or if the user passes `undefined` in its place.
 These are called default-initialized parameters.
 Let's take the previous example and default the last name to `"Smith"`.
 

@@ -49,7 +49,7 @@ export class ZipCodeValidator implements StringValidator {
 Export statements are handy when exports need to be renamed for consumers, so the above example can be written as:
 
 ```ts
- class ZipCodeValidator implements StringValidator {
+class ZipCodeValidator implements StringValidator {
     isAcceptable(s: string) {
         return s.length === 5 && numberRegexp.test(s);
     }
@@ -687,9 +687,7 @@ Now to extend this to add support for input with numbers in bases other than 10,
 #### ProgrammerCalculator.ts
 
 ```ts
-
 import { Calculator } from "./Calculator";
-
 
 class ProgrammerCalculator extends Calculator {
     static digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
@@ -723,7 +721,6 @@ Here is a test for our ProgrammerCalculator class:
 
 ```ts
 import { Calculator, test } from "./ProgrammerCalculator";
-
 
 var c = new Calculator(2);
 test(c, "001+010="); // prints 3

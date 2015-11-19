@@ -187,7 +187,7 @@ zoo.open();
 #### Typing
 
 ```ts
-namespace zoo {
+declare namespace zoo {
   function open(): void;
 }
 

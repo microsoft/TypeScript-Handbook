@@ -6,11 +6,8 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 # Introduction
 
 This post outlines the various ways to organize your code using namespaces (previously "internal modules") in TypeScript.
-
 As we alluded in our note about terminology, "internal modules" are now referred to as "namespaces".
-
 Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
-
 This avoids confusing new users by overloading them with similarly named terms.
 
 # First steps
@@ -42,14 +39,17 @@ class ZipCodeValidator implements StringValidator {
 
 // Some samples to try
 var strings = ["Hello", "98052", "101"];
+
 // Validators to use
 var validators: { [s: string]: StringValidator; } = {};
 validators["ZIP code"] = new ZipCodeValidator();
 validators["Letters only"] = new LettersOnlyValidator();
+
 // Show whether each string passed each validator
 strings.forEach(s => {
     for (var name in validators) {
-        console.log(""" + s + "" " + (validators[name].isAcceptable(s) ? " matches " : " does not match ") + name);
+        var isMatch = validators[name].isAcceptable(s);
+        console.log(`'${ s }' ${ isMatch ? "matches" : "does not match" } '${ name }'.`);
     }
 });
 ```
@@ -90,10 +90,12 @@ namespace Validation {
 
 // Some samples to try
 var strings = ["Hello", "98052", "101"];
+
 // Validators to use
 var validators: { [s: string]: Validation.StringValidator; } = {};
 validators["ZIP code"] = new Validation.ZipCodeValidator();
 validators["Letters only"] = new Validation.LettersOnlyValidator();
+
 // Show whether each string passed each validator
 strings.forEach(s => {
     for (var name in validators) {
@@ -160,10 +162,12 @@ namespace Validation {
 
 // Some samples to try
 var strings = ["Hello", "98052", "101"];
+
 // Validators to use
 var validators: { [s: string]: Validation.StringValidator; } = {};
 validators["ZIP code"] = new Validation.ZipCodeValidator();
 validators["Letters only"] = new Validation.LettersOnlyValidator();
+
 // Show whether each string passed each validator
 strings.forEach(s => {
     for (var name in validators) {

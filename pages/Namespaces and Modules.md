@@ -33,7 +33,7 @@ Modules provide for better code reuse, stronger isolation and better tooling sup
 It is also worth noting that, for Node.js applications, modules are the default and the recommended approach to structure your code.
 
 Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine implementations.
-Thus, ffor new projects modules would be the recommended code organization mechanism.
+Thus, for new projects modules would be the recommended code organization mechanism.
 
 # Pitfalls of Namespaces and Modules
 
@@ -41,8 +41,8 @@ In this section we'll describe various common pitfalls in using namespaces and m
 
 ## `/// <reference>`-ing a module
 
-A common mistake is to try to use the `/// <reference>` syntax to refer to a module file, rather than using an `import` statement.
-To understand the distinction, we first need to understand how compiler can locate the type information for a module based on the path of an `import` (e.g. the `...` in `import "...";`, `import x = require("...");`, etc.) path.
+A common mistake is to try to use the `/// <reference ... />` syntax to refer to a module file, rather than using an `import` statement.
+To understand the distinction, we first need to understand how compiler can locate the type information for a module based on the path of an `import` (e.g. the `...` in `import x from "...";`, `import x = require("...");`, etc.) path.
 
 The compiler will try to find a `.ts`, `.tsx`, and then a `.d.ts` with the appropriate path.
 If a specific file could not be found, then the compiler will look for an *ambient module declaration*.

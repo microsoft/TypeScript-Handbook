@@ -745,7 +745,7 @@ This, however, is not an issue with modules.
 Within a module, there's no plausible reason to have two objects with the same name.
 From the consumption side, the consumer of any given module gets to pick the name that they will use to refer to the module, so accidental naming conflicts are impossible.
 
-> For more discussion about modules and namespaces see [[Modules and Namespaces]]
+> For more discussion about modules and namespaces see [Namespaces and Modules](./namespaces-and-modules.html).
 
 ## Red Flags
 

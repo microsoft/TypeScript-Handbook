@@ -202,29 +202,32 @@ declare module "zoo" {
 
 ```ts
 // Super-chainable library for eagles
-import eagle = require('./eagle');
+import Eagle = require('./eagle');
+
 // Call directly
-eagle('bald').fly();
+Eagle('bald').fly();
+
 // Invoke with new
-var eddie = new eagle(1000);
+var eddie = new Eagle(1000);
+
 // Set properties
-eagle.favorite = 'golden';
+eagle.kind = 'golden';
 ```
 
 #### Typing
 
 ```ts
-// Note: can use any name here, but has to be the same throughout this file
-declare function eagle(name: string): eagle;
-declare namespace eagle {
-    var favorite: string;
-    function fly(): void;
-}
-interface eagle {
-    new(awesomeness: number): eagle;
+interface Eagle {
+    (kind: string): Eagle;
+    new (kind: string): Eagle;
+
+    kind: string;
+    fly(): void
 }
 
-export = eagle;
+declare var Eagle: Eagle;
+
+export = Eagle;
 ```
 
 ## Callbacks

@@ -208,10 +208,10 @@ import Eagle = require('./eagle');
 Eagle('bald').fly();
 
 // Invoke with new
-var eddie = new Eagle(1000);
+var eddie = new Eagle('Mille');
 
 // Set properties
-eagle.kind = 'golden';
+eddie.kind = 'golden';
 ```
 
 #### Typing

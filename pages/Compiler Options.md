@@ -45,4 +45,4 @@ Option                                  | Shorthand | Description
 ## Related
 
 * For tsconfig.json see [tsconfig.json](./tsconfig.json.html)
-* For Setting the compiler options in MSBuild projects see [Setting Compiler Options in MSBuild projects](./compiler-options-in-msbuild.html) 
+* For Setting the compiler options in MSBuild projects see [Setting Compiler Options in MSBuild projects](./compiler-options-in-msbuild.html)

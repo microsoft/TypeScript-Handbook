@@ -45,7 +45,8 @@ enum FileAccess {
 }
 ```
 
-Enums are real objects that exist in runtime, one of reasons is ability to maintain reverse mapping from enum values to enum names.
+Enums are real objects that exist at runtime.
+One reason is the ability to maintain a reverse mapping from enum values to enum names.
 
 ```ts
 enum Enum {
@@ -66,11 +67,12 @@ var a = Enum.A;
 var nameOfA = Enum[Enum.A]; // "A"
 ```
 
-In generated code enum is compiled into an object that stored both forward (`name` -> `value`) and reverse (`value` -> `name`) mappings.
-References to enum members are always emitted as property access and never inlined.
-In lots of cases this is perfectly valid solution however sometimes requirements might be more tight.
-To avoid paying the cost of extra generated code and addition indirection when accessing enum values it is possible to use const enums.
-Const enums are defined using `const` modifier that precedes `enum` keyword.
+In generated code an enum is compiled into an object that stores both forward (`name` -> `value`) and reverse (`value` -> `name`) mappings.
+References to enum members are always emitted as property accesses and never inlined.
+In lots of cases this is a perfectly valid solution.
+However sometimes requirements are tighter.
+To avoid paying the cost of extra generated code and additional indirection when accessing enum values it is possible to use const enums.
+Const enums are defined using the `const` modifier that precedes the `enum` keyword.
 
 ```ts
 const enum Enum {
@@ -79,8 +81,9 @@ const enum Enum {
 }
 ```
 
-Const enums are can only use constant enum expressions and unlike regular enums they are completely removed during compilation.
-Const enum members are inlined at use sites (it is possible since const enums cannot have computed members).
+Const enums can only use constant enum expressions and unlike regular enums they are completely removed during compilation.
+Const enum members are inlined at use sites.
+This is possible since const enums cannot have computed members.
 
 ```ts
 const enum Directions {
@@ -111,5 +114,5 @@ declare enum Enum {
 }
 ```
 
-One important different between ambient and non-ambient enums is: in regular enums members that don't have initializer are considered constant members.
+One important difference between ambient and non-ambient enums is thant, in regular enums, members that don't have an initializer are considered constant members.
 For non-const ambient enums member that does not have initializer is considered computed.

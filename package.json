@@ -1,0 +1,23 @@
+{
+  "name": "typescript-handbook",
+  "version": "1.0.0",
+  "description": "The TypeScript Handbook is a comprehensive guide to the TypeScript language",
+  "main": "none",
+  "scripts": {
+    "test": "node lint.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Microsoft/TypeScript-Handbook.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Microsoft/TypeScript-Handbook/issues"
+  },
+  "homepage": "https://github.com/Microsoft/TypeScript-Handbook#readme",
+  "devDependencies": {
+    "glob": "^5.0.15",
+    "markdownlint": "0.0.8"
+  }
+}

@@ -12,10 +12,10 @@ This allows you to choose the most appropriate approach for your application, wh
 
 To quickly recap what these two approaches look like in JavaScript:
 
-```TypeScript
+```ts
 // Named function
 function add(x, y) {
-    return x+y;
+    return x + y;
 }
 
 // Anonymous function
@@ -26,11 +26,11 @@ Just as in JavaScript, functions can refer to variables outside of the function 
 When they do so, they're said to `capture` these variables.
 While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.
 
-```TypeScript
+```ts
 var z = 100;
 
 function addToZ(x, y) {
-    return x+y+z;
+    return x + y + z;
 }
 ```
 
@@ -40,9 +40,9 @@ function addToZ(x, y) {
 
 Let's add types to our simple examples from earlier:
 
-```TypeScript
+```ts
 function add(x: number, y: number): number {
-    return x+y;
+    return x + y;
 }
 
 var myAdd = function(x: number, y: number): number { return x+y; };
@@ -55,7 +55,7 @@ TypeScript can figure the return type out by looking at the return statements, s
 
 Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type.
 
-```TypeScript
+```ts
 var myAdd: (x:number, y:number)=>number =
     function(x: number, y: number): number { return x+y; };
 ```
@@ -66,9 +66,9 @@ We write out the parameter types just like a parameter list, giving each paramet
 This name is just to help with readability.
 We could have instead written:
 
-```TypeScript
-var myAdd: (baseValue:number, increment:number)=>number =
-    function(x: number, y: number): number { return x+y; };
+```ts
+var myAdd: (baseValue:number, increment:number) => number =
+    function(x: number, y: number): number { return x + y; };
 ```
 
 As long as the parameter types line up, it's considered a valid type for the function, regardless of the names you give the parameters in the function type.
@@ -85,41 +85,41 @@ In effect, captured variables are part of the 'hidden state' of any function and
 
 In playing with the example, you may notice that the TypeScript compiler can figure out the type if you have types on one side of the equation but not the other:
 
-```TypeScript
+```ts
 // myAdd has the full function type
-var myAdd = function(x: number, y: number): number { return x+y; };
+var myAdd = function(x: number, y: number): number { return  x + y; };
 
 // The parameters `x` and `y` have the type number
-var myAdd: (baseValue:number, increment:number)=>number =
-    function(x, y) { return x+y; };
+var myAdd: (baseValue:number, increment:number) => number =
+    function(x, y) { return x + y; };
 ```
 
-This is called 'contextual typing', a form of type inference.
+This is called "contextual typing", a form of type inference.
 This helps cut down on the amount of effort to keep your program typed.
 
 # Optional and Default Parameters
 
-Unlike JavaScript, in TypeScript every parameter to a function is assumed to be required by the function.
-This doesn't mean that it isn't a `null` value, but rather, when the function is called the compiler will check that the user has provided a value for each parameter.
+In TypeScript, every parameter is assumed to be required by the function.
+This doesn't mean that it can't be given `null` or `undefined`, but rather, when the function is called the compiler will check that the user has provided a value for each parameter.
 The compiler also assumes that these parameters are the only parameters that will be passed to the function.
-In short, the number of parameters to the function has to match the number of parameters the function expects.
+In short, the number of arguments given to a function has to match the number of parameters the function expects.
 
-```TypeScript
+```ts
 function buildName(firstName: string, lastName: string) {
     return firstName + " " + lastName;
 }
 
-var result1 = buildName("Bob");  // error, too few parameters
+var result1 = buildName("Bob");                  // error, too few parameters
 var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-var result3 = buildName("Bob", "Adams");  // ah, just right
+var result3 = buildName("Bob", "Adams");         // ah, just right
 ```
 
-In JavaScript, every parameter is considered optional, and users may leave them off as they see fit.
-When they do, they're assumed to be undefined.
-We can get this functionality in TypeScript by using the `?` beside parameters we want optional.
-For example, let's say we want the last name to be optional:
+In JavaScript, every parameter is optional, and users may leave them off as they see fit.
+When they do, their value is `undefined`.
+We can get this functionality in TypeScript by adding a `?` to the end of parameters we want to be optional.
+For example, let's say we want the last name parameter from above to be optional:
 
-```TypeScript
+```ts
 function buildName(firstName: string, lastName?: string) {
     if (lastName)
         return firstName + " " + lastName;
@@ -127,43 +127,63 @@ function buildName(firstName: string, lastName?: string) {
         return firstName;
 }
 
-var result1 = buildName("Bob");  // works correctly now
+var result1 = buildName("Bob");                  // works correctly now
 var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-var result3 = buildName("Bob", "Adams");  // ah, just right
+var result3 = buildName("Bob", "Adams");         // ah, just right
 ```
 
-Optional parameters must follow required parameters.
+Any optional parameters must follow required parameters.
 Had we wanted to make the first name optional rather than the last name, we would need to change the order of parameters in the function, putting the first name last in the list.
 
-In TypeScript, we can also set up a value that an optional parameter will have if the user does not provide one.
-These are called default parameters. Let's take the previous example and default the last name to `"Smith"`.
+In TypeScript, we can also set a value that a parameter will be assigned if the user does not provide one, or if the user passes `undefined` in its place.
+These are called default-initialized parameters.
+Let's take the previous example and default the last name to `"Smith"`.
 
-```TypeScript
+```ts
 function buildName(firstName: string, lastName = "Smith") {
     return firstName + " " + lastName;
 }
 
-var result1 = buildName("Bob");  // works correctly now, also
-var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-var result3 = buildName("Bob", "Adams");  // ah, just right
+var result1 = buildName("Bob");                  // works correctly now, returns "Bob Smith"
+var result2 = buildName("Bob", undefined);       // still works, also returns "Bob Smith"
+var result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+var result4 = buildName("Bob", "Adams");         // ah, just right
 ```
 
-Just as with optional parameters, default parameters must come after required parameters in the parameter list.
+Default-initialized parameters that come after all required parameters are treated as optional, and just like optional parameters, can be omitted when calling their respective function.
+This means optional parameters and trailing default parameters will share commonality in their types, so both
 
-Optional parameters and default parameters also share what the type looks like. Both:
-
-```TypeScript
+```ts
 function buildName(firstName: string, lastName?: string) {
+    // ...
+}
 ```
 
 and
 
-```TypeScript
+```ts
 function buildName(firstName: string, lastName = "Smith") {
+    // ...
+}
 ```
 
 share the same type `(firstName: string, lastName?: string) => string`.
 The default value of `lastName` disappears in the type, only leaving behind the fact that the parameter is optional.
+
+Unlike plain optional parameters, default-initialized parameters don't *need* to occur after required parameters.
+If a default-initialized parameter comes before a required parameter, users need to explicitly pass `undefined` to get the default initialized value.
+For example, we could write our last example with only a default initializer on `firstName`:
+
+```ts
+function buildName(firstName = "Will", lastName: string) {
+    return firstName + " " + lastName;
+}
+
+var result1 = buildName("Bob");                  // error, too few parameters
+var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+var result3 = buildName("Bob", "Adams");         // okay and returns "Bob Adams"
+var result4 = buildName(undefined, "Adams");     // okay and returns "Will Adams"
+```
 
 # Rest Parameters
 
@@ -173,9 +193,9 @@ In JavaScript, you can work with the arguments directly using the `arguments` va
 
 In TypeScript, you can gather these arguments together into a variable:
 
-```TypeScript
+```ts
 function buildName(firstName: string, ...restOfName: string[]) {
-	return firstName + " " + restOfName.join(" ");
+    return firstName + " " + restOfName.join(" ");
 }
 
 var employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
@@ -187,9 +207,9 @@ The compiler will build an array of the arguments passed in with the name given 
 
 The ellipsis is also used in the type of the function with rest parameters:
 
-```TypeScript
+```ts
 function buildName(firstName: string, ...restOfName: string[]) {
-	return firstName + " " + restOfName.join(" ");
+    return firstName + " " + restOfName.join(" ");
 }
 
 var buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
@@ -208,7 +228,7 @@ This can be notoriously confusing when, for instance, a function is used as a ca
 
 Let's look at an example:
 
-```TypeScript
+```ts
 var deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
@@ -216,7 +236,7 @@ var deck = {
         return function() {
             var pickedCard = Math.floor(Math.random() * 52);
             var pickedSuit = Math.floor(pickedCard / 13);
-			
+
             return {suit: this.suits[pickedSuit], card: pickedCard % 13};
         }
     }
@@ -238,7 +258,7 @@ This way, regardless of how its later used, it will still be able to see the ori
 To fix this, we switch the function expression to use the arrow syntax (`() => {}`) rather than the JavaScript function expression.
 This will automatically capture the `this` available when the function is created rather than when it is invoked:
 
-```TypeScript
+```ts
 var deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
@@ -247,7 +267,7 @@ var deck = {
         return () => {
             var pickedCard = Math.floor(Math.random() * 52);
             var pickedSuit = Math.floor(pickedCard / 13);
-			
+
             return {suit: this.suits[pickedSuit], card: pickedCard % 13};
         }
     }
@@ -266,7 +286,7 @@ For more information on ways to think about `this`, you can read Yehuda Katz's [
 JavaScript is inherently a very dynamic language.
 It's not uncommon for a single JavaScript function to return different types of objects based on the shape of the arguments passed in.
 
-```TypeScript
+```ts
 var suits = ["hearts", "spades", "clubs", "diamonds"];
 
 function pickCard(x): any {
@@ -300,7 +320,7 @@ The answer is to supply multiple function types for the same function as a list 
 This list is what the compiler will use to resolve function calls.
 Let's create a list of overloads that describe what our `pickCard` accepts and what it returns.
 
-```TypeScript
+```ts
 var suits = ["hearts", "spades", "clubs", "diamonds"];
 
 function pickCard(x: {suit: string; card: number; }[]): number;

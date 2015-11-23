@@ -1,6 +1,7 @@
 # Browserify
 
 ### Install
+
 ```sh
 npm install tsify
 ```
@@ -29,6 +30,7 @@ More details: [smrq/tsify](https://github.com/smrq/tsify)
 # Duo
 
 ### Install
+
 ```sh
 npm install duo-typescript
 ```
@@ -40,6 +42,7 @@ duo --use duo-typescript entry.ts
 ```
 
 ### Using API
+
 ```javascript
 var Duo = require('duo');
 var fs = require('fs')
@@ -57,6 +60,7 @@ Duo(__dirname)
     fs.writeFileSync(out, results.code);
   });
 ```
+
 More details: [frankwallis/duo-typescript](https://github.com/frankwallis/duo-typescript)
 
 # Grunt
@@ -88,6 +92,7 @@ More details: [TypeStrong/grunt-ts](https://github.com/TypeStrong/grunt-ts)
 # gulp
 
 ### Install
+
 ```sh
 npm install gulp-typescript
 ```
@@ -107,14 +112,17 @@ gulp.task("default", function () {
   return tsResult.js.pipe(gulp.dest('built/local'));
 });
 ```
+
 More details: [ivogabe/gulp-typescript](https://github.com/ivogabe/gulp-typescript)
 
 # jspm
 
 ### Install
+
 ```sh
 npm install -g jspm@beta
 ```
+
 _Note: Currently TypeScript support in jspm is in 0.16beta_
 
 More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSamples/tree/jspm/jspm)
@@ -122,11 +130,13 @@ More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSa
 # webpack
 
 ### Install
+
 ```sh
 npm install awesome-typescript-loader --save-dev
 ```
 
 ### Basic webpack.config.js
+
 ```javascript
 module.exports = {
 
@@ -149,4 +159,5 @@ module.exports = {
   }
 };
 ```
+
 More details: [s-panferov/awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader)

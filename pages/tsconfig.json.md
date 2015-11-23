@@ -1,6 +1,7 @@
 ## Overview
 
-The presence of a `tsconfig.json` file in a directory indicates that the directory is the root of a TypeScript project. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. `tsconfig.json` is supported starting with TypeScript 1.5. A project is compiled in one of the following ways:
+The presence of a `tsconfig.json` file in a directory indicates that the directory is the root of a TypeScript project. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. `tsconfig.json` is supported starting with TypeScript 1.5.
+A project is compiled in one of the following ways:
 
 ## Using tsconfig.json
 
@@ -14,51 +15,53 @@ When input files are specified on the command line, `tsconfig.json` files are ig
 Example `tsconfig.json` files:
 
 * Using the `"files"` property
-```json
-{
-    "compilerOptions": {
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "out": "../../built/local/tsc.js",
-        "sourceMap": true
-    },
-    "files": [
-        "core.ts",
-        "sys.ts",
-        "types.ts",
-        "scanner.ts",
-        "parser.ts",
-        "utilities.ts",
-        "binder.ts",
-        "checker.ts",
-        "emitter.ts",
-        "program.ts",
-        "commandLineParser.ts",
-        "tsc.ts",
-        "diagnosticInformationMap.generated.ts"
-    ]
-}
-```
+
+    ```json
+    {
+        "compilerOptions": {
+            "module": "commonjs",
+            "noImplicitAny": true,
+            "removeComments": true,
+            "preserveConstEnums": true,
+            "out": "../../built/local/tsc.js",
+            "sourceMap": true
+        },
+        "files": [
+            "core.ts",
+            "sys.ts",
+            "types.ts",
+            "scanner.ts",
+            "parser.ts",
+            "utilities.ts",
+            "binder.ts",
+            "checker.ts",
+            "emitter.ts",
+            "program.ts",
+            "commandLineParser.ts",
+            "tsc.ts",
+            "diagnosticInformationMap.generated.ts"
+        ]
+    }
+    ```
 
 * Using the `"exclude"` property
-```json
-{
-    "compilerOptions": {
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "out": "../../built/local/tsc.js",
-        "sourceMap": true
-    },
-    "exclude": [
-        "node_modules",
-        "wwwroot"
-    ]
-}
-```
+
+    ```json
+    {
+        "compilerOptions": {
+            "module": "commonjs",
+            "noImplicitAny": true,
+            "removeComments": true,
+            "preserveConstEnums": true,
+            "out": "../../built/local/tsc.js",
+            "sourceMap": true
+        },
+        "exclude": [
+            "node_modules",
+            "wwwroot"
+        ]
+    }
+    ```
 
 ## Details
 
@@ -79,4 +82,4 @@ Compiler options specified on the command line override those specified in the `
 
 ## Schema
 
-Schema can be found at: http://json.schemastore.org/tsconfig
+Schema can be found at: [http://json.schemastore.org/tsconfig](http://json.schemastore.org/tsconfig)

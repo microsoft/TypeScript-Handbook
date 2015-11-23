@@ -1,4 +1,5 @@
 ## Compiler Options
+
 Option | Shorthand | Description
 --------|-------|--------------
 `--declaration` | `-d` | Generates corresponding '.d.ts' file.
@@ -41,6 +42,7 @@ Option | Shorthand | Description
 
 <sup>[1]</sup> These options are experimental.
 
-## Related 
- - For tsconfig.json see [[tsconfig.json]]
- - For Setting the compiler options in MSBuild projects see [[Setting Compiler Options in MSBuild projects]]
+## Related
+
+* For tsconfig.json see [[tsconfig.json]]
+* For Setting the compiler options in MSBuild projects see [[Setting Compiler Options in MSBuild projects]]

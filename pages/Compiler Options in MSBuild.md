@@ -1,4 +1,5 @@
 ## Overview
+
 Compiler options can be specified using MSBuild properties within an MSBuild project.
 
 ## Example
@@ -58,7 +59,7 @@ Compiler options can be specified using MSBuild properties within an MSBuild pro
 
 <sup>1</sup> These settings are new in TypeScript 1.6
 
-## What is supported in my version of Visual Studio?
+## What is supported in my version of Visual Studio
 
 Look in your `C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets` file.
 The authoritative mappings between MSBuild XML tags and `tsc` compiler options live in there.

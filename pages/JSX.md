@@ -43,7 +43,7 @@ As a result, in a `.tsx` file, the previous code would be interpreted as a JSX e
 
 To make up for this loss of functionality in `.tsx` files, a new type assertion operator has been added: `as`.
 
-```TypeScript
+```ts
 var foo = bar as foo;
 ```
 
@@ -68,7 +68,7 @@ By default, if this interface is not specified, then anything goes and intrinsic
 However, if interface *is* present, then the name of the intrinsic element is looked up as a property on the `JSX.IntrinsicElements` interface.
 For example:
 
-```TypeScript
+```ts
 declare namespace JSX {
     interface IntrinsicElements {
         foo: any
@@ -83,7 +83,7 @@ In the above example, `<foo />` will work fine but `<bar />` will result in an e
 
 *Note: You can also specify a catch-all string indexer on `JSX.IntrinsicElements`* as follows:
 
-```TypeScript
+```ts
 declare namespace JSX {
     interface IntrinsicElements {
         [elemName: string]: any;
@@ -95,7 +95,7 @@ declare namespace JSX {
 
 Value based elements are simply looked up by identifiers that are in scope.
 
-```TypeScript
+```ts
 import MyComponent from "./myComponent";
 
 <MyComponent />; // ok
@@ -112,7 +112,7 @@ If `MyComponent` was a factory function, the class type would be that function.
 Once the class type is established, the instance type is determined by the union of the return types of the class type's call signatures and construct signatures.
 So again, in the case of an ES6 class, the instance type would be the type of an instance of that class, and in the case of a factory function, it would be the type of the value returned from the function.
 
-```TypeScript
+```ts
 class MyComponent {
   render() {}
 }
@@ -124,9 +124,9 @@ var myComponent = new MyComponent();
 // element instance type => { render: () => void }
 
 function MyFactoryFunction() {
-  return { 
+  return {
     render: () => {
-    } 
+    }
   }
 }
 
@@ -140,7 +140,7 @@ var myComponent = MyFactoryFunction();
 The element instance type is interesting because it must be assignable to `JSX.ElementClass` or it will result in an error.
 By default `JSX.ElementClass` is `{}`, but it can be augmented to limit the use of JSX to only those types that conform to the proper interface.
 
-```TypeScript
+```ts
 declare module JSX {
   interface ElementClass {
     render: any;
@@ -159,7 +159,7 @@ function MyFactoryFunction() {
 
 class NotAValidComponent {}
 function NotAValidFactoryFunction() {
-	return {};
+  return {};
 }
 
 <NotAValidComponent />; // error
@@ -173,7 +173,7 @@ This is slightly different between intrinsic and value-based elements.
 
 For intrinsic elements, it is the type of the property on `JSX.IntrinsicElements`
 
-```TypeScript
+```ts
 declare module JSX {
   interface IntrinsicElements {
     foo: { bar?: boolean }
@@ -190,7 +190,7 @@ Which property to use is determined by `JSX.ElementAttributesProperty`.
 It should be declared with a single property.
 The name of that property is then used.
 
-```TypeScript
+```ts
 declare module JSX {
   interface ElementAttributesProperty {
     props; // specify the property name to use
@@ -211,7 +211,7 @@ class MyComponent {
 The element attribute type is used to type check the attributes in the JSX.
 Optional and required properties are supported.
 
-```TypeScript
+```ts
 declare module JSX {
   interface IntrinsicElements {
     foo: { requiredProp: string; optionalProp?: number }
@@ -271,7 +271,7 @@ var a = <div>
 To use JSX with React you should use the [React typings](https://github.com/borisyankov/DefinitelyTyped/tree/master/react).
 These typings define the `JSX` namespace appropriately for use with React.
 
-```TypeScript
+```ts
 /// <reference path="react.d.ts" />
 
 interface Props {

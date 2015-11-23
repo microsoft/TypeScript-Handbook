@@ -81,8 +81,8 @@ declare namespace JSX {
 In the above example, `<foo />` will work fine but `<bar />` will result in an error since it has not been specified on `JSX.IntrinsicElements`.
 
 > Note: You can also specify a catch-all string indexer on `JSX.IntrinsicElements` as follows:
-
-> ```ts
+>
+>```ts
 declare namespace JSX {
     interface IntrinsicElements {
         [elemName: string]: any;

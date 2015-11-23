@@ -1,6 +1,8 @@
 ## Overview
 
-The presence of a `tsconfig.json` file in a directory indicates that the directory is the root of a TypeScript project. The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. `tsconfig.json` is supported starting with TypeScript 1.5.
+The presence of a `tsconfig.json` file in a directory indicates that the directory is the root of a TypeScript project. 
+The `tsconfig.json` file specifies the root files and the compiler options required to compile the project. 
+`tsconfig.json` is supported starting with TypeScript 1.5.
 A project is compiled in one of the following ways:
 
 ## Using tsconfig.json
@@ -65,9 +67,10 @@ Example `tsconfig.json` files:
 
 ## Details
 
-The `"compilerOptions"` property can be omitted, in which case the compiler's defaults are used. See our full list of supported [[Compiler Options]].
+The `"compilerOptions"` property can be omitted, in which case the compiler's defaults are used. See our full list of supported [Compiler Options](./compiler-options.html).
 
-If no `"files"` property is present in a `tsconfig.json`, the compiler defaults to including all TypeScript (\*.ts or \*.tsx) files in the containing directory and subdirectories. When a `"files"` property is present, only the specified files are included.
+If no `"files"` property is present in a `tsconfig.json`, the compiler defaults to including all TypeScript (\*.ts or \*.tsx) files in the containing directory and subdirectories.
+When a `"files"` property is present, only the specified files are included.
 
 If the `"exclude"` property is specified, the compiler includes all TypeScript (\*.ts or \*.tsx) files in the containing directory and subdirectories except for those files or folders that are excluded.
 

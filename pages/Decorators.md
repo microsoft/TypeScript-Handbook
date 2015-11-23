@@ -358,7 +358,7 @@ import "reflect-metadata";
 
 const requiredMetadataKey = Symbol("required");
 
-function required(target: Function, parameterIndex: number) {
+function required(target: Object, propertyKey: string|symbol, parameterIndex: number) {
     Reflect.defineMetadata(requiredMetadataKey, true, target, parameterIndex);
 }
 

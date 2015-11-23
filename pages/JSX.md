@@ -1,62 +1,61 @@
 # Introduction
 
-JSX is an embeddable XML-like syntax.
-It is meant to be transformed into valid JavaScript but the semantics of that transformation are implementation-specific.
-JSX came to popularity with the React library but has since seen other applications.
-TypeScript supports embedding, type checking, and optionally compiling JSX directly into JavaScript.
+[JSX](https://facebook.github.io/jsx/) is an embeddable XML-like syntax.
+It is meant to be transformed into valid JavaScript, though the semantics of that transformation are implementation-specific.
+JSX came to popularity with the [React](http://facebook.github.io/react/) framework, but has since seen other applications as well.
+TypeScript supports embedding, type checking, and compiling JSX directly into JavaScript.
 
 # Basic usage
 
 In order to use JSX you must do two things.
 
-1. Name your files with the `.tsx` extension
+1. Name your files with a `.tsx` extension
 2. Enable the `jsx` option
 
 TypeScript ships with two JSX modes: `preserve` and `react`.
-These modes only affect the emit stage.
-The `preserve` mode will keep the JSX as part of the output to be further consumed by another transform step.
+These modes only affect the emit stage - type checking is unaffected.
+The `preserve` mode will keep the JSX as part of the output to be further consumed by another transform step (e.g. [Babel](https://babeljs.io/)).
 Additionally the output will have a `.jsx` file extension.
 The `react` mode will emit `React.createElement`, does not need to go through a JSX transformation before use, and the output will have a `.js` file extension.
 
-Mode       | Input     | Output                       | File Extension
------------|-----------|------------------------------|---------------
+Mode       | Input     | Output                       | Output File Extension
+-----------|-----------|------------------------------|----------------------
 `preserve` | `<div />` | `<div />`                    | `.jsx`
 `react`    | `<div />` | `React.createElement("div")` | `.js`
 
-You can specify this mode using either the `--jsx` command line flag or the corresponding option in your [tsconfig.json](https://github.com/Microsoft/TypeScript/wiki/tsconfig.json) file.
+You can specify this mode using either the `--jsx` command line flag or the corresponding option in your [tsconfig.json](./tsconfig.json.html) file.
 
 > *Note: The identifier `React` is hard-coded, so you must make React available with an uppercase R.*
 
 # The `as` operator
 
-Since TypeScript uses angle brackets for type assertions, there is a conflict when parsing between type assertions and JSX.
-Consider the following code:
+Recall how to write a type assertion:
 
-```JSX
+```ts
 var foo = <foo>bar;
-</foo>
 ```
 
-Is this code creating a JSX element with the content of `bar;`, or is it asserting that `bar` is of type `foo` and there is an invalid expression on line 2?
-To simplify cases like this, angle bracket type assertions are not available in `.tsx` files.
-As a result, in a `.tsx` file, the previous code would be interpreted as a JSX element, and in a `.ts` file it would result in an error.
+Here we are asserting the variable `bar` to have the type `foo`.
+Since TypeScript also uses angle brackets for type assertions, JSX's syntax introduces certain parsing difficulties. As a result, TypeScript disallows angle bracket type assertions in `.tsx` files.
 
 To make up for this loss of functionality in `.tsx` files, a new type assertion operator has been added: `as`.
+The above example can easily be rewritten with the `as` operator.
 
 ```ts
 var foo = bar as foo;
 ```
 
-The `as` operator is available in both `.ts` and `.tsx` files.
+The `as` operator is available in both `.ts` and `.tsx` files, and is identical in behavior to the other type assertion style.
 
 # Type Checking
 
-In order to understand type checking with JSX you must first understand the difference between intrinsic elements value-based elements.
+In order to understand type checking with JSX, you must first understand the difference between intrinsic elements value-based elements.
 Given a JSX expression `<expr />`, `expr` may either refer to something intrinsic to the environment (e.g. a `div` or `span` in a DOM environment) or to a custom component that you've created.
 This is important for two reasons:
 
 1. For React, intrinsic elements are emitted as strings (`React.createElement("div")`), whereas a component you've created is not (`React.createElement(MyComponent)`).
-2. The types of the attributes being passed in the JSX element should be looked up differently. Intrinsic element attributes should be known *intrinsically* whereas components will likely want to specify their own set of attributes.
+2. The types of the attributes being passed in the JSX element should be looked up differently.
+Intrinsic element attributes should be known *intrinsically* whereas components will likely want to specify their own set of attributes.
 
 TypeScript uses the [same convention that React does](http://facebook.github.io/react/docs/jsx-in-depth.html#html-tags-vs.-react-components) for distinguishing between these.
 An intrinsic element always begins with a lowercase letter, and a value-based element always begins with an uppercase letter.
@@ -81,9 +80,9 @@ declare namespace JSX {
 
 In the above example, `<foo />` will work fine but `<bar />` will result in an error since it has not been specified on `JSX.IntrinsicElements`.
 
-*Note: You can also specify a catch-all string indexer on `JSX.IntrinsicElements`* as follows:
+> Note: You can also specify a catch-all string indexer on `JSX.IntrinsicElements` as follows:
 
-```ts
+> ```ts
 declare namespace JSX {
     interface IntrinsicElements {
         [elemName: string]: any;
@@ -141,7 +140,7 @@ The element instance type is interesting because it must be assignable to `JSX.E
 By default `JSX.ElementClass` is `{}`, but it can be augmented to limit the use of JSX to only those types that conform to the proper interface.
 
 ```ts
-declare module JSX {
+declare namespace JSX JSX {
   interface ElementClass {
     render: any;
   }
@@ -174,7 +173,7 @@ This is slightly different between intrinsic and value-based elements.
 For intrinsic elements, it is the type of the property on `JSX.IntrinsicElements`
 
 ```ts
-declare module JSX {
+declare namespace JSX {
   interface IntrinsicElements {
     foo: { bar?: boolean }
   }
@@ -191,7 +190,7 @@ It should be declared with a single property.
 The name of that property is then used.
 
 ```ts
-declare module JSX {
+declare namespace JSX {
   interface ElementAttributesProperty {
     props; // specify the property name to use
   }
@@ -212,7 +211,7 @@ The element attribute type is used to type check the attributes in the JSX.
 Optional and required properties are supported.
 
 ```ts
-declare module JSX {
+declare namespace JSX {
   interface IntrinsicElements {
     foo: { requiredProp: string; optionalProp?: number }
   }
@@ -226,7 +225,7 @@ declare module JSX {
 <foo requiredProp="bar" some-unknown-prop />; // ok, because `some-unknown-prop` is not a valid identifier
 ```
 
->*Note: If an attribute name is not a valid JS identifier (like a `data-*` attribute), it is not considered to be an error if it is not found in the element attributes type.*
+> Note: If an attribute name is not a valid JS identifier (like a `data-*` attribute), it is not considered to be an error if it is not found in the element attributes type.
 
 The spread operator also works:
 
@@ -245,15 +244,13 @@ You can customize the type by specifying the `JSX.Element` interface.
 However, it is not possible to retrieve type information about the element, attributes or children of the JSX from this interface.
 It is a black box.
 
-# Escaping to TypeScript
+# Embedding Expressions
 
-JSX in JavaScript allows you to escape to JavaScript by using curly braces `{ }`.
-JSX in TypeScript allows you to do the same thing, but you escape to TypeScript.
-That means transpilation features and type checking still work when embedded within JSX.
+JSX allows you to embed expressions between tags by surrounding the expressions with curly braces (`{ }`).
 
 ```JSX
 var a = <div>
-  {['foo', 'bar'].map(i => <span>{i/2}</span>)}
+  {['foo', 'bar'].map(i => <span>{i / 2}</span>)}
 </div>
 ```
 
@@ -268,7 +265,7 @@ var a = <div>
 
 # React integration
 
-To use JSX with React you should use the [React typings](https://github.com/borisyankov/DefinitelyTyped/tree/master/react).
+To use JSX with React you should use the [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/react).
 These typings define the `JSX` namespace appropriately for use with React.
 
 ```ts

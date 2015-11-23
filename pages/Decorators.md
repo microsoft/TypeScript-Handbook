@@ -325,10 +325,11 @@ A *Parameter Decorator* is declared just before a parameter declaration.
 The parameter decorator is applied to the function for a class constructor or method declaration.
 A parameter decorator cannot be used in a declaration file, an overload, or in any other ambient context (such as in a `declare` class).
 
-The expression for the parameter decorator will be called as a function at runtime, with the following two arguments:
+The expression for the parameter decorator will be called as a function at runtime, with the following three arguments:
 
-1. The function containing the decorated parameter.
-2. The ordinal index of the parameter in the function's parameter list.
+1. Either the constructor function of the class for a static member, or the prototype of the class for an instance member.
+2. The name of the member.
+3. The ordinal index of the parameter in the function's parameter list.
 
 > NOTE&emsp; A parameter decorator can only be used to observe that a parameter has been declared on a method.
 

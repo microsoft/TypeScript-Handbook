@@ -423,7 +423,7 @@ import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
     var x: typeof Zip = require("./ZipCodeValidator");
-    if (x.isAcceptable(".....")) { /* ... */ }
+    if (new x.isAcceptable(".....")) { /* ... */ }
 }
 ```
 
@@ -436,7 +436,7 @@ import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
     require(["./ZipCodeValidator"], (x: typeof Zip) => {
-        if (x.isAcceptable("...")) { /* ... */ }
+        if (new x.isAcceptable("...")) { /* ... */ }
     });
 }
 ```
@@ -450,7 +450,7 @@ import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
     System.import("./ZipCodeValidator").then((x: typeof Zip) => {
-        if (x.isAcceptable("...")) { /* ... */ }
+        if (new x.isAcceptable("...")) { /* ... */ }
     });
 }
 ```

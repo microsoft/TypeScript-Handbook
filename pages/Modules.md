@@ -417,7 +417,7 @@ The `typeof` keyword, when used in a type position, produces the type of a value
 ##### Dynamic Module Loading in Node.js
 
 ```ts
-declare var require;
+declare function require(moduleName: string): any;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
@@ -431,7 +431,7 @@ if (needZipValidation) {
 ##### Sample: Dynamic Module Loading in require.js
 
 ```ts
-declare var require;
+declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
@@ -446,7 +446,7 @@ if (needZipValidation) {
 ##### Sample: Dynamic Module Loading in System.js
 
 ```ts
-declare var System;
+declare var System: any;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 

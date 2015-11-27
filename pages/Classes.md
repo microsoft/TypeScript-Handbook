@@ -40,7 +40,7 @@ Let's take a look at an example:
 
 ```ts
 class Animal {
-    name:string;
+    name: string;
     constructor(theName: string) { this.name = theName; }
     move(distanceInMeters: number = 0) {
         console.log(`${this.name} moved ${distanceInMeters}m.`);
@@ -423,7 +423,8 @@ console.log(greeter1.greet());
 
 var greeterMaker: typeof Greeter = Greeter;
 greeterMaker.standardGreeting = "Hey there!";
-var greeter2:Greeter = new greeterMaker();
+
+var greeter2: Greeter = new greeterMaker();
 console.log(greeter2.greet());
 ```
 

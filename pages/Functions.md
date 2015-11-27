@@ -56,7 +56,7 @@ TypeScript can figure the return type out by looking at the return statements, s
 Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type.
 
 ```ts
-var myAdd: (x:number, y:number)=>number =
+var myAdd: (x: number, y: number)=>number =
     function(x: number, y: number): number { return x+y; };
 ```
 

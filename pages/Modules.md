@@ -417,26 +417,28 @@ The `typeof` keyword, when used in a type position, produces the type of a value
 ##### Dynamic Module Loading in Node.js
 
 ```ts
-declare var require;
+declare function require(moduleName: string): any;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
-    var x: typeof Zip = require("./ZipCodeValidator");
-    if (new x().isAcceptable(".....")) { /* ... */ }
+    var ZipCodeValidator: typeof Zip = require("./ZipCodeValidator");
+    var validator = new ZipCodeValidator();
+    if (validator.isAcceptable("...")) { /* ... */ }
 }
 ```
 
 ##### Sample: Dynamic Module Loading in require.js
 
 ```ts
-declare var require;
+declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
-    require(["./ZipCodeValidator"], (x: typeof Zip) => {
-        if (new x().isAcceptable("...")) { /* ... */ }
+    require(["./ZipCodeValidator"], (ZipCodeValidator: typeof Zip) => {
+        var validator = new ZipCodeValidator();
+        if (validator.isAcceptable("...")) { /* ... */ }
     });
 }
 ```
@@ -444,13 +446,14 @@ if (needZipValidation) {
 ##### Sample: Dynamic Module Loading in System.js
 
 ```ts
-declare var System;
+declare var System: any;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
-    System.import("./ZipCodeValidator").then((x: typeof Zip) => {
-        if (new x().isAcceptable("...")) { /* ... */ }
+    System.import("./ZipCodeValidator").then((ZipCodeValidator: typeof Zip) => {
+        var x = new ZipCodeValidator();
+        if (x.isAcceptable("...")) { /* ... */ }
     });
 }
 ```

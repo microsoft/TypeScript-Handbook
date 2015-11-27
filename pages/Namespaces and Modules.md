@@ -8,8 +8,8 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 This post outlines the various ways to organize your code using namespaces and modules in TypeScript.
 We'll also go over some advanced topics of how to use namespaces and modules, and address some common pitfalls when using them in TypeScript.
 
-See the [Modules](./modules.html) documentation for more information about modules.
-See the [Namespaces](./namespaces.html) documentation for more information about namespaces.
+See the [Modules](./Modules.md) documentation for more information about modules.
+See the [Namespaces](./Namespaces.md) documentation for more information about namespaces.
 
 
 # Using Namespaces

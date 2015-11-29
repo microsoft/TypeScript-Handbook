@@ -67,7 +67,7 @@ Example `tsconfig.json` files:
 
 ## Details
 
-The `"compilerOptions"` property can be omitted, in which case the compiler's defaults are used. See our full list of supported [Compiler Options](./compiler-options.html).
+The `"compilerOptions"` property can be omitted, in which case the compiler's defaults are used. See our full list of supported [Compiler Options](./Compiler Options.md).
 
 If no `"files"` property is present in a `tsconfig.json`, the compiler defaults to including all TypeScript (\*.ts or \*.tsx) files in the containing directory and subdirectories.
 When a `"files"` property is present, only the specified files are included.

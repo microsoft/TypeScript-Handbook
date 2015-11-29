@@ -23,7 +23,7 @@ Mode       | Input     | Output                       | Output File Extension
 `preserve` | `<div />` | `<div />`                    | `.jsx`
 `react`    | `<div />` | `React.createElement("div")` | `.js`
 
-You can specify this mode using either the `--jsx` command line flag or the corresponding option in your [tsconfig.json](./tsconfig.json.html) file.
+You can specify this mode using either the `--jsx` command line flag or the corresponding option in your [tsconfig.json](./tsconfig.json.md) file.
 
 > *Note: The identifier `React` is hard-coded, so you must make React available with an uppercase R.*
 

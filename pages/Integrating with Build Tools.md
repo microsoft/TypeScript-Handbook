@@ -14,7 +14,7 @@ browserify main.ts -p [ tsify --noImplicitAny ] > bundle.js
 
 ### Using API
 
-```javascript
+```js
 var browserify = require("browserify");
 var tsify = require("tsify");
 
@@ -43,7 +43,7 @@ duo --use duo-typescript entry.ts
 
 ### Using API
 
-```javascript
+```js
 var Duo = require('duo');
 var fs = require('fs')
 var path = require('path')
@@ -52,13 +52,13 @@ var typescript = require('duo-typescript');
 var out = path.join(__dirname, "output.js")
 
 Duo(__dirname)
-  .entry('entry.ts')
-  .use(typescript())
-  .run(function (err, results) {
-    if (err) throw err;
-    // Write compiled result to output file
-    fs.writeFileSync(out, results.code);
-  });
+    .entry('entry.ts')
+    .use(typescript())
+    .run(function (err, results) {
+        if (err) throw err;
+        // Write compiled result to output file
+        fs.writeFileSync(out, results.code);
+    });
 ```
 
 More details: [frankwallis/duo-typescript](https://github.com/frankwallis/duo-typescript)
@@ -73,17 +73,17 @@ npm install grunt-ts
 
 ### Basic Gruntfile.js
 
-````javascript
+````js
 module.exports = function(grunt) {
-  grunt.initConfig({
-    ts: {
-      default : {
-        src: ["**/*.ts", "!node_modules/**/*.ts"]
-      }
-    }
-  });
-  grunt.loadNpmTasks("grunt-ts");
-  grunt.registerTask("default", ["ts"]);
+    grunt.initConfig({
+        ts: {
+            default : {
+                src: ["**/*.ts", "!node_modules/**/*.ts"]
+            }
+        }
+    });
+    grunt.loadNpmTasks("grunt-ts");
+    grunt.registerTask("default", ["ts"]);
 };
 ````
 
@@ -99,17 +99,17 @@ npm install gulp-typescript
 
 ### Basic gulpfile.js
 
-```javascript
+```js
 var gulp = require("gulp");
 var ts = require("gulp-typescript");
 
 gulp.task("default", function () {
-  var tsResult = gulp.src("src/*.ts")
-    .pipe(ts({
-        noImplicitAny: true,
-        out: "output.js"
-      }));
-  return tsResult.js.pipe(gulp.dest('built/local'));
+    var tsResult = gulp.src("src/*.ts")
+        .pipe(ts({
+              noImplicitAny: true,
+              out: "output.js"
+        }));
+    return tsResult.js.pipe(gulp.dest('built/local'));
 });
 ```
 
@@ -137,26 +137,26 @@ npm install awesome-typescript-loader --save-dev
 
 ### Basic webpack.config.js
 
-```javascript
+```js
 module.exports = {
 
-  // Currently we need to add '.ts' to resolve.extensions array.
-  resolve: {
-    extensions: ['', '.ts', '.webpack.js', '.web.js', '.js']
-  },
+    // Currently we need to add '.ts' to resolve.extensions array.
+    resolve: {
+        extensions: ['', '.ts', '.webpack.js', '.web.js', '.js']
+    },
 
-  // Source maps support (or 'inline-source-map' also works)
-  devtool: 'source-map',
+    // Source maps support (or 'inline-source-map' also works)
+    devtool: 'source-map',
 
-  // Add loader for .ts files.
-  module: {
-    loaders: [
-      {
-        test: /\.ts$/,
-        loader: 'awesome-typescript-loader'
-      }
-    ]
-  }
+    // Add loader for .ts files.
+    module: {
+        loaders: [
+            {
+                test: /\.ts$/,
+                loader: 'awesome-typescript-loader'
+            }
+        ]
+    }
 };
 ```
 

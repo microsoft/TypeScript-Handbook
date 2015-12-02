@@ -52,7 +52,7 @@ Once we've written the generic identity function, we can call it in one of two w
 The first way is to pass all of the arguments, including the type argument, to the function:
 
 ```ts
-var output = identity<string>("myString");  // type of output will be 'string'
+let output = identity<string>("myString");  // type of output will be 'string'
 ```
 
 Here we explicitly set `T` to be string as one of the arguments to the function call, denoted using the `<>` around the arguments rather than `()`.
@@ -60,7 +60,7 @@ Here we explicitly set `T` to be string as one of the arguments to the function 
 The second way is also perhaps the most common. Here we use *type argument inference*, that is, we want the compiler to set the value of `T` for us automatically based on the type of the argument we pass in:
 
 ```ts
-var output = identity("myString");  // type of output will be 'string'
+let output = identity("myString");  // type of output will be 'string'
 ```
 
 Notice that we didn't have explicitly pass the type in the angle brackets (`<>`), the compiler just looked at the value `"myString"`, and set `T` to its type.
@@ -130,7 +130,7 @@ function identity<T>(arg: T): T {
     return arg;
 }
 
-var myIdentity: <T>(arg: T) => T = identity;
+let myIdentity: <T>(arg: T) => T = identity;
 ```
 
 We could also have used a different name for the generic type parameter in the type, so long as the number of type variables and how the type variables are used line up.
@@ -140,7 +140,7 @@ function identity<T>(arg: T): T {
     return arg;
 }
 
-var myIdentity: <U>(arg: U) => U = identity;
+let myIdentity: <U>(arg: U) => U = identity;
 ```
 
 We can also write the generic type as a call signature of an object literal type:
@@ -150,7 +150,7 @@ function identity<T>(arg: T): T {
     return arg;
 }
 
-var myIdentity: {<T>(arg: T): T} = identity;
+let myIdentity: {<T>(arg: T): T} = identity;
 ```
 
 Which leads us to writing our first generic interface.
@@ -165,7 +165,7 @@ function identity<T>(arg: T): T {
     return arg;
 }
 
-var myIdentity: GenericIdentityFn = identity;
+let myIdentity: GenericIdentityFn = identity;
 ```
 
 In a similar example, we may want to move the generic parameter to be a parameter of the whole interface.
@@ -181,7 +181,7 @@ function identity<T>(arg: T): T {
     return arg;
 }
 
-var myIdentity: GenericIdentityFn<number> = identity;
+let myIdentity: GenericIdentityFn<number> = identity;
 ```
 
 Notice that our example has changed to be something slightly different.
@@ -203,7 +203,7 @@ class GenericNumber<T> {
     add: (x: T, y: T) => T;
 }
 
-var myGenericNumber = new GenericNumber<number>();
+let myGenericNumber = new GenericNumber<number>();
 myGenericNumber.zeroValue = 0;
 myGenericNumber.add = function(x, y) { return x + y; };
 ```
@@ -212,7 +212,7 @@ This is a pretty literal use of the `GenericNumber` class, but you may have noti
 We could have instead used `string` or even more complex objects.
 
 ```ts
-var stringNumeric = new GenericNumber<string>();
+let stringNumeric = new GenericNumber<string>();
 stringNumeric.zeroValue = "";
 stringNumeric.add = function(x, y) { return x + y; };
 

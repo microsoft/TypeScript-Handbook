@@ -87,7 +87,7 @@ This is confusing and annoying for consumers of your module:
 
     ```ts
     import * as shapes from "./shapes";
-    var t = new shapes.Shapes.Triangle(); // shapes.Shapes?
+    let t = new shapes.Shapes.Triangle(); // shapes.Shapes?
     ```
 
 A key feature of modules in TypeScript is that two different modules will never contribute names to the same scope.
@@ -109,7 +109,7 @@ Here's a revised example:
 
     ```ts
     import * as shapes from "./shapes";
-    var t = new shapes.Triangle();
+    let t = new shapes.Triangle();
     ```
 
 ## Trade-offs of Modules

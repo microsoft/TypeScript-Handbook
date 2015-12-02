@@ -19,7 +19,7 @@ function add(x, y) {
 }
 
 // Anonymous function
-var myAdd = function(x, y) { return x+y; };
+let myAdd = function(x, y) { return x+y; };
 ```
 
 Just as in JavaScript, functions can refer to variables outside of the function body.
@@ -27,7 +27,7 @@ When they do so, they're said to `capture` these variables.
 While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.
 
 ```ts
-var z = 100;
+let z = 100;
 
 function addToZ(x, y) {
     return x + y + z;
@@ -45,7 +45,7 @@ function add(x: number, y: number): number {
     return x + y;
 }
 
-var myAdd = function(x: number, y: number): number { return x+y; };
+let myAdd = function(x: number, y: number): number { return x+y; };
 ```
 
 We can add types to each of the parameters and then to the function itself to add a return type.
@@ -56,7 +56,7 @@ TypeScript can figure the return type out by looking at the return statements, s
 Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type.
 
 ```ts
-var myAdd: (x: number, y: number)=>number =
+let myAdd: (x: number, y: number)=>number =
     function(x: number, y: number): number { return x+y; };
 ```
 
@@ -67,7 +67,7 @@ This name is just to help with readability.
 We could have instead written:
 
 ```ts
-var myAdd: (baseValue:number, increment:number) => number =
+let myAdd: (baseValue:number, increment:number) => number =
     function(x: number, y: number): number { return x + y; };
 ```
 
@@ -87,10 +87,10 @@ In playing with the example, you may notice that the TypeScript compiler can fig
 
 ```ts
 // myAdd has the full function type
-var myAdd = function(x: number, y: number): number { return  x + y; };
+let myAdd = function(x: number, y: number): number { return  x + y; };
 
 // The parameters `x` and `y` have the type number
-var myAdd: (baseValue:number, increment:number) => number =
+let myAdd: (baseValue:number, increment:number) => number =
     function(x, y) { return x + y; };
 ```
 
@@ -109,9 +109,9 @@ function buildName(firstName: string, lastName: string) {
     return firstName + " " + lastName;
 }
 
-var result1 = buildName("Bob");                  // error, too few parameters
-var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-var result3 = buildName("Bob", "Adams");         // ah, just right
+let result1 = buildName("Bob");                  // error, too few parameters
+let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result3 = buildName("Bob", "Adams");         // ah, just right
 ```
 
 In JavaScript, every parameter is optional, and users may leave them off as they see fit.
@@ -127,9 +127,9 @@ function buildName(firstName: string, lastName?: string) {
         return firstName;
 }
 
-var result1 = buildName("Bob");                  // works correctly now
-var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-var result3 = buildName("Bob", "Adams");         // ah, just right
+let result1 = buildName("Bob");                  // works correctly now
+let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result3 = buildName("Bob", "Adams");         // ah, just right
 ```
 
 Any optional parameters must follow required parameters.
@@ -144,10 +144,10 @@ function buildName(firstName: string, lastName = "Smith") {
     return firstName + " " + lastName;
 }
 
-var result1 = buildName("Bob");                  // works correctly now, returns "Bob Smith"
-var result2 = buildName("Bob", undefined);       // still works, also returns "Bob Smith"
-var result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-var result4 = buildName("Bob", "Adams");         // ah, just right
+let result1 = buildName("Bob");                  // works correctly now, returns "Bob Smith"
+let result2 = buildName("Bob", undefined);       // still works, also returns "Bob Smith"
+let result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result4 = buildName("Bob", "Adams");         // ah, just right
 ```
 
 Default-initialized parameters that come after all required parameters are treated as optional, and just like optional parameters, can be omitted when calling their respective function.
@@ -179,10 +179,10 @@ function buildName(firstName = "Will", lastName: string) {
     return firstName + " " + lastName;
 }
 
-var result1 = buildName("Bob");                  // error, too few parameters
-var result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
-var result3 = buildName("Bob", "Adams");         // okay and returns "Bob Adams"
-var result4 = buildName(undefined, "Adams");     // okay and returns "Will Adams"
+let result1 = buildName("Bob");                  // error, too few parameters
+let result2 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
+let result3 = buildName("Bob", "Adams");         // okay and returns "Bob Adams"
+let result4 = buildName(undefined, "Adams");     // okay and returns "Will Adams"
 ```
 
 # Rest Parameters
@@ -198,7 +198,7 @@ function buildName(firstName: string, ...restOfName: string[]) {
     return firstName + " " + restOfName.join(" ");
 }
 
-var employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
+let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
 
 *Rest parameters* are treated as a boundless number of optional parameters.
@@ -212,7 +212,7 @@ function buildName(firstName: string, ...restOfName: string[]) {
     return firstName + " " + restOfName.join(" ");
 }
 
-var buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
+let buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
 ```
 
 # Lambdas and using `this`
@@ -229,21 +229,21 @@ This can be notoriously confusing when, for instance, a function is used as a ca
 Let's look at an example:
 
 ```ts
-var deck = {
+let deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
     createCardPicker: function() {
         return function() {
-            var pickedCard = Math.floor(Math.random() * 52);
-            var pickedSuit = Math.floor(pickedCard / 13);
+            let pickedCard = Math.floor(Math.random() * 52);
+            let pickedSuit = Math.floor(pickedCard / 13);
 
             return {suit: this.suits[pickedSuit], card: pickedCard % 13};
         }
     }
 }
 
-var cardPicker = deck.createCardPicker();
-var pickedCard = cardPicker();
+let cardPicker = deck.createCardPicker();
+let pickedCard = cardPicker();
 
 alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
@@ -259,22 +259,22 @@ To fix this, we switch the function expression to use the arrow syntax (`() => {
 This will automatically capture the `this` available when the function is created rather than when it is invoked:
 
 ```ts
-var deck = {
+let deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
     createCardPicker: function() {
         // Notice: the line below is now a lambda, allowing us to capture `this` earlier
         return () => {
-            var pickedCard = Math.floor(Math.random() * 52);
-            var pickedSuit = Math.floor(pickedCard / 13);
+            let pickedCard = Math.floor(Math.random() * 52);
+            let pickedSuit = Math.floor(pickedCard / 13);
 
             return {suit: this.suits[pickedSuit], card: pickedCard % 13};
         }
     }
 }
 
-var cardPicker = deck.createCardPicker();
-var pickedCard = cardPicker();
+let cardPicker = deck.createCardPicker();
+let pickedCard = cardPicker();
 
 alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
@@ -287,27 +287,27 @@ JavaScript is inherently a very dynamic language.
 It's not uncommon for a single JavaScript function to return different types of objects based on the shape of the arguments passed in.
 
 ```ts
-var suits = ["hearts", "spades", "clubs", "diamonds"];
+let suits = ["hearts", "spades", "clubs", "diamonds"];
 
 function pickCard(x): any {
     // Check to see if we're working with an object/array
     // if so, they gave us the deck and we'll pick the card
     if (typeof x == "object") {
-        var pickedCard = Math.floor(Math.random() * x.length);
+        let pickedCard = Math.floor(Math.random() * x.length);
         return pickedCard;
     }
     // Otherwise just let them pick the card
     else if (typeof x == "number") {
-        var pickedSuit = Math.floor(x / 13);
+        let pickedSuit = Math.floor(x / 13);
         return { suit: suits[pickedSuit], card: x % 13 };
     }
 }
 
-var myDeck = [{ suit: "diamonds", card: 2 }, { suit: "spades", card: 10 }, { suit: "hearts", card: 4 }];
-var pickedCard1 = myDeck[pickCard(myDeck)];
+let myDeck = [{ suit: "diamonds", card: 2 }, { suit: "spades", card: 10 }, { suit: "hearts", card: 4 }];
+let pickedCard1 = myDeck[pickCard(myDeck)];
 alert("card: " + pickedCard1.card + " of " + pickedCard1.suit);
 
-var pickedCard2 = pickCard(15);
+let pickedCard2 = pickCard(15);
 alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 ```
 
@@ -321,7 +321,7 @@ This list is what the compiler will use to resolve function calls.
 Let's create a list of overloads that describe what our `pickCard` accepts and what it returns.
 
 ```ts
-var suits = ["hearts", "spades", "clubs", "diamonds"];
+let suits = ["hearts", "spades", "clubs", "diamonds"];
 
 function pickCard(x: {suit: string; card: number; }[]): number;
 function pickCard(x: number): {suit: string; card: number; };
@@ -329,21 +329,21 @@ function pickCard(x): any {
     // Check to see if we're working with an object/array
     // if so, they gave us the deck and we'll pick the card
     if (typeof x == "object") {
-        var pickedCard = Math.floor(Math.random() * x.length);
+        let pickedCard = Math.floor(Math.random() * x.length);
         return pickedCard;
     }
     // Otherwise just let them pick the card
     else if (typeof x == "number") {
-        var pickedSuit = Math.floor(x / 13);
+        let pickedSuit = Math.floor(x / 13);
         return { suit: suits[pickedSuit], card: x % 13 };
     }
 }
 
-var myDeck = [{ suit: "diamonds", card: 2 }, { suit: "spades", card: 10 }, { suit: "hearts", card: 4 }];
-var pickedCard1 = myDeck[pickCard(myDeck)];
+let myDeck = [{ suit: "diamonds", card: 2 }, { suit: "spades", card: 10 }, { suit: "hearts", card: 4 }];
+let pickedCard1 = myDeck[pickCard(myDeck)];
 alert("card: " + pickedCard1.card + " of " + pickedCard1.suit);
 
-var pickedCard2 = pickCard(15);
+let pickedCard2 = pickCard(15);
 alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 ```
 

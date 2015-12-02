@@ -14,7 +14,7 @@ class Person {
     name: string;
 }
 
-var p: Named;
+let p: Named;
 // OK, because of structural typing
 p = new Person();
 ```
@@ -37,9 +37,9 @@ interface Named {
     name: string;
 }
 
-var x: Named;
+let x: Named;
 // y's inferred type is { name: string; location: string; }
-var y = { name: 'Alice', location: 'Seattle' };
+let y = { name: 'Alice', location: 'Seattle' };
 x = y;
 ```
 
@@ -66,8 +66,8 @@ While comparing primitive types and object types is relatively straightforward, 
 Let's start with a basic example of two functions that differ only in their argument lists:
 
 ```ts
-var x = (a: number) => 0;
-var y = (b: number, s: string) => 0;
+let x = (a: number) => 0;
+let y = (b: number, s: string) => 0;
 
 y = x; // OK
 x = y; // Error
@@ -86,7 +86,7 @@ For example, `Array#forEach` provides three arguments to the callback function: 
 Nevertheless, it's very useful to provide a callback that only uses the first argument:
 
 ```ts
-var items = [1, 2, 3];
+let items = [1, 2, 3];
 
 // Don't force these extra arguments
 items.forEach((item, index, array) => console.log(item));
@@ -98,8 +98,8 @@ items.forEach(item => console.log(item));
 Now let's look at how return types are treated, using two functions that differ only by their return type:
 
 ```ts
-var x = () => ({name: 'Alice'});
-var y = () => ({name: 'Alice', location: 'Seattle'});
+let x = () => ({name: 'Alice'});
+let y = () => ({name: 'Alice', location: 'Seattle'});
 
 x = y; // OK
 y = x; // Error because x() lacks a location property
@@ -172,7 +172,7 @@ Enums are compatible with numbers, and numbers are compatible with enums. Enum v
 enum Status { Ready, Waiting };
 enum Color { Red, Blue, Green };
 
-var status = Status.Ready;
+let status = Status.Ready;
 status = Color.Green;  //error
 ```
 
@@ -193,8 +193,8 @@ class Size {
     constructor(numFeet: number) { }
 }
 
-var a: Animal;
-var s: Size;
+let a: Animal;
+let s: Size;
 
 a = s;  //OK
 s = a;  //OK
@@ -214,8 +214,8 @@ Because TypeScript is a structural type system, type parameters only affect the 
 ```ts
 interface Empty<T> {
 }
-var x: Empty<number>;
-var y: Empty<string>;
+let x: Empty<number>;
+let y: Empty<string>;
 
 x = y;  // okay, y matches structure of x
 ```
@@ -227,8 +227,8 @@ Changing this example by adding a member to `Empty<T>` shows how this works:
 interface NotEmpty<T> {
     data: T;
 }
-var x: NotEmpty<number>;
-var y: NotEmpty<string>;
+let x: NotEmpty<number>;
+let y: NotEmpty<string>;
 
 x = y;  // error, x and y are not compatible
 ```
@@ -241,11 +241,11 @@ The resulting types are then checked for compatibility, just as in the non-gener
 For example,
 
 ```ts
-var identity = function<T>(x: T): T {
+let identity = function<T>(x: T): T {
     // ...
 }
 
-var reverse = function<U>(y: U): U {
+let reverse = function<U>(y: U): U {
     // ...
 }
 

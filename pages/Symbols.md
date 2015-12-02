@@ -5,16 +5,16 @@ Starting with ECMAScript 2015, `symbol` is a primitive data type, just like `num
 `symbol` values are created by calling the `Symbol` constructor.
 
 ```ts
-var sym1 = Symbol();
+let sym1 = Symbol();
 
-var sym2 = Symbol("key"); // optional string key
+let sym2 = Symbol("key"); // optional string key
 ```
 
 Symbols are immutable, and unique.
 
 ```ts
-var sym2 = Symbol("key");
-var sym3 = Symbol("key");
+let sym2 = Symbol("key");
+let sym3 = Symbol("key");
 
 sym2 === sym3; // false, symbols are unique
 ```

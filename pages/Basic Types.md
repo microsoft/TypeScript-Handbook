@@ -5,10 +5,10 @@ In TypeScript, we support much the same types as you would expected in JavaScrip
 
 # Boolean
 
-The most basic datatype is the simple true/false value, which JavaScript and TypeScript (as well as other languages) call a `boolean` value.
+The most basic datatype is the simple true/false value, which JavaScript and TypeScript call a `boolean` value.
 
 ```ts
-var isDone: boolean = false;
+let isDone: boolean = false;
 ```
 
 # Number
@@ -18,10 +18,10 @@ These floating point numbers get the type `number`.
 In addition to hexadecimal and decimal literals, TypeScript also supports binary and octal literals introduced in ECMAScript 2015.
 
 ```ts
-var decLiteral: number = 6;
-var hexLiteral: number = 0x9837abdef;
-var binaryLiteral: number = 0b0010;
-var octalLiteral: number = 0o74563;
+let decimal: number = 6;
+let hex: number = 0xf00d;
+let binary: number = 0b1010;
+let octal: number = 0o755;
 ```
 
 # String
@@ -31,7 +31,7 @@ As in other languages, we use the type `string` to refer to these textual dataty
 Just like JavaScript, TypeScript also uses the double quote (`"`) or single quote (`'`) to surround string data.
 
 ```ts
-var name: string = "bob";
+let name: string = "bob";
 name = 'smith';
 ```
 
@@ -39,9 +39,9 @@ You can also use *template strings*, which can span multiple lines and have embe
 These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are of the form `${ expr }`
 
 ```ts
-var name: string = `Gene`;
-var age: number = 37;
-var sentence: string = `Hello, my name is ${ name }.
+let name: string = `Gene`;
+let age: number = 37;
+let sentence: string = `Hello, my name is ${ name }.
 
 I'll be ${ age + 1 } years old next month.`
 ```
@@ -49,7 +49,7 @@ I'll be ${ age + 1 } years old next month.`
 This is equivalent to declaring `sentence` like so:
 
 ```ts
-var sentence: string = "Hello, my name is " + name + ".\n\n" +
+let sentence: string = "Hello, my name is " + name + ".\n\n" +
     "I'll be " + (age + 1) + " years old next month."
 ```
 
@@ -60,13 +60,13 @@ Array types can be written in one of two ways.
 In the first, you use the type of the elements followed by `[]` to denote an array of that element type:
 
 ```ts
-var list: number[] = [1, 2, 3];
+let list: number[] = [1, 2, 3];
 ```
 
 The second way uses a generic array type, `Array<elemType>`:
 
 ```ts
-var list: Array<number> = [1, 2, 3];
+let list: Array<number> = [1, 2, 3];
 ```
 
 # Tuple
@@ -76,7 +76,7 @@ For example, you may want to represent a value as a pair of a `string` and a `nu
 
 ```ts
 // Declare a tuple type
-var x: [string, number];
+let x: [string, number];
 // Initialize it
 x = ['hello', 10]; // OK
 // Initialize it incorrectly
@@ -94,7 +94,9 @@ When accessing an element outside the set of known indices, a union type is used
 
 ```ts
 x[3] = 'world'; // OK, string can be assigned to (string | number)
+
 console.log(x[5].toString()); // OK, 'string' and 'number' both have toString
+
 x[6] = true; // Error, boolean isn't (string | number)
 ```
 
@@ -107,7 +109,7 @@ As in languages like C#, an enum is a way of giving more friendly names to sets 
 
 ```ts
 enum Color {Red, Green, Blue};
-var c: Color = Color.Green;
+let c: Color = Color.Green;
 ```
 
 By default, enums begin numbering their members starting at `0`.
@@ -116,14 +118,14 @@ For example, we can start the previous example at `1` instead of `0`:
 
 ```ts
 enum Color {Red = 1, Green, Blue};
-var c: Color = Color.Green;
+let c: Color = Color.Green;
 ```
 
 Or, even manually set all the values in the enum:
 
 ```ts
 enum Color {Red = 1, Green = 2, Blue = 4};
-var c: Color = Color.Green;
+let c: Color = Color.Green;
 ```
 
 A handy feature of enums is that you can also go from a numeric value to the name of that value in the enum.
@@ -131,7 +133,7 @@ For example, if we had the value `2` but weren't sure what that mapped to in the
 
 ```ts
 enum Color {Red = 1, Green, Blue};
-var colorName: string = Color[2];
+let colorName: string = Color[2];
 
 alert(colorName);
 ```
@@ -144,7 +146,7 @@ In these cases, we want to opt-out of type-checking and let the values pass thro
 To do so, we label these with the `any` type:
 
 ```ts
-var notSure: any = 4;
+let notSure: any = 4;
 notSure = "maybe a string instead";
 notSure = false; // okay, definitely a boolean
 ```
@@ -154,10 +156,11 @@ You might expect `Object` to play a similar role, as it does in other languages.
 But variables of type `Object` only allow you to assign any value to them -- you can't call arbitrary methods on them, even ones that actually exist:
 
 ```ts
-var notSure: any = 4;
+let notSure: any = 4;
 notSure.ifItExists(); // okay, ifItExists might exist at runtime
 notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
-var prettySure: Object = 4;
+
+let prettySure: Object = 4;
 prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
 ```
 
@@ -165,7 +168,7 @@ The `any` type is also handy if you know some part of the type, but perhaps not 
 For example, you may have an array but the array has a mix of different types:
 
 ```ts
-var list: any[] = [1, true, "free"];
+let list: any[] = [1, true, "free"];
 
 list[1] = 100;
 ```
@@ -184,5 +187,11 @@ function warnUser(): void {
 Declaring variables of type `void` is not useful because you can only assign `undefined` or `null` to them:
 
 ```ts
-var unusable: void = undefined;
+let unusable: void = undefined;
 ```
+
+# A note about `let`
+
+You may've noticed that so far, we've been using the `let` keyword instead of JavaScript's `var` keyword which you might be more familiar with.
+The `let` keyword is actually a newer JavaScript construct that TypeScript makes available.
+We'll discuss the details later, but many common problems in JavaScript are alleviated by using `let`. 

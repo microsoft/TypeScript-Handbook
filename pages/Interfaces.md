@@ -180,7 +180,7 @@ It is possible to support both types of indexers, with the restriction that the 
 
 While string index signatures are a powerful way to describe the "dictionary" pattern, they also enforce that all properties match their return type.
 This is because a string index declares that `obj.property` is also available as `obj["property"]`.
-In this example, `length`'s type does not match the string index's type, and the type-checker gives an error:
+In this example, `name`'s type does not match the string index's type, and the type-checker gives an error:
 
 ```ts
 interface NumberDictionary {

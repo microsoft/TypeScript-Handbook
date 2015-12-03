@@ -7,7 +7,7 @@ TODO
 Occasionally, you'll run into a library that expects or gives back a `number` or `string`.
 For instance, take the following function:
 
-```TypeScript
+```ts
 /**
  * Takes a string and adds "padding" to the left.
  * If 'padding' is a string, then 'padding' is appended to the left side.
@@ -21,19 +21,19 @@ function padLeft(value: string, padding: any) {
 The problem with `padLeft` is that its `padding` parameter is typed as `any`.
 That means that we can call it with an argument that's neither a `number` nor a `string`, but TypeScript will be okay with it.
 
-```TypeScript
+```ts
 let indentedString = padLeft("Hello world", true); // passes at compile time, fails at runtime.
 ```
 
 Instead of `any`, we can use a *union type* for the `padding` parameter:
 
-```TypeScript
+```ts
 /**
  * Takes a string and adds "padding" to the left.
  * If 'padding' is a string, then 'padding' is appended to the left side.
  * If 'padding' is a number, then that number of spaces is added to the left side.
  */
-function padLeft(value: string, padding: any) {
+function padLeft(value: string, padding: string | number) {
     // ...
 }
 
@@ -45,7 +45,7 @@ We use the vertical bar (`|`) to separate each type, so `number | string | boole
 
 If we have a value that has a union type, we can only access members that are common to all types in the union. 
  
-```TypeScript
+```ts
 interface Bird {
     fly();
     layEggs();
@@ -78,7 +78,7 @@ What happens when we need to know specifically whether we have a `Fish`?
 A common idiom in JavaScript to differentiate between two possible values is to check for the presence of a member.
 As we mentioned, you can only access members that are guaranteed to be in all the constituents of a union type.
 
-```TypeScript
+```ts
 let pet = getSmallPet();
 
 // Each of these property accesses will cause an error
@@ -92,7 +92,7 @@ else if (pet.fly) {
 
 To get the same code working, we'll need to use a type assertion:
 
-```TypeScript
+```ts
 let pet = getSmallPet();
 
 if ((<Fish>pet).swim) {
@@ -112,7 +112,7 @@ It just so happens that TypeScript has something called a *type guard*.
 A type guard is some expression that performs a runtime check that guarantees the type in some scope.
 We can write a type guard using a regular function:
 
-```TypeScript
+```ts
 function isFish(pet: Fish | Bird): pet is Fish {
     return (<Fish>pet).swim !== undefined;
 }
@@ -120,7 +120,7 @@ function isFish(pet: Fish | Bird): pet is Fish {
 
 Any time `isFish` is used on a variable name, TypeScript will know that variable has that specific type. 
 
-```TypeScript
+```ts
 // Both calls to 'swim' and 'fly' are now okay.
 
 if (isFish(pet) {
@@ -147,7 +147,7 @@ TODO
 Type aliases create a new name for a type.
 Type aliases are sometimes similar to interfaces, but can name primitives, unions, tuples, and any other types that you'd otherwise have to write by hand.
 
-```TypeScript
+```ts
 type XCoord = number;
 type YCoord = number;
 
@@ -167,13 +167,13 @@ Aliasing a primitive is not terribly useful, though it can be used as a form of 
 
 Just like interfaces, type aliases can also be generic - we can just add type parameters and use them on the right side of the alias declaration:
 
-```TypeScript
+```ts
 type Container<T> = { value: T };
 ```
 
 We can also have a type alias refer to itself in a property:
 
-```TypeScript
+```ts
 type Tree<T> = {
     value: T;
     left: Tree<T>;
@@ -183,7 +183,7 @@ type Tree<T> = {
 
 However, it's not possible for a type alias to appear anywhere else on the right side of the declaration:
 
-```TypeScript
+```ts
 type Yikes = Array<Yikes>; // error
 ```
 

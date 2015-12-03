@@ -52,19 +52,20 @@ Even if `g` is called once `f` is done running, it will be able to access and mo
 
 ```ts
 function f() {
-    var a = 10;
-    a = 15;
+    var a = 1;
+
+    a = 2;
     var b = g();
-    a = 20;
+    a = 3;
+
     return b;
 
     function g() {
-        var c = a + 1;
-        return c;
+        return a;
     }
 }
 
-f(); // returns 16
+f(); // returns 2
 ```
 
 ## Scoping rules
@@ -113,7 +114,7 @@ As experienced developers know by now, similar sorts of bugs slip through code r
 
 ## Variable capturing quirks
 
-Take a quick second to guess whta the output of the following snippet is:
+Take a quick second to guess what the output of the following snippet is:
 
 ```ts
 for (var i = 0; i < 10; i++) {
@@ -226,21 +227,33 @@ catch (e) {
 console.log(e);
 ```
 
-Another property of block-scoped variables is that they can't be used before they're actually declared.
-If captured by a function, it is illegal to call that function before the declaration, and if targeting ES2015, a modern runtime will throw an error.
+Another property of block-scoped variables is that they can't be read or written to before they're actually declared.
+While these variables are "present" throughout their scope, all points up until their declaration are part of their *temporal dead zone*.
+This is just a sophisticated way of saying you can't access them before the `let` statement, and luckily TypeScript will let you know that.
 
 ```ts
-a++; // illegal to use before 'a' is declared;
+a++; // illegal to use 'a' before it's declared;
+let a;
+```
 
+Something to note is that you can still *capture* a block-scoped variable before it's declared.
+The only catch is that it's illegal to call that function before the declaration.
+If targeting ES2015, a modern runtime will throw an error; however, right now TypeScript is permissive and won't report this as an error.
+
+```ts
 function foo() {
-    // okay to capture
+    // okay to capture 'a'
     return a;
 }
 
-foo(); // illegal to call before 'a' is declared
+// illegal call 'foo' before 'a' is declared
+// runtimes should throw an error here
+foo();
 
 let a;
 ```
+
+For more information on temporal dead zones, see relevant content on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let).
 
 ## Re-declarations and Shadowing
 
@@ -314,7 +327,7 @@ function sumMatrix(matrix: number[][]) {
 }
 ```
 
-This version of the loop will actually perform correctly.
+This version of the loop will actually perform the summation correctly because the inner loop's `i` shadows `i` from the outer loop.
 
 Shadowing should *usually* be avoided in the interest of write clearer code.
 While there are some scenarios where it may be fitting to take advantage of it, you should use your best judgement.
@@ -371,7 +384,6 @@ and as expected, this will print out
 9
 ```
 
-
 # `const` declarations
 
 `const` declarations are another way of declaring variables.
@@ -419,4 +431,4 @@ Using `const` also makes code more predictable when reasoning about flow of data
 On the other hand, `let` is not any longer to write out than `var`, and many users will prefer its brevity.
 The majority of this handbook uses `let` declarations in that interest.
 
-Use your best judgement and discuss it with whoever else will be contributing to your codebase.
+Use your best judgement, and if applicable, consult the matter with the rest of your team.

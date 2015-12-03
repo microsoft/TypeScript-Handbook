@@ -43,8 +43,8 @@ let indentedString = padLeft("Hello world", true); // errors during compilation
 A union type describes a value that can be one of several types.
 We use the vertical bar (`|`) to separate each type, so `number | string | boolean` is the type of a value that can be a `number`, a `string`, or a `boolean`.
 
-If we have a value that has a union type, we can only access members that are common to all types in the union. 
- 
+If we have a value that has a union type, we can only access members that are common to all types in the union.
+
 ```ts
 interface Bird {
     fly();
@@ -69,7 +69,7 @@ Union types can be a bit tricky here, but it just takes a bit of intuition to ge
 If a value has the type `A | B`, we only know for *certain* that it has members that both `A` *and* `B` have.
 On the other hand, in the example above `Bird` has a member named `fly`.
 We can't be sure whether a variable typed as `Bird | Fish` has a `fly` method.
-If the variable is really a `B` at runtime, then calling `pet.fly()` will fail.  
+If the variable is really a `B` at runtime, then calling `pet.fly()` will fail.
 
 # Type Guards and Differentiating Types
 
@@ -118,7 +118,7 @@ function isFish(pet: Fish | Bird): pet is Fish {
 }
 ```
 
-Any time `isFish` is used on a variable name, TypeScript will know that variable has that specific type. 
+Any time `isFish` is used on a variable name, TypeScript will know that variable has that specific type.
 
 ```ts
 // Both calls to 'swim' and 'fly' are now okay.

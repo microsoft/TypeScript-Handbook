@@ -5,7 +5,7 @@ As we mentioned earlier, `let` is similar to `var` in some respects, but allows 
 `const` is an augmentation of `let` in that it prevents re-assignment to a variable.
 
 With TypeScript being a superset of JavaScript, the language naturally supports `let` and `const`.
-Here we'll elaborate more on these new declarations and why they're preferrable to `var`.
+Here we'll elaborate more on these new declarations and why they're preferable to `var`.
 
 # `var` declarations
 
@@ -116,7 +116,7 @@ As experienced developers know by now, similar sorts of bugs slip through code r
 Take a quick second to guess whta the output of the following snippet is:
 
 ```ts
-for (var i = 0; i < 10 ; i++) {
+for (var i = 0; i < 10; i++) {
     setTimeout(function() {console.log(i); }, 100 * i);
 }
 ```
@@ -166,7 +166,7 @@ So each time the given function gets called, it will print out `10`!
 A common work around is to use an IIFE - an Immediately Invoked Function Expression - to capture `i` at each iteration:
 
 ```ts
-for (var i = 0; i < 10 ; i++) {
+for (var i = 0; i < 10; i++) {
     // capture the current state of 'i'
     // by invoking a function with its current value
     (function(i) {
@@ -227,7 +227,7 @@ console.log(e);
 ```
 
 Another property of block-scoped variables is that they can't be used before they're actually declared.
-If captured by a function, it is illegal to call that function before the declaration, and if targetting ES2015, a modern runtime will throw an error.
+If captured by a function, it is illegal to call that function before the declaration, and if targeting ES2015, a modern runtime will throw an error.
 
 ```ts
 a++; // illegal to use before 'a' is declared;
@@ -412,7 +412,7 @@ Unless you take specific measures to avoid it, the internal state of a `const` v
 Given that we have two types of declarations with similar scoping semantics, it's natural to find ourselves asking which one to use.
 Like most broad questions, the answer is: it depends.
 
-Applying the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), all declarations other than those you plan to modify should ust `const`.
+Applying the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), all declarations other than those you plan to modify should use `const`.
 The rationale is that if a variable didn't need to get written to, others working on the same codebase shouldn't automatically be able to write to the object, and will need to consider whether they really need to reassign to the variable.
 Using `const` also makes code more predictable when reasoning about flow of data.
 

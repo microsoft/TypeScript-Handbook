@@ -1,4 +1,5 @@
 # Introduction
+
 When using an external JavaScript library, or new host API, you'll need to use a declaration file (.d.ts) to describe the shape of that library.
 This guide covers a few high-level concepts specific to writing definition files, then proceeds with a number of examples that show how to transcribe various concepts to their matching definition file descriptions.
 
@@ -30,20 +31,20 @@ You might have a choice of declaring a variable using an anonymous type or an in
 
 #### Anonymously-typed var
 
-```TypeScript
+```ts
 declare var MyPoint: { x: number; y: number; };
 ```
 
 #### Interfaced-typed var
 
-```TypeScript
+```ts
 interface SomePoint { x: number; y: number; }
 declare var MyPoint: SomePoint;
 ```
 
 From a consumption side these declarations are identical, but the type `SomePoint` can be extended through interface merging:
 
-```TypeScript
+```ts
 interface SomePoint { z: number; }
 MyPoint.z = 4; // OK
 ```
@@ -62,7 +63,7 @@ As an example, the following two declarations are nearly equivalent from a consu
 
 #### Standard
 
-```TypeScript
+```ts
 class A {
     static st: string;
     inst: number;
@@ -72,7 +73,7 @@ class A {
 
 #### Decomposed
 
-```TypeScript
+```ts
 interface A_Static {
     new(m: any): A_Instance;
     st: string;
@@ -84,6 +85,7 @@ declare var A: A_Static;
 ```
 
 The trade-offs here are as follows:
+
 * Standard classes can be inherited from using `extends`; decomposed classes cannot. This might change in later version of TypeScript if arbitrary `extends` expressions are allowed.
 * It is possible to add members later (through declaration merging) to the static side of both standard and decomposed classes
 * It is possible to add instance members to decomposed classes, but not standard classes
@@ -103,7 +105,7 @@ When there are multiple good representations, more than one definition sample mi
 
 #### Usage
 
-```TypeScript
+```ts
 animalFactory.create("dog");
 animalFactory.create("giraffe", { name: "ronald" });
 animalFactory.create("panda", { name: "bob", height: 400 });
@@ -113,7 +115,7 @@ animalFactory.create("cat", { height: 32 });
 
 #### Typing
 
-```TypeScript
+```ts
 namespace animalFactory {
     interface AnimalOptions {
         name: string;
@@ -128,14 +130,14 @@ namespace animalFactory {
 
 #### Usage
 
-```TypeScript
+```ts
 zooKeeper.workSchedule = "morning";
 zooKeeper(giraffeCage);
 ```
 
 #### Typing
 
-```TypeScript
+```ts
 // Note: Function must precede namespace
 function zooKeeper(cage: AnimalCage);
 namespace zooKeeper {
@@ -147,7 +149,7 @@ namespace zooKeeper {
 
 #### Usage
 
-```TypeScript
+```ts
 var w = widget(32, 16);
 var y = new widget("sprocket");
 // w and y are both widgets
@@ -157,7 +159,7 @@ y.sprock();
 
 #### Typing
 
-```TypeScript
+```ts
 interface Widget {
     sprock(): void;
 }
@@ -174,7 +176,7 @@ declare var widget: WidgetFactory;
 
 #### Usage
 
-```TypeScript
+```ts
 // Either
 import x = require('zoo');
 x.open();
@@ -184,8 +186,8 @@ zoo.open();
 
 #### Typing
 
-```TypeScript
-namespace zoo {
+```ts
+declare namespace zoo {
   function open(): void;
 }
 
@@ -198,44 +200,47 @@ declare module "zoo" {
 
 #### Usage
 
-```TypeScript
+```ts
 // Super-chainable library for eagles
-import eagle = require('./eagle');
+import Eagle = require('./eagle');
+
 // Call directly
-eagle('bald').fly();
+Eagle('bald').fly();
+
 // Invoke with new
-var eddie = new eagle(1000);
+var eddie = new Eagle('Mille');
+
 // Set properties
-eagle.favorite = 'golden';
+eddie.kind = 'golden';
 ```
 
 #### Typing
 
-```TypeScript
-// Note: can use any name here, but has to be the same throughout this file
-declare function eagle(name: string): eagle;
-declare namespace eagle {
-    var favorite: string;
-    function fly(): void;
-}
-interface eagle {
-    new(awesomeness: number): eagle;
+```ts
+interface Eagle {
+    (kind: string): Eagle;
+    new (kind: string): Eagle;
+
+    kind: string;
+    fly(): void
 }
 
-export = eagle;
+declare var Eagle: Eagle;
+
+export = Eagle;
 ```
 
 ## Callbacks
 
 #### Usage
 
-```TypeScript
+```ts
 addLater(3, 4, x => console.log('x = ' + x));
 ```
 
 #### Typing
 
-```TypeScript
+```ts
 // Note: 'void' return type is preferred here
 function addLater(x: number, y: number, (sum: number) => void): void;
 ```

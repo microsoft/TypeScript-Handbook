@@ -5,7 +5,7 @@ Structural typing is a way of relating types based solely on their members.
 This is in contrast with nominal typing.
 Consider the following code:
 
-```TypeScript
+```ts
 interface Named {
     name: string;
 }
@@ -14,7 +14,7 @@ class Person {
     name: string;
 }
 
-var p: Named;
+let p: Named;
 // OK, because of structural typing
 p = new Person();
 ```
@@ -29,16 +29,17 @@ Because JavaScript widely uses anonymous objects like function expressions and o
 TypeScript's type system allows certain operations that can't be known at compile-time to be safe. When a type system has this property, it is said to not be "sound". The places where TypeScript allows unsound behavior were carefully considered, and throughout this document we'll explain where these happen and the motivating scenarios behind them.
 
 # Starting out
+
 The basic rule for TypeScript's structural type system is that `x` is compatible with `y` if `y` has at least the same members as `x`. For example:
 
-```TypeScript
+```ts
 interface Named {
     name: string;
 }
 
-var x: Named;
+let x: Named;
 // y's inferred type is { name: string; location: string; }
-var y = { name: 'Alice', location: 'Seattle' };
+let y = { name: 'Alice', location: 'Seattle' };
 x = y;
 ```
 
@@ -47,7 +48,7 @@ In this case, `y` must have a member called `name` that is a string. It does, so
 
 The same rule for assignment is used when checking function call arguments:
 
-```TypeScript
+```ts
 function greet(n: Named) {
     alert('Hello, ' + n.name);
 }
@@ -64,9 +65,9 @@ This comparison process proceeds recursively, exploring the type of each member 
 While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible.
 Let's start with a basic example of two functions that differ only in their argument lists:
 
-```TypeScript
-var x = (a: number) => 0;
-var y = (b: number, s: string) => 0;
+```ts
+let x = (a: number) => 0;
+let y = (b: number, s: string) => 0;
 
 y = x; // OK
 x = y; // Error
@@ -80,12 +81,12 @@ In this case, every parameter of `x` has a corresponding compatible parameter in
 The second assignment is an error, because y has a required second parameter that 'x' does not have, so the assignment is disallowed.
 
 You may be wondering why we allow 'discarding' parameters like in the example `y = x`.
-The reason is that assignment is allowed is that ignoring extra function parameters is actually quite common in JavaScript.
+The reason for this assignment to be allowed is that ignoring extra function parameters is actually quite common in JavaScript.
 For example, `Array#forEach` provides three arguments to the callback function: the array element, its index, and the containing array.
 Nevertheless, it's very useful to provide a callback that only uses the first argument:
 
-```TypeScript
-var items = [1, 2, 3];
+```ts
+let items = [1, 2, 3];
 
 // Don't force these extra arguments
 items.forEach((item, index, array) => console.log(item));
@@ -96,9 +97,9 @@ items.forEach(item => console.log(item));
 
 Now let's look at how return types are treated, using two functions that differ only by their return type:
 
-```TypeScript
-var x = () => ({name: 'Alice'});
-var y = () => ({name: 'Alice', location: 'Seattle'});
+```ts
+let x = () => ({name: 'Alice'});
+let y = () => ({name: 'Alice', location: 'Seattle'});
 
 x = y; // OK
 y = x; // Error because x() lacks a location property
@@ -107,11 +108,12 @@ y = x; // Error because x() lacks a location property
 The type system enforces that the source function's return type be a subtype of the target type's return type.
 
 ## Function Argument Bivariance
+
 When comparing the types of function parameters, assignment succeeds if either the source parameter is assignable to the target parameter, or vice versa.
 This is unsound because a caller might end up being given a function that takes a more specialized type, but invokes the function with a less specialized type.
 In practice, this sort of error is rare, and allowing this enables many common JavaScript patterns. A brief example:
 
-```TypeScript
+```ts
 enum EventType { Mouse, Keyboard }
 
 interface Event { timestamp: number; }
@@ -134,6 +136,7 @@ listenEvent(EventType.Mouse, (e: number) => console.log(e));
 ```
 
 ## Optional Arguments and Rest Arguments
+
 When comparing functions for compatibility, optional and required parameters are interchangeable.
 Extra optional parameters of the source type are not an error, and optional parameters of the target type without corresponding parameters in the target type are not an error.
 
@@ -143,7 +146,7 @@ This is unsound from a type system perspective, but from a runtime point of view
 
 The motivating example is the common pattern of a function that takes a callback and invokes it with some predictable (to the programmer) but unknown (to the type system) number of arguments:
 
-```TypeScript
+```ts
 function invokeLater(args: any[], callback: (...args: any[]) => void) {
     /* ... Invoke callback with 'args' ... */
 }
@@ -165,11 +168,11 @@ Functions with specialized overload signatures (those that use string literals i
 
 Enums are compatible with numbers, and numbers are compatible with enums. Enum values from different enum types are considered incompatible. For example,
 
-```TypeScript
+```ts
 enum Status { Ready, Waiting };
 enum Color { Red, Blue, Green };
 
-var status = Status.Ready;
+let status = Status.Ready;
 status = Color.Green;  //error
 ```
 
@@ -179,7 +182,7 @@ Classes work similarly to object literal types and interfaces with one exception
 When comparing two objects of a class type, only members of the instance are compared.
 Static members and constructors do not affect compatibility.
 
-```TypeScript
+```ts
 class Animal {
     feet: number;
     constructor(name: string, numFeet: number) { }
@@ -190,8 +193,8 @@ class Size {
     constructor(numFeet: number) { }
 }
 
-var a: Animal;
-var s: Size;
+let a: Animal;
+let s: Size;
 
 a = s;  //OK
 s = a;  //OK
@@ -208,11 +211,11 @@ This allows a class to be assignment compatible with its super class, but *not* 
 
 Because TypeScript is a structural type system, type parameters only affect the resulting type when consumed as part of the type of a member. For example,
 
-```TypeScript
+```ts
 interface Empty<T> {
 }
-var x: Empty<number>;
-var y: Empty<string>;
+let x: Empty<number>;
+let y: Empty<string>;
 
 x = y;  // okay, y matches structure of x
 ```
@@ -220,12 +223,12 @@ x = y;  // okay, y matches structure of x
 In the above, `x` and `y` are compatible because their structures do not use the type argument in a differentiating way.
 Changing this example by adding a member to `Empty<T>` shows how this works:
 
-```TypeScript
+```ts
 interface NotEmpty<T> {
     data: T;
 }
-var x: NotEmpty<number>;
-var y: NotEmpty<string>;
+let x: NotEmpty<number>;
+let y: NotEmpty<string>;
 
 x = y;  // error, x and y are not compatible
 ```
@@ -237,12 +240,12 @@ The resulting types are then checked for compatibility, just as in the non-gener
 
 For example,
 
-```TypeScript
-var identity = function<T>(x: T): T {
+```ts
+let identity = function<T>(x: T): T {
     // ...
 }
 
-var reverse = function<U>(y: U): U {
+let reverse = function<U>(y: U): U {
     // ...
 }
 

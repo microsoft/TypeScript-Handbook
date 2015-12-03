@@ -35,7 +35,7 @@ Understanding what is created with each declaration will help you understand wha
 The simplest, and perhaps most common, type of declaration merging is interface merging.
 At the most basic level, the merge mechanically joins the members of both declarations into a single interface with the same name.
 
-```TypeScript
+```ts
 interface Box {
     height: number;
     width: number;
@@ -45,7 +45,7 @@ interface Box {
     scale: number;
 }
 
-var box: Box = {height: 5, width: 6, scale: 10};
+let box: Box = {height: 5, width: 6, scale: 10};
 ```
 
 Non-function members of the interfaces must be unique.
@@ -56,7 +56,7 @@ Of note, too, is that in the case of interface `A` merging with later interface 
 
 That is, in the example:
 
-```TypeScript
+```ts
 interface Document {
     createElement(tagName: any): Element;
 }
@@ -73,7 +73,7 @@ interface Document {
 The two interfaces will merge to create a single declaration.
 Notice that the elements of each group maintains the same order, just the groups themselves are merged with later overload sets coming first:
 
-```TypeScript
+```ts
 interface Document {
     createElement(tagName: "div"): HTMLDivElement;
     createElement(tagName: "span"): HTMLSpanElement;
@@ -95,7 +95,7 @@ To merge the value, at each declaration site, if a namespace already exists with
 
 The declaration merge of `Animals` in this example:
 
-```TypeScript
+```ts
 namespace Animals {
     export class Zebra { }
 }
@@ -108,7 +108,7 @@ namespace Animals {
 
 is equivalent to:
 
-```TypeScript
+```ts
 namespace Animals {
     export interface Legged { numberOfLegs: number; }
 
@@ -122,9 +122,9 @@ Non-exported members are only visible in the original (un-merged) namespace. Thi
 
 We can see this more clearly in this example:
 
-```TypeScript
+```ts
 namespace Animal {
-    var haveMuscles = true;
+    let haveMuscles = true;
 
     export function animalsHaveMuscles() {
         return haveMuscles;
@@ -150,7 +150,7 @@ TypeScript uses this capability to model some of patterns in JavaScript as well 
 The first namespace merge we'll cover is merging a namespace with a class.
 This gives the user a way of describing inner classes.
 
-```TypeScript
+```ts
 class Album {
     label: Album.AlbumLabel;
 }
@@ -166,14 +166,14 @@ You can also use namespaces to add more static members to an existing class.
 In addition to the pattern of inner classes, you may also be familiar with JavaScript practice of creating a function and then extending the function further by adding properties onto the function.
 TypeScript uses declaration merging to build up definitions like this in a type-safe way.
 
-```TypeScript
+```ts
 function buildLabel(name: string): string {
     return buildLabel.prefix + name + buildLabel.suffix;
 }
 
 namespace buildLabel {
-    export var suffix = "";
-    export var prefix = "Hello, ";
+    export let suffix = "";
+    export let prefix = "Hello, ";
 }
 
 alert(buildLabel("Sam Smith"));
@@ -181,7 +181,7 @@ alert(buildLabel("Sam Smith"));
 
 Similarly, namespaces can be used to extend enums with static members:
 
-```TypeScript
+```ts
 enum Color {
     red = 1,
     green = 2,

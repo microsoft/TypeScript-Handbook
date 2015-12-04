@@ -23,7 +23,7 @@ That means that we can call it with an argument that's neither a `number` nor a 
 let indentedString = padLeft("Hello world", true); // passes at compile time, fails at runtime.
 ```
 
-In some object-oriented languages, we might abstract over the two types by creating a hierarchy of types.
+In some more traditional object-oriented languages, we might abstract over the two types by creating a hierarchy of types.
 
 ```ts
 interface Padding {
@@ -31,13 +31,13 @@ interface Padding {
 }
 
 class SpaceRepeatingPadder implements Padding {
-    constructor(private this: numSpaces) { }
+    constructor(private numSpaces: number) { }
     getPaddingString() {
         return Array(this.numSpaces).join(" ");
     }
 }
 
-class StringPadder() implements Padding {
+class StringPadder implements Padding {
     constructor(private value: string) { }
     getPaddingString() {
         return this.value;
@@ -53,7 +53,8 @@ padLeft("Hello world", new SpaceRepeatingPadder(4));
 
 While this is much more explicit, it's also a little bit overkill.
 One of the nice things about the original version of `padLeft` was that we were able to just pass in primitives.
-This approach also wouldn't help if we were just declaring a function that already exists elsewhere.
+That meant that usage was simple and not overly verbose.
+This new approach also wouldn't help if we were just declaring a function that already exists elsewhere.
 
 Instead of `any`, we can use a *union type* for the `padding` parameter:
 
@@ -210,7 +211,53 @@ While TypeScript won't prohibit using a string other than the aforementioned one
 
 ## `instanceof` type guards
 
-TODO
+If you've read about `typeof` type guards and are familiar with the `instanceof` operator in JavaScript, you probably have some idea of what this section is about.
+
+*`instanceof` type guards* are a way of narrowing types using their constructor function.
+For instance, let's borrow our industrial string-padder example from earlier:
+
+```ts
+interface Padding {
+    getPaddingString(): string
+}
+
+class SpaceRepeatingPadder implements Padding {
+    constructor(private numSpaces: number) { }
+    getPaddingString() {
+        return Array(this.numSpaces).join(" ");
+    }
+}
+
+class StringPadder implements Padding {
+    constructor(private value: string) { }
+    getPaddingString() {
+        return this.value;
+    }
+}
+
+function getRandomPadder() {
+    return Math.random() < 0.5 ?
+        new SpaceRepeatingPadder(4) :
+        new StringPadder("  ");
+}
+
+// Type is SpaceRepeatingPadder | StringPadder
+let padder: Padding = getRandomPadder();
+
+if (padder instanceof SpaceRepeatingPadder) {
+    padder; // type narrowed to 'SpaceRepeatingPadder'
+}
+if (padder instanceof StringPadder) {
+    padder; // type narrowed to 'StringPadder'
+}
+```
+
+The right side of the `instanceof` needs to be a constructor function, and TypeScript will narrow down to:
+
+1. the type of the function's `prototype` property if its type is not `any`
+2. the union of types returned by that type's construct signatures
+
+in that order.
 
 # Type Aliases
 

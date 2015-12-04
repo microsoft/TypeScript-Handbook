@@ -19,7 +19,7 @@ class Greeter {
     }
 }
 
-var greeter = new Greeter("world");
+let greeter = new Greeter("world");
 ```
 
 The syntax should look familiar if you've used C# or Java before.
@@ -40,7 +40,7 @@ Let's take a look at an example:
 
 ```ts
 class Animal {
-    name:string;
+    name: string;
     constructor(theName: string) { this.name = theName; }
     move(distanceInMeters: number = 0) {
         console.log(`${this.name} moved ${distanceInMeters}m.`);
@@ -63,8 +63,8 @@ class Horse extends Animal {
     }
 }
 
-var sam = new Snake("Sammy the Python");
-var tom: Animal = new Horse("Tommy the Palomino");
+let sam = new Snake("Sammy the Python");
+let tom: Animal = new Horse("Tommy the Palomino");
 
 sam.move();
 tom.move(34);
@@ -144,9 +144,9 @@ class Employee {
     constructor(theName: string) { this.name = theName; }
 }
 
-var animal = new Animal("Goat");
-var rhino = new Rhino();
-var employee = new Employee("Bob");
+let animal = new Animal("Goat");
+let rhino = new Rhino();
+let employee = new Employee("Bob");
 
 animal = rhino;
 animal = employee; // Error: Animal and Employee are not compatible
@@ -182,7 +182,7 @@ class Employee extends Person {
     }
 }
 
-var howard = new Employee("Howard", "Sales");
+let howard = new Employee("Howard", "Sales");
 console.log(howard.getElevatorPitch());
 console.log(howard.name); // error
 ```
@@ -223,7 +223,7 @@ class Employee {
     fullName: string;
 }
 
-var employee = new Employee();
+let employee = new Employee();
 employee.fullName = "Bob Smith";
 if (employee.fullName) {
     console.log(employee.fullName);
@@ -237,7 +237,7 @@ We do this by replacing the direct access to `fullName` with a `set` that will c
 We add a corresponding `get` to allow the previous example to continue to work seamlessly.
 
 ```ts
-var passcode = "secret passcode";
+let passcode = "secret passcode";
 
 class Employee {
     private _fullName: string;
@@ -256,7 +256,7 @@ class Employee {
     }
 }
 
-var employee = new Employee();
+let employee = new Employee();
 employee.fullName = "Bob Smith";
 if (employee.fullName) {
     console.log(employee.fullName);
@@ -279,15 +279,15 @@ Similarly to prepending `this.` in front of instance accesses, here we prepend `
 class Grid {
     static origin = {x: 0, y: 0};
     calculateDistanceFromOrigin(point: {x: number; y: number;}) {
-        var xDist = (point.x - Grid.origin.x);
-        var yDist = (point.y - Grid.origin.y);
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
         return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
     }
     constructor (public scale: number) { }
 }
 
-var grid1 = new Grid(1.0);  // 1x scale
-var grid2 = new Grid(5.0);  // 5x scale
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
 
 console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
 console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
@@ -368,12 +368,12 @@ class Greeter {
     }
 }
 
-var greeter: Greeter;
+let greeter: Greeter;
 greeter = new Greeter("world");
 console.log(greeter.greet());
 ```
 
-Here, when we say `var greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.
+Here, when we say `let greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.
 This is almost second nature to programmers from other object-oriented languages.
 
 We're also creating another value that we call the *constructor function*.
@@ -381,7 +381,7 @@ This is the function that is called when we `new` up instances of the class.
 To see what this looks like in practice, let's take a look at the JavaScript created by the above example:
 
 ```ts
-var Greeter = (function () {
+let Greeter = (function () {
     function Greeter(message) {
         this.greeting = message;
     }
@@ -391,12 +391,12 @@ var Greeter = (function () {
     return Greeter;
 })();
 
-var greeter;
+let greeter;
 greeter = new Greeter("world");
 console.log(greeter.greet());
 ```
 
-Here, `var Greeter` is going to be assigned the constructor function.
+Here, `let Greeter` is going to be assigned the constructor function.
 When we call `new` and run this function, we get an instance of the class.
 The constructor function also contains all of the static members of the class.
 Another way to think of each class is that there is an *instance* side and a *static* side.
@@ -417,13 +417,14 @@ class Greeter {
     }
 }
 
-var greeter1: Greeter;
+let greeter1: Greeter;
 greeter1 = new Greeter();
 console.log(greeter1.greet());
 
-var greeterMaker: typeof Greeter = Greeter;
+let greeterMaker: typeof Greeter = Greeter;
 greeterMaker.standardGreeting = "Hey there!";
-var greeter2:Greeter = new greeterMaker();
+
+let greeter2: Greeter = new greeterMaker();
 console.log(greeter2.greet());
 ```
 
@@ -454,6 +455,6 @@ interface Point3d extends Point {
     z: number;
 }
 
-var point3d: Point3d = {x: 1, y: 2, z: 3};
+let point3d: Point3d = {x: 1, y: 2, z: 3};
 ```
 

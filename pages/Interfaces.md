@@ -13,7 +13,7 @@ function printLabel(labelledObj: {label: string}) {
     console.log(labelledObj.label);
 }
 
-var myObj = {size: 10, label: "Size 10 Object"};
+let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
@@ -32,7 +32,7 @@ function printLabel(labelledObj: LabelledValue) {
     console.log(labelledObj.label);
 }
 
-var myObj = {size: 10, label: "Size 10 Object"};
+let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
@@ -58,7 +58,7 @@ interface SquareConfig {
 }
 
 function createSquare(config: SquareConfig): {color: string; area: number} {
-    var newSquare = {color: "white", area: 100};
+    let newSquare = {color: "white", area: 100};
     if (config.color) {
         newSquare.color = config.color;
     }
@@ -68,7 +68,7 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
     return newSquare;
 }
 
-var mySquare = createSquare({color: "black"});
+let mySquare = createSquare({color: "black"});
 ```
 
 Interfaces with optional properties are written similar to other interfaces, with each optional property denoted by a `?` at the end of the property name in the declaration.
@@ -83,7 +83,7 @@ interface SquareConfig {
 }
 
 function createSquare(config: SquareConfig): {color: string; area: number} {
-    var newSquare = {color: "white", area: 100};
+    let newSquare = {color: "white", area: 100};
     if (config.color) {
         // Error: Property 'collor' does not exist on type 'SquareConfig'
         newSquare.color = config.collor;
@@ -94,7 +94,7 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
     return newSquare;
 }
 
-var mySquare = createSquare({color: "black"});
+let mySquare = createSquare({color: "black"});
 ```
 
 # Function Types
@@ -115,9 +115,9 @@ Once defined, we can use this function type interface like we would other interf
 Here, we show how you can create a variable of a function type and assign it a function value of the same type.
 
 ```ts
-var mySearch: SearchFunc;
+let mySearch: SearchFunc;
 mySearch = function(source: string, subString: string) {
-    var result = source.search(subString);
+    let result = source.search(subString);
     if (result == -1) {
         return false;
     }
@@ -131,9 +131,9 @@ For function types to correctly type-check, the name of the parameters do not ne
 We could have, for example, written the above example like this:
 
 ```ts
-var mySearch: SearchFunc;
+let mySearch: SearchFunc;
 mySearch = function(src: string, sub: string): boolean {
-    var result = src.search(sub);
+    let result = src.search(sub);
     if (result == -1) {
         return false;
     }
@@ -149,9 +149,9 @@ Here, also, the return type of our function expression is implied by the values 
 Had the function expression returned numbers or strings, the type-checker would have warned us that return type doesn't match the return type described in the `SearchFunc` interface.
 
 ```ts
-var mySearch: SearchFunc;
+let mySearch: SearchFunc;
 mySearch = function(src, sub) {
-    var result = src.search(sub);
+    let result = src.search(sub);
     if (result == -1) {
         return false;
     }
@@ -171,7 +171,7 @@ interface StringArray {
     [index: number]: string;
 }
 
-var myArray: StringArray;
+let myArray: StringArray;
 myArray = ["Bob", "Fred"];
 ```
 
@@ -180,7 +180,7 @@ It is possible to support both types of indexers, with the restriction that the 
 
 While string index signatures are a powerful way to describe the "dictionary" pattern, they also enforce that all properties match their return type.
 This is because a string index declares that `obj.property` is also available as `obj["property"]`.
-In this example, `length`'s type does not match the string index's type, and the type-checker gives an error:
+In this example, `name`'s type does not match the string index's type, and the type-checker gives an error:
 
 ```ts
 interface NumberDictionary {
@@ -275,8 +275,8 @@ class AnalogClock implements ClockInterface {
     }
 }
 
-var digital = createClock(DigitalClock, 12, 17);
-var analog = createClock(AnalogClock, 7, 32);
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
 ```
 
 Because `createClock`'s first parameter is of type `ClockConstructor`, in `createClock(AnalogClock, 12, 17)`, it checks that `AnalogClock` has the correct constructor signature.
@@ -295,7 +295,7 @@ interface Square extends Shape {
     sideLength: number;
 }
 
-var square = <Square>{};
+let square = <Square>{};
 square.color = "blue";
 square.sideLength = 10;
 ```
@@ -315,7 +315,7 @@ interface Square extends Shape, PenStroke {
     sideLength: number;
 }
 
-var square = <Square>{};
+let square = <Square>{};
 square.color = "blue";
 square.sideLength = 10;
 square.penWidth = 5.0;
@@ -335,7 +335,14 @@ interface Counter {
     reset(): void;
 }
 
-var c: Counter;
+function getCounter(): Counter {
+    let counter = <Counter>function (start: number) { };
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+
+let c = getCounter();
 c(10);
 c.reset();
 c.interval = 5.0;

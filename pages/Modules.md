@@ -96,21 +96,21 @@ Importing an exported declaration is done through using one of the `import` form
 ```ts
 import { ZipCodeValidator } from "./ZipCodeValidator";
 
-var myValidator = new ZipCodeValidator();
+let myValidator = new ZipCodeValidator();
 ```
 
 imports can also be renamed
 
 ```ts
 import { ZipCodeValidator as ZCV } from "./ZipCodeValidator";
-var myValidator = new ZCV();
+let myValidator = new ZCV();
 ```
 
 ## Import the entire module into a single variable, and use it to access the module exports
 
 ```ts
 import * as validator from "./ZipCodeValidator";
-var myValidator = new validator.ZipCodeValidator();
+let myValidator = new validator.ZipCodeValidator();
 ```
 
 ## Import a module for side-effects only
@@ -135,7 +135,7 @@ For instance, a library like JQuery might have a default export of `jQuery` or `
 ##### JQuery.d.ts
 
 ```ts
-declare var $: JQuery;
+declare let $: JQuery;
 export default $;
 ```
 
@@ -166,7 +166,7 @@ export default class ZipCodeValidator {
 ```ts
 import validator from "./ZipCodeValidator";
 
-var validator = new validator();
+let validator = new validator();
 ```
 
 or
@@ -186,7 +186,7 @@ export default function (s: string) {
 ```ts
 import validate from "./StaticZipCodeValidator";
 
-var strings = ["Hello", "98052", "101"];
+let strings = ["Hello", "98052", "101"];
 
 // Use function validate
 strings.forEach(s => {
@@ -221,12 +221,12 @@ TypeScript supports `export =` to module the traditional CommonJS and AMD workfl
 The `export =` syntax specifies a single object that is exported from the module.
 This can be a class, interface, namespace, function, or enum.
 
-When importing a module using `export =`, TypeScript-specific `import var = require("module")` must be used to import the module.
+When importing a module using `export =`, TypeScript-specific `import let = require("module")` must be used to import the module.
 
 ##### ZipCodeValidator.ts
 
 ```ts
-var numberRegexp = /^[0-9]+$/;
+let numberRegexp = /^[0-9]+$/;
 class ZipCodeValidator {
     isAcceptable(s: string) {
         return s.length === 5 && numberRegexp.test(s);
@@ -241,10 +241,10 @@ export = ZipCodeValidator;
 import zip = require("./ZipCodeValidator");
 
 // Some samples to try
-var strings = ["Hello", "98052", "101"];
+let strings = ["Hello", "98052", "101"];
 
 // Validators to use
-var validator = new zip.ZipCodeValidator();
+let validator = new zip.ZipCodeValidator();
 
 // Show whether each string passed each validator
 strings.forEach(s => {
@@ -264,7 +264,7 @@ This simple example shows how the names used during importing and exporting get 
 
 ```ts
 import m = require("mod");
-export var t = m.something + 1;
+export let t = m.something + 1;
 ```
 
 ##### AMD / RequireJS SimpleModule.js
@@ -391,7 +391,7 @@ validators["Letters only"] = new LettersOnlyValidator();
 
 // Show whether each string passed each validator
 strings.forEach(s => {
-    for (var name in validators) {
+    for (let name in validators) {
         console.log(`"${ s }" - ${ validators[name].isAcceptable(s) ? "matches" : "does not match" } ${ name }`);
     }
 });
@@ -417,26 +417,28 @@ The `typeof` keyword, when used in a type position, produces the type of a value
 ##### Dynamic Module Loading in Node.js
 
 ```ts
-declare var require;
+declare function require(moduleName: string): any;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
-    var x: typeof Zip = require("./ZipCodeValidator");
-    if (x.isAcceptable(".....")) { /* ... */ }
+    let ZipCodeValidator: typeof Zip = require("./ZipCodeValidator");
+    let validator = new ZipCodeValidator();
+    if (validator.isAcceptable("...")) { /* ... */ }
 }
 ```
 
 ##### Sample: Dynamic Module Loading in require.js
 
 ```ts
-declare var require;
+declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
-    require(["./ZipCodeValidator"], (x: typeof Zip) => {
-        if (x.isAcceptable("...")) { /* ... */ }
+    require(["./ZipCodeValidator"], (ZipCodeValidator: typeof Zip) => {
+        let validator = new ZipCodeValidator();
+        if (validator.isAcceptable("...")) { /* ... */ }
     });
 }
 ```
@@ -444,12 +446,13 @@ if (needZipValidation) {
 ##### Sample: Dynamic Module Loading in System.js
 
 ```ts
-declare var System;
+declare const System: any;
 
 import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
 
 if (needZipValidation) {
-    System.import("./ZipCodeValidator").then((x: typeof Zip) => {
+    System.import("./ZipCodeValidator").then((ZipCodeValidator: typeof Zip) => {
+        var x = new ZipCodeValidator();
         if (x.isAcceptable("...")) { /* ... */ }
     });
 }
@@ -496,7 +499,7 @@ Now we can `/// <reference>` `node.d.ts` and then load the modules using `import
 ```ts
 /// <reference path="node.d.ts"/>
 import * as URL from "url";
-var myUrl = URL.parse("http://www.typescriptlang.org");
+let myUrl = URL.parse("http://www.typescriptlang.org");
 ```
 
 # Guidance for structuring modules
@@ -539,7 +542,7 @@ export default function getThing() { return 'thing'; }
 ```ts
 import t from "./MyClass";
 import f from "./MyFunc";
-var x = new t();
+let x = new t();
 console.log(f());
 ```
 
@@ -562,8 +565,8 @@ Conversly when importing:
 
 ```ts
 import { SomeType, SomeFunc } from "./MyThings";
-var x = new SomeType();
-var y = someFunc();
+let x = new SomeType();
+let y = someFunc();
 ```
 
 ### Use the namespace import pattern if you're importing a large number of things
@@ -581,7 +584,7 @@ export class Flower { ... }
 
 ```ts
 import * as myLargeModule from "./MyLargeModule.ts";
-var x = new myLargeModule.Dog();
+let x = new myLargeModule.Dog();
 ```
 
 ## Re-export to extend
@@ -678,7 +681,7 @@ Here is a simple test for the calculator using the exposed `test` function.
 import { Calculator, test } from "./Calculator";
 
 
-var c = new Calculator();
+let c = new Calculator();
 test(c, "1+2*33/11="); // prints 9
 ```
 
@@ -722,7 +725,7 @@ Here is a test for our ProgrammerCalculator class:
 ```ts
 import { Calculator, test } from "./ProgrammerCalculator";
 
-var c = new Calculator(2);
+let c = new Calculator(2);
 test(c, "001+010="); // prints 3
 ```
 
@@ -745,7 +748,7 @@ This, however, is not an issue with modules.
 Within a module, there's no plausible reason to have two objects with the same name.
 From the consumption side, the consumer of any given module gets to pick the name that they will use to refer to the module, so accidental naming conflicts are impossible.
 
-> For more discussion about modules and namespaces see [Namespaces and Modules](./namespaces-and-modules.html).
+> For more discussion about modules and namespaces see [Namespaces and Modules](./Namespaces and Modules.md).
 
 ## Red Flags
 

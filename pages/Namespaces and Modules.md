@@ -8,8 +8,8 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 This post outlines the various ways to organize your code using namespaces and modules in TypeScript.
 We'll also go over some advanced topics of how to use namespaces and modules, and address some common pitfalls when using them in TypeScript.
 
-See the [Modules](./modules.html) documentation for more information about modules.
-See the [Namespaces](./namespaces.html) documentation for more information about namespaces.
+See the [Modules](./Modules.md) documentation for more information about modules.
+See the [Namespaces](./Namespaces.md) documentation for more information about namespaces.
 
 
 # Using Namespaces
@@ -87,7 +87,7 @@ This is confusing and annoying for consumers of your module:
 
     ```ts
     import * as shapes from "./shapes";
-    var t = new shapes.Shapes.Triangle(); // shapes.Shapes?
+    let t = new shapes.Shapes.Triangle(); // shapes.Shapes?
     ```
 
 A key feature of modules in TypeScript is that two different modules will never contribute names to the same scope.
@@ -109,7 +109,7 @@ Here's a revised example:
 
     ```ts
     import * as shapes from "./shapes";
-    var t = new shapes.Triangle();
+    let t = new shapes.Triangle();
     ```
 
 ## Trade-offs of Modules

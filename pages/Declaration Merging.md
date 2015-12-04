@@ -45,7 +45,7 @@ interface Box {
     scale: number;
 }
 
-var box: Box = {height: 5, width: 6, scale: 10};
+let box: Box = {height: 5, width: 6, scale: 10};
 ```
 
 Non-function members of the interfaces must be unique.
@@ -124,7 +124,7 @@ We can see this more clearly in this example:
 
 ```ts
 namespace Animal {
-    var haveMuscles = true;
+    let haveMuscles = true;
 
     export function animalsHaveMuscles() {
         return haveMuscles;
@@ -172,8 +172,8 @@ function buildLabel(name: string): string {
 }
 
 namespace buildLabel {
-    export var suffix = "";
-    export var prefix = "Hello, ";
+    export let suffix = "";
+    export let prefix = "Hello, ";
 }
 
 alert(buildLabel("Sam Smith"));

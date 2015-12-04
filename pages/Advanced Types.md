@@ -1,7 +1,3 @@
-# Introduction
-
-TODO
-
 # Union Types
 
 Occasionally, you'll run into a library that expects or gives back a `number` or `string`.
@@ -16,6 +12,8 @@ For instance, take the following function:
 function padLeft(value: string, padding: any) {
     // ...
 }
+
+padLeft("Hello world", 4); // returns "    Hello world"
 ```
 
 The problem with `padLeft` is that its `padding` parameter is typed as `any`.
@@ -24,6 +22,38 @@ That means that we can call it with an argument that's neither a `number` nor a 
 ```ts
 let indentedString = padLeft("Hello world", true); // passes at compile time, fails at runtime.
 ```
+
+In some object-oriented languages, we might abstract over the two types by creating a hierarchy of types.
+
+```ts
+interface Padding {
+    getPaddingString(): string
+}
+
+class SpaceRepeatingPadder implements Padding {
+    constructor(private this: numSpaces) { }
+    getPaddingString() {
+        return Array(this.numSpaces).join(" ");
+    }
+}
+
+class StringPadder() implements Padding {
+    constructor(private value: string) { }
+    getPaddingString() {
+        return this.value;
+    }
+}
+
+function padLeft(value: string, padding: Padding) {
+    return padding.getPaddingString() + value;
+}
+
+padLeft("Hello world", new SpaceRepeatingPadder(4));
+```
+
+While this is much more explicit, it's also a little bit overkill.
+One of the nice things about the original version of `padLeft` was that we were able to just pass in primitives.
+This approach also wouldn't help if we were just declaring a function that already exists elsewhere.
 
 Instead of `any`, we can use a *union type* for the `padding` parameter:
 

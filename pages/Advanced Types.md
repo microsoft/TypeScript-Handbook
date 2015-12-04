@@ -98,9 +98,9 @@ pet.swim();    // errors
 
 Union types can be a bit tricky here, but it just takes a bit of intuition to get used to.
 If a value has the type `A | B`, we only know for *certain* that it has members that both `A` *and* `B` have.
-On the other hand, in the example above `Bird` has a member named `fly`.
+In this example, `Bird` has a member named `fly`.
 We can't be sure whether a variable typed as `Bird | Fish` has a `fly` method.
-If the variable is really a `B` at runtime, then calling `pet.fly()` will fail.
+If the variable is really a `Fish` at runtime, then calling `pet.fly()` will fail.
 
 # Type Guards and Differentiating Types
 
@@ -134,14 +134,14 @@ else {
 }
 ```
 
-## User Defined Type Guards
+## User-Defined Type Guards
 
 Notice that we had to use type assertions several times.
 It would be much better if once we performed the check, we could know the type of `pet` within each branch.
 
 It just so happens that TypeScript has something called a *type guard*.
 A type guard is some expression that performs a runtime check that guarantees the type in some scope.
-We can write a type guard using a regular function:
+To define a type guard, we simply need to define a function whose return type is a *type predicate*:
 
 ```ts
 function isFish(pet: Fish | Bird): pet is Fish {
@@ -149,7 +149,10 @@ function isFish(pet: Fish | Bird): pet is Fish {
 }
 ```
 
-Any time `isFish` is used on a variable name, TypeScript will know that variable has that specific type.
+`pet is Fish` is our type predicate in this example.
+A predicate takes the form `parameterName is Type`, where `parameterName` must be the name of a parameter from the current function signature.
+
+Any time `isFish` is called with some variable, TypeScript will *narrow* that variable to that specific type if the original type is compatible.
 
 ```ts
 // Both calls to 'swim' and 'fly' are now okay.
@@ -167,8 +170,8 @@ it also knows that in the `else` branch, you *don't* have a `Fish`, so you must 
 
 ## `typeof` type guards
 
-Notice that earlier, we didn't actually show the solid implementation of our `padLeft` which used union types.
-We could write it like this:
+We didn't actually reveal the implementation of the version of `padLeft` which used union types.
+We could write it with type predicates as follows:
 
 ```ts
 function isNumber(x: any): x is number {
@@ -190,7 +193,7 @@ function padLeft(value: string, padding: string | number) {
 }
 ```
 
-Having to define a function to figure out if a type is a primitive is kind of a pain.
+However, having to define a function to figure out if a type is a primitive is kind of a pain.
 Luckily, you don't need to abstract `typeof x === "number"` into its own function because TypeScript will recognize it as a type guard on its own.
 That means we could just write them inline.
 
@@ -268,7 +271,6 @@ Type aliases are sometimes similar to interfaces, but can name primitives, union
 type XCoord = number;
 type YCoord = number;
 
-type XCoord = { x: XCoord };
 type XYCoord = { x: XCoord; y: YCoord };
 type XYZCoord = { x: XCoord; y: YCoord; z: number };
 
@@ -308,7 +310,7 @@ type Yikes = Array<Yikes>; // error
 
 As we mentioned, type aliases can act sort of like interfaces; however, there are some subtle differences.
 
-One important difference is that type aliases cannot be extended or implemented from (nor can they extend/implement).
-Because you should usually try to leave your types open to extension, you should always use an interface over a type alias if possible.
+One important difference is that type aliases cannot be extended or implemented from (nor can they extend/implement other types).
+Because [an ideal property of software is being open to extension](https://en.wikipedia.org/wiki/Open/closed_principle), you should always use an interface over a type alias if possible.
 
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.

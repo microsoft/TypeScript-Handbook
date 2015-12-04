@@ -166,7 +166,47 @@ it also knows that in the `else` branch, you *don't* have a `Fish`, so you must 
 
 ## `typeof` type guards
 
-TODO
+Notice that earlier, we didn't actually show the solid implementation of our `padLeft` which used union types.
+We could write it like this:
+
+```ts
+function isNumber(x: any): x is number {
+    return typeof x === "number";
+}
+
+function isString(x: any): x is string {
+    return typeof x === "string";
+}
+
+function padLeft(value: string, padding: string | number) {
+    if (isNumber(padding)) {
+        return Array(padding).join(" ") + value;
+    }
+    if (isString(padding)) {
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got '${value}'.`);
+}
+```
+
+Having to define a function to figure out if a type is a primitive is kind of a pain.
+Luckily, you don't need to abstract `typeof x === "number"` into its own function because TypeScript will recognize it as a type guard on its own.
+That means we could just write them inline.
+
+```ts
+function padLeft(value: string, padding: string | number) {
+    if (typeof padding === "number") {
+        return Array(padding).join(" ") + value;
+    }
+    if (typeof padding === "string") {
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got '${value}'.`);
+}
+```
+
+These *`typeof` type guards* are recognized in two different forms: `typeof v === "typename"` and `typeof v !== "typename"`, where `"typename"` must be `"number"`, `"string"`, `"boolean"`, or `"symbol"`.
+While TypeScript won't prohibit using a string other than the aforementioned ones, or switching the two sides of the comparison, the language won't recognize those forms as type guards.
 
 ## `instanceof` type guards
 

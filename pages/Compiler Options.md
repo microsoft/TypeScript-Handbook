@@ -13,7 +13,6 @@ Option                                  | Shorthand | Description
 `--diagnostics`                         |           |  Show diagnostic information.
 `--emitBOM`                             |           |  Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.
 `--emitDecoratorMetadata`<sup>[1]</sup> |           |  Emit design-type metadata for decorated declarations in source. See [issue #2577](https://github.com/Microsoft/TypeScript/issues/2577) for details.
-`--experimentalAsyncFunctions`          |           |  Support ES7-proposed asynchronous functions using the `async`/`await` keywords.
 `--inlineSourceMap`                     |           |  Emit a single file with source maps instead of having a separate file.
 `--inlineSources`                       |           |  Emit the source alongside the sourcemaps within a single file; requires `--inlineSourceMap` to be set.
 `--isolatedModules`                     |           |  Unconditionally emit imports for unresolved files.

@@ -48,9 +48,8 @@ Compiler options can be specified using MSBuild properties within an MSBuild pro
 `--sourceRoot`                               | TypeScriptSourceRoot                       | File path
 `--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
-`--moduleResolution`<sup>[1]</sup>           | TypeScriptModuleResolution                 | `Classic` or `NodeJs`
-`--experimentalAsyncFunctions`<sup>[1]</sup> | TypeScriptExperimentalAsyncFunctions       | boolean
-`--jsx`<sup>[1]</sup>                        | TypeScriptJSXEmit                          | `React` or `Preserve`
+`--moduleResolution`                         | TypeScriptModuleResolution                 | `Classic` or `NodeJs`
+`--jsx`                                      | TypeScriptJSXEmit                          | `React` or `Preserve`
 `--project`                                  | *Not supported in VS*                      |
 `--watch`                                    | *Not supported in VS*                      |
 `--diagnostics`                              | *Not supported in VS*                      |
@@ -58,7 +57,6 @@ Compiler options can be specified using MSBuild properties within an MSBuild pro
 `--noEmit`                                   | *Not supported in VS*                      |
 *VS only option*                             | TypeScriptAdditionalFlags                  | *Any compiler option*
 
-<sup>1</sup> These settings are new in TypeScript 1.6
 
 ## What is supported in my version of Visual Studio
 

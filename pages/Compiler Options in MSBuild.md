@@ -19,7 +19,7 @@ Compiler options can be specified using MSBuild properties within an MSBuild pro
 
 ## Mappings
 
-                Compiler Option              |            MSBuild Property Name           | Allowed Values
+Compiler Option                              | MSBuild Property Name                      | Allowed Values
 ---------------------------------------------|--------------------------------------------|-----------------
 `--declaration`                              | TypeScriptGeneratesDeclarations            | boolean
 `--module`                                   | TypeScriptModuleKind                       | `AMD`, `CommonJs`, `UMD`, or `System`

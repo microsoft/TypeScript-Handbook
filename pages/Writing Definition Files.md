@@ -93,7 +93,7 @@ The trade-offs here are as follows:
 
 ## Naming Conventions
 
-In general, do not prefix interfaces with `I` (e.g. `IColor`).
+In general, you shouldn't prefix interfaces with `I` (e.g. `IColor`).
 Because the concept of an interface in TypeScript is much more broad than in C# or Java, the `IFoo` naming convention is not broadly useful.
 
 # Examples

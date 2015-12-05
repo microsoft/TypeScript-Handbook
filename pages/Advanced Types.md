@@ -26,26 +26,26 @@ let indentedString = padLeft("Hello world", true); // passes at compile time, fa
 In some more traditional object-oriented languages, we might abstract over the two types by creating a hierarchy of types.
 
 ```ts
-interface Padding {
+interface Padder {
     getPaddingString(): string
 }
 
-class SpaceRepeatingPadder implements Padding {
+class SpaceRepeatingPadder implements Padder {
     constructor(private numSpaces: number) { }
     getPaddingString() {
         return Array(this.numSpaces).join(" ");
     }
 }
 
-class StringPadder implements Padding {
+class StringPadder implements Padder {
     constructor(private value: string) { }
     getPaddingString() {
         return this.value;
     }
 }
 
-function padLeft(value: string, padding: Padding) {
-    return padding.getPaddingString() + value;
+function padLeft(value: string, padder: Padder) {
+    return padder.getPaddingString() + value;
 }
 
 padLeft("Hello world", new SpaceRepeatingPadder(4));
@@ -195,7 +195,7 @@ function padLeft(value: string, padding: string | number) {
 
 However, having to define a function to figure out if a type is a primitive is kind of a pain.
 Luckily, you don't need to abstract `typeof x === "number"` into its own function because TypeScript will recognize it as a type guard on its own.
-That means we could just write them inline.
+That means we could just write these checks inline.
 
 ```ts
 function padLeft(value: string, padding: string | number) {
@@ -220,18 +220,18 @@ If you've read about `typeof` type guards and are familiar with the `instanceof`
 For instance, let's borrow our industrial string-padder example from earlier:
 
 ```ts
-interface Padding {
+interface Padder {
     getPaddingString(): string
 }
 
-class SpaceRepeatingPadder implements Padding {
+class SpaceRepeatingPadder implements Padder {
     constructor(private numSpaces: number) { }
     getPaddingString() {
         return Array(this.numSpaces).join(" ");
     }
 }
 
-class StringPadder implements Padding {
+class StringPadder implements Padder {
     constructor(private value: string) { }
     getPaddingString() {
         return this.value;

@@ -7,11 +7,10 @@ As we mentioned earlier, `let` is similar to `var` in some respects, but allows 
 With TypeScript being a superset of JavaScript, the language naturally supports `let` and `const`.
 Here we'll elaborate more on these new declarations and why they're preferable to `var`.
 
-# `var` declarations
-
-> This section acts is a quick introduction to `var` declarations.
-If you've used JavaScript offhandedly, this section might be a good way to refresh your memory.
+If you've used JavaScript offhandedly, the next section might be a good way to refresh your memory.
 If you're intimately familiar with all the quirks of `var` declarations in JavaScript, you might find it easier to skip ahead.
+
+# `var` declarations
 
 Declaring a variable in JavaScript has always traditionally been done with the `var` keyword.
 

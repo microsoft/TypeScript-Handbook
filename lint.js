@@ -46,11 +46,6 @@ var options = {
   }
 };
 
-var fencedCodeBlockInUnorderedListRegEx = /^(\s+\*\s+)\S.+\r?\n(\s*)/m;
-var carriageReturn = 0x0D;
-var lineFeed = 0x0A;
-
-
 var result = markdownlint.sync(options);
 console.log(result.toString());
 

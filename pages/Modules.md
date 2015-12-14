@@ -523,7 +523,7 @@ If a module's primary purpose is to house one specific export, then you should c
 This makes both importing and actually using the import a little easier.
 For example:
 
-#### MyClass.ts
+##### MyClass.ts
 
 ```ts
 export default class SomeType {
@@ -531,13 +531,13 @@ export default class SomeType {
 }
 ```
 
-#### MyFunc.ts
+##### MyFunc.ts
 
 ```ts
 export default function getThing() { return 'thing'; }
 ```
 
-#### Consumer.ts
+##### Consumer.ts
 
 ```ts
 import t from "./MyClass";
@@ -550,7 +550,7 @@ This is optimal for consumers. They can name your type whatever they want (`t` i
 
 ### If you're exporting multiple objects, put them all at top-level
 
-#### MyThings.ts
+##### MyThings.ts
 
 ```ts
 export class SomeType { /* ... */ }
@@ -561,7 +561,7 @@ Conversly when importing:
 
 ### Explicitlly list imported names
 
-#### Consumer.ts
+##### Consumer.ts
 
 ```ts
 import { SomeType, SomeFunc } from "./MyThings";
@@ -571,7 +571,7 @@ let y = someFunc();
 
 ### Use the namespace import pattern if you're importing a large number of things
 
-#### MyLargeModule.ts
+##### MyLargeModule.ts
 
 ```ts
 export class Dog { ... }
@@ -580,7 +580,7 @@ export class Tree { ... }
 export class Flower { ... }
 ```
 
-#### Consumer.ts
+##### Consumer.ts
 
 ```ts
 import * as myLargeModule from "./MyLargeModule.ts";
@@ -597,7 +597,7 @@ The recommended solution is to *not* mutate the original object, but rather expo
 Consider a simple calculator implementation defined in module `Calculator.ts`.
 The module also exports a helper function to test the calculator functionality by passing a list of input strings and writing the result at the end.
 
-#### Calculator.ts
+##### Calculator.ts
 
 ```ts
 export class Calculator {
@@ -675,7 +675,7 @@ export function test(c: Calculator, input: string) {
 
 Here is a simple test for the calculator using the exposed `test` function.
 
-#### TestCalculator.ts
+##### TestCalculator.ts
 
 ```ts
 import { Calculator, test } from "./Calculator";
@@ -687,7 +687,7 @@ test(c, "1+2*33/11="); // prints 9
 
 Now to extend this to add support for input with numbers in bases other than 10, let's create `ProgrammerCalculator.ts`
 
-#### ProgrammerCalculator.ts
+##### ProgrammerCalculator.ts
 
 ```ts
 import { Calculator } from "./Calculator";
@@ -720,7 +720,7 @@ The new module `ProgrammerCalculator` exports an API shape similar to that of th
 Here is a test for our ProgrammerCalculator class:
 
 
-#### TestProgrammerCalculator.ts
+##### TestProgrammerCalculator.ts
 
 ```ts
 import { Calculator, test } from "./ProgrammerCalculator";

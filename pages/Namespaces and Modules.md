@@ -50,19 +50,19 @@ Recall that these need to be declared in a `.d.ts` file.
 
 * `myModules.d.ts`
 
-    ```ts
-    // In a .d.ts file or .ts file that is not a module:
-    declare module "SomeModule" {
-        export function fn(): string;
-    }
-    ```
+  ```ts
+  // In a .d.ts file or .ts file that is not a module:
+  declare module "SomeModule" {
+      export function fn(): string;
+  }
+  ```
 
 * `myOtherModule.ts`
 
-    ```ts
-    /// <reference path="myModules.d.ts" />
-    import * as m from "SomeModule";
-    ```
+  ```ts
+  /// <reference path="myModules.d.ts" />
+  import * as m from "SomeModule";
+  ```
 
 The reference tag here allows us to locate the declaration file that contains the declaration for the ambient module.
 This is how the `node.d.ts` file that several of the TypeScript samples use is consumed.
@@ -73,22 +73,22 @@ If you're converting a program from namespaces to modules, it can be easy to end
 
 * `shapes.ts`
 
-    ```ts
-    export namespace Shapes {
-        export class Triangle { /* ... */ }
-        export class Square { /* ... */ }
-    }
-    ```
+  ```ts
+  export namespace Shapes {
+      export class Triangle { /* ... */ }
+      export class Square { /* ... */ }
+  }
+  ```
 
 The top-level module here `Shapes` wraps up `Triangle` and `Square` for no reason.
 This is confusing and annoying for consumers of your module:
 
 * `shapeConsumer.ts`
 
-    ```ts
-    import * as shapes from "./shapes";
-    let t = new shapes.Shapes.Triangle(); // shapes.Shapes?
-    ```
+  ```ts
+  import * as shapes from "./shapes";
+  let t = new shapes.Shapes.Triangle(); // shapes.Shapes?
+  ```
 
 A key feature of modules in TypeScript is that two different modules will never contribute names to the same scope.
 Because the consumer of a module decides what name to assign it, there's no need to proactively wrap up the exported symbols in a namespace.
@@ -100,17 +100,17 @@ Here's a revised example:
 
 * `shapes.ts`
 
-    ```ts
-    export class Triangle { /* ... */ }
-    export class Square { /* ... */ }
-    ```
+  ```ts
+  export class Triangle { /* ... */ }
+  export class Square { /* ... */ }
+  ```
 
 * `shapeConsumer.ts`
 
-    ```ts
-    import * as shapes from "./shapes";
-    let t = new shapes.Triangle();
-    ```
+  ```ts
+  import * as shapes from "./shapes";
+  let t = new shapes.Triangle();
+  ```
 
 ## Trade-offs of Modules
 

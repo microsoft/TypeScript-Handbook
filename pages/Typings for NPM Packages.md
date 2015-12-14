@@ -4,15 +4,15 @@ The compiler will try to discover typings for module `"foo"` using the following
 
 1. Try to load the `package.json` file located in the appropriate package folder (`node_modules/foo/`). If present,read the path to the typings file described in the `"typings"` field. For example, in the following `package.json`, the compiler will resolve the typings at `node_modules/foo/lib/foo.d.ts`
 
-    ```JSON
-    {
-        "name": "foo",
-        "author": "Vandelay Industries",
-        "version": "1.0.0",
-        "main": "./lib/foo.js",
-        "typings": "./lib/foo.d.ts"
-    }
-    ```
+   ```JSON
+   {
+       "name": "foo",
+       "author": "Vandelay Industries",
+       "version": "1.0.0",
+       "main": "./lib/foo.js",
+       "typings": "./lib/foo.d.ts"
+   }
+   ```
 
 2. Try to load a file named `index.d.ts` located in the package folder (`node_modules/foo/`) - this file should contain typings for the package.
 

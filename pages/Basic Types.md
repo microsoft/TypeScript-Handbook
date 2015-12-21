@@ -113,7 +113,7 @@ let c: Color = Color.Green;
 ```
 
 By default, enums begin numbering their members starting at `0`.
-You can change this by manually setting the value of one its members.
+You can change this by manually setting the value of one of its members.
 For example, we can start the previous example at `1` instead of `0`:
 
 ```ts

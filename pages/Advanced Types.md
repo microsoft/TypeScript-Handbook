@@ -277,7 +277,7 @@ type XYZCoord = { x: XCoord; y: YCoord; z: number };
 type Coordinate = XCoord | XYCoord | XYZCoord;
 type CoordList = Coordinate[];
 
-let coord: CoordList = [{ x: 10, y: 10}, { x: 0, y: 42, z: 10 }, { x: 5 }];
+let coord: CoordList = [{ x: 10, y: 10}, { x: 0, y: 42, z: 10 }, 5];
 ```
 
 Aliasing doesn't actually create a new type - it creates a new *name* to refer to that type.

@@ -157,7 +157,7 @@ Any time `isFish` is called with some variable, TypeScript will *narrow* that va
 ```ts
 // Both calls to 'swim' and 'fly' are now okay.
 
-if (isFish(pet) {
+if (isFish(pet)) {
     pet.swim();
 }
 else {

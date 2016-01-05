@@ -270,14 +270,7 @@ Type aliases are sometimes similar to interfaces, but can name primitives, union
 ```ts
 type XCoord = number;
 type YCoord = number;
-
 type XYCoord = { x: XCoord; y: YCoord };
-type XYZCoord = { x: XCoord; y: YCoord; z: number };
-
-type Coordinate = XCoord | XYCoord | XYZCoord;
-type CoordList = Coordinate[];
-
-let coord: CoordList = [{ x: 10, y: 10}, { x: 0, y: 42, z: 10 }, { x: 5 }];
 ```
 
 Aliasing doesn't actually create a new type - it creates a new *name* to refer to that type.

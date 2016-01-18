@@ -230,22 +230,23 @@ declare var Eagle: Eagle;
 export = Eagle;
 ```
 
-## Module as a Function
+## Function as an Module
+
+This is a common pattern for modules whose imported entities are callable functions.
 
 #### Usage
 
 ```ts
-// Common pattern for node modules (e.g. rimraf, debug, request, etc.)
-import sayHello = require('say-hello');
-sayHello('Travis');
+import sayHello = require("say-hello");
+sayHello("Travis");
 ```
 
 #### Typing
 
 ```ts
-declare module 'say-hello' {
-  function sayHello(name: string): void;
-  export = sayHello;
+declare module "say-hello" {
+    function sayHello(name: string): void;
+    export = sayHello;
 }
 ```
 

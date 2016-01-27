@@ -356,4 +356,3 @@ For this reason, its customary to order overloads from most specific to least sp
 
 Note that the `function pickCard(x): any` piece is not part of the overload list, so it only has two overloads: one that takes an object and one that takes a number.
 Calling `pickCard` with any other parameter types would cause an error.
-

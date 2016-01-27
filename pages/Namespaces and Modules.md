@@ -11,7 +11,6 @@ We'll also go over some advanced topics of how to use namespaces and modules, an
 See the [Modules](./Modules.md) documentation for more information about modules.
 See the [Namespaces](./Namespaces.md) documentation for more information about namespaces.
 
-
 # Using Namespaces
 
 Namespaces are simply named JavaScript objects in the global namespace.

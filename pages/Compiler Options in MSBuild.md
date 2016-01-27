@@ -57,7 +57,6 @@ Compiler Option                              | MSBuild Property Name            
 `--noEmit`                                   | *Not supported in VS*                      |
 *VS only option*                             | TypeScriptAdditionalFlags                  | *Any compiler option*
 
-
 ## What is supported in my version of Visual Studio
 
 Look in your `C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets` file.

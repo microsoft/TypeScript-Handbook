@@ -83,7 +83,6 @@ interface Document {
 }
 ```
 
-
 # Merging Namespaces
 
 Similarly to interfaces, namespaces of the same name will also merge their members.

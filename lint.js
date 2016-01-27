@@ -16,7 +16,7 @@ var options = {
     MD009: true, // Trailing spaces
     MD010: true, // Hard tabs
     MD011: true, // Reversed link syntax
-    MD012: false, // Multiple consecutive blank lines
+    MD012: true, // Multiple consecutive blank lines
     MD013: false, // Line length
     MD014: false, // Dollar signs used before commands without showing output
     MD018: true, // No space after hash on atx style header
@@ -84,8 +84,8 @@ function checkForImproperlyIndentedFencedCodeBlocks(fileName, text) {
             }
 
             numErrors++;
-            console.log(fileName, ": ",
-                        i + 1, ": A fenced code block following a list item must be indented to the first non-whitespace character of the list item.")
+            console.log(fileName + ": " +
+                        i + 1 + ": A fenced code block following a list item must be indented to the first non-whitespace character of the list item.")
         }
     }
 

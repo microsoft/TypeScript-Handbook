@@ -148,7 +148,7 @@ $("button.continue").html( "Next Step..." );
 ```
 
 Classes and function declarations can be authored directly as default exports.
-Defualt export class and function declaration names are optional.
+Default export class and function declaration names are optional.
 
 ##### ZipCodeValidator.ts
 

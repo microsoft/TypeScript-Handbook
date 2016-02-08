@@ -148,7 +148,7 @@ $("button.continue").html( "Next Step..." );
 ```
 
 Classes and function declarations can be authored directly as default exports.
-Defualt export class and function declaration names are optional.
+Default export class and function declaration names are optional.
 
 ##### ZipCodeValidator.ts
 
@@ -562,7 +562,7 @@ Conversly when importing:
 #### Consumer.ts
 
 ```ts
-import { SomeType, SomeFunc } from "./MyThings";
+import { SomeType, someFunc } from "./MyThings";
 let x = new SomeType();
 let y = someFunc();
 ```

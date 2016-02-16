@@ -192,20 +192,19 @@ let unusable: void = undefined;
 
 # Type assertions
 
-Sometimes you'll end up in a situation where you'll know a little better than TypeScript about the type of something.
-Usually, this will happen when you know the type of a value is more specific than its current type.
+Sometimes you'll end up in a situation where you'll know more about a value than TypeScript does.
+Usually this will happen when you know the type of some entity could be more specific than its current type.
 
 *Type assertions* are a way to tell the compiler "trust me, I know what I'm doing."
-A type assertion is like a type cast in other languages, but where some languages might perform some special checking or restructuring of data, a type assertion has no runtime impact.
-The assumption is that you, the programmer, have performed any special checks that you need.
+A type assertion is like a type cast in other languages, but performs no special checking or restructuring of data.
+It has has no runtime impact, and is used purely by the compiler.
+TypeScript assumes that you, the programmer, have performed any special checks that you need.
 
 Type assertions have two forms.
 One is the "angle-bracket" syntax:
 
 ```ts
-let someValue: any;
-
-// ...
+let someValue: any = "this is a string";
 
 let strLength: number = (<string>someValue).length;
 ```
@@ -213,9 +212,7 @@ let strLength: number = (<string>someValue).length;
 And the other is the `as`-syntax:
 
 ```ts
-let someValue: any;
-
-// ...
+let someValue: any = "this is a string";
 
 let strLength: number = (someValue as string).length;
 ```
@@ -227,4 +224,4 @@ Using one over the other is mostly a choice of preference; however, when using T
 
 You may've noticed that so far, we've been using the `let` keyword instead of JavaScript's `var` keyword which you might be more familiar with.
 The `let` keyword is actually a newer JavaScript construct that TypeScript makes available.
-We'll discuss the details later, but many common problems in JavaScript are alleviated by using `let`, so it's a best practice to adopt it over using `var` whenever possible.
+We'll discuss the details later, but many common problems in JavaScript are alleviated by using `let`, so you should use it instead of `var` whenever possible.

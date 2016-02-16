@@ -149,8 +149,8 @@ let mySquare = createSquare(squareOptions);
 
 Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
 
-Keep in mind that for simple code like above, you probably should be trying to "get around" these checks.
-For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors in user code are actually bugs.
+Keep in mind that for simple code like above, you probably shouldn't be trying to "get around" these checks.
+For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors are actually bugs.
 That means if you're running into excess property checking problems for something like option bags, you might need to revise some of your type declarations.
 In this instance, if it's okay to pass an object with both a `color` or `colour` property to `createSquare`, you should fix up the definition of `SquareConfig` to reflect that.
 

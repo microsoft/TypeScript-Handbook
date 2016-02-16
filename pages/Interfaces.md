@@ -9,7 +9,7 @@ In TypeScript, interfaces fill the role of naming these types, and are a powerfu
 The easiest way to see how interfaces work is to start with a simple example:
 
 ```ts
-function printLabel(labelledObj: {label: string}) {
+function printLabel(labelledObj: { label: string }) {
     console.log(labelledObj.label);
 }
 
@@ -20,6 +20,7 @@ printLabel(myObj);
 The type-checker checks the call to `printLabel`.
 The `printLabel` function has a single parameter that requires that the object passed in has a property called `label` of type string.
 Notice that our object actually has more properties than this, but the compiler only checks that *at least* the ones required are present and match the types required.
+There are some cases where TypeScript isn't as lenient, which we'll cover in a bit.
 
 We can write the same example again, this time using an interface to describe the requirement of having the `label` property that is a string:
 
@@ -82,7 +83,7 @@ interface SquareConfig {
     width?: number;
 }
 
-function createSquare(config: SquareConfig): {color: string; area: number} {
+function createSquare(config: SquareConfig): { color: string; area: number } {
     let newSquare = {color: "white", area: 100};
     if (config.color) {
         // Error: Property 'collor' does not exist on type 'SquareConfig'
@@ -96,6 +97,62 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
 
 let mySquare = createSquare({color: "black"});
 ```
+
+# Excess Property Checks
+
+In our first example using interfaces, TypeScript let us pass `{ size: number; label: string; }` to something that only expected a `{ label: string; }`.
+We also just learned about optional properties, and how they're useful when describing so-called "option bags".
+
+However, combining the two naively would let you to shoot yourself in the foot the same way you might in JavaScript.
+For example, taking our last example using `createSquare`:
+
+```ts
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+
+function createSquare(config: SquareConfig): { color: string; area: number } {
+    // ...
+}
+
+let mySquare = createSquare({ colour: "red", width: 100 });
+```
+
+Notice the given argument to `createSquare` is spelled *`colour`* instead of `color`.
+In plain JavaScript, this sort of thing fails silently.
+
+You could argue that this program is correctly typed, since the `width` properties are compatible, there's no `color` property present, and the extra `colour` property is insignificant.
+
+However, TypeScript takes the stance that there's probably a bug in this code.
+Object literals get special treatment and undergo *excess property checking* when assigning them to other variables, or passing them as arguments.
+If an object literal has any properties that the "target type" doesn't have, you'll get an error.
+
+```ts
+// error: 'colour' not expected in type 'SquareConfig'
+let mySquare = createSquare({ colour: "red", width: 100 });
+```
+
+Getting around these checks is actually really simple.
+The best and easiest method is to just use a type assertion:
+
+```ts
+let mySquare = createSquare({ colour: "red", width: 100 } as SquareConfig);
+```
+
+Another approach, which might be a bit surprising, is to assign the object to another variable:
+
+```ts
+let squareOptions = { colour: "red", width: 100 };
+let mySquare = createSquare(squareOptions);
+```
+
+Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
+
+Keep in mind that for simple code like above, you probably shouldn't be trying to "get around" these checks.
+For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors are actually bugs.
+That means if you're running into excess property checking problems for something like option bags, you might need to revise some of your type declarations.
+In this instance, if it's okay to pass an object with both a `color` or `colour` property to `createSquare`, you should fix up the definition of `SquareConfig` to reflect that.
 
 # Function Types
 

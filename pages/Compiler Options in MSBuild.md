@@ -13,8 +13,9 @@ Compiler options can be specified using MSBuild properties within an MSBuild pro
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets"
-          Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import
+      Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets"
+      Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 ```
 
 ## Mappings
@@ -50,14 +51,33 @@ Compiler Option                              | MSBuild Property Name            
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
 `--moduleResolution`                         | TypeScriptModuleResolution                 | `Classic` or `NodeJs`
 `--jsx`                                      | TypeScriptJSXEmit                          | `React` or `Preserve`
+`--reactNamespace`                           | TypeScriptReactNamespace                   | string
+`--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
+`--allowUnusedLabels`                        | TypeScriptAllowUnusedLabels                | boolean
+`--noImplicitReturns`                        | TypeScriptNoImplicitReturns                | boolean
+`--noFallthroughCasesInSwitch`               | TypeScriptNoFallthroughCasesInSwitch       | boolean
+`--allowUnreachableCode`                     | TypeScriptAllowUnreachableCode             | boolean
+`--forceConsistentCasingInFileNames`         | TypeScriptForceConsistentCasingInFileNames | boolean
+`--allowSyntheticDefaultImports`             | TypeScriptAllowSyntheticDefaultImports     | boolean
+`--noImplicitUseStrict`                      | TypeScriptNoImplicitUseStrict              | boolean
 `--project`                                  | *Not supported in VS*                      |
 `--watch`                                    | *Not supported in VS*                      |
 `--diagnostics`                              | *Not supported in VS*                      |
 `--listFiles`                                | *Not supported in VS*                      |
 `--noEmit`                                   | *Not supported in VS*                      |
+`--allowJs`                                  | *Not supported in VS*                      |
 *VS only option*                             | TypeScriptAdditionalFlags                  | *Any compiler option*
 
 ## What is supported in my version of Visual Studio
 
 Look in your `C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets` file.
 The authoritative mappings between MSBuild XML tags and `tsc` compiler options live in there.
+
+## ToolsVersion
+
+The value of `<TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>` property in the project file identifies the compiler version to use to build (1.7 in this example).
+This allows a project to build against the save versions of the compiler on different machines.
+
+If `TypeScriptToolsVersion` is not specified, the latest compiler version installed on the machine will be used to build.
+
+Users using newer versions of TS, will see a prompt to upgrade their project on first load.

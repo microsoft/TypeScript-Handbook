@@ -38,6 +38,14 @@ Option                                  | Shorthand | Description
 `--sourceRoot`                          |           |  Specifies the location where debugger should locate TypeScript files instead of source locations. Use this flag if the sources will be located at run-time in a different location than that at design-time. The location specified will be embedded in the sourceMap to direct the debugger where the source files where be located.
 `--stripInternal`<sup>[1]</sup>         |           |  Do not emit declarations for code that has an `/** @internal */` JSDoc annotation.
 `--suppressImplicitAnyIndexErrors`      |           |  Suppress `--noImplicitAny` errors for indexing objects lacking index signatures. See [issue #1232](https://github.com/Microsoft/TypeScript/issues/1232#issuecomment-64510362) for more details.
+`--allowUnusedLabels`                   |           |  Do not report errors on unused labels.
+`--noImplicitReturns`                   |           |  Report error when not all code paths in function return a value.
+`--noFallthroughCasesInSwitch`          |           |  Report errors for fallthrough cases in switch statement.
+`--allowUnreachableCode`                |           |  Do not report errors on unreachable code.
+`--forceConsistentCasingInFileNames`    |           |  Disallow inconsistently-cased references to the same file.
+`--allowSyntheticDefaultImports`        |           |  Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+`--allowJs`                             |           |  Allow JavaScript files to be compiled.
+`--noImplicitUseStrict`                 |           |  Do not emit `"use strict"` directives in module output.
 
 <sup>[1]</sup> These options are experimental.
 

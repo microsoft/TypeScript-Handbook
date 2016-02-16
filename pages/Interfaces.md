@@ -20,7 +20,7 @@ printLabel(myObj);
 The type-checker checks the call to `printLabel`.
 The `printLabel` function has a single parameter that requires that the object passed in has a property called `label` of type string.
 Notice that our object actually has more properties than this, but the compiler only checks that *at least* the ones required are present and match the types required.
-There are some cases where TypeScript isn't as lenient as we'll go over in a bit.
+There are some cases where TypeScript isn't as lenient, which we'll cover in a bit.
 
 We can write the same example again, this time using an interface to describe the requirement of having the `label` property that is a string:
 
@@ -100,10 +100,10 @@ let mySquare = createSquare({color: "black"});
 
 # Excess Property Checks
 
-In our first example using interfaces, TypeScript was okay with giving a value with the type `{ size: number; label: string; }` to something that only expected a `{ label: string; }`.
+In our first example using interfaces, TypeScript let us pass `{ size: number; label: string; }` to something that only expected a `{ label: string; }`.
 We also just learned about optional properties, and how they're useful when describing so-called "option bags".
 
-However, combining the two naively would let you to shoot youreslf in the foot the same way you might in JavaScript.
+However, combining the two naively would let you to shoot yourself in the foot the same way you might in JavaScript.
 For example, taking our last example using `createSquare`:
 
 ```ts
@@ -122,9 +122,9 @@ let mySquare = createSquare({ colour: "red", width: 100 });
 Notice the given argument to `createSquare` is spelled *`colour`* instead of `color`.
 In plain JavaScript, this sort of thing fails silently.
 
-One could argue that this program is correctly typed, since the `width` properties are compatible, there's no `color` property present, and the extra `colour` property is insignificant.
+You could argue that this program is correctly typed, since the `width` properties are compatible, there's no `color` property present, and the extra `colour` property is insignificant.
 
-However, TypeScript is more opinionated here, and takes the stance that there's probably a bug in this code.
+However, TypeScript takes the stance that there's probably a bug in this code.
 Object literals get special treatment and undergo *excess property checking* when assigning them to other variables, or passing them as arguments.
 If an object literal has any properties that the "target type" doesn't have, you'll get an error.
 
@@ -149,9 +149,10 @@ let mySquare = createSquare(squareOptions);
 
 Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
 
-Keep in mind, for simple code like above, it's questionable whether you should really be trying to "get around" these checks.
-For more complex objects literals that have methods and hold state, you may need to keep these techniques in mind, but a majority of excess property errors in user code are actually bugs.
+Keep in mind that for simple code like above, you probably should be trying to "get around" these checks.
+For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors in user code are actually bugs.
 That means if you're running into excess property checking problems for something like option bags, you might need to revise some of your type declarations.
+In this instance, if it's okay to pass an object with both a `color` or `colour` property to `createSquare`, you should fix up the definition of `SquareConfig` to reflect that.
 
 # Function Types
 

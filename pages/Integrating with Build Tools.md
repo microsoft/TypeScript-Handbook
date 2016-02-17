@@ -132,35 +132,35 @@ More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSa
 ### Install
 
 ```sh
-npm install awesome-typescript-loader --save-dev
+npm install ts-loader --save-dev
 ```
 
 ### Basic webpack.config.js
 
 ```js
 module.exports = {
-
-    // Currently we need to add '.ts' to resolve.extensions array.
-    resolve: {
-        extensions: ['', '.ts', '.webpack.js', '.web.js', '.js']
+    entry: "./src/index.tsx",
+    output: {
+        filename: "bundle.js"
     },
-
-    // Source maps support (or 'inline-source-map' also works)
-    devtool: 'source-map',
-
-    // Add loader for .ts files.
+    resolve: {
+        // Add '.ts' and '.tsx' as a resolvable extension.
+        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+    },
     module: {
         loaders: [
-            {
-                test: /\.ts$/,
-                loader: 'awesome-typescript-loader'
-            }
+            // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
+            { test: /\.tsx?$/, loader: "ts-loader" }
         ]
     }
-};
+}
 ```
 
-More details: [s-panferov/awesome-typescript-loader](https://github.com/s-panferov/awesome-typescript-loader)
+More details: https://www.npmjs.com/package/ts-loader
+
+Alternatives:
+
+* [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
 
 # MSBuild
 

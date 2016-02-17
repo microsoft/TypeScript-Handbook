@@ -1,4 +1,4 @@
-This quick start guide will teach you wire up TypeScript with [React](http://facebook.github.io/react/) and [webpack](http://webpack.github.io/).
+This quick start guide will teach you how to wire up TypeScript with [React](http://facebook.github.io/react/) and [webpack](http://webpack.github.io/).
 
 We assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
 

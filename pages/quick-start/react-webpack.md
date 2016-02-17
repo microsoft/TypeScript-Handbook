@@ -128,7 +128,7 @@ Simply run the following at the root of the project directory:
 tsc --init ./src/index.tsx ./typings/main.d.ts --jsx react --noImplicitAny
 ```
 
-You can learn more about `tsconfig.json` files [here](../pages/tsconfig.json.md).
+You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 
 # Create a webpack configuration file
 

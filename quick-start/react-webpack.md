@@ -29,13 +29,14 @@ mkdir src
 mkdir dist
 ```
 
-Now we'll turn this folder into create an npm package.
+Now we'll turn this folder into an npm package.
 
 ```shell
 npm init
 ```
 
 You'll be given a series of prompts.
+You can use the defaults except for your entry point.
 For your entry point, use `./lib/bundle.js`.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
@@ -83,7 +84,7 @@ import * as ReactDOM from "react-dom";
 
 class HelloComponent extends React.Component<any, any> {
     render() {
-        return <h1>Hello, world</h1>;
+        return <h1>Hello from TypeScript and React!</h1>;
     }
 }
 
@@ -94,7 +95,7 @@ ReactDOM.render(
 ```
 
 Note that while this example is quite *classy*, we didn't need to use a class.
-Other method of using React should work just as well.
+Other methods of using React should work just as well.
 
 We'll also need a view to display our `HelloComponent`.
 Create a file at the root of `proj` named `index.html` with the following contents:
@@ -118,7 +119,7 @@ Create a file at the root of `proj` named `index.html` with the following conten
 At this point, you'll want to bring your TypeScript files together - both your `.ts` as well as your typings files.
 
 To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
-Simply run the following:
+Simply run the following at the root of the project directory:
 
 ```shell
 tsc --init ./src/index.tsx ./typings/main.d.ts --jsx react --noImplicitAny
@@ -126,7 +127,7 @@ tsc --init ./src/index.tsx ./typings/main.d.ts --jsx react --noImplicitAny
 
 # Create a webpack configuration file
 
-Start out with a `webpack.config.js`
+Create a `webpack.config.js` file at the root of the project directory.
 
 ```js
 module.exports = {
@@ -140,7 +141,8 @@ module.exports = {
     },
     module: {
         loaders: [
-            // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
+            // Make sure all files with a '.ts' or '.tsx' extension
+            // will be handled by 'ts-loader'
             { test: /\.tsx?$/, loader: "ts-loader" }
         ]
     }
@@ -156,3 +158,4 @@ webpack
 ```
 
 Now open up `index.html` in your favorite browser and everything should be ready to use!
+You should see a page that says "Hello from TypeScript and React!"

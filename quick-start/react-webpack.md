@@ -132,7 +132,7 @@ Start out with a `webpack.config.js`
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        filename: "bundle.js"
+        filename: "./dist/bundle.js"
     },
     resolve: {
         // Add '.ts' and '.tsx' as a resolvable extension.

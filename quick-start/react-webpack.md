@@ -61,7 +61,10 @@ Next, we'll add a development-time dependency on [ts-loader](https://www.npmjs.c
 
 ```shell
 npm install --save-dev ts-loader
+npm link typescript
 ```
+
+Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
 
 Finally, we'll grab the declaration files for React using the `typings` utility:
 

@@ -20,7 +20,7 @@ proj/
    +- dist/
 ```
 
-TypeScript files will start out in your `src` folder, run through the TypeScript compiler, webpack, and end up in a `bundle.js` file in `dist`.
+TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.
 
 Let's scaffold this out:
 
@@ -49,7 +49,7 @@ npm install -g typescript typings webpack
 ```
 
 Webpack is a tool that will bundle your code and all of its dependencies into a single `.js` file.
-Typings is a package manager for grabbing definition files.
+[Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
 
 Let's now add React and React-DOM as dependencies to your `package.json` file:
 
@@ -128,6 +128,8 @@ Simply run the following at the root of the project directory:
 tsc --init ./src/index.tsx ./typings/main.d.ts --jsx react --noImplicitAny
 ```
 
+You can learn more about `tsconfig.json` files [here](../pages/tsconfig.json.md).
+
 # Create a webpack configuration file
 
 Create a `webpack.config.js` file at the root of the project directory.
@@ -151,6 +153,8 @@ module.exports = {
     }
 };
 ```
+
+You can learn more about configuring webpack [here](http://webpack.github.io/docs/configuration.html).
 
 # Putting it all together
 

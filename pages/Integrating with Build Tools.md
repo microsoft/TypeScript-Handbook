@@ -156,7 +156,7 @@ module.exports = {
 }
 ```
 
-More details: https://www.npmjs.com/package/ts-loader
+See [more details on ts-loader here](https://www.npmjs.com/package/ts-loader).
 
 Alternatives:
 

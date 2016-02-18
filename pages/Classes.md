@@ -109,7 +109,7 @@ class Animal {
 
 ## Understanding `private`
 
-When a member is marked `private`, it cannot be accessed from outside of its containing class. For example:
+When a constructor or member is marked `private`, it cannot be accessed from outside of its containing class. For example:
 
 ```ts
 class Animal {
@@ -117,7 +117,13 @@ class Animal {
     constructor(theName: string) { this.name = theName; }
 }
 
+class Employee {
+    private name: string;
+    private constructor(theName: string) { this.name = theName; }
+}
+
 new Animal("Cat").name; // Error: 'name' is private;
+new Employee("Bob"); // Error: 'Employee' is private;
 ```
 
 TypeScript is a structural type system.
@@ -188,6 +194,32 @@ console.log(howard.name); // error
 ```
 
 Notice that while we can't use `name` from outside of `Person`, we can still use it from within an instance method of `Employee` because `Employee` derives from `Person`.
+
+A constructor may also be marked `protected`. This means that the class cannot be accessed outside of its containing class, but can be extended. For example,
+
+```ts
+class Person {
+    protected name: string;
+    protected constructor(name: string) { this.name = name; }
+}
+
+// Employee can extend Person
+class Employee extends Person { 
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee("Howard", "Sales");
+let john = new Person("John"); // Error: 'Person' is protected and only accessible within it's class.
+```
 
 ## Parameter properties
 

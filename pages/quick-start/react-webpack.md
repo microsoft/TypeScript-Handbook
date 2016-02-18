@@ -57,7 +57,7 @@ Let's now add React and React-DOM as dependencies to your `package.json` file:
 npm install --save react react-dom
 ```
 
-Next, we'll add a development-time dependency on [ts-loader](https://www.npmjs.com/package/ts-loader), which will let TypeScript and webpack play well together.
+Next, we'll add development-time dependencies on [ts-loader](https://www.npmjs.com/package/ts-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader), both will let TypeScript and webpack play well together.
 
 ```shell
 npm install --save-dev ts-loader
@@ -119,13 +119,13 @@ Create a file at the root of `proj` named `index.html` with the following conten
 
 # Add a TypeScript configuration file
 
-At this point, you'll want to bring your TypeScript files together - both your `.ts` as well as your typings files.
+At this point, you'll want to bring your TypeScript files together - both your `index.tsx` as well as your typings files.
 
 To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
 Simply run the following at the root of the project directory:
 
 ```shell
-tsc --init ./src/index.tsx ./typings/main.d.ts --jsx react --noImplicitAny
+tsc --init ./typings/main.d.ts ./src/index.tsx --jsx react --outDir ./dist --sourceMap --noImplicitAny
 ```
 
 You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
@@ -138,17 +138,26 @@ Create a `webpack.config.js` file at the root of the project directory.
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        filename: "./dist/bundle.js"
+        filename: "./dist/bundle.js",
     },
+
+    // Enable sourcemaps for debugging webpack's output.
+    devtool: "source-map",
+
     resolve: {
-        // Add '.ts' and '.tsx' as a resolvable extension.
+        // Add '.ts' and '.tsx' as resolvable extensions.
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
+
     module: {
         loaders: [
-            // Make sure all files with a '.ts' or '.tsx' extension
-            // will be handled by 'ts-loader'
+            // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
             { test: /\.tsx?$/, loader: "ts-loader" }
+        ],
+
+        preLoaders: [
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            { test: /\.js$/, loader: "source-map-loader" }
         ]
     }
 };

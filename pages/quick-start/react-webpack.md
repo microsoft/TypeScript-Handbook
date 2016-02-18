@@ -60,7 +60,7 @@ npm install --save react react-dom
 Next, we'll add development-time dependencies on [ts-loader](https://www.npmjs.com/package/ts-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader), both will let TypeScript and webpack play well together.
 
 ```shell
-npm install --save-dev ts-loader
+npm install --save-dev ts-loader source-map-loader
 npm link typescript
 ```
 

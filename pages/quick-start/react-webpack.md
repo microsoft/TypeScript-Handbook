@@ -57,14 +57,19 @@ Let's now add React and React-DOM as dependencies to your `package.json` file:
 npm install --save react react-dom
 ```
 
-Next, we'll add development-time dependencies on [ts-loader](https://www.npmjs.com/package/ts-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader), both will let TypeScript and webpack play well together.
+Next, we'll add development-time dependencies on [ts-loader](https://www.npmjs.com/package/ts-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader).
 
 ```shell
 npm install --save-dev ts-loader source-map-loader
 npm link typescript
 ```
 
+Both of these dependencies will let TypeScript and webpack play well together.
+ts-loader helps webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
+source-map-loader uses any sourcemap outputs from TypeScript to informs webpack when generating its own sourcemaps.
+
 Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
+If you want a local copy, just run `npm install typescript`.
 
 Finally, we'll grab the declaration files for React using the `typings` utility:
 

@@ -189,7 +189,7 @@ console.log(howard.name); // error
 
 Notice that while we can't use `name` from outside of `Person`, we can still use it from within an instance method of `Employee` because `Employee` derives from `Person`.
 
-A constructor may also be marked `protected`. 
+A constructor may also be marked `protected`.
 This means that the class cannot be instantiated outside of its containing class, but can be extended. For example,
 
 ```ts
@@ -199,7 +199,7 @@ class Person {
 }
 
 // Employee can extend Person
-class Employee extends Person { 
+class Employee extends Person {
     private department: string;
 
     constructor(name: string, department: string) {

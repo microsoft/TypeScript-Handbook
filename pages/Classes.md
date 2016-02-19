@@ -189,9 +189,36 @@ console.log(howard.name); // error
 
 Notice that while we can't use `name` from outside of `Person`, we can still use it from within an instance method of `Employee` because `Employee` derives from `Person`.
 
+A constructor may also be marked `protected`.
+This means that the class cannot be instantiated outside of its containing class, but can be extended. For example,
+
+```ts
+class Person {
+    protected name: string;
+    protected constructor(theName: string) { this.name = theName; }
+}
+
+// Employee can extend Person
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee("Howard", "Sales");
+let john = new Person("John"); // Error: The 'Person' constructor is protected
+```
+
 ## Parameter properties
 
-In our last example, we had to declare a private member `name` and a constructor parameter `theName`, and we then immediately set `name` to `theName`.
+In our last example, we had to declare a protected member `name` and a constructor parameter `theName` in the `Person` class, and we then immediately set `name` to `theName`.
 This turns out to be a very common practice.
 *Parameter properties* let you create and initialize a member in one place.
 Here's a further revision of the previous `Animal` class using a parameter property:

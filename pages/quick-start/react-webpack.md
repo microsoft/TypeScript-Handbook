@@ -117,6 +117,8 @@ Create a file at the root of `proj` named `index.html` with the following conten
     </head>
     <body>
         <div id="example"></div>
+        <script src="./node_modules/react/dist/react.js"></script>
+        <script src="./node_modules/react-dom/dist/react-dom.js"></script>
         <script src="./dist/bundle.js"></script>
     </body>
 </html>
@@ -164,6 +166,11 @@ module.exports = {
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { test: /\.js$/, loader: "source-map-loader" }
         ]
+    },
+    
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM",
     }
 };
 ```

@@ -305,7 +305,7 @@ Since the constructor sits in the static side, it is not included in this check.
 
 Instead, you would need to work with the static side of the class directly.
 In this example, we define two interfaces, `ClockConstructor` for the constructor and `ClockInterface` for the instance methods.
-Then for convenience we define a constructor function `createClock` that creates instances of of the type that is passed to it.
+Then for convenience we define a constructor function `createClock` that creates instances of the type that is passed to it.
 
 ```ts
 interface ClockConstructor {

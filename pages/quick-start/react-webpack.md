@@ -125,8 +125,8 @@ ReactDOM.render(
 ```
 
 We just imported our `Hello` component into `index.tsx`.
-Notice we used a path *relative to `index.tsx`*.
-If we hadn't, TypeScript would've searched our `node_modules` folder.
+Notice that unlike with `"react"` or `"react-dom"`, we used a *relative path* to `index.tsx` - this is important.
+If we hadn't, TypeScript would've instead tried looking in our `node_modules` folder.
 
 We'll also need a page to display our `Hello` component.
 Create a file at the root of `proj` named `index.html` with the following contents:

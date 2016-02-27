@@ -108,7 +108,7 @@ export class Hello extends React.Component<HelloProps, {}> {
 ```
 
 Note that while this example is quite *classy*, we didn't need to use a class.
-Other methods of using React (like functional stateless components) should work just as well.
+Other methods of using React (like [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)) should work just as well.
 
 Next, let's create an `index.tsx` in `src` with the following source:
 

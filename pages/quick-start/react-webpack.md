@@ -93,9 +93,7 @@ This command will create a file called `typings.json` and a folder called `typin
 # Write some code
 
 Let's write our first TypeScript file using React.
-Create two new files: `index.tsx` in your `src` directory, and `Hello.tsx` in `src/components`.
-
-For `Hello.tsx`, write the following:
+First, create a file named `Hello.tsx` in `src/components` and write the following:
 
 ```ts
 import * as React from "react";
@@ -109,7 +107,10 @@ export class Hello extends React.Component<HelloProps, {}> {
 }
 ```
 
-For `index.tsx`, write the following:
+Note that while this example is quite *classy*, we didn't need to use a class.
+Other methods of using React (like functional stateless components) should work just as well.
+
+Next, let's create an `index.tsx` in `src` with the following source:
 
 ```ts
 import * as React from "react";
@@ -123,10 +124,11 @@ ReactDOM.render(
 );
 ```
 
-Note that while this example is quite *classy*, we didn't need to use a class.
-Other methods of using React (like functional stateless components) should work just as well.
+We just imported our `Hello` component into `index.tsx`.
+Notice we used a path *relative to `index.tsx`*.
+If we hadn't, TypeScript would've searched our `node_modules` folder.
 
-We'll also need a view to display our `HelloComponent`.
+We'll also need a page to display our `Hello` component.
 Create a file at the root of `proj` named `index.html` with the following contents:
 
 ```html

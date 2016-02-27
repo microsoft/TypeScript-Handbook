@@ -22,7 +22,8 @@ proj/
    +- dist/
 ```
 
-TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`. Any components that we write will go in the `src/components` folder.
+TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.
+Any components that we write will go in the `src/components` folder.
 
 Let's scaffold this out:
 

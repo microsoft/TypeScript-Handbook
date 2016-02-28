@@ -63,7 +63,7 @@ This comparison process proceeds recursively, exploring the type of each member 
 # Comparing two functions
 
 While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible.
-Let's start with a basic example of two functions that differ only in their argument lists:
+Let's start with a basic example of two functions that differ only in their parameter lists:
 
 ```ts
 let x = (a: number) => 0;
@@ -82,13 +82,13 @@ The second assignment is an error, because y has a required second parameter tha
 
 You may be wondering why we allow 'discarding' parameters like in the example `y = x`.
 The reason for this assignment to be allowed is that ignoring extra function parameters is actually quite common in JavaScript.
-For example, `Array#forEach` provides three arguments to the callback function: the array element, its index, and the containing array.
-Nevertheless, it's very useful to provide a callback that only uses the first argument:
+For example, `Array#forEach` provides three parameters to the callback function: the array element, its index, and the containing array.
+Nevertheless, it's very useful to provide a callback that only uses the first parameter:
 
 ```ts
 let items = [1, 2, 3];
 
-// Don't force these extra arguments
+// Don't force these extra parameters
 items.forEach((item, index, array) => console.log(item));
 
 // Should be OK!
@@ -107,7 +107,7 @@ y = x; // Error because x() lacks a location property
 
 The type system enforces that the source function's return type be a subtype of the target type's return type.
 
-## Function Argument Bivariance
+## Function Parameter Bivariance
 
 When comparing the types of function parameters, assignment succeeds if either the source parameter is assignable to the target parameter, or vice versa.
 This is unsound because a caller might end up being given a function that takes a more specialized type, but invokes the function with a less specialized type.
@@ -135,7 +135,7 @@ listenEvent(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => console.log
 listenEvent(EventType.Mouse, (e: number) => console.log(e));
 ```
 
-## Optional Arguments and Rest Arguments
+## Optional Parameters and Rest Parameters
 
 When comparing functions for compatibility, optional and required parameters are interchangeable.
 Extra optional parameters of the source type are not an error, and optional parameters of the target type without corresponding parameters in the target type are not an error.

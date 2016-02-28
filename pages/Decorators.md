@@ -360,14 +360,16 @@ import "reflect-metadata";
 const requiredMetadataKey = Symbol("required");
 
 function required(target: Object, propertyKey: string|symbol, parameterIndex: number) {
-    Reflect.defineMetadata(requiredMetadataKey, true, target, parameterIndex);
+    let map = new Map();
+    Reflect.defineMetadata(requiredMetadataKey, map.set(parameterIndex, true), target, propertyKey);
 }
 
 function validate(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<Function>) {
     let method = descriptor.value;
     descriptor.value = function () {
+        let metadata = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyName);
         for (let parameterIndex = 0; parameterIndex < method.length; parameterIndex++) {
-            if (Reflect.getOwnMetadata(requiredMetadataKey, method, parameterIndex)) {
+            if (metadata && metadata.get(parameterIndex) {
                 if (parameterIndex >= arguments.length || arguments[parameterIndex] === undefined) {
                     throw new Error("Missing required argument.");
                 }

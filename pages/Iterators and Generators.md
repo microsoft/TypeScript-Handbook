@@ -35,7 +35,7 @@ for (let i of list) {
 ```
 
 Another distinction is that `for..in` operates on any object; it serves as a way to inspect properties on this object.
-`for..in` on the other hand, is mainly interested in values of iterable objects. Built-in objects like `Map` and `Set` implement `Symbol.iterator` property allowing access to stored values.
+`for..of` on the other hand, is mainly interested in values of iterable objects. Built-in objects like `Map` and `Set` implement `Symbol.iterator` property allowing access to stored values.
 
 ```ts
 let pets = new Set(["Cat", "Dog", "Hamster"]);

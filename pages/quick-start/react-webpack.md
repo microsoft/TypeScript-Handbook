@@ -17,17 +17,25 @@ We're going to structure our project in the following way:
 ```text
 proj/
    +- src/
+   |    +- components/
+   |
    +- dist/
 ```
 
 TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.
+Any components that we write will go in the `src/components` folder.
 
 Let's scaffold this out:
 
 ```shell
 mkdir src
+cd src
+mkdir components
+cd ..
 mkdir dist
 ```
+
+# Initialize the project
 
 Now we'll turn this folder into an npm package.
 
@@ -48,7 +56,7 @@ First ensure TypeScript, typings, and webpack are installed globally.
 npm install -g typescript typings webpack
 ```
 
-Webpack is a tool that will bundle your code and all of its dependencies into a single `.js` file.
+Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file.
 [Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
 
 Let's now add React and React-DOM as dependencies to your `package.json` file:
@@ -66,7 +74,8 @@ npm link typescript
 
 Both of these dependencies will let TypeScript and webpack play well together.
 ts-loader helps webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
-source-map-loader uses any sourcemap outputs from TypeScript to informs webpack when generating its own sourcemaps.
+source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
+This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
 
 Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
 If you want a local copy, just run `npm install typescript`.
@@ -84,28 +93,42 @@ This command will create a file called `typings.json` and a folder called `typin
 # Write some code
 
 Let's write our first TypeScript file using React.
-Create a new file in your `src` directory named `index.tsx`.
+First, create a file named `Hello.tsx` in `src/components` and write the following:
+
+```ts
+import * as React from "react";
+
+export interface HelloProps { compiler: string; framework: string; }
+
+export class Hello extends React.Component<HelloProps, {}> {
+    render() {
+        return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
+    }
+}
+```
+
+Note that while this example is quite *classy*, we didn't need to use a class.
+Other methods of using React (like [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)) should work just as well.
+
+Next, let's create an `index.tsx` in `src` with the following source:
 
 ```ts
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-class HelloComponent extends React.Component<any, any> {
-    render() {
-        return <h1>Hello from TypeScript and React!</h1>;
-    }
-}
+import { Hello } from "./components/Hello";
 
 ReactDOM.render(
-    <HelloComponent />,
+    <Hello compiler="TypeScript" framework="React" />,
     document.getElementById("example")
 );
 ```
 
-Note that while this example is quite *classy*, we didn't need to use a class.
-Other methods of using React should work just as well.
+We just imported our `Hello` component into `index.tsx`.
+Notice that unlike with `"react"` or `"react-dom"`, we used a *relative path* to `index.tsx` - this is important.
+If we hadn't, TypeScript would've instead tried looking in our `node_modules` folder.
 
-We'll also need a view to display our `HelloComponent`.
+We'll also need a page to display our `Hello` component.
 Create a file at the root of `proj` named `index.html` with the following contents:
 
 ```html
@@ -124,7 +147,7 @@ Create a file at the root of `proj` named `index.html` with the following conten
 
 # Add a TypeScript configuration file
 
-At this point, you'll want to bring your TypeScript files together - both your `index.tsx` as well as your typings files.
+You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary typings files.
 
 To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
 Simply run the following at the root of the project directory:

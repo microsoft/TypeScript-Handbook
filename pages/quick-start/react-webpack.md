@@ -153,7 +153,7 @@ Create a file at the root of `proj` named `index.html` with the following conten
 
 Notice that we're including files from within `node_modules`.
 React and React-DOM's npm packages include standalone `.js` files that you can include in a web page.
-Feel free to copy these files to another direction, or alternatively, substitute references to those files with that of a content delivery network (CDN).
+Feel free to copy these files to another direction, or alternatively, host them on a content delivery network (CDN).
 Facebook makes CDN-hosted versions of React available, and you can [read more about that here](http://facebook.github.io/react/downloads.html#development-vs.-production-builds).
 
 # Add a TypeScript configuration file

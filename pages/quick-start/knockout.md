@@ -37,9 +37,10 @@ First ensure TypeScript and typings are installed globally.
 npm install -g typescript typings
 ```
 
+You obviously know about TypeScript, but you might not know about typings.
 [Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
 
-Finally, we'll grab the declaration files for Knockout using the `typings` utility:
+Next, we'll use typings to grab the declaration files for Knockout:
 
 ```shell
 typings install --ambient --save knockout
@@ -136,13 +137,13 @@ Create a file at the root of `proj` named `index.html` with the following conten
 ```
 
 Notice there are three script tags.
-First, you'll include RequireJS itself.
-Then you'll map the paths of our external dependencies so that RequireJS knows where to look for them.
-Finally, we have a call to `require`, which contains the list of modules we'd like to load.
+First, we're including RequireJS itself.
+Then we're mapping the paths of our external dependencies in `configure.js` so that RequireJS knows where to look for them.
+Finally, we're calling `require` with a list of modules we'd like to load.
 
 # Add a TypeScript configuration file
 
-At this point, you'll want to bring your TypeScript files together - both your `hello.ts` as well as your typings files.
+You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary typings files.
 
 To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
 Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents.

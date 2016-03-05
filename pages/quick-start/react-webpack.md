@@ -80,7 +80,7 @@ This will allow you to debug your final output file as if you were debugging you
 Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
 If you want a local copy, just run `npm install typescript`.
 
-Finally, we'll grab the declaration files for React using the `typings` utility:
+Finally, we'll use typings to grab the declaration files for React and ReactDOM:
 
 ```shell
 typings install --ambient --save react

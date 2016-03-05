@@ -12,7 +12,7 @@ mkdir proj
 cd proj
 ```
 
-We're going to structure our project in the following way:
+To start, we're going to structure our project in the following way:
 
 ```text
 proj/

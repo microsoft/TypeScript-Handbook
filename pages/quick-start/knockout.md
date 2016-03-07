@@ -103,8 +103,8 @@ require.config({
 });
 ```
 
-This file is going to inform RequireJS of where to find Knockout when we import it like we did in `hello.ts`.
-Any page that you create should include this immediately after RequireJS, but prior to importing the main logic for the page.
+This file will tell RequireJS where to find Knockout when we import it, just like we did in `hello.ts`.
+Any page that you create should include this immediately after RequireJS, but before importing anything else.
 
 We'll also need a view to display our `HelloViewModel`.
 Create a file at the root of `proj` named `index.html` with the following contents:

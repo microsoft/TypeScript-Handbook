@@ -140,10 +140,21 @@ Create a file at the root of `proj` named `index.html` with the following conten
     </head>
     <body>
         <div id="example"></div>
+
+        <!-- Dependencies -->
+        <script src="./node_modules/react/dist/react.js" />
+        <script src="./node_modules/react-dom/dist/react-dom.js" />
+
+        <!-- Main -->
         <script src="./dist/bundle.js"></script>
     </body>
 </html>
 ```
+
+Notice that we're including files from within `node_modules`.
+React and React-DOM's npm packages include standalone `.js` files that you can include in a web page, and we're referencing them directly to get things moving faster.
+Feel free to copy these files to another directory, or alternatively, host them on a content delivery network (CDN).
+Facebook makes CDN-hosted versions of React available, and you can [read more about that here](http://facebook.github.io/react/downloads.html#development-vs.-production-builds).
 
 # Add a TypeScript configuration file
 
@@ -187,9 +198,26 @@ module.exports = {
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { test: /\.js$/, loader: "source-map-loader" }
         ]
-    }
+    },
+
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
+    },
 };
 ```
+
+You might be wondering about that `externals` field.
+We want to avoid bundling all of React into the same file, since this increases compilation time and browsers will typically be able to cache a library if it doesn't change.
+
+Ideally, we'd just import the React module from within the browser, but most browsers still don't quite support modules yet.
+Instead libraries have traditionally made themselves available using a single global variable like `jQuery` or `_`.
+This is called the "namespace pattern", and webpack allows us to continue leveraging libraries written that way.
+With our entry for `"react": "React"`, webpack will work its magic to make any import of `"react"` load from the `React` variable.
 
 You can learn more about configuring webpack [here](http://webpack.github.io/docs/configuration.html).
 

@@ -31,22 +31,21 @@ mkdir built
 
 # Install our build dependencies
 
-First ensure TypeScript and typings are installed globally.
+First ensure TypeScript and Typings are installed globally.
 
 ```shell
 npm install -g typescript typings
 ```
 
-You obviously know about TypeScript, but you might not know about typings.
+You obviously know about TypeScript, but you might not know about Typings.
 [Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
-
-Next, we'll use typings to grab the declaration files for Knockout:
+We'll now use Typings to grab declaration files for Knockout:
 
 ```shell
 typings install --ambient --save knockout
 ```
 
-The `--ambient` flag will tell typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
+The `--ambient` flag will tell Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
 This command will create a file called `typings.json` and a folder called `typings` in the current directory.
 
 # Grab our runtime dependencies
@@ -71,6 +70,39 @@ mkdir externals
 Now [download Knockout](http://knockoutjs.com/downloads/index.html) and [download RequireJS](http://www.requirejs.org/docs/download.html#latest) into that folder.
 The latest and minified versions of the files should work just fine.
 
+# Add a TypeScript configuration file
+
+You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary typings files.
+
+To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
+Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents:
+
+```json
+{
+    "compilerOptions": {
+        "outDir": "./built/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "amd",
+        "target": "es5"
+    },
+    "files": [
+        "./typings/main.d.ts",
+        "./src/require-config.ts",
+        "./src/hello.ts"
+    ]
+}
+```
+
+We're including `typings/main.d.ts`, which Typings created for us.
+That file automatically includes all of your installed dependencies.
+
+You might be wondering about a separate file named `browser.d.ts` in the `typings` folder, especially since we're going to run this in a browser.
+The short story is that some packages are tailored differently by tools that target browsers.
+In general, these situations are niche scenarios and we won't run into those, so we can ignore `browser.d.ts`.
+
+You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
+
 # Write some code
 
 Let's write our first TypeScript file using Knockout.
@@ -92,7 +124,7 @@ class HelloViewModel {
 ko.applyBindings(new HelloViewModel("TypeScript", "Knockout"));
 ```
 
-Next, we'll create a file named `config.ts` in `src` as well.
+Next, we'll create a file named `require-config.ts` in `src` as well.
 
 ```ts
 declare var require: any;
@@ -128,7 +160,7 @@ Create a file at the root of `proj` named `index.html` with the following conten
         <p>Framework: <input data-bind="value: framework" /></p>
 
         <script src="./externals/require.js"></script>
-        <script src="./built/config.js"></script>
+        <script src="./built/require-config.js"></script>
         <script>
             require(["built/hello"]);
         </script>
@@ -140,32 +172,6 @@ Notice there are three script tags.
 First, we're including RequireJS itself.
 Then we're mapping the paths of our external dependencies in `configure.js` so that RequireJS knows where to look for them.
 Finally, we're calling `require` with a list of modules we'd like to load.
-
-# Add a TypeScript configuration file
-
-You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary typings files.
-
-To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
-Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents.
-
-```json
-{
-    "compilerOptions": {
-        "outDir": "./built/",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "module": "amd",
-        "target": "es5"
-    },
-    "files": [
-        "./typings/main.d.ts",
-        "./src/config.ts",
-        "./src/hello.ts"
-    ]
-}
-```
-
-You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 
 # Putting it all together
 

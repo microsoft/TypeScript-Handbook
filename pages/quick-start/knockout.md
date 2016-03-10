@@ -137,6 +137,7 @@ require.config({
 
 This file will tell RequireJS where to find Knockout when we import it, just like we did in `hello.ts`.
 Any page that you create should include this immediately after RequireJS, but before importing anything else.
+To get a better understanding of this file and how to configure RequireJS, you can [read up on its documentation](http://requirejs.org/docs/api.html#config).
 
 We'll also need a view to display our `HelloViewModel`.
 Create a file at the root of `proj` named `index.html` with the following contents:
@@ -170,7 +171,7 @@ Create a file at the root of `proj` named `index.html` with the following conten
 
 Notice there are three script tags.
 First, we're including RequireJS itself.
-Then we're mapping the paths of our external dependencies in `configure.js` so that RequireJS knows where to look for them.
+Then we're mapping the paths of our external dependencies in `require-configure.js` so that RequireJS knows where to look for them.
 Finally, we're calling `require` with a list of modules we'd like to load.
 
 # Putting it all together

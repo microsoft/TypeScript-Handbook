@@ -1,6 +1,9 @@
 # Introduction
 
-Starting with the ECMAScript 2015, JavaScript has modules. TypeScript shares this concept.
+Starting with the ECMAScript 2015, JavaScript has modules. TypeScript shares this concept. 
+Modules are packages of code and declarations that declare their dependencies using `import` and `export`.
+Modules provide for code reuse, isolation, and tooling support for bundling.
+In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 
 Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported using one of the [`export` forms](#export).
 Conversely, to consume a variable, function, class, interface, etc. exported from a different module, it has to be imported using one of the [`import` forms](#import).
@@ -10,8 +13,6 @@ Modules are declarative; the relationships between modules are specified in term
 Modules import one another using a module loader.
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
 Well-known module loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
-
-In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 
 > **A note about terminology:**
 It's important to note that before TypeScript 1.5, modules were called "external modules" and namespaces were called "internal modules".
@@ -748,7 +749,7 @@ This, however, is not an issue with modules.
 Within a module, there's no plausible reason to have two objects with the same name.
 From the consumption side, the consumer of any given module gets to pick the name that they will use to refer to the module, so accidental naming conflicts are impossible.
 
-> For more discussion about modules and namespaces see [Namespaces and Modules](./Namespaces and Modules.md).
+# Module Pitfalls
 
 ## Red Flags
 
@@ -757,3 +758,36 @@ All of the following are red flags for module structuring. Double-check that you
 * A file whose only top-level declaration is `export namespace Foo { ... }` (remove `Foo` and move everything 'up' a level)
 * A file that has a single `export class` or `export function` (consider using `export default`)
 * Multiple files that have the same `export namespace Foo {` at top-level (don't think that these are going to combine into one `Foo`!)
+
+## `/// <reference>`-ing a module
+
+A common mistake is to try to use the `/// <reference ... />` syntax to refer to a module file, rather than using an `import` statement.
+To understand the distinction, we first need to understand how compiler can locate the type information for a module based on the path of an `import` (e.g. the `...` in `import x from "...";`, `import x = require("...");`, etc.) path.
+
+The compiler will try to find a `.ts`, `.tsx`, and then a `.d.ts` with the appropriate path.
+If a specific file could not be found, then the compiler will look for an *ambient module declaration*.
+Recall that these need to be declared in a `.d.ts` file.
+
+* `myModules.d.ts`
+
+  ```ts
+  // In a .d.ts file or .ts file that is not a module:
+  declare module "SomeModule" {
+      export function fn(): string;
+  }
+  ```
+
+* `myOtherModule.ts`
+
+  ```ts
+  /// <reference path="myModules.d.ts" />
+  import * as m from "SomeModule";
+  ```
+
+The reference tag here allows us to locate the declaration file that contains the declaration for the ambient module.
+This is how the `node.d.ts` file that several of the TypeScript samples use is consumed.
+
+## Module Bundling
+
+Just as there is a one-to-one correspondence between JS files and modules, TypeScript has a one-to-one correspondence between module source files and their emitted JS files.
+One effect of this is that it's not possible to use the `--outFile` compiler switch to concatenate multiple module source files into a single JavaScript file.

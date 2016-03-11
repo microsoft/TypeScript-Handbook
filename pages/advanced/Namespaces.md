@@ -7,6 +7,15 @@ However, namespaces are simpler and can be easier to use for simple applications
 Before TypeScript 1.5, namespaces were called "internal modules" and modules were called "external modules".
 Because of this history, you can use either the `namespace` keyword or the `module` keyword, but you should always use `namespace` in new code.
 
+## Using Namespaces
+
+Namespaces are simply named JavaScript objects in the global namespace.
+This makes namespaces a very simple construct to use.
+They can span multiple files, and can be concatenated using `--outFile`.
+Namespaces can be a good way to structure your code in a simple web application, with all dependencies included as `<script>` tags in your HTML page.
+
+Just like all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.
+
 # First steps
 
 Let's start with the program we'll be using as our example throughout this page.
@@ -262,3 +271,50 @@ declare namespace D3 {
 
 declare var d3: D3.Base;
 ```
+
+# Namespace Pitfalls
+
+## Needless Namespacing
+
+If you're converting a program from namespaces to modules, it can be easy to end up with a file that looks like this:
+
+* `shapes.ts`
+
+  ```ts
+  export namespace Shapes {
+      export class Triangle { /* ... */ }
+      export class Square { /* ... */ }
+  }
+  ```
+
+The top-level module here `Shapes` wraps up `Triangle` and `Square` for no reason.
+This is confusing and annoying for consumers of your module:
+
+* `shapeConsumer.ts`
+
+  ```ts
+  import * as shapes from "./shapes";
+  let t = new shapes.Shapes.Triangle(); // shapes.Shapes?
+  ```
+
+A key feature of modules in TypeScript is that two different modules will never contribute names to the same scope.
+Because the consumer of a module decides what name to assign it, there's no need to proactively wrap up the exported symbols in a namespace.
+
+To reiterate why you shouldn't try to namespace your module contents, the general idea of namespacing is to provide logical grouping of constructs and to prevent name collisions.
+Because the module file itself is already a logical grouping, and its top-level name is defined by the code that imports it, it's unnecessary to use an additional module layer for exported objects.
+
+Here's a revised example:
+
+* `shapes.ts`
+
+  ```ts
+  export class Triangle { /* ... */ }
+  export class Square { /* ... */ }
+  ```
+
+* `shapeConsumer.ts`
+
+  ```ts
+  import * as shapes from "./shapes";
+  let t = new shapes.Triangle();
+  ```

@@ -1,14 +1,11 @@
-> **A note about terminology:**
-It's important to note that in TypeScript 1.5, the nomenclature has changed.
-"Internal modules" are now "namespaces".
-"External modules" are now simply "modules", as to align with [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
-
 # Introduction
+ 
+Namespaces are another, TypeScript-specific way to organize your code.
+[Modules](./Modules.md) follow the ECMAScript standard and should be the first option you consider.
+However, namespaces are simpler and can be easier to use for simple applications.
 
-This post outlines the various ways to organize your code using namespaces (previously "internal modules") in TypeScript.
-As we alluded in our note about terminology, "internal modules" are now referred to as "namespaces".
-Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
-This avoids confusing new users by overloading them with similarly named terms.
+Before TypeScript 1.5, namespaces were called "internal modules" and modules were called "external modules".
+Because of this history, you can use either the `namespace` keyword or the `module` keyword, but you should always use `namespace` in new code.
 
 # First steps
 

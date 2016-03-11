@@ -1,8 +1,3 @@
-> **A note about terminology:**
-It's important to note that in TypeScript 1.5, the nomenclature has changed.
-"Internal modules" are now "namespaces".
-"External modules" are now simply "modules", as to align with [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
-
 # Introduction
 
 This post outlines the various ways to organize your code using namespaces and modules in TypeScript.
@@ -11,12 +6,16 @@ We'll also go over some advanced topics of how to use namespaces and modules, an
 See the [Modules](./Modules.md) documentation for more information about modules.
 See the [Namespaces](./Namespaces.md) documentation for more information about namespaces.
 
+> **A note about terminology:**
+It's important to note that before TypeScript 1.5, namespaces were called "internal modules" and modules were called "external modules".
+Because of this history, namespaces allow you to use both the `namespace` keyword and the `module` keyword, but you should always use `namespace` in new code.
+
 # Using Namespaces
 
 Namespaces are simply named JavaScript objects in the global namespace.
 This makes namespaces a very simple construct to use.
 They can span multiple files, and can be concatenated using `--outFile`.
-Namespaces can be a good way to structure your code in a Web Application, with all dependencies included as `<script>` tags in your HTML page.
+Namespaces can be a good way to structure your code in a simple web application, with all dependencies included as `<script>` tags in your HTML page.
 
 Just like all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.
 

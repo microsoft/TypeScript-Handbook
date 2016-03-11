@@ -14,7 +14,7 @@ Modules are declarative; the relationships between modules are specified in term
 
 Modules import one another using a module loader.
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
-Well-known modules loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
+Well-known module loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
 
 In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 
@@ -212,16 +212,16 @@ console.log(num); // "123"
 
 # `export =` and `import = require()`
 
-Both CommonJS and AMD generally have the concept of an `exports` object which contains all exports from a module.
+Both CommonJS and AMD have an `exports` object which contains all exports from a module.
 
 They also support replacing the `exports` object with a custom single object.
 Default exports are meant to act as a replacement for this behavior; however, the two are incompatible.
-TypeScript supports `export =` to module the traditional CommonJS and AMD workflow.
+TypeScript supports `export =` to model the traditional CommonJS and AMD workflow.
 
 The `export =` syntax specifies a single object that is exported from the module.
 This can be a class, interface, namespace, function, or enum.
 
-When importing a module using `export =`, TypeScript-specific `import let = require("module")` must be used to import the module.
+When importing a module using `export =`, TypeScript-specific syntax `import name = require("module")` must be used to import the module.
 
 ##### ZipCodeValidator.ts
 
@@ -397,6 +397,9 @@ strings.forEach(s => {
 
 # Optional Module Loading and Other Advanced Loading Scenarios
 
+TODO: This belongs in a separate list of [advanced] recipes.
+Also, the explanation has way too many words.
+
 In some cases, you may want to only load a module under some conditions.
 In TypeScript, we can use the pattern shown below to implement this and other advanced loading scenarios to directly invoke the module loaders without losing type safety.
 
@@ -412,7 +415,7 @@ For this pattern to work, it's important that the symbol defined via an `import`
 To maintain type safety, we can use the `typeof` keyword.
 The `typeof` keyword, when used in a type position, produces the type of a value, in this case the type of the module.
 
-##### Dynamic Module Loading in Node.js
+##### Sample: Dynamic Module Loading in Node.js
 
 ```ts
 declare function require(moduleName: string): any;
@@ -492,7 +495,9 @@ declare module "path" {
 }
 ```
 
-Now we can `/// <reference>` `node.d.ts` and then load the modules using `import url = require("url");`.
+Now we can `/// <reference>` `node.d.ts` and then load the modules using `import * as URL from "url";`.
+
+TODO: Does this still work? Shouldn't ES6 module resolution obviate the need for the triple-slash?
 
 ```ts
 /// <reference path="node.d.ts"/>
@@ -524,7 +529,7 @@ For example:
 #### MyClass.ts
 
 ```ts
-export default class SomeType {
+export default class SomeClass {
   constructor() { ... }
 }
 ```
@@ -538,26 +543,24 @@ export default function getThing() { return 'thing'; }
 #### Consumer.ts
 
 ```ts
-import t from "./MyClass";
+import C from "./MyClass";
 import f from "./MyFunc";
-let x = new t();
+let x = new C();
 console.log(f());
 ```
 
-This is optimal for consumers. They can name your type whatever they want (`t` in this case) and don't have to do any excessive dotting to find your objects.
+This is optimal for consumers. They can name your type whatever they want (`C` in this case) and don't have to do any excessive dotting to find your objects.
 
-### If you're exporting multiple objects, put them all at top-level
+### If you're exporting multiple objects, put them all at top-level.
 
-#### MyThings.ts
+#### Example: MyThings.ts
 
 ```ts
 export class SomeType { /* ... */ }
 export function someFunc() { /* ... */ }
 ```
 
-Conversly when importing:
-
-### Explicitlly list imported names
+### If you're importing multiple objects, explicitly list imported names
 
 #### Consumer.ts
 
@@ -597,6 +600,8 @@ The module also exports a helper function to test the calculator functionality b
 
 #### Calculator.ts
 
+TODO: This example is way too long. It should probably be something synthetic about Horses and Snakes.
+
 ```ts
 export class Calculator {
     private current = 0;
@@ -634,7 +639,7 @@ export class Calculator {
         this.current = 0;
     }
 
-    public handelChar(char: string) {
+    public handleChar(char: string) {
         if (char === "=") {
             this.evaluate();
             return;
@@ -664,7 +669,7 @@ export class Calculator {
 
 export function test(c: Calculator, input: string) {
     for (let i = 0; i < input.length; i++) {
-        c.handelChar(input[i]);
+        c.handleChar(input[i]);
     }
 
     console.log(`result of '${input}' is '${c.getResult()}'`);

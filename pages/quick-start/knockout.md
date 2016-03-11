@@ -72,7 +72,7 @@ The latest and minified versions of the files should work just fine.
 
 # Add a TypeScript configuration file
 
-You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary typings files.
+You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary declaration files.
 
 To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
 Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents:

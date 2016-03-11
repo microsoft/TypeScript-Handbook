@@ -80,7 +80,7 @@ This will allow you to debug your final output file as if you were debugging you
 Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
 If you want a local copy, just run `npm install typescript`.
 
-Finally, we'll use typings to grab the declaration files for React and ReactDOM:
+Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
 
 ```shell
 typings install --ambient --save react
@@ -92,7 +92,7 @@ This command will create a file called `typings.json` and a folder called `typin
 
 # Add a TypeScript configuration file
 
-You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary typings files.
+You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary declaration files.
 
 To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
 Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents:

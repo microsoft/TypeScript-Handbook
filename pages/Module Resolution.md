@@ -3,32 +3,38 @@ Please see the [Modules](./Modules.md) documentation for more information.
 
 "Module Resolution" refers to the process the compiler follows to understand the shape of an import target.
 Consider an import statement like `import { a } from "./moduleA"`; to be able to correctly check any use of the import target `a`, the compiler needs to know what it means, and what is its type.
-To do that, the compiler needs to look at the exported declaration with name `a` from `moduleA`.
+To do that, the compiler needs to inspect the exported declaration with name `a` from `moduleA`.
 This could be defined in a `.ts` file from your own code, or in a `.d.ts` for an external definition file that your code depends on.
 The first step, is to locate the definition of `moduleA`.
 
 The process to locate a module goes as follows:
 
-1. Locate a file with the module definition
+* Locate a file with the module definition
+
  The compiler will try to first locate a file containing the definition of the imported module.
- To do so the compiler follows one of two different strategies: [Classic](#classic) and [node](#node).
-2. Locate an ambient module declaration
+ To do so the compiler follows one of two different strategies: [Classic](#classic) and [Node](#node).
+
+* Locate an ambient module declaration
+
  If no file was found, the compiler will attempt to locate an [ambient module declaration](#ambient-module-declaration) for the module if applicable.
-3. Log an error if all failed
+
+* Log an error if all failed
+
  If none were found, you will get `error TS2307: Cannot find module 'moduleA'.`
 
 ## Relative vs. Non-relative module imports
 
 Module imports are resolved differently based on whether the module reference is relative or non-relative.
 
-A relative import is one that stars with `/`, `./` or `../`.
-A non-relative import is one that does *not* start with either.
+A **relative** import is one that stars with `/`, `./` or `../`.
+
+A **non-relative** import is one that does *not* start with either.
 
 A relative import is resolved relative to the importing file.
 A relative import can **not** resolve to an ambient module declaration.
 Use this for importing your own modules that are guaranteed to maintain their relative location at runtime.
 
-A non-relative import can pick resolve to files from node_modules for instance.
+A non-relative import can be resolved relative to `baseUrl`, or through path mapping.
 They can also resolve to ambient module declarations.
 Use non-relative imports to import external module dependencies.
 
@@ -43,11 +49,17 @@ The default if not specified is [Node](#node).
 This is the TypeScript 1.0 default module resolution strategy.
 This strategy is supported mainly for backward compatibility.
 
-Following this resolution strategy the compiler walks up the folder tree starting with importing file, trying to locate a matching definition file.
+A relative import will be resolved relative to the importing file.
+So `import { b } from "./moduleB"` in source file `/root/src/folder/A.ts` would result in the following lookups:
+
+* `/root/src/folder/moduleB.ts`
+* `/root/src/folder/moduleB.d.ts`
+
+For non-relative module imports, however, the compiler walks up the directory tree starting with the directory containing the importing file, trying to locate a matching definition file.
 
 For example:
 
-A non-relative import to `moduleB` such as `import { b } from "moduleB";`, in a source file `/root/src/folder/A.ts`, would result in attempting the following locations for locating `"moduleB"`:
+A non-relative import to `moduleB` such as `import { b } from "moduleB"`, in a source file `/root/src/folder/A.ts`, would result in attempting the following locations for locating `"moduleB"`:
 
 * `/root/src/folder/moduleB.ts`
 * `/root/src/folder/moduleB.d.ts`
@@ -58,12 +70,6 @@ A non-relative import to `moduleB` such as `import { b } from "moduleB";`, in a 
 * `/moduleB.ts`
 * `/moduleB.d.ts`
 
-A relative import however would be resolved relative to the importing file.
-So `import { b } from "./moduleB";` in source file `/root/src/folder/A.ts` would result in the following lookups:
-
-* `/root/src/folder/moduleB.ts`
-* `/root/src/folder/moduleB.d.ts`
-
 ### Node
 
 This resolution strategy attempts to *mimic* the [nodejs](https://nodejs.org/) module resolution mechanism at runtime.
@@ -72,15 +78,15 @@ The full nodejs resolution algorithm is outlined in [nodejs module documentation
 #### How nodejs resolves modules
 
 To understand what the steps the TS compiler will follow, it is important to shed some light on nodejs modules.
-nodejs supports multiple ways to define a module;
-a nodejs module can be:
+nodejs supports multiple ways to define a resolve the target of a require statement.
+A relative moduel name in nodejs can resolve to:
 
 * A file
 
  For instance in `/src/moduleA.js` a require statement such as `var x = require("./moduleB");` refers to `/src/moduleB.js`.
  See [nodejs file modules documentation](https://nodejs.org/api/modules.html#modules_file_modules) for more details.
 
-* A folder, with an implicit `"main"` module named `index.js`
+* A folder, with an implicit "main" module named `index.js`
 
  For instance in `/src/moduleA.js` and require statement `var x = require("./moduleB");` refers to `/src/moduleB/index.js`.
  See [nodejs folder modules documentation](https://nodejs.org/api/modules.html#modules_folders_as_modules) for more details.
@@ -111,7 +117,7 @@ TypeScript will *mimic* the nodejs resolution strategy at run-time as described 
 TypeScript *overlays* the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) on the nodejs resolution logic.
 A `"typings"` field in `package.json` at compile-time serves to identify the "main" module definition for a package, similar to how `"main"` behaves at run-time.
 
-An import statement `import {b} from "./moduleB";` in a ts file `/src/moduleA.ts` would result in attempting the following locations for locating `"moduleB"`:
+An import statement `import {b} from "./moduleB"` in a ts file `/src/moduleA.ts` would result in attempting the following locations for locating `"moduleB"`:
 
 * `/src/moduleB.ts`
 * `/src/moduleB.tsx`
@@ -122,7 +128,7 @@ An import statement `import {b} from "./moduleB";` in a ts file `/src/moduleA.ts
 * `/src/moduleB/index.d.ts`
 
 Similarly a non-relative import will follow the node resolution logic, looking up first a file, then looking the file name as a node package.
-So `import { b } from "moduleB";` in source file `/src/moduleA.ts` would result in the following lookups:
+So `import { b } from "moduleB"` in source file `/src/moduleA.ts` would result in the following lookups:
 
 * `/src/node_modules/moduleB.ts`
 * `/src/node_modules/moduleB.tsx`
@@ -142,18 +148,18 @@ So `import { b } from "moduleB";` in source file `/src/moduleA.ts` would result 
 
 A project source layout sometimes does not match that of the output.
 Usually a set of build steps result in generating the final output.
-These include compiling `.ts` files into `.js`, and copying dependencies from different source locations to a single location.
-The result is that module names at runtime, may have different names in the final output than that the source files containing their definitions.
+These include compiling `.ts` files into `.js`, and copying dependencies from different source locations to a single output location.
+The net result is modules at runtime, may have different names than the source files containing their definitions.
 Or that module paths in the final outputs do not match their corresponding source file paths at compile time.
 
-The TypeScript compiler has a set of national flags to *inform* the compiler of these transformations, that are expected to happen to the sources to generate the final output.
+The TypeScript compiler has a set of additional flags to *inform* the compiler of transformations that are expected to happen to the sources to generate the final output.
+
 It is important to note that the compiler will *not* perform any of these transformations;
 it just uses these pieces of Infomation to guide the process of resolving a module import to its definition file.
 
 ### Base URL
 
-Using a `baseUrl` is a common practice in applications using AMD.
-A common practice for applications using AMD loaders, is to "deployed" all modules to a single folder at run-time.
+Using a `baseUrl` is a common practice in applications using AMD module loaders where modules are "deployed" to a single folder at run-time.
 The sources of these modules can live in different directories, but a build script will put them all together.
 
 Setting `baseUrl` informs the compiler where to find modules.
@@ -163,6 +169,8 @@ Value of *baseUrl* is determined as either:
 
 * value of *baseUrl* command line argument (if given path is relative it is computed based on current directory)
 * value of *baseUrl* property in 'tsconfig.json' (if given path is relative it is computed based on the location of 'tsconfig.json')
+
+Note that relative module imports are not impacted by setting the baseUrl, as they are always resolved relative to thier importing files.
 
 You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/docs/api.html#config-baseUrl) and [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#baseurl) documentation.
 
@@ -179,7 +187,7 @@ Here is an example for how to specify the `"paths"` property for `jquery`.
 {
   "compilerOptions": {
     "paths": {
-      "jquery": ["node_modules\jquery\dist\jquery.slim.min.js"]
+      "jquery": ["node_modules/jquery/dist/jquery.slim.min.js"]
     }
 }
 ```
@@ -217,7 +225,7 @@ The corresponding `tsconfig.json` would look like:
 }
 ```
 
-This tells the compiler for anything that matches the pattern `"*"` (i.e. all values), to look in two locations:
+This tells the compiler for any module import that matches the pattern `"*"` (i.e. all values), to look in two locations:
 
  1. `"*"`: meaning the same name unchanged, so map `<moduleName>` => `<baseUrl>\<moduleName>`
  2. `"generated\*"` meaning the module name with an appended prefix "generated", so map `<moduleName>` => `<baseUrl>\generated\<moduleName>`
@@ -225,14 +233,11 @@ This tells the compiler for anything that matches the pattern `"*"` (i.e. all va
 Following this logic, the compiler will attempt to resolve the two imports as such:
 
 * import 'folder1/file2'
-
   1. pattern '*' is matched and wildcard captures the whole module name
   2. try first substitution in the list: '*' -> `folder1/file2`
   3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder1/file2.ts`.
   4. File exists. Done.
-
 * import 'folder2/file2'
-
   1. pattern '*' is matched and wildcard captures the whole module name
   2. try first substitution in the list: '*' -> `folder2/file3`
   3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder2/file3.ts`.
@@ -243,10 +248,10 @@ Following this logic, the compiler will attempt to resolve the two imports as su
 
 ### Virtual Directories with `rootDirs`
 
-Sometimes the project sources from multiple directories at compile time are all combined to generate a single output location.
-This can be viewed as a set of source directories create a "virtual" directories.
+Sometimes the project sources from multiple directories at compile time are all combined to generate a single output directory.
+This can be viewed as a set of source directories create a "virtual" directory.
 
-Using 'rootDirs', you can inform the compiler of *roots* of these "virtual" directories;
+Using 'rootDirs', you can inform the compiler of the *roots* making up this "virtual" directory;
 and thus the compiler can resolve relative modules imports within these "virtual" directories *as if* were merged together in one directory.
 
 For example consider this project structure:
@@ -304,10 +309,10 @@ A non-relative module import can **not** resolve to an ambient module declaratio
 
 As discussed earlier, the compiler can visit files outside the current folder when resolving a module.
 This can be hard when diagnosing why a module is not resolved, or is resolved to an incorrect definition.
-Enabling the compiler module resolution tracing using `--traceModuleResolution`.
+Enabling the compiler module resolution tracing using `--traceModuleResolution` provides insight in what happened during the module resolution process.
 
 Let's say we have a sample application that uses the `typescript` module.
-`app.ts` has an import like `import * as ts from `typescript`.
+`app.ts` has an import like `import * as ts from "typescript"`.
 
 ```tree
 │   tsconfig.json
@@ -318,6 +323,8 @@ Let's say we have a sample application that uses the `typescript` module.
 └───src
         app.ts
 ```
+
+Invoking the compiler with `--traceModuleResolution`
 
 ```cmd
 tsc --traceModuleResolution

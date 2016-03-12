@@ -329,18 +329,32 @@ strings.forEach(s => {
 # Working with Other JavaScript Libraries
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
+The declaration gives just the type of the statement without any implementation. 
+If the library uses modules, the API declaration will also need to use modules. 
+
+For example, if the JavaScript module looks like this:
+
+```js
+export var x = "example";
+```
+
+The TypeScript declaration will look like this:
+
+```ts
+export declare var x: string;
+```
+
+TODO: Test all the example code. 
 
 We call declarations that don't define an implementation "ambient".
 Typically, these are defined in `.d.ts` files.
-If you're familiar with C/C++, you can think of these as `.h` files.
-Let's look at a few examples.
+These are a lot like C's `.h` files.
 
-## Ambient Modules
-
-In Node.js, most tasks are accomplished by loading one or more modules.
-We could define each module in its own `.d.ts` file with top-level export declarations, but it's more convenient to write them as one larger `.d.ts` file.
-To do so, we use a construct similar to ambient namespaces, but we use the `module` keyword and the quoted name of the module which will be available to a later import.
-For example:
+Let's look at a convenient technique for writing `.d.ts` files for multi-module libraries.
+We could write one `.d.ts` file for each `.js` file.
+But it's more convenient to cram multiple modules in a single large `.d.ts`.
+To do so, we use the `module` keyword and the quoted name of the module which would normally be obtained from the module's filename. 
+For example, here's a simplified excerpt from the big combined `node.d.ts` that gives types to all the built-in Node modules:
 
 ##### node.d.ts (simplified excerpt)
 
@@ -362,9 +376,8 @@ declare module "path" {
 }
 ```
 
-Now we can `/// <reference>` `node.d.ts` and then load the modules using `import * as URL from "url";`.
-
-TODO: This fallback is *really* confusing. It needs a more obvious explanation + example.
+Now we `/// <reference path="node.d.ts">`. 
+Afterwards, we can use the modules the usual way with `import * as URL from "url";`.
 
 ```ts
 /// <reference path="node.d.ts"/>

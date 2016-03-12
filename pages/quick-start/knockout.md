@@ -112,8 +112,8 @@ First, create a new file in your `src` directory named `hello.ts`.
 import * as ko from "knockout";
 
 class HelloViewModel {
-    language: ko.Observable
-    framework: ko.Observable;
+    language: KnockoutObservable<string>
+    framework: KnockoutObservable<string>
 
     constructor(language: string, framework: string) {
         this.language = ko.observable(language);

@@ -12,7 +12,9 @@ Modules are declarative; the relationships between modules are specified in term
 
 Modules import one another using a module loader.
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
-Well-known module loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
+Well-known module loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications. 
+TypeScript can generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
+
 
 > **A note about terminology:**
 It's important to note that before TypeScript 1.5, modules were called "external modules" and namespaces were called "internal modules".
@@ -251,76 +253,6 @@ strings.forEach(s => {
 });
 ```
 
-# Code Generation for Modules
-
-Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
-For more information on what the `define`, `require` and `register` calls in the generated code do, consult the documentation for each module loader.
-
-This simple example shows how the names used during importing and exporting get translated into the module loading code.
-
-##### SimpleModule.ts
-
-```ts
-import m = require("mod");
-export let t = m.something + 1;
-```
-
-##### AMD / RequireJS SimpleModule.js
-
-```js
-define(["require", "exports", "./mod"], function (require, exports, mod_1) {
-    exports.t = mod_1.something + 1;
-});
-```
-
-##### CommonJS / Node SimpleModule.js
-
-```js
-var mod_1 = require("./mod");
-exports.t = mod_1.something + 1;
-```
-
-##### UMD SimpleModule.js
-
-```js
-(function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
-        var v = factory(require, exports); if (v !== undefined) module.exports = v;
-    }
-    else if (typeof define === "function" && define.amd) {
-        define(["require", "exports", "./mod"], factory);
-    }
-})(function (require, exports) {
-    var mod_1 = require("./mod");
-    exports.t = mod_1.something + 1;
-});
-```
-
-##### System SimpleModule.js
-
-```js
-System.register(["./mod"], function(exports_1) {
-    var mod_1;
-    var t;
-    return {
-        setters:[
-            function (mod_1_1) {
-                mod_1 = mod_1_1;
-            }],
-        execute: function() {
-            exports_1("t", t = mod_1.something + 1);
-        }
-    }
-});
-```
-
-##### Native ECMAScript 2015 modules SimpleModule.js
-
-```js
-import { something } from "./mod";
-export var t = something + 1;
-```
-
 # Simple Example
 
 Below, we've consolidated the Validator implementations used in previous examples to only export a single named export from each module.
@@ -394,70 +326,6 @@ strings.forEach(s => {
 });
 ```
 
-# Optional Module Loading and Other Advanced Loading Scenarios
-
-TODO: This belongs in a separate list of [advanced] recipes.
-Also, the explanation has way too many words.
-
-In some cases, you may want to only load a module under some conditions.
-In TypeScript, we can use the pattern shown below to implement this and other advanced loading scenarios to directly invoke the module loaders without losing type safety.
-
-The compiler detects whether each module is used in the emitted JavaScript.
-If a module identifier is only ever used as part of a type annotations and never as an expression, then no `require` call is emitted for that module.
-This elision of unused references is a good performance optimization, and also allows for optional loading of those modules.
-
-The core idea of the pattern is that the `import id = require("...")` statement gives us access to the types exposed by the module.
-The module loader is invoked (through `require`) dynamically, as shown in the `if` blocks below.
-This leverages the reference-elision optimization so that the module is only loaded when needed.
-For this pattern to work, it's important that the symbol defined via an `import` is only used in type positions (i.e. never in a position that would be emitted into the JavaScript).
-
-To maintain type safety, we can use the `typeof` keyword.
-The `typeof` keyword, when used in a type position, produces the type of a value, in this case the type of the module.
-
-##### Sample: Dynamic Module Loading in Node.js
-
-```ts
-declare function require(moduleName: string): any;
-
-import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
-
-if (needZipValidation) {
-    let ZipCodeValidator: typeof Zip = require("./ZipCodeValidator");
-    let validator = new ZipCodeValidator();
-    if (validator.isAcceptable("...")) { /* ... */ }
-}
-```
-
-##### Sample: Dynamic Module Loading in require.js
-
-```ts
-declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
-
-import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
-
-if (needZipValidation) {
-    require(["./ZipCodeValidator"], (ZipCodeValidator: typeof Zip) => {
-        let validator = new ZipCodeValidator();
-        if (validator.isAcceptable("...")) { /* ... */ }
-    });
-}
-```
-
-##### Sample: Dynamic Module Loading in System.js
-
-```ts
-declare const System: any;
-
-import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
-
-if (needZipValidation) {
-    System.import("./ZipCodeValidator").then((ZipCodeValidator: typeof Zip) => {
-        var x = new ZipCodeValidator();
-        if (x.isAcceptable("...")) { /* ... */ }
-    });
-}
-```
-
 # Working with Other JavaScript Libraries
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
@@ -496,7 +364,7 @@ declare module "path" {
 
 Now we can `/// <reference>` `node.d.ts` and then load the modules using `import * as URL from "url";`.
 
-TODO: Does this still work? Shouldn't ES6 module resolution obviate the need for the triple-slash?
+TODO: This fallback is *really* confusing. It needs a more obvious explanation + example.
 
 ```ts
 /// <reference path="node.d.ts"/>
@@ -729,25 +597,6 @@ import { Calculator, test } from "./ProgrammerCalculator";
 let c = new Calculator(2);
 test(c, "001+010="); // prints 3
 ```
-
-## Do not use namespaces in modules
-
-When first moving to a module-based organization, a common tendency is to wrap exports in an additional layer of namespaces.
-Modules have their own scope, and only exported declarations are visible from outside the module.
-With this in mind, namespace provide very little, if any, value when working with modules.
-
-On the organization front, namespaces are handy for grouping together logically-related objects and types in the global scope.
-For example, in C#, you're going to find all the collection types in System.Collections.
-By organizing our types into hierarchical namespaces, we provide a good "discovery" experience for users of those types.
-Modules, on the other hand, are already present in a file system, necessarily.
-We have to resolve them by path and filename, so there's a logical organization scheme for us to use.
-We can have a /collections/generic/ folder with a list module in it.
-
-Namespaces are important to avoid naming collisions in the global scope.
-For example, you might have `My.Application.Customer.AddForm` and `My.Application.Order.AddForm` -- two types with the same name, but a different namespace.
-This, however, is not an issue with modules.
-Within a module, there's no plausible reason to have two objects with the same name.
-From the consumption side, the consumer of any given module gets to pick the name that they will use to refer to the module, so accidental naming conflicts are impossible.
 
 # Module Pitfalls
 

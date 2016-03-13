@@ -1,14 +1,14 @@
-These are comments, as per the language specification, containing a single XML tag.
+These are single-line comments, as per the language specification, containing a single XML tag.
 The contents of the comment are used as compiler directives.
 
 Triple-slash directives are **only** valid at the top of their containing file.
-A triple-slash directive can only be preceded by comments or other triple-slash directives.
-If they are encountered in following a statement or a declaration they are treated as regular single line comments, and no special meaning.
+A triple-slash directive can only be preceded by single or multi-line comments, including other triple-slash directives.
+If they are encountered following a statement or a declaration they are treated as regular single-line comments, and hold no special meaning.
 
 ## `/// <reference path="..." />`
 
 The `/// <reference path="..." />` directive is the most common of this group.
-It is serves as a pre-processor directive declare *dependency* between files.
+It serves as a declaration of *dependency* between files.
 
 Triple-slash references instruct the compiler to include additional files in the compilation process.
 
@@ -23,7 +23,7 @@ During this process, additional files are added to the compilation.
 The process starts with a set of *root files*;
 these are the file names specified on the command-line or in the `"files"` list in the `tsconfig.json` file.
 These root files are preprocessed in the same order they are specified.
-Before a file a file is added to the list, all triple slash references in it are processed, and their targets are included.
+Before a file is added to the list, all triple-slash references in it are processed, and their targets included.
 Triple-slash references are resolved in a depth first manner, in the order they have been seen in the file.
 
 A triple-slash reference path is resolved relative to the containing file, if unrooted.
@@ -35,7 +35,7 @@ It is an error to for a file to have a triple-slash reference to itself.
 
 ### Using `--noResolve`
 
-If the compiler flag `--noResolve` is specified, triple-slash references are ignored; they do not result in adding new files, nor change the order of the files provided.
+If the compiler flag `--noResolve` is specified, triple-slash references are ignored; they niether result in adding new files, nor change the order of the files provided.
 
 ## `/// <amd-module />`
 
@@ -44,8 +44,9 @@ This can lead to problems when other tools are used to process the resulting mod
 
 The `amd-module` directive allows passing an optional module name to the compiler:
 
+##### amdModule.ts
+
 ```ts
-//// [amdModule.ts]
 ///<amd-module name='NamedModule'/>
 export class C {
 }
@@ -53,8 +54,9 @@ export class C {
 
 Will result in assigning the name `NamedModule` to the module as part of calling the AMD `define`:
 
+##### amdModule.js
+
 ```js
-//// [amdModule.js]
 define("NamedModule", ["require", "exports"], function (require, exports) {
     var C = (function () {
         function C() {

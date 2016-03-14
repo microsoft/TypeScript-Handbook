@@ -1,4 +1,4 @@
-These are single-line comments, as per the language specification, containing a single XML tag.
+Triple-slash directives are single-line comments containing a single XML tag.
 The contents of the comment are used as compiler directives.
 
 Triple-slash directives are **only** valid at the top of their containing file.
@@ -31,16 +31,16 @@ A triple-slash reference path is resolved relative to the containing file, if un
 ### Errors
 
 It is an error to reference a file that does not exist.
-It is an error to for a file to have a triple-slash reference to itself.
+It is an error for a file to have a triple-slash reference to itself.
 
 ### Using `--noResolve`
 
-If the compiler flag `--noResolve` is specified, triple-slash references are ignored; they niether result in adding new files, nor change the order of the files provided.
+If the compiler flag `--noResolve` is specified, triple-slash references are ignored; they neither result in adding new files, nor change the order of the files provided.
 
 ## `/// <amd-module />`
 
 By default AMD modules are generated anonymous.
-This can lead to problems when other tools are used to process the resulting modules like a bundlers (e.g. `r.js`).
+This can lead to problems when other tools are used to process the resulting modules, such as bundlers (e.g. `r.js`).
 
 The `amd-module` directive allows passing an optional module name to the compiler:
 

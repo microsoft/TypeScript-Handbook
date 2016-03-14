@@ -314,3 +314,79 @@ One important difference is that type aliases cannot be extended or implemented 
 Because [an ideal property of software is being open to extension](https://en.wikipedia.org/wiki/Open/closed_principle), you should always use an interface over a type alias if possible.
 
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.
+
+# Polymorphic `this` types
+
+TypeScript has a `this` type in addition to JavaScript's `this` expression.
+The `this` type in a class or interface represents a type that is a *subtype* of the containing type.
+This makes hierarchical fluent interfaces much easier to express.
+For example, take a simple calculator that returns `this` after each operation:
+
+```ts
+class BasicCalculator {
+    public constructor(protected value: number = 0) { }
+    public currentValue(): number {
+        return this.value;
+    }
+    public add(operand: number): this {
+        this.value += operand;
+        return this;
+    }
+    // ... other operations go here ...
+}
+
+let v = new BasicCalculator(2)
+            .multiply(5)
+            .add(1)
+            .currentValue();
+```
+
+Since the class uses `this` types, extension preserves the fluent interface:
+
+```ts
+class ScientificCalculator extends BasicCalculator {
+    public constructor(value = 0) {
+        super(value);
+    }
+    public sin() {
+        this.value = Math.sin(this.value);
+        return this;
+    }
+    // ... other operations go here ...
+}
+
+let v = new ScientificCalculator(2)
+        .multiply(5)
+        .sin()
+        .add(1)
+        .currentValue();
+```
+
+Without `this` types, `ScientificCalculator` would not have been able to extend `BasicCalculator` and keep the fluent interface.
+`multiply` would have return `BasicCalculator`, which doesn't have the `sin` method.
+However, with `this` types, `multiply` returns `this`, which is `ScientificCalculator` here.
+
+This feature is called *F*-bounded polymorphism.
+You can get the same effect by spelling out the generic types yourself:
+
+```ts
+class BasicCalculator<This extends Calculator<This>> {
+    public constructor(protected value: number = 0) { }
+    public add(operand: number): This {
+        this.value += operand;
+        return <BasicCalculator<This>>this; // TODO: This part doesn't work
+    };
+}
+class ScientificCalculator extends BasicCalculator<ScientificCalculator> {
+    public sin() {
+        this.value = Math.sin(this.value);
+        return this;
+    }
+}
+declare function createModel(): AdvancedModel;
+let newModel = createModel().setupBase().setupAdvanced();
+```
+
+This is basically what the compiler does for you when you use `this` types.
+
+TODO: Add mixin-style patterns to describe inheritance.

@@ -1,6 +1,6 @@
 # Introduction
 
-Starting with the ECMAScript 2015, JavaScript has modules. TypeScript shares this concept. 
+Starting with the ECMAScript 2015, JavaScript has modules. TypeScript shares this concept.
 Modules are packages of code and declarations that declare their dependencies using `import` and `export`.
 Modules provide for code reuse, isolation, and tooling support for bundling.
 In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
@@ -12,9 +12,8 @@ Modules are declarative; the relationships between modules are specified in term
 
 Modules import one another using a module loader.
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
-Well-known module loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications. 
+Well-known module loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
 TypeScript can generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
-
 
 > **A note about terminology:**
 It's important to note that before TypeScript 1.5, modules were called "external modules" and namespaces were called "internal modules".
@@ -331,8 +330,8 @@ strings.forEach(s => {
 # Working with Other JavaScript Libraries
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
-The declaration gives just the type of the statement without any implementation. 
-If the library uses modules, the API declaration will also need to use modules. 
+The declaration gives just the type of the statement without any implementation.
+If the library uses modules, the API declaration will also need to use modules.
 
 For example, if the JavaScript module looks like this:
 
@@ -353,7 +352,7 @@ These are a lot like C's `.h` files.
 Let's look at a convenient technique for writing `.d.ts` files for multi-module libraries.
 We could write one `.d.ts` file for each `.js` file.
 But it's more convenient to cram multiple modules in a single large `.d.ts`.
-To do so, we use the `module` keyword and the quoted name of the module which would normally be obtained from the module's filename. 
+To do so, we use the `module` keyword and the quoted name of the module which would normally be obtained from the module's filename.
 For example, here's a simplified excerpt from the big combined `node.d.ts` that gives types to all the built-in Node modules:
 
 ##### node.d.ts (simplified excerpt)
@@ -376,7 +375,7 @@ declare module "path" {
 }
 ```
 
-Now we `/// <reference path="node.d.ts">`. 
+Now we `/// <reference path="node.d.ts">`.
 Afterwards, we can use the modules the usual way with `import * as URL from "url";`.
 
 ```ts
@@ -430,7 +429,7 @@ console.log(f());
 
 This is optimal for consumers. They can name your type whatever they want (`C` in this case) and don't have to do any excessive dotting to find your objects.
 
-### If you're exporting multiple objects, put them all at top-level.
+### If you're exporting multiple objects, put them all at top-level
 
 #### Example: MyThings.ts
 

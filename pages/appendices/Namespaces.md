@@ -1,5 +1,5 @@
 # Introduction
- 
+
 Namespaces are another, TypeScript-specific way to organize your code.
 [Modules](../Modules.md) follow the ECMAScript standard and should be the first option you consider.
 However, namespaces are simpler and can be easier to use for simple applications.

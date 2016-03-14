@@ -2,36 +2,42 @@
 
 ## Optional Module Loading and Other Advanced Loading Scenarios
 
-TODO: The explanation has way too many words.
-
-In some cases, you may want to only load a module under some conditions.
-In TypeScript, we can use the pattern shown below to implement this and other advanced loading scenarios to directly invoke the module loaders without losing type safety.
+In some cases, you may want to decide whether or not to load a module at runtime.
+In TypeScript, you can still invoke the module loaders directly to implement this and other advanced loading scenarios.
+You don't need to rely on TypeScript to emit the module loader code for you.
+Additionally, the pattern below lets you keep type safety even when calling loaders yourself.
 
 The compiler detects whether each module is used in the emitted JavaScript.
-If a module identifier is only ever used as part of a type annotations and never as an expression, then no `require` call is emitted for that module.
-This elision of unused references is a good performance optimization, and also allows for optional loading of those modules.
-
-The core idea of the pattern is that the `import id = require("...")` statement gives us access to the types exposed by the module.
-The module loader is invoked (through `require`) dynamically, as shown in the `if` blocks below.
-This leverages the reference-elision optimization so that the module is only loaded when needed.
-For this pattern to work, it's important that the symbol defined via an `import` is only used in type positions (i.e. never in a position that would be emitted into the JavaScript).
-
-To maintain type safety, we can use the `typeof` keyword.
-The `typeof` keyword, when used in a type position, produces the type of a value, in this case the type of the module.
+If a module identifier is never used as an expression -- only part of a type annotation -- then no `require` call is emitted for that module.
+So you can import a module just for the types, then call the module loader manually.
+Below is an example of this double-import pattern in Node.js:
 
 ##### Sample: Dynamic Module Loading in Node.js
 
 ```ts
 declare function require(moduleName: string): any;
 
-import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
+// 1. Get types from module
+import { ZipCodeValidator as ZipModule } from "./ZipCodeValidator";
 
+// 2. Check whether module should load at runtime
 if (needZipValidation) {
-    let ZipCodeValidator: typeof Zip = require("./ZipCodeValidator");
+    // 3. manually load module
+    let ZipCodeValidator: typeof ZipModule = require("./ZipCodeValidator");
     let validator = new ZipCodeValidator();
     if (validator.isAcceptable("...")) { /* ... */ }
 }
 ```
+
+At step (1), we import the module normally, but with a special name that we will only use once.
+This gives us access to the module's types.
+Then at step (3) we call the module loader manually using `require`.
+This variable gives the actual name you'll use for the module.
+We get type safety by assigning the dynamically loaded module the static type of the module: `typeof ZipModule`.
+The `typeof` keyword, when used in a type position, produces the type of a value, in this case the type of the module `ZipModule`.
+For this pattern to work, it's important that the symbol defined via an `import` is only used in type positions (i.e. never in a position that would be emitted into the JavaScript).
+
+Below are examples in other module systems.
 
 ##### Sample: Dynamic Module Loading in require.js
 

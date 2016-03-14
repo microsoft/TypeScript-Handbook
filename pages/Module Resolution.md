@@ -1,42 +1,46 @@
 > This section assumes some basic knowledge about modules.
 Please see the [Modules](./Modules.md) documentation for more information.
 
-"Module Resolution" refers to the process the compiler follows to understand the shape of an import target.
-Consider an import statement like `import { a } from "./moduleA"`; to be able to correctly check any use of the import target `a`, the compiler needs to know what it means, and what is its type.
-To do that, the compiler needs to inspect the exported declaration with name `a` from `moduleA`.
-This could be defined in a `.ts` file from your own code, or in a `.d.ts` for an external definition file that your code depends on.
-The first step, is to locate the definition of `moduleA`.
+*Module resolution* is the process the compiler takes to figure out exactly what an import refers to.
+Consider an import statement like `import { a } from "moduleA"`;
+in order to check any use of `a`, the compiler needs to know exactly what it represents, and will need to check its definition `moduleA`.
 
-The process to locate a module goes as follows:
+At this point, the compiler will ask itself "what's the shape of `moduleA`?"
+While this sounds straightforward, `moduleA` could be defined in one of your own a `.ts`/`.tsx` files, or in a `.d.ts` that your code depends on.
 
-* Locate a file with the module definition
+First, the compiler will try to locate a file that represents the imported module.
+To do so the compiler follows one of two different strategies: [Classic](#classic) or [Node](#node).
+These strategies tell the compiler *where* to look for `moduleA`.
 
- The compiler will try to first locate a file containing the definition of the imported module.
- To do so the compiler follows one of two different strategies: [Classic](#classic) and [Node](#node).
+If that didn't work and if the module name is non-relative (and in the case of `"moduleA`, it is), then the compiler will attempt to locate an [ambient module declaration](#ambient-module-declarations).
+We'll cover non-relative imports next.
 
-* Locate an ambient module declaration
-
- If no file was found, the compiler will attempt to locate an [ambient module declaration](#ambient-module-declaration) for the module if applicable.
-
-* Log an error if all failed
-
- If none were found, you will get `error TS2307: Cannot find module 'moduleA'.`
+Finally, if the compiler could not resolve the module, it will log an error.
+In this case, the error would be something like `error TS2307: Cannot find module 'moduleA'.`
 
 ## Relative vs. Non-relative module imports
 
 Module imports are resolved differently based on whether the module reference is relative or non-relative.
 
-A **relative** import is one that stars with `/`, `./` or `../`.
+A *relative import* is one that stars with `/`, `./` or `../`.
+Some examples include:
 
-A **non-relative** import is one that does *not* start with either.
+    * `import Entry from "./components/Entry";`
+    * `import { DefaultHeaders } from "../constants/http";`
+    * `import "/mod";`
 
-A relative import is resolved relative to the importing file.
-A relative import can **not** resolve to an ambient module declaration.
-Use this for importing your own modules that are guaranteed to maintain their relative location at runtime.
+Any other import is considered **non-relative**.
+Some examples include:
 
-A non-relative import can be resolved relative to `baseUrl`, or through path mapping.
+    * `import * as $ from "jQuery";
+    * `import { Component } from "angular2/core";`
+
+A relative import is resolved relative to the importing file and *cannot* resolve to an ambient module declaration.
+You should use relative imports for your own modules that are guaranteed to maintain their relative location at runtime.
+
+A non-relative import can be resolved relative to `baseUrl`, or through path mapping, which we'll cover below.
 They can also resolve to ambient module declarations.
-Use non-relative imports to import external module dependencies.
+Use non-relative paths when importing any of your external dependnecies.
 
 ## Module Resolution Strategies
 

@@ -36,6 +36,7 @@ export interface StringValidator {
 ##### ZipCodeValidator.ts
 
 ```ts
+import { StringValidator } from "Validation";
 export const numberRegexp = /^[0-9]+$/;
 
 export class ZipCodeValidator implements StringValidator {
@@ -50,6 +51,7 @@ export class ZipCodeValidator implements StringValidator {
 Export statements are handy when exports need to be renamed for consumers, so the above example can be written as:
 
 ```ts
+import { StringValidator } from "Validation";
 class ZipCodeValidator implements StringValidator {
     isAcceptable(s: string) {
         return s.length === 5 && numberRegexp.test(s);
@@ -82,9 +84,9 @@ Optionally, a module can wrap one or more modules and combine all their exports 
 ##### AllValidators.ts
 
 ```ts
-export * from "./StringValidator"; // exports interface StringValidator
-export * from "./LettersOnlyValidator"; // exports class LettersOnlyValidator
+export * from "./Validation; // exports interface StringValidator
 export * from "./ZipCodeValidator";  // exports class ZipCodeValidator
+export * from "./ParseIntZipCodeValidator"; // exports class ParseIntZipCodeValidator
 ```
 
 # Import
@@ -320,7 +322,7 @@ validators["Letters only"] = new LettersOnlyValidator();
 
 // Show whether each string passed each validator
 strings.forEach(s => {
-    for (let name in validators) {
+    for (const name in validators) {
         console.log(`"${ s }" - ${ validators[name].isAcceptable(s) ? "matches" : "does not match" } ${ name }`);
     }
 });
@@ -343,8 +345,6 @@ The TypeScript declaration will look like this:
 ```ts
 export declare var x: string;
 ```
-
-TODO: Test all the example code. 
 
 We call declarations that don't define an implementation "ambient".
 Typically, these are defined in `.d.ts` files.
@@ -393,8 +393,7 @@ Consumers of your module should have as little friction as possible when using t
 Adding too many levels of nesting tends to be cumbersome, so think carefully about how you want to structure things.
 
 Exporting a namespace from your module is an example of adding too many layers of nesting.
-While namespaces sometimes have their uses, they add an extra level of indirection when using modules.
-This can quickly becomes a pain point for users, and is usually unnecessary.
+This can quickly become a pain point for users, and is usually unnecessary.
 
 Static methods on an exported class have a similar problem - the class itself adds a layer of nesting.
 Unless it increases expressivity or intent in a clearly useful way, consider simply exporting a helper function.
@@ -403,7 +402,7 @@ Unless it increases expressivity or intent in a clearly useful way, consider sim
 
 Just as "exporting near the top-level" reduces friction on your module's consumers, so does introducing a default export.
 If a module's primary purpose is to house one specific export, then you should consider exporting it as a default export.
-This makes both importing and actually using the import a little easier.
+This makes importing easier as well as actually using the import.
 For example:
 
 #### MyClass.ts
@@ -475,85 +474,21 @@ A common JS pattern is to augment the original object with *extensions*, similar
 As we've mentioned before, modules do not *merge* like global namespace objects would.
 The recommended solution is to *not* mutate the original object, but rather export a new entity that provides the new functionality.
 
-Consider a simple calculator implementation defined in module `Calculator.ts`.
+Consider a simple calculator interface defined in module `Calculator.ts`.
 The module also exports a helper function to test the calculator functionality by passing a list of input strings and writing the result at the end.
 
 #### Calculator.ts
 
-TODO: This example is way too long. It should probably be something synthetic about Horses and Snakes.
-
 ```ts
-export class Calculator {
-    private current = 0;
-    private memory = 0;
-    private operator: string;
-
-    protected processDigit(digit: string, currentValue: number) {
-        if (digit >= "0" && digit <= "9") {
-            return currentValue * 10 + (digit.charCodeAt(0) - "0".charCodeAt(0));
-        }
-    }
-
-    protected processOperator(operator: string) {
-        if (["+", "-", "*", "/"].indexOf(operator) >= 0) {
-            return operator;
-        }
-    }
-
-    protected evaluateOperator(operator: string, left: number, right: number): number {
-        switch (this.operator) {
-            case "+": return left + right;
-            case "-": return left - right;
-            case "*": return left * right;
-            case "/": return left / right;
-        }
-    }
-
-    private evaluate() {
-        if (this.operator) {
-            this.memory = this.evaluateOperator(this.operator, this.memory, this.current);
-        }
-        else {
-            this.memory = this.current;
-        }
-        this.current = 0;
-    }
-
-    public handleChar(char: string) {
-        if (char === "=") {
-            this.evaluate();
-            return;
-        }
-        else {
-            let value = this.processDigit(char, this.current);
-            if (value !== undefined) {
-                this.current = value;
-                return;
-            }
-            else {
-                let value = this.processOperator(char);
-                if (value !== undefined) {
-                    this.evaluate();
-                    this.operator = value;
-                    return;
-                }
-            }
-        }
-        throw new Error(`Unsupported input: '${char}'`);
-    }
-
-    public getResult() {
-        return this.memory;
-    }
+export declare class Calculator {
+    // implementation is left as an exercise for the reader
+    protected processDigit(digit: string, currentValue: number);
+    protected processOperator(operator: string);
+    protected evaluateOperator(operator: string, left: number, right: number);
+    public handleChar(char: string);
+    public getResult(): number;
 }
-
-export function test(c: Calculator, input: string) {
-    for (let i = 0; i < input.length; i++) {
-        c.handleChar(input[i]);
-    }
-
-    console.log(`result of '${input}' is '${c.getResult()}'`);
-}
+export declare function test(c: Calculator, input: string);
 ```
 
 Here is a simple test for the calculator using the exposed `test` function.
@@ -565,7 +500,7 @@ import { Calculator, test } from "./Calculator";
 
 
 let c = new Calculator();
-test(c, "1+2*33/11="); // prints 9
+test(c, "1+2*33/11="); // should print 9
 ```
 
 Now to extend this to add support for input with numbers in bases other than 10, let's create `ProgrammerCalculator.ts`
@@ -608,14 +543,14 @@ Here is a test for our ProgrammerCalculator class:
 import { Calculator, test } from "./ProgrammerCalculator";
 
 let c = new Calculator(2);
-test(c, "001+010="); // prints 3
+test(c, "001+010="); // should print 3
 ```
 
 # Module Pitfalls
 
 ## Red Flags
 
-All of the following are red flags for module structuring. Double-check that you're not trying to namespace your external modules if any of these apply to your files:
+All of the following are red flags for module structuring. Double-check that you're not trying to namespace your modules if any of these apply to your files:
 
 * A file whose only top-level declaration is `export namespace Foo { ... }` (remove `Foo` and move everything 'up' a level)
 * A file that has a single `export class` or `export function` (consider using `export default`)
@@ -624,32 +559,11 @@ All of the following are red flags for module structuring. Double-check that you
 ## `/// <reference>`-ing a module
 
 A common mistake is to try to use the `/// <reference ... />` syntax to refer to a module file, rather than using an `import` statement.
-To understand the distinction, we first need to understand how compiler can locate the type information for a module based on the path of an `import` (e.g. the `...` in `import x from "...";`, `import x = require("...");`, etc.) path.
-
-The compiler will try to find a `.ts`, `.tsx`, and then a `.d.ts` with the appropriate path.
-If a specific file could not be found, then the compiler will look for an *ambient module declaration*.
-Recall that these need to be declared in a `.d.ts` file.
-
-* `myModules.d.ts`
-
-  ```ts
-  // In a .d.ts file or .ts file that is not a module:
-  declare module "SomeModule" {
-      export function fn(): string;
-  }
-  ```
-
-* `myOtherModule.ts`
-
-  ```ts
-  /// <reference path="myModules.d.ts" />
-  import * as m from "SomeModule";
-  ```
-
-The reference tag here allows us to locate the declaration file that contains the declaration for the ambient module.
-This is how the `node.d.ts` file that several of the TypeScript samples use is consumed.
+However, module resolution is separate from triple-slash references.
+See [Module Resolution](./Module Resolution.md) to learn how module resolution works.
+See [Triple-Slash References](./Triple-Slash Directives.md) to learn how triple-slash references work.
 
 ## Module Bundling
 
-Just as there is a one-to-one correspondence between JS files and modules, TypeScript has a one-to-one correspondence between module source files and their emitted JS files.
-One effect of this is that it's not possible to use the `--outFile` compiler switch to concatenate multiple module source files into a single JavaScript file.
+Both JavaScript and TypeScript have a one-to-one correspondence between files and modules.
+One effect of this is that it's not possible to use the `--outFile` compiler switch to concatenate multiple JavaScript module files into a single JavaScript file.

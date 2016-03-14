@@ -12,7 +12,7 @@ mkdir proj
 cd proj
 ```
 
-We're going to structure our project in the following way:
+To start, we're going to structure our project in the following way:
 
 ```text
 proj/
@@ -50,7 +50,7 @@ You can always go back and change these in the `package.json` file that's been g
 
 # Install our dependencies
 
-First ensure TypeScript, typings, and webpack are installed globally.
+First ensure TypeScript, Typings, and webpack are installed globally.
 
 ```shell
 npm install -g typescript typings webpack
@@ -80,15 +80,48 @@ This will allow you to debug your final output file as if you were debugging you
 Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
 If you want a local copy, just run `npm install typescript`.
 
-Finally, we'll grab the declaration files for React using the `typings` utility:
+Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
 
 ```shell
 typings install --ambient --save react
 typings install --ambient --save react-dom
 ```
 
-The `--ambient` flag will tell typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
+The `--ambient` flag will tell Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
 This command will create a file called `typings.json` and a folder called `typings` in the current directory.
+
+# Add a TypeScript configuration file
+
+You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary declaration files.
+
+To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
+Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents:
+
+```json
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es5"
+    },
+    "files": [
+        "./typings/main.d.ts",
+        "./src/components/Hello.tsx",
+        "./src/index.tsx"
+    ]
+}
+```
+
+We're including `typings/main.d.ts`, which Typings created for us.
+That file automatically includes all of your installed dependencies.
+
+You might be wondering about a separate file named `browser.d.ts` in the `typings` folder, especially since we're going to run this in a browser.
+The short story is that some packages are tailored differently by tools that target browsers.
+In general, these situations are niche scenarios and we won't run into those, so we can ignore `browser.d.ts`.
+
+You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 
 # Write some code
 
@@ -155,19 +188,6 @@ Notice that we're including files from within `node_modules`.
 React and React-DOM's npm packages include standalone `.js` files that you can include in a web page, and we're referencing them directly to get things moving faster.
 Feel free to copy these files to another directory, or alternatively, host them on a content delivery network (CDN).
 Facebook makes CDN-hosted versions of React available, and you can [read more about that here](http://facebook.github.io/react/downloads.html#development-vs.-production-builds).
-
-# Add a TypeScript configuration file
-
-You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary typings files.
-
-To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
-Simply run the following at the root of the project directory:
-
-```shell
-tsc --init ./typings/main.d.ts ./src/index.tsx --jsx react --outDir ./dist --sourceMap --noImplicitAny
-```
-
-You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 
 # Create a webpack configuration file
 

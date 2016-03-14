@@ -1,7 +1,7 @@
 # Introduction
  
 Namespaces are another, TypeScript-specific way to organize your code.
-[Modules](./Modules.md) follow the ECMAScript standard and should be the first option you consider.
+[Modules](../Modules.md) follow the ECMAScript standard and should be the first option you consider.
 However, namespaces are simpler and can be easier to use for simple applications.
 
 Before TypeScript 1.5, namespaces were called "internal modules" and modules were called "external modules".
@@ -14,12 +14,12 @@ This makes namespaces a very simple construct to use.
 They can span multiple files, and can be concatenated using `--outFile`.
 Namespaces can be a good way to structure your code in a simple web application, with all dependencies included as `<script>` tags in your HTML page.
 
-Just like all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.
+However, as with all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.
 
 # First steps
 
 Let's start with the program we'll be using as our example throughout this page.
-We've written a small set of simplistic string validators, as you might write to check a user's input on a form in a webpage or check the format of an externally-provided data file.
+We've written a small set of simplistic string validators to check a user's input on a form in a webpage or check the format of an externally-provided data file.
 
 ## Validators in a single file
 
@@ -175,8 +175,8 @@ validators["ZIP code"] = new Validation.ZipCodeValidator();
 validators["Letters only"] = new Validation.LettersOnlyValidator();
 
 // Show whether each string passed each validator
-for (let s of strings) {
-    for (let name in validators) {
+for (const s of strings) {
+    for (const name in validators) {
         console.log(""" + s + "" " + (validators[name].isAcceptable(s) ? " matches " : " does not match ") + name);
     }
 }
@@ -251,23 +251,28 @@ For example, we could begin writing it as follows:
 ##### D3.d.ts (simplified excerpt)
 
 ```ts
-declare namespace D3 {
+declare namespace d3 {
+    export var version: string;
+    export function select(selector: string): Selection<any>;
+    export function select(node: EventTarget): Selection<any>;
+    namespace selection {
+        export var prototype: Selection<any>;
+        interface Group {
+            index: number;
+            startAngle: number;
+            endAngle: number;
+            value: number;
+        }
+    }
+    interface Selection<Datum> {
+        [index: number]: selection.Group;
+        length: number;
+    }
     export interface Selectors {
         select: {
             (selector: string): Selection;
             (element: EventTarget): Selection;
         };
     }
-
-    export interface Event {
-        x: number;
-        y: number;
-    }
-
-    export interface Base extends Selectors {
-        event: Event;
-    }
 }
-
-declare var d3: D3.Base;
 ```

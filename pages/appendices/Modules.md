@@ -124,43 +124,50 @@ Here's a revised example:
 Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
 For more information on what the `define`, `require` and `register` calls in the generated code do, consult the documentation for each module loader.
 
-TODO: Give the actual target flags/JSON properties.
-
 This simple example shows how the names used during importing and exporting get translated into the module loading code.
 
 ##### SimpleModule.ts
 
 ```ts
-import m = require("mod");
+import { something } from "./mod";
 export let t = m.something + 1;
 ```
 
 ##### AMD / RequireJS SimpleModule.js
 
+Compile with `tsc -m amd SimpleModule.ts`
+
 ```js
 define(["require", "exports", "./mod"], function (require, exports, mod_1) {
+    "use strict";
     exports.t = mod_1.something + 1;
 });
 ```
 
 ##### CommonJS / Node SimpleModule.js
 
+Compile with `tsc -m commonjs SimpleModule.ts`
+
 ```js
+"use strict";
 var mod_1 = require("./mod");
 exports.t = mod_1.something + 1;
 ```
 
 ##### UMD SimpleModule.js
 
+Compile with `tsc -m umd SimpleModule.ts`
+
 ```js
 (function (factory) {
-    if (typeof module === "object" && typeof module.exports === "object") {
+    if (typeof module === 'object' && typeof module.exports === 'object') {
         var v = factory(require, exports); if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
         define(["require", "exports", "./mod"], factory);
     }
 })(function (require, exports) {
+    "use strict";
     var mod_1 = require("./mod");
     exports.t = mod_1.something + 1;
 });
@@ -168,8 +175,12 @@ exports.t = mod_1.something + 1;
 
 ##### System SimpleModule.js
 
+Compile with `tsc -m system SimpleModule.ts`
+
 ```js
-System.register(["./mod"], function(exports_1) {
+System.register(["./mod"], function(exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
     var mod_1;
     var t;
     return {
@@ -186,7 +197,10 @@ System.register(["./mod"], function(exports_1) {
 
 ##### Native ECMAScript 2015 modules SimpleModule.js
 
+To produce native modules, you must target ES2015 for all of your code as well.
+Compile with `tsc -m es2015 -t es2015 SimpleModule.ts`
+
 ```js
 import { something } from "./mod";
-export var t = something + 1;
+export let t = something + 1;
 ```

@@ -37,6 +37,16 @@ It is an error for a file to have a triple-slash reference to itself.
 
 If the compiler flag `--noResolve` is specified, triple-slash references are ignored; they neither result in adding new files, nor change the order of the files provided.
 
+## `/// <reference no-default-lib="true"/>`
+
+This directive marks a file as a *default library*.
+You will see this comment at the top of `lib.d.ts` and its different variants.
+
+This directive instructs the compiler to *not* include the default library (i.e. `lib.d.ts`) in the compilation.
+The impact here is similar to passing `--noLib` on the command line.
+
+Also note that when passing `--skipDefaultLibCheck`, the compiler will only skip checking files with `/// <reference no-default-lib="true"/>`.
+
 ## `/// <amd-module />`
 
 By default AMD modules are generated anonymous.

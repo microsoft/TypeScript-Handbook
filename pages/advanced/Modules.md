@@ -73,30 +73,9 @@ if (needZipValidation) {
 
 If you're converting a program from namespaces to modules, there are a few common pitfalls.
 
-TODO: Dedupe these two explanations
-
 ### Do not use namespaces in modules
 
-When first moving to a module-based organization, a common tendency is to wrap exports in an additional layer of namespaces.
-Modules have their own scope, and only exported declarations are visible from outside the module.
-With this in mind, namespaces provide very little, if any, value when working with modules.
-
-On the organization front, namespaces are handy for grouping together logically-related objects and types in the global scope.
-For example, in C#, you're going to find all the collection types in System.Collections.
-By organizing our types into hierarchical namespaces, we provide a good "discovery" experience for users of those types.
-Modules, on the other hand, are already present in a file system, necessarily.
-We have to resolve them by path and filename, so there's a logical organization scheme for us to use.
-We can have a /collections/generic/ folder with a list module in it.
-
-Namespaces are important to avoid naming collisions in the global scope.
-For example, you might have `My.Application.Customer.AddForm` and `My.Application.Order.AddForm` -- two types with the same name, but a different namespace.
-This, however, is not an issue with modules.
-Within a module, there's no plausible reason to have two objects with the same name.
-From the consumption side, the consumer of any given module gets to pick the name that they will use to refer to the module, so accidental naming conflicts are impossible.
-
-### Needless Namespacing
-
-It can be easy to end up with a file that looks like this:
+When you first move to a module-based organization, it can be easy to end up with a file that looks like this:
 
 * `shapes.ts`
 
@@ -107,8 +86,10 @@ It can be easy to end up with a file that looks like this:
   }
   ```
 
-The top-level module here `Shapes` wraps up `Triangle` and `Square` for no reason.
-This is confusing and annoying for consumers of your module:
+The top-level namespace `Shapes` wraps up `Triangle` and `Square`.
+This code is easy to produce just by adding 'export' to the beginning of the existing code.
+But the result is confusing and annoying for consumers of your module.
+The namespace puts an extra layer around the objects that the module exports:
 
 * `shapeConsumer.ts`
 
@@ -118,10 +99,9 @@ This is confusing and annoying for consumers of your module:
   ```
 
 A key feature of modules in TypeScript is that two different modules will never contribute names to the same scope.
-Because the consumer of a module decides what name to assign it, there's no need to proactively wrap up the exported symbols in a namespace.
-
-To reiterate why you shouldn't try to namespace your module contents, the general idea of namespacing is to provide logical grouping of constructs and to prevent name collisions.
-Because the module file itself is already a logical grouping, and its top-level name is defined by the code that imports it, it's unnecessary to use an additional module layer for exported objects.
+Because the consumer of a module decides what name to assign it, you don't need to wrap up the exported symbols in a namespace.
+Basically, both namespaces and modules (1) provide logical grouping and (2) prevent name collisions.
+You don't need both.
 
 Here's a revised example:
 

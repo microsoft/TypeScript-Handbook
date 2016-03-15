@@ -318,6 +318,7 @@ On the other hand, if you can't express some shape with an interface and you nee
 # Polymorphic `this` types
 
 A polymorphic `this` type represents a type that is the *subtype* of the containing class or interface.
+This is called *F*-bounded polymorphism.
 This makes hierarchical fluent interfaces much easier to express, for example.
 Take a simple calculator that returns `this` after each operation:
 
@@ -332,7 +333,10 @@ class BasicCalculator {
         return this;
     }
     public multiply(operand: number): this {
-    // ... rest of code goes here ...
+        this.value *= operand;
+        return this;
+    }
+    // ... other operations go here ...
 }
 
 let v = new BasicCalculator(2)
@@ -365,7 +369,6 @@ let v = new ScientificCalculator(2)
 Without `this` types, `ScientificCalculator` would not have been able to extend `BasicCalculator` and keep the fluent interface.
 `multiply` would have returned `BasicCalculator`, which doesn't have the `sin` method.
 However, with `this` types, `multiply` returns `this`, which is `ScientificCalculator` here.
-This is called *F*-bounded polymorphism.
 
 You can also use `this` types to describe mixin patterns:
 
@@ -388,8 +391,8 @@ const my = new MyType();
 const sub = new SubType();
 
 // now we can mix in Calculators
-let myCalc = my.extend(new BasicCalculator(2));
-let subCalc = sub.extend(new ScientificCalculator(2));
+const myCalc = my.extend(new BasicCalculator(2));
+const subCalc = sub.extend(new ScientificCalculator(2));
 ```
 
 Notice that when `sub` mixes in `ScientificCalculator`, the type of `subCalc` is correctly `SubType & ScientificCalculator`.

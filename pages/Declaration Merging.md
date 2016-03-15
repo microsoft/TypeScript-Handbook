@@ -88,7 +88,7 @@ Since namespaces create both a namespace and a value, we need to understand how 
 
 To merge the namespaces, type definitions from exported interfaces declared in each namespace are themselves merged, forming a single namespace with merged interface definitions inside.
 
-To merge the value, at each declaration site, if a namespace already exists with the given name, it is further extended by taking the existing namespace and adding the exported members of the second namespace to the first.
+To merge the namespace value, at each declaration site, if a namespace already exists with the given name, it is further extended by taking the existing namespace and adding the exported members of the second namespace to the first.
 
 The declaration merge of `Animals` in this example:
 
@@ -114,8 +114,8 @@ namespace Animals {
 }
 ```
 
-This model of namespace merging is a helpful starting place, but to get a more complete picture we need to also understand what happens with non-exported members.
-Non-exported members are only visible in the original (un-merged) namespace. This means that after merging, merged members that came from other declarations can not see non-exported members.
+This model of namespace merging is a helpful starting place, but we also need to understand what happens with non-exported members.
+Non-exported members are only visible in the original (un-merged) namespace. This means that after merging, merged members that came from other declarations cannot see non-exported members.
 
 We can see this more clearly in this example:
 
@@ -144,7 +144,9 @@ Namespaces are flexible enough to also merge with other types of declarations.
 To do so, the namespace declaration must follow the declaration it will merge with. The resulting declaration has properties of both declaration types.
 TypeScript uses this capability to model some of patterns in JavaScript as well as other programming languages.
 
-The first namespace merge we'll cover is merging a namespace with a class.
+
+## Merging Namespaces with Classes
+
 This gives the user a way of describing inner classes.
 
 ```ts
@@ -206,5 +208,5 @@ namespace Color {
 # Disallowed Merges
 
 Not all merges are allowed in TypeScript.
-Currently, classes can not merge with other classes, variables and classes can not merge.
-For information on mimicking classes merging, see the [Mixins in TypeScript] section.
+Currently, classes can not merge with other classes or with variables.
+For information on mimicking class merging, see the [Mixins in TypeScript] section.

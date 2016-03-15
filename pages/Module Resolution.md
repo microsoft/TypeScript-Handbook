@@ -12,7 +12,7 @@ First, the compiler will try to locate a file that represents the imported modul
 To do so the compiler follows one of two different strategies: [Classic](#classic) or [Node](#node).
 These strategies tell the compiler *where* to look for `moduleA`.
 
-If that didn't work and if the module name is non-relative (and in the case of `"moduleA"`, it is), then the compiler will attempt to locate an [ambient module declaration](#ambient-module-declarations).
+If that didn't work and if the module name is non-relative (and in the case of `"moduleA"`, it is), then the compiler will attempt to locate an [ambient module declaration](./Modules.md#ambient-modules).
 We'll cover non-relative imports next.
 
 Finally, if the compiler could not resolve the module, it will log an error.
@@ -39,7 +39,7 @@ A relative import is resolved relative to the importing file and *cannot* resolv
 You should use relative imports for your own modules that are guaranteed to maintain their relative location at runtime.
 
 A non-relative import can be resolved relative to `baseUrl`, or through path mapping, which we'll cover below.
-They can also resolve to ambient module declarations.
+They can also resolve to [ambient module declarations](./Modules.md#ambient-modules).
 Use non-relative paths when importing any of your external dependnecies.
 
 ## Module Resolution Strategies
@@ -293,21 +293,6 @@ So following our example, the `tsconfig.json` file should look like:
 ```
 
 Every time the compiler sees a relative module import in a subfolder of one of the `rootDirs`, it will attempt to look for this import in each of the entries of `rootDirs`.
-
-## Ambient module declarations
-
-An ambient module declaration is a module declaration of the form:
-
-```ts
-declare module "moduleB" {
-    ....
-}
-```
-
-An import to a non-relative name can resolve to an ambient module declaration.
-Please note that the compiler will always attempt to resolve a module import to a file first.
-
-A non-relative module import can **not** resolve to an ambient module declaration.
 
 ## Tracing module resolution
 

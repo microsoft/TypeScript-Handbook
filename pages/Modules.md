@@ -349,6 +349,8 @@ We call declarations that don't define an implementation "ambient".
 Typically, these are defined in `.d.ts` files.
 These are a lot like C's `.h` files.
 
+## Ambient Modules
+
 Let's look at a convenient technique for writing `.d.ts` files for multi-module libraries.
 We could write one `.d.ts` file for each `.js` file.
 But it's more convenient to cram multiple modules in a single large `.d.ts`.

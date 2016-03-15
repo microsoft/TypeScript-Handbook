@@ -1,12 +1,12 @@
 > This section assumes some basic knowledge about modules.
 Please see the [Modules](./Modules.md) documentation for more information.
 
-*Module resolution* is the process the compiler takes to figure out exactly what an import refers to.
+*Module resolution* is the process the compiler uses to figure out what an import refers to.
 Consider an import statement like `import { a } from "moduleA"`;
 in order to check any use of `a`, the compiler needs to know exactly what it represents, and will need to check its definition `moduleA`.
 
-At this point, the compiler will ask itself "what's the shape of `moduleA`?"
-While this sounds straightforward, `moduleA` could be defined in one of your own a `.ts`/`.tsx` files, or in a `.d.ts` that your code depends on.
+At this point, the compiler will ask "what's the shape of `moduleA`?"
+While this sounds straightforward, `moduleA` could be defined in one of your own `.ts`/`.tsx` files, or in a `.d.ts` that your code depends on.
 
 First, the compiler will try to locate a file that represents the imported module.
 To do so the compiler follows one of two different strategies: [Classic](#classic) or [Node](#node).
@@ -22,7 +22,7 @@ In this case, the error would be something like `error TS2307: Cannot find modul
 
 Module imports are resolved differently based on whether the module reference is relative or non-relative.
 
-A *relative import* is one that stars with `/`, `./` or `../`.
+A *relative import* is one that starts with `/`, `./` or `../`.
 Some examples include:
 
     * `import Entry from "./components/Entry";`

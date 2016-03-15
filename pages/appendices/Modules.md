@@ -118,12 +118,12 @@ Here's a revised example:
   import * as shapes from "./shapes";
   let t = new shapes.Triangle();
   ```
-  
+
 ## Upgrade merged namespaces
 
-When multiple files in the same program define the same namespace, the namespaces merge -- all the definitions in the namespace can refer to each other, and mergeable objects like interfaces also merge. 
-Modules do *not* merge (with one exception, explained below). 
-This makes the upgrade process more difficult. 
+When multiple files in the same program define the same namespace, the namespaces merge -- all the definitions in the namespace can refer to each other, and mergeable objects like interfaces also merge.
+Modules do *not* merge (with one exception, explained below).
+This makes the upgrade process more difficult.
 It will need to proceed in three steps.
 
 1. Create a re-export file for each namespace.
@@ -168,9 +168,10 @@ const network = new Computer.Network.Wireless();
 Previously, a file-discovery mechanism like `tsconfig.json` or triple-slash references found the namespace.
 Now `import` explicitly requests module resolution.
 
-### Migrate individual files away from namespaces. 
+### Migrate individual files away from namespaces
 
 Starting with an example `cpu.ts`, which previously contributed to the `Computer` namespace:
+
 ```ts
 namespace Computer {
     export function process(computer: Cpu, data: Data): number {

@@ -315,7 +315,7 @@ Let's say we have a sample application that uses the `typescript` module.
 
 Invoking the compiler with `--traceModuleResolution`
 
-```cmd
+```shell
 tsc --traceModuleResolution
 ```
 
@@ -363,6 +363,24 @@ Every time it successfully resolves an `import` to a file, the file is added to 
 
 The `--noResolve` compiler options instructs the compiler not to "add" any files to the compilation that were not passed on the command line.
 It will still try to resolve the module to files, but if the file as not specified, it will not be included.
+
+For instance:
+
+#### app.ts
+
+```ts
+import * as A from "moduleA" // OK, moduleA passed on the command-line
+import * as B from "moduleB" // Error TS2307: Cannot find module 'moduleB'.
+```
+
+```shell
+tsc app.ts moduleA.ts --noResolve
+```
+
+Compiling `app.ts` using `--noResolve` should result in:
+
+* Correctly finding `moduleA` as it was passed on the command-line.
+* Error for not finding `moduleB` as it was not passed.
 
 ## Common Questions
 

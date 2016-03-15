@@ -144,7 +144,6 @@ Namespaces are flexible enough to also merge with other types of declarations.
 To do so, the namespace declaration must follow the declaration it will merge with. The resulting declaration has properties of both declaration types.
 TypeScript uses this capability to model some of patterns in JavaScript as well as other programming languages.
 
-
 ## Merging Namespaces with Classes
 
 This gives the user a way of describing inner classes.
@@ -228,7 +227,7 @@ Observable.prototype.map = // ... another exercise for the reader
 ```
 
 This works fine in TypeScript too, but the compiler doesn't know about `Observable.prototype.map`.
-You can use module augmentation to tell the compiler about `map`:
+You can use module augmentation to tell the compiler about it:
 
 ```ts
 // observable.ts stays the same
@@ -240,4 +239,38 @@ declare module "./observable" {
     }
 }
 Observable.prototype.map = // ... another exercise for the reader
+
+
+// consumer.ts
+import { Observable } from "./observable";
+import "./map";
+let o: Observable<number>;
+o.map(x => x.toFixed());
 ```
+
+The module name is resolved the same way as module specifiers in `import`/`export`.
+Then the declarations in an augmentation are merged as if they were declared in the same file as the original.
+However, you can't declare new top-level declarations in the augmentation -- just patches to existing declarations.
+
+## Global augmentation
+
+You can also add declarations to the global scope from inside a module:
+
+```ts
+// observable.ts
+export class Observable<T> {
+    // ... still no implementation ...
+}
+
+declare global {
+    interface Array<T> {
+        toObservable(): Observable<T>;
+    }
+}
+
+Array.prototype.toObservable = function () {
+    // ...
+}
+```
+
+Global augmentations have the same behavior and limits as module augmentations.

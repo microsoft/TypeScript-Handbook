@@ -1,6 +1,6 @@
 # Advanced Module Tasks
 
-## Optional Module Loading and Other Advanced Loading Scenarios
+## Optional Module Loading and Other Dynamic Loading
 
 In some cases, you may want to decide whether or not to load a module at runtime.
 In TypeScript, you can still invoke the module loaders directly to implement this and other advanced loading scenarios.
@@ -71,9 +71,9 @@ if (needZipValidation) {
 
 ## Converting From Namespaces
 
-If you're converting a program from namespaces to modules, there are a few common pitfalls.
+If you're converting a program from namespaces to modules, the approach you take will vary depending on how complex the namespace usage in the original program was. If you have one namespace per file and no nested namespaces, see the next section for advice. If namespaces merge across multiple files or you hafe nested namespaces, look below for upgrade examples.
 
-### Do not use namespaces in modules
+### Replace namespaces with modules
 
 When you first move to a module-based organization, it can be easy to end up with a file that looks like this:
 
@@ -118,6 +118,157 @@ Here's a revised example:
   import * as shapes from "./shapes";
   let t = new shapes.Triangle();
   ```
+  
+## Upgrade merged namespaces
+
+When multiple files in the same program define the same namespace, the namespaces merge -- all the definitions in the namespace can refer to each other, and mergeable objects like interfaces also merge. 
+Modules do *not* merge (with one exception, explained below). 
+This makes the upgrade process more difficult. 
+It will need to proceed in three steps.
+
+1. Create a re-export file for each namespace.
+2. Migrate individual files from namespaces.
+3. Untangle dependencies and merged objects.
+
+### Create a re-export file for each namespace
+
+We'll use a namespace that contains an object-oriented simulation of a computer as an example. Namespace `Computer` is spread across
+
+* `cpu.ts`
+* `memory.ts`
+* `input.ts`
+* `network.ts`, containing a nested namespace `Computer.Network`
+
+All these files are inside a sub-directory of 'src' named 'src/computer'.
+
+1. Create a new file in `src/computer` named `computer.ts`.
+2. Use `export *` to re-export `cpu.ts` and `memory.ts`.
+3. Import the nested namespace `Network` and re-export as a variable.
+
+```ts
+// in computer.ts
+export * from "./cpu";
+export * from "./memory";
+export * from "./input";
+import * as networkNamespace from "./network";
+export var Network = networkNamespace;
+```
+
+To use `Computer`, we add an import line.
+Usage stays the same:
+
+```ts
+import * as Computer from "computer";
+const cpu = new Computer.Cpu();
+const memory = new Computer.Ssd();
+const input = new Computer.Data('dummyFile.txt');
+const network = new Computer.Network.Wireless();
+```
+
+Previously, a file-discovery mechanism like `tsconfig.json` or triple-slash references found the namespace.
+Now `import` explicitly requests module resolution.
+
+### Migrate individual files away from namespaces. 
+
+Starting with an example `cpu.ts`, which previously contributed to the `Computer` namespace:
+```ts
+namespace Computer {
+    export function process(computer: Cpu, data: Data): number {
+        return 42;
+    }
+    export class Cpu {
+        private storage: Memory;
+        private network: Network.Card;
+        thinkOn(data: Data): void {
+        }
+    }
+}
+```
+
+we can rewrite as:
+
+```ts
+import { Data, Memory, Network } from "./computer";
+export function process(computer: Cpu, data: Data): number {
+    return 42;
+}
+export class Cpu {
+    private storage: Memory;
+    private network: Network.Card;
+    thinkOn(data: Data): void {
+    }
+}
+```
+
+To summarize the changes, we've removed the enclosing `namespace` declaration, and fixed up the (then broken) references by explicitly importing them from the new module files we made at first.
+Start this step on the modules with the fewest dependencies, since things you import will already need to be converted to modules.
+
+### Untangle dependencies
+
+If objects in your namespace depend on each other across files, you'll have to untangle their dependencies first, then split them into multiple modules.
+
+```ts
+// file1.ts
+namespace A {
+    export var x = 12;
+    export var z = y + 1; // y is in file2
+}
+// file2.ts
+namespace A {
+    export var y = x + 1; // ... x is back in file1
+}
+```
+
+You could, of course, merge everything into one file, or you can do the hard work of untangling dependencies:
+
+```ts
+// file1.ts
+// move 'y' to file1
+export const x = 12;
+export const y = x + 1;
+// file2.ts
+// move 'z' to file2 and import 'y'
+import { y } from "./file1"
+export const z = y + 1;
+```
+
+Unfortunately, interfaces and nested namespaces will still not merge across modules.
+You'll either have to put them in one large module, stop using interface merging, or use module augmentation to re-enable interface merging.
+Module augmentation is a TypeScript-specific feature that allows you to insert definitions in another module. Consider the following `namespace` code:
+
+```ts
+// important.ts
+namespace N {
+    export interface Important {
+        very(): boolean;
+    }
+}
+// extensions.ts
+namespace N {
+    export interface Important {
+        extra(n: number): number;
+    }
+    export interface Other { ... }
+}
+```
+
+With module augmention, you can inject declarations into another module in the same way you can with namespaces:
+
+```ts
+// important.ts
+export interface Important {
+    very(): boolean;
+}
+// extensions.ts
+declare module "./important" {
+    export interface Important {
+        extra(n: number): number;
+    }
+}
+export interface Other { ... }
+```
+
+For a larger example of a project undergoing a migration like this, see [`tslint`](https://github.com/palantir/tslint/pull/726).
 
 ## Code Generation for Modules
 

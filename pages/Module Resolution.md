@@ -12,7 +12,7 @@ First, the compiler will try to locate a file that represents the imported modul
 To do so the compiler follows one of two different strategies: [Classic](#classic) or [Node](#node).
 These strategies tell the compiler *where* to look for `moduleA`.
 
-If that didn't work and if the module name is non-relative (and in the case of `"moduleA`, it is), then the compiler will attempt to locate an [ambient module declaration](#ambient-module-declarations).
+If that didn't work and if the module name is non-relative (and in the case of `"moduleA"`, it is), then the compiler will attempt to locate an [ambient module declaration](#ambient-module-declarations).
 We'll cover non-relative imports next.
 
 Finally, if the compiler could not resolve the module, it will log an error.

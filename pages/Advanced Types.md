@@ -317,10 +317,9 @@ On the other hand, if you can't express some shape with an interface and you nee
 
 # Polymorphic `this` types
 
-TypeScript has a `this` type in addition to JavaScript's `this` expression.
-The `this` type in a class or interface represents a type that is a *subtype* of the containing type.
-This makes hierarchical fluent interfaces much easier to express.
-For example, take a simple calculator that returns `this` after each operation:
+A polymorphic `this` type represents a type that is the *subtype* of the containing class or interface.
+This makes hierarchical fluent interfaces much easier to express, for example.
+Take a simple calculator that returns `this` after each operation:
 
 ```ts
 class BasicCalculator {
@@ -332,7 +331,8 @@ class BasicCalculator {
         this.value += operand;
         return this;
     }
-    // ... other operations go here ...
+    public multiply(operand: number): this {
+    // ... rest of code goes here ...
 }
 
 let v = new BasicCalculator(2)
@@ -341,7 +341,7 @@ let v = new BasicCalculator(2)
             .currentValue();
 ```
 
-Since the class uses `this` types, extension preserves the fluent interface:
+Since the class uses `this` types, you can extend it and the new class can use the old methods with no changes.
 
 ```ts
 class ScientificCalculator extends BasicCalculator {
@@ -363,30 +363,33 @@ let v = new ScientificCalculator(2)
 ```
 
 Without `this` types, `ScientificCalculator` would not have been able to extend `BasicCalculator` and keep the fluent interface.
-`multiply` would have return `BasicCalculator`, which doesn't have the `sin` method.
+`multiply` would have returned `BasicCalculator`, which doesn't have the `sin` method.
 However, with `this` types, `multiply` returns `this`, which is `ScientificCalculator` here.
+This is called *F*-bounded polymorphism.
 
-This feature is called *F*-bounded polymorphism.
-You can get the same effect by spelling out the generic types yourself:
+You can also use `this` types to describe mixin patterns:
 
 ```ts
-class BasicCalculator<This extends Calculator<This>> {
-    public constructor(protected value: number = 0) { }
-    public add(operand: number): This {
-        this.value += operand;
-        return <BasicCalculator<This>>this; // TODO: This part doesn't work
-    };
+interface Extender {
+    extend<T>(other: T): this & T;
 }
-class ScientificCalculator extends BasicCalculator<ScientificCalculator> {
-    public sin() {
-        this.value = Math.sin(this.value);
-        return this;
+class MyType implements Extender {
+    extend<T>(other: T): this & T {
+        for (const property in other) {
+            if (other.hasOwnProperty(property)) {
+                this[property] = other[property];
+            }
+        }
+        return <this & T>this;
     }
 }
-declare function createModel(): AdvancedModel;
-let newModel = createModel().setupBase().setupAdvanced();
+class SubType extends MyType { }
+const my = new MyType();
+const sub = new SubType();
+
+// now we can mix in Calculators
+let myCalc = my.extend(new BasicCalculator(2));
+let subCalc = sub.extend(new ScientificCalculator(2));
 ```
 
-This is basically what the compiler does for you when you use `this` types.
-
-TODO: Add mixin-style patterns to describe inheritance.
+Notice that when `sub` mixes in `ScientificCalculator`, the type of `subCalc` is correctly `SubType & ScientificCalculator`.

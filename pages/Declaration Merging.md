@@ -1,15 +1,13 @@
 # Introduction
 
-Some of the unique concepts in TypeScript come from the need to describe what is happening to the shape of JavaScript objects at the type level.
+Some of the unique concepts in TypeScript describe the shape of JavaScript objects at the type level.
 One example that is especially unique to TypeScript is the concept of 'declaration merging'.
-Understanding this concept will give you an advantage when working with existing JavaScript in your TypeScript.
+Understanding this concept will give you an advantage when working with existing JavaScript.
 It also opens the door to more advanced abstraction concepts.
 
-First, before we get into how declarations merge, let's first describe what we mean by 'declaration merging'.
-
-For the purposes of this article, declaration merging specifically means that the compiler is doing the work of merging two separate declarations declared with the same name into a single definition.
+For the purposes of this article, "declaration merging" means that the compiler merges two separate declarations declared with the same name into a single definition.
 This merged definition has the features of both of the original declarations.
-Declaration merging is not limited to just two declarations, as any number of declarations can be merged.
+Any number of declarations can be merged; it's not limited to just two declarations.
 
 # Basic Concepts
 
@@ -52,7 +50,7 @@ Non-function members of the interfaces must be unique.
 The compiler will issue an error if the interfaces both declare a non-function member of the same name.
 
 For function members, each function member of the same name is treated as describing an overload of the same function.
-Of note, too, is that in the case of interface `A` merging with later interface `A` (here called `A'`), the overload set of `A'` will have a higher precedence than that of interface `A`.
+Of note, too, is that in the case of interface `A` merging with later interface `A`, the second interface will have a higher precedence than the first.
 
 That is, in the example:
 
@@ -208,5 +206,5 @@ namespace Color {
 # Disallowed Merges
 
 Not all merges are allowed in TypeScript.
-Currently, classes can not merge with other classes, variables and classes can not merge, nor can interfaces and classes.
+Currently, classes can not merge with other classes, variables and classes can not merge.
 For information on mimicking classes merging, see the [Mixins in TypeScript] section.

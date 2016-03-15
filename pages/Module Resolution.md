@@ -82,8 +82,8 @@ The full Node.js resolution algorithm is outlined in [Node.js module documentati
 #### How Node.js resolves modules
 
 To understand what the steps the TS compiler will follow, it is important to shed some light on Node.js modules.
-Node.js supports multiple ways to define a resolve the target of a require statement.
-A relative moduel name in Node.js can resolve to:
+Node.js supports multiple ways to resolve the target of a call to `require`.
+A relative module name in Node.js can resolve to:
 
 * A file
 
@@ -105,13 +105,13 @@ Node.js will *walk up* the directory chain, inspecting the contents of `node_mod
 
 Following up our example above, in `/src/moduleA.js`, and a require statement `var x = require("moduleB");` will result in the following attempts:
 
-* resolve `/src/node_modules/moduleB.js` as a file
-* resolve `/src/node_modules/moduleB/index.js`
-* resolve `/src/node_modules/moduleB/` as a package
+* `/src/node_modules/moduleB.js`
+* `/src/node_modules/moduleB/index.js`
+* `/src/node_modules/moduleB/package.json` look for `"main"` property
 * walk up to `/`
-* resolve `/node_modules/moduleB.js` as a file
-* resolve `/node_modules/moduleB/index.js`
-* resolve `/node_modules/moduleB` as a package
+* `/node_modules/moduleB.js`
+* `/node_modules/moduleB/index.js`
+* `/node_modules/moduleB/package.json` look for `"main"` property
 
 See [Node.js loading modules from `node_modules` documentation](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) for more details.
 
@@ -131,7 +131,7 @@ An import statement `import {b} from "./moduleB"` in a ts file `/src/moduleA.ts`
 * `/src/moduleB/index.tsx`
 * `/src/moduleB/index.d.ts`
 
-Similarly a non-relative import will follow the Node.js resolution logic, looking up first a file, then looking the file name as a Node.js package.
+Similarly a non-relative import will follow the Node.js resolution logic, looking up first a file, then looking up the file name as a Node.js package.
 So `import { b } from "moduleB"` in source file `/src/moduleA.ts` would result in the following lookups:
 
 * `/src/node_modules/moduleB.ts`
@@ -153,13 +153,13 @@ So `import { b } from "moduleB"` in source file `/src/moduleA.ts` would result i
 A project source layout sometimes does not match that of the output.
 Usually a set of build steps result in generating the final output.
 These include compiling `.ts` files into `.js`, and copying dependencies from different source locations to a single output location.
-The net result is modules at runtime, may have different names than the source files containing their definitions.
-Or that module paths in the final outputs do not match their corresponding source file paths at compile time.
+The net result is that modules at runtime may have different names than the source files containing their definitions.
+Or module paths in the final output may not match their corresponding source file paths at compile time.
 
 The TypeScript compiler has a set of additional flags to *inform* the compiler of transformations that are expected to happen to the sources to generate the final output.
 
 It is important to note that the compiler will *not* perform any of these transformations;
-it just uses these pieces of Infomation to guide the process of resolving a module import to its definition file.
+it just uses these pieces of information to guide the process of resolving a module import to its definition file.
 
 ### Base URL
 
@@ -167,14 +167,14 @@ Using a `baseUrl` is a common practice in applications using AMD module loaders 
 The sources of these modules can live in different directories, but a build script will put them all together.
 
 Setting `baseUrl` informs the compiler where to find modules.
-All modules imports with non-relative names, are assumed to be relative to the `baseUrl`.
+All module imports with non-relative names are assumed to be relative to the `baseUrl`.
 
 Value of *baseUrl* is determined as either:
 
-* value of *baseUrl* command line argument (if given path is relative it is computed based on current directory)
-* value of *baseUrl* property in 'tsconfig.json' (if given path is relative it is computed based on the location of 'tsconfig.json')
+* value of *baseUrl* command line argument (if given path is relative, it is computed based on current directory)
+* value of *baseUrl* property in 'tsconfig.json' (if given path is relative, it is computed based on the location of 'tsconfig.json')
 
-Note that relative module imports are not impacted by setting the baseUrl, as they are always resolved relative to thier importing files.
+Note that relative module imports are not impacted by setting the baseUrl, as they are always resolved relative to their importing files.
 
 You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/docs/api.html#config-baseUrl) and [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#baseurl) documentation.
 
@@ -191,7 +191,7 @@ Here is an example for how to specify the `"paths"` property for `jquery`.
 {
   "compilerOptions": {
     "paths": {
-      "jquery": ["node_modules/jquery/dist/jquery.slim.min.js"]
+      "jquery": ["node_modules/jquery/dist/jquery.d.ts"]
     }
 }
 ```
@@ -245,7 +245,7 @@ Following this logic, the compiler will attempt to resolve the two imports as su
   1. pattern '*' is matched and wildcard captures the whole module name
   2. try first substitution in the list: '*' -> `folder2/file3`
   3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder2/file3.ts`.
-  4. File does not exists, move to the second substitution
+  4. File does not exist, move to the second substitution
   5. second substitution 'generated/*' -> `generated/folder2/file3`
   6. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/generated/folder2/file3.ts`.
   7. File exists. Done.
@@ -391,4 +391,4 @@ That was `tsconfig.json` automatic inclusion.
 That does not embed module resolution as discussed above.
 If the compiler identified a file as a target of a module import, it will be included in the compilation regardless if it was excluded in the previous steps.
 
-So to exclude a file from the compilation, you need to exclude and all **all** files that has an `import` or `/// <reference path="..." />` directives to it.
+So to exclude a file from the compilation, you need to exclude it and all **all** files that has an `import` or `/// <reference path="..." />` directives to it.

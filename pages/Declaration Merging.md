@@ -210,3 +210,34 @@ namespace Color {
 Not all merges are allowed in TypeScript.
 Currently, classes can not merge with other classes or with variables.
 For information on mimicking class merging, see the [Mixins in TypeScript] section.
+
+# Module Augmentation
+
+Although JavaScript modules do not support merging, you can patch existing objects by importing and then updating them.
+Let's look at a toy Observable example:
+
+```js
+// observable.js
+export class Observable<T> {
+    // ... implementation left as an exercise for the reader ...
+}
+
+// map.js
+import { Observable } from "./observable";
+Observable.prototype.map = // ... another exercise for the reader
+```
+
+This works fine in TypeScript too, but the compiler doesn't know about `Observable.prototype.map`.
+You can use module augmentation to tell the compiler about `map`:
+
+```ts
+// observable.ts stays the same
+// map.ts
+import { Observable } from "./observable";
+declare module "./observable" {
+    interface Observable<T> {
+        map<U>(f: (x: T) => U): Observable<U>;
+    }
+}
+Observable.prototype.map = // ... another exercise for the reader
+```

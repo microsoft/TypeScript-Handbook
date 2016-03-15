@@ -369,30 +369,3 @@ let v = new ScientificCalculator(2)
 Without `this` types, `ScientificCalculator` would not have been able to extend `BasicCalculator` and keep the fluent interface.
 `multiply` would have returned `BasicCalculator`, which doesn't have the `sin` method.
 However, with `this` types, `multiply` returns `this`, which is `ScientificCalculator` here.
-
-You can also use `this` types to describe mixin patterns:
-
-```ts
-interface Extender {
-    extend<T>(other: T): this & T;
-}
-class MyType implements Extender {
-    extend<T>(other: T): this & T {
-        for (const property in other) {
-            if (other.hasOwnProperty(property)) {
-                this[property] = other[property];
-            }
-        }
-        return <this & T>this;
-    }
-}
-class SubType extends MyType { }
-const my = new MyType();
-const sub = new SubType();
-
-// now we can mix in Calculators
-const myCalc = my.extend(new BasicCalculator(2));
-const subCalc = sub.extend(new ScientificCalculator(2));
-```
-
-Notice that when `sub` mixes in `ScientificCalculator`, the type of `subCalc` is correctly `SubType & ScientificCalculator`.

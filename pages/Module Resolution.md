@@ -187,7 +187,7 @@ Loaders use a mapping configuration to map module names to files at run-time, se
 The TypeScript compiler supports the declaration of such mappings using `"paths"` property in `tsconfig.json` files.
 Here is an example for how to specify the `"paths"` property for `jquery`.
 
-```JSON
+```json
 {
   "compilerOptions": {
     "paths": {

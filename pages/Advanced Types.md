@@ -1,6 +1,6 @@
 # Union Types
 
-Occasionally, you'll run into a library that expects or gives back a `number` or `string`.
+Occasionally, you'll run into a library that expects a parameter to be either a `number` or a `string`.
 For instance, take the following function:
 
 ```ts
@@ -10,7 +10,13 @@ For instance, take the following function:
  * If 'padding' is a number, then that number of spaces is added to the left side.
  */
 function padLeft(value: string, padding: any) {
-    // ...
+    if (typeof padding === "number") {
+        return Array(padding).join(" ") + value;
+    }
+    if (typeof padding === "string") {
+        return padding + value;
+    }
+    throw new Error(`Expected string or number, got '${value}'.`);
 }
 
 padLeft("Hello world", 4); // returns "    Hello world"
@@ -23,38 +29,11 @@ That means that we can call it with an argument that's neither a `number` nor a 
 let indentedString = padLeft("Hello world", true); // passes at compile time, fails at runtime.
 ```
 
-In some more traditional object-oriented languages, we might abstract over the two types by creating a hierarchy of types.
-
-```ts
-interface Padder {
-    getPaddingString(): string
-}
-
-class SpaceRepeatingPadder implements Padder {
-    constructor(private numSpaces: number) { }
-    getPaddingString() {
-        return Array(this.numSpaces).join(" ");
-    }
-}
-
-class StringPadder implements Padder {
-    constructor(private value: string) { }
-    getPaddingString() {
-        return this.value;
-    }
-}
-
-function padLeft(value: string, padder: Padder) {
-    return padder.getPaddingString() + value;
-}
-
-padLeft("Hello world", new SpaceRepeatingPadder(4));
-```
-
+In traditional object-oriented code, we might abstract over the two types by creating a hierarchy of types.
 While this is much more explicit, it's also a little bit overkill.
 One of the nice things about the original version of `padLeft` was that we were able to just pass in primitives.
 That meant that usage was simple and not overly verbose.
-This new approach also wouldn't help if we were just declaring a function that already exists elsewhere.
+This new approach also wouldn't help if we were just trying to use a function that already exists elsewhere.
 
 Instead of `any`, we can use a *union type* for the `padding` parameter:
 
@@ -170,7 +149,7 @@ it also knows that in the `else` branch, you *don't* have a `Fish`, so you must 
 
 ## `typeof` type guards
 
-We didn't actually reveal the implementation of the version of `padLeft` which used union types.
+We didn't actually discuss the implementation of the version of `padLeft` which used union types.
 We could write it with type predicates as follows:
 
 ```ts
@@ -210,7 +189,7 @@ function padLeft(value: string, padding: string | number) {
 ```
 
 These *`typeof` type guards* are recognized in two different forms: `typeof v === "typename"` and `typeof v !== "typename"`, where `"typename"` must be `"number"`, `"string"`, `"boolean"`, or `"symbol"`.
-While TypeScript won't prohibit using a string other than the aforementioned ones, or switching the two sides of the comparison, the language won't recognize those forms as type guards.
+While TypeScript won't prohibit comparing to other strings, or switching the two sides of the comparison, the language won't recognize those forms as type guards.
 
 ## `instanceof` type guards
 
@@ -262,6 +241,39 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 
 in that order.
 
+# Intersection Types
+
+Intersection types are closely related to union types, but they are used very differently.
+An intersection type, `Person & Serializable & Loggable`, for example, is a `Person` *and* `Serializable` *and* `Loggable`.
+That means an object of this type will have all members of all three types.
+In practice you will mostly see intersection types used for mixins.
+Here's a simple mixin example:
+
+```ts
+function extend<T, U>(first: T, second: U): T & U {
+    let result = <T & U> {};
+    for (let id in first) {
+        result[id] = first[id];
+    }
+    for (let id in second) {
+        if (!result.hasOwnProperty(id)) {
+            result[id] = second[id];
+        }
+    }
+    return result;
+}
+
+interface Person {
+    name: string;
+}
+interface Loggable {
+    log(): void;
+}
+var jim = extend(new Person("Jim"), new ConsoleLogger());
+console.log(jim.name);
+jim.log();
+```
+
 # Type Aliases
 
 Type aliases create a new name for a type.
@@ -298,6 +310,22 @@ type Tree<T> = {
     left: Tree<T>;
     right: Tree<T>;
 }
+```
+
+Together with intersection types, we can make some pretty mind-bending types:
+
+```ts
+type LinkedList<T> = T & { next: LinkedList<T> };
+
+interface Person {
+    name: string;
+}
+
+var people: LinkedList<Person>;
+var s = people.name;
+var s = people.next.name;
+var s = people.next.next.name;
+var s = people.next.next.next.name;
 ```
 
 However, it's not possible for a type alias to appear anywhere else on the right side of the declaration:

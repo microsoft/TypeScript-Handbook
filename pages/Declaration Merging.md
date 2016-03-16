@@ -55,27 +55,59 @@ Of note, too, is that in the case of interface `A` merging with later interface 
 That is, in the example:
 
 ```ts
+interface Cloner {
+    clone(animal: Animal): Animal;
+}
+
+interface Cloner {
+    clone(animal: Sheep): Sheep;
+}
+
+interface Cloner {
+    clone(animal: Dog): Dog;
+    clone(animal: Cat): Cat;
+}
+```
+
+The three interfaces will merge to create a single declaration as so:
+
+```ts
+interface Cloner {
+    clone(animal: Dog): Dog;
+    clone(animal: Cat): Cat;
+    clone(animal: Sheep): Sheep;
+    clone(animal: Animal): Animal;
+}
+```
+
+Notice that the elements of each group maintains the same order, but the groups themselves are merged with later overload sets ordered first.
+
+One exception to this rule is specialized signatures.
+If a signature has a parameter whose type is a *single* string literal type (e.g. not a union of string literals), then it will be bubbled toward the top of its overload list.
+
+For instance, the following interfaces will merge together:
+
+```ts
 interface Document {
     createElement(tagName: any): Element;
 }
 interface Document {
-    createElement(tagName: string): HTMLElement;
-}
-interface Document {
     createElement(tagName: "div"): HTMLDivElement;
     createElement(tagName: "span"): HTMLSpanElement;
+}
+interface Document {
+    createElement(tagName: string): HTMLElement;
     createElement(tagName: "canvas"): HTMLCanvasElement;
 }
 ```
 
-The two interfaces will merge to create a single declaration.
-Notice that the elements of each group maintains the same order, just the groups themselves are merged with later overload sets coming first:
+The resulting merged declaration of `Document` will be the following:
 
 ```ts
 interface Document {
+    createElement(tagName: "canvas"): HTMLCanvasElement;
     createElement(tagName: "div"): HTMLDivElement;
     createElement(tagName: "span"): HTMLSpanElement;
-    createElement(tagName: "canvas"): HTMLCanvasElement;
     createElement(tagName: string): HTMLElement;
     createElement(tagName: any): Element;
 }

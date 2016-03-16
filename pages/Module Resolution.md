@@ -81,9 +81,9 @@ The full Node.js resolution algorithm is outlined in [Node.js module documentati
 
 #### How Node.js resolves modules
 
-To understand what the steps the TS compiler will follow, it is important to shed some light on Node.js modules.
-Node.js supports multiple ways to resolve the target of a call to `require`.
-A relative module name in Node.js can resolve to:
+To understand what steps the TS compiler will follow, it is important to shed some light on Node.js modules.
+Traditionally, imports in Node.js are performed as calls to a function called `require`.
+Node.js will resolve a relative path given to `require` to one of three things:
 
 * A file
 

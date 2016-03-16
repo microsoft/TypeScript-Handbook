@@ -223,7 +223,9 @@ export class Observable<T> {
 
 // map.js
 import { Observable } from "./observable";
-Observable.prototype.map = // ... another exercise for the reader
+Observable.prototype.map = function (f) {
+    // ... another exercise for the reader
+}
 ```
 
 This works fine in TypeScript too, but the compiler doesn't know about `Observable.prototype.map`.
@@ -238,7 +240,9 @@ declare module "./observable" {
         map<U>(f: (x: T) => U): Observable<U>;
     }
 }
-Observable.prototype.map = // ... another exercise for the reader
+Observable.prototype.map = function (f) {
+    // ... another exercise for the reader
+}
 
 
 // consumer.ts
@@ -248,7 +252,7 @@ let o: Observable<number>;
 o.map(x => x.toFixed());
 ```
 
-The module name is resolved the same way as module specifiers in `import`/`export`.
+The module name is resolved the same way as module specifiers in `import`/`export`. See [Modules](./Modules.md) for more information.
 Then the declarations in an augmentation are merged as if they were declared in the same file as the original.
 However, you can't declare new top-level declarations in the augmentation -- just patches to existing declarations.
 

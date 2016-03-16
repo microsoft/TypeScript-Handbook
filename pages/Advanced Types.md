@@ -318,7 +318,7 @@ On the other hand, if you can't express some shape with an interface and you nee
 # String Literal Types
 
 String literal types allow you to specify the exact value a string must have.
-In practice string literal types combine nicely with union types, type guards, and type aliases. 
+In practice string literal types combine nicely with union types, type guards, and type aliases.
 You can use these features together to get enum-like behavior with strings.
 
 ```ts

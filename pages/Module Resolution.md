@@ -123,7 +123,7 @@ Node would then try to resolve `moduleB` to each of the locations until one work
 
 Notice that Node jumped up a directory in steps (4) and (7).
 
-You can read more about the process in Node's documentation on [loading modules from `node_modules`](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) 
+You can read more about the process in Node's documentation on [loading modules from `node_modules`](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders).
 
 #### How TypeScript resolves modules
 
@@ -146,16 +146,16 @@ Recall that Node looked for a file named `moduleB.js`, then an applicable `packa
 Similarly a non-relative import will follow the Node.js resolution logic, first looking up a file, then looking up an applicable folder.
 So `import { b } from "moduleB"` in source file `/src/moduleA.ts` would result in the following lookups:
 
-1.  `/foo/src/node_modules/moduleB.ts`
-2.  `/foo/src/node_modules/moduleB.tsx`
-3.  `/foo/src/node_modules/moduleB.d.ts`
-4.  `/foo/src/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
-5.  `/foo/src/node_modules/moduleB/index.ts`
-6.  `/foo/src/node_modules/moduleB/index.tsx`
-7.  `/foo/src/node_modules/moduleB/index.d.ts`
-    <br /><br />
-8.  `/foo/node_modules/moduleB.ts`
-9.  `/foo/node_modules/moduleB.tsx`
+1. `/foo/src/node_modules/moduleB.ts`
+2. `/foo/src/node_modules/moduleB.tsx`
+3. `/foo/src/node_modules/moduleB.d.ts`
+4. `/foo/src/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+5. `/foo/src/node_modules/moduleB/index.ts`
+6. `/foo/src/node_modules/moduleB/index.tsx`
+7. `/foo/src/node_modules/moduleB/index.d.ts`
+   <br /><br />
+8. `/foo/node_modules/moduleB.ts`
+9. `/foo/node_modules/moduleB.tsx`
 10. `/foo/node_modules/moduleB.d.ts`
 11. `/foo/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
 12. `/foo/node_modules/moduleB/index.ts`

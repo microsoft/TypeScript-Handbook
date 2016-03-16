@@ -340,12 +340,12 @@ class UIElement {
 
 let button = new UIElement();
 button.animate(0, 0, "ease-in");
-button.animate(0, 0, "uneasy");
+button.animate(0, 0, "uneasy"); // error: "uneasy" is not allowed here
 ```
 
 You can pass any of the three allowed strings, but any other string will give the error
 
-```ts
+```
 Argument of type '"uneasy"' is not assignable to parameter of type '"ease-in" | "ease-out" | "ease-in-out"'
 ```
 

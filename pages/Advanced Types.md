@@ -345,7 +345,7 @@ button.animate(0, 0, "uneasy"); // error: "uneasy" is not allowed here
 
 You can pass any of the three allowed strings, but any other string will give the error
 
-```
+```text
 Argument of type '"uneasy"' is not assignable to parameter of type '"ease-in" | "ease-out" | "ease-in-out"'
 ```
 

@@ -263,14 +263,14 @@ function extend<T, U>(first: T, second: U): T & U {
     return result;
 }
 
-interface Person {
-    name: string;
+class Person {
+    constructor(public name: string) { }
 }
 interface Loggable {
     log(): void;
 }
 var jim = extend(new Person("Jim"), new ConsoleLogger());
-console.log(jim.name);
+var n = jim.name;
 jim.log();
 ```
 

@@ -25,15 +25,15 @@ Module imports are resolved differently based on whether the module reference is
 A *relative import* is one that starts with `/`, `./` or `../`.
 Some examples include:
 
-    * `import Entry from "./components/Entry";`
-    * `import { DefaultHeaders } from "../constants/http";`
-    * `import "/mod";`
+* `import Entry from "./components/Entry";`
+* `import { DefaultHeaders } from "../constants/http";`
+* `import "/mod";`
 
 Any other import is considered **non-relative**.
 Some examples include:
 
-    * `import * as $ from "jQuery";
-    * `import { Component } from "angular2/core";`
+* `import * as $ from "jQuery";`
+* `import { Component } from "angular2/core";`
 
 A relative import is resolved relative to the importing file and *cannot* resolve to an ambient module declaration.
 You should use relative imports for your own modules that are guaranteed to maintain their relative location at runtime.
@@ -44,20 +44,20 @@ Use non-relative paths when importing any of your external dependnecies.
 
 ## Module Resolution Strategies
 
-Use `--moduleResolution` to specify the module resolution strategy.
-Possible values are [Classic](#classic) and [Node](#node).
-The default if not specified is [Node](#node).
+There are two possible module resolution strategies [Node](#node) and [Classic](#classic).
+You can use the `--moduleResolution` flag to specify the module resolution strategy.
+Unless otherwise specified, [Node](#node) is the default.
 
 ### Classic
 
-This is the TypeScript 1.0 default module resolution strategy.
-This strategy is supported mainly for backward compatibility.
+This used to be TypeScript's default resolution strategy.
+Nowadays, this strategy is mainly present for backward compatibility.
 
 A relative import will be resolved relative to the importing file.
 So `import { b } from "./moduleB"` in source file `/root/src/folder/A.ts` would result in the following lookups:
 
-* `/root/src/folder/moduleB.ts`
-* `/root/src/folder/moduleB.d.ts`
+1. `/root/src/folder/moduleB.ts`
+2. `/root/src/folder/moduleB.d.ts`
 
 For non-relative module imports, however, the compiler walks up the directory tree starting with the directory containing the importing file, trying to locate a matching definition file.
 
@@ -65,88 +65,113 @@ For example:
 
 A non-relative import to `moduleB` such as `import { b } from "moduleB"`, in a source file `/root/src/folder/A.ts`, would result in attempting the following locations for locating `"moduleB"`:
 
-* `/root/src/folder/moduleB.ts`
-* `/root/src/folder/moduleB.d.ts`
-* `/root/src/moduleB.ts`
-* `/root/src/moduleB.d.ts`
-* `/root/moduleB.ts`
-* `/root/moduleB.d.ts`
-* `/moduleB.ts`
-* `/moduleB.d.ts`
+1. `/root/src/folder/moduleB.ts`
+2. `/root/src/folder/moduleB.d.ts`
+3. `/root/src/moduleB.ts`
+4. `/root/src/moduleB.d.ts`
+5. `/root/moduleB.ts`
+6. `/root/moduleB.d.ts`
+7. `/moduleB.ts`
+8. `/moduleB.d.ts`
 
 ### Node
 
-This resolution strategy attempts to *mimic* the [Node.js](https://nodejs.org/) module resolution mechanism at runtime.
+This resolution strategy attempts to mimic the [Node.js](https://nodejs.org/) module resolution mechanism at runtime.
 The full Node.js resolution algorithm is outlined in [Node.js module documentation](https://nodejs.org/api/modules.html#modules_all_together).
 
 #### How Node.js resolves modules
 
 To understand what the steps the TS compiler will follow, it is important to shed some light on Node.js modules.
-Node.js supports multiple ways to resolve the target of a call to `require`.
-A relative module name in Node.js can resolve to:
+Traditionally, imports in Node are performed by calling a function named `require`.
+The behavior Node takes will differ depending on if `require` is given a relative path or a non-relative path.
 
-* A file
+Non-relative paths are fairly straightforward.
+As an example, let's consider a file located at `/foo/src/moduleA.js`, which contains the import `var x = require("./moduleB");`
+Node will end up trying to resolve that import in the following order:
 
- For instance in `/src/moduleA.js` a require statement such as `var x = require("./moduleB");` refers to `/src/moduleB.js`.
- See [Node.js file modules documentation](https://nodejs.org/api/modules.html#modules_file_modules) for more details.
+1. As the file named `/foo/src/moduleB.js`, if one exists.
 
-* A folder, with an implicit "main" module named `index.js`
+2. As the folder `/foo/src/moduleB` if it contains a file named `package.json`.
+   In order for resolution to succeed here, it will need to specify its `"main"` module.
 
- For instance in `/src/moduleA.js` and require statement `var x = require("./moduleB");` refers to `/src/moduleB/index.js`.
- See [Node.js folder modules documentation](https://nodejs.org/api/modules.html#modules_folders_as_modules) for more details.
+   In our example, if Node found the file `/foo/src/moduleB/package.json` and it contained something like `{ "main": "lib/mainModule.js" }`, then Node will refer to `/src/moduleB/lib/mainModule.js`.
 
-* A package, with a package manifest in `package.json` file that specifies the `"main"` module
+3. As the folder `/foo/src/moduleB` if it contains a file named `index.js`.
+   That file is implicitly considered that folder's "main" module.
 
- For instance in `/src/moduleA.js`, a require statement `var x = require("./moduleB");`, and a `/src/moduleB/package.json` file `{ "main": "lib/mainModule.js" }` refers to `/src/moduleB/lib/mainModule.js`.
+You can read more about this in Node's documentation on [file modules](https://nodejs.org/api/modules.html#modules_file_modules) and [folder modules](https://nodejs.org/api/modules.html#modules_folders_as_modules).
 
-Moreover, a require for a [non-relative module name](#relative-vs-non-relative-module-imports) is resolved from a special folder named `node_modules`.
-`node_modules` can be on the same level as the current file, or higher up in the directory chain.
-Node.js will *walk up* the directory chain, inspecting the contents of `node_modules` looking for the module to load.
+However, resolution for a [non-relative module name](#relative-vs-non-relative-module-imports) is performed little differently.
+Node will look for your modules in special folders named `node_modules`.
+A `node_modules` folder can be on the same level as the current file, or higher up in the directory chain.
+Node will walk up the directory chain, looking through each `node_modules` until it finds the module you tried to load.
 
-Following up our example above, in `/src/moduleA.js`, and a require statement `var x = require("moduleB");` will result in the following attempts:
+Following up our example above, consider if `/foo/src/moduleA.js` instead used a non-relative path and had the import `var x = require("moduleB");`.
+Node would then try to resolve `moduleB` to each of the locations until one worked.
 
-* `/src/node_modules/moduleB.js`
-* `/src/node_modules/moduleB/index.js`
-* `/src/node_modules/moduleB/package.json` look for `"main"` property
-* walk up to `/`
-* `/node_modules/moduleB.js`
-* `/node_modules/moduleB/index.js`
-* `/node_modules/moduleB/package.json` look for `"main"` property
+1. `/foo/src/node_modules/moduleB.js`
+2. `/foo/src/node_modules/moduleB/package.json` (if it specifies a `"main"` property)
+3. `/foo/src/node_modules/moduleB/index.js`
+   <br /><br />
+4. `/foo/node_modules/moduleB.js`
+5. `/foo/node_modules/moduleB/package.json` (if it specifies a `"main"` property)
+6. `/foo/node_modules/moduleB/index.js`
+   <br /><br />
+7. `/node_modules/moduleB.js`
+8. `/node_modules/moduleB/package.json` (if it specifies a `"main"` property)
+9. `/node_modules/moduleB/index.js`
 
-See [Node.js loading modules from `node_modules` documentation](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) for more details.
+Notice that Node jumped up a directory in steps (4) and (7).
+
+You can read more about the process in Node's documentation on [loading modules from `node_modules`](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders) 
 
 #### How TypeScript resolves modules
 
-TypeScript will *mimic* the Node.js resolution strategy at run-time as described above to locate definition files for modules at compile-time.
-TypeScript *overlays* the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) on the Node.js resolution logic.
-A `"typings"` field in `package.json` at compile-time serves to identify the "main" module definition for a package, similar to how `"main"` behaves at run-time.
+TypeScript will mimic the Node's run-time resolution strategy in order to locate definition files for modules at compile-time.
+To accomplish this, TypeScript overlays the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) over the Node's resolution logic.
+TypeScript will also use a field in `package.json` named `"typings"` to mirror the purpose of `"main"` - the compiler will use it to find the "main" definition file to consult.
 
-An import statement `import {b} from "./moduleB"` in a ts file `/src/moduleA.ts` would result in attempting the following locations for locating `"moduleB"`:
+For example, an import statement like `import { b } from "./moduleB"` in  `/foo/src/moduleA.ts` would result in attempting the following locations for locating `"./moduleB"`:
 
-* `/src/moduleB.ts`
-* `/src/moduleB.tsx`
-* `/src/moduleB.d.ts`
-* `/src/moduleB/package.json` look for `"typings"` property
-* `/src/moduleB/index.ts`
-* `/src/moduleB/index.tsx`
-* `/src/moduleB/index.d.ts`
+1. `/foo/src/moduleB.ts`
+2. `/foo/src/moduleB.tsx`
+3. `/foo/src/moduleB.d.ts`
+4. `/foo/src/moduleB/package.json` (if it specifies a `"typings"` property)
+5. `/foo/src/moduleB/index.ts`
+6. `/foo/src/moduleB/index.tsx`
+7. `/foo/src/moduleB/index.d.ts`
 
-Similarly a non-relative import will follow the Node.js resolution logic, looking up first a file, then looking up the file name as a Node.js package.
+Recall that Node looked for a file named `moduleB.js`, then an applicable `package.json`, and then for an `index.js`.
+
+Similarly a non-relative import will follow the Node.js resolution logic, first looking up a file, then looking up an applicable folder.
 So `import { b } from "moduleB"` in source file `/src/moduleA.ts` would result in the following lookups:
 
-* `/src/node_modules/moduleB.ts`
-* `/src/node_modules/moduleB.tsx`
-* `/src/node_modules/moduleB.d.ts`
-* `/src/node_modules/moduleB/package.json` look for `"typings"` property
-* `/src/node_modules/moduleB/index.ts`
-* `/src/node_modules/moduleB/index.tsx`
-* `/node_modules/moduleB.ts`
-* `/node_modules/moduleB.tsx`
-* `/node_modules/moduleB.d.ts`
-* `/node_modules/moduleB/package.json` look for `"typings"` property
-* `/node_modules/moduleB/index.ts`
-* `/node_modules/moduleB/index.tsx`
-* `/node_modules/moduleB/index.d.ts`
+1.  `/foo/src/node_modules/moduleB.ts`
+2.  `/foo/src/node_modules/moduleB.tsx`
+3.  `/foo/src/node_modules/moduleB.d.ts`
+4.  `/foo/src/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+5.  `/foo/src/node_modules/moduleB/index.ts`
+6.  `/foo/src/node_modules/moduleB/index.tsx`
+7.  `/foo/src/node_modules/moduleB/index.d.ts`
+    <br /><br />
+8.  `/foo/node_modules/moduleB.ts`
+9.  `/foo/node_modules/moduleB.tsx`
+10. `/foo/node_modules/moduleB.d.ts`
+11. `/foo/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+12. `/foo/node_modules/moduleB/index.ts`
+13. `/foo/node_modules/moduleB/index.tsx`
+14. `/foo/node_modules/moduleB/index.d.ts`
+    <br /><br />
+15. `/node_modules/moduleB.ts`
+16. `/node_modules/moduleB.tsx`
+17. `/node_modules/moduleB.d.ts`
+18. `/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+19. `/node_modules/moduleB/index.ts`
+20. `/node_modules/moduleB/index.tsx`
+21. `/node_modules/moduleB/index.d.ts`
+
+Don't be intimidated by the number of steps here - TypeScript is still only jumping up directories twice at steps (8) and (15).
+This is really no more complex than what Node itself is doing.
 
 ## Additional module resolution flags
 

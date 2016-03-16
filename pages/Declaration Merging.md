@@ -83,7 +83,7 @@ interface Cloner {
 Notice that the elements of each group maintains the same order, but the groups themselves are merged with later overload sets ordered first.
 
 One exception to this rule is specialized signatures.
-If a signature has a parameter whose type is a *single* string literal type (e.g. not a union of string literals), then it will be bubbled toward the top of its overload list.
+If a signature has a parameter whose type is a *single* string literal type (e.g. not a union of string literals), then it will be bubbled toward the top of its merged overload list.
 
 For instance, the following interfaces will merge together:
 

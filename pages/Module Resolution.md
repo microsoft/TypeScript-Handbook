@@ -81,7 +81,7 @@ The full Node.js resolution algorithm is outlined in [Node.js module documentati
 
 #### How Node.js resolves modules
 
-To understand what the steps the TS compiler will follow, it is important to shed some light on Node.js modules.
+To understand what steps the TS compiler will follow, it is important to shed some light on Node.js modules.
 Traditionally, imports in Node are performed by calling a function named `require`.
 The behavior Node takes will differ depending on if `require` is given a relative path or a non-relative path.
 

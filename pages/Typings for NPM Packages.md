@@ -16,7 +16,7 @@ The compiler will try to discover typings for module `"foo"` using the following
 
 2. Try to load a file named `index.d.ts` located in the package folder (`node_modules/foo/`) - this file should contain typings for the package.
 
-The precise algorithm for module resolution can be found [here](https://github.com/Microsoft/TypeScript/issues/2338)
+The precise algorithm for module resolution can be found [here](https://github.com/Microsoft/TypeScript/issues/2338).
 
 ### Your definition files should
 
@@ -25,4 +25,4 @@ The precise algorithm for module resolution can be found [here](https://github.c
 * not contain triple-slash references
 
 The rationale is that typings should not bring new compilable items to the set of compiled files; otherwise actual implementation files in the package can be overwritten during compilation.
-Additionally, **loading typings should not pollute global scope** by bringing potentially conflicting entries from different version of the same library
+Additionally, **loading typings should not pollute global scope** by bringing potentially conflicting entries from different version of the same library.

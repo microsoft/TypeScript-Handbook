@@ -162,7 +162,6 @@ invokeLater([1, 2], (x?, y?) => console.log(x + ', ' + y));
 
 When a function has overloads, each overload in the source type must be matched by a compatible signature on the target type.
 This ensures that the target function can be called in all the same situations as the source function.
-Functions with specialized overload signatures (those that use string literals in their overloads) do not use their specialized signatures when checking for compatibility.
 
 # Enums
 

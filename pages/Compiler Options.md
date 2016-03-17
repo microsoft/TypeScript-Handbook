@@ -30,7 +30,7 @@ Option                                  | Shorthand | Description
 `--noImplicitAny`                       |           |  Raise error on expressions and declarations with an implied 'any' type.
 `--noLib`                               |           |  Do not include the default library file (lib.d.ts).
 `--noResolve`                           |           |  Do not add triple-slash references or module import targets to the list of compiled files.
-`--skipDefaultLibCheck`                 |           | 
+`--skipDefaultLibCheck`                 |           |
 `--out`                                 |           |  DEPRECATED. Use `--outFile` instead.
 `--outDir`                              |           |  Redirect output structure to the directory.
 `--outFile`                             |           |  Concatenate and emit output to single file. The order of concatenation is determined by the list of files passed to the compiler on the command line along with triple-slash references and imports. See output file order documentation for more details.

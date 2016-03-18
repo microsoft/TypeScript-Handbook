@@ -1,6 +1,6 @@
 # Variable Declarations
 
-`let` and `const` are two new types of variable declarations that are new to ECMAScript 6.
+`let` and `const` are two new types of variable declarations that are new to ECMAScript 2015 (also known as ECMAScript 6).
 As we mentioned earlier, `let` is similar to `var`, but lets you avoid some of the common "gotchas" of `var`.
 `const` is an augmentation of `let` that only allows a single assignment.
 
@@ -428,3 +428,149 @@ Using `const` also makes code more predictable when reasoning about flow of data
 
 On the other hand, `let` is not any longer to write out than `var`, and you may prefer its brevity.
 The majority of this handbook uses `let` declarations because of that.
+
+# Destructuring
+
+Another ECMAScript 2015 feature that TypeScript has is destructuring.
+For a complete reference, see [the article on the Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+In this section, we'll give a short overview.
+
+## Array destructuring
+
+The simplest form of destructuring is destructuring array assignment:
+
+```ts
+let input = [1, 2];
+let [first, second] = input;
+console.log(first); // outputs 1
+console.log(second); // outputs 2
+```
+
+This binds two new variables named `first` and `second`.
+This is equivalent to using indexing, but much more convenient:
+
+```ts
+first = input[0];
+second = input[1];
+```
+
+Destructuring works with already-declared variables as well:
+
+```ts
+[first, second] = input;
+```
+
+And with parameters to a function:
+
+```ts
+function f([first, second]: [number, number]) {
+    console.log(first);
+    console.log(second);
+}
+f(input);
+```
+
+You can bind a variable to remaining items in a list using the syntax `...name`:
+
+```ts
+let [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+console.log(rest); // outputs [ 2, 3, 4 ]
+```
+
+Of course, since this is JavaScript, you can just ignore trailing elements you don't care about:
+
+```ts
+let [first] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+```
+
+Or other elements:
+
+```ts
+let [, second, , fourth] = [1, 2, 3, 4];
+```
+
+## Object destructuring
+
+You can also destructure objects:
+
+```ts
+let o = {
+    a: "foo",
+    b: 12,
+    c: "bar"
+}
+let { a: newName1, b: newName2 } = o;
+```
+
+This is even more convenient than array destructuring, but the directionality is confusing.
+For each pair, the identifier on the left side of the colon is the property name from the object, and the identifier on the right side of the colon is the newly bound variable.
+The direction is left-to-right:
+For example, `{ a: newName1 }` means bind the property 'a' to the variable 'newName1'.
+
+This direction is important to remember because of two additional features: shortcut names and default values.
+
+Shortcut names let you drop the new name identifier.
+This is the most common form of object destructuring that you will see:
+
+```ts
+let { a, b } = o;
+// same as
+let { a: a, b: b } = o;
+```
+
+Default values let you specify a default value in case a property is undefined:
+
+```ts
+o = { a: "foo", c: "bar" }
+let { a: newName1, b: newName2 = 1001 } = o;
+```
+
+Here the directionality of the syntax becomes quite confusing.
+In `b: newName2 = 1001`, the new variable is `newName2`, and its value is `o.b` unless `o.b` is undefined, in which case it is `1001`.
+Use default values with care.
+
+## Complex example
+
+All the above features can be nested and used anywhere JavaScript assigns values to variables, like `for` loops and function calls.
+Here's a more complex example:
+
+```ts
+let objects: { a: number, b?: number[] }[] = [
+  { "a": 12, "b": [3, 4] },
+  { "a": 21 },
+  { "a": 11, "b": [4, 3] }];
+for (let { b: [first] = [0] } of objects) {
+    // code goes here ...
+}
+```
+
+This binds `first` to the first element of the property `b` in each object in `objects`.
+If `b` is not defined, we provide `[0]` as the default value, meaning that `first = 0` in that case.
+
+As confusing as this is, we didn't prevent `first` from being `undefined` in some cases!
+If `b` is *defined*, but is a zero-length array, then `first` will be undefined:
+
+```ts
+let o = { "a": 21, "b": [] };
+let { b: [first] = [0] } = o;
+console.log(first); // prints 'undefined'
+```
+
+You can fix this by adding another default inside the list destructuring, but you are better off writing a more explicit set of imperative checks:
+
+```ts
+// Fix 1: Redundant defaults
+for (let { b: [first = 0] = [0] } of objects) {
+    // code goes here ..
+}
+
+// Fix 2: Explicit code
+for (let { b } of objects) {
+    if (b && b.length > 0) {
+        let first = b[0];
+        // code goes here ...
+    }
+}
+```

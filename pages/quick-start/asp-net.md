@@ -3,26 +3,19 @@ TODO: Need one screen shot per subheading.
 # ASP.NET 4
 
 1. Install Visual Studio.
-2. File | New Website | ASP.NET Web Forms Site
+2. File | New Project | C# | Web | ASP.NET Web Application | MVC
 
-   You will probably not want Web Forms in real life. I'll figure out
-   how use MVC soon. Or even better, an empty web site.
+  (or maybe empty)
+
 3. Press Run. It should work.
-4. TODO: Show how to install MVC or other things.
+
+  (empty doesn't work yet, which is why I don't recommend it yet)
 
 # ASP.NET 4 with TypeScript
 
 There's already a lot of JavaScript. 
 
-## Install TypeScript
-
-### Install TypeScript plugin
-
-1. Extensions ...
-2. Search for 'TypeScript' and install it.
-3. Restart Visual Studio.
-
-### Add TypeScript dependency
+## Add TypeScript dependency
 
 1. Right click WebSite2 | Manage NuGet Packages | Browse
 2. Type Microsoft.TypeScript.Compiler, then click Install. Keep the

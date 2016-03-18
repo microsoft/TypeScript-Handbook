@@ -1,24 +1,20 @@
 # Variable Declarations
 
-`let` and `const` are two relatively new types of variable declarations in JavaScript.
-As we mentioned earlier, `let` is similar to `var` in some respects, but allows users to avoid some of the common "gotchas" that users run into in JavaScript.
-`const` is an augmentation of `let` in that it prevents re-assignment to a variable.
+`let` and `const` are two new types of variable declarations that are new to ECMAScript 6.
+As we mentioned earlier, `let` is similar to `var`, but lets you avoid some of the common "gotchas" of `var`.
+`const` is an augmentation of `let` that only allows a single assignment.
 
-With TypeScript being a superset of JavaScript, the language naturally supports `let` and `const`.
+Since TypeScript is a superset of JavaScript, it naturally supports `let` and `const`.
 Here we'll elaborate more on these new declarations and why they're preferable to `var`.
-
-If you've used JavaScript offhandedly, the next section might be a good way to refresh your memory.
-If you're intimately familiar with all the quirks of `var` declarations in JavaScript, you might find it easier to skip ahead.
+If you know all the quirks of `var` in JavaScript, you might want easier to skip ahead.
 
 # `var` declarations
 
-Declaring a variable in JavaScript has always traditionally been done with the `var` keyword.
+Before version 6, you declared a variable in JavaScript with the `var` keyword.
 
 ```ts
 var a = 10;
 ```
-
-As you might've figured out, we just declared a variable named `a` with the value `10`.
 
 We can also declare a variable inside of a function:
 
@@ -30,7 +26,7 @@ function f() {
 }
 ```
 
-and we can also access those same variables within other functions:
+and we can also access those same variables within nested functions:
 
 ```ts
 function f() {
@@ -69,7 +65,7 @@ f(); // returns 2
 
 ## Scoping rules
 
-`var` declarations have some odd scoping rules for those used to other languages.
+Unfortunately, `var` declarations have some odd scoping rules.
 Take the following example:
 
 ```ts
@@ -85,9 +81,9 @@ f(true);  // returns '10'
 f(false); // returns 'undefined'
 ```
 
-Some readers might do a double-take at this example.
+It's okay if you do a double-take at this example.
 The variable `x` was declared *within the `if` block*, and yet we were able to access it from outside that block.
-That's because `var` declarations are accessible anywhere within their containing function, module, namespace, or global scope - all which we'll go over later on - regardless of the containing block.
+That's because `var` declarations are accessible anywhere within their containing function, module, namespace, or global scope -- all of which we'll go over later on -- regardless of the containing block.
 Some people call this *`var`-scoping* or *function-scoping*.
 Parameters are also function scoped.
 
@@ -108,8 +104,8 @@ function sumMatrix(matrix: number[][]) {
 }
 ```
 
-Maybe it was easy to spot out for some, but the inner `for`-loop will accidentally overwrite the variable `i` because `i` refers to the same function-scoped variable.
-As experienced developers know by now, similar sorts of bugs slip through code reviews and can be an endless source of frustration.
+In case you missed it, the inner `for`-loop accidentally overwrites the variable `i` because `i` refers to the same function-scoped variable.
+That's an extremely subtle bug -- the kind that slip through code reviews and cause endless frustration.
 
 ## Variable capturing quirks
 
@@ -121,7 +117,7 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-For those unfamiliar, `setTimeout` will try to execute a function after a certain number of milliseconds (though waiting for anything else to stop running).
+`setTimeout` tries to execute a function after a certain number of milliseconds (after waiting for anything else to stop running).
 
 Ready? Take a look:
 
@@ -138,8 +134,8 @@ Ready? Take a look:
 10
 ```
 
-Many JavaScript developers are intimately familiar with this behavior, but if you're surprised, you're certainly not alone.
-Most people expect the output to be
+Many JavaScript developers know about this, but if you're surprised, you're certainly not alone.
+Most people expect the output to be:
 
 ```text
 0
@@ -154,12 +150,12 @@ Most people expect the output to be
 9
 ```
 
-Remember what we mentioned earlier about variable capturing?
+Remember variable capture from earlier?
 
 > At any point that `g` gets called, the value of `a` will be tied to the value of `a` in `f`.
 
 Let's take a minute to consider that in this context.
-`setTimeout` will run a function after some number of milliseconds, and also after the `for` loop has stopped executing.
+`setTimeout` will run a function after some number of milliseconds -- *after* the `for` loop has stopped executing.
 By the time the `for` loop has stopped executing, the value of `i` is `10`.
 So each time the given function gets called, it will print out `10`!
 
@@ -175,12 +171,13 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-This odd-looking pattern is actually a commonplace.
-The `i` in the parameter actually shadows the `i` declared in the `for` loop, but since we named it the same, we didn't have to modify the loop body too much.
+This odd-looking pattern is actually commonplace.
+The parameter `i` actually shadows the `i` declared in the `for` loop, but since we named it the same, we didn't have to modify the loop body too much.
 
 # `let` declarations
 
-By now you've figured out that `var` has some problems, which is precisely why `let` statements are a new way to declare variables.
+By now you've seen that `var` has some problems.
+Let addresses precisely those problems., which is precisely why `let` statements are a new way to declare variables.
 Apart from the keyword used, `let` statements are written the same way `var` statements are.
 
 ```ts
@@ -191,8 +188,8 @@ The key difference is not in the syntax, but in the semantics, which we'll now d
 
 ## Block-scoping
 
-When a variable is declared using `let`, it uses what some call *lexical-scoping* or *block-scoping*.
-Unlike variables declared with `var` whose scopes leak out to their containing function, block-scoped variables are not visible outside of their nearest containing block or `for`-loop.
+When a variable is declared using `let`, it uses *lexical scope*.
+Unlike `var` whose variables leak out to their containing function, lexically-scoped variables are not visible outside of their nearest containing block or `for`-loop.
 
 ```ts
 function f(input: boolean) {
@@ -226,9 +223,9 @@ catch (e) {
 console.log(e);
 ```
 
-Another property of block-scoped variables is that they can't be read or written to before they're actually declared.
+Another property of block-scoped variables is that they can't be read or written to before they're declared.
 While these variables are "present" throughout their scope, all points up until their declaration are part of their *temporal dead zone*.
-This is just a sophisticated way of saying you can't access them before the `let` statement, and luckily TypeScript will let you know that.
+This is just a sophisticated way of saying you can't access them before the `let` statement, and luckily TypeScript will tell you that.
 
 ```ts
 a++; // illegal to use 'a' before it's declared;
@@ -237,7 +234,7 @@ let a;
 
 Something to note is that you can still *capture* a block-scoped variable before it's declared.
 The only catch is that it's illegal to call that function before the declaration.
-If targeting ES2015, a modern runtime will throw an error; however, right now TypeScript is permissive and won't report this as an error.
+If you target ES2015, an ES2015 (or higher) runtime will throw an error; however, right now TypeScript is permissive and won't report this as an error.
 
 ```ts
 function foo() {
@@ -245,18 +242,19 @@ function foo() {
     return a;
 }
 
-// illegal call 'foo' before 'a' is declared
+// illegal to call 'foo' before 'a' is declared
 // runtimes should throw an error here
+// TypeScript does not catch this error
 foo();
 
 let a;
 ```
 
-For more information on temporal dead zones, see relevant content on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let).
+For more information on temporal dead zones, see [relevant content on the Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let).
 
 ## Re-declarations and Shadowing
 
-With `var` declarations, we mentioned that it didn't matter how many times you declared your variables; you just got one.
+With `var` declarations, it doesn't matter how many times you declare your variables; you only get one.
 
 ```ts
 function f(x) {
@@ -278,7 +276,7 @@ let x = 10;
 let x = 20; // error: can't re-declare 'x' in the same scope
 ```
 
-The variables don't necessarily need to both be block-scoped for TypeScript to tell us that there's a problem.
+The variables don't all need to be block-scoped for TypeScript to tell us that there's a problem.
 
 ```ts
 function f(x) {
@@ -291,7 +289,7 @@ function g() {
 }
 ```
 
-That's not to say that block-scoped variable can never be declared with a function-scoped variable.
+That's not to say that you can never declare a block-scoped variable with a function-scoped variable.
 The block-scoped variable just needs to be declared within a distinctly different block.
 
 ```ts
@@ -308,8 +306,8 @@ f(false, 0); // returns 0
 f(true, 0);  // returns 100
 ```
 
-The act of introducing a new name in a more nested scope is called *shadowing*.
-It is a bit of a double-edged sword in that it can introduce certain bugs on its own in the event of accidental shadowing, while also preventing certain bugs.
+Introducing a new name in a more nested scope is called *shadowing*.
+It is a double-edged sword: you can accidentally shadow variables, but shadowing can prevent certain bugs.
 For instance, imagine we had written our earlier `sumMatrix` function using `let` variables.
 
 ```ts
@@ -326,16 +324,15 @@ function sumMatrix(matrix: number[][]) {
 }
 ```
 
-This version of the loop will actually perform the summation correctly because the inner loop's `i` shadows `i` from the outer loop.
+This version of the loop performs the summation correctly because the inner loop's `i` shadows `i` from the outer loop.
 
-Shadowing should *usually* be avoided in the interest of write clearer code.
-While there are some scenarios where it may be fitting to take advantage of it, you should use your best judgement.
+However, shadowing should *usually* be avoided in the interest of writing clearer code.
 
 ## Block-scoped variable capturing
 
-When we first touched on the idea of variable capturing with `var` declaration, we briefly went into how variables act once captured.
-To give a better intuition of this, each time a scope is run, it creates an "environment" of variables.
-That environment and its can exist even after everything within its scope has finished executing.
+When we first discussed variable capture with `var`, we briefly covered how captured variables work.
+To give more detail, each time a scope is run, it creates an "environment" of variables.
+That environment can exist even after the code within its scope has finished executing.
 
 ```ts
 function theCityThatAlwaysSleeps() {
@@ -352,15 +349,16 @@ function theCityThatAlwaysSleeps() {
 }
 ```
 
-Because we've captured `city` from within its environment, we're still able to access it despite the fact that the `if` block finished executing.
+Because we capture `city` inside `getCity`, we're still able to access it despite the fact that the `if` block finished executing.
 
 Recall that with our earlier `setTimeout` example, we ended up needing to use an IIFE to capture the state of a variable for every iteration of the `for` loop.
 In effect, what we were doing was creating a new variable environment for our captured variables.
-That was a bit of a pain, but luckily, you'll never have to do that again in TypeScript.
+What a pain!
+Luckily, you'll never have to do that again in TypeScript.
 
 `let` declarations have drastically different behavior when declared as part of a loop.
-Rather than just introducing a new environment to the loop itself, these declarations sort of create a new scope *per iteration*.
-Since this is what we were doing anyway with our IIFE, we can change our old `setTimeout` example to just use a `let` declaration.
+They create a new scope *per iteration*, basically the same as we did with the IIFE in the `var` example.
+So we can change our old `setTimeout` example to just use a `let` declaration.
 
 ```ts
 for (let i = 0; i < 10 ; i++) {
@@ -395,6 +393,7 @@ They are like `let` declarations but, as their name implies, their value cannot 
 In other words, they have the same scoping rules as `let`, but you can't re-assign to them.
 
 This should not be confused with the idea that the values they refer to are *immutable*.
+The values are still normal JavaScript values, which are mutable.
 
 ```ts
 const numLivesForCat = 9;
@@ -420,14 +419,12 @@ Unless you take specific measures to avoid it, the internal state of a `const` v
 
 # `let` vs. `const`
 
-Given that we have two types of declarations with similar scoping semantics, it's natural to find ourselves asking which one to use.
+Given that we have two similar types of declaration, which one should you use?
 Like most broad questions, the answer is: it depends.
 
 Applying the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), all declarations other than those you plan to modify should use `const`.
-The rationale is that if a variable didn't need to get written to, others working on the same codebase shouldn't automatically be able to write to the object, and will need to consider whether they really need to reassign to the variable.
+If a variable doesn't need to get updated, others working on the same codebase shouldn't automatically be able to write to the object, and will need to consider whether they really need to re-assign to the variable.
 Using `const` also makes code more predictable when reasoning about flow of data.
 
-On the other hand, `let` is not any longer to write out than `var`, and many users will prefer its brevity.
-The majority of this handbook uses `let` declarations in that interest.
-
-Use your best judgement, and if applicable, consult the matter with the rest of your team.
+On the other hand, `let` is not any longer to write out than `var`, and you may prefer its brevity.
+The majority of this handbook uses `let` declarations because of that.

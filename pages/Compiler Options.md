@@ -56,5 +56,5 @@ Option                                  | Shorthand | Description
 
 ## Related
 
-* For tsconfig.json see [tsconfig.json](./tsconfig.json.md)
-* For Setting the compiler options in MSBuild projects see [Setting Compiler Options in MSBuild projects](./Compiler Options in MSBuild.md)
+* Setting compiler options in [`tsconfig.json`](./tsconfig.json.md) files.
+* Setting compiler options in [MSBuild projects](./Compiler Options in MSBuild.md).

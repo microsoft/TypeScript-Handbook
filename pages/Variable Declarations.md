@@ -1,12 +1,12 @@
 # Variable Declarations
 
-`let` and `const` are two new types of variable declarations that are new to ECMAScript 2015 (also known as ECMAScript 6).
-As we mentioned earlier, `let` is similar to `var`, but lets you avoid some of the common "gotchas" of `var`.
-`const` is an augmentation of `let` that only allows a single assignment.
+`let` and `const` are two variable declarations that are new to ECMAScript 2015 (also known as ECMAScript 6).
+As we mentioned earlier, `let` is similar to `var`, but helps you avoid some of the common "gotchas" of `var`.
+`const` is an augmentation of `let` that prevents re-assignment to a variable.
 
 Since TypeScript is a superset of JavaScript, it naturally supports `let` and `const`.
 Here we'll elaborate more on these new declarations and why they're preferable to `var`.
-If you know all the quirks of `var` in JavaScript, you might want easier to skip ahead.
+If you know all the quirks of `var` in JavaScript, you might want to skip ahead.
 
 # `var` declarations
 

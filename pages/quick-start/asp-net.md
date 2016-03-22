@@ -102,12 +102,111 @@ Check "Redirect JavaScript output to directory" and give the value: `./Scripts/A
 That's all you need to know to include basic TypeScript in your ASP.NET project.
 Next we'll include Angular and write a simple Angular app.
 
-# ASP.NET 4 with TypeScript with Angular
+# ASP.NET 4 with TypeScript with Angular 2
+
+## Download packages from NPM
 
 1. Install [PackageInstaller](https://github.com/madskristensen/PackageInstaller).
-1. Use PackageInstaller to install Angular.
-2. Add angular to project.
-3. Add a CopyFiles step to the build.
+
+2. Use PackageInstaller to install Angular 2 and systemjs.
+
+    ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
+    ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
+
+## Add Angular 2 to the build
+
+### Enable decorator support
+
+TypeScript's support for decorators is still experimental, so you'll need to manually edit the csproj to enable it.
+
+To do this, edit the project by right-clicking 'Unload' and then 'Edit csproj'.
+
+Then add the following code inside the `PropertyGroup` that contains TypeScript build settings (`TypeScriptTarget`, etc) after the last line (`<TypeScriptSourceRoot />`):
+
+```
+<TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
+```
+
+The resulting PropertyGroup should look like this:
+
+```
+  <PropertyGroup>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir>./Scripts/App</TypeScriptOutDir>
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+    <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
+  </PropertyGroup>
+```
+
+The last line of the PropertyGroup is new.
+
+### Add a CopyFiles target to the build
+
+After the TypeScript configuration PropertyGroup, add a new ItemGroup and Target to copy the angular files.
+
+```
+<ItemGroup>
+  <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\angular2\bundles\angular2.js"/>
+  <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\angular2\bundles\angular2-polyfills.js"/>
+  <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\systemjs\dist\system.src.js"/>
+  <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\rxjs\bundles\Rx.js"/>
+</ItemGroup>
+<Target Name="CopyFiles" BeforeTargets="Build">
+  <Copy SourceFiles="@(NodeLib)" DestinationFolder="$(MSBuildProjectDirectory)\Scripts"/>
+</Target>
+```
+
+Now right-click on the project and reload it.
+You should now see node_modules in the Solution Explorer.
+
+Temporarily set target to ES2015.
+OR find a promise.d.ts.
+Pretty sure Alex Eagle complained about this before.
+I should see what he said.
+
+## Write a simple Angular app in TypeScript
+
+First, change the code in `app.ts` to:
+
+```ts
+import {Component} from "angular2/core"
+import {bootstrap} from "angular2/platform/browser"
+import {MyModel} from "./model"
+
+@Component({
+    selector: `my-app`,
+    template: `<div>Hello from {{getGreeting()}}</div>`
+})
+class MyApp {
+    model = new MyModel();
+    getGreeting() {
+        return this.model.greeting;
+    }
+}
+
+bootstrap(MyApp);
+```
+
+Then add another TypeScript file in `src` named `model.ts`:
+
+```ts
+export class MyModel {
+    compiler = "TypeScript";
+}
+```
+
+## Reference Angular in ASP.NET
+
 4. Add TypeScript code for talking to Angular.
 
 # ASP.NET 4 with TypeScript with gulp

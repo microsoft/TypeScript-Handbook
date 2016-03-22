@@ -361,7 +361,7 @@ class UIElement {
         else if (easing === "ease-in-out") {
         }
         else {
-            // error! should never reach here!
+            // error! should not pass null or undefined.
         }
     }
 }

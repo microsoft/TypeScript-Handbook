@@ -280,20 +280,20 @@ Type aliases create a new name for a type.
 Type aliases are sometimes similar to interfaces, but can name primitives, unions, tuples, and any other types that you'd otherwise have to write by hand.
 
 ```ts
-type XCoord = number;
-type YCoord = number;
-
-type XYCoord = { x: XCoord; y: YCoord };
-type XYZCoord = { x: XCoord; y: YCoord; z: number };
-
-type Coordinate = XCoord | XYCoord | XYZCoord;
-type CoordList = Coordinate[];
-
-let coord: CoordList = [{ x: 10, y: 10}, { x: 0, y: 42, z: 10 }, { x: 5 }];
+type Name = string;
+type NameResolver = () => string;
+type NameOrResolver = Name | NameResolver;
+function getName(n: NameOrResolver): Name {
+    if (typeof n === 'string') {
+        return n;
+    }
+    else {
+        return n();
+    }
+}
 ```
 
 Aliasing doesn't actually create a new type - it creates a new *name* to refer to that type.
-So `10` is a perfectly valid `XCoord` and `YCoord` because they both just refer to `number`.
 Aliasing a primitive is not terribly useful, though it can be used as a form of documentation.
 
 Just like interfaces, type aliases can also be generic - we can just add type parameters and use them on the right side of the alias declaration:

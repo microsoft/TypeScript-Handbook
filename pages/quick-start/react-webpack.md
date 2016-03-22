@@ -12,22 +12,30 @@ mkdir proj
 cd proj
 ```
 
-We're going to structure our project in the following way:
+To start, we're going to structure our project in the following way:
 
 ```text
 proj/
    +- src/
+   |    +- components/
+   |
    +- dist/
 ```
 
 TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.
+Any components that we write will go in the `src/components` folder.
 
 Let's scaffold this out:
 
 ```shell
 mkdir src
+cd src
+mkdir components
+cd ..
 mkdir dist
 ```
+
+# Initialize the project
 
 Now we'll turn this folder into an npm package.
 
@@ -42,13 +50,13 @@ You can always go back and change these in the `package.json` file that's been g
 
 # Install our dependencies
 
-First ensure TypeScript, typings, and webpack are installed globally.
+First ensure TypeScript, Typings, and webpack are installed globally.
 
 ```shell
 npm install -g typescript typings webpack
 ```
 
-Webpack is a tool that will bundle your code and all of its dependencies into a single `.js` file.
+Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file.
 [Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
 
 Let's now add React and React-DOM as dependencies to your `package.json` file:
@@ -66,46 +74,94 @@ npm link typescript
 
 Both of these dependencies will let TypeScript and webpack play well together.
 ts-loader helps webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
-source-map-loader uses any sourcemap outputs from TypeScript to informs webpack when generating its own sourcemaps.
+source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
+This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
 
 Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
 If you want a local copy, just run `npm install typescript`.
 
-Finally, we'll grab the declaration files for React using the `typings` utility:
+Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
 
 ```shell
 typings install --ambient --save react
 typings install --ambient --save react-dom
 ```
 
-The `--ambient` flag will tell typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
+The `--ambient` flag will tell Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
 This command will create a file called `typings.json` and a folder called `typings` in the current directory.
+
+# Add a TypeScript configuration file
+
+You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary declaration files.
+
+To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
+Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents:
+
+```json
+{
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es5"
+    },
+    "files": [
+        "./typings/main.d.ts",
+        "./src/components/Hello.tsx",
+        "./src/index.tsx"
+    ]
+}
+```
+
+We're including `typings/main.d.ts`, which Typings created for us.
+That file automatically includes all of your installed dependencies.
+
+You might be wondering about a separate file named `browser.d.ts` in the `typings` folder, especially since we're going to run this in a browser.
+The short story is that some packages are tailored differently by tools that target browsers.
+In general, these situations are niche scenarios and we won't run into those, so we can ignore `browser.d.ts`.
+
+You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 
 # Write some code
 
 Let's write our first TypeScript file using React.
-Create a new file in your `src` directory named `index.tsx`.
+First, create a file named `Hello.tsx` in `src/components` and write the following:
+
+```ts
+import * as React from "react";
+
+export interface HelloProps { compiler: string; framework: string; }
+
+export class Hello extends React.Component<HelloProps, {}> {
+    render() {
+        return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
+    }
+}
+```
+
+Note that while this example is quite *classy*, we didn't need to use a class.
+Other methods of using React (like [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)) should work just as well.
+
+Next, let's create an `index.tsx` in `src` with the following source:
 
 ```ts
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-class HelloComponent extends React.Component<any, any> {
-    render() {
-        return <h1>Hello from TypeScript and React!</h1>;
-    }
-}
+import { Hello } from "./components/Hello";
 
 ReactDOM.render(
-    <HelloComponent />,
+    <Hello compiler="TypeScript" framework="React" />,
     document.getElementById("example")
 );
 ```
 
-Note that while this example is quite *classy*, we didn't need to use a class.
-Other methods of using React should work just as well.
+We just imported our `Hello` component into `index.tsx`.
+Notice that unlike with `"react"` or `"react-dom"`, we used a *relative path* to `index.tsx` - this is important.
+If we hadn't, TypeScript would've instead tried looking in our `node_modules` folder.
 
-We'll also need a view to display our `HelloComponent`.
+We'll also need a page to display our `Hello` component.
 Create a file at the root of `proj` named `index.html` with the following contents:
 
 ```html
@@ -117,23 +173,21 @@ Create a file at the root of `proj` named `index.html` with the following conten
     </head>
     <body>
         <div id="example"></div>
+
+        <!-- Dependencies -->
+        <script src="./node_modules/react/dist/react.js" />
+        <script src="./node_modules/react-dom/dist/react-dom.js" />
+
+        <!-- Main -->
         <script src="./dist/bundle.js"></script>
     </body>
 </html>
 ```
 
-# Add a TypeScript configuration file
-
-At this point, you'll want to bring your TypeScript files together - both your `index.tsx` as well as your typings files.
-
-To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
-Simply run the following at the root of the project directory:
-
-```shell
-tsc --init ./typings/main.d.ts ./src/index.tsx --jsx react --outDir ./dist --sourceMap --noImplicitAny
-```
-
-You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
+Notice that we're including files from within `node_modules`.
+React and React-DOM's npm packages include standalone `.js` files that you can include in a web page, and we're referencing them directly to get things moving faster.
+Feel free to copy these files to another directory, or alternatively, host them on a content delivery network (CDN).
+Facebook makes CDN-hosted versions of React available, and you can [read more about that here](http://facebook.github.io/react/downloads.html#development-vs.-production-builds).
 
 # Create a webpack configuration file
 
@@ -164,9 +218,26 @@ module.exports = {
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { test: /\.js$/, loader: "source-map-loader" }
         ]
-    }
+    },
+
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
+    },
 };
 ```
+
+You might be wondering about that `externals` field.
+We want to avoid bundling all of React into the same file, since this increases compilation time and browsers will typically be able to cache a library if it doesn't change.
+
+Ideally, we'd just import the React module from within the browser, but most browsers still don't quite support modules yet.
+Instead libraries have traditionally made themselves available using a single global variable like `jQuery` or `_`.
+This is called the "namespace pattern", and webpack allows us to continue leveraging libraries written that way.
+With our entry for `"react": "React"`, webpack will work its magic to make any import of `"react"` load from the `React` variable.
 
 You can learn more about configuring webpack [here](http://webpack.github.io/docs/configuration.html).
 

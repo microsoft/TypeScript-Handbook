@@ -440,7 +440,7 @@ In this section, we'll give a short overview.
 
 ## Array destructuring
 
-The simplest form of destructuring is destructuring array assignment:
+The simplest form of destructuring is array destructuring assignment:
 
 ```ts
 let input = [1, 2];
@@ -449,8 +449,8 @@ console.log(first); // outputs 1
 console.log(second); // outputs 2
 ```
 
-This binds two new variables named `first` and `second`.
-This is equivalent to using indexing, but much more convenient:
+This creates two new variables named `first` and `second`.
+This is equivalent to using indexing, but is much more convenient:
 
 ```ts
 first = input[0];
@@ -473,7 +473,7 @@ function f([first, second]: [number, number]) {
 f(input);
 ```
 
-You can bind a variable to remaining items in a list using the syntax `...name`:
+You can create a variable for the remaining items in a list using the syntax `...name`:
 
 ```ts
 let [first, ...rest] = [1, 2, 3, 4];
@@ -504,76 +504,81 @@ let o = {
     b: 12,
     c: "bar"
 }
-let { a: newName1, b: newName2 } = o;
+let {a, b} = o;
 ```
 
-This is even more convenient than array destructuring, but the directionality is confusing.
-For each pair, the identifier on the left side of the colon is the property name from the object, and the identifier on the right side of the colon is the newly bound variable.
-The direction is left-to-right:
-For example, `{ a: newName1 }` means bind the property 'a' to the variable 'newName1'.
+This creates new variables `a` and `b` from `o.a` and `o.b`.
+Notice that you can skip `c` if you don't need it.
 
-This direction is important to remember because of two additional features: shortcut names and default values.
 
-Shortcut names let you drop the new name identifier.
-This is the most common form of object destructuring that you will see:
+### Property renaming
+
+You can also give different names to properties:
 
 ```ts
-let { a, b } = o;
-// same as
-let { a: a, b: b } = o;
+let {a: newName1, b: newName2} = o;
 ```
+
+Here the syntax starts to get confusing.
+You can read `a: newName1` as "`a` as `newName1`".
+The direction is left-to-right, as if you had written:
+
+```ts
+let newName1 = o.a;
+let newName2 = o.b;
+```
+
+Confusingly, the colon here does *not* indicate the type.
+The type, if you specify it, still needs to be specified after the entire destructuring:
+
+```ts
+let {a, b}: {a: string, b: number} = o;
+```
+
+### Default values
 
 Default values let you specify a default value in case a property is undefined:
 
 ```ts
-o = { a: "foo", c: "bar" }
-let { a: newName1, b: newName2 = 1001 } = o;
+o = {a: "foo", c: "bar"};
+let {a, b: newName = 1001}: {a: string, b?: number} = o;
 ```
 
-Here the directionality of the syntax becomes quite confusing.
-In `b: newName2 = 1001`, the new variable is `newName2`, and its value is `o.b` unless `o.b` is undefined, in which case it is `1001`.
-Use default values with care.
+Note that in this example, the type annotation is required because otherwise the compiler will not expect the `b` property to come from the object `o`.
 
-## Complex example
+Use destructuring with care.
+Even though you can nest destructuring, deeply nested expressions get *really* hard to understand even without piling on renaming, default values, and type annotations.
+Try to keep destructuring assignments small and simple.
 
-All the above features can be nested and used anywhere JavaScript assigns values to variables, like `for` loops and function calls.
-Here's a more complex example:
+## Function declarations
+
+Destructuring also works in function declarations.
+For simple cases this is straightforward:
 
 ```ts
-let objects: { a: number, b?: number[] }[] = [
-  { "a": 12, "b": [3, 4] },
-  { "a": 21 },
-  { "a": 11, "b": [4, 3] }];
-for (let { b: [first] = [0] } of objects) {
-    // code goes here ...
+type C = {a: string, b?: number}
+function f({a, b}: C): void {
+    // ...
 }
 ```
 
-This binds `first` to the first element of the property `b` in each object in `objects`.
-If `b` is not defined, we provide `[0]` as the default value, meaning that `first = 0` in that case.
-
-As confusing as this is, we didn't prevent `first` from being `undefined` in some cases!
-If `b` is *defined*, but is a zero-length array, then `first` will be undefined:
+But specifying defaults is more common for parameters, and getting defaults right with destructuring can be tricky.
+First of all, you need to remember to put the type before the default value.
 
 ```ts
-let o = { "a": 21, "b": [] };
-let { b: [first] = [0] } = o;
-console.log(first); // prints 'undefined'
+function f({a, b}: C = {a: "", b: 0}): void {
+    // ...
+}
+f(); // ok, default to {a: "", b: 0}
 ```
 
-You can fix this by adding another default inside the list destructuring, but you are better off writing a more explicit set of imperative checks:
+Then, you need to remember to give a default for optional properties on the property instead of the main initializer.
+Remember that `C` was defined with `b` optional:
 
 ```ts
-// Fix 1: Redundant defaults
-for (let { b: [first = 0] = [0] } of objects) {
-    // code goes here ..
+function f({a, b = 0}: C = {a: ""}): void {
+    // ...
 }
-
-// Fix 2: Explicit code
-for (let { b } of objects) {
-    if (b && b.length > 0) {
-        let first = b[0];
-        // code goes here ...
-    }
-}
+f({a: "yes"}) // ok, default b = 0
+f() // ok, default to {a: ""}, which then defaults b = 0
 ```

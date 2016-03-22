@@ -510,7 +510,6 @@ let {a, b} = o;
 This creates new variables `a` and `b` from `o.a` and `o.b`.
 Notice that you can skip `c` if you don't need it.
 
-
 ### Property renaming
 
 You can also give different names to properties:

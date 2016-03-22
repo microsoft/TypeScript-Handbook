@@ -343,6 +343,51 @@ Because [an ideal property of software is being open to extension](https://en.wi
 
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.
 
+# String Literal Types
+
+String literal types allow you to specify the exact value a string must have.
+In practice string literal types combine nicely with union types, type guards, and type aliases.
+You can use these features together to get enum-like behavior with strings.
+
+```ts
+type Easing = "ease-in" | "ease-out" | "ease-in-out";
+class UIElement {
+    animate(dx: number, dy: number, easing: Easing) {
+        if (easing === "ease-in") {
+            // ...
+        }
+        else if (easing === "ease-out") {
+        }
+        else if (easing === "ease-in-out") {
+        }
+        else {
+            // error! should not pass null or undefined.
+        }
+    }
+}
+
+let button = new UIElement();
+button.animate(0, 0, "ease-in");
+button.animate(0, 0, "uneasy"); // error: "uneasy" is not allowed here
+```
+
+You can pass any of the three allowed strings, but any other string will give the error
+
+```text
+Argument of type '"uneasy"' is not assignable to parameter of type '"ease-in" | "ease-out" | "ease-in-out"'
+```
+
+String literal types can be used in the same way to distinguish overloads:
+
+```ts
+function createElement(tagName: "img"): HTMLImageElement;
+function createElement(tagName: "input"): HTMLInputElement;
+// ... more overloads ...
+function createElement(tagName: string): Element {
+    // ... code goes here ...
+}
+```
+
 # Polymorphic `this` types
 
 A polymorphic `this` type represents a type that is the *subtype* of the containing class or interface.

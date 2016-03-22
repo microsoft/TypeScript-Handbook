@@ -38,6 +38,10 @@ Some examples include:
 A relative import is resolved relative to the importing file and *cannot* resolve to an ambient module declaration.
 You should use relative imports for your own modules that are guaranteed to maintain their relative location at runtime.
 
+A non-relative import can be resolved relative to `baseUrl`, or through path mapping, which we'll cover below.
+They can also resolve to [ambient module declarations](./Modules.md#ambient-modules).
+Use non-relative paths when importing any of your external dependnecies.
+
 ## Module Resolution Strategies
 
 There are two possible module resolution strategies: [Node](#node) and [Classic](#classic).
@@ -166,6 +170,214 @@ So `import { b } from "moduleB"` in source file `/src/moduleA.ts` would result i
 
 Don't be intimidated by the number of steps here - TypeScript is still only jumping up directories twice at steps (8) and (15).
 This is really no more complex than what Node.js itself is doing.
+
+## Additional module resolution flags
+
+A project source layout sometimes does not match that of the output.
+Usually a set of build steps result in generating the final output.
+These include compiling `.ts` files into `.js`, and copying dependencies from different source locations to a single output location.
+The net result is that modules at runtime may have different names than the source files containing their definitions.
+Or module paths in the final output may not match their corresponding source file paths at compile time.
+
+The TypeScript compiler has a set of additional flags to *inform* the compiler of transformations that are expected to happen to the sources to generate the final output.
+
+It is important to note that the compiler will *not* perform any of these transformations;
+it just uses these pieces of information to guide the process of resolving a module import to its definition file.
+
+### Base URL
+
+Using a `baseUrl` is a common practice in applications using AMD module loaders where modules are "deployed" to a single folder at run-time.
+The sources of these modules can live in different directories, but a build script will put them all together.
+
+Setting `baseUrl` informs the compiler where to find modules.
+All module imports with non-relative names are assumed to be relative to the `baseUrl`.
+
+Value of *baseUrl* is determined as either:
+
+* value of *baseUrl* command line argument (if given path is relative, it is computed based on current directory)
+* value of *baseUrl* property in 'tsconfig.json' (if given path is relative, it is computed based on the location of 'tsconfig.json')
+
+Note that relative module imports are not impacted by setting the baseUrl, as they are always resolved relative to their importing files.
+
+You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/docs/api.html#config-baseUrl) and [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#baseurl) documentation.
+
+### Path mapping
+
+Sometimes modules are not directly located under *baseUrl*.
+For instance, an import to a module `"jquery"` would be translated at runtime to `"node_modules\jquery\dist\jquery.slim.min.js"`.
+Loaders use a mapping configuration to map module names to files at run-time, see [RequireJs documentation](http://requirejs.org/docs/api.html#config-paths) and [SystemJS documentation](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#map-config).
+
+The TypeScript compiler supports the declaration of such mappings using `"paths"` property in `tsconfig.json` files.
+Here is an example for how to specify the `"paths"` property for `jquery`.
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "jquery": ["node_modules/jquery/dist/jquery.d.ts"]
+    }
+}
+```
+
+Using `"paths"` also allow for more sophisticated mappings including multiple fall back locations.
+Consider a project configuration where only some modules are available in one location, and the rest are in another.
+A build step would put them all together in one place.
+The project layout may look like:
+
+```tree
+projectRoot
+├── folder1
+│   ├── file1.ts (imports 'folder1/file2' and 'folder2/file3')
+│   └── file2.ts
+├── generated
+│   ├── folder1
+│   └── folder2
+│       └── file3.ts
+└── tsconfig.json
+```
+
+The corresponding `tsconfig.json` would look like:
+
+```json
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                    "*",
+                    "generated/*"
+                ]
+            }
+    }
+}
+```
+
+This tells the compiler for any module import that matches the pattern `"*"` (i.e. all values), to look in two locations:
+
+ 1. `"*"`: meaning the same name unchanged, so map `<moduleName>` => `<baseUrl>\<moduleName>`
+ 2. `"generated\*"` meaning the module name with an appended prefix "generated", so map `<moduleName>` => `<baseUrl>\generated\<moduleName>`
+
+Following this logic, the compiler will attempt to resolve the two imports as such:
+
+* import 'folder1/file2'
+  1. pattern '*' is matched and wildcard captures the whole module name
+  2. try first substitution in the list: '*' -> `folder1/file2`
+  3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder1/file2.ts`.
+  4. File exists. Done.
+* import 'folder2/file2'
+  1. pattern '*' is matched and wildcard captures the whole module name
+  2. try first substitution in the list: '*' -> `folder2/file3`
+  3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder2/file3.ts`.
+  4. File does not exist, move to the second substitution
+  5. second substitution 'generated/*' -> `generated/folder2/file3`
+  6. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/generated/folder2/file3.ts`.
+  7. File exists. Done.
+
+### Virtual Directories with `rootDirs`
+
+Sometimes the project sources from multiple directories at compile time are all combined to generate a single output directory.
+This can be viewed as a set of source directories create a "virtual" directory.
+
+Using 'rootDirs', you can inform the compiler of the *roots* making up this "virtual" directory;
+and thus the compiler can resolve relative modules imports within these "virtual" directories *as if* were merged together in one directory.
+
+For example consider this project structure:
+
+```tree
+ src
+ └── views
+     └── view1.ts (imports './template1')
+     └── view2.ts
+
+ generated
+ └── templates
+         └── views
+             └── template1.ts (imports './view2')
+```
+
+Files in `src/views` are user code for some UI controls.
+Files in `generated/templates` are UI template binding code auto-generated by a template generator as part of the build.
+A build step will copy the files in `/src/views` and `/generated/templates/views` to the same directory in the output.
+At run-time, a view can expect its template to exist next to it, and thus should import it using a relative name as `"./template"`.
+
+To specify this relationship to the compiler, use`"rootDirs"`.
+`"rootDirs"` specify a list of *roots* whose contents are expected to merge at run-time.
+So following our example, the `tsconfig.json` file should look like:
+
+```json
+{
+  "compilerOptions": {
+    "rootDirs": [
+      "src/views",
+      "generated/templates"
+    ]
+  }
+}
+```
+
+Every time the compiler sees a relative module import in a subfolder of one of the `rootDirs`, it will attempt to look for this import in each of the entries of `rootDirs`.
+
+## Tracing module resolution
+
+As discussed earlier, the compiler can visit files outside the current folder when resolving a module.
+This can be hard when diagnosing why a module is not resolved, or is resolved to an incorrect definition.
+Enabling the compiler module resolution tracing using `--traceModuleResolution` provides insight in what happened during the module resolution process.
+
+Let's say we have a sample application that uses the `typescript` module.
+`app.ts` has an import like `import * as ts from "typescript"`.
+
+```tree
+│   tsconfig.json
+├───node_modules
+│   └───typescript
+│       └───lib
+│               typescript.d.ts
+└───src
+        app.ts
+```
+
+Invoking the compiler with `--traceModuleResolution`
+
+```shell
+tsc --traceModuleResolution
+```
+
+Results in an output as such:
+
+```txt
+======== Resolving module 'typescript' from 'src/app.ts'. ========
+Module resolution kind is not specified, using 'NodeJs'.
+Loading module 'typescript' from 'node_modules' folder.
+File 'src/node_modules/typescript.ts' does not exist.
+File 'src/node_modules/typescript.tsx' does not exist.
+File 'src/node_modules/typescript.d.ts' does not exist.
+File 'src/node_modules/typescript/package.json' does not exist.
+File 'node_modules/typescript.ts' does not exist.
+File 'node_modules/typescript.tsx' does not exist.
+File 'node_modules/typescript.d.ts' does not exist.
+Found 'package.json' at 'node_modules/typescript/package.json'.
+'package.json' has 'typings' field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
+File 'node_modules/typescript/lib/typescript.d.ts' exist - use it as a module resolution result.
+======== Module name 'typescript' was successfully resolved to 'node_modules/typescript/lib/typescript.d.ts'. ========
+```
+
+#### Things to look out for
+
+* Name and location of the import
+
+ > ======== Resolving module **'typescript'** from **'src/app.ts'**. ========
+
+* The strategy the compiler is following
+
+ > Module resolution kind is not specified, using **'NodeJs'**.
+
+* Loading of typings from npm packages
+
+ > 'package.json' has **'typings'** field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
+
+* Final result
+
+ > ======== Module name 'typescript' was **successfully resolved** to 'node_modules/typescript/lib/typescript.d.ts'. ========
 
 ## Using `--noResolve`
 

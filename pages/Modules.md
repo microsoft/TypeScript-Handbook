@@ -148,7 +148,7 @@ $("button.continue").html( "Next Step..." );
 ```
 
 Classes and function declarations can be authored directly as default exports.
-Defualt export class and function declaration names are optional.
+Default export class and function declaration names are optional.
 
 ##### ZipCodeValidator.ts
 
@@ -252,7 +252,6 @@ strings.forEach(s => {
 });
 ```
 
-
 # Code Generation for Modules
 
 Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
@@ -336,7 +335,6 @@ tsc --module commonjs Test.ts
 
 When compiled, each module will become a separate `.js` file.
 As with reference tags, the compiler will follow `import` statements to compile dependent files.
-
 
 ##### Validation.ts
 
@@ -564,7 +562,7 @@ Conversly when importing:
 #### Consumer.ts
 
 ```ts
-import { SomeType, SomeFunc } from "./MyThings";
+import { SomeType, someFunc } from "./MyThings";
 let x = new SomeType();
 let y = someFunc();
 ```
@@ -718,7 +716,6 @@ export { test } from "./Calculator";
 
 The new module `ProgrammerCalculator` exports an API shape similar to that of the original `Calculator` module, but does not augment any objects in the original module.
 Here is a test for our ProgrammerCalculator class:
-
 
 #### TestProgrammerCalculator.ts
 

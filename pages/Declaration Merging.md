@@ -1,15 +1,13 @@
 # Introduction
 
-Some of the unique concepts in TypeScript come from the need to describe what is happening to the shape of JavaScript objects at the type level.
+Some of the unique concepts in TypeScript describe the shape of JavaScript objects at the type level.
 One example that is especially unique to TypeScript is the concept of 'declaration merging'.
-Understanding this concept will give you an advantage when working with existing JavaScript in your TypeScript.
+Understanding this concept will give you an advantage when working with existing JavaScript.
 It also opens the door to more advanced abstraction concepts.
 
-First, before we get into how declarations merge, let's first describe what we mean by 'declaration merging'.
-
-For the purposes of this article, declaration merging specifically means that the compiler is doing the work of merging two separate declarations declared with the same name into a single definition.
+For the purposes of this article, "declaration merging" means that the compiler merges two separate declarations declared with the same name into a single definition.
 This merged definition has the features of both of the original declarations.
-Declaration merging is not limited to just two declarations, as any number of declarations can be merged.
+Any number of declarations can be merged; it's not limited to just two declarations.
 
 # Basic Concepts
 
@@ -52,37 +50,68 @@ Non-function members of the interfaces must be unique.
 The compiler will issue an error if the interfaces both declare a non-function member of the same name.
 
 For function members, each function member of the same name is treated as describing an overload of the same function.
-Of note, too, is that in the case of interface `A` merging with later interface `A` (here called `A'`), the overload set of `A'` will have a higher precedence than that of interface `A`.
+Of note, too, is that in the case of interface `A` merging with later interface `A`, the second interface will have a higher precedence than the first.
 
 That is, in the example:
 
 ```ts
-interface Document {
-    createElement(tagName: any): Element;
+interface Cloner {
+    clone(animal: Animal): Animal;
 }
-interface Document {
-    createElement(tagName: string): HTMLElement;
+
+interface Cloner {
+    clone(animal: Sheep): Sheep;
 }
-interface Document {
-    createElement(tagName: "div"): HTMLDivElement;
-    createElement(tagName: "span"): HTMLSpanElement;
-    createElement(tagName: "canvas"): HTMLCanvasElement;
+
+interface Cloner {
+    clone(animal: Dog): Dog;
+    clone(animal: Cat): Cat;
 }
 ```
 
-The two interfaces will merge to create a single declaration.
-Notice that the elements of each group maintains the same order, just the groups themselves are merged with later overload sets coming first:
+The three interfaces will merge to create a single declaration as so:
+
+```ts
+interface Cloner {
+    clone(animal: Dog): Dog;
+    clone(animal: Cat): Cat;
+    clone(animal: Sheep): Sheep;
+    clone(animal: Animal): Animal;
+}
+```
+
+Notice that the elements of each group maintains the same order, but the groups themselves are merged with later overload sets ordered first.
+
+One exception to this rule is specialized signatures.
+If a signature has a parameter whose type is a *single* string literal type (e.g. not a union of string literals), then it will be bubbled toward the top of its merged overload list.
+
+For instance, the following interfaces will merge together:
 
 ```ts
 interface Document {
+    createElement(tagName: any): Element;
+}
+interface Document {
     createElement(tagName: "div"): HTMLDivElement;
     createElement(tagName: "span"): HTMLSpanElement;
+}
+interface Document {
+    createElement(tagName: string): HTMLElement;
     createElement(tagName: "canvas"): HTMLCanvasElement;
+}
+```
+
+The resulting merged declaration of `Document` will be the following:
+
+```ts
+interface Document {
+    createElement(tagName: "canvas"): HTMLCanvasElement;
+    createElement(tagName: "div"): HTMLDivElement;
+    createElement(tagName: "span"): HTMLSpanElement;
     createElement(tagName: string): HTMLElement;
     createElement(tagName: any): Element;
 }
 ```
-
 
 # Merging Namespaces
 
@@ -91,7 +120,7 @@ Since namespaces create both a namespace and a value, we need to understand how 
 
 To merge the namespaces, type definitions from exported interfaces declared in each namespace are themselves merged, forming a single namespace with merged interface definitions inside.
 
-To merge the value, at each declaration site, if a namespace already exists with the given name, it is further extended by taking the existing namespace and adding the exported members of the second namespace to the first.
+To merge the namespace value, at each declaration site, if a namespace already exists with the given name, it is further extended by taking the existing namespace and adding the exported members of the second namespace to the first.
 
 The declaration merge of `Animals` in this example:
 
@@ -117,8 +146,8 @@ namespace Animals {
 }
 ```
 
-This model of namespace merging is a helpful starting place, but to get a more complete picture we need to also understand what happens with non-exported members.
-Non-exported members are only visible in the original (un-merged) namespace. This means that after merging, merged members that came from other declarations can not see non-exported members.
+This model of namespace merging is a helpful starting place, but we also need to understand what happens with non-exported members.
+Non-exported members are only visible in the original (un-merged) namespace. This means that after merging, merged members that came from other declarations cannot see non-exported members.
 
 We can see this more clearly in this example:
 
@@ -147,7 +176,8 @@ Namespaces are flexible enough to also merge with other types of declarations.
 To do so, the namespace declaration must follow the declaration it will merge with. The resulting declaration has properties of both declaration types.
 TypeScript uses this capability to model some of patterns in JavaScript as well as other programming languages.
 
-The first namespace merge we'll cover is merging a namespace with a class.
+## Merging Namespaces with Classes
+
 This gives the user a way of describing inner classes.
 
 ```ts
@@ -209,5 +239,75 @@ namespace Color {
 # Disallowed Merges
 
 Not all merges are allowed in TypeScript.
-Currently, classes can not merge with other classes, variables and classes can not merge, nor can interfaces and classes.
-For information on mimicking classes merging, see the [Mixins in TypeScript] section.
+Currently, classes can not merge with other classes or with variables.
+For information on mimicking class merging, see the [Mixins in TypeScript] section.
+
+# Module Augmentation
+
+Although JavaScript modules do not support merging, you can patch existing objects by importing and then updating them.
+Let's look at a toy Observable example:
+
+```js
+// observable.js
+export class Observable<T> {
+    // ... implementation left as an exercise for the reader ...
+}
+
+// map.js
+import { Observable } from "./observable";
+Observable.prototype.map = function (f) {
+    // ... another exercise for the reader
+}
+```
+
+This works fine in TypeScript too, but the compiler doesn't know about `Observable.prototype.map`.
+You can use module augmentation to tell the compiler about it:
+
+```ts
+// observable.ts stays the same
+// map.ts
+import { Observable } from "./observable";
+declare module "./observable" {
+    interface Observable<T> {
+        map<U>(f: (x: T) => U): Observable<U>;
+    }
+}
+Observable.prototype.map = function (f) {
+    // ... another exercise for the reader
+}
+
+
+// consumer.ts
+import { Observable } from "./observable";
+import "./map";
+let o: Observable<number>;
+o.map(x => x.toFixed());
+```
+
+The module name is resolved the same way as module specifiers in `import`/`export`.
+See [Modules](./Modules.md) for more information.
+Then the declarations in an augmentation are merged as if they were declared in the same file as the original.
+However, you can't declare new top-level declarations in the augmentation -- just patches to existing declarations.
+
+## Global augmentation
+
+You can also add declarations to the global scope from inside a module:
+
+```ts
+// observable.ts
+export class Observable<T> {
+    // ... still no implementation ...
+}
+
+declare global {
+    interface Array<T> {
+        toObservable(): Observable<T>;
+    }
+}
+
+Array.prototype.toObservable = function () {
+    // ...
+}
+```
+
+Global augmentations have the same behavior and limits as module augmentations.

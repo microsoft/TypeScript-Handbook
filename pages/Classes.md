@@ -192,7 +192,8 @@ Notice that while we can't use `name` from outside of `Person`, we can still use
 ## Parameter properties
 
 In our last example, we had to declare a private member `name` and a constructor parameter `theName`, and we then immediately set `name` to `theName`.
-This turns out to be a very common practice. *Parameter properties* let you create and initialize a member in one place.
+This turns out to be a very common practice.
+*Parameter properties* let you create and initialize a member in one place.
 Here's a further revision of the previous `Animal` class using a parameter property:
 
 ```ts
@@ -457,4 +458,3 @@ interface Point3d extends Point {
 
 let point3d: Point3d = {x: 1, y: 2, z: 3};
 ```
-

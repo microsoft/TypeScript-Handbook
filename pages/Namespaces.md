@@ -225,7 +225,6 @@ Notice that we don't use the `require` keyword; instead we assign directly from 
 This is similar to using `var`, but also works on the type and namespace meanings of the imported symbol.
 Importantly, for values, `import` is a distinct reference from the original symbol, so changes to an aliased `var` will not be reflected in the original variable.
 
-
 # Working with Other JavaScript Libraries
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.

@@ -38,10 +38,6 @@ Some examples include:
 A relative import is resolved relative to the importing file and *cannot* resolve to an ambient module declaration.
 You should use relative imports for your own modules that are guaranteed to maintain their relative location at runtime.
 
-A non-relative import can be resolved relative to `baseUrl`, or through path mapping, which we'll cover below.
-They can also resolve to [ambient module declarations](./Modules.md#ambient-modules).
-Use non-relative paths when importing any of your external dependnecies.
-
 ## Module Resolution Strategies
 
 There are two possible module resolution strategies: [Node](#node) and [Classic](#classic).

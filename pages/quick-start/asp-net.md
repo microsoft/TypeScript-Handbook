@@ -12,7 +12,7 @@ This quickstart uses Visual Studio 2015.
 3. Choose Visual C#
 4. Choose ASP.NET Web Application
 
-    ![Create new ASP.NET project](new-asp-project.PNG)
+    ![Create new ASP.NET project](new-asp-project.png)
 
 5. Choose MVC
     I unchecked "Host in the cloud" since this will be a local demo.
@@ -60,6 +60,7 @@ Check "Redirect JavaScript output to directory" and give the value: `./Scripts/A
 ## Call the script from a view
 
 1. In the Solution Explorer, open Views | Shared | _Layout.cshtml.
+
     ![Open _Layout.cshtml](open-layout.png)
 
 2. Inside the `<head>` element, add the line:
@@ -68,10 +69,11 @@ Check "Redirect JavaScript output to directory" and give the value: `./Scripts/A
     @Scripts.Render("~/Scripts/App/app.js");
     ```
 
-2. In the Solution Explorer, open Views | Home | Index.cshtml.
+3. In the Solution Explorer, open Views | Home | Index.cshtml.
+
     ![Open Index.cshtml](open-index.png)
 
-3. At the top, add the following code after the `@{ ... }`:
+4. At the top, add the following code after the `@{ ... }`:
 
 ```html
 <div id="message"></div>

@@ -145,15 +145,14 @@ Next we'll include Angular and write a simple Angular app.
     ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
     ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
     ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
-    
+
 3. Use PackageInstaller to install typings for es6-shim.
 
     Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
     In PackageInstaller, choose Typing instead of npm.
     Then type "es6-shim":
-    
-    ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
 
+    ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
 
 ## Update tsconfig.json
 

@@ -33,8 +33,8 @@ We'll just call it src.
 
 ## Add TypeScript code
 
-Right click on src and click New Item.
-Then choose TypeScript File and name the file app.ts.
+Right click on `src` and click New Item.
+Then choose TypeScript File and name the file `app.ts`.
 
 ![New item](new-item.png)
 
@@ -52,11 +52,48 @@ function sayHello() {
 
 ## Set up the build
 
-Right-click on the project node and click Properties.
-Then choose the TypeScript Build tab.
-Check "Redirect JavaScript output to directory" and give the value: `./Scripts/App`.
+Right click on the project and click New Item.
+Then choose TypeScript Configuration File and use the default name `tsconfig.json`.
 
-![Redirect JavaScript Output in Project Properties](redirect-javascript-output.png)
+![Create tsconfig.json](new-tsconfig.png)
+
+The default `tsconfig.json` should look like this:
+
+```json
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ]
+}
+```
+
+We're going to explicitly list the source files in this demo, as well as turn on `"noImplicitAny"`.
+noImplicitAny is good idea whenever you're writing new code -- you can make sure that you don't write any untyped code by mistake.
+We also need to specify that `"outDir": "./Scripts/App"`:
+
+```json
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "outDir": "./Scripts/App"
+  },
+  "files": [
+    "./src/app.ts",
+  ]
+}
+```
 
 ## Call the script from a view
 
@@ -103,46 +140,53 @@ Next we'll include Angular and write a simple Angular app.
 
 1. Install [PackageInstaller](https://github.com/madskristensen/PackageInstaller).
 
-2. Use PackageInstaller to install Angular 2 and systemjs.
+2. Use PackageInstaller to install Angular 2, systemjs and Typings.
 
     ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
     ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
+    ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
+    
+3. Use PackageInstaller to install typings for es6-shim.
 
-## Enable decorator support
+    Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
+    In PackageInstaller, choose Typing instead of npm.
+    Then type "es6-shim":
+    
+    ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
 
-TypeScript's support for decorators is still experimental, so you'll need to manually edit the csproj to enable it.
-To do this, edit the project by right-clicking 'Unload' and then 'Edit csproj'.
-Then add the following code inside the `PropertyGroup` that contains TypeScript build settings (`TypeScriptTarget`, etc) after the last line (`<TypeScriptSourceRoot />`):
 
-```xml
-<TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
+## Update tsconfig.json
+
+Now that Angular 2 and its dependencies are installed, we need to enable TypeScript's experimental support for decorators and include the es6-shim typings.
+In the future decorators and ES6 will be the default and these settings will not be needed.
+Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"./typings/main.d.ts"` to the `"files"` section.
+Finally, we need to add a new entry in `"files"` for another file, `"./src/model.ts"`, that we will create.
+The tsconfig should now look like this:
+
+```json
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "./Scripts/App"
+  },
+  "files": [
+    "./src/app.ts",
+    "./src/model.ts",
+    "./typings/main.d.ts"
+  ]
+}
 ```
-
-The resulting PropertyGroup should look like this:
-
-```xml
-  <PropertyGroup>
-    <TypeScriptTarget>ES5</TypeScriptTarget>
-    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
-    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
-    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-    <TypeScriptOutFile />
-    <TypeScriptOutDir>./Scripts/App</TypeScriptOutDir>
-    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
-    <TypeScriptSourceMap>True</TypeScriptSourceMap>
-    <TypeScriptMapRoot />
-    <TypeScriptSourceRoot />
-    <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
-  </PropertyGroup>
-```
-
-The last line of the PropertyGroup is new.
 
 ## Add a CopyFiles target to the build
 
+Finally, we need to make sure that the Angular files are copied as part of the build.
+To do this, edit the project by right-clicking 'Unload' and then 'Edit csproj'.
 After the TypeScript configuration PropertyGroup, add a new ItemGroup and Target to copy the angular files.
 
 ```xml
@@ -165,7 +209,6 @@ You should now see node_modules in the Solution Explorer.
 First, change the code in `app.ts` to:
 
 ```ts
-///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
 import {Component} from "angular2/core"
 import {bootstrap} from "angular2/platform/browser"
 import {MyModel} from "./model"
@@ -187,14 +230,10 @@ bootstrap(MyApp);
 Then add another TypeScript file in `src` named `model.ts`:
 
 ```ts
-///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
 export class MyModel {
     compiler = "TypeScript";
 }
 ```
-
-This code creates a tiny Angular 2 app.
-Note that the [triple-slash references](Triple-Slash Directives.md) are a workaround for [RxJS issue #1270](https://github.com/ReactiveX/RxJS/issues/1270) that is only needed until Angular 2 upgrades to RxJS beta.2.
 
 Finally, change the code in `Views/Home/Index.cshtml` to the following:
 

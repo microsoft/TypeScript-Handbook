@@ -57,27 +57,7 @@ Then choose TypeScript Configuration File and use the default name `tsconfig.jso
 
 ![Create tsconfig.json](new-tsconfig.png)
 
-The default `tsconfig.json` should look like this:
-
-```json
-{
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "target": "es5"
-  },
-  "exclude": [
-    "node_modules",
-    "wwwroot"
-  ]
-}
-```
-
-We're going to explicitly list the source files in this demo, as well as turn on `"noImplicitAny"`.
-noImplicitAny is good idea whenever you're writing new code -- you can make sure that you don't write any untyped code by mistake.
-We also need to specify that `"outDir": "./Scripts/App"`:
+Replace the default `tsconfig.json` with the following:
 
 ```json
 {
@@ -91,9 +71,20 @@ We also need to specify that `"outDir": "./Scripts/App"`:
   },
   "files": [
     "./src/app.ts",
-  ]
+  ],
+  "compileOnSave": true
 }
 ```
+
+This is similar to the default, with the following differences:
+
+1. It sets `"noImplicitAny": true`.
+2. It specifies that `"outDir": "./Scripts/App"`.
+3. It explicitly lists `"files"` instead of relying on `"excludes"`.
+4. It sets `"compileOnSave": true`.
+
+`"noImplicitAny"` is good idea whenever you're writing new code -- you can make sure that you don't write any untyped code by mistake.
+`"compileOnSave"` makes it easy to update your code in a running web app.
 
 ## Call the script from a view
 

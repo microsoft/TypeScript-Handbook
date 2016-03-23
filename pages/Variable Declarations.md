@@ -539,15 +539,12 @@ let {a, b}: {a: string, b: number} = o;
 Default values let you specify a default value in case a property is undefined:
 
 ```ts
-o = {a: "foo", c: "bar"};
-let {a, b: newName = 1001}: {a: string, b?: number} = o;
+function keepWholeObject(wholeObject: {a: string, b?: number}) {
+    let {a, b = 1001} = wholeObject;
+}
 ```
 
-Note that in this example, the type annotation is required because otherwise the compiler will not expect the `b` property to come from the object `o`.
-
-Use destructuring with care.
-Even though you can nest destructuring, deeply nested expressions get *really* hard to understand even without piling on renaming, default values, and type annotations.
-Try to keep destructuring assignments small and simple.
+`keepWholeObject` now has a variable for `wholeObject` as well as the properties `a` and `b`, even if `b` is undefined.
 
 ## Function declarations
 
@@ -565,19 +562,26 @@ But specifying defaults is more common for parameters, and getting defaults righ
 First of all, you need to remember to put the type before the default value.
 
 ```ts
-function f({a, b}: C = {a: "", b: 0}): void {
+function f({a, b} = {a: "", b: 0}): void {
     // ...
 }
 f(); // ok, default to {a: "", b: 0}
 ```
 
-Then, you need to remember to give a default for optional properties on the property instead of the main initializer.
+Then, you need to remember to give a default for optional properties on the destructured property instead of the main initializer.
 Remember that `C` was defined with `b` optional:
 
 ```ts
-function f({a, b = 0}: C = {a: ""}): void {
+function f({a, b = 0} = {a: ""}): void {
     // ...
 }
 f({a: "yes"}) // ok, default b = 0
 f() // ok, default to {a: ""}, which then defaults b = 0
+f({}) // error, 'a' is required if you supply an argument
 ```
+
+Use destructuring with care.
+As the previous example demonstrates, anything but the simplest destructuring expressions have a lot of corner cases.
+This is especially true with deeply nested destructuring, which gets *really* hard to understand even without piling on renaming, default values, and type annotations.
+Try to keep destructuring expressions small and simple.
+You can always write the assignments that destructuring would generate yourself.

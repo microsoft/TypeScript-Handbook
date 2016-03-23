@@ -15,12 +15,13 @@ This quickstart uses Visual Studio 2015.
     ![Create new ASP.NET project](new-asp-project.png)
 
 5. Choose MVC
+
     I unchecked "Host in the cloud" since this will be a local demo.
     ![Use MVC template](new-asp-project-template.png)
 
 Run the application and make sure that it works.
 
-# ASP.NET 4 with TypeScript
+# Add TypeScript
 
 The next step is to add a folder for TypeScript.
 
@@ -59,23 +60,17 @@ Check "Redirect JavaScript output to directory" and give the value: `./Scripts/A
 
 ## Call the script from a view
 
-1. In the Solution Explorer, open Views | Shared | _Layout.cshtml.
-
-    ![Open _Layout.cshtml](open-layout.png)
-
-2. Inside the `<head>` element, add the line:
-
-    ```html
-    @Scripts.Render("~/Scripts/App/app.js");
-    ```
-
-3. In the Solution Explorer, open Views | Home | Index.cshtml.
+1. In the Solution Explorer, open Views | Home | Index.cshtml.
 
     ![Open Index.cshtml](open-index.png)
 
-4. At the top, add the following code after the `@{ ... }`:
+2. Change the code to be the following:
 
 ```html
+@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/App/app.js"></script>
 <div id="message"></div>
 <div>
     Compiler: <input id="compiler" value="TypeScript" onkeyup="document.getElementById('message').innerText = sayHello()" /><br />
@@ -102,7 +97,7 @@ Check "Redirect JavaScript output to directory" and give the value: `./Scripts/A
 That's all you need to know to include basic TypeScript in your ASP.NET project.
 Next we'll include Angular and write a simple Angular app.
 
-# ASP.NET 4 with TypeScript with Angular 2
+# Add Angular 2
 
 ## Download packages from NPM
 
@@ -113,23 +108,19 @@ Next we'll include Angular and write a simple Angular app.
     ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
     ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
 
-## Add Angular 2 to the build
-
-### Enable decorator support
+## Enable decorator support
 
 TypeScript's support for decorators is still experimental, so you'll need to manually edit the csproj to enable it.
-
 To do this, edit the project by right-clicking 'Unload' and then 'Edit csproj'.
-
 Then add the following code inside the `PropertyGroup` that contains TypeScript build settings (`TypeScriptTarget`, etc) after the last line (`<TypeScriptSourceRoot />`):
 
-```
+```xml
 <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
 ```
 
 The resulting PropertyGroup should look like this:
 
-```
+```xml
   <PropertyGroup>
     <TypeScriptTarget>ES5</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
@@ -150,11 +141,11 @@ The resulting PropertyGroup should look like this:
 
 The last line of the PropertyGroup is new.
 
-### Add a CopyFiles target to the build
+## Add a CopyFiles target to the build
 
 After the TypeScript configuration PropertyGroup, add a new ItemGroup and Target to copy the angular files.
 
-```
+```xml
 <ItemGroup>
   <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\angular2\bundles\angular2.js"/>
   <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\angular2\bundles\angular2-polyfills.js"/>
@@ -169,28 +160,24 @@ After the TypeScript configuration PropertyGroup, add a new ItemGroup and Target
 Now right-click on the project and reload it.
 You should now see node_modules in the Solution Explorer.
 
-Temporarily set target to ES2015.
-OR find a promise.d.ts.
-Pretty sure Alex Eagle complained about this before.
-I should see what he said.
-
 ## Write a simple Angular app in TypeScript
 
 First, change the code in `app.ts` to:
 
 ```ts
+///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
 import {Component} from "angular2/core"
 import {bootstrap} from "angular2/platform/browser"
 import {MyModel} from "./model"
 
 @Component({
     selector: `my-app`,
-    template: `<div>Hello from {{getGreeting()}}</div>`
+    template: `<div>Hello from {{getCompiler()}}</div>`
 })
 class MyApp {
     model = new MyModel();
-    getGreeting() {
-        return this.model.greeting;
+    getCompiler() {
+        return this.model.compiler;
     }
 }
 
@@ -200,21 +187,38 @@ bootstrap(MyApp);
 Then add another TypeScript file in `src` named `model.ts`:
 
 ```ts
+///<reference path="../node_modules/angular2/typings/browser.d.ts"/>
 export class MyModel {
     compiler = "TypeScript";
 }
 ```
 
-## Reference Angular in ASP.NET
+This code creates a tiny Angular 2 app.
+Note that the [triple-slash references](Triple-Slash Directives.md) are a workaround for [RxJS issue #1270](https://github.com/ReactiveX/RxJS/issues/1270) that is only needed until Angular 2 upgrades to RxJS beta.2.
 
-4. Add TypeScript code for talking to Angular.
+Finally, change the code in `Views/Home/Index.cshtml` to the following:
 
-# ASP.NET 4 with TypeScript with gulp
+```html
+@{
+    ViewBag.Title = "Home Page";
+}
+<script src="~/Scripts/angular2-polyfills.js"></script>
+<script src="~/Scripts/system.src.js"></script>
+<script src="~/Scripts/rx.js"></script>
+<script src="~/Scripts/angular2.js"></script>
+<script>
+    System.config({
+        packages: {
+            '/Scripts/App': {
+                format: 'cjs',
+                defaultExtension: 'js'
+            }
+        }
+    });
+    System.import('/Scripts/App/app').then(null, console.error.bind(console));
+</script>
+<my-app>Loading...</my-app>
+```
 
-# ASP.NET 4 with TypeScript with gulp with browserify
-
-# ASP.NET 4 with TypeScript with gulp with browserify with minify
-
-# ASP.NET 4 with TypeScript with gulp with browserify with minify with Angular
-
-# ASP.NET Core with TypeScript
+This loads the app.
+When you run the ASP.NET application you should see a div that says "Loading..." and then updates to say "Hello from TypeScript".

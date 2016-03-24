@@ -84,7 +84,7 @@ This is similar to the default, with the following differences:
 
 `"noImplicitAny"` is good idea whenever you're writing new code &mdash; you can make sure that you don't write any untyped code by mistake.
 `"compileOnSave"` makes it easy to update your code in a running web app.
-See [the tsconfig.json documentation](../tsconfig.json.md) for more documentation.
+See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 
 ## Call the script from a view
 

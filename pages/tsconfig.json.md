@@ -84,7 +84,7 @@ Compiler options specified on the command line override those specified in the `
 
 ## `compileOnSave`
 
-Setting a top-level property `compileOnSave` signals to the IDE to generate all files for a given tsconfig.json upon saving. 
+Setting a top-level property `compileOnSave` signals to the IDE to generate all files for a given tsconfig.json upon saving.
 
 ```json
 {

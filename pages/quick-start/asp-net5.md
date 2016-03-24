@@ -132,7 +132,7 @@ Inside `"devDependencies"` add "gulp" and "del":
 }
 ```
 
-Visual Studio may start installing gulp and del as soon as you save the file.
+Visual Studio should start installing gulp and del as soon as you save the file.
 If not, right-click package.json and then "Restore Packages".
 
 ### Set up gulp
@@ -165,6 +165,11 @@ gulp.task('default', function () {
 
 The first line tells Visual Studio to run the task 'default' after the build finishes.
 (It also runs the task 'clean' when you ask Visual Studio to clean the build.)
+
+Now right click on `gulpfile.js` and click Task Runner Explorer.
+If 'default' and 'clean' tasks don't show up, refresh the explorer:
+
+![Refresh Task Runner Explorer](task-runner-explorer.png)
 
 ## Write an HTML page
 
@@ -210,74 +215,99 @@ Next we'll include Angular and write a simple Angular app.
 
 # Add Angular 2
 
-TODO: Done to here
+## Add NPM dependencies
 
-## Download packages from NPM
+Add the following `"dependencies"` to `package.json` to install Angular 2 and SystemJS:
 
-1. Install [PackageInstaller](https://github.com/madskristensen/PackageInstaller).
+```json
+  "dependencies": {
+    "angular2": "2.0.0-beta.11",
+    "systemjs": "0.19.24",
+  },
+```
 
-2. Use PackageInstaller to install Angular 2, systemjs and Typings.
+## Install typings for dependencies
 
-    ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
-    ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
-    ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
+Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
+Open a command prompt, then change directory to:
 
-3. Use PackageInstaller to install typings for es6-shim.
-
-    Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
-    In PackageInstaller, choose Typing instead of npm.
-    Then type "es6-shim":
-
-    ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
+```shell
+cd C:\Users\<you>\Documents\Visual Studio 2015\Projects\<app>\src\<app>
+npm install -g typings
+typings install es6-shim --ambient
+```
 
 ## Update tsconfig.json
 
 Now that Angular 2 and its dependencies are installed, we need to enable TypeScript's experimental support for decorators and include the es6-shim typings.
 In the future decorators and ES6 will be the default and these settings will not be needed.
-Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"./typings/main.d.ts"` to the `"files"` section.
-Finally, we need to add a new entry in `"files"` for another file, `"./src/model.ts"`, that we will create.
+Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"../typings/main.d.ts"` to the `"files"` section.
+Finally, we need to add a new entry in `"files"` for another file, `"./model.ts"`, that we will create.
 The tsconfig should now look like this:
 
 ```json
 {
   "compilerOptions": {
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noEmitOnError": true,
     "removeComments": false,
     "sourceMap": true,
-    "target": "es5",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "outDir": "./Scripts/App"
+    "target": "es5"
   },
   "files": [
-    "./src/app.ts",
-    "./src/model.ts",
-    "./typings/main.d.ts"
-  ]
+    "./app.ts",
+    "./model.ts",
+    "../typings/main.d.ts"
+  ],
+  "compileOnSave": true
 }
 ```
 
-## Add a CopyFiles target to the build
+## Add Angular to the gulp build
 
 Finally, we need to make sure that the Angular files are copied as part of the build.
-To do this, edit the project by right-clicking 'Unload' and then 'Edit csproj'.
-After the TypeScript configuration PropertyGroup, add a new ItemGroup and Target to copy the angular files.
+We need to add:
+
+1. The paths to the library files.
+2. Add a `lib` task to pipe the files to `wwwroot`.
+3. Add a dependendency on `lib` to the `default` task.
+
+The updated `gulpfile.js` should look like this:
 
 ```xml
-<ItemGroup>
-  <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\angular2\bundles\angular2.js"/>
-  <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\angular2\bundles\angular2-polyfills.js"/>
-  <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\systemjs\dist\system.src.js"/>
-  <NodeLib Include="$(MSBuildProjectDirectory)\node_modules\rxjs\bundles\Rx.js"/>
-</ItemGroup>
-<Target Name="CopyFiles" BeforeTargets="Build">
-  <Copy SourceFiles="@(NodeLib)" DestinationFolder="$(MSBuildProjectDirectory)\Scripts"/>
-</Target>
+/// <binding AfterBuild='default' Clean='clean' />
+/*
+This file is the main entry point for defining Gulp tasks and using Gulp plugins.
+Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
+*/
+
+var gulp = require('gulp');
+var del = require('del');
+
+var paths = {
+    scripts: ['scripts/**/*.js', 'scripts/**/*.ts', 'scripts/**/*.map'],
+    libs: ['node_modules/angular2/bundles/angular2.js',
+           'node_modules/angular2/bundles/angular2-polyfills.js',
+           'node_modules/systemjs/dist/system.src.js',
+           'node_modules/rxjs/bundles/Rx.js']
+};
+
+gulp.task('lib', function () {
+    gulp.src(paths.libs).pipe(gulp.dest('wwwroot/scripts/lib'))
+});
+
+gulp.task('clean', function () {
+    return del(['wwwroot/scripts/**/*']);
+});
+
+gulp.task('default', ['lib'], function () {
+    gulp.src(paths.scripts).pipe(gulp.dest('wwwroot/scripts'))
+});
 ```
 
-Now right-click on the project and reload it.
-You should now see node_modules in the Solution Explorer.
+Again, make sure that Task Runner Explorer sees the new `lib` task after you save the gulpfile.
 
 ## Write a simple Angular app in TypeScript
 
@@ -310,28 +340,34 @@ export class MyModel {
 }
 ```
 
-Finally, change the code in `Views/Home/Index.cshtml` to the following:
+Finally, change the code in `index.html` to the following:
 
 ```html
-@{
-    ViewBag.Title = "Home Page";
-}
-<script src="~/Scripts/angular2-polyfills.js"></script>
-<script src="~/Scripts/system.src.js"></script>
-<script src="~/Scripts/rx.js"></script>
-<script src="~/Scripts/angular2.js"></script>
-<script>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="scripts/lib/angular2-polyfills.js"></script>
+    <script src="scripts/lib/system.src.js"></script>
+    <script src="scripts/lib/rx.js"></script>
+    <script src="scripts/lib/angular2.js"></script>
+    <script>
     System.config({
         packages: {
-            '/Scripts/App': {
+            'scripts': {
                 format: 'cjs',
                 defaultExtension: 'js'
             }
         }
     });
-    System.import('/Scripts/App/app').then(null, console.error.bind(console));
-</script>
-<my-app>Loading...</my-app>
+    System.import('scripts/app').then(null, console.error.bind(console));
+    </script>
+    <title></title>
+</head>
+<body>
+    <my-app>Loading...</my-app>
+</body>
+</html>
 ```
 
 This loads the app.

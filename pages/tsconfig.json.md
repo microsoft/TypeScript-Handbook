@@ -82,6 +82,21 @@ A `tsconfig.json` file is permitted to be completely empty, which compiles all f
 
 Compiler options specified on the command line override those specified in the `tsconfig.json` file.
 
+## `compileOnSave`
+
+Setting a top-level property `compileOnSave` signals to the IDE to generate all files for a given tsconfig.json upon saving. 
+
+```json
+{
+   "compileOnSave": true,
+   "compilerOptions": {
+       "noImplicitAny" : true
+   }
+}
+```
+
+This feature is currently supported in Visual Studio 2015 with TypeScript 1.8.4 and above, and [atom-typescript](https://github.com/TypeStrong/atom-typescript/blob/master/docs/tsconfig.md#compileonsave) plugin.
+
 ## Schema
 
 Schema can be found at: [http://json.schemastore.org/tsconfig](http://json.schemastore.org/tsconfig)

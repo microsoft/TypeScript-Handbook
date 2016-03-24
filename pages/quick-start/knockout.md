@@ -171,7 +171,7 @@ Create a file at the root of `proj` named `index.html` with the following conten
 
 Notice there are three script tags.
 First, we're including RequireJS itself.
-Then we're mapping the paths of our external dependencies in `require-configure.js` so that RequireJS knows where to look for them.
+Then we're mapping the paths of our external dependencies in `require-config.js` so that RequireJS knows where to look for them.
 Finally, we're calling `require` with a list of modules we'd like to load.
 
 # Putting it all together

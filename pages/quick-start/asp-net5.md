@@ -259,6 +259,7 @@ The tsconfig should now look like this:
   "files": [
     "./app.ts",
     "./model.ts",
+    "./main.ts",
     "../typings/main.d.ts"
   ],
   "compileOnSave": true
@@ -315,7 +316,6 @@ First, change the code in `app.ts` to:
 
 ```ts
 import {Component} from "angular2/core"
-import {bootstrap} from "angular2/platform/browser"
 import {MyModel} from "./model"
 
 @Component({
@@ -328,8 +328,6 @@ class MyApp {
         return this.model.compiler;
     }
 }
-
-bootstrap(MyApp);
 ```
 
 Then add another TypeScript file in `src` named `model.ts`:
@@ -338,6 +336,14 @@ Then add another TypeScript file in `src` named `model.ts`:
 export class MyModel {
     compiler = "TypeScript";
 }
+```
+
+And then another TypeScript file in `src` named `main.ts`:
+
+```ts
+import {bootstrap} from "angular2/platform/browser";
+import {MyApp} from "./app";
+bootstrap(MyApp);
 ```
 
 Finally, change the code in `index.html` to the following:
@@ -360,7 +366,7 @@ Finally, change the code in `index.html` to the following:
             }
         }
     });
-    System.import('scripts/app').then(null, console.error.bind(console));
+    System.import('scripts/main').then(null, console.error.bind(console));
     </script>
     <title></title>
 </head>

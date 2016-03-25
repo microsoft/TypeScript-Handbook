@@ -104,7 +104,8 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es5"
+        "target": "es5",
+        "jsx": "react"
     },
     "files": [
         "./typings/main.d.ts",

@@ -460,7 +460,8 @@ second = input[1];
 Destructuring works with already-declared variables as well:
 
 ```ts
-[first, second] = input;
+// swap variables
+[first, second] = [second, input];
 ```
 
 And with parameters to a function:
@@ -509,6 +510,14 @@ let {a, b} = o;
 
 This creates new variables `a` and `b` from `o.a` and `o.b`.
 Notice that you can skip `c` if you don't need it.
+
+Like array destructuring, you can have assignment without declaration:
+
+```ts
+({a, b} = {a: "baz", b: 101});
+```
+
+However, because object destructuring syntax is ambiguous with the start of a block, you have to surround the whole statement with parentheses.
 
 ### Property renaming
 

@@ -9,17 +9,17 @@ Next, if your version of Visual Studio does not already have TypeScript, you can
 
 ## Create a new project
 
-1. Choose File
-2. Choose New Project (Ctrl + Shift + N)
-3. Choose Visual C#
-4. Choose ASP.NET Web Application
+1. Choose **File**
+2. Choose **New Project** (Ctrl + Shift + N)
+3. Choose **Visual C#**
+4. Choose **ASP.NET Web Application**
 
-    ![Create new ASP.NET project](new-asp-project.png)
+   ![Create new ASP.NET project](new-asp-project.png)
 
-5. Choose ASP.NET 5 Empty
+5. Choose **ASP.NET 5 Empty**
 
-    I unchecked "Host in the cloud" since this will be a local demo.
-    ![Use empty template](new-asp-project-empty.png)
+   I unchecked "Host in the cloud" since this will be a local demo.
+   ![Use empty template](new-asp-project-empty.png)
 
 Run the application and make sure that it works.
 
@@ -64,8 +64,8 @@ We'll just call it scripts.
 
 ## Add TypeScript code
 
-Right click on `scripts` and click New Item.
-Then choose TypeScript File (it may be in the .NET Core section) and name the file `app.ts`.
+Right click on `scripts` and click **New Item**.
+Then choose **TypeScript File** (it may be in the .NET Core section) and name the file `app.ts`.
 
 ![New item](new-item.png)
 
@@ -86,8 +86,8 @@ function sayHello() {
 ### Configure the TypeScript compiler
 
 First we need to tell TypeScript how to build.
-Right click on the scripts folder and click New Item.
-Then choose TypeScript Configuration File and use the default name `tsconfig.json`.
+Right click on the scripts folder and click **New Item**.
+Then choose **TypeScript Configuration File** and use the default name `tsconfig.json`.
 
 ![Create tsconfig.json](new-tsconfig.png)
 
@@ -121,8 +121,8 @@ This is similar to the default, with the following differences:
 ### Set up NPM
 
 Now we need to set up NPM so we can download Javascript packages.
-Right click on the project and click New Item.
-Then choose NPM Configuration File and use the default name `package.json`.
+Right click on the project and click **New Item**.
+Then choose **NPM Configuration File** and use the default name `package.json`.
 Inside `"devDependencies"` add "gulp" and "del":
 
 ```json
@@ -133,11 +133,11 @@ Inside `"devDependencies"` add "gulp" and "del":
 ```
 
 Visual Studio should start installing gulp and del as soon as you save the file.
-If not, right-click package.json and then "Restore Packages".
+If not, right-click package.json and then **Restore Packages**.
 
 ### Set up gulp
 
-Finally, add a new JavaScript file named gulpfile.js.
+Finally, add a new JavaScript file named `gulpfile.js`.
 Put the following code inside:
 
 ```js
@@ -166,7 +166,7 @@ gulp.task('default', function () {
 The first line tells Visual Studio to run the task 'default' after the build finishes.
 (It also runs the task 'clean' when you ask Visual Studio to clean the build.)
 
-Now right click on `gulpfile.js` and click Task Runner Explorer.
+Now right click on `gulpfile.js` and click **Task Runner Explorer**.
 If 'default' and 'clean' tasks don't show up, refresh the explorer:
 
 ![Refresh Task Runner Explorer](task-runner-explorer.png)
@@ -203,7 +203,7 @@ Use the following code for `index.html`:
 
 ## Debug
 
-1. In Edge, press F12 and click the Debugger tab.
+1. In Edge, press F12 and click the **Debugger** tab.
 2. Look in the first localhost folder, then src/app.ts
 3. Put a breakpoint on the line with `return`.
 4. Type in the boxes and confirm that the breakpoint hits in TypeScript code and that inspection works correctly.
@@ -229,7 +229,7 @@ Add the following `"dependencies"` to `package.json` to install Angular 2 and Sy
 ## Install typings for dependencies
 
 Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
-Open a command prompt, then change directory to:
+Open a command prompt, then change directory to the app source:
 
 ```shell
 cd C:\Users\<you>\Documents\Visual Studio 2015\Projects\<app>\src\<app>

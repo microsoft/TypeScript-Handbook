@@ -169,6 +169,7 @@ The tsconfig should now look like this:
   "files": [
     "./src/app.ts",
     "./src/model.ts",
+    "./src/main.ts",
     "./typings/main.d.ts"
   ]
 }
@@ -201,7 +202,6 @@ First, change the code in `app.ts` to:
 
 ```ts
 import {Component} from "angular2/core"
-import {bootstrap} from "angular2/platform/browser"
 import {MyModel} from "./model"
 
 @Component({
@@ -214,8 +214,6 @@ class MyApp {
         return this.model.compiler;
     }
 }
-
-bootstrap(MyApp);
 ```
 
 Then add another TypeScript file in `src` named `model.ts`:
@@ -224,6 +222,14 @@ Then add another TypeScript file in `src` named `model.ts`:
 export class MyModel {
     compiler = "TypeScript";
 }
+```
+
+And then another TypeScript file in `src` named `main.ts`:
+
+```ts
+import {bootstrap} from "angular2/platform/browser";
+import {MyApp} from "./app";
+bootstrap(MyApp);
 ```
 
 Finally, change the code in `Views/Home/Index.cshtml` to the following:
@@ -245,7 +251,7 @@ Finally, change the code in `Views/Home/Index.cshtml` to the following:
             }
         }
     });
-    System.import('/Scripts/App/app').then(null, console.error.bind(console));
+    System.import('/Scripts/App/main').then(null, console.error.bind(console));
 </script>
 <my-app>Loading...</my-app>
 ```

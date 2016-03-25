@@ -7,14 +7,14 @@ This quickstart uses Visual Studio 2015.
 
 ## Create a new project
 
-1. Choose File
-2. Choose New Project (Ctrl + Shift + N)
-3. Choose Visual C#
-4. Choose ASP.NET Web Application
+1. Choose **File**
+2. Choose **New Project**
+3. Choose **Visual C#**
+4. Choose **ASP.NET Web Application**
 
    ![Create new ASP.NET project](new-asp-project.png)
 
-5. Choose MVC
+5. Choose **MVC**
 
     I unchecked "Host in the cloud" since this will be a local demo.
     ![Use MVC template](new-asp-project-template.png)
@@ -33,8 +33,8 @@ We'll just call it src.
 
 ## Add TypeScript code
 
-Right click on `src` and click New Item.
-Then choose TypeScript File and name the file `app.ts`.
+Right click on `src` and click **New Item**.
+Then choose **TypeScript File** and name the file `app.ts`.
 
 ![New item](new-item.png)
 
@@ -52,8 +52,8 @@ function sayHello() {
 
 ## Set up the build
 
-Right click on the project and click New Item.
-Then choose TypeScript Configuration File and use the default name `tsconfig.json`.
+Right click on the project and click **New Item**.
+Then choose **TypeScript Configuration File** and use the default name `tsconfig.json`.
 
 ![Create tsconfig.json](new-tsconfig.png)
 
@@ -88,9 +88,9 @@ See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 
 ## Call the script from a view
 
-1. In the Solution Explorer, open Views | Home | `Index.cshtml`.
+1. In the **Solution Explorer**, open **Views** | **Home** | `Index.cshtml`.
 
-    ![Open Index.cshtml](open-index.png)
+   ![Open Index.cshtml](open-index.png)
 
 2. Change the code to be the following:
 
@@ -115,7 +115,7 @@ See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 
 ## Debug
 
-1. In Edge, press F12 and click the Debugger tab.
+1. In Edge, press F12 and click the **Debugger** tab.
 2. Look in the first localhost folder, then src/app.ts
 3. Put a breakpoint on the line with `return`.
 4. Type in the boxes and confirm that the breakpoint hits in TypeScript code and that inspection works correctly.
@@ -133,17 +133,19 @@ Next we'll include Angular and write a simple Angular app.
 
 2. Use PackageInstaller to install Angular 2, systemjs and Typings.
 
-    ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
-    ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
-    ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
+   Right-click on the project, then click on **Quick Install Package**.
+
+   ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
+   ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
+   ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
 
 3. Use PackageInstaller to install typings for es6-shim.
 
-    Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
-    In PackageInstaller, choose Typing instead of npm.
-    Then type "es6-shim":
+   Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
+   In PackageInstaller, choose Typing instead of npm.
+   Then type "es6-shim":
 
-    ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
+   ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
 
 ## Update tsconfig.json
 

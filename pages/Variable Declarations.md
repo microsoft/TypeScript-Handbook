@@ -461,7 +461,7 @@ Destructuring works with already-declared variables as well:
 
 ```ts
 // swap variables
-[first, second] = [second, input];
+[first, second] = [second, first];
 ```
 
 And with parameters to a function:

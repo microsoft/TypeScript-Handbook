@@ -149,6 +149,9 @@ let mySquare = createSquare(squareOptions);
 
 Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
 
+One final way to get around the check is to add an index signature if you are sure that the object will *always* have properties with unknown names.
+We'll discuss index signatures in a bit.
+
 Keep in mind that for simple code like above, you probably shouldn't be trying to "get around" these checks.
 For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors are actually bugs.
 That means if you're running into excess property checking problems for something like option bags, you might need to revise some of your type declarations.
@@ -218,10 +221,11 @@ mySearch = function(src, sub) {
 }
 ```
 
-# Array Types
+# Indexable Types
 
-Similarly to how we can use interfaces to describe function types, we can also describe array types.
-Array types have an `index` type that describes the types allowed to index the object, along with the corresponding return type for accessing the index.
+Similarly to how we can use interfaces to describe function types, we can also describe types that we treat a bit like arrays.
+Indexable types have a signature called an *index signature* that describes the types we can use to index into the object, along with the corresponding return type for when we do perform indexing accesses.
+Let's take an example:
 
 ```ts
 interface StringArray {
@@ -230,14 +234,19 @@ interface StringArray {
 
 let myArray: StringArray;
 myArray = ["Bob", "Fred"];
+
+let myStr: string = myArray[0];
 ```
 
-There are two types of supported index types: string and number.
+Above, we have a `StringArray` interface that defines an index signature.
+This index signature states that when a `StringArray` is indexed with a `number`, it will return a `string`.
+
+There are two types of supported index signatures: string and number.
 It is possible to support both types of indexers, with the restriction that the type returned from the numeric indexer must be a subtype of the type returned from the string indexer.
 
 While string index signatures are a powerful way to describe the "dictionary" pattern, they also enforce that all properties match their return type.
 This is because a string index declares that `obj.property` is also available as `obj["property"]`.
-In this example, `name`'s type does not match the string index's type, and the type-checker gives an error:
+In the following example, `name`'s type does not match the string index's type, and the type-checker gives an error:
 
 ```ts
 interface NumberDictionary {

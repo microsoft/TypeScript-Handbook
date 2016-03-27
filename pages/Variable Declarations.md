@@ -431,3 +431,167 @@ On the other hand, `let` is not any longer to write out than `var`, and many use
 The majority of this handbook uses `let` declarations in that interest.
 
 Use your best judgement, and if applicable, consult the matter with the rest of your team.
+
+# Destructuring
+
+Another ECMAScript 2015 feature that TypeScript has is destructuring.
+For a complete reference, see [the article on the Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
+In this section, we'll give a short overview.
+
+## Array destructuring
+
+The simplest form of destructuring is array destructuring assignment:
+
+```ts
+let input = [1, 2];
+let [first, second] = input;
+console.log(first); // outputs 1
+console.log(second); // outputs 2
+```
+
+This creates two new variables named `first` and `second`.
+This is equivalent to using indexing, but is much more convenient:
+
+```ts
+first = input[0];
+second = input[1];
+```
+
+Destructuring works with already-declared variables as well:
+
+```ts
+// swap variables
+[first, second] = [second, first];
+```
+
+And with parameters to a function:
+
+```ts
+function f([first, second]: [number, number]) {
+    console.log(first);
+    console.log(second);
+}
+f(input);
+```
+
+You can create a variable for the remaining items in a list using the syntax `...name`:
+
+```ts
+let [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+console.log(rest); // outputs [ 2, 3, 4 ]
+```
+
+Of course, since this is JavaScript, you can just ignore trailing elements you don't care about:
+
+```ts
+let [first] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+```
+
+Or other elements:
+
+```ts
+let [, second, , fourth] = [1, 2, 3, 4];
+```
+
+## Object destructuring
+
+You can also destructure objects:
+
+```ts
+let o = {
+    a: "foo",
+    b: 12,
+    c: "bar"
+}
+let {a, b} = o;
+```
+
+This creates new variables `a` and `b` from `o.a` and `o.b`.
+Notice that you can skip `c` if you don't need it.
+
+Like array destructuring, you can have assignment without declaration:
+
+```ts
+({a, b} = {a: "baz", b: 101});
+```
+
+Notice that we had to surround this statement with parentheses.
+JavaScript normally parses a `{` as the start of block.
+
+### Property renaming
+
+You can also give different names to properties:
+
+```ts
+let {a: newName1, b: newName2} = o;
+```
+
+Here the syntax starts to get confusing.
+You can read `a: newName1` as "`a` as `newName1`".
+The direction is left-to-right, as if you had written:
+
+```ts
+let newName1 = o.a;
+let newName2 = o.b;
+```
+
+Confusingly, the colon here does *not* indicate the type.
+The type, if you specify it, still needs to be written after the entire destructuring:
+
+```ts
+let {a, b}: {a: string, b: number} = o;
+```
+
+### Default values
+
+Default values let you specify a default value in case a property is undefined:
+
+```ts
+function keepWholeObject(wholeObject: {a: string, b?: number}) {
+    let {a, b = 1001} = wholeObject;
+}
+```
+
+`keepWholeObject` now has a variable for `wholeObject` as well as the properties `a` and `b`, even if `b` is undefined.
+
+## Function declarations
+
+Destructuring also works in function declarations.
+For simple cases this is straightforward:
+
+```ts
+type C = {a: string, b?: number}
+function f({a, b}: C): void {
+    // ...
+}
+```
+
+But specifying defaults is more common for parameters, and getting defaults right with destructuring can be tricky.
+First of all, you need to remember to put the type before the default value.
+
+```ts
+function f({a, b} = {a: "", b: 0}): void {
+    // ...
+}
+f(); // ok, default to {a: "", b: 0}
+```
+
+Then, you need to remember to give a default for optional properties on the destructured property instead of the main initializer.
+Remember that `C` was defined with `b` optional:
+
+```ts
+function f({a, b = 0} = {a: ""}): void {
+    // ...
+}
+f({a: "yes"}) // ok, default b = 0
+f() // ok, default to {a: ""}, which then defaults b = 0
+f({}) // error, 'a' is required if you supply an argument
+```
+
+Use destructuring with care.
+As the previous example demonstrates, anything but the simplest destructuring expressions have a lot of corner cases.
+This is especially true with deeply nested destructuring, which gets *really* hard to understand even without piling on renaming, default values, and type annotations.
+Try to keep destructuring expressions small and simple.
+You can always write the assignments that destructuring would generate yourself.

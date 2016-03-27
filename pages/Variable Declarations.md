@@ -517,7 +517,8 @@ Like array destructuring, you can have assignment without declaration:
 ({a, b} = {a: "baz", b: 101});
 ```
 
-However, because object destructuring syntax is ambiguous with the start of a block, you have to surround the whole statement with parentheses.
+Notice that we had to surround this statement with parentheses.
+JavaScript normally parses a `{` as the start of block.
 
 ### Property renaming
 
@@ -537,7 +538,7 @@ let newName2 = o.b;
 ```
 
 Confusingly, the colon here does *not* indicate the type.
-The type, if you specify it, still needs to be specified after the entire destructuring:
+The type, if you specify it, still needs to be written after the entire destructuring:
 
 ```ts
 let {a, b}: {a: string, b: number} = o;

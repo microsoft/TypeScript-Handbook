@@ -1,4 +1,4 @@
-A nightly build from the [master](https://github.com/Microsoft/TypeScript/tree/master) branch is published at midnight PST to NPM and NuGet.
+A nightly build from the [TypeScript's `master`](https://github.com/Microsoft/TypeScript/tree/master) branch is published by midnight PST to NPM and NuGet.
 Here is how you can get it and use it with your tools.
 
 ## Using npm

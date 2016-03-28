@@ -157,7 +157,7 @@ We also have a new class `Employee` that looks identical to `Animal` in terms of
 We create some instances of these classes and then try to assign them to each other to see what will happen.
 Because `Animal` and `Rhino` share the `private` side of their shape from the same declaration of `private name: string` in `Animal`, they are compatible. However, this is not the case for `Employee`.
 When we try to assign from an `Employee` to `Animal` we get an error that these types are not compatible.
-Even though `Employee` also has a `private` member called `name`, it's not the as the one we declared in `Animal`.
+Even though `Employee` also has a `private` member called `name`, it's not the one we declared in `Animal`.
 
 ## Understanding `protected`
 

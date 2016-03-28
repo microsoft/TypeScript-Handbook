@@ -176,8 +176,8 @@ Create a file at the root of `proj` named `index.html` with the following conten
         <div id="example"></div>
 
         <!-- Dependencies -->
-        <script src="./node_modules/react/dist/react.js" />
-        <script src="./node_modules/react-dom/dist/react-dom.js" />
+        <script src="./node_modules/react/dist/react.js"></script>
+        <script src="./node_modules/react-dom/dist/react-dom.js"></script>
 
         <!-- Main -->
         <script src="./dist/bundle.js"></script>

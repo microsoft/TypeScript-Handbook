@@ -71,7 +71,9 @@ if (needZipValidation) {
 
 ## Converting From Namespaces
 
-If you're converting a program from namespaces to modules, the approach you take will vary depending on how complex the namespace usage in the original program was. If you have one namespace per file and no nested namespaces, see the next section for advice. If namespaces merge across multiple files or you hafe nested namespaces, look below for upgrade examples.
+If you're converting a program from namespaces to modules, the approach you take will vary depending on how complex the namespace usage in the original program was.
+If you have one namespace per file and no nested namespaces, see the next section for advice.
+If namespaces merge across multiple files or you hafe nested namespaces, look below for upgrade examples.
 
 ### Replace namespaces with modules
 

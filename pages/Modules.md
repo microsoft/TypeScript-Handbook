@@ -1,7 +1,7 @@
 # Introduction
 
-Starting with the ECMAScript 2015, JavaScript has modules. TypeScript shares this concept.
-Modules are packages of code and declarations that declare their dependencies using `import` and `export`.
+Starting with ECMAScript 2015, JavaScript has modules. TypeScript shares this concept.
+Modules are units of code that declare their dependencies using `import` and `export`.
 Modules provide for code reuse, isolation, and tooling support for bundling.
 In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 
@@ -36,11 +36,11 @@ export interface StringValidator {
 
 ```ts
 import { StringValidator } from "Validation";
-export const numberRegexp = /^[0-9]+$/;
+export const numberRegexp = /^[0-9]{5}$/;
 
 export class ZipCodeValidator implements StringValidator {
     isAcceptable(s: string) {
-        return s.length === 5 && numberRegexp.test(s);
+        return numberRegexp.test(s);
     }
 }
 ```
@@ -53,11 +53,11 @@ Export statements are handy when exports need to be renamed for consumers, so th
 import { StringValidator } from "Validation";
 class ZipCodeValidator implements StringValidator {
     isAcceptable(s: string) {
-        return s.length === 5 && numberRegexp.test(s);
+        return numberRegexp.test(s);
     }
 }
-export { ZipCodeValidator };
-export { ZipCodeValidator as mainValidator };
+export { ZipCodeValidator as MainValidator }; // Rename to MainValidator
+export { ZipCodeValidator }; // Also export without rename
 ```
 
 ## Re-exports
@@ -86,6 +86,12 @@ Optionally, a module can wrap one or more modules and combine all their exports 
 export * from "./Validation; // exports interface StringValidator
 export * from "./ZipCodeValidator";  // exports class ZipCodeValidator
 export * from "./ParseIntZipCodeValidator"; // exports class ParseIntZipCodeValidator
+```
+
+Now you can import multiple validators from `AllValidators`:
+
+```ts
+import { ZipCodeValidator, ParseIntZipCodeValidator } from "./AllValidators";
 ```
 
 # Import
@@ -129,22 +135,23 @@ import "./my-module.js";
 
 Each module can optionally export a `default` export.
 Default exports are marked with the keyword `default`; and there can only be one `default` export per module.
-`default` exports are imported using a different import form.
+`default` exports are imported using a different import form &mdash; `import <name> from "library";`.
 
 `default` exports are really handy.
-For instance, a library like JQuery might have a default export of `jQuery` or `$`, which we'd probably also import under the name `$` or `jQuery`.
+For instance, a library like JQuery would have a default export of `$`, which we'd import under the name `$`.
 
 ##### JQuery.d.ts
 
 ```ts
-declare let $: JQuery;
+// TypeScript declarations for a JQuery-like module
+declare let $: JQueryLike;
 export default $;
 ```
 
 ##### App.ts
 
 ```ts
-import $ from "JQuery";
+import $ from "JQueryLike";
 
 $("button.continue").html( "Next Step..." );
 ```
@@ -156,9 +163,9 @@ Default export class and function declaration names are optional.
 
 ```ts
 export default class ZipCodeValidator {
-    static numberRegexp = /^[0-9]+$/;
+    static numberRegexp = /^[0-9]{5}$/;
     isAcceptable(s: string) {
-        return s.length === 5 && ZipCodeValidator.numberRegexp.test(s);
+        return ZipCodeValidator.numberRegexp.test(s);
     }
 }
 ```
@@ -176,10 +183,10 @@ or
 ##### StaticZipCodeValidator.ts
 
 ```ts
-const numberRegexp = /^[0-9]+$/;
+const numberRegexp = /^[0-9]{5}$/;
 
 export default function (s: string) {
-    return s.length === 5 && numberRegexp.test(s);
+    return numberRegexp.test(s);
 }
 ```
 
@@ -219,6 +226,7 @@ Both CommonJS and AMD have an `exports` object which contains all exports from a
 They also support replacing the `exports` object with a custom single object.
 Default exports are meant to act as a replacement for this behavior; however, the two are incompatible.
 TypeScript supports `export =` to model the traditional CommonJS and AMD workflow.
+This is useful if you're using one of these modules that you can't upgrade to standard ES2015 modules, but you shouldn't use it for new code.
 
 The `export =` syntax specifies a single object that is exported from the module.
 This can be a class, interface, namespace, function, or enum.
@@ -228,10 +236,10 @@ When importing a module using `export =`, TypeScript-specific syntax `import nam
 ##### ZipCodeValidator.ts
 
 ```ts
-let numberRegexp = /^[0-9]+$/;
+let numberRegexp = /^[0-9]{5}$/;
 class ZipCodeValidator {
     isAcceptable(s: string) {
-        return s.length === 5 && numberRegexp.test(s);
+        return numberRegexp.test(s);
     }
 }
 export = ZipCodeValidator;
@@ -295,11 +303,11 @@ export class LettersOnlyValidator implements StringValidator {
 ```ts
 import { StringValidator } from "./Validation";
 
-const numberRegexp = /^[0-9]+$/;
+const numberRegexp = /^[0-9]{5}$/;
 
 export class ZipCodeValidator implements StringValidator {
     isAcceptable(s: string) {
-        return s.length === 5 && numberRegexp.test(s);
+        return numberRegexp.test(s);
     }
 }
 ```
@@ -332,6 +340,7 @@ strings.forEach(s => {
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
 The declaration gives just the type of the statement without any implementation.
 If the library uses modules, the API declaration will also need to use modules.
+For more details on writing the actual declarations, see [Writing Definition Files](./Writing Definition Files.md).
 
 For example, if the JavaScript module looks like this:
 

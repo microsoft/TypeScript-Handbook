@@ -1,7 +1,7 @@
 ## Compiler Options
 
-Option (Shorthand)                             | Default / Type                       | Description
------------------------------------------------|--------------------------------------|----------------------------------------------------------------------
+Option (Shorthand)                             | Default / Type                               | Description
+-----------------------------------------------|:--------------------------------------------:|----------------------------------------------------------------------
 `--allowJs`                                    | `true`<br/> <br/>`<bool>`                    | Allow JavaScript files to be compiled.
 `--allowNonTsExtensions`                       | `true`<br/> <br/>`<bool>`                    | Allow files with file extensions other than ".ts" to be compiled.
 `--allowSyntheticDefaultImports`               | `(module === "system")`<br/> <br/>`<bool>`   | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.

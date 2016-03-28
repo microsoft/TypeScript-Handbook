@@ -20,11 +20,11 @@ Option (Shorthand)                             | Default / Type                 
 `--isolatedModules`                            | `false`<br/> <br/>`<bool>`                   | Unconditionally emit imports for unresolved files.
 `--jsx`                                        | `"Preserve"`<br/> <br/>`<JsxEmit>`           | Support JSX in '.tsx' files: 'React' or 'Preserve'. See [JSX](./JSX.md).
 `--listFiles`                                  | `false`<br/> <br/>`<bool>`                   | Print names of files part of the compilation.
-`--locale`                                     | *(platform specific)*<br/>`<string>`         | The locale to use to show error messages, e.g. en-us.
+`--locale`                                     | *(platform specific)*<br/> <br/>`<string>`   | The locale to use to show error messages, e.g. en-us.
 `--mapRoot`                                    | `null`<br/> <br/>`<string>`                  | Specifies the location where debugger should locate map files instead of generated locations. Use this flag if the .map files will be located at run-time in a different location than than the .js files. The location specified will be embedded in the sourceMap to direct the debugger where the map files where be located.
 `--module`<br/>`-m`                            | `(target === "ES6" ? "ES6" : "CommonJS")`<br/> <br/>`<ModuleKind>` | Specify module code generation: 'commonjs', 'amd', 'system', 'umd', or 'es2015'. Only 'amd' and 'system' can be used in conjunction with `--outFile`. The 'es2015' value may not be used when targeting ES5 or lower.
 `--moduleResolution`                           | `"Classic"`<br/> <br/>`<ModuleResolutionKind>` | Determine how modules get resolved. Either 'node' for Node.js/io.js style resolution, or 'classic' (default).
-`--newLine`                                    | *(platform specific)*<br/>`<string>`         | Use the specified end of line sequence to be used when emitting files: 'CRLF' (dos) or 'LF' (unix)."
+`--newLine`                                    | *(platform specific)*<br/> <br/>`<string>`   | Use the specified end of line sequence to be used when emitting files: 'CRLF' (dos) or 'LF' (unix)."
 `--noEmit`                                     | `false`<br/> <br/>`<bool>`                   | Do not emit outputs.
 `--noEmitHelpers`                              | `false`<br/> <br/>`<bool>`                   | Do not generate custom helper functions like `__extends` in compiled output.
 `--noEmitOnError`                              | `false`<br/> <br/>`<bool>`                   | Do not emit outputs if any errors were reported.

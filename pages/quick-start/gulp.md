@@ -95,7 +95,7 @@ gulp.task('default', function () {
 
 ### Test the resulting app
 
-```ts
+```shell
 gulp
 cd dist
 node main.js
@@ -103,11 +103,99 @@ node main.js
 
 The program should print "Hello from TypeScript!".
 
+# Browserify and Source Maps
 
-## Add sourcemaps
+## Add modules
+
+Now let's turn our app into a web app written as a collection of modules.
+We'll add browserify to pack our code into a single file for distribution, and source maps so that we can debug TypeScript code directly in the browser.
+
+### Write some simple module code
+
+Create a file called `src/greet.ts`:
+
+```ts
+export function showHello(divName: string) {
+    const elt = document.getElementById(divName)
+    elt.innerText = sayHello("TypeScript");
+}
+export function sayHello(name: string) {
+    return `Hello from ${name}`;
+}
+```
+
+Now replace the code in `src/main.ts`:
+
+```ts
+import { sayHello } from "./greet";
+console.log(sayHello("TypeScript"));
+```
+
+You can make sure the code works by running `gulp` and then testing in Node:
+
+```shell
+gulp
+cd dist
+node main.js
+```
+
+Notice that even though we used ES2015 module syntax, TypeScript emitted CommonJS modules that Node uses.
+You can change this by adding a `module` member to the options object that you pass to gulp-typescript.
+For example `module: "amd` emits AMD module syntax instead.
+
+## Change to a web app
+
+Now let's change this to a simple web app.
+We'll use browserify, which bundles all our modules into one JavaScript file.
+In addition, it lets us use the CommonJS module system used by Node, which is the default TypeScript emit.
+That means we don't have to change any options to tell TypeScript which module system to target.
+
+First, install browserify
+
+```shell
+npm install -g browserify
+```
+
+### Create a page
+
+
+Create a file in the root of the project named `index.html`:
+
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Hello World!</title>
+    </head>
+    <body>
+        <p id="greeting">Loading ...</p>
+        <script src="./dist/bundle.js"></script>
+    </body>
+</html>
+```
+
+Now change `main.ts` to the following:
+
+```ts
+import { sayHello, showHello } from "./greet";
+console.log(sayHello("TypeScript"));
+showHello("greeting");
+```
+
+This changes makes `main.ts` change an object on the page in addition to writing to the console.
+Now change your gulpfile to the following:
+
+```js
+TODO: Copy index.html too
+TODO: Call `browserify main.js -o bundle.js` I guess
+```
+
+```shell
+npm install --save-dev gulp-sourcemaps
+```
 
 TODO: gulp-typescript recommends gulp-sourcemaps but doesn't explain how they work.
-
 
 2. Fit TypeScript into an existing gulp workflow.
 3. Fit TypeScript into a babel-based workflow.

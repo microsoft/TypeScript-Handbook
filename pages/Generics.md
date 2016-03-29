@@ -63,7 +63,7 @@ The second way is also perhaps the most common. Here we use *type argument infer
 let output = identity("myString");  // type of output will be 'string'
 ```
 
-Notice that we didn't have explicitly pass the type in the angle brackets (`<>`), the compiler just looked at the value `"myString"`, and set `T` to its type.
+Notice that we didn't explicitly pass the type in the angle brackets (`<>`), the compiler just looked at the value `"myString"`, and set `T` to its type.
 While type argument inference can be a helpful tool to keep code shorter and more readable, you may need to explicitly pass in the type arguments as we did in the previous example when the compiler fails to infer the type, as may happen in more complex examples.
 
 # Working with Generic Type Variables

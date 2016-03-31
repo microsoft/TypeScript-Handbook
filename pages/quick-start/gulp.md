@@ -150,14 +150,15 @@ We'll use browserify, which bundles all our modules into one JavaScript file.
 In addition, it lets us use the CommonJS module system used by Node, which is the default TypeScript emit.
 That means we don't have to change any options to tell TypeScript which module system to target.
 
-First, install browserify
+First, install browserify, tsify and vinyl-source-stream.
+tsify is a browserify plugin that replaces gulp-typescript.
+vinyl-source-stream lets us adapt the file output of browserify back into a gulp stream.
 
 ```shell
-npm install -g browserify
+npm install --save-dev browserify tsify vinyl-source-stream
 ```
 
 ### Create a page
-
 
 Create a file in the root of the project named `index.html`:
 
@@ -170,7 +171,7 @@ Create a file in the root of the project named `index.html`:
     </head>
     <body>
         <p id="greeting">Loading ...</p>
-        <script src="./dist/bundle.js"></script>
+        <script src="bundle.js"></script>
     </body>
 </html>
 ```
@@ -183,19 +184,49 @@ console.log(sayHello("TypeScript"));
 showHello("greeting");
 ```
 
-This changes makes `main.ts` change an object on the page in addition to writing to the console.
+Calling `showHello` makes `main.ts` change an object on the page in addition to writing to the console.
 Now change your gulpfile to the following:
 
 ```js
-TODO: Copy index.html too
-TODO: Call `browserify main.js -o bundle.js` I guess
+var gulp = require('gulp');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var tsify = require('tsify');
+var paths = {
+    pages: ['*.html']
+};
+
+gulp.task('copyHtml', function () {
+    return gulp.src(paths.pages)
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('default', ['copyHtml'], function () {
+    return browserify({
+        basedir: '.',
+        debug: true,
+        entries: ['src/main.ts'],
+        cache: {},
+        packageCache: {}
+    })
+    .plugin(tsify, {noImplicitAny: true})
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(gulp.dest('dist'));
+});
 ```
 
-```shell
-npm install --save-dev gulp-sourcemaps
-```
+This changes adds the `copyHtml` task and changes the `default` task significantly.
+`copyHtml` is a simple task that needs to run before `default`.
+`default` now calls browserify first instead of using the usual gulp methods.
+After calling `bundle` we use `source` (our alias for vinyl-source-stream) to name the bundle `bundle.js`.
 
-TODO: gulp-typescript recommends gulp-sourcemaps but doesn't explain how they work.
+Test the page by running gulp and then opening `dist/index.html` in a browser.
+You should see "Hello from TypeScript" on the page.
+
+Notice that we specify `debug: true` to browserify.
+This causes tsify to emit inline source maps.
+You can test that source maps are working by opening the debugger for your browser and putting a breakpoint inside `main.ts`.
+When you refresh the page the breakpoint should pause the page and let you debug into `greet.ts`.
 
 2. Fit TypeScript into an existing gulp workflow.
 3. Fit TypeScript into a babel-based workflow.

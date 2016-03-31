@@ -149,8 +149,18 @@ let mySquare = createSquare(squareOptions);
 
 Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
 
-One final way to get around the check is to add an index signature if you are sure that the object will *always* have properties with unknown names.
-We'll discuss index signatures in a bit.
+One final way to get around the check is to add a string index signature if you are sure that the object will *always* have properties with unknown names.
+If `SquareConfig`s always had `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it as the following:
+
+```ts
+interface SquareConfig {
+    color?: string;
+    width?: number;
+    [propName: string]: any;
+}
+```
+
+We'll discuss index signatures in a bit, but here we're saying a `SquareConfig` can have any number of properties of any types.
 
 Keep in mind that for simple code like above, you probably shouldn't be trying to "get around" these checks.
 For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors are actually bugs.
@@ -223,8 +233,8 @@ mySearch = function(src, sub) {
 
 # Indexable Types
 
-Similarly to how we can use interfaces to describe function types, we can also describe types that we treat a bit like arrays.
-Indexable types have a signature called an *index signature* that describes the types we can use to index into the object, along with the corresponding return type for when we do perform indexing accesses.
+Similarly to how we can use interfaces to describe function types, we can also describe types that we can "index into" like `a[10]`, or `ageMap["daniel"]`.
+Indexable types have something called an *index signature* that describes the types we can use to index into the object, along with the corresponding return types when indexing.
 Let's take an example:
 
 ```ts
@@ -242,7 +252,24 @@ Above, we have a `StringArray` interface that defines an index signature.
 This index signature states that when a `StringArray` is indexed with a `number`, it will return a `string`.
 
 There are two types of supported index signatures: string and number.
-It is possible to support both types of indexers, with the restriction that the type returned from the numeric indexer must be a subtype of the type returned from the string indexer.
+It is possible to support both types of indexers, but the type returned from a numeric indexer must be a subtype of the type returned from the string indexer.
+This is because when indexing with a `number`, JavaScript will actually convert that to a `string` before indexing into an object.
+That means that indexing with `100` (a `number`) is the same thing as indexing with `"100"` (a `string`), so the two need to be consistent.
+
+```ts
+class Animal {
+    name: string;
+}
+class Dog extends Animal {
+    breed: string;
+}
+
+// Error: indexing with a 'string' will sometimes get you a Dog!
+interface NotOkay {
+    [x: number]: Animal;
+    [x: string]: Dog;
+}
+```
 
 While string index signatures are a powerful way to describe the "dictionary" pattern, they also enforce that all properties match their return type.
 This is because a string index declares that `obj.property` is also available as `obj["property"]`.

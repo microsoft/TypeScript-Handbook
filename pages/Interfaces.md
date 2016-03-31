@@ -134,23 +134,14 @@ let mySquare = createSquare({ colour: "red", width: 100 });
 ```
 
 Getting around these checks is actually really simple.
-The best and easiest method is to just use a type assertion:
+The easiest method is to just use a type assertion:
 
 ```ts
-let mySquare = createSquare({ colour: "red", width: 100 } as SquareConfig);
+let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```
 
-Another approach, which might be a bit surprising, is to assign the object to another variable:
-
-```ts
-let squareOptions = { colour: "red", width: 100 };
-let mySquare = createSquare(squareOptions);
-```
-
-Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
-
-One final way to get around the check is to add a string index signature if you are sure that the object will *always* have properties with unknown names.
-If `SquareConfig`s always had `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it as the following:
+However, a better approach to might to add a string index signature if you're sure that the object can have some extra properties that are used in some special way.
+If `SquareConfig`s can have `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it like so:
 
 ```ts
 interface SquareConfig {
@@ -160,7 +151,15 @@ interface SquareConfig {
 }
 ```
 
-We'll discuss index signatures in a bit, but here we're saying a `SquareConfig` can have any number of properties of any types.
+We'll discuss index signatures in a bit, but here we're saying a `SquareConfig` can have any number of properties, and as long as they aren't `color` or `width`, their types don't matter.
+
+One final way to get around these checks, which might be a bit surprising, is to assign the object to another variable:
+Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
+
+```ts
+let squareOptions = { colour: "red", width: 100 };
+let mySquare = createSquare(squareOptions);
+```
 
 Keep in mind that for simple code like above, you probably shouldn't be trying to "get around" these checks.
 For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors are actually bugs.
@@ -234,7 +233,7 @@ mySearch = function(src, sub) {
 # Indexable Types
 
 Similarly to how we can use interfaces to describe function types, we can also describe types that we can "index into" like `a[10]`, or `ageMap["daniel"]`.
-Indexable types have something called an *index signature* that describes the types we can use to index into the object, along with the corresponding return types when indexing.
+Indexable types have an *index signature* that describes the types we can use to index into the object, along with the corresponding return types when indexing.
 Let's take an example:
 
 ```ts
@@ -248,7 +247,7 @@ myArray = ["Bob", "Fred"];
 let myStr: string = myArray[0];
 ```
 
-Above, we have a `StringArray` interface that defines an index signature.
+Above, we have a `StringArray` interface that has an index signature.
 This index signature states that when a `StringArray` is indexed with a `number`, it will return a `string`.
 
 There are two types of supported index signatures: string and number.

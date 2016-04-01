@@ -1,9 +1,9 @@
-# ASP.NET 5
+# ASP.NET Core
 
-## Install ASP.NET 5 and TypeScript
+## Install ASP.NET Core and TypeScript
 
-First, [install ASP.NET 5](https://get.asp.net) if you need it.
-This quick-start guide uses Visual Studio, which means that you'll need Visual Studio 2015 in order to use ASP.NET 5.
+First, [install ASP.NET Core](https://get.asp.net) if you need it.
+This quick-start guide uses Visual Studio, which means that you'll need Visual Studio 2015 in order to use ASP.NET Core.
 
 Next, if your version of Visual Studio does not already have TypeScript, you can install it for [Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48593).
 

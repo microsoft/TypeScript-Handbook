@@ -228,46 +228,119 @@ This causes tsify to emit inline source maps.
 You can test that source maps are working by opening the debugger for your browser and putting a breakpoint inside `main.ts`.
 When you refresh the page the breakpoint should pause the page and let you debug into `greet.ts`.
 
-2. Fit TypeScript into an existing gulp workflow.
-3. Fit TypeScript into a babel-based workflow.
-4. Make --watch work with gulp too
+# Watchify, Babel and Uglify
 
-## Existing workflow with bundling and minify
+Now that we are bundling our code with browserify and tsify, we can add various features to our build with browserify plugins.
+
+* Watchify starts gulp and keeps it running, incrementally compiling whenever you save a file.
+  This lets you keep an edit-save-refresh cycle going in the browser.
+* Babel is a hugely flexible transpiler that converts ES2015 and beyond into ES5 and ES3.
+  This lets you add transformations that TypeScript doesn't support.
+* Uglify compacts your code so that it takes less time to download onto the client.
+
+
+## Watchify
+
+First install Watchify.
 
 ```shell
-npm install -g webpack
+npm install --save-dev watchify
 ```
 
-Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file.
-[Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
-Next, we'll add development-time dependencies on [ts-loader](https://www.npmjs.com/package/ts-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader).
+Now change your gulpfile to the following:
+
+```js
+var gulp = require('gulp');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var watchify = require('watchify');
+var tsify = require('tsify');
+var paths = {
+    pages: ['*.html']
+};
+
+const b = watchify(browserify({
+        basedir: '.',
+        debug: true,
+        entries: ['src/main.ts'],
+        cache: {},
+        packageCache: {}
+})
+        .plugin(tsify, {
+            noImplicitAny: true
+        }));
+gulp.task('copyHtml', function () {
+    return gulp.src(paths.pages)
+        .pipe(gulp.dest('dist'));
+});
+function bundle() {
+    return b
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('dist'));
+}
+gulp.task('default', ['copyHtml'], bundle);
+b.on('update', bundle);
+```
+
+There are basically two changes here, but they require you to refactor your code a bit.
+
+1. Wrap the `browserify` call plus `tsify` plugin in a `watchify` call.
+   Then save the resulting object in a variable named `b`.
+2. Call `b.on('update', bundle);` to run browserify's bundling every time one of your TypeScript files changes.
+
+Together (1) and (2) mean that you have to separate the browserify construction out of the `default` task.
+And you have to give the function for `default` a name since you need it both for the `gulp.task` and for `watchify.on`.
+
+## Babel
+
+## Uglify
+
+First install Uglify.
+Since the point of Uglify is to mangle your code, we also need to install vinyl-buffer and gulp-sourcemaps to keep sourcemaps working.
 
 ```shell
-npm install --save-dev ts-loader source-map-loader
-npm link typescript
+npm install --save-dev gulp-uglify vinyl-buffer gulp-sourcemaps
 ```
 
-Both of these dependencies will let TypeScript and webpack play well together.
-ts-loader helps webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
-source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
-This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
+Now change your gulpfile to the following:
 
-Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
-If you want a local copy, just run `npm install typescript`.
+```js
+var gulp = require('gulp');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var tsify = require('tsify');
+var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
+var buffer = require('vinyl-buffer');
+var paths = {
+    pages: ['*.html']
+};
 
 
-It's ... not hard.
-But I need a solid real-world example to use.
-There should plenty of large projects on github to look at.
+gulp.task('copyHtml', function () {
+    return gulp.src(paths.pages)
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('default', ['copyHtml'], function () {
+    return browserify({
+        basedir: '.',
+        debug: true,
+        entries: ['src/main.ts'],
+        cache: {},
+        packageCache: {}
+    })
+        .plugin(tsify, {
+            noImplicitAny: true
+        })
+        .bundle()
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('dist'));
+});
+```
 
-1. open your existing gulpfile.js
-2. add a typescript compile task
-3. add the task as a dependency of something.
-4. make sure not to hit any of the numerous pitfalls of these various tools when working together that aren't related to Gulp at all.
-
-Source maps should work so that you can continue debugging.
-
-## Babel-based workflow
-
-5. Start from a Babel-using
-Maybe this should be a separate quickstart?
+Notice that `uglify` itself just one call &mdash; the calls to `buffer` and `sourcemaps` make sure sourcemaps keep working.

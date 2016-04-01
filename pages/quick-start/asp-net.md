@@ -7,14 +7,14 @@ This quickstart uses Visual Studio 2015.
 
 ## Create a new project
 
-1. Choose File
-2. Choose New Project (Ctrl + Shift + N)
-3. Choose Visual C#
-4. Choose ASP.NET Web Application
+1. Choose **File**
+2. Choose **New Project**
+3. Choose **Visual C#**
+4. Choose **ASP.NET Web Application**
 
-    ![Create new ASP.NET project](new-asp-project.png)
+   ![Create new ASP.NET project](new-asp-project.png)
 
-5. Choose MVC
+5. Choose **MVC**
 
     I unchecked "Host in the cloud" since this will be a local demo.
     ![Use MVC template](new-asp-project-template.png)
@@ -33,14 +33,14 @@ We'll just call it src.
 
 ## Add TypeScript code
 
-Right click on `src` and click New Item.
-Then choose TypeScript File and name the file `app.ts`.
+Right click on `src` and click **New Item**.
+Then choose **TypeScript File** and name the file `app.ts`.
 
 ![New item](new-item.png)
 
 ## Add example code
 
-Type the following code into app.ts.
+Type the following code into `app.ts`.
 
 ```ts
 function sayHello() {
@@ -52,8 +52,8 @@ function sayHello() {
 
 ## Set up the build
 
-Right click on the project and click New Item.
-Then choose TypeScript Configuration File and use the default name `tsconfig.json`.
+Right click on the project and click **New Item**.
+Then choose **TypeScript Configuration File** and use the default name `tsconfig.json`.
 
 ![Create tsconfig.json](new-tsconfig.png)
 
@@ -64,7 +64,6 @@ Replace the default `tsconfig.json` with the following:
   "compilerOptions": {
     "noImplicitAny": true,
     "noEmitOnError": true,
-    "removeComments": false,
     "sourceMap": true,
     "target": "es5",
     "outDir": "./Scripts/App"
@@ -83,28 +82,29 @@ This is similar to the default, with the following differences:
 3. It explicitly lists `"files"` instead of relying on `"excludes"`.
 4. It sets `"compileOnSave": true`.
 
-`"noImplicitAny"` is good idea whenever you're writing new code -- you can make sure that you don't write any untyped code by mistake.
+`"noImplicitAny"` is good idea whenever you're writing new code &mdash; you can make sure that you don't write any untyped code by mistake.
 `"compileOnSave"` makes it easy to update your code in a running web app.
+See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 
 ## Call the script from a view
 
-1. In the Solution Explorer, open Views | Home | Index.cshtml.
+1. In the **Solution Explorer**, open **Views** | **Home** | `Index.cshtml`.
 
-    ![Open Index.cshtml](open-index.png)
+   ![Open Index.cshtml](open-index.png)
 
 2. Change the code to be the following:
 
-```html
-@{
-    ViewBag.Title = "Home Page";
-}
-<script src="~/Scripts/App/app.js"></script>
-<div id="message"></div>
-<div>
-    Compiler: <input id="compiler" value="TypeScript" onkeyup="document.getElementById('message').innerText = sayHello()" /><br />
-    Framework: <input id="framework" value="ASP.NET" onkeyup="document.getElementById('message').innerText = sayHello()" />
-</div>
-```
+   ```html
+   @{
+       ViewBag.Title = "Home Page";
+   }
+   <script src="~/Scripts/App/app.js"></script>
+   <div id="message"></div>
+   <div>
+       Compiler: <input id="compiler" value="TypeScript" onkeyup="document.getElementById('message').innerText = sayHello()" /><br />
+       Framework: <input id="framework" value="ASP.NET" onkeyup="document.getElementById('message').innerText = sayHello()" />
+   </div>
+   ```
 
 ## Test
 
@@ -115,7 +115,7 @@ This is similar to the default, with the following differences:
 
 ## Debug
 
-1. In Edge, press F12 and click the Debugger tab.
+1. In Edge, press F12 and click the **Debugger** tab.
 2. Look in the first localhost folder, then src/app.ts
 3. Put a breakpoint on the line with `return`.
 4. Type in the boxes and confirm that the breakpoint hits in TypeScript code and that inspection works correctly.
@@ -133,17 +133,19 @@ Next we'll include Angular and write a simple Angular app.
 
 2. Use PackageInstaller to install Angular 2, systemjs and Typings.
 
-    ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
-    ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
-    ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
+   Right-click on the project, then click on **Quick Install Package**.
+
+   ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
+   ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
+   ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
 
 3. Use PackageInstaller to install typings for es6-shim.
 
-    Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
-    In PackageInstaller, choose Typing instead of npm.
-    Then type "es6-shim":
+   Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
+   In PackageInstaller, choose Typing instead of npm.
+   Then type "es6-shim":
 
-    ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
+   ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
 
 ## Update tsconfig.json
 
@@ -158,7 +160,6 @@ The tsconfig should now look like this:
   "compilerOptions": {
     "noImplicitAny": false,
     "noEmitOnError": true,
-    "removeComments": false,
     "sourceMap": true,
     "target": "es5",
     "experimentalDecorators": true,
@@ -168,6 +169,7 @@ The tsconfig should now look like this:
   "files": [
     "./src/app.ts",
     "./src/model.ts",
+    "./src/main.ts",
     "./typings/main.d.ts"
   ]
 }
@@ -200,7 +202,6 @@ First, change the code in `app.ts` to:
 
 ```ts
 import {Component} from "angular2/core"
-import {bootstrap} from "angular2/platform/browser"
 import {MyModel} from "./model"
 
 @Component({
@@ -213,8 +214,6 @@ class MyApp {
         return this.model.compiler;
     }
 }
-
-bootstrap(MyApp);
 ```
 
 Then add another TypeScript file in `src` named `model.ts`:
@@ -223,6 +222,14 @@ Then add another TypeScript file in `src` named `model.ts`:
 export class MyModel {
     compiler = "TypeScript";
 }
+```
+
+And then another TypeScript file in `src` named `main.ts`:
+
+```ts
+import {bootstrap} from "angular2/platform/browser";
+import {MyApp} from "./app";
+bootstrap(MyApp);
 ```
 
 Finally, change the code in `Views/Home/Index.cshtml` to the following:
@@ -244,7 +251,7 @@ Finally, change the code in `Views/Home/Index.cshtml` to the following:
             }
         }
     });
-    System.import('/Scripts/App/app').then(null, console.error.bind(console));
+    System.import('/Scripts/App/main').then(null, console.error.bind(console));
 </script>
 <my-app>Loading...</my-app>
 ```

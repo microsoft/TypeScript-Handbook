@@ -1,7 +1,7 @@
 # Introduction
 
 When using an external JavaScript library, or new host API, you'll need to use a declaration file (.d.ts) to describe the shape of that library.
-This guide covers a few high-level concepts specific to writing definition files, then proceeds with a number of examples that show how to transcribe various concepts to their matching definition file descriptions.
+This guide covers a few high-level concepts specific to writing declaration files, then proceeds with a number of examples that show how to transcribe various concepts to their matching declaration file descriptions.
 
 # Guidelines and Specifics
 
@@ -26,7 +26,7 @@ While TypeScript 0.9.7 and above does not enforce that the optionality, bivarian
 
 ## Extensibility and Declaration Merging
 
-When writing definition files, it's important to remember TypeScript's rules for extending existing objects.
+When writing declaration files, it's important to remember TypeScript's rules for extending existing objects.
 You might have a choice of declaring a variable using an anonymous type or an interface type:
 
 #### Anonymously-typed var
@@ -57,7 +57,7 @@ As always, try to represent the intent of the library here.
 Classes in TypeScript create two separate types: the instance type, which defines what members an instance of a class has, and the constructor function type, which defines what members the class constructor function has.
 The constructor function type is also known as the "static side" type because it includes static members of the class.
 
-While you can reference the static side of a class using the `typeof` keyword, it is sometimes useful or necessary when writing definition files to use the *decomposed class* pattern which explicitly separates the instance and static types of class.
+While you can reference the static side of a class using the `typeof` keyword, it is sometimes useful or necessary when writing declaration files to use the *decomposed class* pattern which explicitly separates the instance and static types of class.
 
 As an example, the following two declarations are nearly equivalent from a consumption perspective:
 
@@ -98,8 +98,8 @@ Because the concept of an interface in TypeScript is much more broad than in C# 
 
 # Examples
 
-Let's jump in to the examples section. For each example, sample *usage* of the library is provided, followed by the definition code that accurately types the usage.
-When there are multiple good representations, more than one definition sample might be listed.
+Let's jump in to the examples section. For each example, sample *usage* of the library is provided, followed by the declaration code that accurately types the usage.
+When there are multiple good representations, more than one declaration sample might be listed.
 
 ## Options Objects
 

@@ -62,7 +62,7 @@ This comparison process proceeds recursively, exploring the type of each member 
 
 # Comparing two functions
 
-While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible.
+While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible is a bit more involved.
 Let's start with a basic example of two functions that differ only in their parameter lists:
 
 ```ts

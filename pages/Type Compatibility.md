@@ -261,4 +261,4 @@ These differ only in that assignment extends subtype compatibility with rules to
 
 Different places in the language use one of the two compatibility mechanisms, depending on the situation.
 For practical purposes, type compatibility is dictated by assignment compatibility even in the cases of the `implements` and `extends` clauses.
-For more information, see the [TypeScript spec](|http://go.microsoft.com/fwlink/?LinkId=267121).
+For more information, see the [TypeScript spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md).

@@ -33,7 +33,7 @@ Option                                  | Shorthand | Description
 `--skipDefaultLibCheck`                 |           |
 `--out`                                 |           |  DEPRECATED. Use `--outFile` instead.
 `--outDir`                              |           |  Redirect output structure to the directory.
-`--outFile`                             |           |  Concatenate and emit output to single file. The order of concatenation is determined by the list of files passed to the compiler on the command line along with triple-slash references and imports. See output file order documentation for more details.
+`--outFile`                             |           |  Concatenate and emit output to single file. The order of concatenation is determined by the list of files passed to the compiler on the command line along with triple-slash references and imports. [See output file order documentation for more details](https://github.com/Microsoft/TypeScript/wiki/FAQ#how-do-i-control-file-ordering-in-combined-output---out-).
 `--preserveConstEnums`                  |           |  Do not erase const enum declarations in generated code. See [const enums documentation](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#94-constant-enum-declarations) for more details.
 `--pretty`<sup>[1]</sup>                |           | Stylize errors and messages using color and context.
 `--removeComments`                      |           | Remove all comments except copy-right header comments beginning with `/*!`

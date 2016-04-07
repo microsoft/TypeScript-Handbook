@@ -63,7 +63,7 @@ The second way is also perhaps the most common. Here we use *type argument infer
 let output = identity("myString");  // type of output will be 'string'
 ```
 
-Notice that we didn't have explicitly pass the type in the angle brackets (`<>`), the compiler just looked at the value `"myString"`, and set `T` to its type.
+Notice that we didn't have to explicitly pass the type in the angle brackets (`<>`), the compiler just looked at the value `"myString"`, and set `T` to its type.
 While type argument inference can be a helpful tool to keep code shorter and more readable, you may need to explicitly pass in the type arguments as we did in the previous example when the compiler fails to infer the type, as may happen in more complex examples.
 
 # Working with Generic Type Variables
@@ -221,7 +221,7 @@ alert(stringNumeric.add(stringNumeric.zeroValue, "test"));
 
 Just as with interface, putting the type parameter on the class itself lets us make sure all of the properties of the class are working with the same type.
 
-As we covered in [Classes|Classes in TypeScript], a class has two side to its type: the static side and the instance side.
+As we covered in [our section on classes](./Classes.md), a class has two sides to its type: the static side and the instance side.
 Generic classes are only generic over their instance side rather than their static side, so when working with classes, static members can not use the class's type parameter.
 
 # Generic Constraints

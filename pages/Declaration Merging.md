@@ -240,7 +240,7 @@ namespace Color {
 
 Not all merges are allowed in TypeScript.
 Currently, classes can not merge with other classes or with variables.
-For information on mimicking class merging, see the [Mixins in TypeScript] section.
+For information on mimicking class merging, see the [Mixins in TypeScript](./Mixins.md) section.
 
 # Module Augmentation
 

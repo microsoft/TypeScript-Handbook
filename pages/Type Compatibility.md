@@ -62,7 +62,7 @@ This comparison process proceeds recursively, exploring the type of each member 
 
 # Comparing two functions
 
-While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible.
+While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible is a bit more involved.
 Let's start with a basic example of two functions that differ only in their parameter lists:
 
 ```ts
@@ -261,4 +261,4 @@ These differ only in that assignment extends subtype compatibility with rules to
 
 Different places in the language use one of the two compatibility mechanisms, depending on the situation.
 For practical purposes, type compatibility is dictated by assignment compatibility even in the cases of the `implements` and `extends` clauses.
-For more information, see the [TypeScript spec](|http://go.microsoft.com/fwlink/?LinkId=267121).
+For more information, see the [TypeScript spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md).

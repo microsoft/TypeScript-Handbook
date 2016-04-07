@@ -224,7 +224,7 @@ function getRandomPadder() {
 }
 
 // Type is SpaceRepeatingPadder | StringPadder
-let padder: Padding = getRandomPadder();
+let padder: Padder = getRandomPadder();
 
 if (padder instanceof SpaceRepeatingPadder) {
     padder; // type narrowed to 'SpaceRepeatingPadder'

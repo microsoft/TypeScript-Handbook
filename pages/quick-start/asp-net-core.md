@@ -18,7 +18,7 @@ Next, if your version of Visual Studio does not already have TypeScript, you can
 
 5. Choose **ASP.NET 5 Empty**
 
-   I unchecked "Host in the cloud" since this will be a local demo.
+   Let's uncheck "Host in the cloud" since we're going to run this locally.
    ![Use empty template](new-asp-project-empty.png)
 
 Run the application and make sure that it works.
@@ -58,7 +58,7 @@ The next step is to add a folder for TypeScript.
 
 ![Create new folder](new-folder.png)
 
-We'll just call it scripts.
+We'll just call it `scripts`.
 
 ![scripts folder](scripts-folder.png)
 
@@ -96,14 +96,13 @@ Replace the default `tsconfig.json` with the following:
 ```json
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "target": "es5",
+      "noImplicitAny": true,
+      "noEmitOnError": true,
+      "sourceMap": true,
+      "target": "es5",
   },
   "files": [
-    "./app.ts"
+      "./app.ts"
   ],
   "compileOnSave": true
 }
@@ -115,20 +114,20 @@ This is similar to the default, with the following differences:
 2. It explicitly lists `"files"` instead of relying on `"excludes"`.
 3. It sets `"compileOnSave": true`.
 
-`"noImplicitAny"` is good idea whenever you're writing new code -- you can make sure that you don't write any untyped code by mistake.
+`"noImplicitAny"` is good idea whenever you're writing new code &mdash; you can make sure that you don't write any untyped code by mistake.
 `"compileOnSave"` makes it easy to update your code in a running web app.
 
 ### Set up NPM
 
-Now we need to set up NPM so we can download Javascript packages.
+Now we need to set up NPM so we can download JavaScript packages.
 Right click on the project and click **New Item**.
 Then choose **NPM Configuration File** and use the default name `package.json`.
 Inside `"devDependencies"` add "gulp" and "del":
 
 ```json
 "devDependencies": {
-  "gulp": "3.9.0",
-  "del": "2.2.0"
+    "gulp": "3.9.0",
+    "del": "2.2.0"
 }
 ```
 
@@ -164,9 +163,9 @@ gulp.task('default', function () {
 ```
 
 The first line tells Visual Studio to run the task 'default' after the build finishes.
-(It also runs the task 'clean' when you ask Visual Studio to clean the build.)
+It will also run the 'clean' task when you ask Visual Studio to clean the build.
 
-Now right click on `gulpfile.js` and click **Task Runner Explorer**.
+Now right-click on `gulpfile.js` and click **Task Runner Explorer**.
 If 'default' and 'clean' tasks don't show up, refresh the explorer:
 
 ![Refresh Task Runner Explorer](task-runner-explorer.png)
@@ -248,19 +247,18 @@ The tsconfig should now look like this:
 ```json
 {
   "compilerOptions": {
-    "noImplicitAny": true,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "sourceMap": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "target": "es5"
+      "noImplicitAny": true,
+      "noEmitOnError": true,
+      "sourceMap": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "target": "es5"
   },
   "files": [
-    "./app.ts",
-    "./model.ts",
-    "./main.ts",
-    "../typings/main.d.ts"
+      "./app.ts",
+      "./model.ts",
+      "./main.ts",
+      "../typings/main.d.ts"
   ],
   "compileOnSave": true
 }

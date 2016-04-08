@@ -77,17 +77,17 @@ hello("TypeScript");
 In the project root, create the file `gulpfile.js`:
 
 ```js
-var gulp = require('gulp');
+var gulp = require("gulp");
 var ts = require('gulp-typescript');
 var paths = {
     scripts: ['src/**/*.ts'],
 };
+var tsOptions = { noImplicitAny: true };
 
-
-gulp.task('default', function () {
+gulp.task("default", function () {
     return gulp.src(paths.scripts)
-        .pipe(ts({noImplicitAny: true}))
-        .pipe(gulp.dest('dist'));
+        .pipe(ts(tsOptions))
+        .pipe(gulp.dest("dist"));
 });
 ```
 
@@ -103,7 +103,7 @@ The program should print "Hello from TypeScript!".
 
 # Browserify
 
-Now let's turn our code into a web app written as a collection of modules.
+Now let's build our code out and add modules to the mix.
 This is the structure you're more likely to use for a real web app.
 We'll use Browserify to pack our code into a single file for distribution.
 
@@ -112,12 +112,12 @@ We'll use Browserify to pack our code into a single file for distribution.
 Create a file called `src/greet.ts`:
 
 ```ts
-export function showHello(divName: string) {
+export function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName)
-    elt.innerText = sayHello("TypeScript");
+    elt.innerText = `Hello from ${name}`;
 }
 export function sayHello(name: string) {
-    return `Hello from ${name}`;
+    console.log(`Hello from ${name}`);
 }
 ```
 
@@ -125,6 +125,7 @@ Now change the code in `src/main.ts` to import `sayHello` from `greet.ts`:
 
 ```ts
 import { sayHello } from "./greet";
+
 console.log(sayHello("TypeScript"));
 ```
 
@@ -137,8 +138,7 @@ node main.js
 ```
 
 Notice that even though we used ES2015 module syntax, TypeScript emitted CommonJS modules that Node uses.
-You can change this by adding a `module` member to the options object that you pass to gulp-typescript.
-For example `module: "amd` emits AMD module syntax instead.
+We'll stick with CommonJS for this tutorial, but you could set `module` in the options object to change this.
 
 ## Change to a web app
 
@@ -148,8 +148,8 @@ In addition, it lets us use the CommonJS module system used by Node, which is th
 That means we don't have to change any options to tell TypeScript which module system to target.
 
 First, install browserify, [tsify](https://www.npmjs.com/package/tsify) and vinyl-source-stream.
-tsify is a browserify plugin that, like gulp-typescript, gives access to the TypeScript compiler.
-vinyl-source-stream lets us adapt the file output of browserify back into a gulp stream.
+tsify is a Browserify plugin that, like gulp-typescript, gives access to the TypeScript compiler.
+vinyl-source-stream lets us adapt the file output of Browserify back into a format that gulp understands called [vinyl](https://github.com/gulpjs/vinyl).
 
 ```shell
 npm install --save-dev browserify tsify vinyl-source-stream
@@ -177,27 +177,29 @@ Now change `main.ts` to update the page:
 
 ```ts
 import { sayHello, showHello } from "./greet";
-console.log(sayHello("TypeScript"));
-showHello("greeting");
+
+sayHello("TypeScript");
+showHello("greeting", "TypeScript");
 ```
 
-Calling `showHello` makes `main.ts` change the paragraph's text in addition to writing to the console.
+Calling `showHello` makes `main.ts` change the paragraph's text while `sayHello` writes to the console.
 Now change your gulpfile to the following:
 
 ```js
-var gulp = require('gulp');
-var browserify = require('browserify');
+var gulp = require("gulp");
+var browserify = require("browserify");
 var source = require('vinyl-source-stream');
-var tsify = require('tsify');
+var tsify = require("tsify");
 var paths = {
     pages: ['*.html']
 };
+var tsOptions = { noImplicitAny: true };
 
-gulp.task('copyHtml', function () {
+gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 });
-gulp.task('default', ['copyHtml'], function () {
+gulp.task("default", ["copy-html"], function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -205,23 +207,27 @@ gulp.task('default', ['copyHtml'], function () {
         cache: {},
         packageCache: {}
     })
-    .plugin(tsify, {noImplicitAny: true})
+    .plugin(tsify, tsOptions)
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest("dist"));
 });
 ```
 
-This adds the `copyHtml` task and changes the `default` task significantly.
-`copyHtml` is a simple task that needs to run before `default`.
-`default` now calls browserify first instead of using the usual gulp methods.
+This adds the `copy-html` task and adds it as a dependency of `default`.
+That means any time `default` is run, `copy-html` has to run first.
+We've also changed `default` to call Browserify first instead of gulp-typescript.
+Then we use the tsify plugin for Browserify instead of gulp-typescript.
+Thankfully they both allow us to pass an options object to the TypeScript compiler.
+
 After calling `bundle` we use `source` (our alias for vinyl-source-stream) to name the bundle `bundle.js`.
 
 Test the page by running gulp and then opening `dist/index.html` in a browser.
 You should see "Hello from TypeScript" on the page.
 
-Notice that we specify `debug: true` to browserify.
-This causes tsify to emit inline source maps.
+Notice that we specified `debug: true` to browserify.
+This causes tsify to emit source maps inside the bundled JavaScript file.
+Source maps let you debug the original TypeScript in the browser instead of the bundled JavaScript.
 You can test that source maps are working by opening the debugger for your browser and putting a breakpoint inside `main.ts`.
 When you refresh the page the breakpoint should pause the page and let you debug into `greet.ts`.
 
@@ -248,14 +254,15 @@ npm install --save-dev watchify
 Now change your gulpfile to the following:
 
 ```js
-var gulp = require('gulp');
-var browserify = require('browserify');
+var gulp = require("gulp");
+var browserify = require("browserify");
 var source = require('vinyl-source-stream');
-var watchify = require('watchify');
-var tsify = require('tsify');
+var watchify = require("watchify");
+var tsify = require("tsify");
 var paths = {
     pages: ['*.html']
 };
+var tsOptions = { noImplicitAny: true };
 
 const b = watchify(browserify({
         basedir: '.',
@@ -264,28 +271,26 @@ const b = watchify(browserify({
         cache: {},
         packageCache: {}
 })
-        .plugin(tsify, {
-            noImplicitAny: true
-        }));
-gulp.task('copyHtml', function () {
+        .plugin(tsify, tsOptions));
+gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 });
 function bundle() {
     return b
         .bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 }
-gulp.task('default', ['copyHtml'], bundle);
-b.on('update', bundle);
+gulp.task("default", ["copy-html"], bundle);
+b.on("update", bundle);
 ```
 
 There are basically two changes here, but they require you to refactor your code a bit.
 
 1. Wrap the `browserify` plus `tsify` call in a `watchify` call.
    Then save the resulting object in a variable named `b`.
-2. Call `b.on('update', bundle);` to run browserify's bundling every time one of your TypeScript files changes.
+2. Call `b.on("update", bundle);` to run browserify's bundling every time one of your TypeScript files changes.
 
 Together (1) and (2) mean that you have to separate the browserify construction out of the `default` task.
 And you have to give the function for `default` a name since you need it both for the `gulp.task` and for `watchify.on`.
@@ -302,23 +307,23 @@ npm install --save-dev gulp-uglify vinyl-buffer gulp-sourcemaps
 Now change your gulpfile to the following:
 
 ```js
-var gulp = require('gulp');
-var browserify = require('browserify');
+var gulp = require("gulp");
+var browserify = require("browserify");
 var source = require('vinyl-source-stream');
-var tsify = require('tsify');
+var tsify = require("tsify");
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
 var paths = {
     pages: ['*.html']
 };
+var tsOptions = { noImplicitAny: true };
 
-
-gulp.task('copyHtml', function () {
+gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 });
-gulp.task('default', ['copyHtml'], function () {
+gulp.task("default", ["copy-html"], function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -326,16 +331,14 @@ gulp.task('default', ['copyHtml'], function () {
         cache: {},
         packageCache: {}
     })
-        .plugin(tsify, {
-            noImplicitAny: true
-        })
+        .plugin(tsify, tsOptions)
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 });
 ```
 
@@ -354,23 +357,23 @@ npm install --save-dev babelify vinyl-buffer gulp-sourcemaps
 Now change your gulpfile to the following:
 
 ```js
-var gulp = require('gulp');
-var browserify = require('browserify');
+var gulp = require("gulp");
+var browserify = require("browserify");
 var source = require('vinyl-source-stream');
-var tsify = require('tsify');
+var tsify = require("tsify");
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
 var paths = {
     pages: ['*.html']
 };
+var tsOptions = { noImplicitAny: true };
 
-
-gulp.task('copyHtml', function () {
+gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 });
-gulp.task('default', ['copyHtml'], function () {
+gulp.task("default", ["copy-html"], function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -378,16 +381,14 @@ gulp.task('default', ['copyHtml'], function () {
         cache: {},
         packageCache: {}
     })
-        .plugin(tsify, {
-            noImplicitAny: true
-        })
+        .plugin(tsify, tsOptions)
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest("dist"));
 });
 ```
 

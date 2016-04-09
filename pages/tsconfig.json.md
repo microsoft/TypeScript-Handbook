@@ -7,7 +7,7 @@ A project is compiled in one of the following ways:
 ## Using tsconfig.json
 
 * By invoking tsc with no input files, in which case the compiler searches for the `tsconfig.json` file starting in the current directory and continuing up the parent directory chain.
-* By invoking tsc with no input files and a `-project` (or just `-p`) command line option that specifies the path of a directory containing a `tsconfig.json` file.
+* By invoking tsc with no input files and a `--project` (or just `-p`) command line option that specifies the path of a directory containing a `tsconfig.json` file.
 
 When input files are specified on the command line, `tsconfig.json` files are ignored.
 
@@ -24,7 +24,7 @@ Example `tsconfig.json` files:
           "noImplicitAny": true,
           "removeComments": true,
           "preserveConstEnums": true,
-          "out": "../../built/local/tsc.js",
+          "outFile": "../../built/local/tsc.js",
           "sourceMap": true
       },
       "files": [
@@ -54,7 +54,7 @@ Example `tsconfig.json` files:
           "noImplicitAny": true,
           "removeComments": true,
           "preserveConstEnums": true,
-          "out": "../../built/local/tsc.js",
+          "outFile": "../../built/local/tsc.js",
           "sourceMap": true
       },
       "exclude": [
@@ -81,6 +81,21 @@ Similarly, if a file `B.ts` is referenced by another file `A.ts`, then `B.ts` ca
 A `tsconfig.json` file is permitted to be completely empty, which compiles all files in the containing directory and subdirectories with the default compiler options.
 
 Compiler options specified on the command line override those specified in the `tsconfig.json` file.
+
+## `compileOnSave`
+
+Setting a top-level property `compileOnSave` signals to the IDE to generate all files for a given tsconfig.json upon saving.
+
+```json
+{
+   "compileOnSave": true,
+   "compilerOptions": {
+       "noImplicitAny" : true
+   }
+}
+```
+
+This feature is currently supported in Visual Studio 2015 with TypeScript 1.8.4 and above, and [atom-typescript](https://github.com/TypeStrong/atom-typescript/blob/master/docs/tsconfig.md#compileonsave) plugin.
 
 ## Schema
 

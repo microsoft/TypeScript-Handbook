@@ -92,7 +92,7 @@ function loggingIdentity<T>(arg: T): T {
 When we do, the compiler will give us an error that we're using the `.length` member of `arg`, but nowhere have we said that `arg` has this member.
 Remember, we said earlier that these type variables stand in for any and all types, so someone using this function could have passed in a `number` instead, which does not have a `.length` member.
 
-Let's say that we've actually intended this function to work on arrays of `T` rather that `T` directly. Since we're working with arrays, the `.length` member should be available.
+Let's say that we've actually intended this function to work on arrays of `T` rather than `T` directly. Since we're working with arrays, the `.length` member should be available.
 We can describe this just like we would create arrays of other types:
 
 ```ts

@@ -32,6 +32,7 @@ for (let i in list) {
 
 for (let i of list) {
    console.log(i); // "4", "5", "6"
+}
 ```
 
 Another distinction is that `for..in` operates on any object; it serves as a way to inspect properties on this object.
@@ -39,7 +40,7 @@ Another distinction is that `for..in` operates on any object; it serves as a way
 
 ```ts
 let pets = new Set(["Cat", "Dog", "Hamster"]);
-pets["species"] = "mammals";
+(<any>pets)["species"] = "mammals";
 
 for (let pet in pets) {
    console.log(pet); // "species"

@@ -35,7 +35,7 @@ export interface StringValidator {
 ##### ZipCodeValidator.ts
 
 ```ts
-export const numberRegexp = new RegExp(/^[0-9]+$/);
+export const numberRegexp = /^[0-9]+$/;
 
 export class ZipCodeValidator implements StringValidator {
     isAcceptable(s: string) {

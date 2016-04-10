@@ -244,7 +244,7 @@ import zip = require("./ZipCodeValidator");
 let strings = ["Hello", "98052", "101"];
 
 // Validators to use
-let validator = new zip.ZipCodeValidator();
+let validator = new zip();
 
 // Show whether each string passed each validator
 strings.forEach(s => {

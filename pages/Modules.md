@@ -166,7 +166,7 @@ export default class ZipCodeValidator {
 ```ts
 import validator from "./ZipCodeValidator";
 
-let validator = new validator();
+let myValidator = new validator();
 ```
 
 or

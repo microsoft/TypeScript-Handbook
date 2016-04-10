@@ -24,9 +24,10 @@ Just like strings, symbols can be used as keys for object properties.
 ```ts
 let sym = Symbol();
 
-let obj: any = {};
+let obj = {
+    [sym]: "value"
+};
 
-obj[sym] = "value";
 console.log(obj[sym]); // "value"
 ```
 

@@ -40,7 +40,7 @@ Another distinction is that `for..in` operates on any object; it serves as a way
 
 ```ts
 let pets = new Set(["Cat", "Dog", "Hamster"]);
-(<any>pets)["species"] = "mammals";
+pets["species"] = "mammals";
 
 for (let pet in pets) {
    console.log(pet); // "species"

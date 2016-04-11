@@ -5,7 +5,7 @@
 First, [install ASP.NET Core](https://get.asp.net) if you need it.
 This quick-start guide uses Visual Studio, which means that you'll need Visual Studio 2015 in order to use ASP.NET Core.
 
-Next, if your version of Visual Studio does not already have TypeScript, you can install it for [Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48593).
+Next, if your version of Visual Studio does not already have TypeScript, you can install it for [TypeScript for Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48593).
 
 ## Create a new project
 
@@ -203,7 +203,7 @@ Use the following code for `index.html`:
 ## Debug
 
 1. In Edge, press F12 and click the **Debugger** tab.
-2. Look in the first localhost folder, then src/app.ts
+2. Look in the first localhost folder, then scripts/app.ts
 3. Put a breakpoint on the line with `return`.
 4. Type in the boxes and confirm that the breakpoint hits in TypeScript code and that inspection works correctly.
 
@@ -328,7 +328,7 @@ class MyApp {
 }
 ```
 
-Then add another TypeScript file in `src` named `model.ts`:
+Then add another TypeScript file in `scripts` named `model.ts`:
 
 ```ts
 export class MyModel {
@@ -336,7 +336,7 @@ export class MyModel {
 }
 ```
 
-And then another TypeScript file in `src` named `main.ts`:
+And then another TypeScript file in `scripts` named `main.ts`:
 
 ```ts
 import {bootstrap} from "angular2/platform/browser";

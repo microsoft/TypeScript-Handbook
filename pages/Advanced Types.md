@@ -11,7 +11,7 @@ For instance, take the following function:
  */
 function padLeft(value: string, padding: any) {
     if (typeof padding === "number") {
-        return Array(padding).join(" ") + value;
+        return Array(padding + 1).join(" ") + value;
     }
     if (typeof padding === "string") {
         return padding + value;
@@ -163,7 +163,7 @@ function isString(x: any): x is string {
 
 function padLeft(value: string, padding: string | number) {
     if (isNumber(padding)) {
-        return Array(padding).join(" ") + value;
+        return Array(padding + 1).join(" ") + value;
     }
     if (isString(padding)) {
         return padding + value;
@@ -179,7 +179,7 @@ That means we could just write these checks inline.
 ```ts
 function padLeft(value: string, padding: string | number) {
     if (typeof padding === "number") {
-        return Array(padding).join(" ") + value;
+        return Array(padding + 1).join(" ") + value;
     }
     if (typeof padding === "string") {
         return padding + value;
@@ -206,7 +206,7 @@ interface Padder {
 class SpaceRepeatingPadder implements Padder {
     constructor(private numSpaces: number) { }
     getPaddingString() {
-        return Array(this.numSpaces).join(" ");
+        return Array(this.numSpaces + 1).join(" ");
     }
 }
 

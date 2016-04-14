@@ -12,12 +12,12 @@ This quickstart uses Visual Studio 2015.
 3. Choose **Visual C#**
 4. Choose **ASP.NET Web Application**
 
-   ![Create new ASP.NET project](new-asp-project.png)
+   ![Create new ASP.NET project](../assets/new-asp-project.png)
 
 5. Choose **MVC**
 
     I unchecked "Host in the cloud" since this will be a local demo.
-    ![Use MVC template](new-asp-project-template.png)
+    ![Use MVC template](../assets/new-asp-project-template.png)
 
 Run the application and make sure that it works.
 
@@ -25,18 +25,18 @@ Run the application and make sure that it works.
 
 The next step is to add a folder for TypeScript.
 
-![Create new folder](new-folder.png)
+![Create new folder](../assets/new-folder.png)
 
 We'll just call it src.
 
-![src folder](src-folder.png)
+![src folder](../assets/src-folder.png)
 
 ## Add TypeScript code
 
 Right click on `src` and click **New Item**.
 Then choose **TypeScript File** and name the file `app.ts`.
 
-![New item](new-item.png)
+![New item](../assets/new-item.png)
 
 ## Add example code
 
@@ -55,7 +55,7 @@ function sayHello() {
 Right click on the project and click **New Item**.
 Then choose **TypeScript Configuration File** and use the default name `tsconfig.json`.
 
-![Create tsconfig.json](new-tsconfig.png)
+![Create tsconfig.json](../assets/new-tsconfig.png)
 
 Replace the default `tsconfig.json` with the following:
 
@@ -90,7 +90,7 @@ See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 
 1. In the **Solution Explorer**, open **Views** | **Home** | `Index.cshtml`.
 
-   ![Open Index.cshtml](open-index.png)
+   ![Open Index.cshtml](../assets/open-index.png)
 
 2. Change the code to be the following:
 
@@ -111,7 +111,7 @@ See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 1. Run the project.
 2. You should see a message when you type in the input boxes:
 
-![Picture of running demo](running-demo.png)
+![Picture of running demo](../assets/running-demo.png)
 
 ## Debug
 
@@ -120,7 +120,7 @@ See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 3. Put a breakpoint on the line with `return`.
 4. Type in the boxes and confirm that the breakpoint hits in TypeScript code and that inspection works correctly.
 
-![Demo paused on breakpoint](paused-demo.png)
+![Demo paused on breakpoint](../assets/paused-demo.png)
 
 That's all you need to know to include basic TypeScript in your ASP.NET project.
 Next we'll include Angular and write a simple Angular app.
@@ -135,9 +135,9 @@ Next we'll include Angular and write a simple Angular app.
 
    Right-click on the project, then click on **Quick Install Package**.
 
-   ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
-   ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
-   ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
+   ![Use PackageInstaller to install angular2](../assets/packageinstaller-angular2.png)
+   ![Use PackageInstaller to install systemjs](../assets/packageinstaller-systemjs.png)
+   ![Use PackageInstaller to install Typings](../assets/packageinstaller-typings.png)
 
 3. Use PackageInstaller to install typings for es6-shim.
 
@@ -145,7 +145,7 @@ Next we'll include Angular and write a simple Angular app.
    In PackageInstaller, choose Typing instead of npm.
    Then type "es6-shim":
 
-   ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
+   ![Use PackageInstaller to install es6-shim typings](../assets/packageinstaller-es6-shim.png)
 
 ## Update tsconfig.json
 

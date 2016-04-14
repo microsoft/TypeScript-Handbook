@@ -16,7 +16,7 @@ Well-known module loaders used in JavaScript are the [CommonJS](https://en.wikip
 TypeScript can generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
 
 > **A note about terminology:**
-It's important to note that before TypeScript 1.5, modules were called "external modules" and namespaces were called "internal modules".
+It's important to note that before TypeScript 1.5, modules were called "external modules" and [namespaces](./appendices/Namespaces.md) were called "internal modules".
 
 # Export
 

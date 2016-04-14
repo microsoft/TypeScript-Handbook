@@ -321,7 +321,7 @@ Every time the compiler sees a relative module import in a subfolder of one of t
 
 As discussed earlier, the compiler can visit files outside the current folder when resolving a module.
 This can be hard when diagnosing why a module is not resolved, or is resolved to an incorrect definition.
-Enabling the compiler module resolution tracing using `--traceModuleResolution` provides insight in what happened during the module resolution process.
+Enabling the compiler module resolution tracing using `--traceResolution` provides insight in what happened during the module resolution process.
 
 Let's say we have a sample application that uses the `typescript` module.
 `app.ts` has an import like `import * as ts from "typescript"`.
@@ -336,10 +336,10 @@ Let's say we have a sample application that uses the `typescript` module.
         app.ts
 ```
 
-Invoking the compiler with `--traceModuleResolution`
+Invoking the compiler with `--traceResolution`
 
 ```shell
-tsc --traceModuleResolution
+tsc --traceResolution
 ```
 
 Results in an output as such:

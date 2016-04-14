@@ -101,13 +101,10 @@ node main.js
 
 The program should print "Hello from TypeScript!".
 
-# Browserify
-
-Now let's build our code out and add modules to the mix.
-This is the structure you're more likely to use for a real web app.
-We'll use Browserify to pack our code into a single file for distribution.
-
 ## Add modules to the code
+
+Before we get to Browserify, let's build our code out and add modules to the mix.
+This is the structure you're more likely to use for a real app.
 
 Create a file called `src/greet.ts`:
 
@@ -116,6 +113,7 @@ export function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName)
     elt.innerText = `Hello from ${name}`;
 }
+
 export function sayHello(name: string) {
     console.log(`Hello from ${name}`);
 }
@@ -129,7 +127,7 @@ import { sayHello } from "./greet";
 console.log(sayHello("TypeScript"));
 ```
 
-Before we get to Browserify, let's make sure that the modules work by running `gulp` and then testing in Node:
+Make sure that the modules work by running `gulp` and then testing in Node:
 
 ```shell
 gulp
@@ -140,14 +138,15 @@ node main.js
 Notice that even though we used ES2015 module syntax, TypeScript emitted CommonJS modules that Node uses.
 We'll stick with CommonJS for this tutorial, but you could set `module` in the options object to change this.
 
-## Change to a web app
+# Browserify
 
-Now let's move this from Node to the browser.
-We'll use browserify, which bundles all our modules into one JavaScript file.
-In addition, it lets us use the CommonJS module system used by Node, which is the default TypeScript emit.
-That means we don't have to change any options to tell TypeScript which module system to target.
+Now let's move this project from Node to the browser.
+To do this, we need to bundle all our modules into one JavaScript file.
+Fortunately, that's exactly what Browserify does.
+Even better, it lets us use the CommonJS module system used by Node, which is the default TypeScript emit.
+That means our TypeScript and Node setup will transfer to the browser basically unchanged.
 
-First, install browserify, [tsify](https://www.npmjs.com/package/tsify) and vinyl-source-stream.
+First, install browserify, [tsify](https://www.npmjs.com/package/tsify), and vinyl-source-stream.
 tsify is a Browserify plugin that, like gulp-typescript, gives access to the TypeScript compiler.
 vinyl-source-stream lets us adapt the file output of Browserify back into a format that gulp understands called [vinyl](https://github.com/gulpjs/vinyl).
 

@@ -32,6 +32,7 @@ for (let i in list) {
 
 for (let i of list) {
    console.log(i); // "4", "5", "6"
+}
 ```
 
 Another distinction is that `for..in` operates on any object; it serves as a way to inspect properties on this object.

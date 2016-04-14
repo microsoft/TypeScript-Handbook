@@ -92,7 +92,7 @@ function loggingIdentity<T>(arg: T): T {
 When we do, the compiler will give us an error that we're using the `.length` member of `arg`, but nowhere have we said that `arg` has this member.
 Remember, we said earlier that these type variables stand in for any and all types, so someone using this function could have passed in a `number` instead, which does not have a `.length` member.
 
-Let's say that we've actually intended this function to work on arrays of `T` rather that `T` directly. Since we're working with arrays, the `.length` member should be available.
+Let's say that we've actually intended this function to work on arrays of `T` rather than `T` directly. Since we're working with arrays, the `.length` member should be available.
 We can describe this just like we would create arrays of other types:
 
 ```ts
@@ -221,7 +221,7 @@ alert(stringNumeric.add(stringNumeric.zeroValue, "test"));
 
 Just as with interface, putting the type parameter on the class itself lets us make sure all of the properties of the class are working with the same type.
 
-As we covered in the [Classes section](./Classes.md), a class has two sides to its type: the static side and the instance side.
+As we covered in [our section on classes](./Classes.md), a class has two sides to its type: the static side and the instance side.
 Generic classes are only generic over their instance side rather than their static side, so when working with classes, static members can not use the class's type parameter.
 
 # Generic Constraints

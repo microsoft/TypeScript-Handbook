@@ -125,7 +125,7 @@ npm install -g jspm@beta
 
 _Note: Currently TypeScript support in jspm is in 0.16beta_
 
-More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSamples/tree/jspm/jspm)
+More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSamples/tree/master/jspm)
 
 # webpack
 

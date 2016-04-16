@@ -31,15 +31,15 @@ As in other languages, we use the type `string` to refer to these textual dataty
 Just like JavaScript, TypeScript also uses the double quote (`"`) or single quote (`'`) to surround string data.
 
 ```ts
-let name: string = "bob";
-name = 'smith';
+let color: string = "blue";
+name = 'red';
 ```
 
 You can also use *template strings*, which can span multiple lines and have embedded expressions.
-These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are of the form `${ expr }`
+These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are of the form `${ expr }`.
 
 ```ts
-let name: string = `Gene`;
+let fullName: string = `Bob Bobbington`;
 let age: number = 37;
 let sentence: string = `Hello, my name is ${ name }.
 

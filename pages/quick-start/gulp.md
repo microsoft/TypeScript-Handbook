@@ -48,6 +48,7 @@ You can always go back and change these in the `package.json` file that's been g
 
 Now we can use `npm install` to install packages.
 First install TypeScript and gulp globally.
+(You might need to start `npm install` commands in this guide with `sudo` if you're on a Unix system.)
 
 ```shell
 npm install -g typescript gulp-cli
@@ -109,13 +110,8 @@ This is the structure you're more likely to use for a real app.
 Create a file called `src/greet.ts`:
 
 ```ts
-export function showHello(divName: string, name: string) {
-    const elt = document.getElementById(divName)
-    elt.innerText = `Hello from ${name}`;
-}
-
 export function sayHello(name: string) {
-    console.log(`Hello from ${name}`);
+    return `Hello from ${name}`;
 }
 ```
 
@@ -175,13 +171,16 @@ Create a file in the root of the project named `index.html`:
 Now change `main.ts` to update the page:
 
 ```ts
-import { sayHello, showHello } from "./greet";
+import { sayHello } from "./greet";
+export function showHello(divName: string, name: string) {
+    const elt = document.getElementById(divName);
+    elt.innerText = sayHello(name);
+}
 
-sayHello("TypeScript");
 showHello("greeting", "TypeScript");
 ```
 
-Calling `showHello` makes `main.ts` change the paragraph's text while `sayHello` writes to the console.
+Calling `showHello` calls `sayHello` to change the paragraph's text.
 Now change your gulpfile to the following:
 
 ```js
@@ -198,6 +197,7 @@ gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
         .pipe(gulp.dest("dist"));
 });
+
 gulp.task("default", ["copy-html"], function () {
     return browserify({
         basedir: '.',
@@ -215,32 +215,31 @@ gulp.task("default", ["copy-html"], function () {
 
 This adds the `copy-html` task and adds it as a dependency of `default`.
 That means any time `default` is run, `copy-html` has to run first.
-We've also changed `default` to call Browserify first instead of gulp-typescript.
-Then we use the tsify plugin for Browserify instead of gulp-typescript.
-Thankfully they both allow us to pass an options object to the TypeScript compiler.
+We've also changed `default` to call Browserify with the tsify plugin instead of gulp-typescript.
+Conveniently, they both allow us to pass the same options object to the TypeScript compiler.
 
-After calling `bundle` we use `source` (our alias for vinyl-source-stream) to name the bundle `bundle.js`.
+After calling `bundle` we use `source` (our alias for vinyl-source-stream) to name our output bundle `bundle.js`.
 
 Test the page by running gulp and then opening `dist/index.html` in a browser.
 You should see "Hello from TypeScript" on the page.
 
-Notice that we specified `debug: true` to browserify.
+Notice that we specified `debug: true` to Browserify.
 This causes tsify to emit source maps inside the bundled JavaScript file.
-Source maps let you debug the original TypeScript in the browser instead of the bundled JavaScript.
+Source maps let you debug your original TypeScript code in the browser instead of the bundled JavaScript.
 You can test that source maps are working by opening the debugger for your browser and putting a breakpoint inside `main.ts`.
-When you refresh the page the breakpoint should pause the page and let you debug into `greet.ts`.
+When you refresh the page the breakpoint should pause the page and let you debug `greet.ts`.
 
 # Watchify, Babel and Uglify
 
-Now that we are bundling our code with browserify and tsify, we can add various features to our build with browserify plugins.
+Now that we are bundling our code with Browserify and tsify, we can add various features to our build with browserify plugins.
 
 * Watchify starts gulp and keeps it running, incrementally compiling whenever you save a file.
   This lets you keep an edit-save-refresh cycle going in the browser.
 
-* Babel is a hugely flexible transpiler that converts ES2015 and beyond into ES5 and ES3.
-  This lets you add transformations that TypeScript doesn't support.
+* Babel is a hugely flexible compiler that converts ES2015 and beyond into ES5 and ES3.
+  This lets you add extensive and customized transformations that TypeScript doesn't support.
 
-* Uglify compacts your code so that it takes less time to download onto the client.
+* Uglify compacts your code so that it takes less time to download.
 
 ## Watchify
 
@@ -263,36 +262,37 @@ var paths = {
 };
 var tsOptions = { noImplicitAny: true };
 
-const b = watchify(browserify({
-        basedir: '.',
-        debug: true,
-        entries: ['src/main.ts'],
-        cache: {},
-        packageCache: {}
-})
-        .plugin(tsify, tsOptions));
+var watchedBrowserify = watchify(browserify({
+    basedir: '.',
+    debug: true,
+    entries: ['src/main.ts'],
+    cache: {},
+    packageCache: {}
+}).plugin(tsify, tsOptions));
+
 gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
         .pipe(gulp.dest("dist"));
 });
+
 function bundle() {
-    return b
+    return watchedBrowserify
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(gulp.dest("dist"));
 }
+
 gulp.task("default", ["copy-html"], bundle);
-b.on("update", bundle);
+watchedBrowserify.on("update", bundle);
 ```
 
 There are basically two changes here, but they require you to refactor your code a bit.
 
-1. Wrap the `browserify` plus `tsify` call in a `watchify` call.
-   Then save the resulting object in a variable named `b`.
-2. Call `b.on("update", bundle);` to run browserify's bundling every time one of your TypeScript files changes.
+1. We wrapped our `browserify` instance in a call to `watchify`, and then held on to the result.
+2. We called `watchedBrowserify.on("update", bundle);` so that Browserify will run the `bundle` function every time one of your TypeScript files changes.
 
-Together (1) and (2) mean that you have to separate the browserify construction out of the `default` task.
-And you have to give the function for `default` a name since you need it both for the `gulp.task` and for `watchify.on`.
+Together (1) and (2) mean that we have to move our call to `browserify` out of the `default` task.
+And we have to give the function for `default` a name since both Watchify and Gulp need to call it.
 
 ## Uglify
 
@@ -322,6 +322,7 @@ gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
         .pipe(gulp.dest("dist"));
 });
+
 gulp.task("default", ["copy-html"], function () {
     return browserify({
         basedir: '.',
@@ -330,18 +331,18 @@ gulp.task("default", ["copy-html"], function () {
         cache: {},
         packageCache: {}
     })
-        .plugin(tsify, tsOptions)
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest("dist"));
+    .plugin(tsify, tsOptions)
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest("dist"));
 });
 ```
 
-Notice that `uglify` itself just one call &mdash; the calls to `buffer` and `sourcemaps` exist to make sure sourcemaps keep working.
+Notice that `uglify` itself has just one call &mdash; the calls to `buffer` and `sourcemaps` exist to make sure sourcemaps keep working.
 These calls give us a separate sourcemap file instead of using inline sourcemaps like before.
 
 ## Babel
@@ -356,23 +357,22 @@ npm install --save-dev babelify vinyl-buffer gulp-sourcemaps
 Now change your gulpfile to the following:
 
 ```js
-var gulp = require("gulp");
-var browserify = require("browserify");
+var gulp = require('gulp');
+var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var tsify = require("tsify");
-var uglify = require('gulp-uglify');
+var tsify = require('tsify');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
 var paths = {
     pages: ['*.html']
 };
-var tsOptions = { noImplicitAny: true };
 
-gulp.task("copy-html", function () {
+gulp.task('copyHtml', function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest('dist'));
 });
-gulp.task("default", ["copy-html"], function () {
+
+gulp.task('default', ['copyHtml'], function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -380,17 +380,20 @@ gulp.task("default", ["copy-html"], function () {
         cache: {},
         packageCache: {}
     })
-        .plugin(tsify, tsOptions)
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest("dist"));
+    .plugin(tsify, {
+        noImplicitAny: true,
+        target: "es2015"
+    })
+    .transform("babelify")
+    .bundle()
+    .pipe(source('bundle.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('dist'));
 });
 ```
 
-Notice that TypeScript now targets ES6.
-Babel then takes the emitted ES6 code and produces ES5 from it.
+Notice that TypeScript now targets ES2015.
+Babel then takes the emitted ES2015 code and produces ES5 from it.
 Babel's ES5 output should be very similar to TypeScript's output for such a simple script.

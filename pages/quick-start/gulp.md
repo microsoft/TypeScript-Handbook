@@ -54,7 +54,7 @@ First install TypeScript and gulp globally.
 npm install -g typescript gulp-cli
 ```
 
-Then install `gulp` and `gulp-typescript` in your project `devDependencies`.
+Then install `gulp` and `gulp-typescript` in your project's dev dependencies.
 [Gulp-typescript](https://www.npmjs.com/package/gulp-typescript) is a gulp plugin for Typescript.
 
 ```shell
@@ -79,7 +79,7 @@ In the project root, create the file `gulpfile.js`:
 
 ```js
 var gulp = require("gulp");
-var ts = require('gulp-typescript');
+var ts = require("gulp-typescript");
 var paths = {
     scripts: ['src/**/*.ts'],
 };
@@ -96,8 +96,7 @@ gulp.task("default", function () {
 
 ```shell
 gulp
-cd dist
-node main.js
+node dist/main.js
 ```
 
 The program should print "Hello from TypeScript!".
@@ -127,8 +126,7 @@ Make sure that the modules work by running `gulp` and then testing in Node:
 
 ```shell
 gulp
-cd dist
-node main.js
+node dist/main.js
 ```
 
 Notice that even though we used ES2015 module syntax, TypeScript emitted CommonJS modules that Node uses.
@@ -137,7 +135,7 @@ We'll stick with CommonJS for this tutorial, but you could set `module` in the o
 # Browserify
 
 Now let's move this project from Node to the browser.
-To do this, we need to bundle all our modules into one JavaScript file.
+To do this, we'd  like to bundle all our modules into one JavaScript file.
 Fortunately, that's exactly what Browserify does.
 Even better, it lets us use the CommonJS module system used by Node, which is the default TypeScript emit.
 That means our TypeScript and Node setup will transfer to the browser basically unchanged.
@@ -172,7 +170,8 @@ Now change `main.ts` to update the page:
 
 ```ts
 import { sayHello } from "./greet";
-export function showHello(divName: string, name: string) {
+
+function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName);
     elt.innerText = sayHello(name);
 }
@@ -246,7 +245,7 @@ Now that we are bundling our code with Browserify and tsify, we can add various 
 We'll start with Watchify to provide background compilation:
 
 ```shell
-npm install --save-dev watchify
+npm install --save-dev watchify gulp-util
 ```
 
 Now change your gulpfile to the following:
@@ -257,6 +256,7 @@ var browserify = require("browserify");
 var source = require('vinyl-source-stream');
 var watchify = require("watchify");
 var tsify = require("tsify");
+var gutil = require("gulp-util");
 var paths = {
     pages: ['*.html']
 };
@@ -284,15 +284,34 @@ function bundle() {
 
 gulp.task("default", ["copy-html"], bundle);
 watchedBrowserify.on("update", bundle);
+watchedBrowserify.on("log", gutil.log);
 ```
 
-There are basically two changes here, but they require you to refactor your code a bit.
+There are basically three changes here, but they require you to refactor your code a bit.
 
 1. We wrapped our `browserify` instance in a call to `watchify`, and then held on to the result.
 2. We called `watchedBrowserify.on("update", bundle);` so that Browserify will run the `bundle` function every time one of your TypeScript files changes.
+3. We called `watchedBrowserify.on("log", gutil.log);` to log to the console.
 
 Together (1) and (2) mean that we have to move our call to `browserify` out of the `default` task.
 And we have to give the function for `default` a name since both Watchify and Gulp need to call it.
+Adding logging with (3) is optional but very useful for debugging your setup.
+
+Now when you run Gulp, it should start and stay running.
+Try changing the code for `showHello` in `main.ts` and saving it.
+You should see output that looks like this:
+
+```shell
+gulp-proj$ gulp
+[10:34:20] Using gulpfile ~/src/gulp-proj/gulpfile.js
+[10:34:20] Starting 'copy-html'...
+[10:34:20] Finished 'copy-html' after 26 ms
+[10:34:20] Starting 'default'...
+[10:34:21] 2824 bytes written (0.13 seconds)
+[10:34:21] Finished 'default' after 1.36 s
+[10:35:22] 2261 bytes written (0.02 seconds)
+[10:35:24] 2808 bytes written (0.05 seconds)
+```
 
 ## Uglify
 
@@ -344,6 +363,12 @@ gulp.task("default", ["copy-html"], function () {
 
 Notice that `uglify` itself has just one call &mdash; the calls to `buffer` and `sourcemaps` exist to make sure sourcemaps keep working.
 These calls give us a separate sourcemap file instead of using inline sourcemaps like before.
+Now you can run Gulp and check that `bundle.js` does get minified into an unreadable mess:
+
+```shell
+gulp
+cat dist/bundle.js
+```
 
 ## Babel
 

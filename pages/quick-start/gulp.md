@@ -132,6 +132,20 @@ import { sayHello } from "./greet";
 console.log(sayHello("TypeScript"));
 ```
 
+Finally, add `src/greet.ts` to `tsconfig.json`:
+
+```json
+{
+    "files": [
+        "src/main.ts",
+        "src/greet.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true
+    }
+}
+```
+
 Make sure that the modules work by running `gulp` and then testing in Node:
 
 ```shell

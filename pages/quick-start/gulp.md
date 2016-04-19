@@ -73,6 +73,19 @@ function hello(compiler: string) {
 hello("TypeScript");
 ```
 
+In the project root, `proj`, create the file `tsconfig.json`:
+
+```json
+{
+    "files": [
+        "src/main.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true
+    }
+}
+```
+
 ### Create a `gulpfile.js`
 
 In the project root, create the file `gulpfile.js`:
@@ -80,15 +93,12 @@ In the project root, create the file `gulpfile.js`:
 ```js
 var gulp = require("gulp");
 var ts = require("gulp-typescript");
-var paths = {
-    scripts: ['src/**/*.ts'],
-};
-var tsOptions = { noImplicitAny: true };
+var tsProject = ts.createProject("tsconfig.json");
 
 gulp.task("default", function () {
-    return gulp.src(paths.scripts)
-        .pipe(ts(tsOptions))
-        .pipe(gulp.dest("dist"));
+    return tsProject.src()
+        .pipe(ts(tsProject))
+        .js.pipe(gulp.dest("dist"));
 });
 ```
 
@@ -150,7 +160,7 @@ npm install --save-dev browserify tsify vinyl-source-stream
 
 ### Create a page
 
-Create a file in the root of the project named `index.html`:
+Create a file in `src` named `index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -188,9 +198,8 @@ var browserify = require("browserify");
 var source = require('vinyl-source-stream');
 var tsify = require("tsify");
 var paths = {
-    pages: ['*.html']
+    pages: ['src/*.html']
 };
-var tsOptions = { noImplicitAny: true };
 
 gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
@@ -205,7 +214,7 @@ gulp.task("default", ["copy-html"], function () {
         cache: {},
         packageCache: {}
     })
-    .plugin(tsify, tsOptions)
+    .plugin(tsify)
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest("dist"));
@@ -228,7 +237,7 @@ Source maps let you debug your original TypeScript code in the browser instead o
 You can test that source maps are working by opening the debugger for your browser and putting a breakpoint inside `main.ts`.
 When you refresh the page the breakpoint should pause the page and let you debug `greet.ts`.
 
-# Watchify, Babel and Uglify
+# Watchify, Babel, and Uglify
 
 Now that we are bundling our code with Browserify and tsify, we can add various features to our build with browserify plugins.
 
@@ -258,9 +267,8 @@ var watchify = require("watchify");
 var tsify = require("tsify");
 var gutil = require("gulp-util");
 var paths = {
-    pages: ['*.html']
+    pages: ['src/*.html']
 };
-var tsOptions = { noImplicitAny: true };
 
 var watchedBrowserify = watchify(browserify({
     basedir: '.',
@@ -268,7 +276,7 @@ var watchedBrowserify = watchify(browserify({
     entries: ['src/main.ts'],
     cache: {},
     packageCache: {}
-}).plugin(tsify, tsOptions));
+}).plugin(tsify));
 
 gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
@@ -333,9 +341,8 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
 var paths = {
-    pages: ['*.html']
+    pages: ['src/*.html']
 };
-var tsOptions = { noImplicitAny: true };
 
 gulp.task("copy-html", function () {
     return gulp.src(paths.pages)
@@ -350,7 +357,7 @@ gulp.task("default", ["copy-html"], function () {
         cache: {},
         packageCache: {}
     })
-    .plugin(tsify, tsOptions)
+    .plugin(tsify)
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(buffer())
@@ -389,7 +396,7 @@ var tsify = require('tsify');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
 var paths = {
-    pages: ['*.html']
+    pages: ['src/*.html']
 };
 
 gulp.task('copyHtml', function () {
@@ -405,10 +412,7 @@ gulp.task('default', ['copyHtml'], function () {
         cache: {},
         packageCache: {}
     })
-    .plugin(tsify, {
-        noImplicitAny: true,
-        target: "es2015"
-    })
+    .plugin(tsify)
     .transform("babelify")
     .bundle()
     .pipe(source('bundle.js'))
@@ -419,6 +423,20 @@ gulp.task('default', ['copyHtml'], function () {
 });
 ```
 
-Notice that TypeScript now targets ES2015.
-Babel then takes the emitted ES2015 code and produces ES5 from it.
+We also need to have TypeScript target ES2015.
+Babel will then produce ES5 from the ES2015 code that TypeScript emits.
+Let's modify `tsconfig.json`:
+
+```json
+{
+    "files": [
+        "src/main.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es2015"
+    }
+}
+```
+
 Babel's ES5 output should be very similar to TypeScript's output for such a simple script.

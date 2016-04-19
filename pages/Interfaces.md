@@ -196,7 +196,7 @@ mySearch = function(source: string, subString: string) {
 }
 ```
 
-For function types to correctly type-check, the name of the parameters do not need to match.
+For function types to correctly type-check, the name of the parameters does not need to match.
 We could have, for example, written the above example like this:
 
 ```ts

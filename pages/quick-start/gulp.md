@@ -81,7 +81,8 @@ In the project root, `proj`, create the file `tsconfig.json`:
         "src/main.ts"
     ],
     "compilerOptions": {
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "target": "es5"
     }
 }
 ```
@@ -141,7 +142,8 @@ Finally, add `src/greet.ts` to `tsconfig.json`:
         "src/greet.ts"
     ],
     "compilerOptions": {
-        "noImplicitAny": true
+        "noImplicitAny": true,
+        "target": "es5"
     }
 }
 ```
@@ -324,8 +326,8 @@ Try changing the code for `showHello` in `main.ts` and saving it.
 You should see output that looks like this:
 
 ```shell
-gulp-proj$ gulp
-[10:34:20] Using gulpfile ~/src/gulp-proj/gulpfile.js
+proj$ gulp
+[10:34:20] Using gulpfile ~/src/proj/gulpfile.js
 [10:34:20] Starting 'copy-html'...
 [10:34:20] Finished 'copy-html' after 26 ms
 [10:34:20] Starting 'default'...

@@ -1,7 +1,7 @@
 ## Compiler Options
 
 Option                                         | Type      | Default                        | Description
------------------------------------------------|--------------------------------------------|----------------------------------------------------------------------
+-----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------
 `--allowJs`                                    | `boolean` | `true`                         | Allow JavaScript files to be compiled.
 `--allowNonTsExtensions`                       | `boolean` | `true`                         | Allow files with file extensions other than ".ts" to be compiled.
 `--allowSyntheticDefaultImports`               | `boolean` | `(module === "system")`        | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
@@ -14,7 +14,7 @@ Option                                         | Type      | Default            
 `--emitDecoratorMetadata`<sup>[1]</sup>        | `boolean` | `false`                        | Emit design-type metadata for decorated declarations in source. See [issue #2577](https://github.com/Microsoft/TypeScript/issues/2577) for details.
 `--experimentalDecorators`                     | `boolean` | `false`                        | Enables experimental support for ES7 decorators.
 `--forceConsistentCasingInFileNames`           | `boolean` | `false`                        | Disallow inconsistently-cased references to the same file.
-`--help`<br/>`-h`                              |                                            | Print help message.
+`--help`<br/>`-h`                              |           |                                | Print help message.
 `--inlineSourceMap`                            | `boolean` | `false`                        | Emit a single file with source maps instead of having a separate file.
 `--inlineSources`                              | `boolean` | `false`                        | Emit the source alongside the sourcemaps within a single file; requires `--inlineSourceMap` or `--sourceMap` to be set.
 `--isolatedModules`                            | `boolean` | `false`                        | Unconditionally emit imports for unresolved files.
@@ -23,8 +23,8 @@ Option                                         | Type      | Default            
 `--locale`                                     | `string`  | *(platform specific)*          | The locale to use to show error messages, e.g. en-us.
 `--mapRoot`                                    | `string`  | `null`                         | Specifies the location where debugger should locate map files instead of generated locations. Use this flag if the .map files will be located at run-time in a different location than than the .js files. The location specified will be embedded in the sourceMap to direct the debugger where the map files where be located.
 `--module`<br/>`-m`                            | `string`  | `(target === "ES6" ? "ES6" : "CommonJS")`   | Specify module code generation: `'none'`, `'commonjs'`, `'amd'`, `'system'`, `'umd'`, `'es6'`, or `'es2015'`. Only `'amd'` and `'system'` can be used in conjunction with `--outFile`. `'es6'` and `'es2015'` values may not be used when targeting ES5 or lower.
-`--moduleResolution`                           | `string` | `"Classic"`                     | Determine how modules get resolved. Either `'node'` for Node.js/io.js style resolution, or `'classic'` (default). See [Module Resolution documentation](Module%20Resolution.md) for more details.
-`--newLine`                                    | `string` | *(platform specific)*           | Use the specified end of line sequence to be used when emitting files: `'crlf'` (windows) or `'lf'` (unix)."
+`--moduleResolution`                           | `string`  | `"Classic"`                    | Determine how modules get resolved. Either `'node'` for Node.js/io.js style resolution, or `'classic'` (default). See [Module Resolution documentation](Module%20Resolution.md) for more details.
+`--newLine`                                    | `string`  | *(platform specific)*          | Use the specified end of line sequence to be used when emitting files: `'crlf'` (windows) or `'lf'` (unix)."
 `--noEmit`                                     | `boolean` | `false`                        | Do not emit outputs.
 `--noEmitHelpers`                              | `boolean` | `false`                        | Do not generate custom helper functions like `__extends` in compiled output.
 `--noEmitOnError`                              | `boolean` | `false`                        | Do not emit outputs if any errors were reported.
@@ -51,10 +51,10 @@ Option                                         | Type      | Default            
 `--stripInternal`<sup>[1]</sup>                | `boolean` | `false`                        | Do not emit declarations for code that has an `/** @internal */` JSDoc annotation.
 `--suppressExcessPropertyErrors`               | `boolean` | `false`                        | Suppress excess property checks for object literals.
 `--suppressImplicitAnyIndexErrors`             | `boolean` | `false`                        | Suppress `--noImplicitAny` errors for indexing objects lacking index signatures. See [issue #1232](https://github.com/Microsoft/TypeScript/issues/1232#issuecomment-64510362) for more details.
-`--target`<br/>`-t`                            | `string` | `"ES5"`                         | Specify ECMAScript target version: `'es3'` (default), `'es5'`, or `'es6'`.
+`--target`<br/>`-t`                            | `string`  | `"ES5"`                        | Specify ECMAScript target version: `'es3'` (default), `'es5'`, or `'es6'`.
 `--traceModuleResolution`                      | `boolean` | `false`                        | Report module resolution log messages.
-`--version`<br/>`-v`                           |                                            | Print the compiler's version.
-`--watch`<br/>`-w`                             |                                            | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
+`--version`<br/>`-v`                           |           |                                | Print the compiler's version.
+`--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
 
 <sup>[1]</sup> These options are experimental.
 

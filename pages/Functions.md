@@ -202,7 +202,7 @@ let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
 
 *Rest parameters* are treated as a boundless number of optional parameters.
-When passing arguments for a rest parameter, can use as many as you want; you can even pass none.
+When passing arguments for a rest parameter, you can use as many as you want; you can even pass none.
 The compiler will build an array of the arguments passed in with the name given after the ellipsis (`...`), allowing you to use it in your function.
 
 The ellipsis is also used in the type of the function with rest parameters:

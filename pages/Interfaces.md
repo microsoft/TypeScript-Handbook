@@ -134,20 +134,32 @@ let mySquare = createSquare({ colour: "red", width: 100 });
 ```
 
 Getting around these checks is actually really simple.
-The best and easiest method is to just use a type assertion:
+The easiest method is to just use a type assertion:
 
 ```ts
-let mySquare = createSquare({ colour: "red", width: 100 } as SquareConfig);
+let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```
 
-Another approach, which might be a bit surprising, is to assign the object to another variable:
+However, a better approach to might to add a string index signature if you're sure that the object can have some extra properties that are used in some special way.
+If `SquareConfig`s can have `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it like so:
+
+```ts
+interface SquareConfig {
+    color?: string;
+    width?: number;
+    [propName: string]: any;
+}
+```
+
+We'll discuss index signatures in a bit, but here we're saying a `SquareConfig` can have any number of properties, and as long as they aren't `color` or `width`, their types don't matter.
+
+One final way to get around these checks, which might be a bit surprising, is to assign the object to another variable:
+Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
 
 ```ts
 let squareOptions = { colour: "red", width: 100 };
 let mySquare = createSquare(squareOptions);
 ```
-
-Since `squareOptions` won't undergo excess property checks, the compiler won't give you an error.
 
 Keep in mind that for simple code like above, you probably shouldn't be trying to "get around" these checks.
 For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors are actually bugs.
@@ -184,7 +196,7 @@ mySearch = function(source: string, subString: string) {
 }
 ```
 
-For function types to correctly type-check, the name of the parameters do not need to match.
+For function types to correctly type-check, the names of the parameters do not need to match.
 We could have, for example, written the above example like this:
 
 ```ts
@@ -218,10 +230,11 @@ mySearch = function(src, sub) {
 }
 ```
 
-# Array Types
+# Indexable Types
 
-Similarly to how we can use interfaces to describe function types, we can also describe array types.
-Array types have an `index` type that describes the types allowed to index the object, along with the corresponding return type for accessing the index.
+Similarly to how we can use interfaces to describe function types, we can also describe types that we can "index into" like `a[10]`, or `ageMap["daniel"]`.
+Indexable types have an *index signature* that describes the types we can use to index into the object, along with the corresponding return types when indexing.
+Let's take an example:
 
 ```ts
 interface StringArray {
@@ -230,14 +243,36 @@ interface StringArray {
 
 let myArray: StringArray;
 myArray = ["Bob", "Fred"];
+
+let myStr: string = myArray[0];
 ```
 
-There are two types of supported index types: string and number.
-It is possible to support both types of indexers, with the restriction that the type returned from the numeric indexer must be a subtype of the type returned from the string indexer.
+Above, we have a `StringArray` interface that has an index signature.
+This index signature states that when a `StringArray` is indexed with a `number`, it will return a `string`.
+
+There are two types of supported index signatures: string and number.
+It is possible to support both types of indexers, but the type returned from a numeric indexer must be a subtype of the type returned from the string indexer.
+This is because when indexing with a `number`, JavaScript will actually convert that to a `string` before indexing into an object.
+That means that indexing with `100` (a `number`) is the same thing as indexing with `"100"` (a `string`), so the two need to be consistent.
+
+```ts
+class Animal {
+    name: string;
+}
+class Dog extends Animal {
+    breed: string;
+}
+
+// Error: indexing with a 'string' will sometimes get you a Dog!
+interface NotOkay {
+    [x: number]: Animal;
+    [x: string]: Dog;
+}
+```
 
 While string index signatures are a powerful way to describe the "dictionary" pattern, they also enforce that all properties match their return type.
 This is because a string index declares that `obj.property` is also available as `obj["property"]`.
-In this example, `name`'s type does not match the string index's type, and the type-checker gives an error:
+In the following example, `name`'s type does not match the string index's type, and the type-checker gives an error:
 
 ```ts
 interface NumberDictionary {
@@ -336,7 +371,7 @@ let digital = createClock(DigitalClock, 12, 17);
 let analog = createClock(AnalogClock, 7, 32);
 ```
 
-Because `createClock`'s first parameter is of type `ClockConstructor`, in `createClock(AnalogClock, 12, 17)`, it checks that `AnalogClock` has the correct constructor signature.
+Because `createClock`'s first parameter is of type `ClockConstructor`, in `createClock(AnalogClock, 7, 32)`, it checks that `AnalogClock` has the correct constructor signature.
 
 # Extending Interfaces
 

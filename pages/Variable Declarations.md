@@ -335,7 +335,7 @@ While there are some scenarios where it may be fitting to take advantage of it, 
 
 When we first touched on the idea of variable capturing with `var` declaration, we briefly went into how variables act once captured.
 To give a better intuition of this, each time a scope is run, it creates an "environment" of variables.
-That environment and its can exist even after everything within its scope has finished executing.
+That environment and its captured variables can exist even after everything within its scope has finished executing.
 
 ```ts
 function theCityThatAlwaysSleeps() {

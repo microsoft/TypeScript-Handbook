@@ -1,7 +1,7 @@
 # Introduction
 
 For programs to be useful, we need to be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.
-In TypeScript, we support much the same types as you would expected in JavaScript, with a convenient enumeration type thrown in to help things along.
+In TypeScript, we support much the same types as you would expect in JavaScript, with a convenient enumeration type thrown in to help things along.
 
 # Boolean
 
@@ -31,15 +31,15 @@ As in other languages, we use the type `string` to refer to these textual dataty
 Just like JavaScript, TypeScript also uses the double quote (`"`) or single quote (`'`) to surround string data.
 
 ```ts
-let name: string = "bob";
-name = 'smith';
+let color: string = "blue";
+name = 'red';
 ```
 
 You can also use *template strings*, which can span multiple lines and have embedded expressions.
-These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are of the form `${ expr }`
+These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are of the form `${ expr }`.
 
 ```ts
-let name: string = `Gene`;
+let fullName: string = `Bob Bobbington`;
 let age: number = 37;
 let sentence: string = `Hello, my name is ${ name }.
 

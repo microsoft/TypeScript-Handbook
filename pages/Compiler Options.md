@@ -3,16 +3,15 @@
 Option                                         | Type      | Default                        | Description
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------
 `--allowJs`                                    | `boolean` | `true`                         | Allow JavaScript files to be compiled.
-`--allowNonTsExtensions`                       | `boolean` | `true`                         | Allow files with file extensions other than ".ts" to be compiled.
 `--allowSyntheticDefaultImports`               | `boolean` | `(module === "system")`        | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
 `--allowUnreachableCode`                       | `boolean` | `true`                         | Do not report errors on unreachable code.
-`--allowUnusedLabels`                          | `boolean` | `true`                         | Do not report errors on unused labels.
+`--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
 `--charset`                                    | `string`  | `"utf8"`                       | The character set of the input files.
 `--declaration`<br/>`-d`                       | `boolean` | `false`                        | Generates corresponding '.d.ts' file.
 `--diagnostics`                                | `boolean` | `false`                        | Show diagnostic information.
 `--emitBOM`                                    | `boolean` | `false`                        | Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.
 `--emitDecoratorMetadata`<sup>[1]</sup>        | `boolean` | `false`                        | Emit design-type metadata for decorated declarations in source. See [issue #2577](https://github.com/Microsoft/TypeScript/issues/2577) for details.
-`--experimentalDecorators`                     | `boolean` | `false`                        | Enables experimental support for ES7 decorators.
+`--experimentalDecorators`<sup>[1]</sup>       | `boolean` | `false`                        | Enables experimental support for ES7 decorators.
 `--forceConsistentCasingInFileNames`           | `boolean` | `false`                        | Disallow inconsistently-cased references to the same file.
 `--help`<br/>`-h`                              |           |                                | Print help message.
 `--inlineSourceMap`                            | `boolean` | `false`                        | Emit a single file with source maps instead of having a separate file.
@@ -52,7 +51,7 @@ Option                                         | Type      | Default            
 `--suppressExcessPropertyErrors`               | `boolean` | `false`                        | Suppress excess property checks for object literals.
 `--suppressImplicitAnyIndexErrors`             | `boolean` | `false`                        | Suppress `--noImplicitAny` errors for indexing objects lacking index signatures. See [issue #1232](https://github.com/Microsoft/TypeScript/issues/1232#issuecomment-64510362) for more details.
 `--target`<br/>`-t`                            | `string`  | `"ES5"`                        | Specify ECMAScript target version: `'es3'` (default), `'es5'`, or `'es6'`.
-`--traceModuleResolution`                      | `boolean` | `false`                        | Report module resolution log messages.
+`--traceResolution`                            | `boolean` | `false`                        | Report module resolution log messages.
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version.
 `--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
 

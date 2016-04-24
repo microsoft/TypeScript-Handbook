@@ -4,7 +4,7 @@ Option                                         | Type      | Default            
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------
 `--allowJs`                                    | `boolean` | `true`                         | Allow JavaScript files to be compiled.
 `--allowSyntheticDefaultImports`               | `boolean` | `(module === "system")`        | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
-`--allowUnreachableCode`                       | `boolean` | `true`                         | Do not report errors on unreachable code.
+`--allowUnreachableCode`                       | `boolean` | `false`                         | Do not report errors on unreachable code.
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
 `--charset`                                    | `string`  | `"utf8"`                       | The character set of the input files.
 `--declaration`<br/>`-d`                       | `boolean` | `false`                        | Generates corresponding '.d.ts' file.
@@ -40,7 +40,7 @@ Option                                         | Type      | Default            
 `--preserveConstEnums`                         | `boolean` | `false`                        | Do not erase const enum declarations in generated code. See [const enums documentation](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#94-constant-enum-declarations) for more details.
 `--pretty`<sup>[1]</sup>                       | `boolean` | `false`                        | Stylize errors and messages using color and context.
 `--project`<br/>`-p`                           | `string`  | `null`                         | Compile the project in the given directory. The directory needs to contain a `tsconfig.json` file to direct compilation. See [tsconfig.json](./tsconfig.json.md) documentation for more details.
-`--reactNamespace`                             | `string`  | `"react"`                      | Specifies the object invoked for `createElement` and `__spread` when targeting 'react' JSX emit.
+`--reactNamespace`                             | `string`  | `"React"`                      | Specifies the object invoked for `createElement` and `__spread` when targeting 'react' JSX emit.
 `--removeComments`                             | `boolean` | `false`                        | Remove all comments except copy-right header comments beginning with `/*!`
 `--rootDir`                                    | `string`  | *(common root directory is computed from the list of input files)*   | Specifies the root directory of input files. Only use to control the output directory structure with `--outDir`.
 `--skipDefaultLibCheck`                        | `boolean` | `false`                        | Don't check a user-defined default lib file's valitidy.

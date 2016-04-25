@@ -264,7 +264,7 @@ Following this logic, the compiler will attempt to resolve the two imports as su
   2. try first substitution in the list: '*' -> `folder1/file2`
   3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder1/file2.ts`.
   4. File exists. Done.
-* import 'folder2/file2'
+* import 'folder2/file3'
   1. pattern '*' is matched and wildcard captures the whole module name
   2. try first substitution in the list: '*' -> `folder2/file3`
   3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder2/file3.ts`.

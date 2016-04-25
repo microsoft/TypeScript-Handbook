@@ -12,8 +12,8 @@ Modules are declarative; the relationships between modules are specified in term
 
 Modules import one another using a module loader.
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
-Well-known module loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
-TypeScript can generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
+Well-known module loaders used in JavaScript are the [CommonJS](http://wiki.commonjs.org/wiki/CommonJS) module loader for Node.js and [AMD](http://requirejs.org/) for Web applications.
+TypeScript can generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [native ECMAScript 2015 (ES6)](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) module-loading systems.
 
 > **A note about terminology:**
 It's important to note that before TypeScript 1.5, modules were called "external modules" and [namespaces](./appendices/Namespaces.md) were called "internal modules".
@@ -138,7 +138,7 @@ Default exports are marked with the keyword `default`; and there can only be one
 `default` exports are imported using a different import form &mdash; `import <name> from "library";`.
 
 `default` exports are really handy.
-For instance, a library like JQuery would have a default export of `$`, which we'd import under the name `$`.
+For instance, a library like JQuery would have a default export of `$` or `jQuery`, which we'd also import under the name `$` or `jQuery`.
 
 ##### JQuery.d.ts
 
@@ -340,7 +340,7 @@ strings.forEach(s => {
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
 The declaration gives just the type of the statement without any implementation.
 If the library uses modules, the API declaration will also need to use modules.
-For more details on writing the actual declarations, see [Writing Definition Files](./Writing Definition Files.md).
+For more details on writing the actual declarations, see [Writing Declaration Files](./Writing Declaration Files.md).
 
 For example, if the JavaScript module looks like this:
 
@@ -360,10 +360,10 @@ These are a lot like C's `.h` files.
 
 ## Ambient Modules
 
-Let's look at a convenient technique for writing `.d.ts` files for multi-module libraries.
-We could write one `.d.ts` file for each `.js` file.
-But it's more convenient to cram multiple modules in a single large `.d.ts`.
-To do so, we use the `module` keyword and the quoted name of the module which would normally be obtained from the module's filename.
+Normally, we would write one `.d.ts` file for each `.js` file in a multi-module library, but if this doesn't work, TypeScript has custom syntax that lets us cram multiple modules in a single large `.d.ts`.
+To do so, we use the `module` keyword and the module's path which would normally be obtained from the module's filename.
+This is called an "ambient module declaration".
+Ambient module declarations are not part of the ES2015 module standard, and they only apply to *declarations* &mdash; not values and code.
 For example, here's a simplified excerpt from the big combined `node.d.ts` that gives types to all the built-in Node modules:
 
 ##### node.d.ts (simplified excerpt)
@@ -386,7 +386,7 @@ declare module "path" {
 }
 ```
 
-Now we `/// <reference path="node.d.ts">`.
+Now we can add it to `tsconfig.json`'s `"files"` property, or add a `/// <reference path="node.d.ts">` in each source file that uses it.
 Afterwards, we can use the modules the usual way with `import * as URL from "url";`.
 
 ```ts
@@ -484,7 +484,7 @@ A common JS pattern is to augment the original object with *extensions*, similar
 As we've mentioned before, modules do not *merge* like global namespace objects would.
 The recommended solution is to *not* mutate the original object, but rather export a new entity that provides the new functionality.
 
-Consider a simple calculator interface defined in module `Calculator.ts`.
+Consider a simple calculator defined in module `Calculator.ts`.
 The module also exports a helper function to test the calculator functionality by passing a list of input strings and writing the result at the end.
 
 #### Calculator.ts

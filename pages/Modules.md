@@ -397,7 +397,9 @@ let myUrl = URL.parse("http://www.typescriptlang.org");
 
 # Guidance for structuring modules
 
-## Export as close to top-level as possible
+## Top-level Exports
+
+Export as close to top-level as possible.
 
 Consumers of your module should have as little friction as possible when using things that you export.
 Adding too many levels of nesting tends to be cumbersome, so think carefully about how you want to structure things.
@@ -408,7 +410,9 @@ This can quickly become a pain point for users, and is usually unnecessary.
 Static methods on an exported class have a similar problem - the class itself adds a layer of nesting.
 Unless it increases expressivity or intent in a clearly useful way, consider simply exporting a helper function.
 
-### If you're only exporting a single `class` or `function`, use `export default`
+### Default Exports
+
+If you're only exporting a single `class` or `function`, use `export default`.
 
 Just as "exporting near the top-level" reduces friction on your module's consumers, so does introducing a default export.
 If a module's primary purpose is to house one specific export, then you should consider exporting it as a default export.
@@ -440,7 +444,9 @@ console.log(f());
 
 This is optimal for consumers. They can name your type whatever they want (`C` in this case) and don't have to do any excessive dotting to find your objects.
 
-### If you're exporting multiple objects, put them all at top-level
+### Exporting Multiple Objects
+
+If you're exporting multiple objects, put them all at top-level
 
 #### Example: MyThings.ts
 
@@ -449,7 +455,9 @@ export class SomeType { /* ... */ }
 export function someFunc() { /* ... */ }
 ```
 
-### If you're importing multiple objects, explicitly list imported names
+### Importing Multiple Objects
+
+If you're importing multiple objects, explicitly list imported names.
 
 #### Consumer.ts
 
@@ -459,7 +467,9 @@ let x = new SomeType();
 let y = someFunc();
 ```
 
-### Use the namespace import pattern if you're importing a large number of things
+### Namespace Import
+
+Use the namespace import pattern if you're importing a large number of things.
 
 #### MyLargeModule.ts
 
@@ -498,7 +508,7 @@ export declare class Calculator {
     public handleChar(char: string);
     public getResult(): number;
 }
-export declare function test(c: Calculator, input: string);
+export declare function calculate(c: Calculator, input: string);
 ```
 
 Here is a simple test for the calculator using the exposed `test` function.
@@ -506,11 +516,11 @@ Here is a simple test for the calculator using the exposed `test` function.
 #### TestCalculator.ts
 
 ```ts
-import { Calculator, test } from "./Calculator";
+import { Calculator, calculate } from "./Calculator";
 
 
 let c = new Calculator();
-test(c, "1+2*33/11="); // should print 9
+calculate(c, "1+2*33/11="); // should print 9
 ```
 
 Now to extend this to add support for input with numbers in bases other than 10, let's create `ProgrammerCalculator.ts`
@@ -541,7 +551,7 @@ class ProgrammerCalculator extends Calculator {
 export { ProgrammerCalculator as Calculator };
 
 // Also, export the helper function
-export { test } from "./Calculator";
+export { calculate } from "./Calculator";
 ```
 
 The new module `ProgrammerCalculator` exports an API shape similar to that of the original `Calculator` module, but does not augment any objects in the original module.
@@ -550,7 +560,7 @@ Here is a test for our ProgrammerCalculator class:
 #### TestProgrammerCalculator.ts
 
 ```ts
-import { Calculator, test } from "./ProgrammerCalculator";
+import { Calculator, calculate } from "./ProgrammerCalculator";
 
 let c = new Calculator(2);
 test(c, "001+010="); // should print 3

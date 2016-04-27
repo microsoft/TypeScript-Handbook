@@ -589,4 +589,5 @@ See [Triple-Slash References](./Triple-Slash Directives.md) to learn how triple-
 ## Module Bundling
 
 Both JavaScript and TypeScript have a one-to-one correspondence between files and modules.
-One effect of this is that it's not possible to use the `--outFile` compiler switch to concatenate multiple JavaScript module files into a single JavaScript file.
+TypeScript can bundle all modules in a single file via the `--outFile` flag, but only for [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) and [SystemJS](https://github.com/systemjs/systemjs).
+You'll need to use [Webpack](http://webpack.github.io/) or [Browserify](http://browserify.org) to bundle CommonJS, isomorphic, or native ECMAScript 2015 modules into a single file.

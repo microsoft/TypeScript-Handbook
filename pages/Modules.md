@@ -340,7 +340,6 @@ strings.forEach(s => {
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
 The declaration gives just the type of the statement without any implementation.
 If the library uses modules, the API declaration will also need to use modules.
-For more details on writing the actual declarations, see [Writing Declaration Files](./Writing Declaration Files.md).
 
 For example, if the JavaScript module looks like this:
 
@@ -357,6 +356,10 @@ export declare var x: string;
 We call declarations that don't define an implementation "ambient".
 Typically, these are defined in `.d.ts` files.
 These are a lot like C's `.h` files.
+
+For more details on writing the actual declarations, see [Writing Declaration Files](./Writing Declaration Files.md).
+Putting TypeScript declaration files in the right place can be tricky.
+See [Module Resolution](./Module Resolution.md) to learn how TypeScript module resolution works.
 
 ## Ambient Modules
 

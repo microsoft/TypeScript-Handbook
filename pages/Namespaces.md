@@ -1,11 +1,11 @@
 # Introduction
 
 Namespaces are another, TypeScript-specific way to organize your code.
-[Modules](../Modules.md) follow the ECMAScript standard and should be the first option you consider.
-However, namespaces are simpler and can be easier to use for simple applications.
+[Modules](./Modules.md) follow the ECMAScript standard and should be the way that you structure your application.
+However, namespaces are simpler and are appropriate for smaller-scale organization.
 
 Before TypeScript 1.5, namespaces were called "internal modules" and modules were called "external modules".
-Because of this history, you can use either the `namespace` keyword or the `module` keyword, but you should always use `namespace` in new code.
+Because of this history, you may use either the `namespace` keyword or the `module` keyword, but you should always use `namespace` in new code.
 
 ## Using Namespaces
 
@@ -212,7 +212,7 @@ If multiple JS files get produced, we'll need to use `<script>` tags on our webp
 # Aliases
 
 Another way that you can simplify working with of namespaces is to use `import q = x.y.z` to create shorter names for commonly-used objects.
-Not to be confused with the `import x = require("name")` syntax used to load modules, this syntax simply creates an alias for the specified symbol.
+Not to be confused with the `import x from "name"` syntax used to load modules, this syntax simply creates an alias for the specified symbol.
 You can use these sorts of imports (commonly referred to as aliases) for any kind of identifier, including objects created from module imports.
 
 ```ts

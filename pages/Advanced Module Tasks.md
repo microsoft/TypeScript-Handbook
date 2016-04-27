@@ -1,6 +1,4 @@
-# Advanced Module Tasks
-
-## Optional Module Loading and Other Dynamic Loading
+# Optional Module Loading and Other Dynamic Loading
 
 In some cases, you may want to decide whether or not to load a module at runtime.
 In TypeScript, you can still invoke the module loaders directly to implement this and other advanced loading scenarios.
@@ -12,7 +10,7 @@ If a module identifier is never used as an expression -- only part of a type ann
 So you can import a module just for the types, then call the module loader manually.
 Below is an example of this double-import pattern in Node.js:
 
-##### Sample: Dynamic Module Loading in Node.js
+#### Sample: Dynamic Module Loading in Node.js
 
 ```ts
 declare function require(moduleName: string): any;
@@ -39,7 +37,7 @@ For this pattern to work, it's important that the symbol defined via an `import`
 
 Below are examples in other module systems.
 
-##### Sample: Dynamic Module Loading in require.js
+#### Sample: Dynamic Module Loading in require.js
 
 ```ts
 declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
@@ -54,7 +52,7 @@ if (needZipValidation) {
 }
 ```
 
-##### Sample: Dynamic Module Loading in System.js
+#### Sample: Dynamic Module Loading in System.js
 
 ```ts
 declare const System: any;
@@ -69,13 +67,13 @@ if (needZipValidation) {
 }
 ```
 
-## Converting From Namespaces
+# Converting From Namespaces
 
 If you're converting a program from namespaces to modules, the approach you take will vary depending on how complex the namespace usage in the original program was.
 If you have one namespace per file and no nested namespaces, see the next section for advice.
 If namespaces merge across multiple files or you hafe nested namespaces, look below for upgrade examples.
 
-### Replace namespaces with modules
+## Replace namespaces with modules
 
 When you first move to a module-based organization, it can be easy to end up with a file that looks like this:
 
@@ -273,21 +271,21 @@ export interface Other { ... }
 
 For a larger example of a project undergoing a migration like this, see [`tslint`](https://github.com/palantir/tslint/pull/726).
 
-## Code Generation for Modules
+# Code Generation for Modules
 
 Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
 For more information on what the `define`, `require` and `register` calls in the generated code do, consult the documentation for each module loader.
 
 This simple example shows how the names used during importing and exporting get translated into the module loading code.
 
-##### SimpleModule.ts
+#### SimpleModule.ts
 
 ```ts
 import { something } from "./mod";
 export let t = m.something + 1;
 ```
 
-##### AMD / RequireJS SimpleModule.js
+#### AMD / RequireJS SimpleModule.js
 
 Compile with `tsc -m amd SimpleModule.ts`
 
@@ -298,7 +296,7 @@ define(["require", "exports", "./mod"], function (require, exports, mod_1) {
 });
 ```
 
-##### CommonJS / Node SimpleModule.js
+#### CommonJS / Node SimpleModule.js
 
 Compile with `tsc -m commonjs SimpleModule.ts`
 
@@ -308,7 +306,7 @@ var mod_1 = require("./mod");
 exports.t = mod_1.something + 1;
 ```
 
-##### UMD SimpleModule.js
+#### UMD SimpleModule.js
 
 Compile with `tsc -m umd SimpleModule.ts`
 
@@ -327,7 +325,7 @@ Compile with `tsc -m umd SimpleModule.ts`
 });
 ```
 
-##### System SimpleModule.js
+#### System SimpleModule.js
 
 Compile with `tsc -m system SimpleModule.ts`
 
@@ -349,7 +347,7 @@ System.register(["./mod"], function(exports_1, context_1) {
 });
 ```
 
-##### Native ECMAScript 2015 modules SimpleModule.js
+#### Native ECMAScript 2015 modules SimpleModule.js
 
 To produce native modules, you must target ES2015 for all of your code as well.
 Compile with `tsc -m es2015 -t es2015 SimpleModule.ts`

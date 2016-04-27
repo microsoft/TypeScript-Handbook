@@ -73,11 +73,11 @@ tom.move(34);
 This example covers quite a few of the inheritance features in TypeScript that are common to other languages.
 Here we see the `extends` keywords used to create a subclass. You can see this where `Horse` and `Snake` subclass the base class `Animal` and gain access to its features.
 
+Derived classes that contain constructor functions must call `super()` which will execute the constructor function on the base class.
+
 The example also shows how to override methods in the base class with methods that are specialized for the subclass.
 Here both `Snake` and `Horse` create a `move` method that overrides the `move` from `Animal`, giving it functionality specific to each class.
 Note that even though `tom` is declared as an `Animal`, since its value is a `Horse`, when `tom.move(34)` calls the overriding method in `Horse`:
-
-Derived classes that contain constructor functions must call `super()` which will execute the constructor function on the base class.
 
 ```Text
 Slithering...

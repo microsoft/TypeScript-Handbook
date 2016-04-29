@@ -14,12 +14,12 @@ Next, if your version of Visual Studio does not already have TypeScript, you can
 3. Choose **Visual C#**
 4. Choose **ASP.NET Web Application**
 
-   ![Create new ASP.NET project](new-asp-project.png)
+   ![Create new ASP.NET project](./assets/aspnet/new-asp-project.png)
 
 5. Choose **ASP.NET 5 Empty**
 
    Let's uncheck "Host in the cloud" since we're going to run this locally.
-   ![Use empty template](new-asp-project-empty.png)
+   ![Use empty template](./assets/aspnet/new-asp-project-empty.png)
 
 Run the application and make sure that it works.
 
@@ -56,18 +56,18 @@ public void Configure(IApplicationBuilder app)
 
 The next step is to add a folder for TypeScript.
 
-![Create new folder](new-folder.png)
+![Create new folder](./assets/aspnet/new-folder.png)
 
 We'll just call it `scripts`.
 
-![scripts folder](scripts-folder.png)
+![scripts folder](./assets/aspnet/scripts-folder.png)
 
 ## Add TypeScript code
 
 Right click on `scripts` and click **New Item**.
 Then choose **TypeScript File** (it may be in the .NET Core section) and name the file `app.ts`.
 
-![New item](new-item.png)
+![New item](./assets/aspnet/new-item.png)
 
 ## Add example code
 
@@ -89,7 +89,7 @@ First we need to tell TypeScript how to build.
 Right click on the scripts folder and click **New Item**.
 Then choose **TypeScript Configuration File** and use the default name `tsconfig.json`.
 
-![Create tsconfig.json](new-tsconfig.png)
+![Create tsconfig.json](./assets/aspnet/new-tsconfig.png)
 
 Replace the default `tsconfig.json` with the following:
 
@@ -168,7 +168,7 @@ It will also run the 'clean' task when you ask Visual Studio to clean the build.
 Now right-click on `gulpfile.js` and click **Task Runner Explorer**.
 If 'default' and 'clean' tasks don't show up, refresh the explorer:
 
-![Refresh Task Runner Explorer](task-runner-explorer.png)
+![Refresh Task Runner Explorer](./assets/aspnet/task-runner-explorer.png)
 
 ## Write an HTML page
 
@@ -198,7 +198,7 @@ Use the following code for `index.html`:
 1. Run the project.
 2. You should see a message when you type in the input boxes:
 
-![Picture of running demo](running-demo.png)
+![Picture of running demo](./assets/aspnet/running-demo.png)
 
 ## Debug
 
@@ -207,7 +207,7 @@ Use the following code for `index.html`:
 3. Put a breakpoint on the line with `return`.
 4. Type in the boxes and confirm that the breakpoint hits in TypeScript code and that inspection works correctly.
 
-![Demo paused on breakpoint](paused-demo.png)
+![Demo paused on breakpoint](./assets/aspnet/paused-demo.png)
 
 That's all you need to know to include basic TypeScript in your ASP.NET project.
 Next we'll include Angular and write a simple Angular app.

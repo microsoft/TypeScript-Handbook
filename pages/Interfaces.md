@@ -140,7 +140,7 @@ The easiest method is to just use a type assertion:
 let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```
 
-However, a better approach to might to add a string index signature if you're sure that the object can have some extra properties that are used in some special way.
+However, a better approach might be to add a string index signature if you're sure that the object can have some extra properties that are used in some special way.
 If `SquareConfig`s can have `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it like so:
 
 ```ts
@@ -196,7 +196,7 @@ mySearch = function(source: string, subString: string) {
 }
 ```
 
-For function types to correctly type-check, the name of the parameters do not need to match.
+For function types to correctly type-check, the names of the parameters do not need to match.
 We could have, for example, written the above example like this:
 
 ```ts

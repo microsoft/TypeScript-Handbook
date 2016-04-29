@@ -28,7 +28,7 @@ let octal: number = 0o744;
 
 Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data.
 As in other languages, we use the type `string` to refer to these textual datatypes.
-Just like JavaScript, TypeScript also uses the double quote (`"`) or single quote (`'`) to surround string data.
+Just like JavaScript, TypeScript also uses double quotes (`"`) or single quotes (`'`) to surround string data.
 
 ```ts
 let color: string = "blue";
@@ -41,7 +41,7 @@ These strings are surrounded by the backtick/backquote (`` ` ``) character, and 
 ```ts
 let fullName: string = `Bob Bobbington`;
 let age: number = 37;
-let sentence: string = `Hello, my name is ${ name }.
+let sentence: string = `Hello, my name is ${ fullName }.
 
 I'll be ${ age + 1 } years old next month.`
 ```
@@ -49,7 +49,7 @@ I'll be ${ age + 1 } years old next month.`
 This is equivalent to declaring `sentence` like so:
 
 ```ts
-let sentence: string = "Hello, my name is " + name + ".\n\n" +
+let sentence: string = "Hello, my name is " + fullName + ".\n\n" +
     "I'll be " + (age + 1) + " years old next month."
 ```
 

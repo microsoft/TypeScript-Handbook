@@ -478,10 +478,10 @@ class Location {
 }
 ```
 
-In the above example, 'SelectableControl' contains all of the members of 'Control', including the private 'state' property.
-Since 'state' is a private member it is only possible for descendants of 'Control' to implement 'SelectableControl'.
-This is because only descendants of 'Control' will have a 'state' private member that originates in the same declaration, which is a requirement for private members to be compatible.
+In the above example, `SelectableControl` contains all of the members of `Control`, including the private `state` property.
+Since `state` is a private member it is only possible for descendants of `Control` to implement `SelectableControl`.
+This is because only descendants of `Control` will have a `state` private member that originates in the same declaration, which is a requirement for private members to be compatible.
 
-Within the 'Control' class it is possible to access the 'state' private member through an instance of 'SelectableControl'.
-Effectively, a 'SelectableControl' acts like a 'Control' that is known to have a 'select' method.
-The 'Button' and 'TextBox' classes are subtypes of 'SelectableControl' (because they both inherit from 'Control' and have a 'select' method), but the 'Image' and 'Location' classes are not.
+Within the `Control` class it is possible to access the `state` private member through an instance of `SelectableControl`.
+Effectively, a `SelectableControl` acts like a `Control` that is known to have a `select` method.
+The `Button` and `TextBox` classes are subtypes of `SelectableControl` (because they both inherit from `Control` and have a `select` method), but the `Image` and `Location` classes are not.

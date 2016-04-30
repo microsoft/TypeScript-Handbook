@@ -16,7 +16,7 @@ Option                                         | Type      | Default            
 `--help`<br/>`-h`                              |           |                                | Print help message.
 `--inlineSourceMap`                            | `boolean` | `false`                        | Emit a single file with source maps instead of having a separate file.
 `--inlineSources`                              | `boolean` | `false`                        | Emit the source alongside the sourcemaps within a single file; requires `--inlineSourceMap` or `--sourceMap` to be set.
-`--init`                                       |           |                                |Initializes a TypeScript project and creates a tsconfig.json file.
+`--init`                                       |           |                                | Initializes a TypeScript project and creates a `tsconfig.json` file.
 `--isolatedModules`                            | `boolean` | `false`                        | Unconditionally emit imports for unresolved files.
 `--jsx`                                        | `string`  | `"Preserve"`                   | Support JSX in '.tsx' files: `'React'` or `'Preserve'`. See [JSX](./JSX.md).
 `--listFiles`                                  | `boolean` | `false`                        | Print names of files part of the compilation.

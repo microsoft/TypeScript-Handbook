@@ -1,10 +1,9 @@
-# Gulp
 
 This quick start guide will teach you how to build TypeScript with [gulp](http://gulpjs.com) and then add [Browserify](http://browserify.org), [uglify](http://lisperator.net/uglifyjs/), or [Watchify](https://github.com/substack/watchify) to the gulp pipeline.
 
 We assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
 
-## Minimal project
+# Minimal project
 
 Let's start out with a new directory.
 We'll name it `proj` for now, but you can change it to whatever you want.
@@ -31,7 +30,7 @@ mkdir src
 mkdir dist
 ```
 
-### Initialize the project
+## Initialize the project
 
 Now we'll turn this folder into an npm package.
 
@@ -44,7 +43,7 @@ You can use the defaults except for your entry point.
 For your entry point, use `./dist/main.js`.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
-### Install our dependencies
+## Install our dependencies
 
 Now we can use `npm install` to install packages.
 First install TypeScript and gulp globally.
@@ -61,7 +60,7 @@ Then install `gulp` and `gulp-typescript` in your project's dev dependencies.
 npm install --save-dev gulp gulp-typescript
 ```
 
-### Write a simple example
+## Write a simple example
 
 Let's write a Hello World program.
 In `src`, create the file `main.ts`:
@@ -87,7 +86,7 @@ In the project root, `proj`, create the file `tsconfig.json`:
 }
 ```
 
-### Create a `gulpfile.js`
+## Create a `gulpfile.js`
 
 In the project root, create the file `gulpfile.js`:
 
@@ -103,7 +102,7 @@ gulp.task("default", function () {
 });
 ```
 
-### Test the resulting app
+## Test the resulting app
 
 ```shell
 gulp
@@ -112,7 +111,7 @@ node dist/main.js
 
 The program should print "Hello from TypeScript!".
 
-## Add modules to the code
+# Add modules to the code
 
 Before we get to Browserify, let's build our code out and add modules to the mix.
 This is the structure you're more likely to use for a real app.
@@ -174,7 +173,7 @@ vinyl-source-stream lets us adapt the file output of Browserify back into a form
 npm install --save-dev browserify tsify vinyl-source-stream
 ```
 
-### Create a page
+## Create a page
 
 Create a file in `src` named `index.html`:
 

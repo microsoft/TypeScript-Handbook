@@ -268,25 +268,14 @@ loggingIdentity({length: 10, value: 3});
 
 ## Using Type Parameters in Generic Constraints
 
-In some cases, it may be useful to declare a type parameter that is constrained by another type parameter. For example,
+You can declare a type parameter that is constrained by another type parameter. For example,
 
 ```ts
-function find<T, U extends Findable<T>>(n: T, s: U) {   // errors because type parameter used in constraint
+function find<T, U extends Findable<T>>(n: T, s: U) {
   // ...
 }
 find (giraffe, myAnimals);
 ```
-
-You can achieve the pattern above by replacing the type parameter with its constraint. Rewriting the example above,
-
-```ts
-function find<T>(n: T, s: Findable<T>) {
-  // ...
-}
-find(giraffe, myAnimals);
-```
-
-*Note:* The above is not strictly identical, as the return type of the first function could have returned `U`, which the second function pattern does not provide a means to do.
 
 ## Using Class Types in Generics
 

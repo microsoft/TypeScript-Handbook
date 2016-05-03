@@ -253,7 +253,7 @@ This is because the `this` being used in the function created by `createCardPick
 This happens as a result of calling `cardPicker()`. Here, there is no dynamic binding for `this` other than Window. (note: under strict mode, this will be undefined rather than window).
 
 We can fix this by making sure the function is bound to the correct `this` before we return the function to be used later.
-This way, regardless of how its later used, it will still be able to see the original `deck` object.
+This way, regardless of how it's later used, it will still be able to see the original `deck` object.
 
 To fix this, we switch the function expression to use the arrow syntax (`() => {}`) rather than the JavaScript function expression.
 This will automatically capture the `this` available when the function is created rather than when it is invoked:

@@ -270,7 +270,7 @@ Note: Accessors require you to set the compiler to output ECMAScript 5 or higher
 
 # Static Properties
 
-Up to this point, we've only talked about the *instance* members of the class, those that show up on the object when its instantiated.
+Up to this point, we've only talked about the *instance* members of the class, those that show up on the object when it's instantiated.
 We can also create *static* members of a class, those that are visible on the class itself rather than on the instances.
 In this example, we use `static` on the origin, as it's a general value for all grids.
 Each instance accesses this value through prepending the name of the class.
@@ -437,7 +437,7 @@ Next, we then use the class directly.
 Here we create a new variable called `greeterMaker`.
 This variable will hold the class itself, or said another way its constructor function.
 Here we use `typeof Greeter`, that is "give me the type of the `Greeter` class itself" rather than the instance type.
-Or, more precisely, "give me the type of the symbol called `Greeter`", which is the type of the constructor function.
+Or, more precisely, "give me the type of the symbol called `Greeter`," which is the type of the constructor function.
 This type will contain all of the static members of Greeter along with the constructor that creates instances of the `Greeter` class.
 We show this by using `new` on `greeterMaker`, creating new instances of `Greeter` and invoking them as before.
 

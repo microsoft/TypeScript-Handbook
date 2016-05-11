@@ -149,7 +149,7 @@ let rhino = new Rhino();
 let employee = new Employee("Bob");
 
 animal = rhino;
-animal = employee; // Error: Animal and Employee are not compatible
+animal = employee; // Error: 'Animal' and 'Employee' are not compatible
 ```
 
 In this example, we have an `Animal` and a `Rhino`, with `Rhino` being a subclass of `Animal`.
@@ -305,7 +305,7 @@ The `abstract` keyword is used to define abstract classes as well as abstract me
 abstract class Animal {
     abstract makeSound(): void;
     move(): void {
-        console.log('roaming the earth...');
+        console.log("roaming the earth...");
     }
 }
 ```
@@ -322,7 +322,7 @@ abstract class Department {
     }
 
     printName(): void {
-        console.log('Department name: ' + this.name);
+        console.log("Department name: " + this.name);
     }
 
     abstract printMeeting(): void; // must be implemented in derived classes
@@ -331,15 +331,15 @@ abstract class Department {
 class AccountingDepartment extends Department {
 
     constructor() {
-        super('Accounting and Auditing'); // constructors in derived classes must call super()
+        super("Accounting and Auditing"); // constructors in derived classes must call super()
     }
 
     printMeeting(): void {
-        console.log('The Accounting Department meets each Monday at 10am.');
+        console.log("The Accounting Department meets each Monday at 10am.");
     }
 
     generateReports(): void {
-        console.log('Generating accounting reports...');
+        console.log("Generating accounting reports...");
     }
 }
 

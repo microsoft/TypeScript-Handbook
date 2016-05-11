@@ -79,7 +79,7 @@ As mentioned before, this is a required part of the function type, so if the fun
 
 Of note, only the parameters and the return type make up the function type.
 Captured variables are not reflected in the type.
-In effect, captured variables are part of the 'hidden state' of any function and do not make up its API.
+In effect, captured variables are part of the "hidden state" of any function and do not make up its API.
 
 ## Inferring the types
 
@@ -89,7 +89,7 @@ In playing with the example, you may notice that the TypeScript compiler can fig
 // myAdd has the full function type
 let myAdd = function(x: number, y: number): number { return  x + y; };
 
-// The parameters `x` and `y` have the type number
+// The parameters 'x' and 'y' have the type number
 let myAdd: (baseValue:number, increment:number) => number =
     function(x, y) { return x + y; };
 ```
@@ -263,7 +263,7 @@ let deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
     createCardPicker: function() {
-        // Notice: the line below is now a lambda, allowing us to capture `this` earlier
+        // Notice: the line below is now a lambda, allowing us to capture 'this' earlier
         return () => {
             let pickedCard = Math.floor(Math.random() * 52);
             let pickedSuit = Math.floor(pickedCard / 13);

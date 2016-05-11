@@ -34,7 +34,7 @@ For example, given the decorator `@sealed` we might write the `sealed` function 
 
 ```ts
 function sealed(target) {
-    // do something with "target" ...
+    // do something with 'target' ...
 }
 ```
 
@@ -50,7 +50,7 @@ We can write a decorator factory in the following fashion:
 ```ts
 function color(value: string) { // this is the decorator factory
     return function (target) { // this is the decorator
-        // do something with "target" and "value"...
+        // do something with 'target' and 'value'...
     }
 }
 ```

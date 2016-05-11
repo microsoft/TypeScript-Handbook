@@ -218,7 +218,7 @@ namespace Shapes {
 }
 
 import polygons = Shapes.Polygons;
-let sq = new polygons.Square(); // Same as "new Shapes.Polygons.Square()"
+let sq = new polygons.Square(); // Same as 'new Shapes.Polygons.Square()'
 ```
 
 Notice that we don't use the `require` keyword; instead we assign directly from the qualified name of the symbol we're importing.

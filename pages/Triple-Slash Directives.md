@@ -57,7 +57,7 @@ The `amd-module` directive allows passing an optional module name to the compile
 ##### amdModule.ts
 
 ```ts
-///<amd-module name='NamedModule'/>
+///<amd-module name="NamedModule"/>
 export class C {
 }
 ```

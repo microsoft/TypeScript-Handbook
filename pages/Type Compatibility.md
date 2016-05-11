@@ -39,7 +39,7 @@ interface Named {
 
 let x: Named;
 // y's inferred type is { name: string; location: string; }
-let y = { name: 'Alice', location: 'Seattle' };
+let y = { name: "Alice", location: "Seattle" };
 x = y;
 ```
 
@@ -50,7 +50,7 @@ The same rule for assignment is used when checking function call arguments:
 
 ```ts
 function greet(n: Named) {
-    alert('Hello, ' + n.name);
+    alert("Hello, " + n.name);
 }
 greet(y); // OK
 ```
@@ -98,8 +98,8 @@ items.forEach(item => console.log(item));
 Now let's look at how return types are treated, using two functions that differ only by their return type:
 
 ```ts
-let x = () => ({name: 'Alice'});
-let y = () => ({name: 'Alice', location: 'Seattle'});
+let x = () => ({name: "Alice"});
+let y = () => ({name: "Alice", location: "Seattle"});
 
 x = y; // OK
 y = x; // Error because x() lacks a location property
@@ -125,11 +125,11 @@ function listenEvent(eventType: EventType, handler: (n: Event) => void) {
 }
 
 // Unsound, but useful and common
-listenEvent(EventType.Mouse, (e: MouseEvent) => console.log(e.x + ',' + e.y));
+listenEvent(EventType.Mouse, (e: MouseEvent) => console.log(e.x + "," + e.y));
 
 // Undesirable alternatives in presence of soundness
-listenEvent(EventType.Mouse, (e: Event) => console.log((<MouseEvent>e).x + ',' + (<MouseEvent>e).y));
-listenEvent(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => console.log(e.x + ',' + e.y)));
+listenEvent(EventType.Mouse, (e: Event) => console.log((<MouseEvent>e).x + "," + (<MouseEvent>e).y));
+listenEvent(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => console.log(e.x + "," + e.y)));
 
 // Still disallowed (clear error). Type safety enforced for wholly incompatible types
 listenEvent(EventType.Mouse, (e: number) => console.log(e));
@@ -152,10 +152,10 @@ function invokeLater(args: any[], callback: (...args: any[]) => void) {
 }
 
 // Unsound - invokeLater "might" provide any number of arguments
-invokeLater([1, 2], (x, y) => console.log(x + ', ' + y));
+invokeLater([1, 2], (x, y) => console.log(x + ", " + y));
 
 // Confusing (x and y are actually required) and undiscoverable
-invokeLater([1, 2], (x?, y?) => console.log(x + ', ' + y));
+invokeLater([1, 2], (x?, y?) => console.log(x + ", " + y));
 ```
 
 ## Functions with overloads

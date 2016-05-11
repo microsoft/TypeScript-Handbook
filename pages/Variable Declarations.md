@@ -81,7 +81,7 @@ function f(shouldInitialize: boolean) {
     return x;
 }
 
-f(true);  // returns '10'
+f(true);  // returns 10
 f(false); // returns 'undefined'
 ```
 

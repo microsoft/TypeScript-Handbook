@@ -178,7 +178,7 @@ declare namespace JSX {
   }
 }
 
-// element attributes type for `foo` is `{bar?: boolean}`
+// element attributes type for 'foo' is '{bar?: boolean}'
 <foo bar />;
 ```
 
@@ -202,7 +202,7 @@ class MyComponent {
   }
 }
 
-// element attributes type for `MyComponent` is `{foo?: string}`
+// element attributes type for 'MyComponent' is '{foo?: string}'
 <MyComponent foo="bar" />
 ```
 
@@ -221,7 +221,7 @@ declare namespace JSX {
 <foo />; // error, requiredProp is missing
 <foo requiredProp={0} />; // error, requiredProp should be a string
 <foo requiredProp="bar" unknownProp />; // error, unknownProp does not exist
-<foo requiredProp="bar" some-unknown-prop />; // ok, because `some-unknown-prop` is not a valid identifier
+<foo requiredProp="bar" some-unknown-prop />; // ok, because 'some-unknown-prop' is not a valid identifier
 ```
 
 > Note: If an attribute name is not a valid JS identifier (like a `data-*` attribute), it is not considered to be an error if it is not found in the element attributes type.
@@ -229,7 +229,7 @@ declare namespace JSX {
 The spread operator also works:
 
 ```JSX
-var props = { requiredProp: 'bar' };
+var props = { requiredProp: "bar" };
 <foo {...props} />; // ok
 
 var badProps = {};
@@ -249,7 +249,7 @@ JSX allows you to embed expressions between tags by surrounding the expressions 
 
 ```JSX
 var a = <div>
-  {['foo', 'bar'].map(i => <span>{i / 2}</span>)}
+  {["foo", "bar"].map(i => <span>{i / 2}</span>)}
 </div>
 ```
 
@@ -258,7 +258,7 @@ The output, when using the `preserve` option, looks like:
 
 ```JSX
 var a = <div>
-  {['foo', 'bar'].map(function (i) { return <span>{i / 2}</span>; })}
+  {["foo", "bar"].map(function (i) { return <span>{i / 2}</span>; })}
 </div>
 ```
 

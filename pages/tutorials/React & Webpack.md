@@ -45,7 +45,7 @@ npm init
 
 You'll be given a series of prompts.
 You can use the defaults except for your entry point.
-For your entry point, use `./lib/bundle.js`.
+For your entry point, use `./dist/bundle.js`.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
 # Install our dependencies

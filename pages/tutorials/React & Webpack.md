@@ -83,8 +83,8 @@ If you want a local copy, just run `npm install typescript`.
 Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
 
 ```shell
-typings install --global --save "dt~react"
-typings install --global --save "dt~react-dom"
+typings install --global --save dt~react
+typings install --global --save dt~react-dom
 ```
 
 The `--global` flag, along with the `dt~` prefix tells Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.

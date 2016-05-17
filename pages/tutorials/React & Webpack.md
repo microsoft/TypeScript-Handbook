@@ -87,7 +87,8 @@ typings install --global --save "dt~react"
 typings install --global --save "dt~react-dom"
 ```
 
-The `dt~` tells typings to use the [dt | DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) soruce, a repository of community-authored `.d.ts` files.
+The `--global` flag, along with the `dt~` prefix tells Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
+Add a line note
 
 This command will create a file called `typings.json` and a folder called `typings` in the current directory.
 

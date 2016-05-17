@@ -84,7 +84,7 @@ Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
 
 ```shell
 typings install --global --save "dt~react"
-typings install --global --save "dt~react"
+typings install --global --save "dt~react-dom"
 ```
 
 The `dt~` tells typings to use the [dt | DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) soruce, a repository of community-authored `.d.ts` files.

@@ -151,9 +151,9 @@ Next we'll include Angular and write a simple Angular app.
 
 Now that Angular 2 and its dependencies are installed, we need to enable TypeScript's experimental support for decorators and include the es6-shim typings.
 In the future decorators and ES6 will be the default and these settings will not be needed.
-Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"./typings/main.d.ts"` to the `"files"` section.
+Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"./typings/index.d.ts"` to the `"files"` section.
 Finally, we need to add a new entry in `"files"` for another file, `"./src/model.ts"`, that we will create.
-The tsconfig should now look like this:
+Our `tsconfig.json` should now look like this:
 
 ```json
 {
@@ -170,7 +170,7 @@ The tsconfig should now look like this:
     "./src/app.ts",
     "./src/model.ts",
     "./src/main.ts",
-    "./typings/main.d.ts"
+    "./typings/index.d.ts"
   ]
 }
 ```
@@ -194,7 +194,7 @@ After the TypeScript configuration PropertyGroup, add a new ItemGroup and Target
 ```
 
 Now right-click on the project and reload it.
-You should now see node_modules in the Solution Explorer.
+You should now see `node_modules` in the Solution Explorer.
 
 ## Write a simple Angular app in TypeScript
 

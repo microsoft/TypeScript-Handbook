@@ -119,10 +119,6 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
 We're including `typings/index.d.ts`, which Typings created for us.
 That file automatically includes all of your installed dependencies.
 
-You might be wondering about a separate file named `browser.d.ts` in the `typings` folder, especially since we're going to run this in a browser.
-The short story is that some packages are tailored differently by tools that target browsers.
-In general, these situations are niche scenarios and we won't run into those, so we can ignore `browser.d.ts`.
-
 You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 
 # Write some code

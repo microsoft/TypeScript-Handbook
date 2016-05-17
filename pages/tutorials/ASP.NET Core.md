@@ -233,14 +233,14 @@ Open a command prompt, then change directory to the app source:
 ```shell
 cd C:\Users\<you>\Documents\Visual Studio 2015\Projects\<app>\src\<app>
 npm install -g typings
-typings install es6-shim --ambient
+typings install --global dt~es6-shim
 ```
 
 ## Update tsconfig.json
 
 Now that Angular 2 and its dependencies are installed, we need to enable TypeScript's experimental support for decorators and include the es6-shim typings.
 In the future decorators and ES6 will be the default and these settings will not be needed.
-Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"../typings/main.d.ts"` to the `"files"` section.
+Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"../typings/index.d.ts"` to the `"files"` section.
 Finally, we need to add a new entry in `"files"` for another file, `"./model.ts"`, that we will create.
 The tsconfig should now look like this:
 

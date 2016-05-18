@@ -45,7 +45,7 @@ npm init
 
 You'll be given a series of prompts.
 You can use the defaults except for your entry point.
-For your entry point, use `./lib/bundle.js`.
+For your entry point, use `./dist/bundle.js`.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
 # Install our dependencies
@@ -83,11 +83,12 @@ If you want a local copy, just run `npm install typescript`.
 Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
 
 ```shell
-typings install --ambient --save react
-typings install --ambient --save react-dom
+typings install --global --save "dt~react"
+typings install --global --save "dt~react-dom"
 ```
 
-The `--ambient` flag will tell Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
+The `--global` flag, along with the `dt~` prefix tells Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
+
 This command will create a file called `typings.json` and a folder called `typings` in the current directory.
 
 # Add a TypeScript configuration file
@@ -108,14 +109,14 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "jsx": "react"
     },
     "files": [
-        "./typings/main.d.ts",
+        "./typings/index.d.ts",
         "./src/components/Hello.tsx",
         "./src/index.tsx"
     ]
 }
 ```
 
-We're including `typings/main.d.ts`, which Typings created for us.
+We're including `typings/index.d.ts`, which Typings created for us.
 That file automatically includes all of your installed dependencies.
 
 You might be wondering about a separate file named `browser.d.ts` in the `typings` folder, especially since we're going to run this in a browser.

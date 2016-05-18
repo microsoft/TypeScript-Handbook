@@ -16,7 +16,7 @@ function padLeft(value: string, padding: any) {
     if (typeof padding === "string") {
         return padding + value;
     }
-    throw new Error(`Expected string or number, got '${value}'.`);
+    throw new Error(`Expected string or number, got '${padding}'.`);
 }
 
 padLeft("Hello world", 4); // returns "    Hello world"
@@ -168,7 +168,7 @@ function padLeft(value: string, padding: string | number) {
     if (isString(padding)) {
         return padding + value;
     }
-    throw new Error(`Expected string or number, got '${value}'.`);
+    throw new Error(`Expected string or number, got '${padding}'.`);
 }
 ```
 
@@ -184,7 +184,7 @@ function padLeft(value: string, padding: string | number) {
     if (typeof padding === "string") {
         return padding + value;
     }
-    throw new Error(`Expected string or number, got '${value}'.`);
+    throw new Error(`Expected string or number, got '${padding}'.`);
 }
 ```
 

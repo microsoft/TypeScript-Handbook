@@ -83,8 +83,8 @@ If you want a local copy, just run `npm install typescript`.
 Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
 
 ```shell
-typings install --global --save "dt~react"
-typings install --global --save "dt~react-dom"
+typings install --global --save dt~react
+typings install --global --save dt~react-dom
 ```
 
 The `--global` flag, along with the `dt~` prefix tells Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
@@ -118,10 +118,6 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
 
 We're including `typings/index.d.ts`, which Typings created for us.
 That file automatically includes all of your installed dependencies.
-
-You might be wondering about a separate file named `browser.d.ts` in the `typings` folder, especially since we're going to run this in a browser.
-The short story is that some packages are tailored differently by tools that target browsers.
-In general, these situations are niche scenarios and we won't run into those, so we can ignore `browser.d.ts`.
 
 You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 

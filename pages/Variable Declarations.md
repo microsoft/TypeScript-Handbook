@@ -42,7 +42,7 @@ function f() {
 }
 
 var g = f();
-g(); // returns 11;
+g(); // returns '11'
 ```
 
 In this above example, `g` captured the variable `a` declared in `f`.
@@ -64,7 +64,7 @@ function f() {
     }
 }
 
-f(); // returns 2
+f(); // returns '2'
 ```
 
 ## Scoping rules
@@ -304,8 +304,8 @@ function f(condition, x) {
     return x;
 }
 
-f(false, 0); // returns 0
-f(true, 0);  // returns 100
+f(false, 0); // returns '0'
+f(true, 0);  // returns '100'
 ```
 
 The act of introducing a new name in a more nested scope is called *shadowing*.

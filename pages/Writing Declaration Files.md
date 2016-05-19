@@ -178,7 +178,7 @@ declare var widget: WidgetFactory;
 
 ```ts
 // Either
-import x = require('zoo');
+import x = require("zoo");
 x.open();
 // or
 zoo.open();
@@ -202,16 +202,16 @@ declare module "zoo" {
 
 ```ts
 // Super-chainable library for eagles
-import Eagle = require('./eagle');
+import Eagle = require("./eagle");
 
 // Call directly
-Eagle('bald').fly();
+Eagle("bald").fly();
 
 // Invoke with new
-var eddie = new Eagle('Mille');
+var eddie = new Eagle("Mille");
 
 // Set properties
-eddie.kind = 'golden';
+eddie.kind = "golden";
 ```
 
 #### Typing
@@ -255,7 +255,7 @@ declare module "say-hello" {
 #### Usage
 
 ```ts
-addLater(3, 4, x => console.log('x = ' + x));
+addLater(3, 4, x => console.log("x = " + x));
 ```
 
 #### Typing

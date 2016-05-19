@@ -81,9 +81,9 @@ Optionally, a module can wrap one or more modules and combine all their exports 
 ##### AllValidators.ts
 
 ```ts
-export * from "./StringValidator"; // exports interface StringValidator
-export * from "./LettersOnlyValidator"; // exports class LettersOnlyValidator
-export * from "./ZipCodeValidator";  // exports class ZipCodeValidator
+export * from "./StringValidator"; // exports interface 'StringValidator'
+export * from "./LettersOnlyValidator"; // exports class 'LettersOnlyValidator'
+export * from "./ZipCodeValidator";  // exports class 'ZipCodeValidator'
 ```
 
 # Import
@@ -532,7 +532,7 @@ export default class SomeType {
 #### MyFunc.ts
 
 ```ts
-export default function getThing() { return 'thing'; }
+export default function getThing() { return "thing"; }
 ```
 
 #### Consumer.ts

@@ -19,8 +19,8 @@ var browserify = require("browserify");
 var tsify = require("tsify");
 
 browserify()
-    .add('main.ts')
-    .plugin('tsify', { noImplicitAny: true })
+    .add("main.ts")
+    .plugin("tsify", { noImplicitAny: true })
     .bundle()
     .pipe(process.stdout);
 ```
@@ -44,15 +44,15 @@ duo --use duo-typescript entry.ts
 ### Using API
 
 ```js
-var Duo = require('duo');
-var fs = require('fs')
-var path = require('path')
-var typescript = require('duo-typescript');
+var Duo = require("duo");
+var fs = require("fs")
+var path = require("path")
+var typescript = require("duo-typescript");
 
 var out = path.join(__dirname, "output.js")
 
 Duo(__dirname)
-    .entry('entry.ts')
+    .entry("entry.ts")
     .use(typescript())
     .run(function (err, results) {
         if (err) throw err;
@@ -109,7 +109,7 @@ gulp.task("default", function () {
               noImplicitAny: true,
               out: "output.js"
         }));
-    return tsResult.js.pipe(gulp.dest('built/local'));
+    return tsResult.js.pipe(gulp.dest("built/local"));
 });
 ```
 

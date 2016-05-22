@@ -32,7 +32,7 @@ Just like JavaScript, TypeScript also uses double quotes (`"`) or single quotes 
 
 ```ts
 let color: string = "blue";
-name = 'red';
+let name = 'red';
 ```
 
 You can also use *template strings*, which can span multiple lines and have embedded expressions.

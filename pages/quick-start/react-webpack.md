@@ -108,7 +108,7 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "jsx": "react"
     },
     "files": [
-        "./typings/main.d.ts",
+        "./typings/index.d.ts",
         "./src/components/Hello.tsx",
         "./src/index.tsx"
     ]

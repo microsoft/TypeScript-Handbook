@@ -50,7 +50,7 @@ Option                                         | Type      | Default            
 `--stripInternal`<sup>[1]</sup>                | `boolean` | `false`                        | Do not emit declarations for code that has an `/** @internal */` JSDoc annotation.
 `--suppressExcessPropertyErrors`               | `boolean` | `false`                        | Suppress excess property checks for object literals.
 `--suppressImplicitAnyIndexErrors`             | `boolean` | `false`                        | Suppress `--noImplicitAny` errors for indexing objects lacking index signatures. See [issue #1232](https://github.com/Microsoft/TypeScript/issues/1232#issuecomment-64510362) for more details.
-`--target`<br/>`-t`                            | `string`  | `"ES5"`                        | Specify ECMAScript target version: `'es3'` (default), `'es5'`, or `'es6'`.
+`--target`<br/>`-t`                            | `string`  | `"ES5"`                        | Specify ECMAScript target version: `'es3'`, `'es5'` (default), or `'es6'`.
 `--traceResolution`                            | `boolean` | `false`                        | Report module resolution log messages.
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version.
 `--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.

@@ -79,7 +79,7 @@ As mentioned before, this is a required part of the function type, so if the fun
 
 Of note, only the parameters and the return type make up the function type.
 Captured variables are not reflected in the type.
-In effect, captured variables are part of the 'hidden state' of any function and do not make up its API.
+In effect, captured variables are part of the "hidden state" of any function and do not make up its API.
 
 ## Inferring the types
 
@@ -89,7 +89,7 @@ In playing with the example, you may notice that the TypeScript compiler can fig
 // myAdd has the full function type
 let myAdd = function(x: number, y: number): number { return  x + y; };
 
-// The parameters `x` and `y` have the type number
+// The parameters 'x' and 'y' have the type number
 let myAdd: (baseValue:number, increment:number) => number =
     function(x, y) { return x + y; };
 ```
@@ -202,7 +202,7 @@ let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
 
 *Rest parameters* are treated as a boundless number of optional parameters.
-When passing arguments for a rest parameter, can use as many as you want; you can even pass none.
+When passing arguments for a rest parameter, you can use as many as you want; you can even pass none.
 The compiler will build an array of the arguments passed in with the name given after the ellipsis (`...`), allowing you to use it in your function.
 
 The ellipsis is also used in the type of the function with rest parameters:
@@ -253,7 +253,7 @@ This is because the `this` being used in the function created by `createCardPick
 This happens as a result of calling `cardPicker()`. Here, there is no dynamic binding for `this` other than Window. (note: under strict mode, this will be undefined rather than window).
 
 We can fix this by making sure the function is bound to the correct `this` before we return the function to be used later.
-This way, regardless of how its later used, it will still be able to see the original `deck` object.
+This way, regardless of how it's later used, it will still be able to see the original `deck` object.
 
 To fix this, we switch the function expression to use the arrow syntax (`() => {}`) rather than the JavaScript function expression.
 This will automatically capture the `this` available when the function is created rather than when it is invoked:
@@ -263,7 +263,7 @@ let deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
     createCardPicker: function() {
-        // Notice: the line below is now a lambda, allowing us to capture `this` earlier
+        // Notice: the line below is now a lambda, allowing us to capture 'this' earlier
         return () => {
             let pickedCard = Math.floor(Math.random() * 52);
             let pickedSuit = Math.floor(pickedCard / 13);

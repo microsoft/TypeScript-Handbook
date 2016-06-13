@@ -11,12 +11,12 @@ For instance, take the following function:
  */
 function padLeft(value: string, padding: any) {
     if (typeof padding === "number") {
-        return Array(padding).join(" ") + value;
+        return Array(padding + 1).join(" ") + value;
     }
     if (typeof padding === "string") {
         return padding + value;
     }
-    throw new Error(`Expected string or number, got '${value}'.`);
+    throw new Error(`Expected string or number, got '${padding}'.`);
 }
 
 padLeft("Hello world", 4); // returns "    Hello world"
@@ -163,12 +163,12 @@ function isString(x: any): x is string {
 
 function padLeft(value: string, padding: string | number) {
     if (isNumber(padding)) {
-        return Array(padding).join(" ") + value;
+        return Array(padding + 1).join(" ") + value;
     }
     if (isString(padding)) {
         return padding + value;
     }
-    throw new Error(`Expected string or number, got '${value}'.`);
+    throw new Error(`Expected string or number, got '${padding}'.`);
 }
 ```
 
@@ -179,12 +179,12 @@ That means we could just write these checks inline.
 ```ts
 function padLeft(value: string, padding: string | number) {
     if (typeof padding === "number") {
-        return Array(padding).join(" ") + value;
+        return Array(padding + 1).join(" ") + value;
     }
     if (typeof padding === "string") {
         return padding + value;
     }
-    throw new Error(`Expected string or number, got '${value}'.`);
+    throw new Error(`Expected string or number, got '${padding}'.`);
 }
 ```
 
@@ -206,7 +206,7 @@ interface Padder {
 class SpaceRepeatingPadder implements Padder {
     constructor(private numSpaces: number) { }
     getPaddingString() {
-        return Array(this.numSpaces).join(" ");
+        return Array(this.numSpaces + 1).join(" ");
     }
 }
 
@@ -223,7 +223,7 @@ function getRandomPadder() {
         new StringPadder("  ");
 }
 
-// Type is SpaceRepeatingPadder | StringPadder
+// Type is 'SpaceRepeatingPadder | StringPadder'
 let padder: Padder = getRandomPadder();
 
 if (padder instanceof SpaceRepeatingPadder) {
@@ -289,7 +289,7 @@ type Name = string;
 type NameResolver = () => string;
 type NameOrResolver = Name | NameResolver;
 function getName(n: NameOrResolver): Name {
-    if (typeof n === 'string') {
+    if (typeof n === "string") {
         return n;
     }
     else {

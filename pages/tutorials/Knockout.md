@@ -42,10 +42,10 @@ You obviously know about TypeScript, but you might not know about Typings.
 We'll now use Typings to grab declaration files for Knockout:
 
 ```shell
-typings install --ambient --save knockout
+typings install --global --save dt~knockout
 ```
 
-The `--ambient` flag will tell Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
+The `--global` flag will tell Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
 This command will create a file called `typings.json` and a folder called `typings` in the current directory.
 
 # Grab our runtime dependencies
@@ -87,19 +87,15 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "target": "es5"
     },
     "files": [
-        "./typings/main.d.ts",
+        "./typings/index.d.ts",
         "./src/require-config.ts",
         "./src/hello.ts"
     ]
 }
 ```
 
-We're including `typings/main.d.ts`, which Typings created for us.
+We're including `typings/index.d.ts`, which Typings created for us.
 That file automatically includes all of your installed dependencies.
-
-You might be wondering about a separate file named `browser.d.ts` in the `typings` folder, especially since we're going to run this in a browser.
-The short story is that some packages are tailored differently by tools that target browsers.
-In general, these situations are niche scenarios and we won't run into those, so we can ignore `browser.d.ts`.
 
 You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 

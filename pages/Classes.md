@@ -73,11 +73,11 @@ tom.move(34);
 This example covers quite a few of the inheritance features in TypeScript that are common to other languages.
 Here we see the `extends` keywords used to create a subclass. You can see this where `Horse` and `Snake` subclass the base class `Animal` and gain access to its features.
 
+Derived classes that contain constructor functions must call `super()` which will execute the constructor function on the base class.
+
 The example also shows how to override methods in the base class with methods that are specialized for the subclass.
 Here both `Snake` and `Horse` create a `move` method that overrides the `move` from `Animal`, giving it functionality specific to each class.
 Note that even though `tom` is declared as an `Animal`, since its value is a `Horse`, when `tom.move(34)` calls the overriding method in `Horse`:
-
-Derived classes that contain constructor functions must call `super()` which will execute the constructor function on the base class.
 
 ```Text
 Slithering...
@@ -149,7 +149,7 @@ let rhino = new Rhino();
 let employee = new Employee("Bob");
 
 animal = rhino;
-animal = employee; // Error: Animal and Employee are not compatible
+animal = employee; // Error: 'Animal' and 'Employee' are not compatible
 ```
 
 In this example, we have an `Animal` and a `Rhino`, with `Rhino` being a subclass of `Animal`.
@@ -297,7 +297,7 @@ Note: Accessors require you to set the compiler to output ECMAScript 5 or higher
 
 # Static Properties
 
-Up to this point, we've only talked about the *instance* members of the class, those that show up on the object when its instantiated.
+Up to this point, we've only talked about the *instance* members of the class, those that show up on the object when it's instantiated.
 We can also create *static* members of a class, those that are visible on the class itself rather than on the instances.
 In this example, we use `static` on the origin, as it's a general value for all grids.
 Each instance accesses this value through prepending the name of the class.
@@ -332,7 +332,7 @@ The `abstract` keyword is used to define abstract classes as well as abstract me
 abstract class Animal {
     abstract makeSound(): void;
     move(): void {
-        console.log('roaming the earth...');
+        console.log("roaming the earth...");
     }
 }
 ```
@@ -349,7 +349,7 @@ abstract class Department {
     }
 
     printName(): void {
-        console.log('Department name: ' + this.name);
+        console.log("Department name: " + this.name);
     }
 
     abstract printMeeting(): void; // must be implemented in derived classes
@@ -358,15 +358,15 @@ abstract class Department {
 class AccountingDepartment extends Department {
 
     constructor() {
-        super('Accounting and Auditing'); // constructors in derived classes must call super()
+        super("Accounting and Auditing"); // constructors in derived classes must call super()
     }
 
     printMeeting(): void {
-        console.log('The Accounting Department meets each Monday at 10am.');
+        console.log("The Accounting Department meets each Monday at 10am.");
     }
 
     generateReports(): void {
-        console.log('Generating accounting reports...');
+        console.log("Generating accounting reports...");
     }
 }
 
@@ -464,7 +464,7 @@ Next, we then use the class directly.
 Here we create a new variable called `greeterMaker`.
 This variable will hold the class itself, or said another way its constructor function.
 Here we use `typeof Greeter`, that is "give me the type of the `Greeter` class itself" rather than the instance type.
-Or, more precisely, "give me the type of the symbol called `Greeter`", which is the type of the constructor function.
+Or, more precisely, "give me the type of the symbol called `Greeter`," which is the type of the constructor function.
 This type will contain all of the static members of Greeter along with the constructor that creates instances of the `Greeter` class.
 We show this by using `new` on `greeterMaker`, creating new instances of `Greeter` and invoking them as before.
 

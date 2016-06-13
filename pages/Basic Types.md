@@ -28,20 +28,20 @@ let octal: number = 0o744;
 
 Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data.
 As in other languages, we use the type `string` to refer to these textual datatypes.
-Just like JavaScript, TypeScript also uses the double quote (`"`) or single quote (`'`) to surround string data.
+Just like JavaScript, TypeScript also uses double quotes (`"`) or single quotes (`'`) to surround string data.
 
 ```ts
-let name: string = "bob";
-name = 'smith';
+let color: string = "blue";
+color = 'red';
 ```
 
 You can also use *template strings*, which can span multiple lines and have embedded expressions.
-These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are of the form `${ expr }`
+These strings are surrounded by the backtick/backquote (`` ` ``) character, and embedded expressions are of the form `${ expr }`.
 
 ```ts
-let name: string = `Gene`;
+let fullName: string = `Bob Bobbington`;
 let age: number = 37;
-let sentence: string = `Hello, my name is ${ name }.
+let sentence: string = `Hello, my name is ${ fullName }.
 
 I'll be ${ age + 1 } years old next month.`
 ```
@@ -49,7 +49,7 @@ I'll be ${ age + 1 } years old next month.`
 This is equivalent to declaring `sentence` like so:
 
 ```ts
-let sentence: string = "Hello, my name is " + name + ".\n\n" +
+let sentence: string = "Hello, my name is " + fullName + ".\n\n" +
     "I'll be " + (age + 1) + " years old next month."
 ```
 
@@ -78,9 +78,9 @@ For example, you may want to represent a value as a pair of a `string` and a `nu
 // Declare a tuple type
 let x: [string, number];
 // Initialize it
-x = ['hello', 10]; // OK
+x = ["hello", 10]; // OK
 // Initialize it incorrectly
-x = [10, 'hello']; // Error
+x = [10, "hello"]; // Error
 ```
 
 When accessing an element with a known index, the correct type is retrieved:
@@ -93,11 +93,11 @@ console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
 When accessing an element outside the set of known indices, a union type is used instead:
 
 ```ts
-x[3] = 'world'; // OK, string can be assigned to (string | number)
+x[3] = "world"; // OK, 'string' can be assigned to 'string | number'
 
-console.log(x[5].toString()); // OK, 'string' and 'number' both have toString
+console.log(x[5].toString()); // OK, 'string' and 'number' both have 'toString'
 
-x[6] = true; // Error, boolean isn't (string | number)
+x[6] = true; // Error, 'boolean' isn't 'string | number'
 ```
 
 Union types are an advanced topic that we'll cover in a later chapter.

@@ -1,4 +1,4 @@
-# ASP.NET 4
+# Setup
 
 ## Install TypeScript
 
@@ -12,12 +12,12 @@ This quickstart uses Visual Studio 2015.
 3. Choose **Visual C#**
 4. Choose **ASP.NET Web Application**
 
-   ![Create new ASP.NET project](new-asp-project.png)
+   ![Create new ASP.NET project](../../assets/images/tutorials/aspnet/new-asp-project.png)
 
 5. Choose **MVC**
 
     I unchecked "Host in the cloud" since this will be a local demo.
-    ![Use MVC template](new-asp-project-template.png)
+    ![Use MVC template](../../assets/images/tutorials/aspnet/new-asp-project-template.png)
 
 Run the application and make sure that it works.
 
@@ -25,18 +25,18 @@ Run the application and make sure that it works.
 
 The next step is to add a folder for TypeScript.
 
-![Create new folder](new-folder.png)
+![Create new folder](../../assets/images/tutorials/aspnet/new-folder.png)
 
 We'll just call it src.
 
-![src folder](src-folder.png)
+![src folder](../../assets/images/tutorials/aspnet/src-folder.png)
 
 ## Add TypeScript code
 
 Right click on `src` and click **New Item**.
 Then choose **TypeScript File** and name the file `app.ts`.
 
-![New item](new-item.png)
+![New item](../../assets/images/tutorials/aspnet/new-item.png)
 
 ## Add example code
 
@@ -55,7 +55,7 @@ function sayHello() {
 Right click on the project and click **New Item**.
 Then choose **TypeScript Configuration File** and use the default name `tsconfig.json`.
 
-![Create tsconfig.json](new-tsconfig.png)
+![Create tsconfig.json](../../assets/images/tutorials/aspnet/new-tsconfig.png)
 
 Replace the default `tsconfig.json` with the following:
 
@@ -90,7 +90,7 @@ See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 
 1. In the **Solution Explorer**, open **Views** | **Home** | `Index.cshtml`.
 
-   ![Open Index.cshtml](open-index.png)
+   ![Open Index.cshtml](../../assets/images/tutorials/aspnet/open-index.png)
 
 2. Change the code to be the following:
 
@@ -111,7 +111,7 @@ See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 1. Run the project.
 2. You should see a message when you type in the input boxes:
 
-![Picture of running demo](running-demo.png)
+![Picture of running demo](../../assets/images/tutorials/aspnet/running-demo.png)
 
 ## Debug
 
@@ -120,7 +120,7 @@ See [the tsconfig.json documentation](../tsconfig.json.md) for more information.
 3. Put a breakpoint on the line with `return`.
 4. Type in the boxes and confirm that the breakpoint hits in TypeScript code and that inspection works correctly.
 
-![Demo paused on breakpoint](paused-demo.png)
+![Demo paused on breakpoint](../../assets/images/tutorials/aspnet/paused-demo.png)
 
 That's all you need to know to include basic TypeScript in your ASP.NET project.
 Next we'll include Angular and write a simple Angular app.
@@ -135,9 +135,9 @@ Next we'll include Angular and write a simple Angular app.
 
    Right-click on the project, then click on **Quick Install Package**.
 
-   ![Use PackageInstaller to install angular2](packageinstaller-angular2.png)
-   ![Use PackageInstaller to install systemjs](packageinstaller-systemjs.png)
-   ![Use PackageInstaller to install Typings](packageinstaller-typings.png)
+   ![Use PackageInstaller to install angular2](../../assets/images/tutorials/aspnet/packageinstaller-angular2.png)
+   ![Use PackageInstaller to install systemjs](../../assets/images/tutorials/aspnet/packageinstaller-systemjs.png)
+   ![Use PackageInstaller to install Typings](../../assets/images/tutorials/aspnet/packageinstaller-typings.png)
 
 3. Use PackageInstaller to install typings for es6-shim.
 
@@ -145,15 +145,15 @@ Next we'll include Angular and write a simple Angular app.
    In PackageInstaller, choose Typing instead of npm.
    Then type "es6-shim":
 
-   ![Use PackageInstaller to install es6-shim typings](packageinstaller-es6-shim.png)
+   ![Use PackageInstaller to install es6-shim typings](../../assets/images/tutorials/aspnet/packageinstaller-es6-shim.png)
 
 ## Update tsconfig.json
 
 Now that Angular 2 and its dependencies are installed, we need to enable TypeScript's experimental support for decorators and include the es6-shim typings.
 In the future decorators and ES6 will be the default and these settings will not be needed.
-Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"./typings/main.d.ts"` to the `"files"` section.
+Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"./typings/index.d.ts"` to the `"files"` section.
 Finally, we need to add a new entry in `"files"` for another file, `"./src/model.ts"`, that we will create.
-The tsconfig should now look like this:
+Our `tsconfig.json` should now look like this:
 
 ```json
 {
@@ -170,7 +170,7 @@ The tsconfig should now look like this:
     "./src/app.ts",
     "./src/model.ts",
     "./src/main.ts",
-    "./typings/main.d.ts"
+    "./typings/index.d.ts"
   ]
 }
 ```
@@ -194,7 +194,7 @@ After the TypeScript configuration PropertyGroup, add a new ItemGroup and Target
 ```
 
 Now right-click on the project and reload it.
-You should now see node_modules in the Solution Explorer.
+You should now see `node_modules` in the Solution Explorer.
 
 ## Write a simple Angular app in TypeScript
 

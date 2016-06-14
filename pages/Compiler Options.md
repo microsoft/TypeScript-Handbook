@@ -65,8 +65,8 @@ Option                                         | Type      | Default            
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version.
 `--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
 
-<sup>[1]</sup> These options are experimental.
-<sup>[2]</sup> These options are alowed in `tsconfig.json` files only and not through commandline switchs.
+* <sup>[1]</sup> These options are experimental.
+* <sup>[2]</sup> These options are only allowed in `tsconfig.json`, and not through command-line switches.
 
 ## Related
 

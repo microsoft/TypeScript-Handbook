@@ -26,22 +26,28 @@ Compiler Option                              | MSBuild Property Name            
 `--allowSyntheticDefaultImports`             | TypeScriptAllowSyntheticDefaultImports     | boolean
 `--allowUnreachableCode`                     | TypeScriptAllowUnreachableCode             | boolean
 `--allowUnusedLabels`                        | TypeScriptAllowUnusedLabels                | boolean
+`--baseUrl`                                  | TypeScriptBaseUrl                          | File path
 `--charset`                                  | TypeScriptCharset                          |
 `--declaration`                              | TypeScriptGeneratesDeclarations            | boolean
+`--declarationDir`                           | TypeScriptDeclarationDir                   | File path
 `--diagnostics`                              | *Not supported in VS*                      |
 `--emitBOM`                                  | TypeScriptEmitBOM                          | boolean
 `--emitDecoratorMetadata`                    | TypeScriptEmitDecoratorMetadata            | boolean
 `--experimentalAsyncFunctions`               | TypeScriptExperimentalAsyncFunctions       | boolean
 `--experimentalDecorators`                   | TypeScriptExperimentalDecorators           | boolean
 `--forceConsistentCasingInFileNames`         | TypeScriptForceConsistentCasingInFileNames | boolean
+`--help`                                     | *Not supported in VS*                      |
 `--inlineSourceMap`                          | TypeScriptInlineSourceMap                  | boolean
 `--inlineSources`                            | TypeScriptInlineSources                    | boolean
+`--init`                                     | *Not supported in VS*                      |
 `--isolatedModules`                          | TypeScriptIsolatedModules                  | boolean
 `--jsx`                                      | TypeScriptJSXEmit                          | `React` or `Preserve`
+`--lib`                                      | TypeScriptLib                              | Comma-separated list of strings
+`--listEmittedFiles`                         | *Not supported in VS*                      |
 `--listFiles`                                | *Not supported in VS*                      |
 `--locale`                                   | *automatic*                                | Automatically set to PreferredUILang value
 `--mapRoot`                                  | TypeScriptMapRoot                          | File path
-`--module`                                   | TypeScriptModuleKind                       | `AMD`, `CommonJs`, `UMD`, or `System`
+`--module`                                   | TypeScriptModuleKind                       | `AMD`, `CommonJs`, `UMD`, `System` or `ES6`
 `--moduleResolution`                         | TypeScriptModuleResolution                 | `Classic` or `Node`
 `--newLine`                                  | TypeScriptNewLine                          | `CRLF` or `LF`
 `--noEmit`                                   | *Not supported in VS*                      |
@@ -50,22 +56,32 @@ Compiler Option                              | MSBuild Property Name            
 `--noFallthroughCasesInSwitch`               | TypeScriptNoFallthroughCasesInSwitch       | boolean
 `--noImplicitAny`                            | TypeScriptNoImplicitAny                    | boolean
 `--noImplicitReturns`                        | TypeScriptNoImplicitReturns                | boolean
+`--noImplicitThis`                           | TypeScriptNoImplicitThis                   | boolean
 `--noImplicitUseStrict`                      | TypeScriptNoImplicitUseStrict              | boolean
 `--noLib`                                    | TypeScriptNoLib                            | boolean
 `--noResolve`                                | TypeScriptNoResolve                        | boolean
 `--out`                                      | TypeScriptOutFile                          | File path
 `--outDir`                                   | TypeScriptOutDir                           | File path
+`--outFile`                                  | TypeScriptOutFile                          | File path
+`--paths`                                    | *Not supported in VS*                      |
 `--preserveConstEnums`                       | TypeScriptPreserveConstEnums               | boolean
-`--project`                                  | *Not supported in VS*                      |
+`--listEmittedFiles`                         | *Not supported in VS*                      |
+`--pretty`                                   | *Not supported in VS*                      |
 `--reactNamespace`                           | TypeScriptReactNamespace                   | string
 `--removeComments`                           | TypeScriptRemoveComments                   | boolean
 `--rootDir`                                  | TypeScriptRootDir                          | File path
+`--rootDirs`                                 | *Not supported in VS*                      |
+`--skipLibCheck`                             | TypeScriptSkipLibCheck                     | boolean
 `--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
 `--sourceMap`                                | TypeScriptSourceMap                        | File path
 `--sourceRoot`                               | TypeScriptSourceRoot                       | File path
+`--strictNullChecks`                         | TypeScriptStrictNullChecks                 | File path
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
 `--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
 `--target`                                   | TypeScriptTarget                           | `ES3`, `ES5`, or `ES6`
+`--traceResolution`                          | *Not supported in VS*                      |
+`--types`                                    | TypeScriptTypes                            | Comma-separated list of strings
+`--typeRoots`                                | TypeScriptTypeRoots                        | Comma-separated list of file path
 `--watch`                                    | *Not supported in VS*                      |
 *VS only option*                             | TypeScriptAdditionalFlags                  | *Any compiler option*
 

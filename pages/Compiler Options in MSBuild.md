@@ -22,51 +22,51 @@ Compiler options can be specified using MSBuild properties within an MSBuild pro
 
 Compiler Option                              | MSBuild Property Name                      | Allowed Values
 ---------------------------------------------|--------------------------------------------|-----------------
-`--declaration`                              | TypeScriptGeneratesDeclarations            | boolean
-`--module`                                   | TypeScriptModuleKind                       | `AMD`, `CommonJs`, `UMD`, or `System`
-`--target`                                   | TypeScriptTarget                           | `ES3`, `ES5`, or `ES6`
+`--allowJs`                                  | *Not supported in VS*                      |
+`--allowSyntheticDefaultImports`             | TypeScriptAllowSyntheticDefaultImports     | boolean
+`--allowUnreachableCode`                     | TypeScriptAllowUnreachableCode             | boolean
+`--allowUnusedLabels`                        | TypeScriptAllowUnusedLabels                | boolean
 `--charset`                                  | TypeScriptCharset                          |
+`--declaration`                              | TypeScriptGeneratesDeclarations            | boolean
+`--diagnostics`                              | *Not supported in VS*                      |
 `--emitBOM`                                  | TypeScriptEmitBOM                          | boolean
 `--emitDecoratorMetadata`                    | TypeScriptEmitDecoratorMetadata            | boolean
+`--experimentalAsyncFunctions`               | TypeScriptExperimentalAsyncFunctions       | boolean
 `--experimentalDecorators`                   | TypeScriptExperimentalDecorators           | boolean
+`--forceConsistentCasingInFileNames`         | TypeScriptForceConsistentCasingInFileNames | boolean
 `--inlineSourceMap`                          | TypeScriptInlineSourceMap                  | boolean
 `--inlineSources`                            | TypeScriptInlineSources                    | boolean
+`--isolatedModules`                          | TypeScriptIsolatedModules                  | boolean
+`--jsx`                                      | TypeScriptJSXEmit                          | `React` or `Preserve`
+`--listFiles`                                | *Not supported in VS*                      |
 `--locale`                                   | *automatic*                                | Automatically set to PreferredUILang value
 `--mapRoot`                                  | TypeScriptMapRoot                          | File path
+`--module`                                   | TypeScriptModuleKind                       | `AMD`, `CommonJs`, `UMD`, or `System`
+`--moduleResolution`                         | TypeScriptModuleResolution                 | `Classic` or `Node`
 `--newLine`                                  | TypeScriptNewLine                          | `CRLF` or `LF`
-`--noEmitOnError`                            | TypeScriptNoEmitOnError                    | boolean
+`--noEmit`                                   | *Not supported in VS*                      |
 `--noEmitHelpers`                            | TypeScriptNoEmitHelpers                    | boolean
+`--noEmitOnError`                            | TypeScriptNoEmitOnError                    | boolean
+`--noFallthroughCasesInSwitch`               | TypeScriptNoFallthroughCasesInSwitch       | boolean
 `--noImplicitAny`                            | TypeScriptNoImplicitAny                    | boolean
+`--noImplicitReturns`                        | TypeScriptNoImplicitReturns                | boolean
+`--noImplicitUseStrict`                      | TypeScriptNoImplicitUseStrict              | boolean
 `--noLib`                                    | TypeScriptNoLib                            | boolean
 `--noResolve`                                | TypeScriptNoResolve                        | boolean
 `--out`                                      | TypeScriptOutFile                          | File path
 `--outDir`                                   | TypeScriptOutDir                           | File path
 `--preserveConstEnums`                       | TypeScriptPreserveConstEnums               | boolean
+`--project`                                  | *Not supported in VS*                      |
+`--reactNamespace`                           | TypeScriptReactNamespace                   | string
 `--removeComments`                           | TypeScriptRemoveComments                   | boolean
 `--rootDir`                                  | TypeScriptRootDir                          | File path
-`--isolatedModules`                          | TypeScriptIsolatedModules                  | boolean
+`--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
 `--sourceMap`                                | TypeScriptSourceMap                        | File path
 `--sourceRoot`                               | TypeScriptSourceRoot                       | File path
-`--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
-`--moduleResolution`                         | TypeScriptModuleResolution                 | `Classic` or `Node`
-`--experimentalAsyncFunctions`               | TypeScriptExperimentalAsyncFunctions       | boolean
-`--jsx`                                      | TypeScriptJSXEmit                          | `React` or `Preserve`
-`--reactNamespace`                           | TypeScriptReactNamespace                   | string
-`--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
-`--allowUnusedLabels`                        | TypeScriptAllowUnusedLabels                | boolean
-`--noImplicitReturns`                        | TypeScriptNoImplicitReturns                | boolean
-`--noFallthroughCasesInSwitch`               | TypeScriptNoFallthroughCasesInSwitch       | boolean
-`--allowUnreachableCode`                     | TypeScriptAllowUnreachableCode             | boolean
-`--forceConsistentCasingInFileNames`         | TypeScriptForceConsistentCasingInFileNames | boolean
-`--allowSyntheticDefaultImports`             | TypeScriptAllowSyntheticDefaultImports     | boolean
-`--noImplicitUseStrict`                      | TypeScriptNoImplicitUseStrict              | boolean
-`--project`                                  | *Not supported in VS*                      |
+`--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
+`--target`                                   | TypeScriptTarget                           | `ES3`, `ES5`, or `ES6`
 `--watch`                                    | *Not supported in VS*                      |
-`--diagnostics`                              | *Not supported in VS*                      |
-`--listFiles`                                | *Not supported in VS*                      |
-`--noEmit`                                   | *Not supported in VS*                      |
-`--allowJs`                                  | *Not supported in VS*                      |
 *VS only option*                             | TypeScriptAdditionalFlags                  | *Any compiler option*
 
 ## What is supported in my version of Visual Studio?

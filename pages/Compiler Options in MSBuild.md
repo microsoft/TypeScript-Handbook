@@ -22,7 +22,7 @@ Compiler options can be specified using MSBuild properties within an MSBuild pro
 
 Compiler Option                              | MSBuild Property Name                      | Allowed Values
 ---------------------------------------------|--------------------------------------------|-----------------
-`--allowJs`                                  | *Not supported in VS*                      |
+`--allowJs`                                  | *Not supported in MSBuild*                 |
 `--allowSyntheticDefaultImports`             | TypeScriptAllowSyntheticDefaultImports     | boolean
 `--allowUnreachableCode`                     | TypeScriptAllowUnreachableCode             | boolean
 `--allowUnusedLabels`                        | TypeScriptAllowUnusedLabels                | boolean
@@ -30,27 +30,27 @@ Compiler Option                              | MSBuild Property Name            
 `--charset`                                  | TypeScriptCharset                          |
 `--declaration`                              | TypeScriptGeneratesDeclarations            | boolean
 `--declarationDir`                           | TypeScriptDeclarationDir                   | File path
-`--diagnostics`                              | *Not supported in VS*                      |
+`--diagnostics`                              | *Not supported in MSBuild*                 |
 `--emitBOM`                                  | TypeScriptEmitBOM                          | boolean
 `--emitDecoratorMetadata`                    | TypeScriptEmitDecoratorMetadata            | boolean
 `--experimentalAsyncFunctions`               | TypeScriptExperimentalAsyncFunctions       | boolean
 `--experimentalDecorators`                   | TypeScriptExperimentalDecorators           | boolean
 `--forceConsistentCasingInFileNames`         | TypeScriptForceConsistentCasingInFileNames | boolean
-`--help`                                     | *Not supported in VS*                      |
+`--help`                                     | *Not supported in MSBuild*                 |
 `--inlineSourceMap`                          | TypeScriptInlineSourceMap                  | boolean
 `--inlineSources`                            | TypeScriptInlineSources                    | boolean
-`--init`                                     | *Not supported in VS*                      |
+`--init`                                     | *Not supported in MSBuild*                 |
 `--isolatedModules`                          | TypeScriptIsolatedModules                  | boolean
 `--jsx`                                      | TypeScriptJSXEmit                          | `React` or `Preserve`
 `--lib`                                      | TypeScriptLib                              | Comma-separated list of strings
-`--listEmittedFiles`                         | *Not supported in VS*                      |
-`--listFiles`                                | *Not supported in VS*                      |
+`--listEmittedFiles`                         | *Not supported in MSBuild*                 |
+`--listFiles`                                | *Not supported in MSBuild*                 |
 `--locale`                                   | *automatic*                                | Automatically set to PreferredUILang value
 `--mapRoot`                                  | TypeScriptMapRoot                          | File path
 `--module`                                   | TypeScriptModuleKind                       | `AMD`, `CommonJs`, `UMD`, `System` or `ES6`
 `--moduleResolution`                         | TypeScriptModuleResolution                 | `Classic` or `Node`
 `--newLine`                                  | TypeScriptNewLine                          | `CRLF` or `LF`
-`--noEmit`                                   | *Not supported in VS*                      |
+`--noEmit`                                   | *Not supported in MSBuild*                 |
 `--noEmitHelpers`                            | TypeScriptNoEmitHelpers                    | boolean
 `--noEmitOnError`                            | TypeScriptNoEmitOnError                    | boolean
 `--noFallthroughCasesInSwitch`               | TypeScriptNoFallthroughCasesInSwitch       | boolean
@@ -63,14 +63,14 @@ Compiler Option                              | MSBuild Property Name            
 `--out`                                      | TypeScriptOutFile                          | File path
 `--outDir`                                   | TypeScriptOutDir                           | File path
 `--outFile`                                  | TypeScriptOutFile                          | File path
-`--paths`                                    | *Not supported in VS*                      |
+`--paths`                                    | *Not supported in MSBuild*                 |
 `--preserveConstEnums`                       | TypeScriptPreserveConstEnums               | boolean
-`--listEmittedFiles`                         | *Not supported in VS*                      |
-`--pretty`                                   | *Not supported in VS*                      |
+`--listEmittedFiles`                         | *Not supported in MSBuild*                 |
+`--pretty`                                   | *Not supported in MSBuild*                 |
 `--reactNamespace`                           | TypeScriptReactNamespace                   | string
 `--removeComments`                           | TypeScriptRemoveComments                   | boolean
 `--rootDir`                                  | TypeScriptRootDir                          | File path
-`--rootDirs`                                 | *Not supported in VS*                      |
+`--rootDirs`                                 | *Not supported in MSBuild*                 |
 `--skipLibCheck`                             | TypeScriptSkipLibCheck                     | boolean
 `--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
 `--sourceMap`                                | TypeScriptSourceMap                        | File path
@@ -79,11 +79,11 @@ Compiler Option                              | MSBuild Property Name            
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
 `--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
 `--target`                                   | TypeScriptTarget                           | `ES3`, `ES5`, or `ES6`
-`--traceResolution`                          | *Not supported in VS*                      |
+`--traceResolution`                          | *Not supported in MSBuild*                 |
 `--types`                                    | TypeScriptTypes                            | Comma-separated list of strings
 `--typeRoots`                                | TypeScriptTypeRoots                        | Comma-separated list of file path
-`--watch`                                    | *Not supported in VS*                      |
-*VS only option*                             | TypeScriptAdditionalFlags                  | *Any compiler option*
+`--watch`                                    | *Not supported in MSBuild*                 |
+*MSBuild only option*                        | TypeScriptAdditionalFlags                  | *Any compiler option*
 
 ## What is supported in my version of Visual Studio?
 

@@ -6,7 +6,7 @@ Option                                         | Type      | Default            
 `--allowSyntheticDefaultImports`               | `boolean` | `(module === "system")`        | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
 `--allowUnreachableCode`                       | `boolean` | `false`                        | Do not report errors on unreachable code.
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
-`--baseUrl          `                          | `string`  |                                | Base directory to resolve non-relative module names. See [Module Resolution documentation](./Module Resolution.md#base-url) for more details.
+`--baseUrl`                                    | `string`  |                                | Base directory to resolve non-relative module names. See [Module Resolution documentation](./Module Resolution.md#base-url) for more details.
 `--charset`                                    | `string`  | `"utf8"`                       | The character set of the input files.
 `--declaration`<br/>`-d`                       | `boolean` | `false`                        | Generates corresponding '.d.ts' file.
 `--declarationDir`                             | `string`  |                                | Output directory for generated declaration files.

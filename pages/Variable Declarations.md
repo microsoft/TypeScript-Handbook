@@ -175,12 +175,12 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-This odd-looking pattern is actually commonplace.
-The `i` in the parameter list actually shadows the `i` declared in the `for` loop, but since we named it the same, we didn't have to modify the loop body too much.
+This odd-looking pattern is actually pretty common.
+The `i` in the parameter list actually shadows the `i` declared in the `for` loop, but since we named them the same, we didn't have to modify the loop body too much.
 
 # `let` declarations
 
-By now you've figured out that `var` has some problems, which is precisely why `let` statements are a new way to declare variables.
+By now you've figured out that `var` has some problems, which is precisely why `let` statements were introduced.
 Apart from the keyword used, `let` statements are written the same way `var` statements are.
 
 ```ts

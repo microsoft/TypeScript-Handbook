@@ -175,8 +175,8 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-This odd-looking pattern is actually a commonplace.
-The `i` in the parameter actually shadows the `i` declared in the `for` loop, but since we named it the same, we didn't have to modify the loop body too much.
+This odd-looking pattern is actually commonplace.
+The `i` in the parameter list actually shadows the `i` declared in the `for` loop, but since we named it the same, we didn't have to modify the loop body too much.
 
 # `let` declarations
 

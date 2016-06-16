@@ -155,11 +155,10 @@ Most people expect the output to be
 ```
 
 Remember what we mentioned earlier about variable capturing?
+Every function expression we pass to `setTimeout` actually refers to the same `i` from the same scope. 
 
-> At any point that `g` gets called, the value of `a` will be tied to the value of `a` in `f`.
-
-Let's take a minute to consider that in this context.
-`setTimeout` will run a function after some number of milliseconds, and also after the `for` loop has stopped executing.
+Let's take a minute to consider that means.
+`setTimeout` will run a function after some number of milliseconds, *but only* after the `for` loop has stopped executing;
 By the time the `for` loop has stopped executing, the value of `i` is `10`.
 So each time the given function gets called, it will print out `10`!
 

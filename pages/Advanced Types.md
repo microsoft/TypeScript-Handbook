@@ -279,6 +279,34 @@ var n = jim.name;
 jim.log();
 ```
 
+## Advanced Uses of Intersections
+
+You can use intersection types to infer two type parameters at once if you use them as the type of a parameter.
+This lets you infer a type, but add additional constraints.
+In the example below, we start with the type parameter `C` but add the constraint ` & Ctor<T>` to require that the type must be constructable.
+Now we can return a type that includes both `T` and `C`.
+In this example, we can split apart the static and instance sides of a class:
+
+```ts
+interface Ctor<T> {
+    new(): T;
+}
+interface Item<T, C> {
+    static: T;
+    instance: C;
+}
+function create<T, C>(ctor: C & Ctor<T>): Item<T, C> {
+    return { static: ctor.prototype, instance: ctor };
+}
+class A {
+    static p1 = 'static property';
+    p2 = 'instance property';
+}
+let item = create(A);
+item.instance.p1;
+item.static.p2;
+```
+
 # Type Aliases
 
 Type aliases create a new name for a type.

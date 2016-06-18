@@ -262,7 +262,7 @@ addLater(3, 4, x => console.log("x = " + x));
 
 ```ts
 // Note: 'void' return type is preferred here
-function addLater(x: number, y: number, (sum: number) => void): void;
+function addLater(x: number, y: number, callback: (sum: number) => void): void;
 ```
 
 Please post a comment [here](https://github.com/Microsoft/TypeScript-Handbook/issues) if there's a pattern you'd like to see documented!

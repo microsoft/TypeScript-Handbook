@@ -557,7 +557,7 @@ export function someFunc() { /* ... */ }
 
 Conversly when importing:
 
-### Explicitlly list imported names
+### Explicitly list imported names
 
 #### Consumer.ts
 

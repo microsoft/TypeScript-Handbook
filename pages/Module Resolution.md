@@ -205,4 +205,4 @@ That was `tsconfig.json` automatic inclusion.
 That does not embed module resolution as discussed above.
 If the compiler identified a file as a target of a module import, it will be included in the compilation regardless if it was excluded in the previous steps.
 
-So to exclude a file from the compilation, you need to exclude it and all **all** files that has an `import` or `/// <reference path="..." />` directives to it.
+So to exclude a file from the compilation, you need to exclude it and **all** files that have an `import` or `/// <reference path="..." />` directive to it.

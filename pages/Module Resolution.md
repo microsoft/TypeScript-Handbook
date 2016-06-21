@@ -309,7 +309,7 @@ So following our example, the `tsconfig.json` file should look like:
   "compilerOptions": {
     "rootDirs": [
       "src/views",
-      "generated/templates"
+      "generated/templates/views"
     ]
   }
 }

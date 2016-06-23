@@ -4,7 +4,7 @@ Option                                         | Type      | Default            
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------
 `--allowJs`                                    | `boolean` | `true`                         | Allow JavaScript files to be compiled.
 `--allowSyntheticDefaultImports`               | `boolean` | `(module === "system")`        | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
-`--allowUnreachableCode`                       | `boolean` | `false`                         | Do not report errors on unreachable code.
+`--allowUnreachableCode`                       | `boolean` | `false`                        | Do not report errors on unreachable code.
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
 `--charset`                                    | `string`  | `"utf8"`                       | The character set of the input files.
 `--declaration`<br/>`-d`                       | `boolean` | `false`                        | Generates corresponding '.d.ts' file.
@@ -19,6 +19,7 @@ Option                                         | Type      | Default            
 `--init`                                       |           |                                | Initializes a TypeScript project and creates a `tsconfig.json` file.
 `--isolatedModules`                            | `boolean` | `false`                        | Unconditionally emit imports for unresolved files.
 `--jsx`                                        | `string`  | `"Preserve"`                   | Support JSX in '.tsx' files: `'React'` or `'Preserve'`. See [JSX](./JSX.md).
+`--lib`                                        | `string`<sup>[2]</sup> | *(target specific)* | Specify different library files to be used in compilation: `--target`: `'es5'` `'es6'` `'es2015'` `'es7'` `'es2016'` `'es2017'` `'dom'` `'webworker'` `'scripthost'` `'es2015.core'` `'es2015.collection'` `'es2015.generator'` `'es2015.iterable'` `'es2015.promise'` `'es2015.proxy'` `'es2015.reflect'` `'es2015.symbol'` `'es2015.symbol.wellknown'` `'es2016.array.include'` `'es2017.object'` `'es2017.sharedmemory'`
 `--listFiles`                                  | `boolean` | `false`                        | Print names of files part of the compilation.
 `--locale`                                     | `string`  | *(platform specific)*          | The locale to use to show error messages, e.g. en-us.
 `--mapRoot`                                    | `string`  | `null`                         | Specifies the location where debugger should locate map files instead of generated locations. Use this flag if the .map files will be located at run-time in a different location than than the .js files. The location specified will be embedded in the sourceMap to direct the debugger where the map files where be located.
@@ -54,6 +55,7 @@ Option                                         | Type      | Default            
 `--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
 
 <sup>[1]</sup> These options are experimental.
+<sup>[2]</sup> To specify more than one value for these options, use comma to separate between each value. These options when used in `tsconfig.json` will be array of string.
 
 ## Related
 

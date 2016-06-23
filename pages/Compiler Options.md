@@ -55,6 +55,7 @@ Option                                         | Type      | Default            
 `--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
 
 <sup>[1]</sup> These options are experimental.
+
 <sup>[2]</sup> To specify more than one value for these options, use comma to separate between each value. These options when used in `tsconfig.json` will be array of string.
 
 ## Related

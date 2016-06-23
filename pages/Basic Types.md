@@ -190,6 +190,23 @@ Declaring variables of type `void` is not useful because you can only assign `un
 let unusable: void = undefined;
 ```
 
+# Null and Undefined
+
+In TypeScript, both `undefined` and `null` actually have their own types named `undefined` and `null` respectively.
+Much like `void`, they're not extremely useful on their own:
+
+```ts
+// Not much else we can assign to these variables!
+let u: undefined = undefined;
+let n: null = null;
+```
+
+However, when using the `--strictNullChecks` flag, these types can be combined with *union types* in interesting ways, which we'll cover later on.
+
+When not using `--strictNullChecks`, `null` and `undefined` are in the domain of all types.
+
+> As a note: we encourage the use of `--strictNullChecks` when possible, but for the purposes of this handbook, we will assume it is turned off.
+
 # Type assertions
 
 Sometimes you'll end up in a situation where you'll know more about a value than TypeScript does.

@@ -201,9 +201,13 @@ let u: undefined = undefined;
 let n: null = null;
 ```
 
-However, when using the `--strictNullChecks` flag, these types can be combined with *union types* in interesting ways, which we'll cover later on.
+By default `null` and `undefined` are subtypes of all other types.
+That means you can assign `null` and `undefined` to something like `number`.
 
-When not using `--strictNullChecks`, `null` and `undefined` are in the domain of all types.
+However, when using the `--strictNullChecks` flag, `null` and `undefined` are only assignable to `void` and their respective types.
+This helps avoid *many* common errors.
+In cases where you wanted to pass in either a `string` or `null` or `undefined`, you can use the union type `string | null | undefined`.
+Once again, more on union types later on.
 
 > As a note: we encourage the use of `--strictNullChecks` when possible, but for the purposes of this handbook, we will assume it is turned off.
 

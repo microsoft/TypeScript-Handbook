@@ -174,6 +174,10 @@ declare var widget: WidgetFactory;
 
 ## Global / External-agnostic Libraries
 
+These libraries can be used as either globals or imports.
+In a module file (one with any imports/exports), using these as globals is not allowed.
+These are also known as [UMD](https://github.com/umdjs/umd) modules.
+
 #### Usage
 
 ```ts
@@ -187,13 +191,8 @@ zoo.open();
 #### Typing
 
 ```ts
-declare namespace zoo {
-  function open(): void;
-}
-
-declare module "zoo" {
-    export = zoo;
-}
+export function open(): void;
+export as namespace zoo;
 ```
 
 ## Single Complex Object in Modules

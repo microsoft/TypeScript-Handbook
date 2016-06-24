@@ -80,7 +80,7 @@ Compiler Option                              | MSBuild Property Name            
 `--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
 `--target`                                   | TypeScriptTarget                           | `ES3`, `ES5`, or `ES6`
 `--traceResolution`                          | *Not supported in MSBuild*                 |
-`--types`                                    | *Not supported in MSBuild*                 | 
+`--types`                                    | *Not supported in MSBuild*                 |
 `--typeRoots`                                | *Not supported in MSBuild*                 |
 `--watch`                                    | *Not supported in MSBuild*                 |
 *MSBuild only option*                        | TypeScriptAdditionalFlags                  | *Any compiler option*

@@ -309,7 +309,12 @@ if (employee.fullName) {
 
 To prove to ourselves that our accessor is now checking the passcode, we can modify the passcode and see that when it doesn't match we instead get the message warning us we don't have access to update the employee.
 
-Note: Accessors require you to set the compiler to output ECMAScript 5 or higher.
+A couple of things to note about accessors:
+
+First, accessors require you to set the compiler to output ECMAScript 5 or higher.
+Downlevelling to ECMAScript 3 is not supported.
+Second, accessors with a `get` and no `set` are automatically inferred to be `readonly`.
+This is helpful when generating a `.d.ts` file from your code, because users of your property can see that they can't change it.
 
 # Static Properties
 

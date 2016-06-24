@@ -223,7 +223,6 @@ Fortunately, TypeScript lets you catch incorrect uses of `this` with a couple of
 If you need to learn how `this` works in JavaScript, though, first read Yehuda Katz's [Understanding JavaScript Function Invocation and "this"](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/).
 Yehuda's article explains the inner workings of `this` very well, so we'll just cover the basics here.
 
-
 ## `this` and arrow functions
 
 In JavaScript, `this` is a variable that's set when a function is called.
@@ -303,7 +302,6 @@ function f(this: void) {
 ```
 
 Let's add a couple of interfaces to our example above, `Card` and `Deck`, to make the types clearer and easier to reuse:
-
 
 ```ts
 interface Card {

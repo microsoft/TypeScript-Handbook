@@ -61,7 +61,7 @@ declare module "json!*" {
 }
 ```
 
-Imports of the kind "*!text" and "json!*" can now be used.
+Now you can import things that match `"*!text"` or `"json!*"`.
 
 ```ts
 import fileContent from "./xyz.txt!text";

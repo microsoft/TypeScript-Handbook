@@ -500,6 +500,23 @@ import * as URL from "url";
 let myUrl = URL.parse("http://www.typescriptlang.org");
 ```
 
+### Shorthand ambient modules
+
+If you don't want to take the time to write out declarations before using a new module, you can use a shorthand declaration to get started quickly.
+
+##### declarations.d.ts
+
+```ts
+declare module "hot-new-module";
+```
+
+All imports from a shorthand module with have the `any` type.
+
+```ts
+import x, {y} from "hot-new-module";
+x(y);
+```
+
 # Guidance for structuring modules
 
 ## Export as close to top-level as possible

@@ -42,6 +42,33 @@ A non-relative import can be resolved relative to `baseUrl`, or through path map
 They can also resolve to [ambient module declarations](./Modules.md#ambient-modules).
 Use non-relative paths when importing any of your external dependnecies.
 
+## Wildcard module declarations
+
+Some module loaders such as [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#plugin-syntax)
+and [AMD](https://github.com/amdjs/amdjs-api/blob/master/LoaderPlugins.md) allow non-JavaScript content to be imported.
+These typically use a prefix or suffix to indicate the special loading semantics.
+Wildcard module declarations can be used to cover these cases.
+
+```ts
+declare module "*!text" {
+    const content: string;
+    export default content;
+}
+// Some do it the other way around.
+declare module "json!*" {
+    const value: any;
+    export default value;
+}
+```
+
+Imports of the kind "*!text" and "json!*" can now be used.
+
+```ts
+import fileContent from "./xyz.txt!text";
+import data from "json!http://example.com/data.json";
+console.log(data, fileContent);
+```
+
 ## Module Resolution Strategies
 
 There are two possible module resolution strategies: [Node](#node) and [Classic](#classic).

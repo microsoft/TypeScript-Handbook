@@ -510,7 +510,7 @@ If you don't want to take the time to write out declarations before using a new 
 declare module "hot-new-module";
 ```
 
-All imports from a shorthand module with have the `any` type.
+All imports from a shorthand module will have the `any` type.
 
 ```ts
 import x, {y} from "hot-new-module";

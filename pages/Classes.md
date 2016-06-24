@@ -216,27 +216,42 @@ let howard = new Employee("Howard", "Sales");
 let john = new Person("John"); // Error: The 'Person' constructor is protected
 ```
 
-## Parameter properties
+# Readonly modifier
 
-In our last example, we had to declare a protected member `name` and a constructor parameter `theName` in the `Person` class, and we then immediately set `name` to `theName`.
-This turns out to be a very common practice.
-*Parameter properties* let you create and initialize a member in one place.
-Here's a further revision of the previous `Animal` class using a parameter property:
+You can make properties readonly by using the `readonly` keyword.
+Readonly properties must be initialized at their declaration or in the constructor.
 
 ```ts
-class Animal {
-    constructor(private name: string) { }
-    move(distanceInMeters: number) {
-        console.log(`${this.name} moved ${distanceInMeters}m.`);
+class Octopus {
+    readonly name: string;
+    readonly numberOfLegs: number = 8;
+    constructor (theName: string) {
+        this.name = theName;
+    }
+}
+let dad = new Octopus("Man with the 8 strong legs");
+dad.name = "Man with the 3-piece suit"; // error! name is readonly.
+```
+## Parameter properties
+
+In our last example, we had to declare a readonly member `name` and a constructor parameter `theName` in the `Octopus` class, and we then immediately set `name` to `theName`.
+This turns out to be a very common practice.
+*Parameter properties* let you create and initialize a member in one place.
+Here's a further revision of the previous `Animal` and `Octopus` classes using a parameter property:
+
+```ts
+class Octopus {
+    readonly numberOfLegs: number = 8;
+    constructor(readonly name: string) {
     }
 }
 ```
 
-Notice how we dropped `theName` altogether and just use the shortened `private name: string` parameter on the constructor to create and initialize the `name` member.
+Notice how we dropped `theName` altogether and just use the shortened `readonly name: string` parameter on the constructor to create and initialize the `name` member.
 We've consolidated the declarations and assignment into one location.
 
-Parameter properties are declared by prefixing a constructor parameter with an accessibility modifier.
-Using `private` for a parameter property declares and initializes a private member; likewise, the same is done for `public` and `protected`.
+Parameter properties are declared by prefixing a constructor parameter with an accessibility modifier or `readonly`, or both.
+Using `private` for a parameter property declares and initializes a private member; likewise, the same is done for `public`, `protected`, and `readonly`.
 
 # Accessors
 

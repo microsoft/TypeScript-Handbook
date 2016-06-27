@@ -517,6 +517,33 @@ import x, {y} from "hot-new-module";
 x(y);
 ```
 
+### Wildcard module declarations
+
+Some module loaders such as [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#plugin-syntax)
+and [AMD](https://github.com/amdjs/amdjs-api/blob/master/LoaderPlugins.md) allow non-JavaScript content to be imported.
+These typically use a prefix or suffix to indicate the special loading semantics.
+Wildcard module declarations can be used to cover these cases.
+
+```ts
+declare module "*!text" {
+    const content: string;
+    export default content;
+}
+// Some do it the other way around.
+declare module "json!*" {
+    const value: any;
+    export default value;
+}
+```
+
+Now you can import things that match `"*!text"` or `"json!*"`.
+
+```ts
+import fileContent from "./xyz.txt!text";
+import data from "json!http://example.com/data.json";
+console.log(data, fileContent);
+```
+
 ### UMD modules
 
 Some libraries are designed to be used in many module loaders, or with no module loading (global variables).

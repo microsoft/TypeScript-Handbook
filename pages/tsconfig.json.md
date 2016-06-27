@@ -13,30 +13,59 @@ When input files are specified on the command line, `tsconfig.json` files are ig
 
 ## Examples
 
-Example `tsconfig.json` file:
+Example `tsconfig.json` files:
 
-```json
-{
-    "compilerOptions": {
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "outFile": "../../built/local/tsc.js",
-        "sourceMap": true
-    },
-    "files": [
-        "main.ts"
-    ],
-    "include": [
-    "src/**/*"
-    ],
-    "exclude": [
-        "node_modules",
-        "**/*.spec.ts"
-    ],
-}
-```
+* Using the `"files"` property
+
+  ```json
+  {
+      "compilerOptions": {
+          "module": "commonjs",
+          "noImplicitAny": true,
+          "removeComments": true,
+          "preserveConstEnums": true,
+          "outFile": "../../built/local/tsc.js",
+          "sourceMap": true
+      },
+      "files": [
+          "core.ts",
+          "sys.ts",
+          "types.ts",
+          "scanner.ts",
+          "parser.ts",
+          "utilities.ts",
+          "binder.ts",
+          "checker.ts",
+          "emitter.ts",
+          "program.ts",
+          "commandLineParser.ts",
+          "tsc.ts",
+          "diagnosticInformationMap.generated.ts"
+      ]
+  }
+  ```
+
+* Using the `"include"` and `"exclude"` properties
+
+  ```json
+  {
+      "compilerOptions": {
+          "module": "commonjs",
+          "noImplicitAny": true,
+          "removeComments": true,
+          "preserveConstEnums": true,
+          "outFile": "../../built/local/tsc.js",
+          "sourceMap": true
+      },
+      "include": [
+          "src/**/*"
+      ],
+      "exclude": [
+          "node_modules",
+          "**/*.spec.ts"
+      ],
+  }
+  ```
 
 ## Details
 

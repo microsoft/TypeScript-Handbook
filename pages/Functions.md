@@ -289,8 +289,8 @@ It will point out that `this` in `this.suits[pickedSuit]` is of type `any`.
 
 ## `this` parameters
 
-Unfortunately, by default TypeScript will still type `this` in `this.suits[pickedSuit]` as `any`.
-That's because TypeScript doesn't know the type of `this` inside a function expression.
+Unfortunately, the type of `this.suits[pickedSuit]` is still `any`.
+That's because `this` comes from the function expression inside the object literal.
 To fix this, you can provide an explicit `this` parameter.
 `this` parameters are fake parameters that come first in the parameter list of a function:
 

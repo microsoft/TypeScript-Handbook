@@ -42,7 +42,9 @@ Example `tsconfig.json` file:
 
 The `"compilerOptions"` property can be omitted, in which case the compiler's defaults are used. See our full list of supported [Compiler Options](./Compiler Options.md).
 
-The `"files"` property takes a list of relative or absolute file paths. The `"include"` and `"exclude"` properties take a list of glob-like file patterns. The supported glob wildcards are:
+The `"files"` property takes a list of relative or absolute file paths.
+The `"include"` and `"exclude"` properties take a list of glob-like file patterns.
+The supported glob wildcards are:
 
 * `*` matches zero or more characters (excluding directory separators)
 * `?` matches any one character (excluding directory separators)
@@ -50,9 +52,13 @@ The `"files"` property takes a list of relative or absolute file paths. The `"in
 
 If a segment of a glob pattern includes only `*` or `.*`, then only files with supported extensions are included (e.g. `.ts`, `.tsx`, and `.d.ts` by default with `.js` and `.jsx` if `allowJs` is set to true).
 
-If the `"files"` and `"include"` are both left unspecified, the compiler defaults to including all TypeScript (`.ts`, `.d.ts` and `.tsx`) files in the containing directory and subdirectories except those excluded using the `"exclude"` property. JS files (`.js` and `.jsx`) are also included if `allowJs` is set to true. If the `"files"` or `"include"` properties are specified, the compiler will instead include the union of the files included by those two properties. Files in the directory specified using the `"outDir"` compiler option are always excluded unless explicitly included via the `"files"` property (even when the "`exclude`" property is specified).
+If the `"files"` and `"include"` are both left unspecified, the compiler defaults to including all TypeScript (`.ts`, `.d.ts` and `.tsx`) files in the containing directory and subdirectories except those excluded using the `"exclude"` property. JS files (`.js` and `.jsx`) are also included if `allowJs` is set to true.
+If the `"files"` or `"include"` properties are specified, the compiler will instead include the union of the files included by those two properties.
+Files in the directory specified using the `"outDir"` compiler option are always excluded unless explicitly included via the `"files"` property (even when the "`exclude`" property is specified).
 
-Files included using `"include"` can be filtered using the `"exclude"` property. However, files included explicitly using the `"files"` property are always included regardless of `"exclude"`. The `"exclude"` property defaults to excluding the `node_modules`, `bower_components`, and `jspm_packages` directories when not specified.
+Files included using `"include"` can be filtered using the `"exclude"` property.
+However, files included explicitly using the `"files"` property are always included regardless of `"exclude"`.
+The `"exclude"` property defaults to excluding the `node_modules`, `bower_components`, and `jspm_packages` directories when not specified.
 
 Any files that are referenced by files included via the `"files"` or `"include"` properties are also included.
 Similarly, if a file `B.ts` is referenced by another file `A.ts`, then `B.ts` cannot be excluded unless the referencing file `A.ts` is also specified in the `"exclude"` list.

@@ -289,15 +289,14 @@ It will point out that `this` in `this.suits[pickedSuit]` is of type `any`.
 
 ## `this` parameters
 
-Unfortunately, you will find that TypeScript still says `this` in `this.suits[pickedSuit]` is of type `any` even if you use the arrow function.
+Unfortunately, by default TypeScript will still type `this` in `this.suits[pickedSuit]` as `any`.
 That's because TypeScript doesn't know the type of `this` inside a function expression.
 To fix this, you can provide an explicit `this` parameter.
 `this` parameters are fake parameters that come first in the parameter list of a function:
 
 ```ts
 function f(this: void) {
-    // in strict mode, `this` is undefined for a standalone function,
-    // represented by the void type here
+    // make sure `this` is unusable in this standalone function
 }
 ```
 
@@ -340,7 +339,7 @@ That means that `this` is of type `Deck` now, not `any`, so `--noImplicitThis` w
 
 You can also run into errors with `this` in callbacks, when you pass functions to a library that will later call them.
 Because the library that calls your callback will call it like a normal function, `this` will be `undefined`.
-With some work you can use `this` to prevent you from making errors in callbacks too.
+With some work you can use `this` parameters to prevent errors with callbacks too.
 First, the library author needs to annotate the callback type with `this`:
 
 ```ts
@@ -350,25 +349,51 @@ interface UIElement {
 ```
 
 `this: void` means that `addClickListener` expects `onclick` to be a function that does not require a `this` type.
-Second, annotate your code with `this`:
+Second, annotate your calling code with `this`:
 
 ```ts
-class Handlers {
-    static onClickBad(this: typeof Handlers, e: Event) {
+class Handler {
+    info: string;
+    onClickBad(this: Handler, e: Event) {
         // oops, used this here. using this callback would crash at runtime
-        this.onClickGood(e);
+        this.info = e.message;
     };
-    static onClickGood(this: void, e: Event) {
+}
+let h = new Handler();
+uiElement.addClickListener(h.onClickBad); // error!
+```
+
+With `this` annotated, you make it explicit that `onClickBad` must be called on an instance of `Handler`.
+Then TypeScript will detect that `addClickListener` requires a function that has `this: void`.
+To fix the error, change the type of `this`:
+
+```ts
+class Handler {
+    info: string;
+    onClickGood(this: void, e: Event) {
         // can't use this here because it's of type void!
         console.log('clicked!');
     }
 }
-uiElement.addClickListener(Handlers.onClickBad);
-uiElement.addClickListener(Handlers.onClickGood);
+let h = new Handler();
+uiElement.addClickListener(h.onClickGood);
 ```
 
-Now you will get an error when you try to register `onClickBad` because its `this` is `typeof Handlers`, which `addClickListener` does not accept.
-In contrast, because `onClickGood` specifies its `this` type as `void`, it is legal to pass to `addClickListener`.
+Because `onClickGood` specifies its `this` type as `void`, it is legal to pass to `addClickListener`.
+Of course, this also means that it can't use `this.info`.
+If you want both then you'll have to use an arrow function:
+
+```ts
+class Handler {
+    info: string;
+    onClickGood = (e: Event) => { this.info = e.message }
+}
+```
+
+This works because arrow functions don't capture `this`, so you can always pass them to something that expects `this: void`.
+The downside is that one arrow function is created per object of type Handler.
+Methods, on the other hand, are only created once and attached to Handler's prototype.
+They are shared between all objects of type Handler.
 
 # Overloads
 

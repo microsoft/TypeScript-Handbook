@@ -63,7 +63,7 @@ Example `tsconfig.json` files:
       "exclude": [
           "node_modules",
           "**/*.spec.ts"
-      ],
+      ]
   }
   ```
 

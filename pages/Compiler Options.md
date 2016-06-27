@@ -9,8 +9,9 @@ Option                                         | Type      | Default            
 `--baseUrl`                                    | `string`  |                                | Base directory to resolve non-relative module names. See [Module Resolution documentation](./Module Resolution.md#base-url) for more details.
 `--charset`                                    | `string`  | `"utf8"`                       | The character set of the input files.
 `--declaration`<br/>`-d`                       | `boolean` | `false`                        | Generates corresponding '.d.ts' file.
-`--declarationDir`                             | `string`  |                                | Output directory for generated declaration files.
+`--declarationDir`                             | `string`  | `null`                         | Output directory for generated declaration files.
 `--diagnostics`                                | `boolean` | `false`                        | Show diagnostic information.
+`--disableSizeLimit`                           | `boolean` | `false`                        | Disable size limitation on JavaScript project.
 `--emitBOM`                                    | `boolean` | `false`                        | Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.
 `--emitDecoratorMetadata`<sup>[1]</sup>        | `boolean` | `false`                        | Emit design-type metadata for decorated declarations in source. See [issue #2577](https://github.com/Microsoft/TypeScript/issues/2577) for details.
 `--experimentalDecorators`<sup>[1]</sup>       | `boolean` | `false`                        | Enables experimental support for ES7 decorators.
@@ -39,6 +40,8 @@ Option                                         | Type      | Default            
 `--noImplicitUseStrict`                        | `boolean` | `false`                        | Do not emit `"use strict"` directives in module output.
 `--noLib`                                      | `boolean` | `false`                        | Do not include the default library file (lib.d.ts).
 `--noResolve`                                  | `boolean` | `false`                        | Do not add triple-slash references or module import targets to the list of compiled files.
+`--noUnusedLocals`                             | `boolean` | `false`                        | Report errors on unused locals.
+`--noUnusedParameters`                         | `boolean` | `false`                        | Report errors on unused parameters.
 ~~`--out`~~                                    | `string`  | `null`                         | DEPRECATED. Use `--outFile` instead.
 `--outDir`                                     | `string`  | `null`                         | Redirect output structure to the directory.
 `--outFile`                                    | `string`  | `null`                         | Concatenate and emit output to single file. The order of concatenation is determined by the list of files passed to the compiler on the command line along with triple-slash references and imports. See output file order documentation for more details.

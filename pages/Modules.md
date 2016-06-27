@@ -517,6 +517,35 @@ import x, {y} from "hot-new-module";
 x(y);
 ```
 
+### UMD modules
+
+Some libraries are designed to be used in many module loaders, or with no module loading (global variables).
+These are known as [UMD](https://github.com/umdjs/umd) or [Isomorphic](http://isomorphic.net) modules.
+These libraries can be accessed through either an import or a global variable.
+For example:
+
+##### math-lib.d.ts
+
+```ts
+export const isPrime(x: number): boolean;'
+export as namespace mathLib;
+```
+
+The library can then be used as an import within modules:
+
+```ts
+import { isPrime } from "math-lib";
+isPrime(2);
+mathLib.isPrime(2); // ERROR: can't use the global definition from inside a module
+```
+
+It can also be used as a global variable, but only inside of a script.
+(A script is a file with no imports or exports.)
+
+```ts
+mathLib.isPrime(2);
+```
+
 # Guidance for structuring modules
 
 ## Export as close to top-level as possible

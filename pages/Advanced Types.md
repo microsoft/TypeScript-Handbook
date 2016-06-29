@@ -348,19 +348,19 @@ type Yikes = Array<Yikes>; // error
 As we mentioned, type aliases can act sort of like interfaces; however, there are some subtle differences.
 
 One difference is that interfaces create a new name that is used everywhere.
-Type aliases don't create a new name -- intellisense doesn't show the alias name, for example.
+Type aliases don't create a new name &mdash; for instance, error messages won't use the alias name.
 In the code below, intellisense will show that `interfaced` requires and returns an `Interface`, but `aliased` will show object literal types.
 
 ```ts
 type Alias = { num: number }
 interface Interface {
-  num: number;
+    num: number;
 }
 declare function aliased(arg: Alias): Alias;
 declare function interfaced(arg: Interface): Interface;
 ```
 
-A second, more important difference is that type aliases cannot be extended or implemented from (nor can they extend/implement other types).
+A second more important difference is that type aliases cannot be extended or implemented from (nor can they extend/implement other types).
 Because [an ideal property of software is being open to extension](https://en.wikipedia.org/wiki/Open/closed_principle), you should always use an interface over a type alias if possible.
 
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.
@@ -412,15 +412,14 @@ function createElement(tagName: string): Element {
 
 # Discriminated Unions
 
-You can combine string literal types, union types, type guards and type aliases to build an advanced pattern called *discriminated unions*.
+You can combine string literal types, union types, type guards and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
 Discriminated unions are useful in functional programming.
-TypeScript doesn't have built-in support for this pattern, but you can get the compiler to check it once you have it set up.
+Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today.
 There are four ingredients:
 
-1. Interfaces with a common property of a string-literal type
-2. A type alias that unions the interfaces
-3. Type guards on the common property
-4. Exhaustiveness checking (optional)
+1. Types that have a common, string literal property -- the *discriminant*.
+2. A type alias that takes the union of those types -- the *union*.
+3. Type guards on the common property.
 
 ```ts
 interface Square {
@@ -441,7 +440,7 @@ interface Circle {
 First we declare the interfaces we will union.
 Each interface has a `kind` property with a different string literal type.
 The `kind` property is called the *discriminant* or *tag*.
-The other properties are the important parts of each interface.
+The other properties are specific to each interface.
 Notice that the interfaces are currently unrelated.
 Let's put them into a union:
 
@@ -453,10 +452,10 @@ Now let's use the discriminated union:
 
 ```ts
 function area(s: Shape) {
-    switch(s.kind) {
+    switch (s.kind) {
         case "square": return s.size * s.size;
         case "rectangle": return s.height * s.width;
-        case "circle": return Math.PI * s.radius * s.radius;
+        case "circle": return Math.PI * s.radius ** 2;
     }
 }
 ```
@@ -469,12 +468,12 @@ For example, if we add `Triangle` to `Shape`, we need to update `area` as well:
 ```ts
 type Shape = Square | Rectangle | Circle | Triangle;
 function area(s: Shape) {
-    switch(s.kind) {
+    switch (s.kind) {
         case "square": return s.size * s.size;
         case "rectangle": return s.height * s.width;
-        case "circle": return Math.PI * s.radius * s.radius;
+        case "circle": return Math.PI * s.radius ** 2;
     }
-    // should error here -- we didn't handle case "triangle"
+    // should error here - we didn't handle case "triangle"
 }
 ```
 
@@ -483,10 +482,10 @@ The first is to turn on `--strictNullChecks` and specify a return type:
 
 ```ts
 function area(s: Shape): number { // error: returns number | undefined
-    switch(s.kind) {
+    switch (s.kind) {
         case "square": return s.size * s.size;
         case "rectangle": return s.height * s.width;
-        case "circle": return Math.PI * s.radius * s.radius;
+        case "circle": return Math.PI * s.radius ** 2;
     }
 }
 ```
@@ -502,16 +501,16 @@ function assertNever(x: never): never {
     throw new Error("Unexpected object: " + x);
 }
 function area(s: Shape) {
-    switch(s.kind) {
+    switch (s.kind) {
         case "square": return s.size * s.size;
         case "rectangle": return s.height * s.width;
-        case "circle": return Math.PI * s.radius * s.radius;
+        case "circle": return Math.PI * s.radius ** 2;
         default: return assertNever(s); // error here if there are missing cases
     }
 }
 ```
 
-Here, `assertNever` checks that `s` is of type `never` -- the type that's left after all other cases have been removed.
+Here, `assertNever` checks that `s` is of type `never` &mdash; the type that's left after all other cases have been removed.
 If you forget a case, then `s` will have a real type and you will get a type error.
 This method requires you to define an extra function, but it's much more obvious when you forget it.
 

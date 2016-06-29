@@ -58,6 +58,8 @@ Compiler Option                              | MSBuild Property Name            
 `--noImplicitReturns`                        | TypeScriptNoImplicitReturns                | boolean
 `--noImplicitThis`                           | TypeScriptNoImplicitThis                   | boolean
 `--noImplicitUseStrict`                      | TypeScriptNoImplicitUseStrict              | boolean
+`--noUnusedLocals`                           | TypeScriptNoUnusedLocals                   | boolean
+`--noUnusedParameters`                       | TypeScriptNoUnusedParameters               | boolean
 `--noLib`                                    | TypeScriptNoLib                            | boolean
 `--noResolve`                                | TypeScriptNoResolve                        | boolean
 `--out`                                      | TypeScriptOutFile                          | File path

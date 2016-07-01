@@ -407,7 +407,7 @@ Compiling `app.ts` using `--noResolve` should result in:
 
 ## Common Questions
 
-### Why does a module in `exclude` list is still picked up by the compiler
+### Why is a module in the `exclude` list still picked up by the compiler?
 
 `tsconfig.json` turns a folder into a “project”.
 Without specifying any `“exclude”` or `“files”` entries, all files in the folder containing the `tsconfig.json` and all its sub-directories are included in your compilation.

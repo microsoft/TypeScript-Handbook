@@ -6,16 +6,18 @@ This guide is structured by showing an example *usage* and *documentation*,
 
 These examples are ordered in approximately increasing order of complexity.
 
-* [Global variable](#global-variable)
-* [Global function](#global-function)
-* [Object with Properties](#object-with-properties)
-* [Overloaded function](#overloaded-function)
-* [Reusable Types (Global)](#reusable-types-global)
+* [Global Variables](#global-variables)
+* [Global Functions](#global-functions)
+* [Objects with Properties](#objects-with-properties)
+* [Overloaded Function](#overloaded-functions)
+* [Reusable Types (Interfaces)](#reusable-types-interfaces)
+* [Reusable Types (Type Aliases)](#reusable-types-type-aliases)
+* [Organizing Types)](#organizing-types)
 * [Classes](#classes)
 
 # The Examples
 
-## Global variables
+## Global Variables
 
 *Documentation*
 > The global variable `foo` contains the number of widgets present.
@@ -36,7 +38,7 @@ You can also use `declare let` if the variable is block-scoped.
 declare var foo: number;
 ```
 
-## Global functions
+## Global Functions
 
 *Documentation*
 > You can invoke the function `greet` with a string to show a greeting to the user.
@@ -80,7 +82,7 @@ declare namespace myLib {
 }
 ```
 
-## Overloaded functions
+## Overloaded Functions
 
 *Documentation*
 > The `getWidget` function accepts a number and return a Widget, or accepts a string and returns a Widget array
@@ -99,7 +101,7 @@ declare function getWidget(n: number): Widget;
 declare function getWidget(s: string): Widget[];
 ```
 
-## Reusable Types (interfaces)
+## Reusable Types (Interfaces)
 
 *Documentation*
 > When specifying a greeting, you must pass a GreetingSettings object.
@@ -130,7 +132,7 @@ interface GreetingSettings {
 declare function greet(setting: GreetingSettings): void;
 ```
 
-## Reusable Types (type aliases)
+## Reusable Types (Type Aliases)
 
 *Documentation*
 > Anywhere a greeting is expected, you can provide a `string`,

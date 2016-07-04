@@ -1,9 +1,9 @@
-Now that you have authored a declartion file following the steps of this guid, it is time to publish it to npm.
-There are two main ways you can publish your declaration files to npm: 1. bundeling with your npm package, or 2. publishing to [@types organization](https://www.npmjs.com/~types) on npm.
+Now that you have authored a declaration file following the steps of this guide, it is time to publish it to npm.
+There are two main ways you can publish your declaration files to npm: 1. bundling with your npm package, or 2. publishing to [@types organization](https://www.npmjs.com/~types) on npm.
 
-If you control the npm package you are publishing declations for, then the first approch is favoured; this way your declarations and javascript always travel togather.
+If you control the npm package you are publishing declarations for, then the first approach is favored; this way your declarations and JavaScript always travel together.
 
-# Bundel with npm package
+# Bundle with npm package
 
 You will need to indicate the main declaration file for your `package.json` file, similar to how you indicate the main `.js` file.
 Set the `types` property to point to your bundled declaration file.
@@ -19,14 +19,14 @@ For example:
 }
 ```
 
-Note that `"typings"` is another synonum for `"types"` and can be used as well.
+Note that `"typings"` is synonymous with `"types"` and can be used as well.
 
 Also note that if your main declaration file is named `index.d.ts` and lives at the root of the package (next to `index.js`) you do not need to mark the `"types"` property, though it is advisable to do so.
 
 ## Dependencies
 
-All depenencies are managed by npm.
-Make sure all the declaration packages you depend on are marked appropriatelly in the `"dependnecies"` section in your `package.json`.
+All dependencies are managed by npm.
+Make sure all the declaration packages you depend on are marked appropriately in the `"dependencies"` section in your `package.json`.
 For example:
 
 ```json
@@ -36,7 +36,7 @@ For example:
     "version": "1.0.0",
     "main": "./lib/main.js",
     "types": "./lib/main.d.ts"
-    "dependnecies" : [
+    "dependencies" : [
         "browserify": "latest",
         "@types/browserify": "latest",
         "typescript": "next"
@@ -45,12 +45,12 @@ For example:
 ```
 
 In this example this package depends on `browserify`, and `typescript`.
-It does expose declarations that uses the declarations in these packages; so any user or our `browserify-typescript-extension` package needs to have these depenencies as well.
+It does expose declarations that uses the declarations in these packages; so any user or our `browserify-typescript-extension` package needs to have these dependencies as well.
 
 `browserify` does not bundle its declaration files with its npm packages, thus the declaration files come from `@types/browserify`.
-`typescript` however, bundles its declaration files, so no need to add additonal references.
+`typescript` however, bundles its declaration files, so no need to add additional references.
 
-Note that you need to use `"dependnecies"` and not `"devDependencies"` since your declarations depend on these dependnecies.
+Note that you need to use `"dependencies"` and not `"devDependencies"` since your declarations depend on these dependencies.
 
 ## Red flags
 
@@ -70,7 +70,7 @@ Note that you need to use `"dependnecies"` and not `"devDependencies"` since you
 ....
 ```
 
-Make sure to revisit the [Consuming dependencies](./Library Structures.md#consuming-dependencies) section for more infromation.
+Make sure to revisit the [Consuming dependencies](./Library Structures.md#consuming-dependencies) section for more information.
 
 ### Bundling dependent declarations
 
@@ -90,5 +90,5 @@ TODO: more about this.
 # Publish to [@types](https://www.npmjs.com/~types)
 
 Packages on under the [@types](https://www.npmjs.com/~types) organization are published automatically from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) using the [types-publisher tool](https://github.com/Microsoft/types-publisher).
-To get your declarations publised as an @types package, please submit a pull request to [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped).
-You can find more details in the [conribution guidlines page](http://definitelytyped.org/guides/contributing.html).
+To get your declarations published as an @types package, please submit a pull request to [https://github.com/DefinitelyTyped/DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped).
+You can find more details in the [contribution guidelines page](http://definitelytyped.org/guides/contributing.html).

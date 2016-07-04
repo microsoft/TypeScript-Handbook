@@ -1,8 +1,6 @@
-# Do's and Don'ts
+# General Types
 
-## General Types
-
-### `Number`, `String`, `Boolean`, and `Object`
+## `Number`, `String`, `Boolean`, and `Object`
 
 *Don't* ever use the types `Number`, `String`, `Boolean`, or `Object`.
 These types refer to non-primitive boxed objects that are almost never used appropriately in JavaScript code.
@@ -30,9 +28,9 @@ See more details in [TypeScript FAQ page](https://github.com/Microsoft/TypeScrip
 
 <!-- TODO: More -->
 
-## Callback Types
+# Callback Types
 
-### Return Types of Callbacks
+## Return Types of Callbacks
 
 <!-- TODO: Reword; these examples make no sense in the context of a declaration file -->
 
@@ -63,7 +61,7 @@ function fn(x: () => void) {
 }
 ```
 
-### Optional Parameters in Callbacks
+## Optional Parameters in Callbacks
 
 *Don't* use optional parameters in callbacks unless you really mean it:
 
@@ -88,7 +86,7 @@ interface Fetcher {
 }
 ```
 
-### Overloads and Callbacks
+## Overloads and Callbacks
 
 *Don't* write separate overloads that differ only on callback arity:
 
@@ -108,9 +106,9 @@ declare function beforeAll(action: (done: DoneFn) => void, timeout?: number): vo
 *Why*: It's always legal for a callback to disregard a parameter, so there's no need for the shorter overload.
 Providing a shorter callback first allows incorrectly-typed functions to be passed in because they match the first overload.
 
-## Function Overloads
+# Function Overloads
 
-### Ordering
+## Ordering
 
 *Don't* put more general overloads before more specific overloads:
 
@@ -139,7 +137,7 @@ var x = fn(myElem); // x: string, :)
 *Why*: TypeScript chooses the *first matching overload* when resolving function calls.
 When an earlier overload is "more general" than a later one, the later one is effectively hidden and cannot be called.
 
-### Use Optional Parameters
+## Use Optional Parameters
 
 *Don't* write several overloads that differ only in trailing parameters:
 
@@ -188,7 +186,7 @@ var x: Moment;
 x.diff(something, someOtherThing ? undefined : "hour");
 ```
 
-### Use Union Types
+## Use Union Types
 
 *Don't* write overloads that differ by type in only one argument position:
 

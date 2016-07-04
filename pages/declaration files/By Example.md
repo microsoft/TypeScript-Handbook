@@ -1,6 +1,4 @@
-# Definition Files by Example
-
-## Introduction
+# Introduction
 
 The purpose of this guide is to teach you how to write a high-quality definition file.
 This guide is structured by showing an example *usage* and *documentation*,
@@ -15,9 +13,9 @@ These examples are ordered in approximately increasing order of complexity.
 * [Reusable Types (Global)](#reusable-types-global)
 * [Classes](#classes)
 
-## The Examples
+# The Examples
 
-### Global variables
+## Global variables
 
 *Documentation*
 > The global variable `foo` contains the number of widgets present.
@@ -38,7 +36,7 @@ You can also use `declare let` if the variable is block-scoped.
 declare var foo: number;
 ```
 
-### Global functions
+## Global functions
 
 *Documentation*
 > You can invoke the function `greet` with a string to show a greeting to the user.
@@ -57,7 +55,7 @@ Use `declare function` to declare functions.
 declare function greet(greeting: string): void;
 ```
 
-### Objects with Properties
+## Objects with Properties
 
 *Documentation*
 > The global variable `myLib` has a function `makeGreeting` for creating greetings,
@@ -82,7 +80,7 @@ declare namespace myLib {
 }
 ```
 
-### Overloaded functions
+## Overloaded functions
 
 *Documentation*
 > The `getWidget` function accepts a number and return a Widget, or accepts a string and returns a Widget array
@@ -101,7 +99,7 @@ declare function getWidget(n: number): Widget;
 declare function getWidget(s: string): Widget[];
 ```
 
-### Reusable Types (interfaces)
+## Reusable Types (interfaces)
 
 *Documentation*
 > When specifying a greeting, you must pass a GreetingSettings object.
@@ -132,7 +130,7 @@ interface GreetingSettings {
 declare function greet(setting: GreetingSettings): void;
 ```
 
-### Reusable Types (type aliases)
+## Reusable Types (type aliases)
 
 *Documentation*
 > Anywhere a greeting is expected, you can provide a `string`,
@@ -161,7 +159,7 @@ type GreetingLike = string | (() => string) | Greeting;
 declare function greet(g: GreetingLike): void;
 ```
 
-### Organizing Types
+## Organizing Types
 
 *Documentation*
 > The `greeter` object can log to a file, or display an alert.
@@ -208,7 +206,7 @@ declare namespace GreetingLib.Options {
 }
 ```
 
-### Classes
+## Classes
 
 *Documentation*
 > You can create a greeter by instantiating the `Greeter` object,
@@ -243,7 +241,7 @@ declare class Greeter {
 
 <!-- Template
 
-###
+##
 
 *Documentation*
 >

@@ -1,4 +1,4 @@
-# Structuring: Overview
+# Overview
 
 Broadly speaking, the way you *structure* your definition file depends on how the library is consumed.
 There are many ways of offering a library for consumption in JavaScript,

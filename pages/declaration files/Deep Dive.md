@@ -17,12 +17,13 @@ You can fully understand how to make any shape of definition
 
 If you're reading this guide, you probably already roughly know what a type in TypeScript is.
 To be more explicit, though, a *type* is introduced with:
- * A type alias declaration (`type sn = number | string;`)
- * An interface declaration (`interface I { x: number[]; }`)
- * A class declaration (`class C { }`)
- * An enum declaration (`enum E { A, B, C }`)
- * An `import` declaration which refers to a type
- 
+
+* A type alias declaration (`type sn = number | string;`)
+* An interface declaration (`interface I { x: number[]; }`)
+* A class declaration (`class C { }`)
+* An enum declaration (`enum E { A, B, C }`)
+* An `import` declaration which refers to a type
+
 Each of these declaration forms creates a new type name.
 
 ### Values
@@ -32,12 +33,13 @@ Values are runtime names that we can reference in expressions.
 For example `let x = 5;` creates a value called `x`.
 
 Again, being explicit, the following things create values:
- * `let`, `const`, and `var` declarations
- * A `namespace` or `module` declaration which contains a value
- * An `enum` declaration
- * A `class` declaration
- * An `import` declaration which refers to a value
- * A `function` declaration
+
+* `let`, `const`, and `var` declarations
+* A `namespace` or `module` declaration which contains a value
+* An `enum` declaration
+* A `class` declaration
+* An `import` declaration which refers to a value
+* A `function` declaration
 
 ### Namespaces
 
@@ -69,33 +71,41 @@ Enum declarations behave similarly.
 ### User Combinations
 
 Let's say we wrote a module file `foo.d.ts`:
+
 ```ts
 export var SomeVar: { a: SomeType };
 export interface SomeVar {
   count: number;
 }
 ```
+
 Then consumed it:
+
 ```ts
 import * as foo from './foo';
 let x: foo.SomeType = foo.SomeVar.a;
 console.log(x.count);
 ```
+
 This works well enough, but we might imagine that `SomeType` and `SomeVar` were very closely related
   such that you'd like them to have the same name.
 We can use combining to present these two different objects (the value and the type) under the same name `Bar`:
+
 ```ts
 export var Bar: { a: Bar };
 export interface Bar {
   count: number;
 }
 ```
+
 This presents a very good opportunity for destructuring in the consuming code:
+
 ```ts
 import { Bar } from './foo';
 let x: Bar = Bar.a;
 console.log(x.count);
 ```
+
 Again, we've used `Bar` as both a type and a value here.
 Note that we didn't have to declare the `Bar` value as being of the `Bar` type -- they're independent.
 
@@ -114,6 +124,7 @@ Let's see how this can be used.
 ### Adding using an `interface`
 
 We can add additional members to an `interface` with another `interface` declaration:
+
 ```ts
 interface Foo {
   x: number;
@@ -125,7 +136,9 @@ interface Foo {
 let a: Foo = ...;
 console.log(a.x + a.y); // OK
 ```
+
 This also works with classes:
+
 ```ts
 class Foo {
   x: number;
@@ -137,6 +150,7 @@ interface Foo {
 let a: Foo = ...;
 console.log(a.x + a.y); // OK
 ```
+
 Note that we cannot add to type aliases (`type s = string;`) using an interface.
 
 ### Adding using a `namespace`
@@ -144,6 +158,7 @@ Note that we cannot add to type aliases (`type s = string;`) using an interface.
 A `namespace` declaration can be used to add new types, values, and namespaces in any way which does not create a conflict.
 
 For example, we can add a static member to a class:
+
 ```ts
 class C {
 }
@@ -153,11 +168,13 @@ namespace C {
 }
 let y = C.x; // OK
 ```
+
 Note that in this example, we added a value to the *static* side of `C` (its constructor function).
 This is because we added a *value*, and the container for all values is another value
   (types are contained by namespaces, and namespaces are contained by other namespaces).
 
 We could also add a namespaced type to a class:
+
 ```ts
 class C {
 }
@@ -167,11 +184,13 @@ namespace C {
 }
 let y: C.D; // OK
 ```
+
 In this example, there wasn't a namespace `C` until we wrote the `namespace` declaration for it.
 The meaning `C` as a namespace doesn't conflict with the value or type meanings of `C` created by the class.
 
 Finally, we could perform many different merges using `namespace` declarations.
 This isn't a particularly realistic example, but shows all sorts of interesting behavior:
+
 ```ts
 namespace X {
   export interface Y { }
@@ -187,20 +206,23 @@ namespace X {
 }
 type X = string;
 ```
+
 In this example, the first block creates the following name meanings:
- * A value `X` (because the `namespace` declaration contains a value, `Z`)
- * A namespace `X` (because the `namespace` declaration contains a type, `Y`)
- * A type `Y` in the `X` namespace
- * A type `Z` in the `X` namespace (the instance shape of the class)
- * A value `Z` that is a property of the `X` value (the constructor function of the class)
+
+* A value `X` (because the `namespace` declaration contains a value, `Z`)
+* A namespace `X` (because the `namespace` declaration contains a type, `Y`)
+* A type `Y` in the `X` namespace
+* A type `Z` in the `X` namespace (the instance shape of the class)
+* A value `Z` that is a property of the `X` value (the constructor function of the class)
 
 The second  block creates the following name meanings:
- * A value `Y` (of type `number`) that is a property of the `X` value
- * A namespace `Z`
- * A value `Z` that is a property of the `X` value
- * A type `C` in the `X.Z` namespace
- * A value `C` that is a property of the `X.Z` value
- * A type `X`
+
+* A value `Y` (of type `number`) that is a property of the `X` value
+* A namespace `Z`
+* A value `Z` that is a property of the `X` value
+* A type `C` in the `X.Z` namespace
+* A value `C` that is a property of the `X.Z` value
+* A type `X`
 
 ## Using with `export =` or `import`
 

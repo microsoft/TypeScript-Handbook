@@ -26,11 +26,13 @@ We recommend using whichever is more comfortable to you.
 A *global* library is one that can be accessed from the global scope (i.e. without using any form of `import`).
 Many libraries simply expose one or more global variables for use.
 For example, if you were using jQuery, the `$` variable can be used by simply referring to it:
+
 ```ts
 $(() => { console.log('hello!'); } );
 ```
 
 You'll usually see guidance in the documentation of a global library of how to use the library in a script tag:
+
 ```html
     <script src="http://a.great.cdn.for/someLib.js"></script>
 ```
@@ -43,30 +45,33 @@ Before writing a global definition file, make sure the library isn't actually UM
 
 Global library code is usually extremely simple.
 A global "Hello, world" library might look like this:
+
 ```js
 function createGreeting(s) {
-	return 'Hello, ' + s;
+    return 'Hello, ' + s;
 }
 ```
+
 or like this:
+
 ```js
 window.createGreeting = function(s) {
-	return 'Hello, ' + s;
+    return 'Hello, ' + s;
 }
 ```
 
 When looking at the code of a global library, you'll usually see:
 
- * Top-level `var` statements or `function` declarations
- * One or more assignments to `window.someName`
- * Assumptions that DOM primitives like `document` or `window` exist
+* Top-level `var` statements or `function` declarations
+* One or more assignments to `window.someName`
+* Assumptions that DOM primitives like `document` or `window` exist
 
 You *won't* see:
 
-  * Checks for, or usage of, module loaders like `require` or `define`
-  * CommonJS/nodejs-style imports of the form `var fs = require('fs');`
-  * Calls to `define(...)`
-  * Documentation describing how to `require` the library
+* Checks for, or usage of, module loaders like `require` or `define`
+* CommonJS/nodejs-style imports of the form `var fs = require('fs');`
+* Calls to `define(...)`
+* Documentation describing how to `require` the library
 
 ### Examples of Global Libraries
 
@@ -87,22 +92,28 @@ For example, because `express` only works in NodeJS,
 
 ECMAScript 2016 (also known as ES2015, ECMAScript 6, ES6), CommonJS, and RequireJS have similar notions of *importing* a *module*.
 In JavaScript CommonJS (nodejs), for example, you would write
+
 ```ts
 var fs = require('fs');
 ```
+
 In TypeScript or ES6, the `import` keyword serves the same purpose:
+
 ```ts
 import fs = require('fs');
 ```
 
 You'll typically see module libraries include one of these lines in their documentation:
+
 ```js
 var someLib = require('someLib');
 ```
+
 or
+
 ```ts
 define(..., ['someLib'], function(someLib) {
-	
+
 });
 ```
 
@@ -113,13 +124,13 @@ As with global modules, you might see these examples in the documentation of a U
 
 Module libraries will typically have at least some of the following:
 
- * Unconditional calls to `require` or `define`*
- * Declarations like `import * as a from 'b';` or `export c;`
- * Assignments to `exports` or `module.exports`
+* Unconditional calls to `require` or `define`*
+* Declarations like `import * as a from 'b';` or `export c;`
+* Assignments to `exports` or `module.exports`
 
 They will rarely have:
 
- * Assignments to properties of `window` or `global`
+* Assignments to properties of `window` or `global`
 
 ### Examples of Module Libraries
 
@@ -131,19 +142,23 @@ A *UMD* module is one that can *either* be used as module (through an import),
   or as a global (when run in an environment without a module loader).
 Many popular libraries, such as `moment`, are written this way.
 For example, in nodejs, you would write:
+
 ```ts
 import moment = require('moment');
 console.log(moment.format());
 ```
+
 whereas in a vanilla browser environment you would write:
+
 ```ts
 console.log(moment.format());
 ```
 
 ### Identifying a UMD library
 
-(UMD modules)[https://github.com/umdjs/umd] check for the existence of a module loader environment.
+[UMD modules](https://github.com/umdjs/umd) check for the existence of a module loader environment.
 This is an easy-to-spot pattern that looks something like this:
+
 ```js
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
@@ -154,7 +169,7 @@ This is an easy-to-spot pattern that looks something like this:
         root.returnExports = factory(root.b);
     }
 }(this, function (b) {
-  ```
+```
 
 If you see tests for `typeof define`, `typeof window`, or `typeof module` in the code of a library,
   especially at the top of the file,
@@ -174,19 +189,23 @@ There are three templates available for modules,
   `module.d.ts`, `module-class.d.ts` and `module-callable.d.ts`.
 
 Use `module-callable.d.ts` if your module can be *called* like a function:
+
 ```ts
 var x = require('foo');
 // Note: calling 'x' as a function
 var y = x(42);
 ```
+
 Be sure to read the footnote "The Impact of ES6 on Module Call Signatures"
 
 Use `module-class.d.ts` if your module can be *constructed* using `new`:
+
 ```ts
 var x = require('bar');
 // Note: using 'new' operator on the imported variable
 var y = new x('hello');
 ```
+
 The same footnote applies to these modules.
 
 If your module is not callable or constructable, use the `module.d.ts` file.
@@ -215,6 +234,7 @@ For example, some libraries add new functions to `Array.prototype` or `String.pr
 Global plugins are generally easy to identify from their documentation.
 
 You'll see examples that look like this:
+
 ```ts
 var x = 'hello, world';
 // Creates new methods on built-in types
@@ -242,6 +262,7 @@ Global-modifying modules are generally easy to identify from their documentation
 In general, they're similar to global plugins, but need a `require` call to activate their effects.
 
 You might see documentation like this:
+
 ```ts
 // 'require' call that doesn't use its return value
 var unused = require('magic-string-time');
@@ -268,16 +289,19 @@ There are several kinds of dependencies you might have.
 ## Dependencies on Global Libraries
 
 If your library depends on a global library, use a `/// <reference types=` directive:
+
 ```ts
 /// <reference types="someLib" />
 
 function getThing(): someLib.thing;
 ```
+
 This syntax is the same regardless if your library is global, a module, or UMD
 
 ## Dependencies on Modules
 
 If your library depends on a module, use an `import` statement:
+
 ```ts
 import * as moment from 'moment';
 
@@ -289,6 +313,7 @@ function getThing(): moment;
 ### From a Global Library
 
 If your global library depends on a UMD module, use a `/// <reference types` directive:
+
 ```ts
 /// <reference types="moment" />
 
@@ -298,11 +323,12 @@ function getThing(): moment;
 ### From a Module or UMD Library
 
 If your module or UMD library depends on a UMD library, use an `import` statement:
+
 ```ts
 import * as someLib from 'someLib';
 ```
-Do *not* use a `/// <reference` directive to declare a dependency to a UMD library!
 
+Do *not* use a `/// <reference` directive to declare a dependency to a UMD library!
 
 # Footnotes
 
@@ -315,13 +341,16 @@ We strongly discourage this as it leads to possible unresolvable name conflicts
 A simple rule to follow is to only declare types *namespaced* by whatever
   global variable the library defines.
 For example, if the library defines the global value 'cats', you should write
+
 ```ts
 declare namespace cats {
   interface KittySettings { }
 }
 ```
+
 But *not*
-```
+
+```ts
 // at top-level
 interface CatsKittySettings { }
 ```
@@ -340,13 +369,14 @@ Because TypeScript is loader-agnostic, there is no compile-time enforcement of t
 
 Many popular libraries, such as `express`, expose themselves as a callable function when imported.
 For example, the typical `express` usage looks like this:
+
 ```ts
 import exp = require('express');
 var app = exp();
 ```
+
 In ES6 module loaders, the top-level object (here imported as `exp`) can only have properties;
   the top-level module object is *never* callable.
 The most common solution here is to define the `default` export as the callable object;
   some module loader shims will automatically detect this situation and replace the top-level
   object with the `default` export.
-

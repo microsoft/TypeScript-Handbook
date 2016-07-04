@@ -43,3 +43,7 @@ Refer to the documentation in [Library Structures](./Library Structures.md) to f
 ## Publish to npm
 
 The [Publishing](./Publishing.md) section explains how to publish your declaration files to an npm package, and shows how to manage your dependent packages.
+
+## Finding and Installing Declaration Files
+
+For JavaScrit library users, the [Finding and Installing Declaration Files](./Consumption.md) section offers two simple steps to locate and install corresponding declaration files.

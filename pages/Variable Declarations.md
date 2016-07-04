@@ -155,11 +155,10 @@ Most people expect the output to be
 ```
 
 Remember what we mentioned earlier about variable capturing?
+Every function expression we pass to `setTimeout` actually refers to the same `i` from the same scope.
 
-> At any point that `g` gets called, the value of `a` will be tied to the value of `a` in `f`.
-
-Let's take a minute to consider that in this context.
-`setTimeout` will run a function after some number of milliseconds, and also after the `for` loop has stopped executing.
+Let's take a minute to consider that means.
+`setTimeout` will run a function after some number of milliseconds, *but only* after the `for` loop has stopped executing;
 By the time the `for` loop has stopped executing, the value of `i` is `10`.
 So each time the given function gets called, it will print out `10`!
 
@@ -175,12 +174,12 @@ for (var i = 0; i < 10; i++) {
 }
 ```
 
-This odd-looking pattern is actually a commonplace.
-The `i` in the parameter actually shadows the `i` declared in the `for` loop, but since we named it the same, we didn't have to modify the loop body too much.
+This odd-looking pattern is actually pretty common.
+The `i` in the parameter list actually shadows the `i` declared in the `for` loop, but since we named them the same, we didn't have to modify the loop body too much.
 
 # `let` declarations
 
-By now you've figured out that `var` has some problems, which is precisely why `let` statements are a new way to declare variables.
+By now you've figured out that `var` has some problems, which is precisely why `let` statements were introduced.
 Apart from the keyword used, `let` statements are written the same way `var` statements are.
 
 ```ts

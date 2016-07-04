@@ -6,7 +6,7 @@ There are many ways of offering a library for consumption in JavaScript,
 This guide covers how to identify common library patterns,
   and how to write definition files which correspond to that pattern.
 
-Each type of major library structuring pattern has a corresponding file in the `templates` directory.
+Each type of major library structuring pattern has a corresponding file in the [`templates`](./templates) directory.
 You can start with these templates to help you get going faster.
 
 # Identifying Kinds of Libraries
@@ -25,7 +25,7 @@ We recommend using whichever is more comfortable to you.
 
 A *global* library is one that can be accessed from the global scope (i.e. without using any form of `import`).
 Many libraries simply expose one or more global variables for use.
-For example, if you were using jQuery, the `$` variable can be used by simply referring to it:
+For example, if you were using [jQuery](https://jquery.com/), the `$` variable can be used by simply referring to it:
 
 ```ts
 $(() => { console.log('hello!'); } );
@@ -81,7 +81,7 @@ However, libraries that are small and require the DOM (or have *no* dependencies
 
 ### Template
 
-The template file `global.d.ts` defines an example library `myLib`.
+The template file [`global.d.ts`](./templates/global.d.ts) defines an example library `myLib`.
 Be sure to read the "Preventing Name Conflicts" footnote.
 
 ## *module*
@@ -134,13 +134,13 @@ They will rarely have:
 
 ### Examples of Module Libraries
 
-Many popular nodejs libraries are in the module family, such as `express`, `gulp`, and `request`.
+Many popular nodejs libraries are in the module family, such as [`express`](http://expressjs.com/), [`gulp`](http://gulpjs.com/), and [`request`](https://github.com/request/request).
 
 ## *UMD*
 
 A *UMD* module is one that can *either* be used as module (through an import),
   or as a global (when run in an environment without a module loader).
-Many popular libraries, such as `moment`, are written this way.
+Many popular libraries, such as [`moment`](http://momentjs.com/), are written this way.
 For example, in nodejs, you would write:
 
 ```ts
@@ -181,14 +181,14 @@ Documentation for UMD libraries will also often demonstrate a "Using in nodejs" 
 ### Examples of UMD libraries
 
 Most popular libraries are now available as UMD packages.
-Examples include `jquery`, `moment`, `lodash`, and many more.
+Examples include [`jquery`](https://jquery.com/), [`moment`](http://momentjs.com/), [`lodash`](https://lodash.com/), and many more.
 
 ### Template
 
 There are three templates available for modules,
-  `module.d.ts`, `module-class.d.ts` and `module-callable.d.ts`.
+  [`module.d.ts`](./templates/module.d.ts), [`module-class.d.ts`](./templates/module-class.d.ts) and [`module-function.d.ts`](./templates/module-function.d.ts).
 
-Use `module-callable.d.ts` if your module can be *called* like a function:
+Use [`module-function.d.ts`](./templates/module-function.d.ts) if your module can be *called* like a function:
 
 ```ts
 var x = require('foo');
@@ -196,9 +196,9 @@ var x = require('foo');
 var y = x(42);
 ```
 
-Be sure to read the footnote "The Impact of ES6 on Module Call Signatures"
+Be sure to read the footnote ["The Impact of ES6 on Module Call Signatures"](#)
 
-Use `module-class.d.ts` if your module can be *constructed* using `new`:
+Use [`module-class.d.ts`](./templates/module-class.d.ts) if your module can be *constructed* using `new`:
 
 ```ts
 var x = require('bar');
@@ -208,7 +208,7 @@ var y = new x('hello');
 
 The same footnote applies to these modules.
 
-If your module is not callable or constructable, use the `module.d.ts` file.
+If your module is not callable or constructable, use the [`module.d.ts`](./templates/module.d.ts) file.
 
 ## *Module Plugin* or *UMD Plugin*
 
@@ -220,7 +220,7 @@ For the purposes of writing a definition file, you'll write the same code
 
 ### Template
 
-Use the `module-plugin.d.ts` template.
+Use the [`module-plugin.d.ts`](./templates/module-plugin.d.ts) template.
 
 ## *Global Plugin*
 
@@ -247,7 +247,7 @@ console.log(y.reverseAndSort());
 
 ### Template
 
-Use the `global-plugin.d.ts` template.
+Use the [`global-plugin.d.ts`](./templates/global-plugin.d.ts) template.
 
 ## *Global-modifying Modules*
 
@@ -280,7 +280,7 @@ console.log(y.reverseAndSort());
 
 ### Template
 
-Use the `global-modifying-module.d.ts` template.
+Use the [`global-modifying-module.d.ts`](./templates/global-modifying-module.d.ts) template.
 
 # Consuming Dependencies
 

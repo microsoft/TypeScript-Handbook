@@ -26,9 +26,9 @@ There is currently no way in TypeScript to specify an object that is "not a prim
 ## Generics
 
 *Don't* ever have a generic type which doesn't use its type parameter.
-TODO: Link to FAQ
+See more details in [TypeScript FAQ page](https://github.com/Microsoft/TypeScript/wiki/FAQ#why-doesnt-type-inference-work-on-this-interface-interface-foot---).
 
-TODO: More
+<!-- TODO: More -->
 
 ## Callback Types
 
@@ -177,7 +177,8 @@ var x: Moment;
 fn(x.diff);
 ```
 
-The second reason is when a consumer uses the "strict null checking" feature of TypeScript. Because unspecified parameters appear as `undefined` in JavaScript, it's usually fine to pass an explicit `undefined` to a function with optional arguments.
+The second reason is when a consumer uses the "strict null checking" feature of TypeScript.
+Because unspecified parameters appear as `undefined` in JavaScript, it's usually fine to pass an explicit `undefined` to a function with optional arguments.
 This code, for example, should be OK under strict nulls:
 
 ```ts

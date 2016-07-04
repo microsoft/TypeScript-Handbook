@@ -39,3 +39,7 @@ For seasoned authors interested in the underlying mechanics of how declaration f
 In the `templates` directory, you'll find a number of declaration files that serve as a useful starting point
   when writing a new file.
 Refer to the documentation in [Library Structures](./Library Structures.md) to figure out which template file to use.
+
+## Publish to npm
+
+The [Publishing](./Publishing.md) section explains how to publish your declaration files to an npm package, and shows how to manage your dependent packages.

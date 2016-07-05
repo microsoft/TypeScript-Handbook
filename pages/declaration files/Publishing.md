@@ -85,7 +85,7 @@ If your type definitions depend on another package:
 After publishing your declaration file with your package, make sure to add a reference to it in the [DefinitelyTyped repo external package list](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/types-2.0/notNeededPackages.json).
 Adding this will allow search tool to know that your package provides its own declarations.
 
-TODO: more about this.
+<!-- TODO: more about this. -->
 
 # Publish to [@types](https://www.npmjs.com/~types)
 

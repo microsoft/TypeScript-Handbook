@@ -228,4 +228,4 @@ The second  block creates the following name meanings:
 
 An important rule is that `export` and `import` declarations export or import *all meanings* of their targets.
 
-TODO: Write more on that.
+<!-- TODO: Write more on that. -->

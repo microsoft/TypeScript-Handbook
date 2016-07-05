@@ -82,7 +82,7 @@ However, libraries that are small and require the DOM (or have *no* dependencies
 ### Template
 
 The template file [`global.d.ts`](./templates/global.d.ts) defines an example library `myLib`.
-Be sure to read the "Preventing Name Conflicts" footnote.
+Be sure to read the ["Preventing Name Conflicts" footnote](#preventing-name-conflicts).
 
 ## *module*
 
@@ -196,7 +196,7 @@ var x = require('foo');
 var y = x(42);
 ```
 
-Be sure to read the footnote ["The Impact of ES6 on Module Call Signatures"](#)
+Be sure to read the [footnote "The Impact of ES6 on Module Call Signatures"](#the-impact-of-es6-on-module-plugins)
 
 Use [`module-class.d.ts`](./templates/module-class.d.ts) if your module can be *constructed* using `new`:
 
@@ -206,7 +206,7 @@ var x = require('bar');
 var y = new x('hello');
 ```
 
-The same footnote applies to these modules.
+The same [footnote](#the-impact-of-es6-on-module-plugins) applies to these modules.
 
 If your module is not callable or constructable, use the [`module.d.ts`](./templates/module.d.ts) file.
 

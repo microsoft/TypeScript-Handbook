@@ -36,7 +36,7 @@ For seasoned authors interested in the underlying mechanics of how declaration f
 
 ## `/templates`
 
-In the `templates` directory, you'll find a number of declaration files that serve as a useful starting point
+In the [`templates`](./templates) directory, you'll find a number of declaration files that serve as a useful starting point
   when writing a new file.
 Refer to the documentation in [Library Structures](./Library Structures.md) to figure out which template file to use.
 
@@ -46,4 +46,4 @@ The [Publishing](./Publishing.md) section explains how to publish your declarati
 
 ## Find and Install Declaration Files
 
-For JavaScrit library users, the [Find and Install Declaration Files](./Consumption.md) section offers two simple steps to locate and install corresponding declaration files.
+For JavaScrit library users, the [Consumption](./Consumption.md) section offers two simple steps to locate and install corresponding declaration files.

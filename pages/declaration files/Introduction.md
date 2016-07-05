@@ -10,11 +10,11 @@ The guide is broken down into the following sections.
 
 ## Library Structures
 
-The [Library Structures](./Library Structures.md) guide helps you understand common library formats and how to write a correct declaration file for each formats.
+The [Library Structures](./Library Structures.md) guide helps you understand common library formats and how to write a correct declaration file for each format.
 If you're editing an existing file, you probably don't need to read this section.
 Authors of new declaration files must read this section to properly understand how the format of the library influences the writing of the declaration file.
 
-## Do's and Don'ts
+## "Do"s and "Don't"s
 
 Many common mistakes in declaration files can be easily avoided.
 The [Do's and Don'ts](./Do's and Don'ts.md) section identifies common errors,
@@ -46,4 +46,4 @@ The [Publishing](./Publishing.md) section explains how to publish your declarati
 
 ## Find and Install Declaration Files
 
-For JavaScrit library users, the [Consumption](./Consumption.md) section offers two simple steps to locate and install corresponding declaration files.
+For JavaScript library users, the [Consumption](./Consumption.md) section offers a few simple steps to locate and install corresponding declaration files.

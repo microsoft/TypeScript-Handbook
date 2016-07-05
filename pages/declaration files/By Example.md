@@ -12,7 +12,7 @@ These examples are ordered in approximately increasing order of complexity.
 * [Overloaded Function](#overloaded-functions)
 * [Reusable Types (Interfaces)](#reusable-types-interfaces)
 * [Reusable Types (Type Aliases)](#reusable-types-type-aliases)
-* [Organizing Types)](#organizing-types)
+* [Organizing Types](#organizing-types)
 * [Classes](#classes)
 
 # The Examples

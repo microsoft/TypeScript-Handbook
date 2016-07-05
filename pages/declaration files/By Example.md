@@ -1,7 +1,7 @@
 # Introduction
 
 The purpose of this guide is to teach you how to write a high-quality definition file.
-This guide is structured by showing an example *usage* and *documentation*,
+This guide is structured by showing documentation for some API, along with sample usage of that API,
   and explaining how to write the corresponding declaration.
 
 These examples are ordered in approximately increasing order of complexity.
@@ -20,15 +20,17 @@ These examples are ordered in approximately increasing order of complexity.
 ## Global Variables
 
 *Documentation*
+
 > The global variable `foo` contains the number of widgets present.
 
 *Code*
 
 ```ts
-console.log('Half the number of widgets is ' + (foo / 2));
+console.log("Half the number of widgets is " + (foo / 2));
 ```
 
 *Declaration*
+
 Use `declare var` to declare variables.
 If the variable is read-only, you can use `declare const`.
 You can also use `declare let` if the variable is block-scoped.
@@ -41,12 +43,13 @@ declare var foo: number;
 ## Global Functions
 
 *Documentation*
-> You can invoke the function `greet` with a string to show a greeting to the user.
+
+> You can call the function `greet` with a string to show a greeting to the user.
 
 *Code*
 
 ```ts
-greet('hello, world');
+greet("hello, world");
 ```
 
 *Declaration*
@@ -60,15 +63,17 @@ declare function greet(greeting: string): void;
 ## Objects with Properties
 
 *Documentation*
+
 > The global variable `myLib` has a function `makeGreeting` for creating greetings,
-> and a property `numberOfGreetings` indicating the number of greetings made so far.
+>   and a property `numberOfGreetings` indicating the number of greetings made so far.
 
 *Code*
 
 ```ts
-var result = myLib.makeGreeting('hello, world');
-console.log('The computed greeting is:' + result);
-var count = myLib.numberOfGreetings;
+let result = myLib.makeGreeting("hello, world");
+console.log("The computed greeting is:" + result);
+
+let count = myLib.numberOfGreetings;
 ```
 
 *Declaration*
@@ -78,6 +83,7 @@ Use `declare namespace` to describe types or values accessed by dotted notation.
 ```ts
 declare namespace myLib {
     function makeGreeting(s: string): string;
+    
     let numberOfGreetings: number;
 }
 ```
@@ -85,13 +91,15 @@ declare namespace myLib {
 ## Overloaded Functions
 
 *Documentation*
-> The `getWidget` function accepts a number and return a Widget, or accepts a string and returns a Widget array
+
+The `getWidget` function accepts a number and returns a Widget, or accepts a string and returns a Widget array.
 
 *Code*
 
 ```ts
 let x: Widget = getWidget(43);
-let arr = getWidget('all of them'); // arr: Widget[]
+
+let arr: Widget[] = getWidget("all of them");
 ```
 
 *Declaration*
@@ -104,7 +112,8 @@ declare function getWidget(s: string): Widget[];
 ## Reusable Types (Interfaces)
 
 *Documentation*
-> When specifying a greeting, you must pass a GreetingSettings object.
+
+> When specifying a greeting, you must pass a `GreetingSettings` object.
 > This object has the following properties:
 > - greeting: Mandatory string
 > - duration: Optional length of time (in milliseconds)
@@ -114,14 +123,14 @@ declare function getWidget(s: string): Widget[];
 
 ```ts
 greet({
-  greeting: 'hello world',
+  greeting: "hello world",
   duration: 4000
 });
 ```
 
 *Declaration*
 
-Use `interface` to define a type with properties.
+Use an `interface` to define a type with properties.
 
 ```ts
 interface GreetingSettings {
@@ -129,24 +138,25 @@ interface GreetingSettings {
   duration?: number;
   color?: string;
 }
+
 declare function greet(setting: GreetingSettings): void;
 ```
 
 ## Reusable Types (Type Aliases)
 
 *Documentation*
-> Anywhere a greeting is expected, you can provide a `string`,
-> a function returning a `string`, or a `Greeter` class.
+
+> Anywhere a greeting is expected, you can provide a `string`, a function returning a `string`, or a `Greeter` instance.
 
 *Code*
 
 ```ts
 function getGreeting() {
-    return 'howdy';
+    return "howdy";
 }
 class MyGreeter extends Greeter { }
 
-greet('hello');
+greet("hello");
 greet(getGreeting);
 greet(new MyGreeter());
 ```
@@ -164,15 +174,16 @@ declare function greet(g: GreetingLike): void;
 ## Organizing Types
 
 *Documentation*
-> The `greeter` object can log to a file, or display an alert.
-> You can provide LogOptions to `.log(...)` or alert options to `.alert(...)`
+
+> The `greeter` object can log to a file or display an alert.
+> You can provide LogOptions to `.log(...)` and alert options to `.alert(...)`
 
 *Code*
 
 ```ts
-const g = new Greeter('Hello');
+const g = new Greeter("Hello");
 g.log({ verbose: true });
-g.alert({ modal: false, title: 'Current Greeting' });
+g.alert({ modal: false, title: "Current Greeting" });
 ```
 
 *Declaration*
@@ -211,25 +222,26 @@ declare namespace GreetingLib.Options {
 ## Classes
 
 *Documentation*
-> You can create a greeter by instantiating the `Greeter` object,
-> or create a customized greeter by extending from it.
+
+> You can create a greeter by instantiating the `Greeter` object, or create a customized greeter by extending from it.
 
 *Code*
 
 ```ts
-const myGreeter = new Greeter('hello, world');
-myGreeter.greeting = 'howdy';
+const myGreeter = new Greeter("hello, world");
+myGreeter.greeting = "howdy";
 myGreeter.showGreeting();
 
 class SpecialGreeter extends Greeter {
     constructor() {
-        super('Very special greetings');
+        super("Very special greetings");
     }
 }
 ```
 
 *Declaration*
-Use `declare class` to describe a class or classlike object.
+
+Use `declare class` to describe a class or class-like object.
 Classes can have properties and methods as well as a constructor.
 
 ```ts

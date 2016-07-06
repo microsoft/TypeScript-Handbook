@@ -74,7 +74,7 @@ Let's say we wrote a module file `foo.d.ts`:
 
 ```ts
 export var SomeVar: { a: SomeType };
-export interface SomeVar {
+export interface SomeType {
   count: number;
 }
 ```

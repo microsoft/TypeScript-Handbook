@@ -65,7 +65,7 @@ declare function greet(greeting: string): void;
 *Documentation*
 
 > The global variable `myLib` has a function `makeGreeting` for creating greetings,
->   and a property `numberOfGreetings` indicating the number of greetings made so far.
+> and a property `numberOfGreetings` indicating the number of greetings made so far.
 
 *Code*
 
@@ -83,7 +83,6 @@ Use `declare namespace` to describe types or values accessed by dotted notation.
 ```ts
 declare namespace myLib {
     function makeGreeting(s: string): string;
-    
     let numberOfGreetings: number;
 }
 ```

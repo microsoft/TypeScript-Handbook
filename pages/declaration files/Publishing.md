@@ -41,9 +41,9 @@ For example, imagine we authored a package that used Browserify and TypeScript.
     "main": "./lib/main.js",
     "types": "./lib/main.d.ts",
     "dependencies": [
-        "browserify": "latest",
-        "@types/browserify": "latest",
-        "typescript": "next"
+        "browserify@latest",
+        "@types/browserify@latest",
+        "typescript@next"
     ]
 }
 ```

@@ -478,10 +478,10 @@ function area(s: Shape) {
 ```
 
 There are two ways to do this.
-The first is to turn on `--noImplicitReturns`:
+The first is to turn on `--strictNullChecks` and specify a return type:
 
 ```ts
-function area(s: Shape): number { // error: not all code paths return a value
+function area(s: Shape): number { // error: returns number | undefined
     switch (s.kind) {
         case "square": return s.size * s.size;
         case "rectangle": return s.height * s.width;

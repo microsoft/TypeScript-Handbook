@@ -349,7 +349,7 @@ As we mentioned, type aliases can act sort of like interfaces; however, there ar
 
 One difference is that interfaces create a new name that is used everywhere.
 Type aliases don't create a new name &mdash; for instance, error messages won't use the alias name.
-In the code below, intellisense will show that `interfaced` requires and returns an `Interface`, but `aliased` will show object literal types.
+In the code below, hovering over `interfaced` in an editor will show that it returns an `Interface`, but `aliased` will show an object literal type.
 
 ```ts
 type Alias = { num: number }
@@ -412,13 +412,13 @@ function createElement(tagName: string): Element {
 
 # Discriminated Unions
 
-You can combine string literal types, union types, type guards and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
+You can combine string literal types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
 Discriminated unions are useful in functional programming.
 Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today.
 There are four ingredients:
 
-1. Types that have a common, string literal property -- the *discriminant*.
-2. A type alias that takes the union of those types -- the *union*.
+1. Types that have a common, string literal property &mdash; the *discriminant*.
+2. A type alias that takes the union of those types &mdash; the *union*.
 3. Type guards on the common property.
 
 ```ts
@@ -478,10 +478,10 @@ function area(s: Shape) {
 ```
 
 There are two ways to do this.
-The first is to turn on `--strictNullChecks` and specify a return type:
+The first is to turn on `--noImplicitReturns`:
 
 ```ts
-function area(s: Shape): number { // error: returns number | undefined
+function area(s: Shape): number { // error: not all code paths return a value
     switch (s.kind) {
         case "square": return s.size * s.size;
         case "rectangle": return s.height * s.width;

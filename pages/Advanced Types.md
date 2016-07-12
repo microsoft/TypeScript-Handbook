@@ -349,7 +349,7 @@ As we mentioned, type aliases can act sort of like interfaces; however, there ar
 
 One difference is that interfaces create a new name that is used everywhere.
 Type aliases don't create a new name &mdash; for instance, error messages won't use the alias name.
-In the code below, hovering over `interfaced` in an editor will show that it returns an `Interface`, but `aliased` will show an object literal type.
+In the code below, hovering over `interfaced` in an editor will show that it returns an `Interface`, but will show that `aliased` returns object literal type.
 
 ```ts
 type Alias = { num: number }

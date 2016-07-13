@@ -119,7 +119,7 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
 We're including `typings/index.d.ts`, which Typings created for us.
 That file automatically includes all of your installed dependencies.
 
-You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
+You can learn more about `tsconfig.json` files [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
 
 # Write some code
 

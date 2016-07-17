@@ -36,13 +36,12 @@ Keyword | Description
 ---|---
 any | [Describes a type unknown at design time](http://www.typescriptlang.org/docs/handbook/basic-types.html#any)
 boolean | [Boolean](http://www.typescriptlang.org/docs/handbook/basic-types.html#boolean)
-null | _Missing link_
-never | _Missing link_
+null | _Missing Handbook link_ ([Spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#326-the-null-type))
 number | [Number](http://www.typescriptlang.org/docs/handbook/basic-types.html#number)
 string | [String](http://www.typescriptlang.org/docs/handbook/basic-types.html#string)
 symbol | [Symbol](http://www.typescriptlang.org/docs/handbook/symbols.html)
-undefined | _Missing link_
-void | _Missing link_
+undefined | _Missing Handbook link_ ([Spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#327-the-undefined-type))
+void | _Missing Handbook link_ ([Spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#325-the-void-type))
 
 Other basic type-related keywords:
 

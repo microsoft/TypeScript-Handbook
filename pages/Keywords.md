@@ -5,8 +5,8 @@ The following keywords have the same meaning in Typescript as they do in Javascr
 Keyword | Notes
 ---|---
 async, await | [ES draft](http://tc39.github.io/ecmascript-asyncawait/)
-break | | 
-continue | | 
+break | |
+continue | |
 class, extends, constructor, super | `extends` can also be used with `interface` |
 const, let, var | `const`can also be used as a modifier for `enum`|
 debugger | |
@@ -36,21 +36,20 @@ Keyword | Description
 ---|---
 any | [Describes a type unknown at design time](http://www.typescriptlang.org/docs/handbook/basic-types.html#any)
 boolean | [Boolean](http://www.typescriptlang.org/docs/handbook/basic-types.html#boolean)
-null | [Missing link]()
-never | [Missing link]()
+null | _Missing link_
+never | _Missing link_
 number | [Number](http://www.typescriptlang.org/docs/handbook/basic-types.html#number)
 string | [String](http://www.typescriptlang.org/docs/handbook/basic-types.html#string)
 symbol | [Symbol](http://www.typescriptlang.org/docs/handbook/symbols.html)
-undefined | [Missing link]() 
-void | [Missing link]() 
-
+undefined | _Missing link_
+void | _Missing link_
 
 Other basic type-related keywords:
 
 Keyword | Description
 ---|---
 as | [Type assertion](http://www.typescriptlang.org/docs/handbook/basic-types.html#type-assetions)
-is | [Missing link]()|
+is | _Missing link_
 
 User-defined types:
 
@@ -92,10 +91,10 @@ require | [Missing description](http://www.typescriptlang.org/docs/handbook/modu
 
 ---
 
-Unknown: 
+Unknown:
 
 Keyword |
 ---|
-from| 
-of| 
-package
+from|
+of|
+package|

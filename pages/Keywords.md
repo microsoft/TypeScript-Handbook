@@ -54,9 +54,9 @@ User-defined types:
 
 Keyword | Description
 ---|---
-enum | [Defines an enum](http://www.typescriptlang.org/docs/handbook/enums.html)
-type | [Type aliases](http://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases)
-interface | [Defines the shape of a type (structural typing)](http://www.typescriptlang.org/docs/handbook/interfaces.html)
+enum | [Defines an enum - a set of named values](http://www.typescriptlang.org/docs/handbook/enums.html)
+type | [Type alias](http://www.typescriptlang.org/docs/handbook/advanced-types.html#type-aliases)
+interface | [Defines a type by its shape (structural typing)](http://www.typescriptlang.org/docs/handbook/interfaces.html)
 
 Modifiers on user-defined type:
 
@@ -72,7 +72,7 @@ Keyword | Description
 ---|---
 abstract | [Inheriting classes must implement this method](http://www.typescriptlang.org/docs/handbook/classes.html#abstract-classes)
 static | [Defines a member on the class, and not on the instance](http://www.typescriptlang.org/docs/handbook/classes.html#static-properties)
-readonly | [Property can be read, but not written to](https://github.com/Microsoft/TypeScript/pull/6532)
+readonly | [Property's value can be read, but not written to](https://github.com/Microsoft/TypeScript/pull/6532)
 private | [Property can be used only from its containing class](https://www.typescriptlang.org/docs/handbook/classes.html#understanding-private)
 protected | [Property can only be used in its containing class, or by classes which inherit from the containing class](https://www.typescriptlang.org/docs/handbook/classes.html#understanding-protected)
 public | [Property can be used from outside its containing class](https://www.typescriptlang.org/docs/handbook/classes.html#public-by-default)

@@ -36,12 +36,12 @@ Keyword | Description
 ---|---
 any | [Describes a type unknown at design time](basic%20types.md#any)
 boolean | [boolean](basic%20types.md#boolean)
-never | _Missing linl_
-null | _Missing Handbook link_ ([Spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#326-the-null-type))
+never | _Missing link_
+null | [null](Basic%20Types.md#null-and-undefined)
 number | [number](basic%20types.md#number)
 string | [string](basic%20types.md#string)
 symbol | [Symbol](symbols.md)
-undefined | _Missing Handbook link_ ([Spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#327-the-undefined-type))
+undefined | [undefined](Basic%20Types.md#null-and-undefined)
 void | [void](Basic%20Types.md#void)
 
 Other basic type-related keywords:
@@ -49,7 +49,7 @@ Other basic type-related keywords:
 Keyword | Description
 ---|---
 as | [Type assertion](basic%20types.md#type-assetions)
-is | _Missing link_
+is | [User-defined type guards](advanced%20types.md#user-defined-type-guards)
 
 User-defined types:
 
@@ -82,7 +82,9 @@ Code organization and environment:
 
 Keyword | Description
 ---|---
+as | [Module import renaming(Spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#1132-import-declarations)
 declare | [Ambient declarations -- elements created by the environment or other scripts](Missing link)
+from | [Import declarations (spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#1132-import-declarations)
 module | [Define an ambient module](modules.md#ambient-modules)
 namespace | [Associates the contained types with the specified namespace](namespaces.md)
 require | [Missing description](modules.md#export--and-import--require)
@@ -93,6 +95,5 @@ Unknown:
 
 Keyword |
 ---|
-from|
 of|
 package|

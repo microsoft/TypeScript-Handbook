@@ -1,99 +1,82 @@
-# Typescript Keywords
+# Keywords
 
 The following keywords have the same meaning in Typescript as they do in Javascript:
 
-Keyword | Notes
----|---
-async, await | [ES draft](http://tc39.github.io/ecmascript-asyncawait/)
-break | |
-continue | |
-class, extends, constructor, super | `extends` can also be used with `interface` |
-const, let, var | `const`can also be used as a modifier for `enum`|
-debugger | |
-delete | |
-do, while | |
-export, import | |
-for, each, in, of | |
-function, return | |
-get, set | |
-if, else | |
-instanceof, typeof | |
-null, undefined | Can also refer to the `null` and `undefined` types|
-switch, case, default | |
-this | |
-true, false | |
-try, catch, finally | |
-void | Can also refer to the `void` type |
-yield | |
-
-Unless otherwise noted, more information can be found on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) or on [MSDN](https://msdn.microsoft.com/en-us/library/d1et7k7c%28v=vs.94%29.aspx)
-
----
-
-The following keywords are used for [basic type annotations](http://www.typescriptlang.org/docs/handbook/basic-types.html):
-
-Keyword | Description
----|---
-any | [Describes a type unknown at design time](basic%20types.md#any)
-boolean | [boolean](basic%20types.md#boolean)
-never | _Missing link_
-null | [null](Basic%20Types.md#null-and-undefined)
-number | [number](basic%20types.md#number)
-string | [string](basic%20types.md#string)
-symbol | [Symbol](symbols.md)
-undefined | [undefined](Basic%20Types.md#null-and-undefined)
-void | [void](Basic%20Types.md#void)
-
-Other basic type-related keywords:
-
-Keyword | Description
----|---
-as | [Type assertion](basic%20types.md#type-assetions)
-is | [User-defined type guards](advanced%20types.md#user-defined-type-guards)
-
-User-defined types:
-
-Keyword | Description
----|---
-enum | [Defines an enum - a set of named values](enums.md)
-type | [Type alias](advanced%20types.md#type-aliases)
-interface | [Defines a type by its shape (structural typing)](interfaces.md)
-
-Modifiers on user-defined type:
-
-Keyword | Description | Applies to
+Keyword | Category | Description / links
 ---|---|---
-abstract | [Abstract classes (cannot be instantiated; must be inherited)](classes.md#abstract-classes) | class
-const | [Forces a const enum](enums.md) | enum
-implements | [Defines a class as implementing a given interface](interfaces.md#implementing-an-interface) | class
+abstract class | Classes | [Abstract classes (cannot be instantiated; must be inherited)](classes.md#abstract-classes)
+abstract _method_ | Classes | [Inheriting classes must implement this method](classes.md#abstract-classes)
+any | Type annotation | [Describes a type unknown at design time](basic%20types.md#any)
+as | Type operation | [Type assertion](basic%20types.md#type-assetions)
+as | Environment / modules | [Module import renaming](modules.md#import)
+async | Asynchronous functions | [ES draft](http://tc39.github.io/ecmascript-asyncawait/), [PR#1664](https://github.com/Microsoft/TypeScript/issues/1664), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#68-asynchronous-functions)
+await | Asynchronous functions | [ES draft](http://tc39.github.io/ecmascript-asyncawait/), [PR#1664](https://github.com/Microsoft/TypeScript/issues/1664), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#68-asynchronous-functions)
+boolean | Type annotation | [`boolean` type](basic%20types.md#boolean)
+break | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break)
+case | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+continue | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue)
+class | Classes | [Class definition](classes.md)
+const | Variable declaration | [`const` declaration](variable%20declarations.md#const-declarations)
+const | User-defined-type modifier | [Forces a const enum](enums.md)
+constructor | Classes | [Constructor functions](classes.md#constructor-functions)
+debugger | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger)
+declare | Environment / modules | [Ambient declarations](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#12-ambients)
+default | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/default)
+default | Enivronment / modules | [Default exports](modules#default-exports)
+delete | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete)
+do...while | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while)
+enum | User-defined type | [Defines a set of named values](enums.md)
+export | Environment / modules | [Allow access to module elements outside the module](modules.md#export)
+extends | User-defined-type modifier | [Inheritance](classes.md#inheritance)
+false | Literal | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
+for | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
+for...in | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
+for...of | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
+from "_path_" | Enivronment / modules | [Location of imported module](modules.md#import)
+get | Classes | [Getters](classes.md#accessors)
+function | Functions | [Function declaration](functions.md#functions)
+if...else | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else)
+_class_ implements _interface_ | User-defined-type modifier | [Class must match the shape of the interface](interfaces.md#implementing-an-interface)
+import | Environment / modules | [Enable access to exported elements in a module](modules.md#import)
+import _symbol_ | Environment / modules | [Synbol aliases](namespaces.md#aliases)
+instanceof | Type operations | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof)
+interface | User-defined type | [Defines a type by its shape (structural typing)](interfaces.md)
+let | Variable declaration | [`let` declaration](variable%20declarations.md#let-declarations)
+module | Environment / modules | [Define an ambient module](modules.md#ambient-modules)
+namespace | Environment / modules | [Associates the contained elements with the specified namespace](namespaces.md)
+never | Type annotation | [`never` type](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#the-never-type)
+null | Literal | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
+null | Type annotation | [`null` type](basic%20types.md#null-and-undefined)
+number | Type annotation | [`number` type](basic%20types.md#number)
+private | Accessibility modifier | [Property can be used only from its containing class](classes.md#understanding-private)
+protected | Accessibility modifier | [Property can only be used in its containing class, or by classes which inherit from the containing class](classes.md#understanding-protected)
+public | Accessibility modifier | [Property can be used from outside its containing class](classes.md#public-by-default)
+readonly | Member modifier | [Property's value can be read, but not written to](classes.md#readonly-modifier)
+require | Environment / modules | [Import the custom object defined in a module with `export =` ](modules.md#export--and-import--require)
+return | Functions | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return)
+set | Classes | [Setters](classes.md#accessors)
+static | Classes | [Static properties](classes.md#static-properties)
+string | Type annotation | [`string` type](basic%20types.md#string)
+super | Classes | Reference to properties / constructor of the base class [(spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#49-the-super-keyword)
+switch | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+symbol | Type annotation | [Symbol type](symbols.md)
+this | | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
+this is _T_ | | `this`-based type guards [(spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#69-type-guard-functions)
+true | Literal | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
+try...catch...finally | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)
+type | User-defined type | [Type alias](advanced%20types.md#type-aliases)
+typeof | Type operations | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof)
+undefined | Literal | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+undefined | Type annotation | [`undefined` type](basic%20types.md#null-and-undefined)
+var | Variable declaration | [`var` declaration](variable%20declarations.md#var-declarations)
+void | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void)
+void | Type annotation | [`void` type](basic%20types.md#void)
+while | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while)
+yield | Generator functions | [PR#2783](https://github.com/Microsoft/TypeScript/issues/2873), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#67-generator-functions)
 
-Modifiers on **members** of class/interface definitions:
-
-Keyword | Description
----|---
-abstract | [Inheriting classes must implement this method](classes.md#abstract-classes)
-static | [Defines a member on the class, and not on the instance](classes.md#static-properties)
-readonly | [Property's value can be read, but not written to](https://github.com/Microsoft/TypeScript/pull/6532)
-private | [Property can be used only from its containing class](classes.md#understanding-private)
-protected | [Property can only be used in its containing class, or by classes which inherit from the containing class](classes.md#understanding-protected)
-public | [Property can be used from outside its containing class](classes.md#public-by-default)
-
-Code organization and environment:
-
-Keyword | Description
----|---
-as | [Module import renaming(Spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#1132-import-declarations)
-declare | [Ambient declarations -- elements created by the environment or other scripts](Missing link)
-from | [Import declarations (spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#1132-import-declarations)
-module | [Define an ambient module](modules.md#ambient-modules)
-namespace | [Associates the contained types with the specified namespace](namespaces.md)
-require | [Missing description](modules.md#export--and-import--require)
-
----
 
 Unknown:
 
 Keyword |
 ---|
-of|
 package|

@@ -7,7 +7,7 @@ Keyword | Category | Description / links
 abstract class | Classes | [Abstract classes (cannot be instantiated; must be inherited)](Classes.md#abstract-classes)
 abstract _method_ | Classes | [Inheriting classes must implement this method](Classes.md#abstract-classes)
 any | Type annotation | [Describes a type unknown at design time](Basic%20Types.md#any)
-as | Type operation | [Type assertion](Basic%20Types.md#type-assetions)
+as | Type operation | [Type assertion](Basic%20Types.md#type-assertions)
 as | Environment / modules | [Module import renaming](Modules.md#import)
 async | Asynchronous functions | [ES draft](http://tc39.github.io/ecmascript-asyncawait/), [PR#1664](https://github.com/Microsoft/TypeScript/issues/1664), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#68-asynchronous-functions)
 await | Asynchronous functions | [ES draft](http://tc39.github.io/ecmascript-asyncawait/), [PR#1664](https://github.com/Microsoft/TypeScript/issues/1664), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#68-asynchronous-functions)

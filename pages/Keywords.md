@@ -25,7 +25,7 @@ Keyword | Category | Description / links
 `enum` | User-defined type | [Defines a set of named values](Enums.md)
 `export` | Environment/modules | [Allow access to module elements outside the module](Modules.md#export)
 `extends` | User-defined-type modifier | [Inheritance](Classes.md#inheritance)
-`false` | Literal | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
+`false` | [Literal](#literal) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
 `for` | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for)
 `for`...`in` | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in)
 `for`...`of` | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of)
@@ -80,7 +80,7 @@ _parameter_ `is` _type_ | [User-defined type guards](Advanced%20Types.md#user-de
 
 Category | Keyword | Description
 ---|---|---
-Literal | `false` | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
+<span id="literal">Literal<span> | `false` | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
 Literal | `null` | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
 Literal | `true` | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
 Literal | `undefined` | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)

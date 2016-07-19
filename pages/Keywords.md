@@ -80,7 +80,7 @@ _parameter_ `is` _type_ | [User-defined type guards](Advanced%20Types.md#user-de
 
 Category | Keyword | Description
 ---|---|---
-<span id="literal">Literal<span> | `false` | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
+<div id="literal">Literal<div> | `false` | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
 Literal | `null` | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null)
 Literal | `true` | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
 Literal | `undefined` | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined)

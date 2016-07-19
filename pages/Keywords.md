@@ -60,7 +60,7 @@ _class_ `implements` _interface_ | User-defined-type modifier | [Class must matc
 `symbol` | Type annotation | [Symbol type](Symbols.md)
 `this` | | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 `this` | Type annotation | [Polymorphic `this` types in class/interface](Advanced%20Types#polymorphic-this-types)
-`function` _name_`(this: ` _annotation_) | | [`This` parameter](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#specifying-the-type-of-this-for-functions)
+`function` _name_`(this: ` _annotation_) | | [`this` parameter](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#specifying-the-type-of-this-for-functions)
 `this is` _T_ | | `this`-based type guards [(spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#69-type-guard-functions)
 `true` | Literal | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type)
 `try`...`catch`...`finally` | Control flow | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch)

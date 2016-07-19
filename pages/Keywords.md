@@ -50,7 +50,7 @@ _class_ `implements` _interface_ | User-defined-type modifier | [Class must matc
 `protected` | Accessibility modifier | [Property can only be used in its containing class, or by classes which inherit from the containing class](Classes.md#understanding-protected)
 `public` | Accessibility modifier | [Property can be used from outside its containing class](Classes.md#public-by-default)
 `readonly` | Member modifier | [Property's value can be read, but not written to](Classes.md#readonly-modifier)
-`require` | Environment/modules | [Import the custom object defined in a module with `export =` ](Modules.md#export--and-import--require)
+`require` | Environment/modules | [Import the custom object defined in a module with `export =`](Modules.md#export--and-import--require)
 `return` | Functions | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return)
 `set` | Classes | [Setters](Classes.md#accessors)
 `static` | Classes | [Static properties](Classes.md#static-properties)

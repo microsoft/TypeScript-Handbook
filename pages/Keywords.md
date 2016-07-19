@@ -149,4 +149,3 @@ Accessibility modifier | `public` | [Property can be used from outside its conta
 | <div id="member-modifier">Member modifier</div> | `readonly` | [Property's value can be read, but not written to](Classes.md#readonly-modifier)
 Other | `debugger` | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger)
 Other | `delete` | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete)
-

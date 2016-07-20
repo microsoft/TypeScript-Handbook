@@ -155,4 +155,3 @@ Classes | `this is` _T_ | [`this`-based type guards](https://github.com/Microsof
 Accessibility modifier | `protected` | [Property can only be used in its containing class, or by classes which inherit from the containing class](Classes.md#understanding-protected)
 Accessibility modifier | `public` | [Property can be used from outside its containing class](Classes.md#public-by-default)
 | <div id="member-modifier">Member modifier</div> | `readonly` | [Property's value can be read, but not written to](Classes.md#readonly-modifier)
-

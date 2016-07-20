@@ -321,7 +321,6 @@ To be as lenient as possible, it will decide to use the type `any` in its place.
 While this is great for migration, using `any` means that you're not getting any type safety, and you won't get the same tooling support you'd get elsewhere.
 You can tell TypeScript to flag these locations down and give an error with the `noImplicitAny` option.
 
-
 ### Strict `null` & `undefined` Checks
 
 By default, TypeScript assumes that `null` and `undefined` are in the domain of every type.
@@ -331,3 +330,39 @@ Since `null` and `undefined` are such a frequent source of bugs in JavaScript an
 When `strictNullChecks` is enabled, `null` and `undefined` get their own types.
 Whenever anything is *possibly* `null`, you could use a union type with the original type.
 So for instance, if something could be a `number` or `null`, you'd write the type out as `number | null`.
+
+### No Implicit `any` for `this`
+
+When you use the `this` keyword outside of classes, it has the type `any` by default.
+For instance, imagine a `Point` class, and imagine a function that we wish to add as a method:
+
+```ts
+class Point {
+    constuctor(public x, public y) {}
+    getDistance(point: Point) {
+        let dx = p.x - this.x;
+        let dy = p.y - this.y;
+        return Math.sqrt(dx ** 2 + dy ** 2);
+    }
+}
+// ...
+
+// Reopen the interface.
+interface Point {
+    distanceFromOrigin(point: Point): number;
+}
+Point.prototype.distanceFromOrigin = function(point: Point) {
+    return this.getDistance({ x: 0, y: 0});
+}
+```
+
+This has the same problems we mentioned above - we could easily have misspelled `getDistance` and not gotten an error.
+For this reason, TypeScript has the `noImplicitThis` option.
+When that option is set, TypeScript will issue an error when `this` is used without an explicit (or inferred) type.
+The fix is to use a `this`-parameter to give an explicit type in the interface or in the function itself:
+
+```ts
+Point.prototype.distanceFromOrigin = function(this: Point, point: Point) {
+    return this.getDistance({ x: 0, y: 0});
+}
+```

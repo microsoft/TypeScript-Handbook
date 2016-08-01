@@ -17,11 +17,11 @@ Keyword | Description | Category | External links
 | `const enum` | [Forces a const enum](Enums.md) | [User-defined-type modifier](#user-defined-type-modifier) |  |
 | `configurable` | Getter | [Property descriptors](#property-descriptors) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | `constructor` | [Constructor functions](Classes.md#constructor-function) | [Classes](#classes) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) |
-| `debugger` |  | [](#) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) |
+| `debugger` | | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) |
 | `declare` | [Ambient declarations](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#12-ambients) | [Environment/modules](#environment-modules) |  |
 | `default` | Part of `switch...case` | [Control flow](#control-flow) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/default) |
 | `default` | [Default exports](Modules.md#default-exports) | [Environment/modules](#environment-modules) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) |
-| `delete` |  | [](#) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete) |
+| `delete` | | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete) |
 | `do`...`while` |  | [Control flow](#control-flow) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while) |
 | `enum` | [Defines a set of named values](Enums.md) | [User-defined type](#user-defined-type) |  |
 | `enumerable` | Is visible when properties are enumerated | [Property descriptors](#property-descriptors) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
@@ -46,7 +46,7 @@ Keyword | Description | Category | External links
 | `module` | [Define an ambient module](Modules.md#ambient-modules) | [Environment/modules](#environment-modules) |  |
 | `namespace` | [Associates the contained elements with the specified namespace](Namespaces.md) | [Environment/modules](#environment-modules) |  |
 | `never` | [`never` type](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#the-never-type) | [Predefined type](#predefined-type) |  |
-| `new` |  | [](#) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) |
+| `new` | | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) |
 | `new` | Constructor function type | [Type annotation](#type-annotation) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#389-constructor-type-literals) |
 | `null` |  | [Literal](#literal) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null) |
 | `null` | [`null` type](Basic%20Types.md#null-and-undefined) | [Predefined type](#predefined-type) |  |
@@ -77,11 +77,11 @@ Keyword | Description | Category | External links
 | `undefined` | [`undefined` type](Basic%20Types.md#null-and-undefined) | [Predefined type](#predefined-type) |  |
 | `value` | Value associated with a property | [Property descriptors](#property-descriptors) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | `var` | [`var` declaration](Variable%20Declarations.md#var-declarations) | [Variable declaration](#variable-declaration) |  |
-| `void` | Evaluates expression but returns `undefined` | [](#) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void) |
+| `void` | Evaluates expression but returns `undefined` | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void) |
 | `void` | [`void` type](Basic%20Types.md#void) | [Predefined type](#predefined-type) |  |
 | `while` |  | [Control flow](#control-flow) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while) |
 | `writable` | Can property be written to | [Property descriptors](#property-descriptors) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
-| `yield` |  | [Generator functions](#generator-functions) | [PR#2783](https://github.com/Microsoft/TypeScript/issues/2873), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#67-generator-functions) |
+| `yield` | Returns next value of generator function | [Functions](#functions) | [PR#2783](https://github.com/Microsoft/TypeScript/issues/2873), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#67-generator-functions) |
 
 ---
 
@@ -113,7 +113,7 @@ Category | Keyword | Description | External links
 | Functions | `function` | [Function declaration](Functions.md#functions) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) |
 | Functions | `return` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return) |
 | Functions | `this` |  | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) |
-| <div id="generator-functions">Generator functions</div> | `yield` |  | [PR#2783](https://github.com/Microsoft/TypeScript/issues/2873), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#67-generator-functions) |
+| Functions | `yield` | Returns next value of generator function | [PR#2783](https://github.com/Microsoft/TypeScript/issues/2873), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#67-generator-functions) |
 | <div id="property-descriptors">Property descriptors</div> | `configurable` | Getter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | Property descriptors | `enumerable` | Is visible when properties are enumerated | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | Property descriptors | `get` | Getter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |

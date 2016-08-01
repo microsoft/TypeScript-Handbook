@@ -15,7 +15,7 @@ Keyword | Description | Category | External links
 | `class` | [Class declaration/expression](Classes.md) | [Classes](#classes) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) |
 | `const` | [`const` declaration](Variable%20Declarations.md#const-declarations) | [Variable declaration](#variable-declaration) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) |
 | `const enum` | [Forces a const enum](Enums.md) | [User-defined-type modifier](#user-defined-type-modifier) |  |
-| `configurable` | Getter | [Property descriptors](#property-descriptors) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
+| `configurable` | Can property descriptor be changed | [Property descriptors](#property-descriptors) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | `constructor` | [Constructor functions](Classes.md#constructor-function) | [Classes](#classes) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) |
 | `debugger` | | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) |
 | `declare` | [Ambient declarations](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#12-ambients) | [Environment/modules](#environment-modules) |  |
@@ -114,7 +114,7 @@ Category | Keyword | Description | External links
 | Functions | `return` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return) |
 | Functions | `this` |  | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) |
 | Functions | `yield` | Returns next value of generator function | [PR#2783](https://github.com/Microsoft/TypeScript/issues/2873), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#67-generator-functions) |
-| <div id="property-descriptors">Property descriptors</div> | `configurable` | Getter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
+| <div id="property-descriptors">Property descriptors</div> | `configurable` | Can property descriptor be changed | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | Property descriptors | `enumerable` | Is visible when properties are enumerated | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | Property descriptors | `get` | Getter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | Property descriptors | `set` | Setter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |

@@ -16,7 +16,7 @@ Keyword | Description | Category | External links
 | `const` | [`const` declaration](Variable%20Declarations.md#const-declarations) | [Variable declaration](#variable-declaration) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) |
 | `const enum` | [Forces a const enum](Enums.md) | [User-defined-type modifier](#user-defined-type-modifier) |  |
 | `configurable` | Can property descriptor be changed | [Property descriptors](#property-descriptors) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
-| `constructor` | [Constructor functions](Classes.md#constructor-function) | [Classes](#classes) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) |
+| `constructor` | [Constructor functions](Classes.md#constructor-functions) | [Classes](#classes) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) |
 | `debugger` | | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) |
 | `declare` | [Ambient declarations](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#12-ambients) | [Environment/modules](#environment-modules) |  |
 | `default` | Part of `switch...case` | [Control flow](#control-flow) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/default) |
@@ -159,7 +159,7 @@ Category | Keyword | Description | External links
 | <div id="classes">Classes</div> | `abstract class` | [Abstract classes (cannot be instantiated; must be inherited)](Classes.md#abstract-classes) |  |
 | Classes | `abstract` _member_ | [Inheriting classes must implement this method/property](Classes.md#abstract-classes) |  |
 | Classes | `class` | [Class declaration/expression](Classes.md) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) |
-| Classes | `constructor` | [Constructor functions](Classes.md#constructor-function) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) |
+| Classes | `constructor` | [Constructor functions](Classes.md#constructor-functions) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) |
 | Classes | `get` | [Getter](Classes.md#accessors) |  |
 | Classes | `set` | [Setter](Classes.md#accessors) |  |
 | Classes | `static` | [Static properties](Classes.md#static-properties) |  |

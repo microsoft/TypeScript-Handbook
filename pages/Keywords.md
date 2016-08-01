@@ -114,6 +114,12 @@ Category | Keyword | Description | External links
 | Functions | `return` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return) |
 | Functions | `this` |  | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) |
 | <div id="generator-functions">Generator functions</div> | `yield` |  | [PR#2783](https://github.com/Microsoft/TypeScript/issues/2873), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#67-generator-functions) |
+| <div id="property-descriptors">Property descriptors</div> | `configurable` | Getter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
+| Property descriptors | `enumerable` | Is visible when properties are enumerated | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
+| Property descriptors | `get` | Getter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
+| Property descriptors | `set` | Setter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
+| Property descriptors | `value` | Value associated with a property | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
+| Property descriptors | `writable` | Can property be written to | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 |  | `debugger` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger) |
 |  | `delete` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete) |
 |  | `new` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) |
@@ -163,9 +169,3 @@ Category | Keyword | Description | External links
 | Accessibility modifier | `protected` | [Property can only be used in its containing class, or by classes which inherit from the containing class](Classes.md#understanding-protected) |  |
 | Accessibility modifier | `public` | [Property can be used from outside its containing class](Classes.md#public-by-default) |  |
 | <div id="member-modifier">Member modifier</div> | `readonly` | [Property's value can be read, but not written to](Classes.md#readonly-modifier) |  |
-| <div id="property-descriptors">Property descriptors</div> | `configurable` | Getter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
-| Property descriptors | `enumerable` | Is visible when properties are enumerated | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
-| Property descriptors | `get` | Getter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
-| Property descriptors | `set` | Setter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
-| Property descriptors | `value` | Value associated with a property | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
-| Property descriptors | `writable` | Can property be written to | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |

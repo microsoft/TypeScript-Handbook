@@ -554,7 +554,7 @@ For example:
 ##### math-lib.d.ts
 
 ```ts
-export const isPrime(x: number): boolean;'
+export const isPrime(x: number): boolean;
 export as namespace mathLib;
 ```
 

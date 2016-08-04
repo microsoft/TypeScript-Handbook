@@ -36,7 +36,7 @@ For seasoned authors interested in the underlying mechanics of how declaration f
 
 ## `/templates`
 
-In the `templates` directory, you'll find a number of declaration files that serve as a useful starting point
+In the [`templates`](https://github.com/Microsoft/TypeScript-Handbook/tree/master/pages/declaration%20files/templates) directory, you'll find a number of declaration files that serve as a useful starting point
   when writing a new file.
 Refer to the documentation in [Library Structures](./Library Structures.md) to figure out which template file to use.
 

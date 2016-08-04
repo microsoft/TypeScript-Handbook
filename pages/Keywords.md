@@ -61,14 +61,14 @@ Keyword | Description | Category | External links
 | `set` | [Setter](Classes.md#accessors) | [Classes](#classes) |  |
 | `static` | [Static properties](Classes.md#static-properties) | [Classes](#classes) |  |
 | `string` | [`string` type](Basic%20Types.md#string) | [Predefined type](#predefined-type) |  |
-| `super` | Reference to properties / constructor of the base class [(spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#49-the-super-keyword) | [Classes](#classes) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Super_class_calls_with_super) |
+| `super` | Reference to properties / constructor of the base class | [Classes](#classes) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#49-the-super-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Super_class_calls_with_super) |
 | `switch...case` |  | [Control flow](#control-flow) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) |
 | `symbol` | [`symbol` type](Symbols.md) | [Predefined type](#predefined-type) |  |
 | `this` |  | [Functions](#functions) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) |
 | `this` | [Within a class/interface declaration, represents the actual type of an instance of the class/interface](Advanced%20Types.md#polymorphic-this-types) | [Type annotation](#type-annotation) |  |
 | `(this: ` _annotation_) | [`this` parameter](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#specifying-the-type-of-this-for-functions) | [Functions](#functions) |  |
 | `this is` _T_ | [`this`-based type guards](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#this-based-type-guards) | [Classes](#classes) |  |
-| `true` | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type) | [Literal](#literal) |  |
+| `true` | | [Literal](#literal) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type) |
 | `try`...`catch`...`finally` |  | [Control flow](#control-flow) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) |
 | `type` | [Type alias](Advanced%20Types.md#type-aliases) | [User-defined type](#user-defined-type) |  |
 | `typeof` |  | [Type operation](#type-operation) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof) |
@@ -91,7 +91,7 @@ Category | Keyword | Description | External links
 ---|---|---|---
 | <div id="literal">Literal</div> | `false` |  | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type) |
 | Literal | `null` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null) |
-| Literal | `true` | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type) |  |
+| Literal | `true` |  | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type) |
 | Literal | `undefined` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) |
 | <div id="variable-declaration">Variable declaration</div> | `const` | [`const` declaration](Variable%20Declarations.md#const-declarations) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) |
 | Variable declaration | `let` | [`let` declaration](Variable%20Declarations.md#let-declarations) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) |
@@ -163,7 +163,7 @@ Category | Keyword | Description | External links
 | Classes | `get` | [Getter](Classes.md#accessors) |  |
 | Classes | `set` | [Setter](Classes.md#accessors) |  |
 | Classes | `static` | [Static properties](Classes.md#static-properties) |  |
-| Classes | `super` | Reference to properties / constructor of the base class [(spec)](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#49-the-super-keyword) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Super_class_calls_with_super) |
+| Classes | `super` | Reference to properties / constructor of the base class | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#49-the-super-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Super_class_calls_with_super) |
 | Classes | `this is` _T_ | [`this`-based type guards](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#this-based-type-guards) |  |
 | <div id="accessibility-modifier">Accessibility modifier</div> | `private` | [Property can be used only from its containing class](Classes.md#understanding-private) |  |
 | Accessibility modifier | `protected` | [Property can only be used in its containing class, or by classes which inherit from the containing class](Classes.md#understanding-protected) |  |

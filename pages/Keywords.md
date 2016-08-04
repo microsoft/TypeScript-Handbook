@@ -65,7 +65,7 @@ Keyword | Description | Category | External links
 | `switch...case` |  | [Control flow](#control-flow) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) |
 | `symbol` | [`symbol` type](Symbols.md) | [Predefined type](#predefined-type) |  |
 | `this` |  | [Functions](#functions) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) |
-| `this` | [Within a class/interface declaration, represents the actual type of an instance of the class/interface](Advanced%20Types.md#polymorphic-this-types) | [Type annotation](#type-annotation) |  |
+| `this` | Represents the actual type ([derived or implemented](Advanced%20Types.md#polymorphic-this-types)) within a (base) class or interface | [Type annotation](#type-annotation) |  |
 | `(this: ` _annotation_) | [`this` parameter](Functions.md#this-parameters) | [Functions](#functions) |  |
 | `this is` _T_ | [`this`-based type guards](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#this-based-type-guards) | [Classes](#classes) |  |
 | `true` | | [Literal](#literal) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type) |
@@ -135,7 +135,7 @@ Category | Keyword | Description | External links
 | Predefined type | `void` | [`void` type](Basic%20Types.md#void) |  |
 | <div id="type-annotation">Type annotation</div> | _parameter_ `is` _type_ | [User-defined type guards](Advanced%20Types.md#user-defined-type-guards) |  |
 | Type annotation | `new` | Constructor function type | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#389-constructor-type-literals) |
-| Type annotation | `this` | [Within a class/interface declaration, represents the actual type of an instance of the class/interface](Advanced%20Types.md#polymorphic-this-types) |  |
+| Type annotation | `this` | Represents the actual type ([derived or implemented](Advanced%20Types.md#polymorphic-this-types)) within a (base) class or interface |  |
 | Type annotation | `typeof` | Copies the type of an existing identifier | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#3810-type-queries) |
 | <div id="type-operation">Type operation</div> | `as` | [Type assertion](Basic%20Types.md#type-assertions) |  |
 | Type operation | `instanceof` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) |

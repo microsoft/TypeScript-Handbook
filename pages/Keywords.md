@@ -66,7 +66,7 @@ Keyword | Description | Category | External links
 | `symbol` | [`symbol` type](Symbols.md) | [Predefined type](#predefined-type) |  |
 | `this` |  | [Functions](#functions) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) |
 | `this` | [Within a class/interface declaration, represents the actual type of an instance of the class/interface](Advanced%20Types.md#polymorphic-this-types) | [Type annotation](#type-annotation) |  |
-| `(this: ` _annotation_) | [`this` parameter](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#specifying-the-type-of-this-for-functions) | [Functions](#functions) |  |
+| `(this: ` _annotation_) | [`this` parameter](Functions.md#this-parameters) | [Functions](#functions) |  |
 | `this is` _T_ | [`this`-based type guards](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#this-based-type-guards) | [Classes](#classes) |  |
 | `true` | | [Literal](#literal) | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#322-the-boolean-type) |
 | `try`...`catch`...`finally` |  | [Control flow](#control-flow) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) |
@@ -107,7 +107,7 @@ Category | Keyword | Description | External links
 | Control flow | `switch...case` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) |
 | Control flow | `try`...`catch`...`finally` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) |
 | Control flow | `while` |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while) |
-| <div id="functions">Functions</div> | `(this: ` _annotation_) | [`this` parameter](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#specifying-the-type-of-this-for-functions) |  |
+| <div id="functions">Functions</div> | `(this: ` _annotation_) | [`this` parameter](Functions.md#this-parameters) |  |
 | Functions | `async` | Marks function as asynchronous | [ES draft](http://tc39.github.io/ecmascript-asyncawait/), [PR#1664](https://github.com/Microsoft/TypeScript/issues/1664), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#68-asynchronous-functions) |
 | Functions | `await` | Waits for value within an asynchronous function | [ES draft](http://tc39.github.io/ecmascript-asyncawait/), [PR#1664](https://github.com/Microsoft/TypeScript/issues/1664), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#68-asynchronous-functions) |
 | Functions | `function` | [Function declaration](Functions.md#functions) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function) |

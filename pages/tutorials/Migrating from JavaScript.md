@@ -1,18 +1,17 @@
 TypeScript doesn't exist in a vacuum.
 It was built with the JavaScript ecosystem in mind, and a lot of JavaScript exists today.
-Converting a JavaScript codebase over to TypeScript is, while tedious, typically not challenging.
+Converting a JavaScript codebase over to TypeScript is, while somewhat tedious, usually not challenging.
 In this tutorial, we're going to look at how you might start out.
+We assume you've read enough of the handbook to write new TypeScript code.
 
 # Setting up your Directories
 
-If you're writing in plain JavaScript, it's likely that you might be running your JavaScript directly.
-That means you might be writing `.js` files in a `src`, `lib`, or `dist` directory, and then running it however you've needed.
+If you're writing in plain JavaScript, it's likely that you're running your JavaScript directly,
+  where your `.js` files in a `src`, `lib`, or `dist` directory, and then ran as desired.
 
 If that's the case, the files that you've written are going to used as inputs to TypeScript, and you'll run the outputs it produces.
-While you can do this in the same folder, this doesn't work if you have any `.js` files because those input files would be overwritten with the outputs.
-Instead, we'll want to separate these inputs and outputs between different folders.
-We recommend calling your source (input) directory `src`, and your output directory `lib` or `built`.
-If you need to preserve the original directory name for some reason, feel free to play around with these.
+During our JS to TS migration, we'll need to separate our input files to prevent TypeScript from overwriting them.
+If your output files need to reside in a specific directory, then that will be your output directory.
 
 You might also be running some intermediate steps on your JavaScript, such as bundling or using another transpiler like Babel.
 In this case, you might already have a folder structure like this set up.
@@ -28,8 +27,7 @@ projectRoot
 └── tsconfig.json
 ```
 
-You might have a `tests` folder which might be under a separate folder from your main JavaScript files.
-In that case, you might have one `tsconfig.json` in `tests`, and one in `tests` as well, and apply the rest of this tutorial to that setup.
+If you have a `tests` folder outside of your `src` directory, you might have one `tsconfig.json` in `src`, and one in `tests` as well.
 
 # Writing a Configuration File
 
@@ -49,11 +47,11 @@ Let's create a bare-bones one for our project:
 }
 ```
 
-Here we're specifying a few things to Typescript:
+Here we're specifying a few things to TypeScript:
 
-1. To read in any files it understands in the `src` directory (with `include`).
-2. To accept JavaScript files as inputs (with `allowJs`).
-3. To emit all of the output files in `built` (with `outDir`).
+1. Read in any files it understands in the `src` directory (with `include`).
+2. Accept JavaScript files as inputs (with `allowJs`).
+3. Emit all of the output files in `built` (with `outDir`).
 4. Translate newer JavaScript constructs down to an older version like ECMAScript 5 (using `target`).
 
 At this point, if you try running `tsc` at the root of your project, you should see output files in the `built` directory.
@@ -62,8 +60,8 @@ You should now have TypeScript working with your project.
 
 ## Early Benefits
 
-Even from this point on, you can get some great benefits from TypeScript understanding your project.
-If you open up an editor like Visual Studio Code or Visual Studio, you'll see that you can often get some tooling support like completion.
+Even at this point you can get some great benefits from TypeScript understanding your project.
+If you open up an editor like [VS Code](https://code.visualstudio.com) or [Visual Studio](https://visualstudio.com), you'll see that you can often get some tooling support like completion.
 You can also catch certain bugs with options like:
 
 * `noImplicitReturns` which prevents you from forgetting to return at the end of a function.
@@ -126,8 +124,9 @@ module.exports = {
 ```
 
 It's important to note that `ts-loader` will need to run before any other loader that deals with `.js` files.
+You can see an example of using Webpack in our [tutorial on React and Webpack](./React & Webpack.md).
 
-# Moving to TypeScript
+# Moving to TypeScript Files
 
 At this point, you're probably ready to start using TypeScript files.
 The first step is to rename one of your `.js` files to `.ts`.
@@ -142,9 +141,13 @@ If you open that file in an editor with TypeScript support (or if you run `tsc -
 You should think of these the same way you'd think of red squiggles in an editor like Microsoft Word.
 TypeScript will still translate your code, just like Word will still let you print your documents.
 
-That might not be the best behavior for now, but you can think of this process as a knob on the type of strictness you'd like to work with.
+If that sounds too lax for you, you can tighten that behavior up.
 If, for instance, you *don't* want TypeScript to compile to JavaScript in the face of errors, you can use the `noEmitOnError` option.
-Eventually you can turn that knob up to 11/10 if you need.
+In that sense, TypeScript has a dial on its strictness, and you can turn that knob up as high as you want.
+
+If you plan on using the stricter settings that are available, it's best to turn them on now (see [Getting Stricter Checks](#getting-stricter-checks) below).
+For instance, if you never want TypeScript to silently infer `any` for a type without you explicitly saying so, you can use `noImplicitAny` before you start modifying your files.
+While it might feel somewhat overwhelming, the long-term gains become apparent much more quickly.
 
 ## Weeding out Errors
 
@@ -170,7 +173,7 @@ or
 declare function define(...args: any[]): any;
 ```
 
-it's typically better to get rid of those calls and use TypeScript syntax for imports.
+it's better to get rid of those calls and use TypeScript syntax for imports.
 
 First, you'll need to enable some module system by setting TypeScript's `module` flag.
 Valid options are `commonjs`, `amd`, `system`, and `umd`.
@@ -191,7 +194,7 @@ define(["foo"], function(foo) {
 })
 ```
 
-You would write the following TypeScript code:
+then you would write the following TypeScript code:
 
 ```ts
 import foo = require("foo");
@@ -226,7 +229,7 @@ module.exports.feedPets = function(pets) {
 }
 ```
 
-You could write that out as
+you could write that out as the following:
 
 ```ts
 export function feedPets(pets) {
@@ -251,7 +254,7 @@ function foo() {
 module.exports = foo;
 ```
 
-In TypeScript, you'll model this with the `export =` construct.
+In TypeScript, you can model this with the `export =` construct.
 
 ```ts
 function foo() {
@@ -279,7 +282,7 @@ myCoolFunction(function(x) { console.log(x) }, [1, 2, 3, 4]);
 myCoolFunction(function(x) { console.log(x) }, 1, 2, 3, 4]);
 ```
 
-In this case, we need to use TypeScript to tell any of our callers about the ways `myCoolFunction` can be called using overloads.
+In this case, we need to use TypeScript to tell any of our callers about the ways `myCoolFunction` can be called using function overloads.
 
 ```ts
 function myCoolFunction(f: (x: number) => void, nums: number[]): void;
@@ -298,15 +301,48 @@ We added two overload signatures to `myCoolFunction`.
 The first checks states that `myCoolFunction` takes a function (which takes a `number`), and then a list of `number`s.
 The second one says that it will take a function as well, and then uses a rest parameter (`...nums`) to state that any number of arguments after that need to be `number`s.
 
+### Sequentially Added Properties
+
+Some people find it more aesthetically pleasing to create an object and add properties immediately after like so:
+
+```js
+var options = {};
+options.color = "red";
+options.volume = 11;
+```
+
+TypeScript will say that you can't assign to `color` and `volume` because it first figured out the type of `options` as `{}` which doesn't have any properties.
+If you instead moved the declarations into the object literal themselves, you'd get no errors:
+
+```ts
+let options = {
+    color: "red",
+    volume: 11
+};
+```
+
+You could also define the type of `options` and add a type assertion on the object literal.
+
+```ts
+interface Options { color: string; volume: number }
+
+let options = {} as Options;
+options.color = "red";
+options.volume = 11;
+```
+
+Alternatively, you can just say `options` has the type `any` which is the easiest thing to do, but which will benefit you the least.
+
 ### `any`, `Object`, and `{}`
 
-You might be tempted to use `Object` or `{}` to say that a value can have any property on it, because `Object` is, for most purposes, the most general type.
-But **`any` is actually the type you want to use** in those situations, since it's the most flexible type.
+You might be tempted to use `Object` or `{}` to say that a value can have any property on it because `Object` is, for most purposes, the most general type.
+But **`any` is actually the type you want to use** in those situations, since it's the most *flexible* type.
 
 For instance, if you have something that's typed as `Object` you won't be able to call methods like `toLowerCase()` on it.
-`any` is simulataneously the most general and most capable type, and will allow you to call it, construct it, access properties on it, etc.
+Being more general means being less capable.
+`any` is special in that it's simultaneously the most general and most capable type, and will allow you to call it, construct it, access properties on it, etc.
 
-As far as `Object` and `{}` go, you should prefer `{}`.
+If a decision ever comes down to `Object` and `{}`, you should prefer `{}`.
 While they are mostly the same, technically `{}` is a more general type than `Object` in certain esoteric cases.
 
 ## Getting Stricter Checks
@@ -325,11 +361,23 @@ You can tell TypeScript to flag these locations down and give an error with the 
 
 By default, TypeScript assumes that `null` and `undefined` are in the domain of every type.
 That means anything declared with the type `number` could be `null` or `undefined`.
-Since `null` and `undefined` are such a frequent source of bugs in JavaScript and TypeScript, TypeScript has the `strictNullChecks` option.
+Since `null` and `undefined` are such a frequent source of bugs in JavaScript and TypeScript, TypeScript has the `strictNullChecks` option to spare you the stress of worrying about these issues.
 
-When `strictNullChecks` is enabled, `null` and `undefined` get their own types.
-Whenever anything is *possibly* `null`, you could use a union type with the original type.
+When `strictNullChecks` is enabled, `null` and `undefined` get their own types called `null` and `undefined` respectively.
+Whenever anything is *possibly* `null`, you can use a union type with the original type.
 So for instance, if something could be a `number` or `null`, you'd write the type out as `number | null`.
+
+If you ever have a value that TypeScript thinks is possibly `null`/`undefined`, but you know better, you can use the postfix `!` operator to tell it otherwise.
+
+```ts
+declare var foo: string[] | null;
+
+foo.length;  // error - 'foo' is possibly 'null'
+
+foo!.length; // okay - 'foo!' just has type 'string[]'
+```
+
+As a heads up, when using `strictNullChecks`, your dependencies may need to be updated to use `strictNullChecks` as well.
 
 ### No Implicit `any` for `this`
 

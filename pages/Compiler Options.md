@@ -34,7 +34,7 @@ Option                                         | Type      | Default            
 `--noEmitHelpers`                              | `boolean` | `false`                        | Do not generate custom helper functions like `__extends` in compiled output. | 1.5
 `--noEmitOnError`                              | `boolean` | `false`                        | Do not emit outputs if any errors were reported. | 1.4
 `--noFallthroughCasesInSwitch`                 | `boolean` | `false`                        | Report errors for fallthrough cases in switch statement. | 1.8
-`--noImplicitAny`                              | `boolean` | `false`                        | Raise error on expressions and declarations with an implied 'any' type. | |
+`--noImplicitAny`                              | `boolean` | `false`                        | Raise error on expressions and declarations with an implied 'any' type. | 0.9.1
 `--noImplicitReturns`                          | `boolean` | `false`                        | Report error when not all code paths in function return a value. | 1.8
 `--noImplicitThis`                             | `boolean` | `false`                        | Raise error on `this` expressions with an implied 'any' type. | 2.0
 `--noImplicitUseStrict`                        | `boolean` | `false`                        | Do not emit `"use strict"` directives in module output. | |
@@ -55,7 +55,7 @@ Option                                         | Type      | Default            
 `rootDirs`<sup>[2]</sup>                       | `string[]`|                                | List of <i>root</i> folders whose combined content represent the structure of the project at runtime. See [Module Resolution documentation](./Module Resolution.md#virtual-directories-with-rootdirs) for more details. | 2.0
 `--skipLibCheck`                               | `boolean` | `false`                        | Don't check a the default library (`lib.d.ts`) file's valitidy. | 2.0
 `--skipDefaultLibCheck`                        | `boolean` | `false`                        | Don't check a user-defined default library (`*.d.ts`) file's valitidy. | |
-`--sourceMap`                                  | `boolean` | `false`                        | Generates corresponding '.map' file. | |
+`--sourceMap`                                  | `boolean` | `false`                        | Generates corresponding '.map' file. | 0.8.1
 `--sourceRoot`                                 | `string`  |                                | Specifies the location where debugger should locate TypeScript files instead of source locations. Use this flag if the sources will be located at run-time in a different location than that at design-time. The location specified will be embedded in the sourceMap to direct the debugger where the source files will be located. | |
 `--strictNullChecks`                           | `boolean` | `false`                        | In strict null checking mode, the `null` and `undefined` values are not in the domain of every type and are only assignable to themselves and `any` (the one exception being that `undefined` is also assignable to `void`). | 2.0
 `--stripInternal`<sup>[1]</sup>                | `boolean` | `false`                        | Do not emit declarations for code that has an `/** @internal */` JSDoc annotation. | |
@@ -66,7 +66,7 @@ Option                                         | Type      | Default            
 `--types`                                      | `string[]`|                                | List of names of type definitions to include. | |
 `--typeRoots`                                  | `string[]`|                                | List of folders to include type definitions from. | |
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version. | |
-`--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes. | |
+`--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes. | 0.8.2
 
 * <sup>[1]</sup> These options are experimental.
 * <sup>[2]</sup> These options are only allowed in `tsconfig.json`, and not through command-line switches.

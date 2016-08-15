@@ -1,5 +1,47 @@
+# Intersection Types
+
+An intersection type combines multiple types into one.
+This allows you to add together existing types to get a single type that has all the features you need.
+For example, `Person & Serializable & Loggable` is a `Person` *and* `Serializable` *and* `Loggable`.
+That means an object of this type will have all members of all three types.
+
+You will mostly see intersection types used for mixins and other concepts that don't fit in the classic object-oriented mold.
+(There are a lot of these in JavaScript!)
+Here's a simple example that shows how to create a mixin:
+
+```ts
+function extend<T, U>(first: T, second: U): T & U {
+    let result = <T & U>{};
+    for (let id in first) {
+        (<any>result)[id] = (<any>first)[id];
+    }
+    for (let id in second) {
+        if (!result.hasOwnProperty(id)) {
+            (<any>result)[id] = (<any>second)[id];
+        }
+    }
+    return result;
+}
+
+class Person {
+    constructor(public name: string) { }
+}
+interface Loggable {
+    log(): void;
+}
+class ConsoleLogger implements Loggable {
+    log() {
+        // ...
+    }
+}
+var jim = extend(new Person("Jim"), new ConsoleLogger());
+var n = jim.name;
+jim.log();
+```
+
 # Union Types
 
+Union types are closely related to intersection types, but they are used very differently.
 Occasionally, you'll run into a library that expects a parameter to be either a `number` or a `string`.
 For instance, take the following function:
 
@@ -32,7 +74,7 @@ let indentedString = padLeft("Hello world", true); // passes at compile time, fa
 In traditional object-oriented code, we might abstract over the two types by creating a hierarchy of types.
 While this is much more explicit, it's also a little bit overkill.
 One of the nice things about the original version of `padLeft` was that we were able to just pass in primitives.
-That meant that usage was simple and not overly verbose.
+That meant that usage was simple and concise.
 This new approach also wouldn't help if we were just trying to use a function that already exists elsewhere.
 
 Instead of `any`, we can use a *union type* for the `padding` parameter:
@@ -149,7 +191,7 @@ it also knows that in the `else` branch, you *don't* have a `Fish`, so you must 
 
 ## `typeof` type guards
 
-We didn't actually discuss the implementation of the version of `padLeft` which used union types.
+Let's go back and write the code for the version of `padLeft` that uses union types.
 We could write it with type predicates as follows:
 
 ```ts
@@ -189,7 +231,7 @@ function padLeft(value: string, padding: string | number) {
 ```
 
 These *`typeof` type guards* are recognized in two different forms: `typeof v === "typename"` and `typeof v !== "typename"`, where `"typename"` must be `"number"`, `"string"`, `"boolean"`, or `"symbol"`.
-While TypeScript won't prohibit comparing to other strings, or switching the two sides of the comparison, the language won't recognize those forms as type guards.
+While TypeScript won't stop you from comparing to other strings, the language won't recognize those expressions as type guards.
 
 ## `instanceof` type guards
 
@@ -240,44 +282,6 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 2. the union of types returned by that type's construct signatures
 
 in that order.
-
-# Intersection Types
-
-Intersection types are closely related to union types, but they are used very differently.
-An intersection type, `Person & Serializable & Loggable`, for example, is a `Person` *and* `Serializable` *and* `Loggable`.
-That means an object of this type will have all members of all three types.
-In practice you will mostly see intersection types used for mixins.
-Here's a simple mixin example:
-
-```ts
-function extend<T, U>(first: T, second: U): T & U {
-    let result = <T & U>{};
-    for (let id in first) {
-        (<any>result)[id] = (<any>first)[id];
-    }
-    for (let id in second) {
-        if (!result.hasOwnProperty(id)) {
-            (<any>result)[id] = (<any>second)[id];
-        }
-    }
-    return result;
-}
-
-class Person {
-    constructor(public name: string) { }
-}
-interface Loggable {
-    log(): void;
-}
-class ConsoleLogger implements Loggable {
-    log() {
-        // ...
-    }
-}
-var jim = extend(new Person("Jim"), new ConsoleLogger());
-var n = jim.name;
-jim.log();
-```
 
 # Type Aliases
 
@@ -343,7 +347,20 @@ type Yikes = Array<Yikes>; // error
 
 As we mentioned, type aliases can act sort of like interfaces; however, there are some subtle differences.
 
-One important difference is that type aliases cannot be extended or implemented from (nor can they extend/implement other types).
+One difference is that interfaces create a new name that is used everywhere.
+Type aliases don't create a new name &mdash; for instance, error messages won't use the alias name.
+In the code below, hovering over `interfaced` in an editor will show that it returns an `Interface`, but will show that `aliased` returns object literal type.
+
+```ts
+type Alias = { num: number }
+interface Interface {
+    num: number;
+}
+declare function aliased(arg: Alias): Alias;
+declare function interfaced(arg: Interface): Interface;
+```
+
+A second more important difference is that type aliases cannot be extended or implemented from (nor can they extend/implement other types).
 Because [an ideal property of software is being open to extension](https://en.wikipedia.org/wiki/Open/closed_principle), you should always use an interface over a type alias if possible.
 
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.
@@ -392,6 +409,110 @@ function createElement(tagName: string): Element {
     // ... code goes here ...
 }
 ```
+
+# Discriminated Unions
+
+You can combine string literal types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
+Discriminated unions are useful in functional programming.
+Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today.
+There are four ingredients:
+
+1. Types that have a common, string literal property &mdash; the *discriminant*.
+2. A type alias that takes the union of those types &mdash; the *union*.
+3. Type guards on the common property.
+
+```ts
+interface Square {
+    kind: "square";
+    size: number;
+}
+interface Rectangle {
+    kind: "rectangle";
+    width: number;
+    height: number;
+}
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
+```
+
+First we declare the interfaces we will union.
+Each interface has a `kind` property with a different string literal type.
+The `kind` property is called the *discriminant* or *tag*.
+The other properties are specific to each interface.
+Notice that the interfaces are currently unrelated.
+Let's put them into a union:
+
+```ts
+type Shape = Square | Rectangle | Circle;
+```
+
+Now let's use the discriminated union:
+
+```ts
+function area(s: Shape) {
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return Math.PI * s.radius ** 2;
+    }
+}
+```
+
+## Exhaustiveness checking
+
+We would like the compiler to tell us when we don't cover all variants of the discriminated union.
+For example, if we add `Triangle` to `Shape`, we need to update `area` as well:
+
+```ts
+type Shape = Square | Rectangle | Circle | Triangle;
+function area(s: Shape) {
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return Math.PI * s.radius ** 2;
+    }
+    // should error here - we didn't handle case "triangle"
+}
+```
+
+There are two ways to do this.
+The first is to turn on `--strictNullChecks` and specify a return type:
+
+```ts
+function area(s: Shape): number { // error: returns number | undefined
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return Math.PI * s.radius ** 2;
+    }
+}
+```
+
+Because the `switch` is no longer exhaustive, TypeScript is aware that the function could sometimes return `undefined`.
+If you have an explicit return type `number`, then you will get an error that the return type is actually `number | undefined`.
+However, this method is quite subtle and, besides, `--strictNullChecks` does not always work with old code.
+
+The second method uses the `never` type that the compiler uses to check for exhaustiveness:
+
+```ts
+function assertNever(x: never): never {
+    throw new Error("Unexpected object: " + x);
+}
+function area(s: Shape) {
+    switch (s.kind) {
+        case "square": return s.size * s.size;
+        case "rectangle": return s.height * s.width;
+        case "circle": return Math.PI * s.radius ** 2;
+        default: return assertNever(s); // error here if there are missing cases
+    }
+}
+```
+
+Here, `assertNever` checks that `s` is of type `never` &mdash; the type that's left after all other cases have been removed.
+If you forget a case, then `s` will have a real type and you will get a type error.
+This method requires you to define an extra function, but it's much more obvious when you forget it.
 
 # Polymorphic `this` types
 

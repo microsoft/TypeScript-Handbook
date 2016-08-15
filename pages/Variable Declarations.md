@@ -327,7 +327,7 @@ function sumMatrix(matrix: number[][]) {
 
 This version of the loop will actually perform the summation correctly because the inner loop's `i` shadows `i` from the outer loop.
 
-Shadowing should *usually* be avoided in the interest of write clearer code.
+Shadowing should *usually* be avoided in the interest of writing clearer code.
 While there are some scenarios where it may be fitting to take advantage of it, you should use your best judgement.
 
 ## Block-scoped variable capturing

@@ -117,7 +117,7 @@ Take a quick second to guess what the output of the following snippet is:
 
 ```ts
 for (var i = 0; i < 10; i++) {
-    setTimeout(function() {console.log(i); }, 100 * i);
+    setTimeout(function() { console.log(i); }, 100 * i);
 }
 ```
 
@@ -363,7 +363,7 @@ Since this is what we were doing anyway with our IIFE, we can change our old `se
 
 ```ts
 for (let i = 0; i < 10 ; i++) {
-    setTimeout(function() {console.log(i); }, 100 * i);
+    setTimeout(function() { console.log(i); }, 100 * i);
 }
 ```
 

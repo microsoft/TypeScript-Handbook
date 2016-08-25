@@ -77,7 +77,7 @@ Compiler Option                              | MSBuild Property Name            
 `--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
 `--sourceMap`                                | TypeScriptSourceMap                        | File path
 `--sourceRoot`                               | TypeScriptSourceRoot                       | File path
-`--strictNullChecks`                         | TypeScriptStrictNullChecks                 | File path
+`--strictNullChecks`                         | TypeScriptStrictNullChecks                 | boolean
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
 `--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
 `--target`                                   | TypeScriptTarget                           | `ES3`, `ES5`, or `ES6`

@@ -258,7 +258,7 @@ The tsconfig should now look like this:
       "./app.ts",
       "./model.ts",
       "./main.ts",
-      "../typings/main.d.ts"
+      "../typings/index.d.ts"
   ],
   "compileOnSave": true
 }

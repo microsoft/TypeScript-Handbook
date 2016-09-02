@@ -55,7 +55,7 @@ The first way is to pass all of the arguments, including the type argument, to t
 let output = identity<string>("myString");  // type of output will be 'string'
 ```
 
-Here we explicitly set `T` to be string as one of the arguments to the function call, denoted using the `<>` around the arguments rather than `()`.
+Here we explicitly set `T` to be `string` as one of the arguments to the function call, denoted using the `<>` around the arguments rather than `()`.
 
 The second way is also perhaps the most common. Here we use *type argument inference* -- that is, we want the compiler to set the value of `T` for us automatically based on the type of the argument we pass in:
 

@@ -393,11 +393,12 @@ cat dist/bundle.js
 
 ## Babel
 
-First install Babelify.
+First install Babelify and the Babel preset for ES2015.
 Like Uglify, Babelify mangles code, so we'll need vinyl-buffer and gulp-sourcemaps.
+By default Babelify will only process files with extensions of `.js`, `.es`, `.es6` and `.jsx` so we need to add the `.ts` extension as an option to Babelify.
 
 ```shell
-npm install --save-dev babelify vinyl-buffer gulp-sourcemaps
+npm install --save-dev babelify babel-preset-es2015 vinyl-buffer gulp-sourcemaps
 ```
 
 Now change your gulpfile to the following:
@@ -427,7 +428,10 @@ gulp.task('default', ['copyHtml'], function () {
         packageCache: {}
     })
     .plugin(tsify)
-    .transform("babelify")
+    .transform('babelify', {
+        presets: ['es2015'],
+        extensions: ['.ts']
+    })
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(buffer())

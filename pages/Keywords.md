@@ -4,13 +4,13 @@ Keyword | Syntax | Category | Description | External links
 ---|---|---|---|---
 | `abstract` | `abstract class` | [Classes](#classes) | [Abstract classes (cannot be instantiated; must be inherited)](Classes.md#abstract-classes) | |
 | `abstract` | `abstract` _member_ | [Classes](#classes) | [Inheriting classes must implement this method/property](Classes.md#abstract-classes) | |
-| `any` | | [Primitive type](#primitive-types) | [Describes a type unknown at design time](Basic%20Types.md#any) | |
+| `any` | | [Primitive types](#primitive-types) | [Describes a type unknown at design time](Basic%20Types.md#any) | |
 | `as` | | [Type operation](#type-operation) | [Type assertion](Basic%20Types.md#type-assertions) | |
 | `as` | `import {`_item_ `as` _name_`} from "`_path_`"`<br>`import * as `_name_` from "` _path_ `"` | [Environment/modules](#environment-modules) | [Module import renaming](Modules.md#import) | |
 | `as` | `export as namespace` _namespace_ | [Environment/modules](#environment-modules) | [UMD/isomorphic modules](Modules.md#umd-modules) | |
 | `async` | | [Functions](#functions) | Marks function as asynchronous | [ES draft](http://tc39.github.io/ecmascript-asyncawait/), [PR#1664](https://github.com/Microsoft/TypeScript/issues/1664), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#68-asynchronous-functions) |
 | `await` | | [Functions](#functions) | Waits for value within an asynchronous function | [ES draft](http://tc39.github.io/ecmascript-asyncawait/), [PR#1664](https://github.com/Microsoft/TypeScript/issues/1664), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#68-asynchronous-functions) |
-| `boolean` | | [Primitive type](#primitive-types) | [`boolean` type](Basic%20Types.md#boolean) | |
+| `boolean` | | [Primitive types](#primitive-types) | [`boolean` type](Basic%20Types.md#boolean) | |
 | `break` | | [Control flow](#control-flow) | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/break) |
 | `continue` | | [Control flow](#control-flow) | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/continue) |
 | `class` | | [Classes](#classes) | [Class declaration/expression](Classes.md) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) |
@@ -46,12 +46,12 @@ Keyword | Syntax | Category | Description | External links
 | `let` | | [Variable declaration](#variable-declaration) | [`let` declaration](Variable%20Declarations.md#let-declarations) | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let) |
 | `module` | | [Environment/modules](#environment-modules) | [Define an ambient module](Modules.md#ambient-modules) | |
 | `namespace` | | [Environment/modules](#environment-modules) | [Associates the contained elements with the specified namespace](Namespaces.md) | |
-| `never` | | [Primitive type](#primitive-types) | [`never` type](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#the-never-type) | |
+| `never` | | [Primitive types](#primitive-types) | [`never` type](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#the-never-type) | |
 | `new` | | | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) |
 | `new` | | [Type annotation](#type-annotation) | Constructor function type | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#389-constructor-type-literals) |
 | `null` | | [Literal](#literal) | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null) |
-| `null` | | [Primitive type](#primitive-types) | [`null` type](Basic%20Types.md#null-and-undefined) | |
-| `number` | | [Primitive type](#primitive-types) | [`number` type](Basic%20Types.md#number) | |
+| `null` | | [Primitive types](#primitive-types) | [`null` type](Basic%20Types.md#null-and-undefined) | |
+| `number` | | [Primitive types](#primitive-types) | [`number` type](Basic%20Types.md#number) | |
 | `private` | | [Accessibility modifier](#accessibility-modifier) | [Property can be used only from its containing class](Classes.md#understanding-private) | |
 | `protected` | | [Accessibility modifier](#accessibility-modifier) | [Property can only be used in its containing class, or by classes which inherit from the containing class](Classes.md#understanding-protected) | |
 | `public` | | [Accessibility modifier](#accessibility-modifier) | [Property can be used from outside its containing class](Classes.md#public-by-default) | |
@@ -61,10 +61,10 @@ Keyword | Syntax | Category | Description | External links
 | `set` | | [Property descriptors](#property-descriptors) | Setter | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | `set` | | [Classes](#classes) | [Setter](Classes.md#accessors) | |
 | `static` | | [Classes](#classes) | [Static properties](Classes.md#static-properties) | |
-| `string` | | [Primitive type](#primitive-types) | [`string` type](Basic%20Types.md#string) | |
+| `string` | | [Primitive types](#primitive-types) | [`string` type](Basic%20Types.md#string) | |
 | `super` | | [Classes](#classes) | Reference to properties / constructor of the base class | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#49-the-super-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Super_class_calls_with_super) |
 | `switch...case` | | [Control flow](#control-flow) | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) |
-| `symbol` | | [Primitive type](#primitive-types) | [`symbol` type](Symbols.md) | |
+| `symbol` | | [Primitive types](#primitive-types) | [`symbol` type](Symbols.md) | |
 | `this` | | [Functions](#functions) | | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#42-the-this-keyword), [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) |
 | `this` | | [Type annotation](#type-annotation) | Represents the actual type ([derived or implemented](Advanced%20Types.md#polymorphic-this-types)) within a (base) class or interface | |
 | `this` | `(this: ` _annotation_) | [Functions](#functions) | [`this` parameter](Functions.md#this-parameters) | |
@@ -75,11 +75,11 @@ Keyword | Syntax | Category | Description | External links
 | `typeof` | | [Type operation](#type-operation) | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof) |
 | `typeof` | | [Type annotation](#type-annotation) | Copies the type of an existing identifier | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#3810-type-queries) |
 | `undefined` | | [Literal](#literal) | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined) |
-| `undefined` | | [Primitive type](#primitive-types) | [`undefined` type](Basic%20Types.md#null-and-undefined) | |
+| `undefined` | | [Primitive types](#primitive-types) | [`undefined` type](Basic%20Types.md#null-and-undefined) | |
 | `value` | | [Property descriptors](#property-descriptors) | Value associated with a property | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | `var` | | [Variable declaration](#variable-declaration) | [`var` declaration](Variable%20Declarations.md#var-declarations) | |
 | `void` | | | Evaluates expression but returns `undefined` | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void) |
-| `void` | | [Primitive type](#primitive-types) | [`void` type](Basic%20Types.md#void) | |
+| `void` | | [Primitive types](#primitive-types) | [`void` type](Basic%20Types.md#void) | |
 | `while` | | [Control flow](#control-flow) | | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while) |
 | `writable` | | [Property descriptors](#property-descriptors) | Can property be written to | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) |
 | `yield` | | [Functions](#functions) | Returns next value of generator function | [PR#2783](https://github.com/Microsoft/TypeScript/issues/2873), [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#67-generator-functions) |
@@ -125,15 +125,15 @@ Category | Keyword | Syntax | Description | External links
 |  | `delete` |  |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete) |
 |  | `new` |  |  | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new) |
 |  | `void` |  | Evaluates expression but returns `undefined` | [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/void) |
-| <div id="primitive-types">Primitive type</div> | `any` |  | [Describes a type unknown at design time](Basic%20Types.md#any) |  |
-| Primitive type | `boolean` |  | [`boolean` type](Basic%20Types.md#boolean) |  |
-| Primitive type | `never` |  | [`never` type](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#the-never-type) |  |
-| Primitive type | `null` |  | [`null` type](Basic%20Types.md#null-and-undefined) |  |
-| Primitive type | `number` |  | [`number` type](Basic%20Types.md#number) |  |
-| Primitive type | `string` |  | [`string` type](Basic%20Types.md#string) |  |
-| Primitive type | `symbol` |  | [`symbol` type](Symbols.md) |  |
-| Primitive type | `undefined` |  | [`undefined` type](Basic%20Types.md#null-and-undefined) |  |
-| Primitive type | `void` |  | [`void` type](Basic%20Types.md#void) |  |
+| <div id="primitive-types">Primitive types</div> | `any` |  | [Describes a type unknown at design time](Basic%20Types.md#any) |  |
+| Primitive types | `boolean` |  | [`boolean` type](Basic%20Types.md#boolean) |  |
+| Primitive types | `never` |  | [`never` type](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#the-never-type) |  |
+| Primitive types | `null` |  | [`null` type](Basic%20Types.md#null-and-undefined) |  |
+| Primitive types | `number` |  | [`number` type](Basic%20Types.md#number) |  |
+| Primitive types | `string` |  | [`string` type](Basic%20Types.md#string) |  |
+| Primitive types | `symbol` |  | [`symbol` type](Symbols.md) |  |
+| Primitive types | `undefined` |  | [`undefined` type](Basic%20Types.md#null-and-undefined) |  |
+| Primitive types | `void` |  | [`void` type](Basic%20Types.md#void) |  |
 | <div id="type-annotation">Type annotation</div> | `is` | _parameter_ `is` _type_ | [User-defined type guards](Advanced%20Types.md#user-defined-type-guards) |  |
 | Type annotation | `new` |  | Constructor function type | [spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#389-constructor-type-literals) |
 | Type annotation | `this` |  | Represents the actual type ([derived or implemented](Advanced%20Types.md#polymorphic-this-types)) within a (base) class or interface |  |

@@ -431,11 +431,11 @@ if (needZipValidation) {
 ```ts
 declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
 
-import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
+import  * as Zip from "./ZipCodeValidator";
 
 if (needZipValidation) {
     require(["./ZipCodeValidator"], (ZipCodeValidator: typeof Zip) => {
-        let validator = new ZipCodeValidator();
+        let validator = new ZipCodeValidator.ZipCodeValidator();
         if (validator.isAcceptable("...")) { /* ... */ }
     });
 }
@@ -554,7 +554,7 @@ For example:
 ##### math-lib.d.ts
 
 ```ts
-export const isPrime(x: number): boolean;'
+export const isPrime(x: number): boolean;
 export as namespace mathLib;
 ```
 

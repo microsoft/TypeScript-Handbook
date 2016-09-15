@@ -117,7 +117,7 @@ Take a quick second to guess what the output of the following snippet is:
 
 ```ts
 for (var i = 0; i < 10; i++) {
-    setTimeout(function() {console.log(i); }, 100 * i);
+    setTimeout(function() { console.log(i); }, 100 * i);
 }
 ```
 
@@ -327,7 +327,7 @@ function sumMatrix(matrix: number[][]) {
 
 This version of the loop will actually perform the summation correctly because the inner loop's `i` shadows `i` from the outer loop.
 
-Shadowing should *usually* be avoided in the interest of write clearer code.
+Shadowing should *usually* be avoided in the interest of writing clearer code.
 While there are some scenarios where it may be fitting to take advantage of it, you should use your best judgement.
 
 ## Block-scoped variable capturing
@@ -363,7 +363,7 @@ Since this is what we were doing anyway with our IIFE, we can change our old `se
 
 ```ts
 for (let i = 0; i < 10 ; i++) {
-    setTimeout(function() {console.log(i); }, 100 * i);
+    setTimeout(function() { console.log(i); }, 100 * i);
 }
 ```
 

@@ -99,7 +99,7 @@ Replace the default `tsconfig.json` with the following:
       "noImplicitAny": true,
       "noEmitOnError": true,
       "sourceMap": true,
-      "target": "es5",
+      "target": "es5"
   },
   "files": [
       "./app.ts"

@@ -1,3 +1,4 @@
+```ts
 // Type definitions for [~THE LIBRARY NAME~] [~OPTIONAL VERSION NUMBER~]
 // Project: [~THE PROJECT NAME~]
 // Definitions by: [~YOUR NAME~] <[~A URL FOR YOU~]>
@@ -60,3 +61,4 @@ declare namespace myLib {
 	//~ We can invoke 'myLib.checkCat(c)' or 'myLib.checkCat(c, v);'
 	function checkCat(c: Cat, s?: VetID);
 }
+```

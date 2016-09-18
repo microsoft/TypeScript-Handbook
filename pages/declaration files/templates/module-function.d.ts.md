@@ -1,3 +1,4 @@
+```ts
 // Type definitions for [~THE LIBRARY NAME~] [~OPTIONAL VERSION NUMBER~]
 // Project: [~THE PROJECT NAME~]
 // Definitions by: [~YOUR NAME~] <[~A URL FOR YOU~]>
@@ -54,3 +55,4 @@ declare namespace MyFunction {
 	export const defaultName: string;
 	export let defaultLength: number;
 }
+```

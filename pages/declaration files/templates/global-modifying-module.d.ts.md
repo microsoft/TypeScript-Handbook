@@ -1,3 +1,4 @@
+```ts
 // Type definitions for [~THE LIBRARY NAME~] [~OPTIONAL VERSION NUMBER~]
 // Project: [~THE PROJECT NAME~]
 // Definitions by: [~YOUR NAME~] <[~A URL FOR YOU~]>
@@ -31,3 +32,4 @@ export function doSomething(): void;
 
 /*~ If your module exports nothing, you'll need this line. Otherwise, delete it */
 export {};
+```

@@ -1,6 +1,3 @@
-
-# Templates
-
 * [global-modifying-module.d.ts](./templates/global-modifying-module.d.ts.md)
 * [global-plugin.d.ts](./templates/global-plugin.d.ts.md)
 * [global.d.ts](./templates/global.d.ts.md)

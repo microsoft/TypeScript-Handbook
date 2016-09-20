@@ -16,10 +16,10 @@ To start, we're going to structure our project in the following way:
 
 ```text
 proj/
-   +- src/
-   |    +- components/
+   ├─ src/
+   |    └─ components/
    |
-   +- dist/
+   └─ dist/
 ```
 
 TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.

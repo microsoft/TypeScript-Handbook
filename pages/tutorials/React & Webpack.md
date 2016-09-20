@@ -45,25 +45,28 @@ npm init
 
 You'll be given a series of prompts.
 You can use the defaults except for your entry point.
-For your entry point, use `./dist/bundle.js`.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
 # Install our dependencies
 
-First ensure TypeScript, Typings, and webpack are installed globally.
+First ensure TypeScript and Webpack are installed globally.
 
 ```shell
-npm install -g typescript typings webpack
+npm install -g typescript webpack
 ```
 
 Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file.
-[Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
 
-Let's now add React and React-DOM as dependencies to your `package.json` file:
+Let's now add React and React-DOM, along with their declaration files, as dependencies to your `package.json` file:
 
 ```shell
-npm install --save react react-dom
+npm install --save react react-dom @types/react @types/react-dom
 ```
+
+That `@types/` prefix means that we also want to get the declaration files for React and React-DOM.
+Usually when you import a path like `"react"`, it will look inside of the `react` package itself;
+however, not all packages include declaration files, so TypeScript also looks in the `@types/react` package as well.
+You'll see that we won't even have to think about this later on.
 
 Next, we'll add development-time dependencies on [ts-loader](https://www.npmjs.com/package/ts-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader).
 
@@ -79,17 +82,6 @@ This will allow you to debug your final output file as if you were debugging you
 
 Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
 If you want a local copy, just run `npm install typescript`.
-
-Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
-
-```shell
-typings install --global --save dt~react
-typings install --global --save dt~react-dom
-```
-
-The `--global` flag, along with the `dt~` prefix tells Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
-
-This command will create a file called `typings.json` and a folder called `typings` in the current directory.
 
 # Add a TypeScript configuration file
 
@@ -109,15 +101,11 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "jsx": "react"
     },
     "files": [
-        "./typings/index.d.ts",
         "./src/components/Hello.tsx",
         "./src/index.tsx"
     ]
 }
 ```
-
-We're including `typings/index.d.ts`, which Typings created for us.
-That file automatically includes all of your installed dependencies.
 
 You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 

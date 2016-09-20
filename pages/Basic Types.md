@@ -153,7 +153,7 @@ notSure = false; // okay, definitely a boolean
 
 The `any` type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type-checking during compilation.
 You might expect `Object` to play a similar role, as it does in other languages.
-But variables of type `Object` only allow you to assign any value to them -- you can't call arbitrary methods on them, even ones that actually exist:
+But variables of type `Object` only allow you to assign any value to them - you can't call arbitrary methods on them, even ones that actually exist:
 
 ```ts
 let notSure: any = 4;
@@ -217,8 +217,8 @@ The `never` type represents the type of values that never occur.
 For instance, `never` is the return type for a function expression or a arrow function expresssion that always throws an exception or one that never returns;
 Variables also acquire the type `never` when narrowed by any type guards that can never be true.
 
-The `never` type is a subtype of and assignable to every type; however, no type is a subtype of or assignable to `never` (except `never` itself).
-This includes the any type.
+The `never` type is a subtype of, and assignable to, every type; however, *no* type is a subtype of, or assignable to, `never` (except `never` itself).
+Even `any` isn't assignable to `never`.
 
 Some examples of functions returning `never`:
 

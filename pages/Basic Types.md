@@ -214,10 +214,11 @@ Once again, more on union types later on.
 # Never
 
 The `never` type represents the type of values that never occur.
-For instance, `never` is the return type for a function that always throws an exception or one that never returns;
-`never` is also the type of variables under type guards that are never true.
+For instance, `never` is the return type for a function expression or a arrow function expresssion that always throws an exception or one that never returns;
+Variables also acquire the type `never` when narrowed by any type guards that can never be true.
 
 The `never` type is a subtype of and assignable to every type; however, no type is a subtype of or assignable to `never` (except `never` itself).
+This includes the any type.
 
 Some examples of functions returning `never`:
 

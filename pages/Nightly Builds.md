@@ -60,6 +60,7 @@ The nightly build currently does not include the full plugin setup, but we are w
 2. From a PowerShell command window, run:
 
   For VS 2015:
+
   ```posh
   VSDevMode.ps1 14 -tsScript <path to your folder>/node_modules/typescript/lib
   ```

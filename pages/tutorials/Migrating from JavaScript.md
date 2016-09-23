@@ -38,7 +38,7 @@ Let's create a bare-bones one for our project:
 {
     "compilerOptions": {
         "outDir": "./built",
-        "allowJS": true,
+        "allowJs": true,
         "target": "es5"
     },
     "include": [

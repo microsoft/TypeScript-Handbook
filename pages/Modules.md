@@ -88,7 +88,7 @@ export * from "./ZipCodeValidator";  // exports class 'ZipCodeValidator'
 
 # Import
 
-Importing is just about as easy as exporting from an module.
+Importing is just about as easy as exporting from a module.
 Importing an exported declaration is done through using one of the `import` forms below:
 
 ## Import a single export from a module

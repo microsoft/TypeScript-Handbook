@@ -18,7 +18,7 @@ Authors of new declaration files must read this section to properly understand h
 
 Many common mistakes in declaration files can be easily avoided.
 The [Do's and Don'ts](./Do's and Don'ts.md) section identifies common errors,
-  desscribes how to detect them,
+  describes how to detect them,
   and how to fix them.
 Everyone should read this section to help themselves avoid common mistakes.
 

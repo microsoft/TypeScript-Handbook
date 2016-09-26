@@ -49,14 +49,14 @@ First install TypeScript and gulp globally.
 (You might need to start `npm install` commands in this guide with `sudo` if you're on a Unix system.)
 
 ```shell
-npm install -g typescript gulp-cli
+npm install -g gulp-cli
 ```
 
-Then install `gulp` and `gulp-typescript` in your project's dev dependencies.
+Then install `typescript`, `gulp` and `gulp-typescript` in your project's dev dependencies.
 [Gulp-typescript](https://www.npmjs.com/package/gulp-typescript) is a gulp plugin for Typescript.
 
 ```shell
-npm install --save-dev gulp gulp-typescript
+npm install --save-dev typescript gulp gulp-typescript
 ```
 
 ## Write a simple example
@@ -96,7 +96,7 @@ var tsProject = ts.createProject("tsconfig.json");
 
 gulp.task("default", function () {
     return tsProject.src()
-        .pipe(ts(tsProject))
+        .pipe(tsProject())
         .js.pipe(gulp.dest("dist"));
 });
 ```

@@ -16,8 +16,8 @@ To start, we're going to structure our project in the following way:
 
 ```text
 proj/
-    +- src/
-    +- dist/
+   ├─ src/
+   └─ dist/
 ```
 
 TypeScript files will start out in your `src` folder, run through the TypeScript compiler and end up in `dist`.

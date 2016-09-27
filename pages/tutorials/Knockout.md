@@ -16,8 +16,8 @@ To start, we're going to structure our project in the following way:
 
 ```text
 proj/
-   +- src/
-   +- built/
+   ├─ src/
+   └─ built/
 ```
 
 TypeScript files will start out in your `src` folder, run through the TypeScript compiler, and end up in `built`.
@@ -29,24 +29,31 @@ mkdir src
 mkdir built
 ```
 
+# Initialize the project
+
+Now we'll turn this folder into an npm package.
+
+```shell
+npm init
+```
+
+You'll be given a series of prompts.
+You can use the defaults except for your entry point.
+You can always go back and change these in the `package.json` file that's been generated for you.
+
 # Install our build dependencies
 
-First ensure TypeScript and Typings are installed globally.
+First ensure TypeScript is installed globally.
 
 ```shell
-npm install -g typescript typings
+npm install -g typescript
 ```
 
-You obviously know about TypeScript, but you might not know about Typings.
-[Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
-We'll now use Typings to grab declaration files for Knockout:
+We'll also grab declaration files for Knockout to describe the library's shape for TypeScript.
 
 ```shell
-typings install --global --save dt~knockout
+npm install --save @types/knockout
 ```
-
-The `--global` flag will tell Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
-This command will create a file called `typings.json` and a folder called `typings` in the current directory.
 
 # Grab our runtime dependencies
 
@@ -87,15 +94,11 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "target": "es5"
     },
     "files": [
-        "./typings/index.d.ts",
         "./src/require-config.ts",
         "./src/hello.ts"
     ]
 }
 ```
-
-We're including `typings/index.d.ts`, which Typings created for us.
-That file automatically includes all of your installed dependencies.
 
 You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 

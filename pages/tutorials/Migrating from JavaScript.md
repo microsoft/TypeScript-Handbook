@@ -42,7 +42,7 @@ Let's create a bare-bones one for our project:
         "target": "es5"
     },
     "include": [
-        "./src"
+        "./src/**/*"
     ]
 }
 ```

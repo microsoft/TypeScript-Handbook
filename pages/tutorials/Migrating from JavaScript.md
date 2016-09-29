@@ -9,7 +9,7 @@ We assume you've read enough of the handbook to write new TypeScript code.
 If you're writing in plain JavaScript, it's likely that you're running your JavaScript directly,
   where your `.js` files in a `src`, `lib`, or `dist` directory, and then ran as desired.
 
-If that's the case, the files that you've written are going to used as inputs to TypeScript, and you'll run the outputs it produces.
+If that's the case, the files that you've written are going to be used as inputs to TypeScript, and you'll run the outputs it produces.
 During our JS to TS migration, we'll need to separate our input files to prevent TypeScript from overwriting them.
 If your output files need to reside in a specific directory, then that will be your output directory.
 

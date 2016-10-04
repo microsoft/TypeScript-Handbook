@@ -76,7 +76,7 @@ However, libraries that are small and require the DOM (or have *no* dependencies
 
 ### Global Library Template
 
-The template file [`global.d.ts`](./templates/global.d.ts) defines an example library `myLib`.
+The template file [`global.d.ts`](./templates/global.d.ts.md) defines an example library `myLib`.
 Be sure to read the ["Preventing Name Conflicts" footnote](#preventing-name-conflicts).
 
 ## Modular Libraries
@@ -176,9 +176,9 @@ Examples include [jQuery](https://jquery.com/), [Moment.js](http://momentjs.com/
 ### Template
 
 There are three templates available for modules,
-  [`module.d.ts`](./templates/module.d.ts), [`module-class.d.ts`](./templates/module-class.d.ts) and [`module-function.d.ts`](./templates/module-function.d.ts).
+  [`module.d.ts`](./templates/module.d.ts.md), [`module-class.d.ts`](./templates/module-class.d.ts.md) and [`module-function.d.ts`](./templates/module-function.d.ts.md).
 
-Use [`module-function.d.ts`](./templates/module-function.d.ts) if your module can be *called* like a function:
+Use [`module-function.d.ts`](./templates/module-function.d.ts.md) if your module can be *called* like a function:
 
 ```ts
 var x = require("foo");
@@ -188,7 +188,7 @@ var y = x(42);
 
 Be sure to read the [footnote "The Impact of ES6 on Module Call Signatures"](#the-impact-of-es6-on-module-plugins)
 
-Use [`module-class.d.ts`](./templates/module-class.d.ts) if your module can be *constructed* using `new`:
+Use [`module-class.d.ts`](./templates/module-class.d.ts.md) if your module can be *constructed* using `new`:
 
 ```ts
 var x = require("bar");
@@ -198,7 +198,7 @@ var y = new x("hello");
 
 The same [footnote](#the-impact-of-es6-on-module-plugins) applies to these modules.
 
-If your module is not callable or constructable, use the [`module.d.ts`](./templates/module.d.ts) file.
+If your module is not callable or constructable, use the [`module.d.ts`](./templates/module.d.ts.md) file.
 
 ## *Module Plugin* or *UMD Plugin*
 
@@ -209,7 +209,7 @@ For the purposes of writing a declaration file, you'll write the same code wheth
 
 ### Template
 
-Use the [`module-plugin.d.ts`](./templates/module-plugin.d.ts) template.
+Use the [`module-plugin.d.ts`](./templates/module-plugin.d.ts.md) template.
 
 ## *Global Plugin*
 
@@ -236,7 +236,7 @@ console.log(y.reverseAndSort());
 
 ### Template
 
-Use the [`global-plugin.d.ts`](./templates/global-plugin.d.ts) template.
+Use the [`global-plugin.d.ts`](./templates/global-plugin.d.ts.md) template.
 
 ## *Global-modifying Modules*
 
@@ -269,7 +269,7 @@ console.log(y.reverseAndSort());
 
 ### Template
 
-Use the [`global-modifying-module.d.ts`](./templates/global-modifying-module.d.ts) template.
+Use the [`global-modifying-module.d.ts`](./templates/global-modifying-module.d.ts.md) template.
 
 # Consuming Dependencies
 

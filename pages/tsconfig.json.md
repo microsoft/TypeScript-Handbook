@@ -20,7 +20,7 @@ Example `tsconfig.json` files:
   ```json
   {
       "compilerOptions": {
-          "module": "commonjs",
+          "module": "system",
           "noImplicitAny": true,
           "removeComments": true,
           "preserveConstEnums": true,
@@ -50,7 +50,7 @@ Example `tsconfig.json` files:
   ```json
   {
       "compilerOptions": {
-          "module": "commonjs",
+          "module": "system",
           "noImplicitAny": true,
           "removeComments": true,
           "preserveConstEnums": true,

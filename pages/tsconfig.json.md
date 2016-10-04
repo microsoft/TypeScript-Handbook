@@ -24,7 +24,6 @@ Example `tsconfig.json` files:
           "noImplicitAny": true,
           "removeComments": true,
           "preserveConstEnums": true,
-          "outFile": "../../built/local/tsc.js",
           "sourceMap": true
       },
       "files": [
@@ -50,7 +49,7 @@ Example `tsconfig.json` files:
   ```json
   {
       "compilerOptions": {
-          "module": "commonjs",
+          "module": "system",
           "noImplicitAny": true,
           "removeComments": true,
           "preserveConstEnums": true,

@@ -525,7 +525,8 @@ class TextBox extends Control {
     select() { }
 }
 
-class Image extends Control {
+class Image {
+    select() { }
 }
 
 class Location {

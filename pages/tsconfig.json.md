@@ -20,11 +20,10 @@ Example `tsconfig.json` files:
   ```json
   {
       "compilerOptions": {
-          "module": "system",
+          "module": "commonjs",
           "noImplicitAny": true,
           "removeComments": true,
           "preserveConstEnums": true,
-          "outFile": "../../built/local/tsc.js",
           "sourceMap": true
       },
       "files": [

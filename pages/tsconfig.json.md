@@ -117,7 +117,6 @@ This config file will include *all* packages under `.\typings`, and no packages 
 If `types` is specified, only packages listed will be included.
 For instance:
 
-
 ```json
 {
    "compilerOptions": {
@@ -130,7 +129,6 @@ This tsconfig.json file will *only* include  `node_modules\@types\node`, `node_m
 other packages under `node_modules\@types\*` will not be included.
 
 Specify `"types": []` to disable automatic inclusion of `@types` packages.
-
 
 ## `compileOnSave`
 

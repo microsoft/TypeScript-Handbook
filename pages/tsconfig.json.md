@@ -97,9 +97,9 @@ Compiler options specified on the command line override those specified in the `
 
 ## `@types`, `typeRoots` and `types`
 
-By default all *visible* `@types` packages are included in your compilation.
-Packages in `node_modules\@types` off any encolsing folder are considered *visible*;
-that is all packages under `.\node_modules\@types\`,  `..\node_modules\@types\`, `..\..\node_modules\@types\`, and so on.
+By default all *visible* "`@types`" packages are included in your compilation.
+Packages in `node_modules/@types` of any enclosing folder are considered *visible*;
+specifically, that means packages within `./node_modules/@types/`,  `../node_modules/@types/`, `../../node_modules/@types/`, and so on.
 
 If `typesRoots` is specified, *only* packages under `typeRoots` will be included.
 For example:
@@ -107,12 +107,12 @@ For example:
 ```json
 {
    "compilerOptions": {
-       "typeRoots" : [".\typings"]
+       "typeRoots" : ["./typings"]
    }
 }
 ```
 
-This config file will include *all* packages under `.\typings`, and no packages from `.\node_modules\@types`.
+This config file will include *all* packages under `./typings`, and no packages from `./node_modules/@types`.
 
 If `types` is specified, only packages listed will be included.
 For instance:
@@ -125,8 +125,8 @@ For instance:
 }
 ```
 
-This tsconfig.json file will *only* include  `node_modules\@types\node`, `node_modules\@types\lodash` and `node_modules\@types\express`;
-other packages under `node_modules\@types\*` will not be included.
+This `tsconfig.json` file will *only* include  `./node_modules/@types/node`, `./node_modules/@types/lodash` and `./node_modules/@types/express`.
+Other packages under `node_modules/@types/*` will not be included.
 
 Specify `"types": []` to disable automatic inclusion of `@types` packages.
 

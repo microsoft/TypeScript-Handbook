@@ -130,6 +130,9 @@ Other packages under `node_modules/@types/*` will not be included.
 
 Specify `"types": []` to disable automatic inclusion of `@types` packages.
 
+Keep in mind that automatic inclusion is only important if you're using files with global declarations (as opposed to files declared as modules).
+If you use an `import "foo"` statement, for instance, TypeScript may still look through `node_modules` & `node_modules/@types` folders to find the `foo` package.
+
 ## `compileOnSave`
 
 Setting a top-level property `compileOnSave` signals to the IDE to generate all files for a given tsconfig.json upon saving.

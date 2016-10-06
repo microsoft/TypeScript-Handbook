@@ -1,9 +1,3 @@
----
-title: TypeScript 1.7
-layout: docs
-permalink: /docs/release-notes/typescript-1.7.html
----
-
 # `async`/`await` support in ES6 targets (Node v4+)
 
 TypeScript now supports asynchronous functions for engines that have native support for ES6 generators, e.g. Node v4 and above.

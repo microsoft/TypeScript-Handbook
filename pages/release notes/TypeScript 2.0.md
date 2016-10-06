@@ -1,9 +1,3 @@
----
-title: TypeScript 2.0
-layout: docs
-permalink: /docs/release-notes/typescript-2.0.html
----
-
 # Null- and undefined-aware types
 
 TypeScript has two special types, Null and Undefined, that have the values `null` and `undefined` respectively.

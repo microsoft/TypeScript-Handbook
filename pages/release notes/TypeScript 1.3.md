@@ -1,9 +1,3 @@
----
-title: TypeScript 1.3
-layout: docs
-permalink: /docs/release-notes/typescript-1.3.html
----
-
 # Protected
 
 The new `protected` modifier in classes works like it does in familiar languages like C++, C#, and Java. A `protected` member of a class is visible only inside subclasses of the class in which it is declared:

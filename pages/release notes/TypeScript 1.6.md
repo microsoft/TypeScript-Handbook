@@ -1,9 +1,3 @@
----
-title: TypeScript 1.6
-layout: docs
-permalink: /docs/release-notes/typescript-1.6.html
----
-
 # JSX support
 
 JSX is an embeddable XML-like syntax.

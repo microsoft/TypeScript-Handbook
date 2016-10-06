@@ -1,9 +1,3 @@
----
-title: TypeScript 1.8
-layout: docs
-permalink: /docs/release-notes/typescript-1.8.html
----
-
 # Type parameters as constraints
 
 With TypeScript 1.8 it becomes possible for a type parameter constraint to reference type parameters from the same type parameter list.

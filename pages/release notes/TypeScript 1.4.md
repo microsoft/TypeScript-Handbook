@@ -1,9 +1,3 @@
----
-title: TypeScript 1.4
-layout: docs
-permalink: /docs/release-notes/typescript-1.4.html
----
-
 # Union types
 
 ### Overview

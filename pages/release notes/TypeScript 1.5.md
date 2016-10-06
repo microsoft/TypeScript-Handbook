@@ -1,9 +1,3 @@
----
-title: TypeScript 1.5
-layout: docs
-permalink: /docs/release-notes/typescript-1.5.html
----
-
 # ES6 Modules
 
 TypeScript 1.5 supports ECMAScript 6 (ES6) modules.

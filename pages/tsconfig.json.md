@@ -95,6 +95,44 @@ A `tsconfig.json` file is permitted to be completely empty, which compiles all f
 
 Compiler options specified on the command line override those specified in the `tsconfig.json` file.
 
+## `@types`, `typeRoots` and `types`
+
+By default all *visible* "`@types`" packages are included in your compilation.
+Packages in `node_modules/@types` of any enclosing folder are considered *visible*;
+specifically, that means packages within `./node_modules/@types/`,  `../node_modules/@types/`, `../../node_modules/@types/`, and so on.
+
+If `typesRoots` is specified, *only* packages under `typeRoots` will be included.
+For example:
+
+```json
+{
+   "compilerOptions": {
+       "typeRoots" : ["./typings"]
+   }
+}
+```
+
+This config file will include *all* packages under `./typings`, and no packages from `./node_modules/@types`.
+
+If `types` is specified, only packages listed will be included.
+For instance:
+
+```json
+{
+   "compilerOptions": {
+       "types" : ["node", "lodash", "express"]
+   }
+}
+```
+
+This `tsconfig.json` file will *only* include  `./node_modules/@types/node`, `./node_modules/@types/lodash` and `./node_modules/@types/express`.
+Other packages under `node_modules/@types/*` will not be included.
+
+Specify `"types": []` to disable automatic inclusion of `@types` packages.
+
+Keep in mind that automatic inclusion is only important if you're using files with global declarations (as opposed to files declared as modules).
+If you use an `import "foo"` statement, for instance, TypeScript may still look through `node_modules` & `node_modules/@types` folders to find the `foo` package.
+
 ## `compileOnSave`
 
 Setting a top-level property `compileOnSave` signals to the IDE to generate all files for a given tsconfig.json upon saving.

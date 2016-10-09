@@ -183,7 +183,8 @@ Create a `webpack.config.js` file at the root of the project directory.
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        filename: "./dist/bundle.js",
+        filename: "bundle.js",
+        path: __dirname + "/dist"
     },
 
     // Enable sourcemaps for debugging webpack's output.

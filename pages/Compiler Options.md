@@ -64,8 +64,8 @@ Option                                         | Type      | Default            
 `--suppressImplicitAnyIndexErrors`             | `boolean` | `false`                        | Suppress `--noImplicitAny` errors for indexing objects lacking index signatures. See [issue #1232](https://github.com/Microsoft/TypeScript/issues/1232#issuecomment-64510362) for more details.
 `--target`<br/>`-t`                            | `string`  | `"ES3"`                        | Specify ECMAScript target version: `'es3'` (default), `'es5'`, or `'es6'`.
 `--traceResolution`                            | `boolean` | `false`                        | Report module resolution log messages.
-`--types`                                      | `string[]`|                                | List of names of type definitions to include.
-`--typeRoots`                                  | `string[]`|                                | List of folders to include type definitions from.
+`--types`                                      | `string[]`|                                | List of names of type definitions to include. See [@types, --typRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
+`--typeRoots`                                  | `string[]`|                                | List of folders to include type definitions from. See [@types, --typRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version.
 `--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
 

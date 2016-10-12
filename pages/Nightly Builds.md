@@ -70,3 +70,8 @@ The nightly build currently does not include the full plugin setup, but we are w
   ```posh
   VSDevMode.ps1 12 -tsScript <path to your folder>/node_modules/typescript/lib
   ```
+
+### IntelliJ IDEA (Mac)
+
+Go to `Preferences` > `Languages & Frameworks` > `TypeScript`:
+ > TypeScript Version: If you installed with npm: `/usr/local/lib/node_modules/typescript/lib`

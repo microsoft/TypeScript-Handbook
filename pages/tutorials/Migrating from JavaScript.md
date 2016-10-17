@@ -232,7 +232,7 @@ module.exports.feedPets = function(pets) {
 you could write that out as the following:
 
 ```ts
-export function feedPets(pets) {
+exports function feedPets(pets) {
     // ...
 }
 ```

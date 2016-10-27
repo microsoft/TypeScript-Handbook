@@ -46,7 +46,7 @@ Use non-relative paths when importing any of your external dependnecies.
 
 There are two possible module resolution strategies: [Node](#node) and [Classic](#classic).
 You can use the `--moduleResolution` flag to specify the module resolution strategy.
-The default if not specified is [Node](#node).
+If not specified, the default is [Classic](#classic) for `--module AMD | System | ES2015` or [Node](#node) otherwise.
 
 ### Classic
 

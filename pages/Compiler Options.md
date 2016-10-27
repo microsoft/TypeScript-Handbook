@@ -2,7 +2,7 @@
 
 Option                                         | Type      | Default                        | Description
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------
-`--allowJs`                                    | `boolean` | `true`                         | Allow JavaScript files to be compiled.
+`--allowJs`                                    | `boolean` | `false`                        | Allow JavaScript files to be compiled.
 `--allowSyntheticDefaultImports`               | `boolean` | `module === "system"`          | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
 `--allowUnreachableCode`                       | `boolean` | `false`                        | Do not report errors on unreachable code.
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.

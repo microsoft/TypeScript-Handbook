@@ -213,13 +213,15 @@ Here is an example for how to specify the `"paths"` property for `jquery`.
 ```json
 {
   "compilerOptions": {
+    "baseUrl": ".", // This must be specified if "paths" is.
     "paths": {
-      "jquery": ["node_modules/jquery/dist/jquery.d.ts"]
+      "jquery": ["node_modules/jquery/dist/jquery"]
     }
+  }
 }
 ```
 
-Using `"paths"` also allow for more sophisticated mappings including multiple fall back locations.
+Using `"paths"` also allows for more sophisticated mappings including multiple fall back locations.
 Consider a project configuration where only some modules are available in one location, and the rest are in another.
 A build step would put them all together in one place.
 The project layout may look like:
@@ -240,15 +242,15 @@ The corresponding `tsconfig.json` would look like:
 
 ```json
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                    "*",
-                    "generated/*"
-                ]
-            }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "*",
+        "generated/*"
+      ]
     }
+  }
 }
 ```
 

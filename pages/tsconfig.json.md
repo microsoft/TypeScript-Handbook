@@ -86,7 +86,7 @@ Files in the directory specified using the `"outDir"` compiler option are always
 
 Files included using `"include"` can be filtered using the `"exclude"` property.
 However, files included explicitly using the `"files"` property are always included regardless of `"exclude"`.
-The `"exclude"` property defaults to excluding the `node_modules`, `bower_components`, and `jspm_packages` directories when not specified.
+The `"exclude"` property defaults to excluding the `node_modules`, `bower_components`, `jspm_packages` and `<outDir>` directories when not specified.
 
 Any files that are referenced by files included via the `"files"` or `"include"` properties are also included.
 Similarly, if a file `B.ts` is referenced by another file `A.ts`, then `B.ts` cannot be excluded unless the referencing file `A.ts` is also specified in the `"exclude"` list.
@@ -132,6 +132,56 @@ Specify `"types": []` to disable automatic inclusion of `@types` packages.
 
 Keep in mind that automatic inclusion is only important if you're using files with global declarations (as opposed to files declared as modules).
 If you use an `import "foo"` statement, for instance, TypeScript may still look through `node_modules` & `node_modules/@types` folders to find the `foo` package.
+
+## Configuration inheritance with `extends`
+
+A `tsconfig.josn` file can inherit comfigurations from anohter file using the `extends` propeorty.
+
+The `extends` is a top-level propoerty in `tsconfig.json` (alongside `compilerOptions`, `files`, `include`, and `exclude`).
+`extends`' value is a string containing a path to another configuration file to inherit from.
+
+The configuration from the base file are loaded first, then overridden by those  in the inheriting config file.
+If a circularity is encountered, we report an error.
+
+`files`, `include` and `exclude` from the inheriting config file *overwrite* those from the base config file.
+
+All relative paths found in the configuration file will be resolved relative to the configuration file they originated in.
+
+For example:
+
+`configs/base.json`:
+
+```json
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "strictNullChecks": true
+  }
+}
+```
+
+`tsconfig.json`:
+
+```json
+{
+  "extends": "./configs/base",
+  "files": [
+    "main.ts",
+    "supplemental.ts"
+  ]
+}
+```
+
+`tsconfig.nostrictnull.json`:
+
+```json
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "strictNullChecks": false
+  }
+}
+```
 
 ## `compileOnSave`
 

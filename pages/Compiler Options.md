@@ -2,7 +2,7 @@
 
 Option                                         | Type      | Default                        | Description
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------
-`--allowJs`                                    | `boolean` | `true`                         | Allow JavaScript files to be compiled.
+`--allowJs`                                    | `boolean` | `false`                        | Allow JavaScript files to be compiled.
 `--allowSyntheticDefaultImports`               | `boolean` | `module === "system"`          | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
 `--allowUnreachableCode`                       | `boolean` | `false`                        | Do not report errors on unreachable code.
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
@@ -22,7 +22,7 @@ Option                                         | Type      | Default            
 `--init`                                       |           |                                | Initializes a TypeScript project and creates a `tsconfig.json` file.
 `--isolatedModules`                            | `boolean` | `false`                        | Unconditionally emit imports for unresolved files.
 `--jsx`                                        | `string`  | `"Preserve"`                   | Support JSX in '.tsx' files: `'React'` or `'Preserve'`. See [JSX](./JSX.md).
-`--lib`                                        | `string[]`|                                | List of library files to be included in the compilation.</br>Possible values are:  <br/>► `es5` <br/>► `es6` <br/>► `es2015` <br/>► `es7` <br/>► `es2016` <br/>► `es2017` <br/>► `dom` <br/>► `webworker` <br/>► `scripthost` <br/>► `es2015.core` <br/>► `es2015.collection` <br/>► `es2015.generator` <br/>► `es2015.iterable` <br/>► `es2015.promise` <br/>► `es2015.proxy` <br/>► `es2015.reflect` <br/>► `es2015.symbol` <br/>► `es2015.symbol.wellknown` <br/>► `es2016.array.include` <br/>► `es2017.object` <br/>► `es2017.sharedmemory` <br/><br/> Note: If `--lib` is not specified a default library is injected. The default library injected is:  <br/> ► For `--target ES5`: `dom,es5,scripthost`</br>  ► For `--target ES6`: `dom,es6,dom.iterable,scripthost`
+`--lib`                                        | `string[]`|                                | List of library files to be included in the compilation.<br/>Possible values are:  <br/>► `es5` <br/>► `es6` <br/>► `es2015` <br/>► `es7` <br/>► `es2016` <br/>► `es2017` <br/>► `dom` <br/>► `webworker` <br/>► `scripthost` <br/>► `es2015.core` <br/>► `es2015.collection` <br/>► `es2015.generator` <br/>► `es2015.iterable` <br/>► `es2015.promise` <br/>► `es2015.proxy` <br/>► `es2015.reflect` <br/>► `es2015.symbol` <br/>► `es2015.symbol.wellknown` <br/>► `es2016.array.include` <br/>► `es2017.object` <br/>► `es2017.sharedmemory` <br/><br/> Note: If `--lib` is not specified a default library is injected. The default library injected is:  <br/> ► For `--target ES5`: `dom,es5,scripthost`<br/>  ► For `--target ES6`: `dom,es6,dom.iterable,scripthost`
 `--listEmittedFiles`                           | `boolean` | `false`                        | Print names of generated files part of the compilation.
 `--listFiles`                                  | `boolean` | `false`                        | Print names of files part of the compilation.
 `--locale`                                     | `string`  | *(platform specific)*          | The locale to use to show error messages, e.g. en-us.
@@ -54,8 +54,8 @@ Option                                         | Type      | Default            
 `--removeComments`                             | `boolean` | `false`                        | Remove all comments except copy-right header comments beginning with `/*!`
 `--rootDir`                                    | `string`  | *(common root directory is computed from the list of input files)*   | Specifies the root directory of input files. Only use to control the output directory structure with `--outDir`.
 `rootDirs`<sup>[2]</sup>                       | `string[]`|                                | List of <i>root</i> folders whose combined content represent the structure of the project at runtime. See [Module Resolution documentation](./Module Resolution.md#virtual-directories-with-rootdirs) for more details.
-`--skipLibCheck`                               | `boolean` | `false`                        | Don't check a the default library (`lib.d.ts`) file's validity.
-`--skipDefaultLibCheck`                        | `boolean` | `false`                        | Don't check a user-defined default library (`*.d.ts`) file's validity.
+`--skipDefaultLibCheck`                        | `boolean` | `false`                        | Skip type checking of [default library declaration files](./Triple-Slash Directives.md#-reference-no-default-libtrue).
+`--skipLibCheck`                               | `boolean` | `false`                        | Skip type checking of all declaration files (`*.d.ts`).
 `--sourceMap`                                  | `boolean` | `false`                        | Generates corresponding '.map' file.
 `--sourceRoot`                                 | `string`  |                                | Specifies the location where debugger should locate TypeScript files instead of source locations. Use this flag if the sources will be located at run-time in a different location than that at design-time. The location specified will be embedded in the sourceMap to direct the debugger where the source files will be located.
 `--strictNullChecks`                           | `boolean` | `false`                        | In strict null checking mode, the `null` and `undefined` values are not in the domain of every type and are only assignable to themselves and `any` (the one exception being that `undefined` is also assignable to `void`).
@@ -64,8 +64,8 @@ Option                                         | Type      | Default            
 `--suppressImplicitAnyIndexErrors`             | `boolean` | `false`                        | Suppress `--noImplicitAny` errors for indexing objects lacking index signatures. See [issue #1232](https://github.com/Microsoft/TypeScript/issues/1232#issuecomment-64510362) for more details.
 `--target`<br/>`-t`                            | `string`  | `"ES3"`                        | Specify ECMAScript target version: `'es3'` (default), `'es5'`, or `'es6'`.
 `--traceResolution`                            | `boolean` | `false`                        | Report module resolution log messages.
-`--types`                                      | `string[]`|                                | List of names of type definitions to include.
-`--typeRoots`                                  | `string[]`|                                | List of folders to include type definitions from.
+`--types`                                      | `string[]`|                                | List of names of type definitions to include. See [@types, --typeRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
+`--typeRoots`                                  | `string[]`|                                | List of folders to include type definitions from. See [@types, --typeRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version.
 `--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
 

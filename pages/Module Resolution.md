@@ -40,13 +40,13 @@ You should use relative imports for your own modules that are guaranteed to main
 
 A non-relative import can be resolved relative to `baseUrl`, or through path mapping, which we'll cover below.
 They can also resolve to [ambient module declarations](./Modules.md#ambient-modules).
-Use non-relative paths when importing any of your external dependnecies.
+Use non-relative paths when importing any of your external dependencies.
 
 ## Module Resolution Strategies
 
 There are two possible module resolution strategies: [Node](#node) and [Classic](#classic).
 You can use the `--moduleResolution` flag to specify the module resolution strategy.
-The default if not specified is [Node](#node).
+If not specified, the default is [Classic](#classic) for `--module AMD | System | ES2015` or [Node](#node) otherwise.
 
 ### Classic
 
@@ -213,13 +213,15 @@ Here is an example for how to specify the `"paths"` property for `jquery`.
 ```json
 {
   "compilerOptions": {
+    "baseUrl": ".", // This must be specified if "paths" is.
     "paths": {
-      "jquery": ["node_modules/jquery/dist/jquery.d.ts"]
+      "jquery": ["node_modules/jquery/dist/jquery"]
     }
+  }
 }
 ```
 
-Using `"paths"` also allow for more sophisticated mappings including multiple fall back locations.
+Using `"paths"` also allows for more sophisticated mappings including multiple fall back locations.
 Consider a project configuration where only some modules are available in one location, and the rest are in another.
 A build step would put them all together in one place.
 The project layout may look like:
@@ -240,15 +242,15 @@ The corresponding `tsconfig.json` would look like:
 
 ```json
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                    "*",
-                    "generated/*"
-                ]
-            }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "*",
+        "generated/*"
+      ]
     }
+  }
 }
 ```
 

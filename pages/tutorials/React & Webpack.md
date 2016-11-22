@@ -107,7 +107,7 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
 }
 ```
 
-You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
+You can learn more about `tsconfig.json` files [here](../../tsconfig.json.md).
 
 # Write some code
 
@@ -183,7 +183,8 @@ Create a `webpack.config.js` file at the root of the project directory.
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        filename: "./dist/bundle.js",
+        filename: "bundle.js",
+        path: __dirname + "/dist"
     },
 
     // Enable sourcemaps for debugging webpack's output.

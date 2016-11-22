@@ -143,10 +143,10 @@ When an earlier overload is "more general" than a later one, the later one is ef
 
 ```ts
 /* WRONG */
-interface Moment {
-    diff(b: MomentComparable): number;
-    diff(b: MomentComparable, unitOfTime: string): number;
-    diff(b: MomentComparable, unitOfTime: string, round: boolean): number;
+interface Example {
+    diff(one: string): number;
+    diff(one: string, two: string): number;
+    diff(one: string, two: string, three: boolean): number;
 }
 ```
 
@@ -154,8 +154,8 @@ interface Moment {
 
 ```ts
 /* OK */
-interface Moment {
-    diff(b: MomentComparable, unitOfTime?: string, round?: boolean): number;
+interface Example {
+    diff(one: string, two?: string, three?: boolean): number;
 }
 ```
 
@@ -169,7 +169,7 @@ This code, for example, exposes a bug only when the signature is correctly writt
 
 ```ts
 function fn(x: (a: string, b: number, c: number) => void) { }
-var x: Moment;
+var x: Example;
 // When written with overloads, OK -- used first overload
 // When written with optionals, correctly an error
 fn(x.diff);
@@ -180,10 +180,10 @@ Because unspecified parameters appear as `undefined` in JavaScript, it's usually
 This code, for example, should be OK under strict nulls:
 
 ```ts
-var x: Moment;
+var x: Example;
 // When written with overloads, incorrectly an error because of passing 'undefined' to 'string'
 // When written with optionals, correctly OK
-x.diff(something, someOtherThing ? undefined : "hour");
+x.diff("something", true ? undefined : "hour");
 ```
 
 ## Use Union Types

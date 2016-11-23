@@ -135,9 +135,9 @@ If you use an `import "foo"` statement, for instance, TypeScript may still look 
 
 ## Configuration inheritance with `extends`
 
-A `tsconfig.josn` file can inherit comfigurations from anohter file using the `extends` propeorty.
+A `tsconfig.json` file can inherit configurations from another file using the `extends` property.
 
-The `extends` is a top-level propoerty in `tsconfig.json` (alongside `compilerOptions`, `files`, `include`, and `exclude`).
+The `extends` is a top-level property in `tsconfig.json` (alongside `compilerOptions`, `files`, `include`, and `exclude`).
 `extends`' value is a string containing a path to another configuration file to inherit from.
 
 The configuration from the base file are loaded first, then overridden by those  in the inheriting config file.

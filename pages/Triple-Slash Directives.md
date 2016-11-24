@@ -37,6 +37,23 @@ It is an error for a file to have a triple-slash reference to itself.
 
 If the compiler flag `--noResolve` is specified, triple-slash references are ignored; they neither result in adding new files, nor change the order of the files provided.
 
+## `/// <reference types="..." />`
+
+Similar to a `/// <reference path="..." />` directive,  this directive serves as a declaration of *dependency*;
+a `/// <reference types="..." />`, however, declares a dependency on an `@types` package.
+
+Including `/// <reference types="node" />` in a declaration file declares that this file uses names declared in `@types/node/index.d.ts`;
+and thus, this package needs to be included in the compilation along with the declaration file.
+
+The process of resolving these `@types` package names are similar to process of resolving module names in an `import` statement.
+An easy way to think of triple-slash-reference-types directives as an `import` for declaration packages.
+
+Also worth noting that the compiler will automatically add `/// <reference types="..." />` in generated declaration files if the resulting files uses any declarations from an `@types` package.
+
+These directives should not be used unless you are authoring a `.d.ts` file by hand.
+For declaring a dependency on an `@types` package in a `.ts` file, use `--types` on the command line or in your `tsconfig.json` instead.
+See [using `@types`, `typeRoots` and `types` in `tsconfig.json` files](./tsconfig.json.md#types-typeroots-and-types) for more details.
+
 ## `/// <reference no-default-lib="true"/>`
 
 This directive marks a file as a *default library*.

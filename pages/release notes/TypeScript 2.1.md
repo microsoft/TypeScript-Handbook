@@ -235,87 +235,6 @@ let { z, ...obj1 } = obj;
 obj1; // {x: number; y:number};
 ```
 
-# Improved `any` Inference
-
-Previously, if TypeScript can't figure out the type of a variable, it will choose the `any` type.
-
-```ts
-let x;      // implicitly 'any'
-let y = []; // implicitly 'any[]'
-
-let z: any; // explicitly 'any'.
-```
-
-With TypeScript 2.1, instead of just choosing `any`, TypeScript will infer types based on what you end up assigning later on.
-
-This is only enabled if `--noImplicitAny` is set.
-
-##### Example
-
-```ts
-let x;
-
-// You can still assign anything you want to 'x'.
-x = () => 42;
-
-// After that last assignment, TypeScript 2.1 knows that 'x' has type '() => number'.
-let y = x();
-
-// Thanks to that, it will now tell you that you can't add a number to a function!
-console.log(x + y);
-//          ~~~~~
-// Error! Operator '+' cannot be applied to types '() => number' and 'number'.
-
-// TypeScript still allows you to assign anything you want to 'x'.
-x = "Hello world!";
-
-// But now it also knows that 'x' is a 'string'!
-x.toLowerCase();
-```
-
-The same sort of tracking is now also done for empty arrays.
-
-A variable declared with no type annotation and an initial value of `[]` is considered an implicit `any[]` variable.
-Each following `x.push(value)`, `x.unshift(value)` or `x[n] = value` operation _evolves_ the type of the variable in accordance with what elements are added to it.
-
-``` ts
-function f1() {
-    let x = [];
-    x.push(5);
-    x[1] = "hello";
-    x.unshift(true);
-    return x;  // (string | number | boolean)[]
-}
-
-function f2() {
-    let x = null;
-    if (cond()) {
-        x = [];
-        while (cond()) {
-            x.push("hello");
-        }
-    }
-    return x;  // string[] | null
-}
-```
-
-## Implicit any errors
-
-One great benefit of this is that you'll see *way fewer* implicit `any` errors when running with `--noImplicitAny`.
-Implicit `any` errors are only reported when the compiler is unable to know the type of a available without a type annotation.
-
-##### Example
-
-``` ts
-function f3() {
-    let x = [];  // Error: Variable 'x' implicitly has type 'any[]' in some locations where its type cannot be determined.
-    x.push(5);
-    function g() {
-        x;    // Error: Variable 'x' implicitly has an 'any[]' type.
-    }
-}
-```
-
 # Downlevel Async Functions
 
 This feature was supported before TypeScript 2.1, but only when targeting ES6/ES2015.
@@ -418,6 +337,87 @@ An import to a module with no declaration file will still be flagged as an error
 ```ts
 // Succeeds if `node_modules/asdf/index.js` exists
 import { x } from "asdf";
+```
+
+# Improved `any` Inference
+
+Previously, if TypeScript can't figure out the type of a variable, it will choose the `any` type.
+
+```ts
+let x;      // implicitly 'any'
+let y = []; // implicitly 'any[]'
+
+let z: any; // explicitly 'any'.
+```
+
+With TypeScript 2.1, instead of just choosing `any`, TypeScript will infer types based on what you end up assigning later on.
+
+This is only enabled if `--noImplicitAny` is set.
+
+##### Example
+
+```ts
+let x;
+
+// You can still assign anything you want to 'x'.
+x = () => 42;
+
+// After that last assignment, TypeScript 2.1 knows that 'x' has type '() => number'.
+let y = x();
+
+// Thanks to that, it will now tell you that you can't add a number to a function!
+console.log(x + y);
+//          ~~~~~
+// Error! Operator '+' cannot be applied to types '() => number' and 'number'.
+
+// TypeScript still allows you to assign anything you want to 'x'.
+x = "Hello world!";
+
+// But now it also knows that 'x' is a 'string'!
+x.toLowerCase();
+```
+
+The same sort of tracking is now also done for empty arrays.
+
+A variable declared with no type annotation and an initial value of `[]` is considered an implicit `any[]` variable.
+Each following `x.push(value)`, `x.unshift(value)` or `x[n] = value` operation _evolves_ the type of the variable in accordance with what elements are added to it.
+
+``` ts
+function f1() {
+    let x = [];
+    x.push(5);
+    x[1] = "hello";
+    x.unshift(true);
+    return x;  // (string | number | boolean)[]
+}
+
+function f2() {
+    let x = null;
+    if (cond()) {
+        x = [];
+        while (cond()) {
+            x.push("hello");
+        }
+    }
+    return x;  // string[] | null
+}
+```
+
+## Implicit any errors
+
+One great benefit of this is that you'll see *way fewer* implicit `any` errors when running with `--noImplicitAny`.
+Implicit `any` errors are only reported when the compiler is unable to know the type of a available without a type annotation.
+
+##### Example
+
+``` ts
+function f3() {
+    let x = [];  // Error: Variable 'x' implicitly has type 'any[]' in some locations where its type cannot be determined.
+    x.push(5);
+    function g() {
+        x;    // Error: Variable 'x' implicitly has an 'any[]' type.
+    }
+}
 ```
 
 # Better inference for literal types

@@ -48,9 +48,11 @@ and thus, this package needs to be included in the compilation along with the de
 The process of resolving these `@types` package names are similar to process of resolving module names in an `import` statement.
 An easy way to think of triple-slash-reference-types directives as an `import` for declaration packages.
 
-Also worth noting that the compiler will automatically add `/// <reference types="..." />` in generated declaration files if the resulting files uses any declarations from an `@types` package.
+Use these directives only when you're authoring a `d.ts` file by hand.
 
-These directives should not be used unless you are authoring a `.d.ts` file by hand.
+For declaration files generatd during compilation, the compiler will automatically add `/// <reference types="..." />` for you;
+A `/// <reference types="..." />` in a generated declaration file is added *if and only if* the resulting file uses any declarations from the referenced `@types` package.
+
 For declaring a dependency on an `@types` package in a `.ts` file, use `--types` on the command line or in your `tsconfig.json` instead.
 See [using `@types`, `typeRoots` and `types` in `tsconfig.json` files](./tsconfig.json.md#types-typeroots-and-types) for more details.
 

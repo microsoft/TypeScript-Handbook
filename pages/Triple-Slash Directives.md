@@ -50,7 +50,7 @@ An easy way to think of triple-slash-reference-types directives as an `import` f
 
 Use these directives only when you're authoring a `d.ts` file by hand.
 
-For declaration files generatd during compilation, the compiler will automatically add `/// <reference types="..." />` for you;
+For declaration files generated during compilation, the compiler will automatically add `/// <reference types="..." />` for you;
 A `/// <reference types="..." />` in a generated declaration file is added *if and only if* the resulting file uses any declarations from the referenced `@types` package.
 
 For declaring a dependency on an `@types` package in a `.ts` file, use `--types` on the command line or in your `tsconfig.json` instead.

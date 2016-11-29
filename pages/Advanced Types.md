@@ -283,6 +283,86 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 
 in that order.
 
+# Index and index access types
+
+With index and index access types, you can get the compiler to check code that uses dynamic property names.
+For example, a common Javascript pattern is to pick a certain set of properties from an object:
+
+```js
+function pluck(o, names) {
+    return names.map(n => o[n]);
+}
+```
+
+Here's how you would type this function:
+
+```ts
+function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+  return names.map(n => o[n]);
+}
+```
+
+That example introduces several new type operators.
+Let's look at them one by one.
+First is `keyof T`, the index operator.
+For any type `T`, `keyof T` is the union of property names of `T`.
+For example:
+
+```ts
+interface Person {
+    name: string;
+    age: number;
+}
+let keys: keyof Person; // 'name' | 'age'
+```
+
+`keyof Person` is completely interchangeable with `'name | 'age`.
+The difference is that if you add another property to `Person`, say `address: string`, then `keyof Person` will automatically update to be `'name' | 'age' | 'address'`.
+And you can use `keyof` in generic contexts like `pluck`, where you can't possibly know the property names ahead of time.
+That means the compiler will check that you pass the right set of property names to `pluck`:
+
+```ts
+let person: Person;
+let result = pluck(person, ['name']); // ok
+let result = pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
+```
+
+The second operator is `T[K]`, the indexed access operator.
+Here, the type syntax reflects the expression syntax.
+That means that `person['name']` has the type `Person['name']` &mdash; which in our example is just `string`.
+Again, you can use `T[K]` in a generic context, which is where its real power comes to life.
+You just have to make sure that the type variable `K extends keyof T`.
+Here's another example with a function named `getProperty`.
+
+```ts
+function getProperty<T, K extends keyof T>(o: T, name: K): K[T] {
+    return o[name]; // o[name] is of type T[K]
+}
+```
+
+In `getProperty`, `o: T` and `name: K`, so that means `o[name]: T[K]`.
+Once you return the T[K] result, the compiler will instantiate the actual type of the key, so the return type of `getProperty` will vary according to which property you request.
+
+```ts
+let name: string = getProperty(person, 'name');
+let age: number = getProperty(person, 'age');
+let unknown = getProperty(person, 'unknown'); // error, 'unknown' is not in 'name' | 'age'
+```
+
+## Index types and string index signatures
+
+`keyof` and `T[K]` interact with string index signatures.
+If you have a type with a string index signature, `keyof T` will just be `string`.
+And `T[string]` is just the type of the index signature:
+
+```ts
+interface Map<T> {
+    [key: string]: T;
+}
+let keys: keyof Map<number>; // string
+let value: Map<number>['foo']; // number
+```
+
 # Type Aliases
 
 Type aliases create a new name for a type.

@@ -363,6 +363,64 @@ let keys: keyof Map<number>; // string
 let value: Map<number>['foo']; // number
 ```
 
+# Mapped types
+
+Mapped types allow you to create new types based on old types.
+For example, you can make all fields of a type `readonly` or optional.
+Here's how you do it:
+
+```ts
+type Readonly<T> = {
+    readonly [P in keyof T]: T[P];
+}
+type Partial<T> = {
+    [P in keyof T]?: T[P];
+}
+```
+
+And to use it:
+
+```ts
+interface Props {
+    name: string;
+    age: number;
+}
+type UpdateProps = Partial<Props>;
+```
+
+The simplest form of a mapped type is `{ [P in 'option1' | 'option2']: boolean }`.
+The syntax resembles the syntax for index signatures.
+`P` is each property in the list of properties `'option1' | 'option2'`, and `boolean` is the resulting type.
+This example just makes a type with two properties, both of type `boolean`.
+
+You can also add various modifiers like `?` and `readonly`.
+Or you can wrap the resulting properties to make a proxied type:
+
+```ts
+type Proxy<T> = {
+    get(): T;
+    set(value: T): void;
+}
+type Proxify<T> = {
+    [P in keyof T]: Proxy<T[P]>;
+}
+function proxify<T>(o: T): Proxify<T> {
+   // ... wrap proxies ...
+}
+let proxyProps = proxify(props);
+```
+
+Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in TypeScript's standard libarary along with `Pick` and `Record`:
+
+```ts
+type Pick<T, K extends keyof T> = {
+    [P in K]: T[P];
+}
+type Record<K extends string | number, T> = {
+    [P in K]: T;
+}
+```
+
 # Type Aliases
 
 Type aliases create a new name for a type.

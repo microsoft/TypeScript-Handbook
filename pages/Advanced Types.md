@@ -283,10 +283,10 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 
 in that order.
 
-# Index and index access types
+# Index types
 
-With index and index access types, you can get the compiler to check code that uses dynamic property names.
-For example, a common Javascript pattern is to pick a certain set of properties from an object:
+With index types, you can get the compiler to check code that uses dynamic property names.
+For example, a common Javascript pattern is to pick a subset of properties from an object:
 
 ```js
 function pluck(o, names) {
@@ -294,26 +294,30 @@ function pluck(o, names) {
 }
 ```
 
-Here's how you would type this function:
+Here's how you would write and use this function in TypeScript:
 
 ```ts
 function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
   return names.map(n => o[n]);
 }
-```
 
-That example introduces several new type operators.
-Let's look at them one by one.
-First is `keyof T`, the index operator.
-For any type `T`, `keyof T` is the union of property names of `T`.
-For example:
-
-```ts
 interface Person {
     name: string;
     age: number;
 }
-let keys: keyof Person; // 'name' | 'age'
+let person: Person;
+let strings: string[] = pluck(person, ['name']); // ok, string[]
+```
+
+The compiler checks that `name` is actually a property on `Person`, and it knows that `strings` is a `string[]` because `name` is a `string`.
+To make this work, the example introduces a couple of new type operators.
+First is `keyof T`, the index type query operator.
+For any type `T`, `keyof T` is the union of property names of `T`.
+The syntax is similar to `typeof` except that it works on types instead of values.
+For example:
+
+```ts
+let personProps: keyof Person; // 'name' | 'age'
 ```
 
 `keyof Person` is completely interchangeable with `'name | 'age`.
@@ -322,15 +326,13 @@ And you can use `keyof` in generic contexts like `pluck`, where you can't possib
 That means the compiler will check that you pass the right set of property names to `pluck`:
 
 ```ts
-let person: Person;
-let result = pluck(person, ['name']); // ok
-let result = pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
+pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
 ```
 
 The second operator is `T[K]`, the indexed access operator.
 Here, the type syntax reflects the expression syntax.
 That means that `person['name']` has the type `Person['name']` &mdash; which in our example is just `string`.
-Again, you can use `T[K]` in a generic context, which is where its real power comes to life.
+However, just like index type queries, you can use `T[K]` in a generic context, which is where its real power comes to life.
 You just have to make sure that the type variable `K extends keyof T`.
 Here's another example with a function named `getProperty`.
 

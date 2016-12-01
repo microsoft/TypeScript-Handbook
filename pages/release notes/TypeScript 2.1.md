@@ -15,13 +15,13 @@ interface Person {
 let propName: keyof Person;
 ```
 
-The above is equivalent to having written out
+`keyof Person` is equivalent to having written out
 
 ```ts
 let propName: "name" | "age" | "location";
 ```
 
-This `keyof` operator is actually called an *index type query*.
+This `keyof` operator is called an *index type query*.
 It's like a query for keys on object types, the same way that `typeof` can be used as a query for types on values.
 
 The dual of this is *indexed access types*, also called *lookup types*.
@@ -37,7 +37,7 @@ interface Person {
 let a: Person["age"];
 ```
 
-This is the same as saying that `n` gets the type of the `name` property in `Person`.
+This is the same as saying that `a` gets the type of the `name` property in `Person`.
 In other words:
 
 ```ts
@@ -51,7 +51,7 @@ When indexing with a union of literal types, the operator will look up each prop
 let nameOrAge: Person["name" | "age"];
 ```
 
-This pattern can be used with other parts of the type system to get type-safe lookups, serving users of libraries like Ember.
+You can use this pattern with other parts of the type system to get type-safe lookups, which is great if you use Ember or other frameworks like it.
 
 ```ts
 function get<T, K extends keyof T>(obj: T, propertyName: K): T[K] {
@@ -68,7 +68,8 @@ let oops = get(x, "wargarbl"); // error!
 
 # Mapped Types
 
-Let's say we have a `Person` type:
+One common task is to take an existing type and make each of its properties entirely optional.
+Let's say we have a `Person:
 
 ```ts
 interface Person {
@@ -78,8 +79,7 @@ interface Person {
 }
 ```
 
-Much of the time, we want to take an existing type and make each of its properties entirely optional.
-With `Person`, we might write the following:
+A partial verion of it can would be:
 
 ```ts
 interface PartialPerson {
@@ -89,78 +89,30 @@ interface PartialPerson {
 }
 ```
 
-Notice we had to define a completely new type.
-
-Similarly, we might want to perform a shallow freeze of an object:
+with Mapped types, `PartialPerson` can be written as a generalized transformation on the type `Person` as:
 
 ```ts
-interface FrozenPerson {
-    readonly name: string;
-    readonly age: number;
-    readonly location: string;
-}
-```
-
-Or we might want to create a related type where all the properties are `Promise`s.
-
-```ts
-interface BooleanifiedPerson {
-    name: boolean;
-    age: boolean;
-    location: boolean;
-}
-```
-
-Notice all this repetition - ideally, much of the same information in each variant of `Person` could have been shared.
-
-Let's take a look at how we could write `BooleanifiedPerson` with a *mapped type*.
-
-```ts
-type BooleanifiedPerson = {
-    [P in "name" | "age" | "location"]: boolean
-};
-```
-
-Mapped types are produced by taking a union of literal types, and compute a set of properties for a new object type.
-They're like [list comprehensions in Python](https://docs.python.org/2/tutorial/datastructures.html#nested-list-comprehensions), but instead of producing new elements in a list, they produce new properties in a type.
-
-In the above example, TypeScript uses each literal type in `"name" | "age" | "location"`, and produces a property of that name (e.g. properties named `name`, `age`, and `location`).
-`P` gets bound to each of those literal types (even though it's not used in this example), and gives the property the type `boolean`.
-
-Right now, this new form doesn't look ideal, but we can use the `keyof` operator to cut down on the typing:
-
-```ts
-type BooleanifiedPerson = {
-    [P in keyof Person]: boolean
-};
-```
-
-And then we can generalize it:
-
-```ts
-type Booleanify<T> = {
-    [P in keyof T]: boolean
-};
-
-type BooleanifiedPerson = Booleanify<Person>;
-```
-
-With mapped types, we no longer have to create new partial or readonly variants of existing types either.
-
-```ts
-// Keep types the same, but make every property optional.
 type Partial<T> = {
     [P in keyof T]?: T[P];
 };
 
+type PartialPerson = Partial<Person>;
+```
+
+Mapped types are produced by taking a union of literal types, and computing a set of properties for a new object type.
+They're like [list comprehensions in Python](https://docs.python.org/2/tutorial/datastructures.html#nested-list-comprehensions), but instead of producing new elements in a list, they produce new properties in a type.
+
+In addition to `Partial`, Mapped Types can enable expressing many usueful transfomrations on types:
+
+```ts
 // Keep types the same, but make each property to be read-only.
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];
 };
 
-// Same property names, but make the value a promise instead of a concreate one
-type Defered<T> = {
-    readonly [P in keyof T]: Promise<T[P]>;
+// Same property names, but make the value a promise instead of a concrete one
+type Deferred<T> = {
+    [P in keyof T]: Promise<T[P]>;
 };
 
 // Wrap proxies around properties of T
@@ -169,12 +121,9 @@ type Proxify<T> = {
 };
 ```
 
-So instead of defining a completely new type like `PartialPerson`, we can just write `Partial<Person>`.
-Likewise, instead of repeating ourselves with `FrozenPerson`, we can just write `Readonly<Person>`!
-
 ## `Partial`, `Readonly`, `Record`, and `Pick`
 
-`Partial` and `Readonly`, as described earlier, are very useful construct.
+`Partial` and `Readonly`, as described earlier, are very useful constructs.
 You can use them to describe some common JS routines like:
 
 ```ts
@@ -182,13 +131,13 @@ function assign<T>(obj: T, props: Partial<T>): void;
 function freeze<T>(obj: T): Readonly<T>;
 ```
 
-For that, they are now included by default in the standard library.
+Because of that, they are now included by default in the standard library.
 
 We're also including two other utility types as well: `Record` and `Pick`.
 
 ```ts
 // From T pick a set of properties K
-function pick<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K>;
+declare function pick<T, K extends keyof T>(obj: T, ...keys: K[]): Pick<T, K>;
 
 const nameAndAgeOnly = pick(person, "name", "age");  // { name: string, age: number }
 ```
@@ -211,7 +160,8 @@ Similar to array spread, spreading an object can be handy to get a shallow copy:
 let copy = { ...original };
 ```
 
-Similarly, you can merge several different objects so that in the following example, `merged` will have properties from `foo`, `bar`, and `baz`.
+Similarly, you can merge several different objects.
+In the following example, `merged` will have properties from `foo`, `bar`, and `baz`.
 
 ```ts
 let merged = { ...foo, ...bar, ...baz };
@@ -224,7 +174,7 @@ let obj = { x: 1, y: "string" };
 var newObj = {...obj, z: 3, y: 4}; // { x: number, y:number, x: number }
 ```
 
-The order of specifying spread operations decides what properties end up in the resulting object;
+The order of specifying spread operations determines what properties end up in the resulting object;
 properties in later spreads "win out" over previously created properties.
 
 Object rests are the dual of object spreads, in that they can extract any extra properties that don't get picked up when destructuring an element:
@@ -283,12 +233,20 @@ Compiling and running the output should result in the correct behavior on an ES3
 
 # Support for external helpers library (`tslib`)
 
-TypeScript injects a handful of helper functions such as `__extends` for inheritance, `__assign` for spread operator in JSX, and `__awaiter` for async functions.
-Previously there were two options either 1. inject helpers in *every* file that needs them or 2. no helpers at all with `--noEmitHelpers`.
+TypeScript injects a handful of helper functions such as `__extends` for inheritance, `__assign` for spread operator in object literals and JSX elements, and `__awaiter` for async functions.
+
+Previously there were two options either:
+
+ 1. inject helpers in *every* file that needs them, or
+ 2. no helpers at all with `--noEmitHelpers`.
+
+The two options left more to be desired;
+bundling the helpers in every file was a pain point for customers trying to keep their package size small.
+And not including helpers, meant customers had to maintain their own helpers library.
 
 TypeScript 2.1 allows for including these files in your project once in a separate module, and the compiler will emit imports to them as needed.
 
-First, install the [`tslib`](https://github.com/Microsoft/tslib):
+First, install the [`tslib`](https://github.com/Microsoft/tslib) utility library:
 
 ```sh
 npm install tslib
@@ -300,16 +258,12 @@ Second, compile your files using `--importHelpers`:
 tsc --module commonjs --importHelpers a.ts
 ```
 
-##### Example
-
-For input using the object rest `__assign` helper:
+So given the following input, the resulting `.js` file will include an import to `tslib` and use the `__assign` helper from it instead of inlining it.
 
 ```ts
 export const o = { a: 1, name: "o" };
 export const copy = { ...o };
 ```
-
-The resulting `.js` file will include an import to `tslib` and use the `__assign` helper from it instead of inlining it.
 
 ```js
 "use strict";
@@ -325,7 +279,7 @@ This was to avoid typos and prevent users from using modules incorrectly.
 
 However, a lot of the time, you might just want to import an existing module that may not have its own `.d.ts` file.
 Previously this was an error.
-Starting with TypeScript 2.1 this should get much easier.
+Starting with TypeScript 2.1 this is now much easier.
 
 With TypeScript 2.1, you can import a JavaScript module without needing a type declaration.
 A type declaration (such as `declare module "foo" { ... }` or `node_modules/@types/foo`) still takes priority if it exists.
@@ -339,9 +293,19 @@ An import to a module with no declaration file will still be flagged as an error
 import { x } from "asdf";
 ```
 
+# Support for `--target ES2016`, `--target ES2017` and `--target ESNext`
+
+TypeScript 2.1 supports three new target values `--target ES2016`, `--target ES2017` and `--target ESNext`.
+
+Using target `--target ES2016` will instruct the compiler not to transform ES2016-specific features, e.g. `**` operator.
+
+Similarly, `--target ES2017` will instruct the compiler not to transform ES2017-specific features like `async`/`await`.
+
+`--target ESNext` targets latest supported [ES proposed features](https://github.com/tc39/proposals).
+
 # Improved `any` Inference
 
-Previously, if TypeScript can't figure out the type of a variable, it will choose the `any` type.
+Previously, if TypeScript couldn't figure out the type of a variable, it would choose the `any` type.
 
 ```ts
 let x;      // implicitly 'any'
@@ -380,7 +344,7 @@ x.toLowerCase();
 The same sort of tracking is now also done for empty arrays.
 
 A variable declared with no type annotation and an initial value of `[]` is considered an implicit `any[]` variable.
-Each following `x.push(value)`, `x.unshift(value)` or `x[n] = value` operation _evolves_ the type of the variable in accordance with what elements are added to it.
+However, each subsequent `x.push(value)`, `x.unshift(value)` or `x[n] = value` operation *evolves* the type of the variable in accordance with what elements are added to it.
 
 ``` ts
 function f1() {
@@ -406,7 +370,7 @@ function f2() {
 ## Implicit any errors
 
 One great benefit of this is that you'll see *way fewer* implicit `any` errors when running with `--noImplicitAny`.
-Implicit `any` errors are only reported when the compiler is unable to know the type of a available without a type annotation.
+Implicit `any` errors are only reported when the compiler is unable to know the type of a variable without a type annotation.
 
 ##### Example
 
@@ -423,7 +387,7 @@ function f3() {
 # Better inference for literal types
 
 String, numeric and boolean literal types (e.g. `"abc"`, `1`, and `true`) were previously inferred only in the presence of an explicit type annotation.
-Starting with TypeScript 2.1, literal types are *always* inferred by default.
+Starting with TypeScript 2.1, literal types are *always* inferred for `const` variables and `readonly` properties.
 
 The type inferred for a `const` variable or `readonly` property without a type annotation is the type of the literal initializer.
 The type inferred for a `let` variable, `var` variable, parameter, or non-`readonly` property with an initializer and no type annotation is the widened literal type of the initializer.
@@ -432,7 +396,6 @@ Where the widened type for a string literal type is `string`, `number` for numer
 ##### Example
 
 ```ts
-
 const c1 = 1;  // Type 1
 const c2 = c1;  // Type 1
 const c3 = "abc";  // Type "abc"
@@ -462,7 +425,7 @@ let v2 = c2;  // Type "hello"
 
 # Use returned values from super calls as 'this'
 
-In ES2015, constructors which return a value (which is an object) implicitly substitute the value of `this` for any callers of `super()`.
+In ES2015, constructors which return an object implicitly substitute the value of `this` for any callers of `super()`.
 As a result, it is necessary to capture any potential return value of `super()` and replace it with `this`.
 This change enables working with [Custom Elements](https://w3c.github.io/webcomponents/spec/custom/#htmlelement-constructor), which takes advantage of this to initialize browser-allocated elements with user-written constructors.
 
@@ -509,9 +472,9 @@ Just a few configuration options change between these two targets, and maintaini
 TypeScript 2.1 supports inheriting configuration using `extends`, where:
 
 * `extends` is a new top-level property in `tsconfig.json` (alongside `compilerOptions`, `files`, `include`, and `exclude`).
-* `extends`' value is a string containing a path to another configuration file to inherit from.
+* The value of `extends` must be a string containing a path to another configuration file to inherit from.
 * The configuration from the base file are loaded first, then overridden by those in the inheriting config file.
-* If a circularity is encountered, we report an error.
+* Circularity between configuration files is not allowed.
 * `files`, `include` and `exclude` from the inheriting config file *overwrite* those from the base config file.
 * All relative paths found in the configuration file will be resolved relative to the configuration file they originated in.
 
@@ -560,13 +523,3 @@ Invoking the compiler with `--alwaysStrict` causes:
 
 Modules are parsed automatically in strict mode.
 The new flag is recommended for non-module code.
-
-# Support for `--target ES2016`, `--target ES2017` and `--target ESNext`
-
-TypeScript 2.1 supports three new target values `--target ES2016`, `--target ES2017` and `--target ESNext`.
-
-Using target `--target ES2016` will instruct the compiler not to transform ES2016-specific features, e.g. `**` operator.
-
-Similarly, `--target ES2017` will instruct the compiler not to transform ES2017-specific features like `async`/`await`.
-
-`--target ESNext` targets latest supported [ES proposed features](https://github.com/tc39/proposals).

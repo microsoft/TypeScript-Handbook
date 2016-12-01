@@ -32,7 +32,7 @@ Some examples include:
 Any other import is considered **non-relative**.
 Some examples include:
 
-* `import * as $ from "jQuery";`
+* `import * as $ from "jquery";`
 * `import { Component } from "angular2/core";`
 
 A relative import is resolved relative to the importing file and *cannot* resolve to an ambient module declaration.

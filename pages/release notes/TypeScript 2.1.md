@@ -1,9 +1,12 @@
 # `keyof` and Lookup Types
 
-Many libraries take advantage of the fact that objects are (for the most part) just a map of strings to values.
-Given what TypeScript knows about each value's properties, there's a set of known strings (or keys) that you can use for lookups.
+In JavaScript it is fairly common to have APIs that expect property names as parameters, but so far it hasn't been possible to express the type relationships that occur in those APIs.
 
-That's where the `keyof` operator comes in.
+Enter Index Type Query or `keysof`;
+An indexed type query `keyof T` yields the type of permitted property names for `T`.
+A `keyof T` type is considered a subtype of `string`.
+
+##### Example
 
 ```ts
 interface Person {
@@ -12,58 +15,43 @@ interface Person {
     location: string;
 }
 
-let propName: keyof Person;
+type K1 = keyof Person; // "name" | "age" | "location"
+type K2 = keyof Person[];  // "length" | "push" | "pop" | "concat" | ...
+type K3 = keyof { [x: string]: Person };  // string
 ```
-
-`keyof Person` is equivalent to having written out
-
-```ts
-let propName: "name" | "age" | "location";
-```
-
-This `keyof` operator is called an *index type query*.
-It's like a query for keys on object types, the same way that `typeof` can be used as a query for types on values.
 
 The dual of this is *indexed access types*, also called *lookup types*.
 Syntactically, they look exactly like an element access, but are written as types:
 
+##### Example
+
 ```ts
-interface Person {
-    name: string;
-    age: number;
-    location: string;
+type P1 = Person["name"];  // string
+type P2 = Person["name" | "age"];  // string | number
+type P3 = string["charAt"];  // (pos: number) => string
+type P4 = string[]["push"];  // (...items: string[]) => number
+type P5 = string[][0];  // string
+```
+
+You can use this pattern with other parts of the type system to get type-safe lookups.
+
+```ts
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key];  // Inferred type is T[K]
 }
 
-let a: Person["age"];
-```
-
-This is the same as saying that `a` gets the type of the `name` property in `Person`.
-In other words:
-
-```ts
-let a: number;
-```
-
-When indexing with a union of literal types, the operator will look up each property and union the respective types together.
-
-```ts
-// Equivalent to the type 'string | number'
-let nameOrAge: Person["name" | "age"];
-```
-
-You can use this pattern with other parts of the type system to get type-safe lookups, which is great if you use Ember or other frameworks like it.
-
-```ts
-function get<T, K extends keyof T>(obj: T, propertyName: K): T[K] {
-    return obj[propertyName];
+function setProperty<T, K extends keyof T>(obj: T, key: K, value: T[K]) {
+    obj[key] = value;
 }
 
 let x = { foo: 10, bar: "hello!" };
 
-let foo = get(x, "foo"); // has type 'number'
-let bar = get(x, "bar"); // has type 'string'
+let foo = getProperty(x, "foo"); // number
+let bar = getProperty(x, "bar"); // string
 
-let oops = get(x, "wargarbl"); // error!
+let oops = getProperty(x, "wargarbl"); // Error! "wargarbl" is not "foo" | "bar"
+
+setProperty(x, "foo", "string"); // Error!, string expected number
 ```
 
 # Mapped Types

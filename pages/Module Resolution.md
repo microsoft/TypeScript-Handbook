@@ -344,7 +344,7 @@ Invoking the compiler with `--traceResolution`
 tsc --traceResolution
 ```
 
-Results in an output as such:
+Results in an output such as:
 
 ```txt
 ======== Resolving module 'typescript' from 'src/app.ts'. ========

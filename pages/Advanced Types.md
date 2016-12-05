@@ -283,219 +283,6 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 
 in that order.
 
-# Index types
-
-With index types, you can get the compiler to check code that uses dynamic property names.
-For example, a common Javascript pattern is to pick a subset of properties from an object:
-
-```js
-function pluck(o, names) {
-    return names.map(n => o[n]);
-}
-```
-
-Here's how you would write and use this function in TypeScript, using the **index type query** and **indexed access** operators:
-
-```ts
-function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
-  return names.map(n => o[n]);
-}
-
-interface Person {
-    name: string;
-    age: number;
-}
-let person: Person;
-let strings: string[] = pluck(person, ['name']); // ok, string[]
-```
-
-The compiler checks that `name` is actually a property on `Person`, and it knows that `strings` is a `string[]` because `name` is a `string`.
-To make this work, the example introduces a couple of new type operators.
-First is `keyof T`, the **index type query operator**.
-For any type `T`, `keyof T` is the union of known, public property names of `T`.
-For example:
-
-```ts
-let personProps: keyof Person; // 'name' | 'age'
-```
-
-`keyof Person` is completely interchangeable with `'name | 'age`.
-The difference is that if you add another property to `Person`, say `address: string`, then `keyof Person` will automatically update to be `'name' | 'age' | 'address'`.
-And you can use `keyof` in generic contexts like `pluck`, where you can't possibly know the property names ahead of time.
-That means the compiler will check that you pass the right set of property names to `pluck`:
-
-```ts
-pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
-```
-
-The second operator is `T[K]`, the **indexed access operator**.
-Here, the type syntax reflects the expression syntax.
-That means that `person['name']` has the type `Person['name']` &mdash; which in our example is just `string`.
-However, just like index type queries, you can use `T[K]` in a generic context, which is where its real power comes to life.
-You just have to make sure that the type variable `K extends keyof T`.
-Here's another example with a function named `getProperty`.
-
-```ts
-function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
-    return o[name]; // o[name] is of type T[K]
-}
-```
-
-In `getProperty`, `o: T` and `name: K`, so that means `o[name]: T[K]`.
-Once you return the T[K] result, the compiler will instantiate the actual type of the key, so the return type of `getProperty` will vary according to which property you request.
-
-```ts
-let name: string = getProperty(person, 'name');
-let age: number = getProperty(person, 'age');
-let unknown = getProperty(person, 'unknown'); // error, 'unknown' is not in 'name' | 'age'
-```
-
-## Index types and string index signatures
-
-`keyof` and `T[K]` interact with string index signatures.
-If you have a type with a string index signature, `keyof T` will just be `string`.
-And `T[string]` is just the type of the index signature:
-
-```ts
-interface Map<T> {
-    [key: string]: T;
-}
-let keys: keyof Map<number>; // string
-let value: Map<number>['foo']; // number
-```
-
-# Mapped types
-
-A common task is to take an existing type and make each of its properties optional:
-
-```ts
-interface PersonPartial {
-    name?: string;
-    age?: number;
-}
-```
-
-Or we might want a readonly version:
-
-```ts
-interface PersonReadonly {
-    readonly name: string;
-    readonly age: number;
-}
-```
-
-This happens often enough in Javascript that TypeScript provides a way to create new types based on old types &mdash; **mapped types**.
-In a mapped type, the new type transforms each property in the old type in the same way.
-For example, you can make all properties of a type `readonly` or optional.
-Here are a couple of examples:
-
-```ts
-type Readonly<T> = {
-    readonly [P in keyof T]: T[P];
-}
-type Partial<T> = {
-    [P in keyof T]?: T[P];
-}
-```
-
-And to use it:
-
-```ts
-type PersonPartial = Partial<Person>;
-type ReadonlyPerson = Readonly<Person>;
-```
-
-Let's take a look at the simplest mapped type and its parts:
-
-```ts
-type Keys = 'option1' | 'option2';
-type Flags = { [K in Keys]: boolean };
-```
-
-The syntax resembles the syntax for index signatures with a `for .. in` inside.
-There are three parts:
-
-1. The type variable `K`, which gets bound to each property in turn.
-2. The string literal union `Keys`, which contains the names of properties to iterate over.
-3. The resulting type of the property.
-
-In this simple example, `Keys` is a hard-coded list of property names and the property type is always `boolean`, so this mapped type is equivalent to writing:
-
-```ts
-type Flags = {
-    option1: boolean;
-    option2: boolean;
-}
-```
-
-Real applications, however, look like `Readonly` or `Partial` above.
-They're based on some existing type, and they transform the fields in some way.
-That's where `keyof` and indexed access types come in:
-
-```ts
-type NullablePerson = { [P in keyof Person]: Person[P] | null }
-type PartialPerson = { [P in keyof Person]?: Person[P] }
-```
-
-But it's more useful to have a general version.
-
-```ts
-type Nullable<T> = { [P in keyof T]: T[P] | null }
-type Partial<T> = { [P in keyof T]?: T[P] }
-```
-
-In these examples, the properties list is `keyof T` and the resulting type is some variant of `T[P]`.
-This is a good template for any general use of mapped types.
-Here's one more example, in which `T[P]` is wrapped in a `Proxy<T>` class:
-
-```ts
-type Proxy<T> = {
-    get(): T;
-    set(value: T): void;
-}
-type Proxify<T> = {
-    [P in keyof T]: Proxy<T[P]>;
-}
-function proxify<T>(o: T): Proxify<T> {
-   // ... wrap proxies ...
-}
-let proxyProps = proxify(props);
-```
-
-Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in TypeScript's standard libarary along with `Pick` and `Record`:
-
-```ts
-type Pick<T, K extends keyof T> = {
-    [P in K]: T[P];
-}
-type Record<K extends string | number, T> = {
-    [P in K]: T;
-}
-```
-
-## Inference from mapped types
-
-Now that you know how to wrap the properties of a type, the next thing you'll want to do is unwrap them.
-Fortunately, that's pretty easy:
-
-```ts
-function unproxify<T>(t: Proxify<T>): T {
-    let result = {} as T;
-    for (const k in t) {
-        result[k] = t[k].get();
-    }
-    return result;
-}
-
-let originalProps = unproxify(proxyProps);
-```
-
-Note that this unwrapping inference works best on *homomorphic* mapped types.
-Homomorphic mapped types are mapped types that iterate over every property of some type, and only those properties: `{ [P in keyof T]: X }`.
-In the examples above, `Nullable` and `Partial` are homomorphic whereas `Pick` and `Record` are not.
-One clue is that `Pick` and `Record` both take a union of property names in addition to a source type, which they use instead of `keyof T`.
-If the mapped type is not homomorphic you might have to explicitly give a type parameter to your unwrapping function.
-
 # Type Aliases
 
 Type aliases create a new name for a type.
@@ -781,3 +568,216 @@ let v = new ScientificCalculator(2)
 Without `this` types, `ScientificCalculator` would not have been able to extend `BasicCalculator` and keep the fluent interface.
 `multiply` would have returned `BasicCalculator`, which doesn't have the `sin` method.
 However, with `this` types, `multiply` returns `this`, which is `ScientificCalculator` here.
+
+# Index types
+
+With index types, you can get the compiler to check code that uses dynamic property names.
+For example, a common Javascript pattern is to pick a subset of properties from an object:
+
+```js
+function pluck(o, names) {
+    return names.map(n => o[n]);
+}
+```
+
+Here's how you would write and use this function in TypeScript, using the **index type query** and **indexed access** operators:
+
+```ts
+function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+  return names.map(n => o[n]);
+}
+
+interface Person {
+    name: string;
+    age: number;
+}
+let person: Person;
+let strings: string[] = pluck(person, ['name']); // ok, string[]
+```
+
+The compiler checks that `name` is actually a property on `Person`, and it knows that `strings` is a `string[]` because `name` is a `string`.
+To make this work, the example introduces a couple of new type operators.
+First is `keyof T`, the **index type query operator**.
+For any type `T`, `keyof T` is the union of known, public property names of `T`.
+For example:
+
+```ts
+let personProps: keyof Person; // 'name' | 'age'
+```
+
+`keyof Person` is completely interchangeable with `'name' | 'age'`.
+The difference is that if you add another property to `Person`, say `address: string`, then `keyof Person` will automatically update to be `'name' | 'age' | 'address'`.
+And you can use `keyof` in generic contexts like `pluck`, where you can't possibly know the property names ahead of time.
+That means the compiler will check that you pass the right set of property names to `pluck`:
+
+```ts
+pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
+```
+
+The second operator is `T[K]`, the **indexed access operator**.
+Here, the type syntax reflects the expression syntax.
+That means that `person['name']` has the type `Person['name']` &mdash; which in our example is just `string`.
+However, just like index type queries, you can use `T[K]` in a generic context, which is where its real power comes to life.
+You just have to make sure that the type variable `K extends keyof T`.
+Here's another example with a function named `getProperty`.
+
+```ts
+function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
+    return o[name]; // o[name] is of type T[K]
+}
+```
+
+In `getProperty`, `o: T` and `name: K`, so that means `o[name]: T[K]`.
+Once you return the T[K] result, the compiler will instantiate the actual type of the key, so the return type of `getProperty` will vary according to which property you request.
+
+```ts
+let name: string = getProperty(person, 'name');
+let age: number = getProperty(person, 'age');
+let unknown = getProperty(person, 'unknown'); // error, 'unknown' is not in 'name' | 'age'
+```
+
+## Index types and string index signatures
+
+`keyof` and `T[K]` interact with string index signatures.
+If you have a type with a string index signature, `keyof T` will just be `string`.
+And `T[string]` is just the type of the index signature:
+
+```ts
+interface Map<T> {
+    [key: string]: T;
+}
+let keys: keyof Map<number>; // string
+let value: Map<number>['foo']; // number
+```
+
+# Mapped types
+
+A common task is to take an existing type and make each of its properties optional:
+
+```ts
+interface PersonPartial {
+    name?: string;
+    age?: number;
+}
+```
+
+Or we might want a readonly version:
+
+```ts
+interface PersonReadonly {
+    readonly name: string;
+    readonly age: number;
+}
+```
+
+This happens often enough in Javascript that TypeScript provides a way to create new types based on old types &mdash; **mapped types**.
+In a mapped type, the new type transforms each property in the old type in the same way.
+For example, you can make all properties of a type `readonly` or optional.
+Here are a couple of examples:
+
+```ts
+type Readonly<T> = {
+    readonly [P in keyof T]: T[P];
+}
+type Partial<T> = {
+    [P in keyof T]?: T[P];
+}
+```
+
+And to use it:
+
+```ts
+type PersonPartial = Partial<Person>;
+type ReadonlyPerson = Readonly<Person>;
+```
+
+Let's take a look at the simplest mapped type and its parts:
+
+```ts
+type Keys = 'option1' | 'option2';
+type Flags = { [K in Keys]: boolean };
+```
+
+The syntax resembles the syntax for index signatures with a `for .. in` inside.
+There are three parts:
+
+1. The type variable `K`, which gets bound to each property in turn.
+2. The string literal union `Keys`, which contains the names of properties to iterate over.
+3. The resulting type of the property.
+
+In this simple example, `Keys` is a hard-coded list of property names and the property type is always `boolean`, so this mapped type is equivalent to writing:
+
+```ts
+type Flags = {
+    option1: boolean;
+    option2: boolean;
+}
+```
+
+Real applications, however, look like `Readonly` or `Partial` above.
+They're based on some existing type, and they transform the fields in some way.
+That's where `keyof` and indexed access types come in:
+
+```ts
+type NullablePerson = { [P in keyof Person]: Person[P] | null }
+type PartialPerson = { [P in keyof Person]?: Person[P] }
+```
+
+But it's more useful to have a general version.
+
+```ts
+type Nullable<T> = { [P in keyof T]: T[P] | null }
+type Partial<T> = { [P in keyof T]?: T[P] }
+```
+
+In these examples, the properties list is `keyof T` and the resulting type is some variant of `T[P]`.
+This is a good template for any general use of mapped types.
+Here's one more example, in which `T[P]` is wrapped in a `Proxy<T>` class:
+
+```ts
+type Proxy<T> = {
+    get(): T;
+    set(value: T): void;
+}
+type Proxify<T> = {
+    [P in keyof T]: Proxy<T[P]>;
+}
+function proxify<T>(o: T): Proxify<T> {
+   // ... wrap proxies ...
+}
+let proxyProps = proxify(props);
+```
+
+Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in TypeScript's standard libarary along with `Pick` and `Record`:
+
+```ts
+type Pick<T, K extends keyof T> = {
+    [P in K]: T[P];
+}
+type Record<K extends string | number, T> = {
+    [P in K]: T;
+}
+```
+
+## Inference from mapped types
+
+Now that you know how to wrap the properties of a type, the next thing you'll want to do is unwrap them.
+Fortunately, that's pretty easy:
+
+```ts
+function unproxify<T>(t: Proxify<T>): T {
+    let result = {} as T;
+    for (const k in t) {
+        result[k] = t[k].get();
+    }
+    return result;
+}
+
+let originalProps = unproxify(proxyProps);
+```
+
+Note that this unwrapping inference works best on *homomorphic* mapped types.
+Homomorphic mapped types are mapped types that iterate over every property of some type, and only those properties: `{ [P in keyof T]: X }`.
+In the examples above, `Nullable` and `Partial` are homomorphic whereas `Pick` and `Record` are not.
+One clue is that `Pick` and `Record` both take a union of property names in addition to a source type, which they use instead of `keyof T`.
+If the mapped type is not homomorphic you might have to explicitly give a type parameter to your unwrapping function.

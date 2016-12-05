@@ -367,9 +367,28 @@ let value: Map<number>['foo']; // number
 
 # Mapped types
 
-Mapped types allow you to create new types based on old types.
-For example, you can make all fields of a type `readonly` or optional.
-Here's how you do it:
+A common task is to take an existing type and make each of its properties optional:
+
+```ts
+interface PersonPartial {
+    name?: string;
+    age?: number;
+}
+```
+
+Or we might want a readonly version:
+
+```ts
+interface PersonReadonly {
+    readonly name: string;
+    readonly age: number;
+}
+```
+
+This happens often enough in Javascript that TypeScript provides a way to create new types based on old types &mdash; mapped types.
+In a mapped type, the new type transforms each property in the old type in the same way.
+For example, you can make all properties of a type `readonly` or optional.
+Here are a couple of examples:
 
 ```ts
 type Readonly<T> = {
@@ -383,20 +402,52 @@ type Partial<T> = {
 And to use it:
 
 ```ts
-interface Props {
-    name: string;
-    age: number;
-}
-type UpdateProps = Partial<Props>;
+type PersonPartial = Partial<Person>;
+type ReadonlyPerson = Readonly<Person>;
 ```
 
-The simplest form of a mapped type is `{ [P in 'option1' | 'option2']: boolean }`.
-The syntax resembles the syntax for index signatures.
-`P` is each property in the list of properties `'option1' | 'option2'`, and `boolean` is the resulting type.
-This example just makes a type with two properties, both of type `boolean`.
+Let's take a look at the simplest mapped type and its parts:
 
-You can also add various modifiers like `?` and `readonly`.
-Or you can wrap the resulting properties to make a proxied type:
+```ts
+type Properties = 'option1' | 'option2';
+type Flags = { [P in Properties]: boolean };
+```
+
+The syntax resembles the syntax for index signatures with a `for .. in` inside.
+There are three parts:
+
+1. The type variable `P`, which gets bound to each property in turn.
+2. The string literal union `Properties`, which contains the names of properties to iterate over.
+3. The resulting type of the property.
+
+In this simple example, `Properties` is a hard-coded list of property names and the property type is always `boolean`, so this mapped type is equivalent to writing:
+
+```ts
+type Flags = {
+    option1: boolean;
+    option2: boolean;
+}
+```
+
+Real applications, however, look like `Readonly` or `Partial` above.
+They're based on some existing type, and they transform the fields in some way.
+That's where `keyof` and indexed access types come in:
+
+```ts
+type NullablePerson = { [P in keyof Person]: Person[P] | null }
+type PartialPerson = { [P in keyof Person]?: Person[P] }
+```
+
+But it's more useful to have a general version.
+
+```ts
+type Nullable<T> = { [P in keyof T]: T[P] | null }
+type Partial<T> = { [P in keyof T]?: T[P] }
+```
+
+In these examples, the properties list is `keyof T` and the resulting type is some variant of `T[P]`.
+This is a good template for any general use of mapped types.
+Here's one more example, in which `T[P]` is wrapped in a `Proxy<T>` class:
 
 ```ts
 type Proxy<T> = {

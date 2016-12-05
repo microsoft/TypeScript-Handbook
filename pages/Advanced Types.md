@@ -312,8 +312,7 @@ let strings: string[] = pluck(person, ['name']); // ok, string[]
 The compiler checks that `name` is actually a property on `Person`, and it knows that `strings` is a `string[]` because `name` is a `string`.
 To make this work, the example introduces a couple of new type operators.
 First is `keyof T`, the index type query operator.
-For any type `T`, `keyof T` is the union of property names of `T`.
-The syntax is similar to `typeof` except that it works on types instead of values.
+For any type `T`, `keyof T` is the union of known, public property names of `T`.
 For example:
 
 ```ts
@@ -337,7 +336,7 @@ You just have to make sure that the type variable `K extends keyof T`.
 Here's another example with a function named `getProperty`.
 
 ```ts
-function getProperty<T, K extends keyof T>(o: T, name: K): K[T] {
+function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
     return o[name]; // o[name] is of type T[K]
 }
 ```
@@ -409,18 +408,18 @@ type ReadonlyPerson = Readonly<Person>;
 Let's take a look at the simplest mapped type and its parts:
 
 ```ts
-type Properties = 'option1' | 'option2';
-type Flags = { [P in Properties]: boolean };
+type Keys = 'option1' | 'option2';
+type Flags = { [K in Keys]: boolean };
 ```
 
 The syntax resembles the syntax for index signatures with a `for .. in` inside.
 There are three parts:
 
-1. The type variable `P`, which gets bound to each property in turn.
-2. The string literal union `Properties`, which contains the names of properties to iterate over.
+1. The type variable `K`, which gets bound to each property in turn.
+2. The string literal union `Keys`, which contains the names of properties to iterate over.
 3. The resulting type of the property.
 
-In this simple example, `Properties` is a hard-coded list of property names and the property type is always `boolean`, so this mapped type is equivalent to writing:
+In this simple example, `Keys` is a hard-coded list of property names and the property type is always `boolean`, so this mapped type is equivalent to writing:
 
 ```ts
 type Flags = {

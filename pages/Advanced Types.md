@@ -294,7 +294,7 @@ function pluck(o, names) {
 }
 ```
 
-Here's how you would write and use this function in TypeScript:
+Here's how you would write and use this function in TypeScript, using the **index type query** and **indexed access** operators:
 
 ```ts
 function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
@@ -311,7 +311,7 @@ let strings: string[] = pluck(person, ['name']); // ok, string[]
 
 The compiler checks that `name` is actually a property on `Person`, and it knows that `strings` is a `string[]` because `name` is a `string`.
 To make this work, the example introduces a couple of new type operators.
-First is `keyof T`, the index type query operator.
+First is `keyof T`, the **index type query operator**.
 For any type `T`, `keyof T` is the union of known, public property names of `T`.
 For example:
 
@@ -328,7 +328,7 @@ That means the compiler will check that you pass the right set of property names
 pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
 ```
 
-The second operator is `T[K]`, the indexed access operator.
+The second operator is `T[K]`, the **indexed access operator**.
 Here, the type syntax reflects the expression syntax.
 That means that `person['name']` has the type `Person['name']` &mdash; which in our example is just `string`.
 However, just like index type queries, you can use `T[K]` in a generic context, which is where its real power comes to life.
@@ -384,7 +384,7 @@ interface PersonReadonly {
 }
 ```
 
-This happens often enough in Javascript that TypeScript provides a way to create new types based on old types &mdash; mapped types.
+This happens often enough in Javascript that TypeScript provides a way to create new types based on old types &mdash; **mapped types**.
 In a mapped type, the new type transforms each property in the old type in the same way.
 For example, you can make all properties of a type `readonly` or optional.
 Here are a couple of examples:
@@ -472,6 +472,29 @@ type Record<K extends string | number, T> = {
     [P in K]: T;
 }
 ```
+
+## Inference from mapped types
+
+Now that you know how to wrap the properties of a type, the next thing you'll want to do is unwrap them.
+Fortunately, that's pretty easy:
+
+```ts
+function unproxify<T>(t: Proxify<T>): T {
+    let result = {} as T;
+    for (const k in t) {
+        result[k] = t[k].get();
+    }
+    return result;
+}
+
+let originalProps = unproxify(proxyProps);
+```
+
+Note that this unwrapping inference works best on *homomorphic* mapped types.
+Homomorphic mapped types are mapped types that iterate over every property of some type, and only those properties: `{ [P in keyof T]: X }`.
+In the examples above, `Nullable` and `Partial` are homomorphic whereas `Pick` and `Record` are not.
+One clue is that `Pick` and `Record` both take a union of property names in addition to a source type, which they use instead of `keyof T`.
+If the mapped type is not homomorphic you might have to explicitly give a type parameter to your unwrapping function.
 
 # Type Aliases
 

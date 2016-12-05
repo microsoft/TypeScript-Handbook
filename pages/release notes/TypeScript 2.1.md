@@ -2,7 +2,7 @@
 
 In JavaScript it is fairly common to have APIs that expect property names as parameters, but so far it hasn't been possible to express the type relationships that occur in those APIs.
 
-Enter Index Type Query or `keysof`;
+Enter Index Type Query or `keyof`;
 An indexed type query `keyof T` yields the type of permitted property names for `T`.
 A `keyof T` type is considered a subtype of `string`.
 
@@ -67,7 +67,7 @@ interface Person {
 }
 ```
 
-A partial verion of it can would be:
+A partial version of it would be:
 
 ```ts
 interface PartialPerson {
@@ -90,7 +90,7 @@ type PartialPerson = Partial<Person>;
 Mapped types are produced by taking a union of literal types, and computing a set of properties for a new object type.
 They're like [list comprehensions in Python](https://docs.python.org/2/tutorial/datastructures.html#nested-list-comprehensions), but instead of producing new elements in a list, they produce new properties in a type.
 
-In addition to `Partial`, Mapped Types can enable expressing many usueful transfomrations on types:
+In addition to `Partial`, Mapped Types can express many useful transformations on types:
 
 ```ts
 // Keep types the same, but make each property to be read-only.
@@ -223,7 +223,7 @@ Compiling and running the output should result in the correct behavior on an ES3
 
 TypeScript injects a handful of helper functions such as `__extends` for inheritance, `__assign` for spread operator in object literals and JSX elements, and `__awaiter` for async functions.
 
-Previously there were two options either:
+Previously there were two options:
 
  1. inject helpers in *every* file that needs them, or
  2. no helpers at all with `--noEmitHelpers`.

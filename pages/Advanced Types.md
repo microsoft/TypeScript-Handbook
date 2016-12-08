@@ -352,7 +352,7 @@ function f(sn: string | null): string {
 }
 ```
 
-The null elimination is pretty obvious here, but you can use terser operators too:
+The `null` elimination is pretty obvious here, but you can use terser operators too:
 
 ```ts
 function f(sn: string | null): string {

@@ -388,7 +388,7 @@ For instance, imagine a `Point` class, and imagine a function that we wish to ad
 ```ts
 class Point {
     constuctor(public x, public y) {}
-    getDistance(point: Point) {
+    getDistance(p: Point) {
         let dx = p.x - this.x;
         let dy = p.y - this.y;
         return Math.sqrt(dx ** 2 + dy ** 2);

@@ -101,6 +101,9 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
     },
     "include": [
         "./**/*"
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }
 ```
@@ -117,7 +120,7 @@ import * as React from "react";
 
 export interface HelloProps { compiler: string; framework: string; }
 
-const Hello = (props: HelloProps) => <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
+export const Hello = (props: HelloProps) => <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
 
 ```
 

@@ -283,6 +283,108 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 
 in that order.
 
+# Nullable types
+
+TypeScript has two special types, `null` and `undefined`, that have the values null and undefined respectively.
+We mentioned these briefly in [the Basic Types section](./Basic Types.md).
+By default, the type checker considers `null` and `undefined` assignable to anything.
+Effectively, `null` and `undefined` are valid values of every type.
+That means it's not possible to *stop* them from being assigned to any type, even when you would like to prevent it.
+The inventor of `null`, Tony Hoare, calls this his ["billion dollar mistake"](https://en.wikipedia.org/wiki/Null_pointer#History).
+
+The `--strictNullChecks` flag fixes this: when you declare a variable, it doesn't automatically include `null` or `undefined`.
+You can include them explicitly using a union type:
+
+```ts
+let s = "foo";
+s = null; // error, 'null' is not assignable to 'string'
+let sn: string | null = "bar";
+sn = null; // ok
+
+sn = undefined; // error, 'undefined' is not assignable to 'string | null'
+```
+
+Note that TypeScript treats `null` and `undefined` differently in order to match JavaScript semantics.
+`string | null` is a different type than `string | undefined` and `string | undefined | null`.
+
+## Optional parameters and properties
+
+With `--strictNullChecks`, an optional parameter automatically adds `| undefined`:
+
+```ts
+function f(x: number, y?: number) {
+    return x + (y || 0);
+}
+f(1, 2);
+f(1);
+f(1, undefined);
+f(1, null); // error, 'null' is not assignable to 'number | undefined'
+```
+
+The same is true for optional properties:
+
+```ts
+class C {
+    a: number;
+    b?: number;
+}
+let c = new C();
+c.a = 12;
+c.a = undefined; // error, 'undefined' is not assignable to 'number'
+c.b = 13;
+c.b = undefined; // ok
+c.b = null; // error, 'null' is not assignable to 'number | undefined'
+```
+
+## Type guards and type assertions
+
+Since nullable types are implemented with a union, you need to use a type guard to get rid of the `null`.
+Fortunately, this is the same code you'd write in JavaScript:
+
+```ts
+function f(sn: string | null): string {
+    if (sn == null) {
+        return "default";
+    }
+    else {
+        return sn;
+    }
+}
+```
+
+The `null` elimination is pretty obvious here, but you can use terser operators too:
+
+```ts
+function f(sn: string | null): string {
+    return sn || "default";
+}
+```
+
+In cases where the compiler can't eliminate `null` or `undefined`, you can use the type assertion operator to manually remove them.
+The syntax is postfix `!`: `identifier!` removes `null` and `undefined` from the type of `identifier`:
+
+```ts
+function broken(name: string | null): string {
+  function postfix(epithet: string) {
+    return name.charAt(0) + '.  the ' + epithet; // error, 'name' is possibly null
+  }
+  name = name || "Bob";
+  return postfix("great");
+}
+
+function fixed(name: string | null): string {
+  function postfix(epithet: string) {
+    return name!.charAt(0) + '.  the ' + epithet; // ok
+  }
+  name = name || "Bob";
+  return postfix("great");
+}
+```
+
+The example uses a nested function here because the compiler can't eliminate nulls inside a nested function (except immediately-invoked function expressions).
+That's because it can't track all calls to the nested function, especially if you return it from the outer function.
+Without knowing where the function is called, it can't know what the type of `name` will be at the time the body executes.
+
 # Type Aliases
 
 Type aliases create a new name for a type.

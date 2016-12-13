@@ -121,8 +121,7 @@ import * as React from "react";
 
 export interface HelloProps { compiler: string; framework: string; }
 
-const Hello = (props: HelloProps) => <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
-
+export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
 ```
 
 Note that while this example uses [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)), we could also make our example a little *classier* as well.

@@ -25,7 +25,7 @@ Mode       | Input     | Output                       | Output File Extension
 
 You can specify this mode using either the `--jsx` command line flag or the corresponding option in your [tsconfig.json](./tsconfig.json.md) file.
 
-> *Note: The identifier `React` is hard-coded, so you must make React available with an uppercase R.*
+> *Note: The react namespace (the object invoked for `createElement` and `__spread` when targeting `"react"` JSX emit) defaults to `React` (with an upper-case "R") - this can be changed using the `--reactNamespace` [compiler option](https://www.typescriptlang.org/docs/handbook/compiler-options.html).*
 
 # The `as` operator
 

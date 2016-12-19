@@ -279,7 +279,7 @@ function myCoolFunction() {
 }
 
 myCoolFunction(function(x) { console.log(x) }, [1, 2, 3, 4]);
-myCoolFunction(function(x) { console.log(x) }, 1, 2, 3, 4]);
+myCoolFunction(function(x) { console.log(x) }, 1, 2, 3, 4);
 ```
 
 In this case, we need to use TypeScript to tell any of our callers about the ways `myCoolFunction` can be called using function overloads.
@@ -388,7 +388,7 @@ For instance, imagine a `Point` class, and imagine a function that we wish to ad
 ```ts
 class Point {
     constuctor(public x, public y) {}
-    getDistance(point: Point) {
+    getDistance(p: Point) {
         let dx = p.x - this.x;
         let dy = p.y - this.y;
         return Math.sqrt(dx ** 2 + dy ** 2);

@@ -230,12 +230,7 @@ Here, we show how you can create a variable of a function type and assign it a f
 let mySearch: SearchFunc;
 mySearch = function(source: string, subString: string) {
     let result = source.search(subString);
-    if (result == -1) {
-        return false;
-    }
-    else {
-        return true;
-    }
+    return result > -1;
 }
 ```
 
@@ -246,12 +241,7 @@ We could have, for example, written the above example like this:
 let mySearch: SearchFunc;
 mySearch = function(src: string, sub: string): boolean {
     let result = src.search(sub);
-    if (result == -1) {
-        return false;
-    }
-    else {
-        return true;
-    }
+    return result > -1;
 }
 ```
 
@@ -264,12 +254,7 @@ Had the function expression returned numbers or strings, the type-checker would 
 let mySearch: SearchFunc;
 mySearch = function(src, sub) {
     let result = src.search(sub);
-    if (result == -1) {
-        return false;
-    }
-    else {
-        return true;
-    }
+    return result > -1;
 }
 ```
 

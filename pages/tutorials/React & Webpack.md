@@ -79,6 +79,10 @@ awesome-typescript-loader helps Webpack compile your TypeScript code using the T
 source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
 This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
 
+Please note that awesome-typescript-loader is not the only loader for typescript.
+You could instead use [ts-loader](https://github.com/TypeStrong/ts-loader).
+Read about the differences between them [here](https://github.com/s-panferov/awesome-typescript-loader#differences-between-ts-loader)
+
 Notice that we installed TypeScript as a development dependency.
 We could also have linked TypeScript to a global copy with `npm link typescript`, but this is a less common scenario.
 
@@ -101,6 +105,9 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
     },
     "include": [
         "./**/*"
+    ],
+    "exclude": [
+        "node_modules"
     ]
 }
 ```

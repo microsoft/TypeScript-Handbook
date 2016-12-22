@@ -159,7 +159,7 @@ You can also override existing properties and add new ones:
 
 ```ts
 let obj = { x: 1, y: "string" };
-var newObj = {...obj, z: 3, y: 4}; // { x: number, y:number, x: number }
+var newObj = {...obj, z: 3, y: 4}; // { x: number, y: number, z: number }
 ```
 
 The order of specifying spread operations determines what properties end up in the resulting object;
@@ -170,7 +170,7 @@ Object rests are the dual of object spreads, in that they can extract any extra 
 ```ts
 let obj = { x: 1, y: 1, z: 1 };
 let { z, ...obj1 } = obj;
-obj1; // {x: number; y:number};
+obj1; // {x: number, y:number};
 ```
 
 # Downlevel Async Functions

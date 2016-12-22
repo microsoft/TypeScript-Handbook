@@ -104,7 +104,7 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "jsx": "react"
     },
     "include": [
-        "./**/*"
+        "./src/*"
     ],
     "exclude": [
         "node_modules"

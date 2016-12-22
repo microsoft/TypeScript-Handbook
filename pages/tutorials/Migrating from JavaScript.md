@@ -83,11 +83,11 @@ You can read more there.
 ## Webpack
 
 Webpack integration is pretty simple.
-You can use `ts-loader`, a TypeScript loader, combined with `source-map-loader` for easier debugging.
+You can use `awesome-typescript-loader`, a TypeScript loader, combined with `source-map-loader` for easier debugging.
 Simply run
 
 ```shell
-npm install ts-loader source-map-loader
+npm install awesome-typescript-loader source-map-loader
 ```
 
 and merge in options from the following into your `webpack.config.js` file:
@@ -109,8 +109,8 @@ module.exports = {
 
     module: {
         loaders: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-            { test: /\.tsx?$/, loader: "ts-loader" }
+            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader" }
         ],
 
         preLoaders: [
@@ -123,7 +123,11 @@ module.exports = {
 };
 ```
 
-It's important to note that `ts-loader` will need to run before any other loader that deals with `.js` files.
+It's important to note that awesome-typescript-loader will need to run before any other loader that deals with `.js` files.
+
+The same goes for [ts-loader](https://github.com/TypeStrong/ts-loader), another TypeScript loader for Webpack.
+You can read more about the differences between the two [here](https://github.com/s-panferov/awesome-typescript-loader#differences-between-ts-loader).
+
 You can see an example of using Webpack in our [tutorial on React and Webpack](./React & Webpack.md).
 
 # Moving to TypeScript Files

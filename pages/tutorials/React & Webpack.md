@@ -105,9 +105,6 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
     },
     "include": [
         "./src/**/*"
-    ],
-    "exclude": [
-        "node_modules"
     ]
 }
 ```

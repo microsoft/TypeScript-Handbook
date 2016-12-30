@@ -517,7 +517,7 @@ function createElement(tagName: string): Element {
 You can combine string literal types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
 Discriminated unions are useful in functional programming.
 Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today.
-There are four ingredients:
+There are three ingredients:
 
 1. Types that have a common, string literal property &mdash; the *discriminant*.
 2. A type alias that takes the union of those types &mdash; the *union*.

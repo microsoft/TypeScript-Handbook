@@ -196,7 +196,7 @@ If multiple JS files get produced, we'll need to use `<script>` tags on our webp
 
 ##### MyTestPage.html (excerpt)
 
-```ts
+```html
     <script src="Validation.js" type="text/javascript" />
     <script src="LettersOnlyValidator.js" type="text/javascript" />
     <script src="ZipCodeValidator.js" type="text/javascript" />

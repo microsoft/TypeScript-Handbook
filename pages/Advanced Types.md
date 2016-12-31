@@ -794,7 +794,7 @@ type ReadonlyPerson = Readonly<Person>;
 ```
 
 Property mapping is a [homomorphic](https://en.wikipedia.org/wiki/Homomorphism) transformation, so if you wanted to do the
- opposite of the `Partial` type and make all optional properties required (a non-homomorphic transformation) you could create 
+ opposite of the `Partial` type and make all optional properties required (a non-homomorphic transformation) you could create
  a type `EnsureAll`
 
 ```ts

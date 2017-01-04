@@ -834,7 +834,7 @@ type Partial<T> = { [P in keyof T]?: T[P] }
 
 In these examples, the properties list is `keyof T` and the resulting type is some variant of `T[P]`.
 This is a good template for any general use of mapped types.
-That's because this kind of transformation is homomorphic, which means that the mapping applies to every property of `T` and no others.
+That's because this kind of transformation is [homomorphic](https://en.wikipedia.org/wiki/Homomorphism), which means that the mapping applies only to properties of `T` and no others.
 The compiler knows that it can copy all the existing property modifiers before adding any new ones.
 For example, if `Person.name` were readonly, `Partial<Person>.name` would be readonly and optional.
 
@@ -865,15 +865,14 @@ type Record<K extends string | number, T> = {
 }
 ```
 
-`Readonly` and `Partial` are homomorphic whereas `Pick` and `Record` are not.
-One clue that `Pick` and `Record` are not homomorphic is that they both take a union of property names:
+`Readonly`, `Partial` and `Pick` are homomorphic whereas `Record` is not.
+One clue that `Record` is not homomorphic is that it doesn't take an input type to copy properties from:
 
 ```ts
 type ThreeStringProps = Record<'prop1' | 'prop2' | 'prop3', string>
-type PersonJustName = Pick<Person, 'name'>;
 ```
 
-These non-homomorphic types are essentially creating new properties (even though `Pick` uses `Person` as a source), so they don't copy property modifiers from anywhere; if `Person.name` were readonly, `Pick<Person, 'name'>.name` would not be readonly.
+Non-homomorphic types are essentially creating new properties, so they can't copy property modifiers from anywhere.
 
 ## Inference from mapped types
 
@@ -892,5 +891,5 @@ function unproxify<T>(t: Proxify<T>): T {
 let originalProps = unproxify(proxyProps);
 ```
 
-Note that this unwrapping inference works best on homomorphic mapped types.
-If the mapped type is not homomorphic you might have to explicitly give a type parameter to your unwrapping function.
+Note that this unwrapping inference only works on homomorphic mapped types.
+If the mapped type is not homomorphic you will have to explicitly give a type parameter to your unwrapping function.

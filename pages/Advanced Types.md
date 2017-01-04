@@ -777,7 +777,7 @@ In a mapped type, the new type transforms each property in the old type in the s
 For example, you can make all properties of a type `readonly` or optional.
 Here are a couple of examples:
 
-```ts
+ ```ts
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];
 }
@@ -892,4 +892,4 @@ let originalProps = unproxify(proxyProps);
 ```
 
 Note that this unwrapping inference only works on homomorphic mapped types.
-If the mapped type is not homomorphic you will have to explicitly give a type parameter to your unwrapping function.
+If the mapped type is not homomorphic you'll have to give an explicit type parameter to your unwrapping function.

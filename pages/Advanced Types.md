@@ -777,7 +777,7 @@ In a mapped type, the new type transforms each property in the old type in the s
 For example, you can make all properties of a type `readonly` or optional.
 Here are a couple of examples:
 
- ```ts
+```ts
 type Readonly<T> = {
     readonly [P in keyof T]: T[P];
 }

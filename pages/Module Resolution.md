@@ -387,7 +387,7 @@ Normally the compiler will attempt to resolve all module imports before it start
 Every time it successfully resolves an `import` to a file, the file is added to the set of files the compiler will process later on.
 
 The `--noResolve` compiler options instructs the compiler not to "add" any files to the compilation that were not passed on the command line.
-It will still try to resolve the module to files, but if the file as not specified, it will not be included.
+It will still try to resolve the module to files, but if the file is not specified, it will not be included.
 
 For instance:
 

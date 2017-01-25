@@ -139,7 +139,7 @@ The element instance type is interesting because it must be assignable to `JSX.E
 By default `JSX.ElementClass` is `{}`, but it can be augmented to limit the use of JSX to only those types that conform to the proper interface.
 
 ```ts
-declare namespace JSX JSX {
+declare namespace JSX {
   interface ElementClass {
     render: any;
   }

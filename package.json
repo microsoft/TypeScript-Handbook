@@ -18,6 +18,6 @@
   "homepage": "https://github.com/Microsoft/TypeScript-Handbook#readme",
   "devDependencies": {
     "glob": "^5.0.15",
-    "markdownlint": "0.0.8"
+    "markdownlint": "latest"
   }
 }

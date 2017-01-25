@@ -98,7 +98,7 @@ validators["Letters only"] = new Validation.LettersOnlyValidator();
 
 // Show whether each string passed each validator
 for (let s of strings) {
-    for (var name in validators) {
+    for (let name in validators) {
         console.log(`"${ s }" - ${ validators[name].isAcceptable(s) ? "matches" : "does not match" } ${ name }`);
     }
 }
@@ -196,7 +196,7 @@ If multiple JS files get produced, we'll need to use `<script>` tags on our webp
 
 ##### MyTestPage.html (excerpt)
 
-```ts
+```html
     <script src="Validation.js" type="text/javascript" />
     <script src="LettersOnlyValidator.js" type="text/javascript" />
     <script src="ZipCodeValidator.js" type="text/javascript" />

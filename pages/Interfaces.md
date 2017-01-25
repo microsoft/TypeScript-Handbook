@@ -86,8 +86,8 @@ interface SquareConfig {
 function createSquare(config: SquareConfig): { color: string; area: number } {
     let newSquare = {color: "white", area: 100};
     if (config.color) {
-        // Error: Property 'collor' does not exist on type 'SquareConfig'
-        newSquare.color = config.collor;
+        // Error: Property 'clor' does not exist on type 'SquareConfig'
+        newSquare.color = config.clor;
     }
     if (config.width) {
         newSquare.area = config.width * config.width;
@@ -97,6 +97,49 @@ function createSquare(config: SquareConfig): { color: string; area: number } {
 
 let mySquare = createSquare({color: "black"});
 ```
+
+# Readonly properties
+
+Some properties should only be modifiable when an object is first created.
+You can specify this by putting `readonly` before the name of the property:
+
+```ts
+interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+```
+
+You can construct a `Point` by assigning an object literal.
+After the assignment, `x` and `y` can't be changed.
+
+```ts
+let p1: Point = { x: 10, y: 20 };
+p1.x = 5; // error!
+```
+
+TypeScript comes with a `ReadonlyArray<T>` type that is the same as `Array<T>` with all mutating methods removed, so you can make sure you don't change your arrays after creation:
+
+```ts
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!
+```
+
+On the last line of the snippet you can see that even assigning the entire `ReadonlyArray` back to a normal array is illegal.
+You can still override it with a type assertion, though:
+
+```ts
+a = ro as number[];
+```
+
+## `readonly` vs `const`
+
+The easiest way to remember whether to use readonly or const is to ask whether you're using it on a variable or a property.
+Variables use `const` whereas properties use `readonly`.
 
 # Excess Property Checks
 
@@ -187,12 +230,7 @@ Here, we show how you can create a variable of a function type and assign it a f
 let mySearch: SearchFunc;
 mySearch = function(source: string, subString: string) {
     let result = source.search(subString);
-    if (result == -1) {
-        return false;
-    }
-    else {
-        return true;
-    }
+    return result > -1;
 }
 ```
 
@@ -203,17 +241,12 @@ We could have, for example, written the above example like this:
 let mySearch: SearchFunc;
 mySearch = function(src: string, sub: string): boolean {
     let result = src.search(sub);
-    if (result == -1) {
-        return false;
-    }
-    else {
-        return true;
-    }
+    return result > -1;
 }
 ```
 
 Function parameters are checked one at a time, with the type in each corresponding parameter position checked against each other.
-If you do not want to specify types at all, Typescript's contextual typing can infer the argument types since the function value is assigned directly to a variable of type `SearchFunc`.
+If you do not want to specify types at all, TypeScript's contextual typing can infer the argument types since the function value is assigned directly to a variable of type `SearchFunc`.
 Here, also, the return type of our function expression is implied by the values it returns (here `false` and `true`).
 Had the function expression returned numbers or strings, the type-checker would have warned us that return type doesn't match the return type described in the `SearchFunc` interface.
 
@@ -221,12 +254,7 @@ Had the function expression returned numbers or strings, the type-checker would 
 let mySearch: SearchFunc;
 mySearch = function(src, sub) {
     let result = src.search(sub);
-    if (result == -1) {
-        return false;
-    }
-    else {
-        return true;
-    }
+    return result > -1;
 }
 ```
 
@@ -281,6 +309,18 @@ interface NumberDictionary {
     name: string;      // error, the type of 'name' is not a subtype of the indexer
 }
 ```
+
+Finally, you can make index signatures readonly in order to prevent assignment to their indices:
+
+```ts
+interface ReadonlyStringArray {
+    readonly [index: number]: string;
+}
+let myArray: ReadonlyStringArray = ["Alice", "Bob"];
+myArray[2] = "Mallory"; // error!
+```
+
+You can't set `myArray[2]` because the index signature is readonly.
 
 # Class Types
 
@@ -470,7 +510,8 @@ class TextBox extends Control {
     select() { }
 }
 
-class Image extends Control {
+class Image {
+    select() { }
 }
 
 class Location {

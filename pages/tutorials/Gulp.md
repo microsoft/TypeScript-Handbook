@@ -1,4 +1,5 @@
 This quick start guide will teach you how to build TypeScript with [gulp](http://gulpjs.com) and then add [Browserify](http://browserify.org), [uglify](http://lisperator.net/uglifyjs/), or [Watchify](https://github.com/substack/watchify) to the gulp pipeline.
+This guide also adds functionality for [Babel](https://babeljs.io/) functionality using [Babelify](https://github.com/babel/babelify).
 
 We assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
 
@@ -16,8 +17,8 @@ To start, we're going to structure our project in the following way:
 
 ```text
 proj/
-    +- src/
-    +- dist/
+   ├─ src/
+   └─ dist/
 ```
 
 TypeScript files will start out in your `src` folder, run through the TypeScript compiler and end up in `dist`.
@@ -49,14 +50,14 @@ First install TypeScript and gulp globally.
 (You might need to start `npm install` commands in this guide with `sudo` if you're on a Unix system.)
 
 ```shell
-npm install -g typescript gulp-cli
+npm install -g gulp-cli
 ```
 
-Then install `gulp` and `gulp-typescript` in your project's dev dependencies.
+Then install `typescript`, `gulp` and `gulp-typescript` in your project's dev dependencies.
 [Gulp-typescript](https://www.npmjs.com/package/gulp-typescript) is a gulp plugin for Typescript.
 
 ```shell
-npm install --save-dev gulp gulp-typescript
+npm install --save-dev typescript gulp gulp-typescript
 ```
 
 ## Write a simple example
@@ -96,7 +97,7 @@ var tsProject = ts.createProject("tsconfig.json");
 
 gulp.task("default", function () {
     return tsProject.src()
-        .pipe(ts(tsProject))
+        .pipe(tsProject())
         .js.pipe(gulp.dest("dist"));
 });
 ```
@@ -393,11 +394,12 @@ cat dist/bundle.js
 
 ## Babel
 
-First install Babelify.
+First install Babelify and the Babel preset for ES2015.
 Like Uglify, Babelify mangles code, so we'll need vinyl-buffer and gulp-sourcemaps.
+By default Babelify will only process files with extensions of `.js`, `.es`, `.es6` and `.jsx` so we need to add the `.ts` extension as an option to Babelify.
 
 ```shell
-npm install --save-dev babelify vinyl-buffer gulp-sourcemaps
+npm install --save-dev babelify babel-preset-es2015 vinyl-buffer gulp-sourcemaps
 ```
 
 Now change your gulpfile to the following:
@@ -427,7 +429,10 @@ gulp.task('default', ['copyHtml'], function () {
         packageCache: {}
     })
     .plugin(tsify)
-    .transform("babelify")
+    .transform('babelify', {
+        presets: ['es2015'],
+        extensions: ['.ts']
+    })
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(buffer())

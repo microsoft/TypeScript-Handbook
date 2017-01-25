@@ -88,7 +88,7 @@ export * from "./ZipCodeValidator";  // exports class 'ZipCodeValidator'
 
 # Import
 
-Importing is just about as easy as exporting from an module.
+Importing is just about as easy as exporting from a module.
 Importing an exported declaration is done through using one of the `import` forms below:
 
 ## Import a single export from a module
@@ -431,11 +431,11 @@ if (needZipValidation) {
 ```ts
 declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
 
-import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
+import  * as Zip from "./ZipCodeValidator";
 
 if (needZipValidation) {
     require(["./ZipCodeValidator"], (ZipCodeValidator: typeof Zip) => {
-        let validator = new ZipCodeValidator();
+        let validator = new ZipCodeValidator.ZipCodeValidator();
         if (validator.isAcceptable("...")) { /* ... */ }
     });
 }
@@ -498,6 +498,79 @@ Now we can `/// <reference>` `node.d.ts` and then load the modules using `import
 /// <reference path="node.d.ts"/>
 import * as URL from "url";
 let myUrl = URL.parse("http://www.typescriptlang.org");
+```
+
+### Shorthand ambient modules
+
+If you don't want to take the time to write out declarations before using a new module, you can use a shorthand declaration to get started quickly.
+
+##### declarations.d.ts
+
+```ts
+declare module "hot-new-module";
+```
+
+All imports from a shorthand module will have the `any` type.
+
+```ts
+import x, {y} from "hot-new-module";
+x(y);
+```
+
+### Wildcard module declarations
+
+Some module loaders such as [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#plugin-syntax)
+and [AMD](https://github.com/amdjs/amdjs-api/blob/master/LoaderPlugins.md) allow non-JavaScript content to be imported.
+These typically use a prefix or suffix to indicate the special loading semantics.
+Wildcard module declarations can be used to cover these cases.
+
+```ts
+declare module "*!text" {
+    const content: string;
+    export default content;
+}
+// Some do it the other way around.
+declare module "json!*" {
+    const value: any;
+    export default value;
+}
+```
+
+Now you can import things that match `"*!text"` or `"json!*"`.
+
+```ts
+import fileContent from "./xyz.txt!text";
+import data from "json!http://example.com/data.json";
+console.log(data, fileContent);
+```
+
+### UMD modules
+
+Some libraries are designed to be used in many module loaders, or with no module loading (global variables).
+These are known as [UMD](https://github.com/umdjs/umd) or [Isomorphic](http://isomorphic.net) modules.
+These libraries can be accessed through either an import or a global variable.
+For example:
+
+##### math-lib.d.ts
+
+```ts
+export const isPrime(x: number): boolean;
+export as namespace mathLib;
+```
+
+The library can then be used as an import within modules:
+
+```ts
+import { isPrime } from "math-lib";
+isPrime(2);
+mathLib.isPrime(2); // ERROR: can't use the global definition from inside a module
+```
+
+It can also be used as a global variable, but only inside of a script.
+(A script is a file with no imports or exports.)
+
+```ts
+mathLib.isPrime(2);
 ```
 
 # Guidance for structuring modules

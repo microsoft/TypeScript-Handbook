@@ -153,7 +153,7 @@ notSure = false; // okay, definitely a boolean
 
 The `any` type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type-checking during compilation.
 You might expect `Object` to play a similar role, as it does in other languages.
-But variables of type `Object` only allow you to assign any value to them -- you can't call arbitrary methods on them, even ones that actually exist:
+But variables of type `Object` only allow you to assign any value to them - you can't call arbitrary methods on them, even ones that actually exist:
 
 ```ts
 let notSure: any = 4;
@@ -188,6 +188,56 @@ Declaring variables of type `void` is not useful because you can only assign `un
 
 ```ts
 let unusable: void = undefined;
+```
+
+# Null and Undefined
+
+In TypeScript, both `undefined` and `null` actually have their own types named `undefined` and `null` respectively.
+Much like `void`, they're not extremely useful on their own:
+
+```ts
+// Not much else we can assign to these variables!
+let u: undefined = undefined;
+let n: null = null;
+```
+
+By default `null` and `undefined` are subtypes of all other types.
+That means you can assign `null` and `undefined` to something like `number`.
+
+However, when using the `--strictNullChecks` flag, `null` and `undefined` are only assignable to `void` and their respective types.
+This helps avoid *many* common errors.
+In cases where you want to pass in either a `string` or `null` or `undefined`, you can use the union type `string | null | undefined`.
+Once again, more on union types later on.
+
+> As a note: we encourage the use of `--strictNullChecks` when possible, but for the purposes of this handbook, we will assume it is turned off.
+
+# Never
+
+The `never` type represents the type of values that never occur.
+For instance, `never` is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns;
+Variables also acquire the type `never` when narrowed by any type guards that can never be true.
+
+The `never` type is a subtype of, and assignable to, every type; however, *no* type is a subtype of, or assignable to, `never` (except `never` itself).
+Even `any` isn't assignable to `never`.
+
+Some examples of functions returning `never`:
+
+```ts
+// Function returning never must have unreachable end point
+function error(message: string): never {
+    throw new Error(message);
+}
+
+// Inferred return type is never
+function fail() {
+    return error("Something failed");
+}
+
+// Function returning never must have unreachable end point
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
 ```
 
 # Type assertions

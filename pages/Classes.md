@@ -1,6 +1,6 @@
 # Introduction
 
-Traditional JavaScript focuses on functions and prototype-based inheritance as the basic means of building up reusable components, but this may feel a bit awkward to programmers more comfortable with an object-oriented approach, where classes inherit functionality and objects are built from these classes.
+Traditional JavaScript uses functions and prototype-based inheritance to build up reusable components, but this may feel a bit awkward to programmers more comfortable with an object-oriented approach, where classes inherit functionality and objects are built from these classes.
 Starting with ECMAScript 2015, also known as ECMAScript 6, JavaScript programmers will be able to build their applications using this object-oriented class-based approach.
 In TypeScript, we allow developers to use these techniques now, and compile them down to JavaScript that works across all major browsers and platforms, without having to wait for the next version of JavaScript.
 
@@ -189,27 +189,70 @@ console.log(howard.name); // error
 
 Notice that while we can't use `name` from outside of `Person`, we can still use it from within an instance method of `Employee` because `Employee` derives from `Person`.
 
-## Parameter properties
-
-In our last example, we had to declare a private member `name` and a constructor parameter `theName`, and we then immediately set `name` to `theName`.
-This turns out to be a very common practice.
-*Parameter properties* let you create and initialize a member in one place.
-Here's a further revision of the previous `Animal` class using a parameter property:
+A constructor may also be marked `protected`.
+This means that the class cannot be instantiated outside of its containing class, but can be extended. For example,
 
 ```ts
-class Animal {
-    constructor(private name: string) { }
-    move(distanceInMeters: number) {
-        console.log(`${this.name} moved ${distanceInMeters}m.`);
+class Person {
+    protected name: string;
+    protected constructor(theName: string) { this.name = theName; }
+}
+
+// Employee can extend Person
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee("Howard", "Sales");
+let john = new Person("John"); // Error: The 'Person' constructor is protected
+```
+
+# Readonly modifier
+
+You can make properties readonly by using the `readonly` keyword.
+Readonly properties must be initialized at their declaration or in the constructor.
+
+```ts
+class Octopus {
+    readonly name: string;
+    readonly numberOfLegs: number = 8;
+    constructor (theName: string) {
+        this.name = theName;
+    }
+}
+let dad = new Octopus("Man with the 8 strong legs");
+dad.name = "Man with the 3-piece suit"; // error! name is readonly.
+```
+
+## Parameter properties
+
+In our last example, we had to declare a readonly member `name` and a constructor parameter `theName` in the `Octopus` class, and we then immediately set `name` to `theName`.
+This turns out to be a very common practice.
+*Parameter properties* let you create and initialize a member in one place.
+Here's a further revision of the previous `Octopus` class using a parameter property:
+
+```ts
+class Octopus {
+    readonly numberOfLegs: number = 8;
+    constructor(readonly name: string) {
     }
 }
 ```
 
-Notice how we dropped `theName` altogether and just use the shortened `private name: string` parameter on the constructor to create and initialize the `name` member.
+Notice how we dropped `theName` altogether and just use the shortened `readonly name: string` parameter on the constructor to create and initialize the `name` member.
 We've consolidated the declarations and assignment into one location.
 
-Parameter properties are declared by prefixing a constructor parameter with an accessibility modifier.
-Using `private` for a parameter property declares and initializes a private member; likewise, the same is done for `public` and `protected`.
+Parameter properties are declared by prefixing a constructor parameter with an accessibility modifier or `readonly`, or both.
+Using `private` for a parameter property declares and initializes a private member; likewise, the same is done for `public`, `protected`, and `readonly`.
 
 # Accessors
 
@@ -266,7 +309,12 @@ if (employee.fullName) {
 
 To prove to ourselves that our accessor is now checking the passcode, we can modify the passcode and see that when it doesn't match we instead get the message warning us we don't have access to update the employee.
 
-Note: Accessors require you to set the compiler to output ECMAScript 5 or higher.
+A couple of things to note about accessors:
+
+First, accessors require you to set the compiler to output ECMAScript 5 or higher.
+Downlevelling to ECMAScript 3 is not supported.
+Second, accessors with a `get` and no `set` are automatically inferred to be `readonly`.
+This is helpful when generating a `.d.ts` file from your code, because users of your property can see that they can't change it.
 
 # Static Properties
 

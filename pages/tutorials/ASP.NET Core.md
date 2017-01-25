@@ -99,7 +99,7 @@ Replace the default `tsconfig.json` with the following:
       "noImplicitAny": true,
       "noEmitOnError": true,
       "sourceMap": true,
-      "target": "es5",
+      "target": "es5"
   },
   "files": [
       "./app.ts"
@@ -225,42 +225,36 @@ Add the following `"dependencies"` to `package.json` to install Angular 2 and Sy
   },
 ```
 
-## Install typings for dependencies
-
-Angular 2 includes es6-shim for Promise support, but TypeScript still needs the types.
-Open a command prompt, then change directory to the app source:
-
-```shell
-cd C:\Users\<you>\Documents\Visual Studio 2015\Projects\<app>\src\<app>
-npm install -g typings
-typings install --global dt~es6-shim
-```
-
 ## Update tsconfig.json
 
-Now that Angular 2 and its dependencies are installed, we need to enable TypeScript's experimental support for decorators and include the es6-shim typings.
-In the future decorators and ES6 will be the default and these settings will not be needed.
-Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section, and add `"../typings/index.d.ts"` to the `"files"` section.
-Finally, we need to add a new entry in `"files"` for another file, `"./model.ts"`, that we will create.
-The tsconfig should now look like this:
+Now that Angular 2 and its dependencies are installed, we need to enable TypeScript's experimental support for decorators.
+We also need to add declarations for ES2015, since Angular uses core-js for things like `Promise`.
+In the future decorators will be the default and these settings will not be needed.
+
+Add `"experimentalDecorators": true, "emitDecoratorMetadata": true` to the `"compilerOptions"` section.
+Next, add `"lib": ["es2015", "es5", "dom"]` to `"compilerOptions"` as well to bring in declarations from ES2015.
+Finally, we'll need to add a new entry in `"files"` for another file, `"./model.ts"`, which we'll create.
+Our tsconfig should now look like this:
 
 ```json
 {
-  "compilerOptions": {
-      "noImplicitAny": true,
-      "noEmitOnError": true,
-      "sourceMap": true,
-      "experimentalDecorators": true,
-      "emitDecoratorMetadata": true,
-      "target": "es5"
-  },
-  "files": [
-      "./app.ts",
-      "./model.ts",
-      "./main.ts",
-      "../typings/main.d.ts"
-  ],
-  "compileOnSave": true
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "target": "es5",
+        "lib": [
+            "es2015", "es5", "dom"
+        ]
+    },
+    "files": [
+        "./app.ts",
+        "./model.ts",
+        "./main.ts",
+    ],
+    "compileOnSave": true
 }
 ```
 

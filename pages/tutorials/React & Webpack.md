@@ -16,10 +16,9 @@ To start, we're going to structure our project in the following way:
 
 ```text
 proj/
-   +- src/
-   |    +- components/
-   |
-   +- dist/
+├─ dist/
+└─ src/
+   └─ components/
 ```
 
 TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.
@@ -32,8 +31,9 @@ mkdir src
 cd src
 mkdir components
 cd ..
-mkdir dist
 ```
+
+Webpack will eventually generate the `dist` directory for us.
 
 # Initialize the project
 
@@ -45,51 +45,46 @@ npm init
 
 You'll be given a series of prompts.
 You can use the defaults except for your entry point.
-For your entry point, use `./dist/bundle.js`.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
 # Install our dependencies
 
-First ensure TypeScript, Typings, and webpack are installed globally.
+First ensure Webpack is installed globally.
 
 ```shell
-npm install -g typescript typings webpack
+npm install -g webpack
 ```
 
 Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file.
-[Typings](https://www.npmjs.com/package/typings) is a package manager for grabbing definition files.
 
-Let's now add React and React-DOM as dependencies to your `package.json` file:
+Let's now add React and React-DOM, along with their declaration files, as dependencies to your `package.json` file:
 
 ```shell
-npm install --save react react-dom
+npm install --save react react-dom @types/react @types/react-dom
 ```
 
-Next, we'll add development-time dependencies on [ts-loader](https://www.npmjs.com/package/ts-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader).
+That `@types/` prefix means that we also want to get the declaration files for React and React-DOM.
+Usually when you import a path like `"react"`, it will look inside of the `react` package itself;
+however, not all packages include declaration files, so TypeScript also looks in the `@types/react` package as well.
+You'll see that we won't even have to think about this later on.
+
+Next, we'll add development-time dependencies on [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader).
 
 ```shell
-npm install --save-dev ts-loader source-map-loader
-npm link typescript
+npm install --save-dev typescript awesome-typescript-loader source-map-loader
 ```
 
 Both of these dependencies will let TypeScript and webpack play well together.
-ts-loader helps webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
+awesome-typescript-loader helps Webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
 source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
 This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
 
-Linking TypeScript allows ts-loader to use your global installation of TypeScript instead of needing a separate local copy.
-If you want a local copy, just run `npm install typescript`.
+Please note that awesome-typescript-loader is not the only loader for typescript.
+You could instead use [ts-loader](https://github.com/TypeStrong/ts-loader).
+Read about the differences between them [here](https://github.com/s-panferov/awesome-typescript-loader#differences-between-ts-loader)
 
-Finally, we'll use Typings to grab the declaration files for React and ReactDOM:
-
-```shell
-typings install --global --save dt~react
-typings install --global --save dt~react-dom
-```
-
-The `--global` flag, along with the `dt~` prefix tells Typings to grab any declaration files from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), a repository of community-authored `.d.ts` files.
-
-This command will create a file called `typings.json` and a folder called `typings` in the current directory.
+Notice that we installed TypeScript as a development dependency.
+We could also have linked TypeScript to a global copy with `npm link typescript`, but this is a less common scenario.
 
 # Add a TypeScript configuration file
 
@@ -108,18 +103,13 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "target": "es5",
         "jsx": "react"
     },
-    "files": [
-        "./typings/index.d.ts",
-        "./src/components/Hello.tsx",
-        "./src/index.tsx"
+    "include": [
+        "./src/**/*"
     ]
 }
 ```
 
-We're including `typings/index.d.ts`, which Typings created for us.
-That file automatically includes all of your installed dependencies.
-
-You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
+You can learn more about `tsconfig.json` files [here](../../tsconfig.json.md).
 
 # Write some code
 
@@ -131,15 +121,24 @@ import * as React from "react";
 
 export interface HelloProps { compiler: string; framework: string; }
 
-export class Hello extends React.Component<HelloProps, {}> {
+export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
+```
+
+Note that while this example uses [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)), we could also make our example a little *classier* as well.
+
+```ts
+import * as React from "react";
+
+export interface HelloProps { compiler: string; framework: string; }
+
+// 'HelloProps' describes the shape of props.
+// State is never set so we use the 'undefined' type.
+export class Hello extends React.Component<HelloProps, undefined> {
     render() {
         return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
     }
 }
 ```
-
-Note that while this example is quite *classy*, we didn't need to use a class.
-Other methods of using React (like [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)) should work just as well.
 
 Next, let's create an `index.tsx` in `src` with the following source:
 
@@ -156,7 +155,7 @@ ReactDOM.render(
 ```
 
 We just imported our `Hello` component into `index.tsx`.
-Notice that unlike with `"react"` or `"react-dom"`, we used a *relative path* to `index.tsx` - this is important.
+Notice that unlike with `"react"` or `"react-dom"`, we used a *relative path* to `Hello.tsx` - this is important.
 If we hadn't, TypeScript would've instead tried looking in our `node_modules` folder.
 
 We'll also need a page to display our `Hello` component.
@@ -195,7 +194,8 @@ Create a `webpack.config.js` file at the root of the project directory.
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        filename: "./dist/bundle.js",
+        filename: "bundle.js",
+        path: __dirname + "/dist"
     },
 
     // Enable sourcemaps for debugging webpack's output.
@@ -208,8 +208,8 @@ module.exports = {
 
     module: {
         loaders: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'.
-            { test: /\.tsx?$/, loader: "ts-loader" }
+            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader" }
         ],
 
         preLoaders: [

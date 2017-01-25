@@ -215,16 +215,19 @@ function buildName(firstName: string, ...restOfName: string[]) {
 let buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
 ```
 
-# Lambdas and using `this`
+# `this`
 
-How `this` works in JavaScript functions is a common theme in programmers coming to JavaScript.
-Indeed, learning how to use it is something of a rite of passage as developers become more accustomed to working in JavaScript.
+Learning how to use `this` in JavaScript is something of a rite of passage.
 Since TypeScript is a superset of JavaScript, TypeScript developers also need to learn how to use `this` and how to spot when it's not being used correctly.
-A whole article could be written on how to use `this` in JavaScript, and many have. Here, we'll focus on some of the basics.
+Fortunately, TypeScript lets you catch incorrect uses of `this` with a couple of techniques.
+If you need to learn how `this` works in JavaScript, though, first read Yehuda Katz's [Understanding JavaScript Function Invocation and "this"](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/).
+Yehuda's article explains the inner workings of `this` very well, so we'll just cover the basics here.
+
+## `this` and arrow functions
 
 In JavaScript, `this` is a variable that's set when a function is called.
 This makes it a very powerful and flexible feature, but it comes at the cost of always having to know about the context that a function is executing in.
-This can be notoriously confusing when, for instance, a function is used as a callback.
+This is notoriously confusing, especially when returning a function or passing a function as an argument.
 
 Let's look at an example:
 
@@ -248,22 +251,24 @@ let pickedCard = cardPicker();
 alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
 
+Notice that `createCardPicker` is a function that itself returns a function.
 If we tried to run the example, we would get an error instead of the expected alert box.
 This is because the `this` being used in the function created by `createCardPicker` will be set to `window` instead of our `deck` object.
-This happens as a result of calling `cardPicker()`. Here, there is no dynamic binding for `this` other than Window. (note: under strict mode, this will be undefined rather than window).
+That's because we call `cardPicker()` on its own.
+A top-level non-method syntax call like will use `window` for `this`.
+(Note: under strict mode, `this` will be `undefined` rather than `window`).
 
 We can fix this by making sure the function is bound to the correct `this` before we return the function to be used later.
 This way, regardless of how it's later used, it will still be able to see the original `deck` object.
-
-To fix this, we switch the function expression to use the arrow syntax (`() => {}`) rather than the JavaScript function expression.
-This will automatically capture the `this` available when the function is created rather than when it is invoked:
+To do this, we change the function expression to use the ECMAScript 6 arrow syntax.
+Arrow functions capture the `this` where the function is created rather than where it is invoked:
 
 ```ts
 let deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
     cards: Array(52),
     createCardPicker: function() {
-        // Notice: the line below is now a lambda, allowing us to capture 'this' earlier
+        // NOTE: the line below is now an arrow function, allowing us to capture 'this' right here
         return () => {
             let pickedCard = Math.floor(Math.random() * 52);
             let pickedSuit = Math.floor(pickedCard / 13);
@@ -279,7 +284,116 @@ let pickedCard = cardPicker();
 alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 ```
 
-For more information on ways to think about `this`, you can read Yehuda Katz's [Understanding JavaScript Function Invocation and "this"](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/).
+Even better, TypeScript will warn you when you make this mistake if you pass the `--noImplicitThis` flag to the compiler.
+It will point out that `this` in `this.suits[pickedSuit]` is of type `any`.
+
+## `this` parameters
+
+Unfortunately, the type of `this.suits[pickedSuit]` is still `any`.
+That's because `this` comes from the function expression inside the object literal.
+To fix this, you can provide an explicit `this` parameter.
+`this` parameters are fake parameters that come first in the parameter list of a function:
+
+```ts
+function f(this: void) {
+    // make sure `this` is unusable in this standalone function
+}
+```
+
+Let's add a couple of interfaces to our example above, `Card` and `Deck`, to make the types clearer and easier to reuse:
+
+```ts
+interface Card {
+    suit: string;
+    card: number;
+}
+interface Deck {
+    suits: string[];
+    cards: number[];
+    createCardPicker(this: Deck): () => Card;
+}
+let deck: Deck = {
+    suits: ["hearts", "spades", "clubs", "diamonds"],
+    cards: Array(52),
+    // NOTE: The function now explicitly specifies that its callee must be of type Deck
+    createCardPicker: function(this: Deck) {
+        return () => {
+            let pickedCard = Math.floor(Math.random() * 52);
+            let pickedSuit = Math.floor(pickedCard / 13);
+
+            return {suit: this.suits[pickedSuit], card: pickedCard % 13};
+        }
+    }
+}
+
+let cardPicker = deck.createCardPicker();
+let pickedCard = cardPicker();
+
+alert("card: " + pickedCard.card + " of " + pickedCard.suit);
+```
+
+Now TypeScript knows that `createCardPicker` expects to be called on a `Deck` object.
+That means that `this` is of type `Deck` now, not `any`, so `--noImplicitThis` will not cause any errors.
+
+### `this` parameters in callbacks
+
+You can also run into errors with `this` in callbacks, when you pass functions to a library that will later call them.
+Because the library that calls your callback will call it like a normal function, `this` will be `undefined`.
+With some work you can use `this` parameters to prevent errors with callbacks too.
+First, the library author needs to annotate the callback type with `this`:
+
+```ts
+interface UIElement {
+    addClickListener(onclick: (this: void, e: Event) => void): void;
+}
+```
+
+`this: void` means that `addClickListener` expects `onclick` to be a function that does not require a `this` type.
+Second, annotate your calling code with `this`:
+
+```ts
+class Handler {
+    info: string;
+    onClickBad(this: Handler, e: Event) {
+        // oops, used this here. using this callback would crash at runtime
+        this.info = e.message;
+    };
+}
+let h = new Handler();
+uiElement.addClickListener(h.onClickBad); // error!
+```
+
+With `this` annotated, you make it explicit that `onClickBad` must be called on an instance of `Handler`.
+Then TypeScript will detect that `addClickListener` requires a function that has `this: void`.
+To fix the error, change the type of `this`:
+
+```ts
+class Handler {
+    info: string;
+    onClickGood(this: void, e: Event) {
+        // can't use this here because it's of type void!
+        console.log('clicked!');
+    }
+}
+let h = new Handler();
+uiElement.addClickListener(h.onClickGood);
+```
+
+Because `onClickGood` specifies its `this` type as `void`, it is legal to pass to `addClickListener`.
+Of course, this also means that it can't use `this.info`.
+If you want both then you'll have to use an arrow function:
+
+```ts
+class Handler {
+    info: string;
+    onClickGood = (e: Event) => { this.info = e.message }
+}
+```
+
+This works because arrow functions don't capture `this`, so you can always pass them to something that expects `this: void`.
+The downside is that one arrow function is created per object of type Handler.
+Methods, on the other hand, are only created once and attached to Handler's prototype.
+They are shared between all objects of type Handler.
 
 # Overloads
 

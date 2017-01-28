@@ -255,7 +255,7 @@ Notice that `createCardPicker` is a function that itself returns a function.
 If we tried to run the example, we would get an error instead of the expected alert box.
 This is because the `this` being used in the function created by `createCardPicker` will be set to `window` instead of our `deck` object.
 That's because we call `cardPicker()` on its own.
-A top-level non-method syntax call like will use `window` for `this`.
+A top-level non-method syntax call like this will use `window` for `this`.
 (Note: under strict mode, `this` will be `undefined` rather than `window`).
 
 We can fix this by making sure the function is bound to the correct `this` before we return the function to be used later.

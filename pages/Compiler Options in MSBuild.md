@@ -26,27 +26,32 @@ Compiler Option                              | MSBuild Property Name            
 `--allowSyntheticDefaultImports`             | TypeScriptAllowSyntheticDefaultImports     | boolean
 `--allowUnreachableCode`                     | TypeScriptAllowUnreachableCode             | boolean
 `--allowUnusedLabels`                        | TypeScriptAllowUnusedLabels                | boolean
+`--alwaysStrict`                             | TypeScriptAlwaysStrict                     | boolean
 `--baseUrl`                                  | TypeScriptBaseUrl                          | File path
 `--charset`                                  | TypeScriptCharset                          |
 `--declaration`                              | TypeScriptGeneratesDeclarations            | boolean
 `--declarationDir`                           | TypeScriptDeclarationDir                   | File path
 `--diagnostics`                              | *Not supported in MSBuild*                 |
+`--disableSizeLimit`                         | *Not supported in MSBuild*                 |
 `--emitBOM`                                  | TypeScriptEmitBOM                          | boolean
 `--emitDecoratorMetadata`                    | TypeScriptEmitDecoratorMetadata            | boolean
 `--experimentalAsyncFunctions`               | TypeScriptExperimentalAsyncFunctions       | boolean
 `--experimentalDecorators`                   | TypeScriptExperimentalDecorators           | boolean
 `--forceConsistentCasingInFileNames`         | TypeScriptForceConsistentCasingInFileNames | boolean
 `--help`                                     | *Not supported in MSBuild*                 |
+`--importHelpers`                            | TypeScriptImportHelpers                    | boolean
 `--inlineSourceMap`                          | TypeScriptInlineSourceMap                  | boolean
 `--inlineSources`                            | TypeScriptInlineSources                    | boolean
 `--init`                                     | *Not supported in MSBuild*                 |
 `--isolatedModules`                          | TypeScriptIsolatedModules                  | boolean
 `--jsx`                                      | TypeScriptJSXEmit                          | `React` or `Preserve`
+`--jsxFactory`                               | TypeScriptJSXFactory                       | boolean
 `--lib`                                      | TypeScriptLib                              | Comma-separated list of strings
 `--listEmittedFiles`                         | *Not supported in MSBuild*                 |
 `--listFiles`                                | *Not supported in MSBuild*                 |
 `--locale`                                   | *automatic*                                | Automatically set to PreferredUILang value
 `--mapRoot`                                  | TypeScriptMapRoot                          | File path
+`--maxNodeModuleJsDepth`                     | *Not supported in MSBuild*                 |
 `--module`                                   | TypeScriptModuleKind                       | `AMD`, `CommonJs`, `UMD`, `System` or `ES6`
 `--moduleResolution`                         | TypeScriptModuleResolution                 | `Classic` or `Node`
 `--newLine`                                  | TypeScriptNewLine                          | `CRLF` or `LF`
@@ -78,6 +83,7 @@ Compiler Option                              | MSBuild Property Name            
 `--sourceMap`                                | TypeScriptSourceMap                        | File path
 `--sourceRoot`                               | TypeScriptSourceRoot                       | File path
 `--strictNullChecks`                         | TypeScriptStrictNullChecks                 | boolean
+`--stripInternal`                            | TypeScriptStripInternal                    | boolean
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
 `--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
 `--target`                                   | TypeScriptTarget                           | `ES3`, `ES5`, or `ES6`

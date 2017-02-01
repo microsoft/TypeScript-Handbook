@@ -91,6 +91,9 @@ The `"exclude"` property defaults to excluding the `node_modules`, `bower_compon
 Any files that are referenced by files included via the `"files"` or `"include"` properties are also included.
 Similarly, if a file `B.ts` is referenced by another file `A.ts`, then `B.ts` cannot be excluded unless the referencing file `A.ts` is also specified in the `"exclude"` list.
 
+Please note that the compiler does not include files that can be possible outputs; e.g. if the input includes `index.ts`, then `index.d.ts` and `index.js` is excluded.
+We do not recommend having files that differ only in extension next to each other, that breaks assumptions the compiler makes about module resolution.
+
 A `tsconfig.json` file is permitted to be completely empty, which compiles all files included by default (as described above) with the default compiler options.
 
 Compiler options specified on the command line override those specified in the `tsconfig.json` file.

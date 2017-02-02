@@ -45,7 +45,7 @@ Compiler Option                              | MSBuild Property Name            
 `--init`                                     | *Not supported in MSBuild*                 |
 `--isolatedModules`                          | TypeScriptIsolatedModules                  | boolean
 `--jsx`                                      | TypeScriptJSXEmit                          | `React` or `Preserve`
-`--jsxFactory`                               | TypeScriptJSXFactory                       | boolean
+`--jsxFactory`                               | TypeScriptJSXFactory                       | qualified name
 `--lib`                                      | TypeScriptLib                              | Comma-separated list of strings
 `--listEmittedFiles`                         | *Not supported in MSBuild*                 |
 `--listFiles`                                | *Not supported in MSBuild*                 |

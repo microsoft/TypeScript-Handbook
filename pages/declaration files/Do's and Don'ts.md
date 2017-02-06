@@ -199,7 +199,7 @@ interface Moment {
 }
 ```
 
-*Do* use union types whenver possible:
+*Do* use union types whenever possible:
 
 ```ts
 /* OK */

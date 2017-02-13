@@ -693,12 +693,15 @@ interface Person {
     name: string;
     age: number;
 }
-let person: Person;
+let person: Person = {
+    name: 'Jarid',
+    age: 35
+};
 let strings: string[] = pluck(person, ['name']); // ok, string[]
 ```
 
-The compiler checks that `name` is actually a property on `Person`, and it knows that `strings` is a `string[]` because `name` is a `string`.
-To make this work, the example introduces a couple of new type operators.
+The compiler checks that `name` is actually a property on `Person`.
+The example introduces a couple of new type operators.
 First is `keyof T`, the **index type query operator**.
 For any type `T`, `keyof T` is the union of known, public property names of `T`.
 For example:

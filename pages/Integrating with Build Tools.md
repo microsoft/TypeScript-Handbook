@@ -1,3 +1,14 @@
+Build tools
+
+* [Browserify](#browserify)
+* [Duo](#duo)
+* [Grunt](#grunt)
+* [Gulp](#gulp)
+* [Jspm](#jspm)
+* [Webpack](#webpack)
+* [MSBuild](#msbuild)
+* [NuGet](#nuget)
+
 # Browserify
 
 ### Install
@@ -89,7 +100,7 @@ module.exports = function(grunt) {
 
 More details: [TypeStrong/grunt-ts](https://github.com/TypeStrong/grunt-ts)
 
-# gulp
+# Gulp
 
 ### Install
 
@@ -115,7 +126,7 @@ gulp.task("default", function () {
 
 More details: [ivogabe/gulp-typescript](https://github.com/ivogabe/gulp-typescript)
 
-# jspm
+# Jspm
 
 ### Install
 
@@ -127,7 +138,7 @@ _Note: Currently TypeScript support in jspm is in 0.16beta_
 
 More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSamples/tree/master/jspm)
 
-# webpack
+# Webpack
 
 ### Install
 

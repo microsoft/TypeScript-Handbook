@@ -142,7 +142,7 @@ For example, an import statement like `import { b } from "./moduleB"` in  `/root
 Recall that Node.js looked for a file named `moduleB.js`, then an applicable `package.json`, and then for an `index.js`.
 
 Similarly a non-relative import will follow the Node.js resolution logic, first looking up a file, then looking up an applicable folder.
-So `import { b } from "moduleB"` in source file `/src/moduleA.ts` would result in the following lookups:
+So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would result in the following lookups:
 
 1. `/root/src/node_modules/moduleB.ts`
 2. `/root/src/node_modules/moduleB.tsx`

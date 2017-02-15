@@ -146,7 +146,7 @@ More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSa
 npm install ts-loader --save-dev
 ```
 
-### Basic webpack.config.js
+### Basic webpack.config.js when using Webpack 1
 
 ```js
 module.exports = {
@@ -162,6 +162,27 @@ module.exports = {
         loaders: [
             // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
             { test: /\.tsx?$/, loader: "ts-loader" }
+        ]
+    }
+}
+```
+
+### Basic webpack.config.js when using Webpack 2
+
+```js
+module.exports = {
+    entry: "./src/index.tsx",
+    output: {
+        path: '/',
+        filename: "bundle.js"
+    },
+    resolve: {
+        extensions: [".tsx", ".ts", ".js"]
+    },
+    module: {
+        rules: [
+            // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
+            { test: /\.tsx?$/, loader: "ts-loader", exclude: /node_modules/ }
         ]
     }
 }

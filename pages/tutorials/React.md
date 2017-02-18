@@ -132,7 +132,7 @@ export default Hello;
 // helpers
 
 function getExclamationMarks(numChars: number) {
-  return Array(numChars).join("!");
+  return Array(numChars).join('!');
 }
 ```
 
@@ -403,8 +403,8 @@ Its function will be to ensure that increments raise the enthusiasm level by 1, 
 // src/reducers/index.tsx
 
 import { EnthusiasmAction } from '../actions';
-import { StoreState } from "../types/index";
-import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from "../constants/index";
+import { StoreState } from '../types/index';
+import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../constants/index';
 
 export function enthusiasm(state: StoreState, action: EnthusiasmAction): StoreState {
   switch (action.type) {
@@ -551,12 +551,12 @@ To put this all together, we need to create a store with an initial state, and s
 
 ```ts
 import { createStore } from 'redux';
-import { enthusiasm } from "./reducers/index";
-import { StoreState } from "./types/index";
+import { enthusiasm } from './reducers/index';
+import { StoreState } from './types/index';
 
 const store = createStore<StoreState>(enthusiasm, {
   enthusiasmLevel: 1,
-  languageName: "TypeScript",
+  languageName: 'TypeScript',
 });
 ```
 

@@ -185,10 +185,10 @@ ReactDOM.render(
 );
 ```
 
-# Adding Style 😎
+# Adding style 😎
 
 Styling a component with our setup is easy.
-To make one for the `Hello` component, we can create a file at `src/components/Hello.css`.
+To style our `Hello` component, we can create a CSS file at `src/components/Hello.css`.
 
 ```css
 .hello {
@@ -206,7 +206,7 @@ To make one for the `Hello` component, we can create a file at `src/components/H
 }
 ```
 
-The tools that create-react-app uses (namely, Webpack) allow us to simply import the stylesheets we're interested in.
+The tools that create-react-app uses (namely, Webpack and various loaders) allow us to simply import the stylesheets we're interested in.
 So in `src/components/Hello.tsx`, we'll add the following import.
 
 ```ts

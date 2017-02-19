@@ -190,6 +190,49 @@ Facebook makes CDN-hosted versions of React available, and you can [read more ab
 
 Create a `webpack.config.js` file at the root of the project directory.
 
+Note: Webpack v.1.* and v2.* need different configuration, as v2 introduced breaking changes.
+
+## Webpack 2 configuration file
+
+```js
+module.exports = {
+    entry: "./src/index.tsx",
+    output: {
+        filename: "bundle.js",
+        path: __dirname + "/dist"
+    },
+
+    // Enable sourcemaps for debugging webpack's output.
+    devtool: "source-map",
+
+    resolve: {
+    // Add '.ts' and '.tsx' as resolvable extensions.
+    // Webpack 2 does not allow empty extensions anymore.
+    extensions: [".json", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+  },
+
+  module: {
+    rules: [
+        // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+        { test: /\.tsx?$/, loader: "awesome-typescript-loader", exclude: /(node_modules)/ },
+        // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+        { enforce: "pre", test: /\.js$/, loader: "source-map-loader", exclude: /(node_modules)/ }
+      ]
+    },
+
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
+    },
+};
+```
+
+## Webpack 1 configuration file
+
 ```js
 module.exports = {
     entry: "./src/index.tsx",

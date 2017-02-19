@@ -84,13 +84,6 @@ If your type definitions depend on another package:
 * *Don't* copy the declarations in your package either.
 * *Do* depend on the npm type declaration package if it doesn't package its declaration files.
 
-## Publicize your declaration file
-
-After publishing your declaration file with your package, make sure to add a reference to it in the [DefinitelyTyped repo external package list](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/types-2.0/notNeededPackages.json).
-Adding this will allow search tools to know that your package provides its own declarations.
-
-<!-- TODO: more about this. -->
-
 # Publish to [@types](https://www.npmjs.com/~types)
 
 Packages on under the [@types](https://www.npmjs.com/~types) organization are published automatically from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) using the [types-publisher tool](https://github.com/Microsoft/types-publisher).

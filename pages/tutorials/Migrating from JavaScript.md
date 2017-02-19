@@ -214,7 +214,7 @@ Luckily this is pretty easy.
 If TypeScript complains about a package like `lodash`, you can just write
 
 ```shell
-npm install -s @types/lodash
+npm install -S @types/lodash
 ```
 
 If you're using a module option other than `commonjs`, you'll need to set your `moduleResolution` option to `node`.

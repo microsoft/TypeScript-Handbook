@@ -4,10 +4,12 @@ TypeScript 2.2 adds support for the ECMAScript 2015 mixin class pattern (see [MD
 
 ##### First some terminology
 
-* A **mixin constructor type** refers to a type that has a single construct signature with a single rest argument of type `any[]` and an object-like return type. For example, given an object-like type `X`, `new (...args: any[]) => X` is a mixin constructor type with an instance type `X`.
-* A **mixin class** is a class declaration or expression that `extends` an expression of a type parameter type. The following rules apply to mixin class declarations:
-  1. The type parameter type of the `extends` expression must be constrained to a mixin constructor type.
-  2. The constructor of a mixin class (if any) must have a single rest parameter of type `any[]` and must use the spread operator to pass those parameters as arguments in a `super(...args)` call.
+A **mixin constructor type** refers to a type that has a single construct signature with a single rest argument of type `any[]` and an object-like return type. For example, given an object-like type `X`, `new (...args: any[]) => X` is a mixin constructor type with an instance type `X`.
+
+A **mixin class** is a class declaration or expression that `extends` an expression of a type parameter type. The following rules apply to mixin class declarations:
+
+* The type parameter type of the `extends` expression must be constrained to a mixin constructor type.
+* The constructor of a mixin class (if any) must have a single rest parameter of type `any[]` and must use the spread operator to pass those parameters as arguments in a `super(...args)` call.
 
 Given an expression `Base` of a parametric type `T` with a constraint `X`, a mixin class `class C extends Base {...}` is processed as if `Base` had type `X` and the resulting type is the intersection `typeof C & T`.
 In other words, a mixin class is represented as an intersection between the mixin class constructor type and the parametric base class constructor type.

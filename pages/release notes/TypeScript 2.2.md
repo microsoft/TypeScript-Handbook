@@ -71,7 +71,7 @@ const WithLocation = <T extends Constructor<Point>>(Base: T) =>
 
 # `object` type
 
-TypeScript did not have a type that represents the non-primitive type, i.e. any thing that is not `number` | `string` | `boolean` | `symbol` | `null` | `undefined`. Enter the new `object` type.
+TypeScript did not have a type that represents the non-primitive type, i.e. any thing that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`. Enter the new `object` type.
 
 With `object` type, APIs like `Object.create` can be better represented. For example:
 

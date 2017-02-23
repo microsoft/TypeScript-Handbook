@@ -42,7 +42,7 @@ It still represents having a single property called `label` that is of type stri
 Notice we didn't have to explicitly say that the object we pass to `printLabel` implements this interface like we might have to in other languages.
 Here, it's only the shape that matters. If the object we pass to the function meets the requirements listed, then it's allowed.
 
-It's worth pointing out that the type-checker does not require that these properties come in any sort of order, only that the properties the interface requires are present and have the required type.
+> Note: It's worth pointing out that the type-checker does not require that these properties come in any sort of order, only that the properties the interface requires are present and have the required type.
 
 # Optional Properties
 

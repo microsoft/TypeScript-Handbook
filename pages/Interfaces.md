@@ -143,7 +143,7 @@ Variables use `const` whereas properties use `readonly`.
 
 # Excess Property Checks
 
-In our first example using interfaces, TypeScript let us pass `{ size: number; label: string; }` to something that only expected a `{ label: string; }`.
+In our first example using interfaces, TypeScript lets us pass `{ size: number; label: string; }` to something that only expected a `{ label: string; }`.
 We also just learned about optional properties, and how they're useful when describing so-called "option bags".
 
 However, combining the two naively would let you to shoot yourself in the foot the same way you might in JavaScript.

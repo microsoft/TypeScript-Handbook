@@ -17,8 +17,7 @@ function reverse(s: String): String;
 function reverse(s: string): string;
 ```
 
-Instead of `Object`, you can use the new `object` type added in TypeScript 2.2.
-Follow [this link](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-2.html#object-type) for more info.
+Instead of `Object`, use the non-primitive `object` type ([added in TypeScript 2.2](../release notes/TypeScript 2.2.md#object-type)).
 
 ## Generics
 

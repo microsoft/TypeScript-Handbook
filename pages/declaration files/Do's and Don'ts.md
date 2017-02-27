@@ -17,9 +17,8 @@ function reverse(s: String): String;
 function reverse(s: string): string;
 ```
 
-If you're tempted to use the type `Object`, consider using `any` instead.
-There is currently no way in TypeScript to specify an object that is "not a primitive".
-<!--(Revisit if/when #1809 is implemented)-->
+Instead of `Object`, you can use the new `object` type added in TypeScript 2.2.
+Follow [this link](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-2.html#object-type) for more info.
 
 ## Generics
 

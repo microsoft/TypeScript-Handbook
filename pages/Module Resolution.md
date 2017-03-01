@@ -199,13 +199,13 @@ Value of *baseUrl* is determined as either:
 
 Note that relative module imports are not impacted by setting the baseUrl, as they are always resolved relative to their importing files.
 
-You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/docs/api.html#config-baseUrl) and [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#baseurl) documentation.
+You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/docs/api.html#config-baseUrl) and [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#baseurl) documentation.
 
 ### Path mapping
 
 Sometimes modules are not directly located under *baseUrl*.
 For instance, an import to a module `"jquery"` would be translated at runtime to `"node_modules\jquery\dist\jquery.slim.min.js"`.
-Loaders use a mapping configuration to map module names to files at run-time, see [RequireJs documentation](http://requirejs.org/docs/api.html#config-paths) and [SystemJS documentation](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#map-config).
+Loaders use a mapping configuration to map module names to files at run-time, see [RequireJs documentation](http://requirejs.org/docs/api.html#config-paths) and [SystemJS documentation](https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#paths).
 
 The TypeScript compiler supports the declaration of such mappings using `"paths"` property in `tsconfig.json` files.
 Here is an example for how to specify the `"paths"` property for `jquery`.
@@ -264,15 +264,15 @@ Following this logic, the compiler will attempt to resolve the two imports as su
 * import 'folder1/file2'
   1. pattern '*' is matched and wildcard captures the whole module name
   2. try first substitution in the list: '*' -> `folder1/file2`
-  3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder1/file2.ts`.
+  3. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/folder1/file2.ts`.
   4. File exists. Done.
 * import 'folder2/file3'
   1. pattern '*' is matched and wildcard captures the whole module name
   2. try first substitution in the list: '*' -> `folder2/file3`
-  3. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/folder2/file3.ts`.
+  3. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/folder2/file3.ts`.
   4. File does not exist, move to the second substitution
   5. second substitution 'generated/*' -> `generated/folder2/file3`
-  6. result of substitution is relative name - combine it with *baseUrl* -> `projectRoot/generated/folder2/file3.ts`.
+  6. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/generated/folder2/file3.ts`.
   7. File exists. Done.
 
 ### Virtual Directories with `rootDirs`

@@ -157,7 +157,7 @@ Most people expect the output to be
 Remember what we mentioned earlier about variable capturing?
 Every function expression we pass to `setTimeout` actually refers to the same `i` from the same scope.
 
-Let's take a minute to consider that means.
+Let's take a minute to consider what that means.
 `setTimeout` will run a function after some number of milliseconds, *but only* after the `for` loop has stopped executing;
 By the time the `for` loop has stopped executing, the value of `i` is `10`.
 So each time the given function gets called, it will print out `10`!
@@ -472,7 +472,7 @@ function f([first, second]: [number, number]) {
     console.log(first);
     console.log(second);
 }
-f(input);
+f([1, 2]);
 ```
 
 You can create a variable for the remaining items in a list using the syntax `...`:

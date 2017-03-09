@@ -628,7 +628,7 @@ export class SomeType { /* ... */ }
 export function someFunc() { /* ... */ }
 ```
 
-Conversly when importing:
+Conversely when importing:
 
 ### Explicitly list imported names
 

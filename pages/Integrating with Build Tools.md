@@ -146,27 +146,6 @@ More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSa
 npm install ts-loader --save-dev
 ```
 
-### Basic webpack.config.js when using Webpack 1
-
-```js
-module.exports = {
-    entry: "./src/index.tsx",
-    output: {
-        filename: "bundle.js"
-    },
-    resolve: {
-        // Add '.ts' and '.tsx' as a resolvable extension.
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
-    },
-    module: {
-        loaders: [
-            // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
-            { test: /\.tsx?$/, loader: "ts-loader" }
-        ]
-    }
-}
-```
-
 ### Basic webpack.config.js when using Webpack 2
 
 ```js
@@ -183,6 +162,27 @@ module.exports = {
         rules: [
             // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
             { test: /\.tsx?$/, use: ["ts-loader"], exclude: /node_modules/ }
+        ]
+    }
+}
+```
+
+### Basic webpack.config.js when using Webpack 1
+
+```js
+module.exports = {
+    entry: "./src/index.tsx",
+    output: {
+        filename: "bundle.js"
+    },
+    resolve: {
+        // Add '.ts' and '.tsx' as a resolvable extension.
+        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+    },
+    module: {
+        loaders: [
+            // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
+            { test: /\.tsx?$/, loader: "ts-loader" }
         ]
     }
 }

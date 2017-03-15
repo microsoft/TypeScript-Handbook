@@ -26,7 +26,7 @@ We'll create a new project called `my-app`:
 create-react-app my-app --scripts-version=react-scripts-ts
 ```
 
-[react-scripts-ts](https://www.npmjs.com/package/react-scripts-ts) is just a set of adjustments to take the standard create-react-app project pipeline and bring TypeScript into the mix.
+[react-scripts-ts](https://www.npmjs.com/package/react-scripts-ts) is a set of adjustments to take the standard create-react-app project pipeline and bring TypeScript into the mix.
 
 At this point, your project layout should more or less look something like the following:
 
@@ -326,7 +326,7 @@ In this case we didn't need to install `@types/redux` because Redux already come
 ## Defining our state
 
 We need to define the shape of the state which Redux will store.
-For this, we can just create a file called `src/types/index.tsx` which will contain definitions for types that we might use throughout the program.
+For this, we can create a file called `src/types/index.tsx` which will contain definitions for types that we might use throughout the program.
 
 ```ts
 // src/types/index.tsx
@@ -511,7 +511,7 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.EnthusiasmAction>)
 
 Finally, we're ready to call `connect`.
 `connect` will first take `mapStateToProps` and `mapDispatchToProps`, and then return another function that we can use to wrap our component.
-Our resulting container is just:
+Our resulting container is defined with the following line of code:
 
 ```ts
 export default connect(mapStateToProps, mapDispatchToProps)(Hello);

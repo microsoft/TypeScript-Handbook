@@ -28,7 +28,7 @@ create-react-app my-app --scripts-version=react-scripts-ts
 
 [react-scripts-ts](https://www.npmjs.com/package/react-scripts-ts) is a set of adjustments to take the standard create-react-app project pipeline and bring TypeScript into the mix.
 
-At this point, your project layout should more or less look something like the following:
+At this point, your project layout should look like the following:
 
 ```text
 my-app/
@@ -58,7 +58,7 @@ Running the project is as simple as running
 npm run start
 ```
 
-This runs the `start` script specified in our `package.json`, and will spawn off a server reacts to updates as we save our files.
+This runs the `start` script specified in our `package.json`, and will spawn off a server which reloads the page as we save our files.
 Typically the server runs at `http://localhost:3000`, but should be automatically opened for you.
 
 This tightens the iteration loop by allowing us to quickly preview changes.
@@ -77,9 +77,9 @@ If you'd like, you can run `npm run start` and `npm run test` side by side so th
 
 # Creating a production build
 
-When running the project (as specified earlier), we didn't end up with an optimized build.
+When running the project with `npm run start`, we didn't end up with an optimized build.
 Typically, we want the code we ship to users to be as fast and small as possible.
-Certain optimizations (like minification) can accomplish this, but often take more time.
+Certain optimizations like minification can accomplish this, but often take more time.
 We call builds like this "production" builds (as opposed to development builds).
 
 To run a production build, just run
@@ -90,7 +90,8 @@ npm run build
 
 This will create an optimized JS and CSS build in `./build/static/js` and `./build/static/css` respectively.
 
-You won't need to run a production build most of the time, but it's often useful to do so before committing changes.
+You won't need to run a production build most of the time,
+but it is useful if you need to measure things like the final size of your app.
 
 # Creating a component
 
@@ -113,7 +114,7 @@ export interface Props {
   enthusiasmLevel?: number;
 }
 
-const Hello = ({ name, enthusiasmLevel = 1 }: Props) => {
+function Hello({ name, enthusiasmLevel = 1 }: Props) {
   if (enthusiasmLevel <= 0) {
     throw new Error('You could be a little more enthusiastic. :D');
   }
@@ -121,7 +122,7 @@ const Hello = ({ name, enthusiasmLevel = 1 }: Props) => {
   return (
     <div className="hello">
       <div className="greeting">
-        Hello {name + getExclamationMarks(enthusiasmLevel)}!
+        Hello {name + getExclamationMarks(enthusiasmLevel)}
       </div>
     </div>
   );
@@ -132,7 +133,7 @@ export default Hello;
 // helpers
 
 function getExclamationMarks(numChars: number) {
-  return Array(numChars).join('!');
+  return Array(numChars + 1).join('!');
 }
 ```
 
@@ -140,13 +141,14 @@ Notice that we defined a type named `Props` that specifies the properties our co
 `name` is a required `string`, and `enthusiasmLevel` is an optional `number` (which you can tell from the `?` that we wrote out after its name).
 
 We also wrote `Hello` as a stateless function component (an SFC).
-To be specific, `Hello` is a variable being assigned an arrow function.
-That arrow function destructures a given `Props` object, and defaults `enthusiasmLevel` to `1` if it isn't defined.
+To be specific, `Hello` is a function that takes a `Props` object, and destructures it.
+If `enthusiasmLevel` isn't given in our `Props` object, it will default to `1`.
 
+Writing functions is one of two primary [ways React allows us to make components]((https://facebook.github.io/react/docs/components-and-props.html#functional-and-class-components)).
 If we wanted, we *could* have written it out as a class as follows:
 
 ```ts
-class Hello extends React.Component<Props, undefined> {
+class Hello extends React.Component<Props, object> {
   render() {
     const { name, enthusiasmLevel = 1 } = this.props;
 
@@ -157,7 +159,7 @@ class Hello extends React.Component<Props, undefined> {
     return (
       <div className="hello">
         <div className="greeting">
-          Hello {name + getExclamationMarks(enthusiasmLevel)}!
+          Hello {name + getExclamationMarks(enthusiasmLevel)}
         </div>
       </div>
     );
@@ -165,12 +167,12 @@ class Hello extends React.Component<Props, undefined> {
 }
 ```
 
-But we don't really need to think about state in this example - in fact, we specified it as `undefined` in `React.Component<Props, undefined>`, so writing an SFC tends to be shorter.
+But we don't really need to think about state in this example - in fact, we specified it as `object` in `React.Component<Props, object>`, so writing an SFC tends to be shorter.
 We will revisit how to bind global application state with Redux in a bit, but local component state is more useful at the presentational level when creating generic UI elements that can be shared between libraries.
 
-Now that we've written our component, let's replace our render of `<App />` with a render of `<Hello ... />`.
+Now that we've written our component, let's dive into `index.tsx` and replace our render of `<App />` with a render of `<Hello ... />`.
 
-First we'll import it.
+First we'll import it at the top of the file:
 
 ```ts
 import Hello from './components/Hello.tsx';
@@ -206,7 +208,7 @@ To style our `Hello` component, we can create a CSS file at `src/components/Hell
 }
 ```
 
-The tools that create-react-app uses (namely, Webpack and various loaders) allow us to simply import the stylesheets we're interested in.
+The tools that create-react-app uses (namely, Webpack and various loaders) allow us to import the stylesheets we're interested in.
 So in `src/components/Hello.tsx`, we'll add the following import.
 
 ```ts
@@ -224,9 +226,10 @@ Let's reiterate what they were:
 
 We can use these requirements to write a few tests for our components.
 
-But first, let's add our first dependency.
-Enzyme is a common tool in the React ecosystem that makes it easier to write tests for how components will behave.
-While we have jsdom support available to emulate how a component will act in the DOM, Enzyme makes it easier to make certain queries about our components.
+But first, let's install Enzyme.
+[Enzyme](http://airbnb.io/enzyme/) is a common tool in the React ecosystem that makes it easier to write tests for how components will behave.
+By default, our application includes a library called jsdom to allow us to simulate the DOM and test its runtime behavior without a browser.
+Enzyme is similar, but builds on jsdom and makes it easier to make certain queries about our components.
 
 Let's install it as a development-time dependency.
 
@@ -236,10 +239,12 @@ npm install -D enzyme @types/enzyme react-addons-test-utils
 
 Notice we installed packages `enzyme` as well as `@types/enzyme`.
 The `enzyme` package refers to the package containing JavaScript code that actually gets run, while `@types/enzyme` is a package that contains declaration files (`.d.ts` files) so that TypeScript can understand how you can use Enzyme.
-We also had to install `react-addons-test-utils`.
-`enzyme` actually expects `jsdom` and `react-addons-test-utils` to be installed, but we already have the former, and the latter may be optional for older versions of React.
+You can learn more about `@types` packages [here](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html).
 
-Now that we've got Enzyme installed, let's start writing our test!
+We also had to install `react-addons-test-utils`.
+This is something `enzyme` expects to be installed.
+
+Now that we've got Enzyme set up, let's start writing our test!
 Let's create a file named `src/components/Hello.test.tsx`, adjacent to our `Hello.tsx` file from earlier.
 
 ```ts
@@ -292,16 +297,15 @@ As far as a React component is concerned, data flows down through its children t
 
 As an answer, the React community relies on libraries like Redux and MobX.
 
-[Redux](http://redux.js.org) relies on synchronizing data through a centralized immutable store of data, and updates to that data will trigger a re-renders to parts of the application.
+[Redux](http://redux.js.org) relies on synchronizing data through a centralized and immutable store of data, and updates to that data will trigger a re-render our application.
 State is updated in an immutable fashion by sending explicit action messages which must be handled by functions called reducers.
-Because of the explicit nature, it may often be easier to reason about how an action will affect the state of your program.
+Because of the explicit nature, it is often be easier to reason about how an action will affect the state of your program.
 
 [MobX](https://mobx.js.org/) relies on functional reactive patterns where state is wrapped through observables and and passed through as props.
-State is updated in a very natural way through traditional assignments that one would typically write in JavaScript.
 Keeping state fully synchronized for any observers is done by simply marking state as observable.
 As a nice bonus, the library is already written in TypeScript.
 
-Both have different advantages and merits, with certain tradeoffs.
+There are various merits and have tradeoffs to both.
 Generally Redux tends to see more widespread usage, so for the purposes of this tutorial, we'll focus on adding Redux;
 however, you should feel encouraged to explore both.
 
@@ -389,7 +393,7 @@ We've created two types that describe what increment actions and decrement actio
 We also created a type (`EnthusiasmAction`) to describe cases where an action could be an increment or a decrement.
 Finally, we made two functions that actually manufacture the actions.
 
-There's some clear boilerplate here, so you should feel free to look into libraries like [redux-actions](https://www.npmjs.com/package/redux-actions) once you've got the hang of things.
+There's clearly boilerplate here, so you should feel free to look into libraries like [redux-actions](https://www.npmjs.com/package/redux-actions) once you've got the hang of things.
 
 ## Adding a reducer
 
@@ -421,7 +425,9 @@ Notice that we're using the *object spread* (`...state`) which allows us to crea
 It's important that the `enthusiasmLevel` property come last, since otherwise it would be overridden by the property in our old state.
 
 You may want to write a few tests for your reducer.
-It should be relatively easy. since reducers are pure functions, and can be passed arbitrary data.
+Since reducers are pure functions, they can be passed arbitrary data.
+For every input, reducers can tested by checking their newly produced state.
+Consider looking into Jest's [toEqual](https://facebook.github.io/jest/docs/expect.html#toequalvalue) method to accomplish this.
 
 ## Making a container
 
@@ -451,7 +457,7 @@ function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement }: Props) {
   return (
     <div className="hello">
       <div className="greeting">
-        Hello {name + getExclamationMarks(enthusiasmLevel)}!
+        Hello {name + getExclamationMarks(enthusiasmLevel)}
       </div>
       <div>
         <button onClick={onDecrement}>-</button>
@@ -562,7 +568,7 @@ const store = createStore<StoreState>(enthusiasm, {
 
 `store` is, as you might've guessed, our central store for our application's global state.
 
-Next, we're going to swap our our use of `./src/components/Hello` with `./src/containers/Hello` and use react-redux's `Provider` to wire up our props with our container.
+Next, we're going to swap our use of `./src/components/Hello` with `./src/containers/Hello` and use react-redux's `Provider` to wire up our props with our container.
 We'll import each:
 
 ```ts
@@ -582,6 +588,18 @@ ReactDOM.render(
 ```
 
 Notice that `Hello` no longer needs props, since we used our `connect` function to adapt our application's state for our wrapped `Hello` component's props.
+
+### Type assertions
+
+One final thing we'll point out in this section is the line `document.getElementById('root') as HTMLElement`.
+This syntax is called a *type assertion*, often also just called a *cast*.
+This is a useful way of telling TypeScript that you know a little more about the type than the type checker does.
+
+The reason we need to do so in this case is that `getElementById`'s return type is `HTMLElement | null`, meaning that it can return `null`.
+We're operating under the assumption that `getElementById` will actually succeed, so we need convince TypeScript of that using the `as` syntax.
+
+TypeScript also has a trailing "bang" (`!`) syntax, which removes `null` and `undefined` from the prior expression.
+So we *could* have written `document.getElementById('root')!`, but in this case we wanted to be a bit more explicit.
 
 # Ejecting
 

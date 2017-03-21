@@ -492,7 +492,7 @@ declare module "path" {
 }
 ```
 
-Now we can `/// <reference>` `node.d.ts` and then load the modules using `import url = require("url");`.
+Now we can `/// <reference>` `node.d.ts` and then load the modules using `import url = require("url");` or `import * as URL from "url"`.
 
 ```ts
 /// <reference path="node.d.ts"/>

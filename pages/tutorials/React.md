@@ -1,17 +1,19 @@
 This quick start guide will teach you how to wire up TypeScript with [React](http://facebook.github.io/react/).
 By the end, you'll have
 
+* a project with React and TypeScript
 * linting with [TSLint](https://github.com/palantir/tslint)
-* testing with [Jest](https://facebook.github.io/jest/), and
+* testing with [Jest](https://facebook.github.io/jest/) and [Enzyme](http://airbnb.io/enzyme/), and
 * state management with [Redux](https://github.com/reactjs/react-redux)
 
-We'll use the [create-react-app](https://github.com/facebookincubator/create-react-app) tool to quickly get set up, and then eject to see how these tools are all put together.
+We'll use the [create-react-app](https://github.com/facebookincubator/create-react-app) tool to quickly get set up.
 
 We assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
+You may also want to get a sense of [the basics with React](https://facebook.github.io/react/docs/hello-world.html).
 
 # Install create-react-app
 
-We're going to use the create-react-app because it sets some canonical defaults for React projects.
+We're going to use the create-react-app because it sets some useful tools and canonical defaults for React projects.
 This is just a command-line utility to scaffold out new React projects.
 
 ```shell
@@ -44,7 +46,7 @@ my-app/
 
 Of note:
 
-* `tsconfig.json` contains some TypeScript-specific options for our project.
+* `tsconfig.json` contains TypeScript-specific options for our project.
 * `tslint.json` stores the settings that our linter, [TSLint](https://github.com/palantir/tslint), will use.
 * `package.json` contains our dependencies, as well as some shortcuts for commands we'd like to run for testing, previewing, and deploying our app.
 * `public` contains static assets like the HTML page we're planning to deploy to, or images. You can delete any file in this folder apart from `index.html`.
@@ -208,7 +210,8 @@ To style our `Hello` component, we can create a CSS file at `src/components/Hell
 }
 ```
 
-The tools that create-react-app uses (namely, Webpack and various loaders) allow us to import the stylesheets we're interested in.
+The tools that create-react-app uses (namely, Webpack and various loaders) allow us to just import the stylesheets we're interested in.
+When our build runs, any imported `.css` files will be concatenated into an output file.
 So in `src/components/Hello.tsx`, we'll add the following import.
 
 ```ts
@@ -295,7 +298,7 @@ On its own, React is a useful library for creating composable views.
 However, React doesn't come with any facility for synchronizing data between your application.
 As far as a React component is concerned, data flows down through its children through the props you specify on each element.
 
-As an answer, the React community relies on libraries like Redux and MobX.
+Because React on its own does not provide a built-in support for state management, the React community uses libraries like Redux and MobX.
 
 [Redux](http://redux.js.org) relies on synchronizing data through a centralized and immutable store of data, and updates to that data will trigger a re-render our application.
 State is updated in an immutable fashion by sending explicit action messages which must be handled by functions called reducers.
@@ -305,9 +308,12 @@ Because of the explicit nature, it is often be easier to reason about how an act
 Keeping state fully synchronized for any observers is done by simply marking state as observable.
 As a nice bonus, the library is already written in TypeScript.
 
-There are various merits and have tradeoffs to both.
+There are various merits and tradeoffs to both.
 Generally Redux tends to see more widespread usage, so for the purposes of this tutorial, we'll focus on adding Redux;
 however, you should feel encouraged to explore both.
+
+The following section may have a steep learning curve.
+We strongly suggest you [familiarize yourself with Redux through its documentation](http://redux.js.org/).
 
 ## Setting the stage for actions
 
@@ -615,6 +621,7 @@ npm run eject
 and you should be good to go!
 
 As a heads up, you may want to commit all your work before running an eject.
+You cannot undo an eject command, so opting out is permanent without committing.
 
 # Next steps
 

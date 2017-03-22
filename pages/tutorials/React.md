@@ -169,8 +169,10 @@ class Hello extends React.Component<Props, object> {
 }
 ```
 
+Classes are useful [when our component instances have some state](https://facebook.github.io/react/docs/state-and-lifecycle.html).
 But we don't really need to think about state in this example - in fact, we specified it as `object` in `React.Component<Props, object>`, so writing an SFC tends to be shorter.
-We will revisit how to bind global application state with Redux in a bit, but local component state is more useful at the presentational level when creating generic UI elements that can be shared between libraries.
+Local component state is more useful at the presentational level when creating generic UI elements that can be shared between libraries.
+For our application's lifecycle, we will revisit how applications manage general state with Redux in a bit,
 
 Now that we've written our component, let's dive into `index.tsx` and replace our render of `<App />` with a render of `<Hello ... />`.
 
@@ -333,7 +335,7 @@ npm install -S redux react-redux @types/react-redux
 
 In this case we didn't need to install `@types/redux` because Redux already comes with its own definition files (`.d.ts` files).
 
-## Defining our state
+## Defining our app's state
 
 We need to define the shape of the state which Redux will store.
 For this, we can create a file called `src/types/index.tsx` which will contain definitions for types that we might use throughout the program.
@@ -635,4 +637,4 @@ If you want to eject at some point, you may need to know a little bit more about
 You can check out our [React & Webpack walkthrough here](./React & Webpack.md).
 
 At some point you might need routing.
-There are several solutons, but [react-router](https://github.com/ReactTraining/react-router), and is often used in conjunction with [react-router-redux](https://github.com/reactjs/react-router-redux) for Redux projects.
+There are several solutons, but [react-router](https://github.com/ReactTraining/react-router) is probably the most popular for Redux projects, and is often used in conjunction with [react-router-redux](https://github.com/reactjs/react-router-redux).

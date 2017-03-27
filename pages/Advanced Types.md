@@ -857,7 +857,7 @@ function proxify<T>(o: T): Proxify<T> {
 let proxyProps = proxify(props);
 ```
 
-Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in TypeScript's standard libarary along with `Pick` and `Record`:
+Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in TypeScript's standard library along with `Pick` and `Record`:
 
 ```ts
 type Pick<T, K extends keyof T> = {

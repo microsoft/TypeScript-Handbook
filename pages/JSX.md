@@ -12,16 +12,18 @@ In order to use JSX you must do two things.
 1. Name your files with a `.tsx` extension
 2. Enable the `jsx` option
 
-TypeScript ships with two JSX modes: `preserve` and `react`.
+TypeScript ships with three JSX modes: `preserve`, `react`, and `react-native`.
 These modes only affect the emit stage - type checking is unaffected.
 The `preserve` mode will keep the JSX as part of the output to be further consumed by another transform step (e.g. [Babel](https://babeljs.io/)).
 Additionally the output will have a `.jsx` file extension.
 The `react` mode will emit `React.createElement`, does not need to go through a JSX transformation before use, and the output will have a `.js` file extension.
+The `react-native` mode is the equivalent of `preserve` in that it keeps all JSX, but the output will instead have a `.js` file extension.
 
-Mode       | Input     | Output                       | Output File Extension
------------|-----------|------------------------------|----------------------
-`preserve` | `<div />` | `<div />`                    | `.jsx`
-`react`    | `<div />` | `React.createElement("div")` | `.js`
+Mode           | Input     | Output                       | Output File Extension
+---------------|-----------|------------------------------|----------------------
+`preserve`     | `<div />` | `<div />`                    | `.jsx`
+`react`        | `<div />` | `React.createElement("div")` | `.js`
+`react-native` | `<div />` | `<div />`                    | `.js`
 
 You can specify this mode using either the `--jsx` command line flag or the corresponding option in your [tsconfig.json](./tsconfig.json.md) file.
 

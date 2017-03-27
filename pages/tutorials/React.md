@@ -172,7 +172,7 @@ class Hello extends React.Component<Props, object> {
 Classes are useful [when our component instances have some state](https://facebook.github.io/react/docs/state-and-lifecycle.html).
 But we don't really need to think about state in this example - in fact, we specified it as `object` in `React.Component<Props, object>`, so writing an SFC tends to be shorter.
 Local component state is more useful at the presentational level when creating generic UI elements that can be shared between libraries.
-For our application's lifecycle, we will revisit how applications manage general state with Redux in a bit,
+For our application's lifecycle, we will revisit how applications manage general state with Redux in a bit.
 
 Now that we've written our component, let's dive into `index.tsx` and replace our render of `<App />` with a render of `<Hello ... />`.
 
@@ -195,10 +195,11 @@ ReactDOM.render(
 
 One final thing we'll point out in this section is the line `document.getElementById('root') as HTMLElement`.
 This syntax is called a *type assertion*, sometimes also called a *cast*.
-This is a useful way of telling TypeScript that you know a little more about the type than the type checker does.
+This is a useful way of telling TypeScript what the real type of an expression is when you know better than the type checker.
 
-The reason we need to do so in this case is that `getElementById`'s return type is `HTMLElement | null`, meaning that it can return `null`.
-We're operating under the assumption that `getElementById` will actually succeed, so we need convince TypeScript of that using the `as` syntax.
+The reason we need to do so in this case is that `getElementById`'s return type is `HTMLElement | null`.
+Put simply, `getElementById` returns `null` when it can't find an element with a given `id`.
+We're assuming that `getElementById` will actually succeed, so we need convince TypeScript of that using the `as` syntax.
 
 TypeScript also has a trailing "bang" syntax (`!`), which removes `null` and `undefined` from the prior expression.
 So we *could* have written `document.getElementById('root')!`, but in this case we wanted to be a bit more explicit.
@@ -312,11 +313,11 @@ On its own, React is a useful library for creating composable views.
 However, React doesn't come with any facility for synchronizing data between your application.
 As far as a React component is concerned, data flows down through its children through the props you specify on each element.
 
-Because React on its own does not provide a built-in support for state management, the React community uses libraries like Redux and MobX.
+Because React on its own does not provide built-in support for state management, the React community uses libraries like Redux and MobX.
 
-[Redux](http://redux.js.org) relies on synchronizing data through a centralized and immutable store of data, and updates to that data will trigger a re-render our application.
+[Redux](http://redux.js.org) relies on synchronizing data through a centralized and immutable store of data, and updates to that data will trigger a re-render of our application.
 State is updated in an immutable fashion by sending explicit action messages which must be handled by functions called reducers.
-Because of the explicit nature, it is often be easier to reason about how an action will affect the state of your program.
+Because of the explicit nature, it is often easier to reason about how an action will affect the state of your program.
 
 [MobX](https://mobx.js.org/) relies on functional reactive patterns where state is wrapped through observables and and passed through as props.
 Keeping state fully synchronized for any observers is done by simply marking state as observable.
@@ -379,7 +380,7 @@ export const DECREMENT_ENTHUSIASM = 'DECREMENT_ENTHUSIASM';
 export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
 ```
 
-This `const`/`type` pattern allows us to use TypeScript's string literal types in an easily accessible & refactorable way.
+This `const`/`type` pattern allows us to use TypeScript's string literal types in an easily accessible and refactorable way.
 
 Next, we'll create a set of actions and functions that can create these actions in `src/actions/index.tsx`.
 
@@ -626,7 +627,7 @@ npm run eject
 and you should be good to go!
 
 As a heads up, you may want to commit all your work before running an eject.
-You cannot undo an eject command, so opting out is permanent without committing.
+You cannot undo an eject command, so opting out is permanent unless you can recover from a commit prior to running an eject.
 
 # Next steps
 

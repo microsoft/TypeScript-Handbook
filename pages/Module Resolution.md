@@ -33,7 +33,7 @@ Any other import is considered **non-relative**.
 Some examples include:
 
 * `import * as $ from "jquery";`
-* `import { Component } from "angular2/core";`
+* `import { Component } from "@angular/core";`
 
 A relative import is resolved relative to the importing file and *cannot* resolve to an ambient module declaration.
 You should use relative imports for your own modules that are guaranteed to maintain their relative location at runtime.
@@ -199,13 +199,13 @@ Value of *baseUrl* is determined as either:
 
 Note that relative module imports are not impacted by setting the baseUrl, as they are always resolved relative to their importing files.
 
-You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/docs/api.html#config-baseUrl) and [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#baseurl) documentation.
+You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/docs/api.html#config-baseUrl) and [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#baseurl) documentation.
 
 ### Path mapping
 
 Sometimes modules are not directly located under *baseUrl*.
 For instance, an import to a module `"jquery"` would be translated at runtime to `"node_modules\jquery\dist\jquery.slim.min.js"`.
-Loaders use a mapping configuration to map module names to files at run-time, see [RequireJs documentation](http://requirejs.org/docs/api.html#config-paths) and [SystemJS documentation](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#map-config).
+Loaders use a mapping configuration to map module names to files at run-time, see [RequireJs documentation](http://requirejs.org/docs/api.html#config-paths) and [SystemJS documentation](https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#paths).
 
 The TypeScript compiler supports the declaration of such mappings using `"paths"` property in `tsconfig.json` files.
 Here is an example for how to specify the `"paths"` property for `jquery`.

@@ -189,6 +189,18 @@ ReactDOM.render(
 );
 ```
 
+## Type assertions
+
+One final thing we'll point out in this section is the line `document.getElementById('root') as HTMLElement`.
+This syntax is called a *type assertion*, sometimes also called a *cast*.
+This is a useful way of telling TypeScript that you know a little more about the type than the type checker does.
+
+The reason we need to do so in this case is that `getElementById`'s return type is `HTMLElement | null`, meaning that it can return `null`.
+We're operating under the assumption that `getElementById` will actually succeed, so we need convince TypeScript of that using the `as` syntax.
+
+TypeScript also has a trailing "bang" syntax (`!`), which removes `null` and `undefined` from the prior expression.
+So we *could* have written `document.getElementById('root')!`, but in this case we wanted to be a bit more explicit.
+
 # Adding style 😎
 
 Styling a component with our setup is easy.
@@ -218,7 +230,7 @@ So in `src/components/Hello.tsx`, we'll add the following import.
 import './Hello.css';
 ```
 
-# Writing tests
+# Writing tests with Jest
 
 We had a certain set of assumptions about our `Hello` component.
 Let's reiterate what they were:
@@ -367,7 +379,7 @@ export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
 
 This `const`/`type` pattern allows us to use TypeScript's string literal types in an easily accessible & refactorable way.
 
-Next, we'll create a set of actions and functions that can quickly create these actions in `src/actions/index.tsx`.
+Next, we'll create a set of actions and functions that can create these actions in `src/actions/index.tsx`.
 
 ```ts
 import * as constants from '../constants'
@@ -397,7 +409,7 @@ export function decrementEnthusiasm(): DecrementEnthusiasm {
 
 We've created two types that describe what increment actions and decrement actions should look like.
 We also created a type (`EnthusiasmAction`) to describe cases where an action could be an increment or a decrement.
-Finally, we made two functions that actually manufacture the actions.
+Finally, we made two functions that actually manufacture the actions which we can use instead of writing out bulky object literals.
 
 There's clearly boilerplate here, so you should feel free to look into libraries like [redux-actions](https://www.npmjs.com/package/redux-actions) once you've got the hang of things.
 
@@ -405,6 +417,7 @@ There's clearly boilerplate here, so you should feel free to look into libraries
 
 We're ready to write our first reducer!
 Reducers are just functions that generate changes by creating modified copies of our application's state, but that have *no side effects*.
+In other words, they're what we call *[pure functions](https://en.wikipedia.org/wiki/Pure_function)*.
 
 Our reducer will go under `src/reducers/index.tsx`.
 Its function will be to ensure that increments raise the enthusiasm level by 1, and that decrements reduce the enthusiasm level by 1, but that the level never falls below 1.
@@ -438,9 +451,11 @@ Consider looking into Jest's [toEqual](https://facebook.github.io/jest/docs/expe
 ## Making a container
 
 When writing with Redux, we will often write components as well as containers.
+Components are often data-agnostic, and work mostly at a presentational level.
 *Containers* typically wrap components and feed them any data that is necessary to display and modify state.
+You can read more about this concept on [Dan Abramov's article *Presentational and Container Components*](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0).
 
-First let's update `src/components/Hello.tsx` so that it will have a means of modifying state.
+First let's update `src/components/Hello.tsx` so that it can modify state.
 We'll add two optional callback properties to `Props` named `onIncrement` and `onDecrement`:
 
 ```ts
@@ -594,18 +609,6 @@ ReactDOM.render(
 ```
 
 Notice that `Hello` no longer needs props, since we used our `connect` function to adapt our application's state for our wrapped `Hello` component's props.
-
-### Type assertions
-
-One final thing we'll point out in this section is the line `document.getElementById('root') as HTMLElement`.
-This syntax is called a *type assertion*, often also just called a *cast*.
-This is a useful way of telling TypeScript that you know a little more about the type than the type checker does.
-
-The reason we need to do so in this case is that `getElementById`'s return type is `HTMLElement | null`, meaning that it can return `null`.
-We're operating under the assumption that `getElementById` will actually succeed, so we need convince TypeScript of that using the `as` syntax.
-
-TypeScript also has a trailing "bang" (`!`) syntax, which removes `null` and `undefined` from the prior expression.
-So we *could* have written `document.getElementById('root')!`, but in this case we wanted to be a bit more explicit.
 
 # Ejecting
 

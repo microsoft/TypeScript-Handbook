@@ -2,7 +2,7 @@
 
 With the introduction of Classes in TypeScript and ES6, there now exist certain scenarios that require additional features to support annotating or modifying classes and class members.
 Decorators provide a way to add both annotations and a meta-programming syntax for class declarations and members.
-Decorators are a [stage 1 proposal](https://github.com/wycats/javascript-decorators/blob/master/README.md) for JavaScript and are available as an experimental feature of TypeScript.
+Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for JavaScript and are available as an experimental feature of TypeScript.
 
 > NOTE&emsp; Decorators are an experimental feature that may change in future releases.
 
@@ -162,6 +162,28 @@ function sealed(constructor: Function) {
 ```
 
 When `@sealed` is executed, it will seal both the constructor and its prototype.
+
+Next we have a example how to override the constructor.
+
+```ts
+function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
+@classDecorator
+class Greeter {
+    property = "property";
+    hello: string;
+    constructor(m: string) {
+        this.hello = m;
+    }
+}
+
+console.log(new Greeter("world"));
+```
 
 ## Method Decorators
 

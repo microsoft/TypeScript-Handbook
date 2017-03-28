@@ -472,7 +472,7 @@ function f([first, second]: [number, number]) {
     console.log(first);
     console.log(second);
 }
-f(input);
+f([1, 2]);
 ```
 
 You can create a variable for the remaining items in a list using the syntax `...`:

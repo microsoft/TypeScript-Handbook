@@ -43,14 +43,14 @@ let fullName: string = `Bob Bobbington`;
 let age: number = 37;
 let sentence: string = `Hello, my name is ${ fullName }.
 
-I'll be ${ age + 1 } years old next month.`
+I'll be ${ age + 1 } years old next month.`;
 ```
 
 This is equivalent to declaring `sentence` like so:
 
 ```ts
 let sentence: string = "Hello, my name is " + fullName + ".\n\n" +
-    "I'll be " + (age + 1) + " years old next month."
+    "I'll be " + (age + 1) + " years old next month.";
 ```
 
 # Array
@@ -108,7 +108,7 @@ A helpful addition to the standard set of datatypes from JavaScript is the `enum
 As in languages like C#, an enum is a way of giving more friendly names to sets of numeric values.
 
 ```ts
-enum Color {Red, Green, Blue};
+enum Color {Red, Green, Blue}
 let c: Color = Color.Green;
 ```
 
@@ -117,14 +117,14 @@ You can change this by manually setting the value of one of its members.
 For example, we can start the previous example at `1` instead of `0`:
 
 ```ts
-enum Color {Red = 1, Green, Blue};
+enum Color {Red = 1, Green, Blue}
 let c: Color = Color.Green;
 ```
 
 Or, even manually set all the values in the enum:
 
 ```ts
-enum Color {Red = 1, Green = 2, Blue = 4};
+enum Color {Red = 1, Green = 2, Blue = 4}
 let c: Color = Color.Green;
 ```
 
@@ -132,7 +132,7 @@ A handy feature of enums is that you can also go from a numeric value to the nam
 For example, if we had the value `2` but weren't sure what that mapped to in the `Color` enum above, we could look up the corresponding name:
 
 ```ts
-enum Color {Red = 1, Green, Blue};
+enum Color {Red = 1, Green, Blue}
 let colorName: string = Color[2];
 
 alert(colorName);

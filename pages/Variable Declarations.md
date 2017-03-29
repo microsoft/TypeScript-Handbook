@@ -505,7 +505,7 @@ let o = {
     a: "foo",
     b: 12,
     c: "bar"
-}
+};
 let { a, b } = o;
 ```
 
@@ -594,9 +594,9 @@ Remember that `C` was defined with `b` optional:
 function f({ a, b = 0 } = { a: "" }): void {
     // ...
 }
-f({ a: "yes" }) // ok, default b = 0
-f() // ok, default to { a: "" }, which then defaults b = 0
-f({}) // error, 'a' is required if you supply an argument
+f({ a: "yes" }); // ok, default b = 0
+f(); // ok, default to { a: "" }, which then defaults b = 0
+f({}); // error, 'a' is required if you supply an argument
 ```
 
 Use destructuring with care.

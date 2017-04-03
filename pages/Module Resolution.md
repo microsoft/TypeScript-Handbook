@@ -319,6 +319,41 @@ So following our example, the `tsconfig.json` file should look like:
 
 Every time the compiler sees a relative module import in a subfolder of one of the `rootDirs`, it will attempt to look for this import in each of the entries of `rootDirs`.
 
+The flexibility of `rootDirs` is not limited to specifying a list of physical source directories that are logically merged. The supplied array may include any number of ad hoc, arbitrary directory names, regardless of whether they exist or not. This allows the compiler to capture sophisticated bundling and runtime features such as conditional inclusion and project specific loader plugins in a in a type safe way.
+
+Consider an internationalization scenario where a build tool automatically generates locale specific bundles by interpolating a special path token, say `#{locale}`, as part of a relative module path such as `./#{locale}/messages`. In this hypothetical setup the tool enumerates supported locales, mapping the abstracted path into `./zh/messages`, `./de/messages`, and so forth.
+
+Assume that each of these modules exports an array of strings. For example `./zh/messages` might contain:
+
+```ts
+export default [
+    "您好吗",
+    "很高兴认识你"
+];
+```
+
+By leveraging `rootDirs` we can inform the compiler of this mapping and thereby allow it to safely resolve `./#{locale}/messages`, even though the directory will never exist. For example, with the following `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "rootDirs": [
+      "src/zh",
+      "src/de",
+      "src/#{locale}"
+    ]
+  }
+}
+```
+
+The compiler will now resolve `import messages from './#{locale}/messages'` to `import messages from './zh/messages'` for tooling purposes, allowing development in a locale agnostic manner without compromising design time support.
+
+#### Interaction with other module resolution options
+
+`rootDirs` configuration only applies to literally relative imports such as `import home from "./src/views/home"`. It has no interaction with `paths` even when the latter feature has been used to map absolute imports to what would otherwise be relative ones. For example `rootDirs` ceases to apply if we changed the previous import to `import home from "views/home"` by mapping `views/*` to `src/views/*` via `paths`.
+
+`rootDirs` _is_ impacted by the `moduleResolution` setting with `node` and `classic` exhibiting their respective behaviors and resolving `./module/index` and `./module/module` as expected.
+
 ## Tracing module resolution
 
 As discussed earlier, the compiler can visit files outside the current folder when resolving a module.

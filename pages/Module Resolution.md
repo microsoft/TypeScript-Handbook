@@ -352,12 +352,6 @@ By leveraging `rootDirs` we can inform the compiler of this mapping and thereby 
 
 The compiler will now resolve `import messages from './#{locale}/messages'` to `import messages from './zh/messages'` for tooling purposes, allowing development in a locale agnostic manner without compromising design time support.
 
-#### Interaction with other module resolution options
-
-`rootDirs` configuration only applies to literally relative imports such as `import home from "./src/views/home"`. It has no interaction with `paths` even when the latter feature has been used to map absolute imports to what would otherwise be relative ones. For example `rootDirs` ceases to apply if we changed the previous import to `import home from "views/home"` by mapping `views/*` to `src/views/*` via `paths`.
-
-`rootDirs` _is_ impacted by the `moduleResolution` setting with `node` and `classic` exhibiting their respective behaviors and resolving `./module/index` and `./module/module` as expected.
-
 ## Tracing module resolution
 
 As discussed earlier, the compiler can visit files outside the current folder when resolving a module.

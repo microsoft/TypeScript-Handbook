@@ -215,11 +215,15 @@ Here is an example for how to specify the `"paths"` property for `jquery`.
   "compilerOptions": {
     "baseUrl": ".", // This must be specified if "paths" is.
     "paths": {
-      "jquery": ["node_modules/jquery/dist/jquery"]
+      "jquery": ["node_modules/jquery/dist/jquery"] // This mapping is relative to "baseUrl"
     }
   }
 }
 ```
+
+Please notice that `"paths"` are resolved relative to `"baseUrl"`.
+When setting `"baseUrl"` to another value than `"."`, i.e. the directory of `tsconfig.json`, the mappings must be changed accordingly.
+Say, you set `"baseUrl": "./src"` in the above example, then jquery should be mapped to `"../node_modules/jquery/dist/jquery"`.
 
 Using `"paths"` also allows for more sophisticated mappings including multiple fall back locations.
 Consider a project configuration where only some modules are available in one location, and the rest are in another.

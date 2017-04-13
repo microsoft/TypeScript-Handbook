@@ -138,7 +138,7 @@ listenEvent(EventType.Mouse, (e: number) => console.log(e));
 ## Optional Parameters and Rest Parameters
 
 When comparing functions for compatibility, optional and required parameters are interchangeable.
-Extra optional parameters of the source type are not an error, and optional parameters of the target type without corresponding parameters in the target type are not an error.
+Extra optional parameters of the source type are not an error, and optional parameters of the target type without corresponding parameters in the source type are not an error.
 
 When a function has a rest parameter, it is treated as if it were an infinite series of optional parameters.
 

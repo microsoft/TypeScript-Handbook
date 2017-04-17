@@ -309,22 +309,18 @@ class Animal {
 }
 
 class Bee extends Animal {
-    private _keeper = new BeeKeeper();
-    get keeper() {
-        return this._keeper;
-    };
+    keeper: BeeKeeper;
 }
 
 class Lion extends Animal {
-    private _keeper = new ZooKeeper();
-    get keeper() {
-        return this._keeper;
-    }
+    keeper: ZooKeeper;
 }
 
-function findKeeper<A extends Animal, K> (a: A & { keeper: K }): K {
-    return a.keeper;
+function findKeeper<A extends Animal, K> (a: {new(): A;
+    prototype: {keeper: K}}): K {
+
+    return a.prototype.keeper;
 }
 
-findKeeper(new Lion()).nametag;  // typechecks!
+findKeeper(Lion).nametag;  // typechecks!
 ```

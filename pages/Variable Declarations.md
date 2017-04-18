@@ -655,5 +655,5 @@ clone.p; // ok
 clone.m(); // error!
 ```
 
-Second, the Typescript compiler doesn't allow spreads of type parameters from generic functions.
+Second, the TypeScript compiler doesn't allow spreads of type parameters from generic functions.
 That feature is expected in future versions of the language.

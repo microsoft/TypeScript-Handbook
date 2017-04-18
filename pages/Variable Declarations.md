@@ -309,7 +309,6 @@ f(true, 0);  // returns '100'
 
 The act of introducing a new name in a more nested scope is called *shadowing*. TypeScript's ability to support shadowing is a bit of a double-edged sword. In some cases, it can prevent certain bugs. For instance, imagine we had written our earlier `sumMatrix` function using `let` variables.
 
-
 ```ts
 function sumMatrix(matrix: number[][]) {
     let sum = 0;

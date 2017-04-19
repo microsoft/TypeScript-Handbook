@@ -796,22 +796,20 @@ type PersonPartial = Partial<Person>;
 type ReadonlyPerson = Readonly<Person>;
 ```
 
-Note that this syntax describes a type rather than a member. You **cannot** add additional members directly to a mapped typed:
+Note that this syntax describes a type rather than a member. If you want to add additional members, use an intersection type:
 
 ```ts
+// Use this
+type PartialWithNewMember<T> = {
+  [P in keyof T]?: T[P];
+} & { newMember: boolean }
+
+// Instead of this:
 type PartialWithNewMember<T> = {
   [P in keyof T]?: T[P];
   // This is an error
   newMember: boolean;
 }
-```
-
-Although you can use union types for a similar effect:
-
-```ts
-type PartialWithNewMember<T> = {
-  [P in keyof T]?: T[P];
-} & { newMember: boolean }
 ```
 
 Let's take a look at the simplest mapped type and its parts:

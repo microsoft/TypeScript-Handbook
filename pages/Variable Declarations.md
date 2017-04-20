@@ -307,9 +307,7 @@ f(false, 0); // returns '0'
 f(true, 0);  // returns '100'
 ```
 
-The act of introducing a new name in a more nested scope is called *shadowing*.
-It is a bit of a double-edged sword in that it can introduce certain bugs on its own in the event of accidental shadowing, while also preventing certain bugs.
-For instance, imagine we had written our earlier `sumMatrix` function using `let` variables.
+The act of introducing a new name in a more nested scope is called *shadowing*. TypeScript's ability to support shadowing is a bit of a double-edged sword. In some cases, it can prevent certain bugs. For instance, imagine we had written our earlier `sumMatrix` function using `let` variables.
 
 ```ts
 function sumMatrix(matrix: number[][]) {
@@ -327,8 +325,7 @@ function sumMatrix(matrix: number[][]) {
 
 This version of the loop will actually perform the summation correctly because the inner loop's `i` shadows `i` from the outer loop.
 
-Shadowing should *usually* be avoided in the interest of writing clearer code.
-While there are some scenarios where it may be fitting to take advantage of it, you should use your best judgement.
+On the other hand, shadowing could also introduce certain bugs on its own in the event of accidental shadowing. It should *usually* be avoided in the interest of writing clearer code. While there are some scenarios where it may be fitting to take advantage of it, you should use your best judgement.
 
 ## Block-scoped variable capturing
 
@@ -578,7 +575,7 @@ function f({ a, b }: C): void {
 ```
 
 But specifying defaults is more common for parameters, and getting defaults right with destructuring can be tricky.
-First of all, you need to remember to put the type before the default value.
+First of all, you need to remember to put the destructuring before the default value.
 
 ```ts
 function f({ a, b } = { a: "", b: 0 }): void {
@@ -657,5 +654,5 @@ clone.p; // ok
 clone.m(); // error!
 ```
 
-Second, the Typescript compiler doesn't allow spreads of type parameters from generic functions.
+Second, the TypeScript compiler doesn't allow spreads of type parameters from generic functions.
 That feature is expected in future versions of the language.

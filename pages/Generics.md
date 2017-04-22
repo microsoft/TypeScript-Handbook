@@ -316,9 +316,7 @@ class Lion extends Animal {
     keeper: ZooKeeper;
 }
 
-function findKeeper<A extends Animal, K> (a: {new(): A;
-    prototype: {keeper: K}}): K {
-
+function findKeeper<A extends Animal, K> (a: {new(): A, prototype: {keeper: K}}): K {
     return a.prototype.keeper;
 }
 

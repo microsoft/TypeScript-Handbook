@@ -578,7 +578,7 @@ function f({ a, b }: C): void {
 ```
 
 But specifying defaults is more common for parameters, and getting defaults right with destructuring can be tricky.
-First of all, you need to remember to put the destructuring before the default value.
+First of all, you need to remember to put the pattern before the default value.
 
 ```ts
 function f({ a, b } = { a: "", b: 0 }): void {

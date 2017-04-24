@@ -203,7 +203,7 @@ declare namespace GreetingLib {
 }
 ```
 
-You can also created nested namespaces in one declaration:
+You can also create nested namespaces in one declaration:
 
 ```ts
 declare namespace GreetingLib.Options {

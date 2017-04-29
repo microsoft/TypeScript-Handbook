@@ -316,11 +316,10 @@ class Lion extends Animal {
     keeper: ZooKeeper;
 }
 
-function findKeeper<A extends Animal, K> (a: {new(): A;
-    prototype: {keeper: K}}): K {
-
-    return a.prototype.keeper;
+function createInstance<A extends Animal>(c: new () => A): A {
+    return new c();
 }
 
-findKeeper(Lion).nametag;  // typechecks!
+createInstance(Lion).keeper.nametag;  // typechecks!
+createInstance(Bee).keeper.hasMask;   // typechecks!
 ```

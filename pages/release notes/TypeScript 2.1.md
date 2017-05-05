@@ -132,7 +132,7 @@ const nameAndAgeOnly = pick(person, "name", "age");  // { name: string, age: num
 
 ```ts
 // For every properties K of type T, transform it to U
-function mapObject<K extends string | number, T, U>(obj: Record<K, T>, f: (x: T) => U): Record<K, U>
+function mapObject<K extends string, T, U>(obj: Record<K, T>, f: (x: T) => U): Record<K, U>
 
 const names = { foo: "hello", bar: "world", baz: "bye" };
 const lengths = mapObject(names, s => s.length);  // { foo: number, bar: number, baz: number }

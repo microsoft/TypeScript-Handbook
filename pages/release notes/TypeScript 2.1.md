@@ -57,7 +57,7 @@ setProperty(x, "foo", "string"); // Error!, string expected number
 # Mapped Types
 
 One common task is to take an existing type and make each of its properties entirely optional.
-Let's say we have a `Person:
+Let's say we have a `Person`:
 
 ```ts
 interface Person {

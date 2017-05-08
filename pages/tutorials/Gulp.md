@@ -46,8 +46,7 @@ You can always go back and change these in the `package.json` file that's been g
 ## Install our dependencies
 
 Now we can use `npm install` to install packages.
-First install TypeScript and gulp globally.
-(You might need to start `npm install` commands in this guide with `sudo` if you're on a Unix system.)
+First install `gulp-cli` globally (if you use a Unix system, you may need to prefix the `npm install` commands in this guide with `sudo`).
 
 ```shell
 npm install -g gulp-cli

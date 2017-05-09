@@ -99,7 +99,6 @@ Let's develop our sample further. Here we use an interface that describes object
 In TypeScript, two types are compatible if their internal structure is compatible.
 This allows us to implement an interface just by having the shape the interface requires, without an explicit `implements` clause.
 
-
 ```ts
 interface Person {
     firstName: string;
@@ -147,11 +146,8 @@ var user = new Student("Jane", "M.", "User");
 document.body.innerHTML = greeter(user);
 ```
 
-
-
 Re-run `tsc greeter.ts` and you'll see the generated JavaScript is the same as the earlier code.
 Classes in TypeScript are just a shorthand for the same prototype-based OO that is frequently used in JavaScript.
-
 
 ## Running your TypeScript web app
 

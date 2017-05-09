@@ -12,7 +12,7 @@ cd typescript-vue-tutorial
 
 Next, we'll scaffold our project in the following way:
 
-```
+```txt
 typescript-vue-tutorial/
 ├─ dist/
 └─ src/

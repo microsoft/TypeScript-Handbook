@@ -1,10 +1,3 @@
----
-title: TypeScript in 5 Minutes
-layout: docs
-permalink: /docs/handbook/TS-in-5.html
-description: "In this tutorial, you'll learn the basics of the TypeScript language in under 5 minutes."
----
-
 Let's get started by building a simple web application with TypeScript.
 
 ## Installing TypeScript

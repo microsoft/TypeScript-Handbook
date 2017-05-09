@@ -1,4 +1,4 @@
-This quick start guide will teach you how to get TypeScript and [Vue](https://vuejs.org) set up working together.
+This quick start guide will teach you how to get TypeScript and [Vue](https://vuejs.org) working together.
 This guide is flexible enough that any steps here can be used to integrate TypeScript into an existing Vue project.
 
 # Initialize your project
@@ -45,12 +45,11 @@ You can always go back and change these in the `package.json` file that's been g
 
 # Install our dependencies
 
-We'll be using the TodoMVC common CSS and resources, along with a custom repository that uses experimental declarations for Vue.
+We'll be using a custom repository that uses experimental declarations for Vue.
+These declarations are currently maintained on a fork of Vue, but may be part of the main repo in the near future.
 
 ```sh
-npm install todomvc-app-css todomvc-commo
 npm install https://github.com/DanielRosenwasser/vue#540a38fb21adb7a7bc394c65e23e6cffb36cd867
-npm install https://github.com/DanielRosenwasser/vue-router#01b8593cf69c2a5077df45e37e2b24d95bf35ce3
 ```
 
 Next, ensure TypeScript, Webpack and the necessary loaders are installed.
@@ -62,7 +61,9 @@ npm install --save-dev typescript webpack ts-loader css-loader vue-loader vue-te
 Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file.
 While you don't need to use a bundler like Webpack or Browserify, these tools will allow us to use `.vue` files which we'll cover in a bit.
 
-We didn't need to [add `.d.ts` files](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html), but if we were using packages which didn't ship declaration files, we'd need to install the appropriate `@types/` package.
+We've locked onto version 2.2.1 of the vue-template-compiler so that it operates smoothly with our fork of Vue.
+
+We didn't need to [add `.d.ts` files](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html), but if we were using a package which didn't ship declaration files, we'd need to install the appropriate `@types/` package.
 [Read more about using definition files in our documentation](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html).
 
 # Add a TypeScript configuration file
@@ -90,12 +91,12 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
 ```
 
 Notice the `strict` flag is set to true.
-At the very least, TypeScript's `noImplicitThis` flag will need to be turned on to leverage Vue's declaration files, but `strict` gives us that and more.
+At the very least, TypeScript's `noImplicitThis` flag will need to be turned on to leverage Vue's declaration files, but `strict` gives us that and more (like `noImplicitAny` and `strictNullChecks`).
 We strongly recommend using TypeScript's stricter options for a better experience.
 
 # Adding Webpack
 
-We'll need to add a `webpack.config.json` to bundle our app so that we can use modules in all browsers.
+We'll need to add a `webpack.config.json` to bundle our app.
 
 ```js
 var path = require('path')

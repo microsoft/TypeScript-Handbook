@@ -12,10 +12,12 @@ cd typescript-vue-tutorial
 
 Next, we'll scaffold our project in the following way:
 
+```
 typescript-vue-tutorial/
 ├─ dist/
 └─ src/
    └─ components/
+```
 
 TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.
 Any components that we write will go in the `src/components` folder.
@@ -103,7 +105,7 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.ts',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -192,7 +194,7 @@ Your `"scripts"` field should look something like this:
   },
 ```
 
-You'll be able to now build by running
+Once we add an entry point, we'll be able to build by running
 
 ```sh
 npm run build

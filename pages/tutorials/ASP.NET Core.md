@@ -1,6 +1,6 @@
 # Setup
 
-> Note! Updates for Visual Studio 2017 and the latest version of ASP.NET coming soon! 
+> Note! Updates for Visual Studio 2017 and the latest version of ASP.NET coming soon!
 
 ## Install ASP.NET Core and TypeScript
 

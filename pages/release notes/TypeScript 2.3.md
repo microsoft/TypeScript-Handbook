@@ -112,7 +112,7 @@ TypeScript 2.3 adds support for declaring defaults for generic type parameters.
 
 ##### Example
 
-Consider a function that creates a new `HTMLElement`, calling it with no arguments generats an `Div`; you can optionally pass a list of children as well. Previously you would have to define it as:
+Consider a function that creates a new `HTMLElement`, calling it with no arguments generates a `Div`; you can optionally pass a list of children as well. Previously you would have to define it as:
 
 ```ts
 declare function create(): Container<HTMLDivElement, HTMLDivElement[]>;

@@ -163,7 +163,7 @@ function sealed(constructor: Function) {
 
 When `@sealed` is executed, it will seal both the constructor and its prototype.
 
-Next we have a example how to override the constructor.
+Next we have an example of how to override the constructor.
 
 ```ts
 function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {

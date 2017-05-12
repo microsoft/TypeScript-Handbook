@@ -342,6 +342,8 @@ Again, make sure that Task Runner Explorer sees the new `lib` task after you sav
 
 First, change the code in `app.ts` to:
 
+{% raw %}
+
 ```ts
 import {Component} from "angular2/core"
 import {MyModel} from "./model"
@@ -357,6 +359,8 @@ export class MyApp {
     }
 }
 ```
+
+{% endraw %}
 
 Then add another TypeScript file in `scripts` named `model.ts`:
 

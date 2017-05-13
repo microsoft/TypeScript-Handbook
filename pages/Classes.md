@@ -470,7 +470,7 @@ let greeter1: Greeter;
 greeter1 = new Greeter();
 console.log(greeter1.greet());
 
-let greeterMaker: typeof Greeter = Greeter;
+let greeterMaker: (typeof Greeter) = Greeter;
 greeterMaker.standardGreeting = "Hey there!";
 
 let greeter2: Greeter = new greeterMaker();

@@ -796,6 +796,29 @@ type PersonPartial = Partial<Person>;
 type ReadonlyPerson = Readonly<Person>;
 ```
 
+Property mapping is a [homomorphic](https://en.wikipedia.org/wiki/Homomorphism) transformation, so if you wanted to do the
+ opposite of the `Partial` type and make all optional properties required (a non-homomorphic transformation) you could create
+ a type `EnsureAll`
+
+```ts
+type EnsureAll<T, K extends string> = {
+    [P in K]: T[P];
+}
+```
+
+And to use it:
+
+```ts
+interface Person {
+    name: string;
+    age?: number;
+}
+type PersonWithAge = EnsureAll<Person, keyof Person> // { name: string, age: number }
+```
+
+Notice the constraint on K is string; this way the type system can not assert that the result of this
+ transformation is a homomorphic mapping on T, and thus no modifiers are copied through.
+
 Let's take a look at the simplest mapped type and its parts:
 
 ```ts

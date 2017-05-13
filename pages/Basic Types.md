@@ -71,7 +71,7 @@ let list: Array<number> = [1, 2, 3];
 
 # Tuple
 
-Tuple types allow you to express an array where the type of a fixed number of elements is known, but need not be the same.
+Tuple types allow you to express an array where the type of a fixed number of elements is known, but they don't need to be the same.
 For example, you may want to represent a value as a pair of a `string` and a `number`:
 
 ```ts

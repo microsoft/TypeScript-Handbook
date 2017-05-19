@@ -284,6 +284,7 @@ var props = { requiredProp: "bar" };
 var badProps = {};
 <foo {...badProps} />; // error
 ```
+
 ## Children Type Checking
 In 2.3, we introduce type checking of *children*. *children* is a property in an *element attributes type* which we have determined from type checking attributes.
 Similar to how we use `JSX.ElementAttributesProperty` to determine the name of *props*, we use `JSX.ElementChildrenAttribute` to determine the name of *children*.
@@ -296,7 +297,9 @@ declare namespace JSX {
   }
 }
 ```
+
 Without explicitly specify type of children, we will use default type from [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
+
 ```ts
 <div>
   <h1>Hello</h1>
@@ -313,7 +316,9 @@ const CustomComp = (props) => <div>props.children</div>
   {"This is just a JS expression..." + 1000}
 </CustomComp>
 ```
+
 You can specify type of *children* like any other attribute. This will overwritten default type from [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
+
 ```ts
 interface PropsType {
   children: JSX.Element

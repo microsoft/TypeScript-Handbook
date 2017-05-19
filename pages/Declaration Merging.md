@@ -248,12 +248,12 @@ Although JavaScript modules do not support merging, you can patch existing objec
 Let's look at a toy Observable example:
 
 ```js
-// observable.js
+// observable.ts
 export class Observable<T> {
     // ... implementation left as an exercise for the reader ...
 }
 
-// map.js
+// map.ts
 import { Observable } from "./observable";
 Observable.prototype.map = function (f) {
     // ... another exercise for the reader

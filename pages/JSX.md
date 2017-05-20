@@ -110,6 +110,7 @@ There are two ways to define a value-based element:
 Because these two types of value-based elements are indistinguishable from each other in JSX expression, we first try to resolve the expression as Stateless Functional Component using overload resolution. If the process successes, then we are done resolving the expression to its declaration. If we fail to resolve as SFC, we will then try to resolve as a class component. If that fails, we will report an error.
 
 ### Stateless Functional Component
+
 As the name suggested, the component is defined as JavaScript function where its first argument is a `props` object.
 We enforce that its return type must be assignable to `JSX.Element`
 
@@ -150,6 +151,7 @@ function MainButton(prop: SideProps): JSX.Element {
 ```
 
 ### Class Component
+
 It is possible to limit the type of a class component.
 However, for this we must introduce two new terms: the *element class type* and the *element instance type*.
 
@@ -255,6 +257,7 @@ class MyComponent {
 // element attributes type for 'MyComponent' is '{foo?: string}'
 <MyComponent foo="bar" />
 ```
+
 The element attribute type is used to type check the attributes in the JSX.
 Optional and required properties are supported.
 
@@ -286,6 +289,7 @@ var badProps = {};
 ```
 
 ## Children Type Checking
+
 In 2.3, we introduce type checking of *children*. *children* is a property in an *element attributes type* which we have determined from type checking attributes.
 Similar to how we use `JSX.ElementAttributesProperty` to determine the name of *props*, we use `JSX.ElementChildrenAttribute` to determine the name of *children*.
 `JSX.ElementChildrenAttribute` should be declared with a single property.

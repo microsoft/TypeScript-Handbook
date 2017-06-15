@@ -581,7 +581,7 @@ Consumers of your module should have as little friction as possible when using t
 Adding too many levels of nesting tends to be cumbersome, so think carefully about how you want to structure things.
 
 Exporting a namespace from your module is an example of adding too many layers of nesting.
-While namespaces sometimes have their uses, they add an extra level of indirection when using modules.
+While namespaces sometime have their uses, they add an extra level of indirection when using modules.
 This can quickly becomes a pain point for users, and is usually unnecessary.
 
 Static methods on an exported class have a similar problem - the class itself adds a layer of nesting.

@@ -115,4 +115,4 @@ Here's a revised example:
 
 Just as there is a one-to-one correspondence between JS files and modules, TypeScript has a one-to-one correspondence between module source files and their emitted JS files.
 One effect of this is that it's not possible to concatenate multiple module source files depending on the module system you target.
-For instance, you can't use the `outFile` option while targeting `commonjs` or `umd`, but with TypeScript 1.8 and later, [it's possible](./release notes/TypeScript 1.8.md#concatenate-amd-and-system-modules-with---outfile) to use `outFile` when targeting `amd` or `system`.
+For instance, you can't use the `outFile` option while targeting `commonjs` or `umd`, but with TypeScript 1.8 and later, [it's possible](./release%20notes/TypeScript%201.8.md#concatenate-amd-and-system-modules-with---outfile) to use `outFile` when targeting `amd` or `system`.

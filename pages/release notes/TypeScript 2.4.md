@@ -50,7 +50,6 @@ function arrayMap<T, U>(f: (x: T) => U): (a: T[]) => U[] {
 const lengths: (a: string[]) => number[] = arrayMap(s => s.length);
 ```
 
-
 As an example of new errors you might spot as a result:
 
 ```ts

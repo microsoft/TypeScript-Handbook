@@ -52,7 +52,7 @@ Once we've written the generic identity function, we can call it in one of two w
 The first way is to pass all of the arguments, including the type argument, to the function:
 
 ```ts
-let output = identity<string>("myString");  // type of output will be 'string'
+let output = identity<string>("myString");  // type of output will be 'myString'
 ```
 
 Here we explicitly set `T` to be `string` as one of the arguments to the function call, denoted using the `<>` around the arguments rather than `()`.
@@ -60,7 +60,7 @@ Here we explicitly set `T` to be `string` as one of the arguments to the functio
 The second way is also perhaps the most common. Here we use *type argument inference* -- that is, we want the compiler to set the value of `T` for us automatically based on the type of the argument we pass in:
 
 ```ts
-let output = identity("myString");  // type of output will be 'string'
+let output = identity("myString");  // type of output will be 'myString'
 ```
 
 Notice that we didn't have to explicitly pass the type in the angle brackets (`<>`); the compiler just looked at the value `"myString"`, and set `T` to its type.

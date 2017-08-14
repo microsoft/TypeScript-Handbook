@@ -102,7 +102,7 @@ The `for..await..of` statement is only legal within an Async Function or Async G
 
 ##### Caveats
 
-* Keep in mind that our support for async iterators relies on support for `Symbol.asyncIterator` to exist at runtime. You may need to polyfill `Symbol.asyncIterator`, which for simple purposes can be as simple as: `(Symbol as any).asyncIterator = Symbol.asyncIterator || Symbol.from("Symbol.asyncIterator");`
+* Keep in mind that our support for async iterators relies on support for `Symbol.asyncIterator` to exist at runtime. You may need to polyfill `Symbol.asyncIterator`, which for simple purposes can be as simple as: `(Symbol as any).asyncIterator = Symbol.asyncIterator || Symbol.for("Symbol.asyncIterator");`
 * You also need to include `esnext` in your `--lib` option, to get the `AsyncIterator` declaration if you do not already have it.
 * Finally, if your target is ES5 or ES3, you'll also need to set the `--downlevelIterators` flag.
 

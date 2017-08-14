@@ -127,14 +127,14 @@ You can read more about the process in Node.js documentation on [loading modules
 
 TypeScript will mimic the Node.js run-time resolution strategy in order to locate definition files for modules at compile-time.
 To accomplish this, TypeScript overlays the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) over the Node's resolution logic.
-TypeScript will also use a field in `package.json` named `"typings"` to mirror the purpose of `"main"` - the compiler will use it to find the "main" definition file to consult.
+TypeScript will also use a field in `package.json` named `"types"` to mirror the purpose of `"main"` - the compiler will use it to find the "main" definition file to consult.
 
 For example, an import statement like `import { b } from "./moduleB"` in  `/root/src/moduleA.ts` would result in attempting the following locations for locating `"./moduleB"`:
 
 1. `/root/src/moduleB.ts`
 2. `/root/src/moduleB.tsx`
 3. `/root/src/moduleB.d.ts`
-4. `/root/src/moduleB/package.json` (if it specifies a `"typings"` property)
+4. `/root/src/moduleB/package.json` (if it specifies a `"types"` property)
 5. `/root/src/moduleB/index.ts`
 6. `/root/src/moduleB/index.tsx`
 7. `/root/src/moduleB/index.d.ts`
@@ -147,7 +147,7 @@ So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would res
 1. `/root/src/node_modules/moduleB.ts`
 2. `/root/src/node_modules/moduleB.tsx`
 3. `/root/src/node_modules/moduleB.d.ts`
-4. `/root/src/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+4. `/root/src/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
 5. `/root/src/node_modules/moduleB/index.ts`
 6. `/root/src/node_modules/moduleB/index.tsx`
 7. `/root/src/node_modules/moduleB/index.d.ts`
@@ -155,7 +155,7 @@ So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would res
 8. `/root/node_modules/moduleB.ts`
 9. `/root/node_modules/moduleB.tsx`
 10. `/root/node_modules/moduleB.d.ts`
-11. `/root/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+11. `/root/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
 12. `/root/node_modules/moduleB/index.ts`
 13. `/root/node_modules/moduleB/index.tsx`
 14. `/root/node_modules/moduleB/index.d.ts`
@@ -163,7 +163,7 @@ So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would res
 15. `/node_modules/moduleB.ts`
 16. `/node_modules/moduleB.tsx`
 17. `/node_modules/moduleB.d.ts`
-18. `/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+18. `/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
 19. `/node_modules/moduleB/index.ts`
 20. `/node_modules/moduleB/index.tsx`
 21. `/node_modules/moduleB/index.d.ts`
@@ -391,7 +391,7 @@ File 'node_modules/typescript.ts' does not exist.
 File 'node_modules/typescript.tsx' does not exist.
 File 'node_modules/typescript.d.ts' does not exist.
 Found 'package.json' at 'node_modules/typescript/package.json'.
-'package.json' has 'typings' field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
+'package.json' has 'types' field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
 File 'node_modules/typescript/lib/typescript.d.ts' exist - use it as a module resolution result.
 ======== Module name 'typescript' was successfully resolved to 'node_modules/typescript/lib/typescript.d.ts'. ========
 ```
@@ -406,9 +406,9 @@ File 'node_modules/typescript/lib/typescript.d.ts' exist - use it as a module re
 
  > Module resolution kind is not specified, using **'NodeJs'**.
 
-* Loading of typings from npm packages
+* Loading of types from npm packages
 
- > 'package.json' has **'typings'** field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
+ > 'package.json' has **'types'** field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
 
 * Final result
 

@@ -174,7 +174,7 @@ The `doAnimalsHaveMuscles` function, even though it's part of the merged `Animal
 
 Namespaces are flexible enough to also merge with other types of declarations.
 To do so, the namespace declaration must follow the declaration it will merge with. The resulting declaration has properties of both declaration types.
-TypeScript uses this capability to model some of patterns in JavaScript as well as other programming languages.
+TypeScript uses this capability to model some of the patterns in JavaScript as well as other programming languages.
 
 ## Merging Namespaces with Classes
 

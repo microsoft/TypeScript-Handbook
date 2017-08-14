@@ -204,7 +204,7 @@ You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/d
 ### Path mapping
 
 Sometimes modules are not directly located under *baseUrl*.
-For instance, an import to a module `"jquery"` would be translated at runtime to `"node_modules\jquery\dist\jquery.slim.min.js"`.
+For instance, an import to a module `"jquery"` would be translated at runtime to `"node_modules/jquery/dist/jquery.slim.min.js"`.
 Loaders use a mapping configuration to map module names to files at run-time, see [RequireJs documentation](http://requirejs.org/docs/api.html#config-paths) and [SystemJS documentation](https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#paths).
 
 The TypeScript compiler supports the declaration of such mappings using `"paths"` property in `tsconfig.json` files.
@@ -260,8 +260,8 @@ The corresponding `tsconfig.json` would look like:
 
 This tells the compiler for any module import that matches the pattern `"*"` (i.e. all values), to look in two locations:
 
- 1. `"*"`: meaning the same name unchanged, so map `<moduleName>` => `<baseUrl>\<moduleName>`
- 2. `"generated\*"` meaning the module name with an appended prefix "generated", so map `<moduleName>` => `<baseUrl>\generated\<moduleName>`
+ 1. `"*"`: meaning the same name unchanged, so map `<moduleName>` => `<baseUrl>/<moduleName>`
+ 2. `"generated/*"` meaning the module name with an appended prefix "generated", so map `<moduleName>` => `<baseUrl>/generated/<moduleName>`
 
 Following this logic, the compiler will attempt to resolve the two imports as such:
 

@@ -863,7 +863,7 @@ Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in Typ
 type Pick<T, K extends keyof T> = {
     [P in K]: T[P];
 }
-type Record<K extends string | number, T> = {
+type Record<K extends string, T> = {
     [P in K]: T;
 }
 ```

@@ -46,6 +46,7 @@ Option                                         | Type      | Default            
 `--noImplicitUseStrict`                        | `boolean` | `false`                        | Do not emit `"use strict"` directives in module output.
 `--noLib`                                      | `boolean` | `false`                        | Do not include the default library file (`lib.d.ts`).
 `--noResolve`                                  | `boolean` | `false`                        | Do not add triple-slash references or module import targets to the list of compiled files.
+`--noStrictGenericChecks`                      | `boolean` | `false`                        | Disable strict checking of generic signatures in function types.
 `--noUnusedLocals`                             | `boolean` | `false`                        | Report errors on unused locals.
 `--noUnusedParameters`                         | `boolean` | `false`                        | Report errors on unused parameters.
 ~~`--out`~~                                    | `string`  |                                | DEPRECATED. Use `--outFile` instead.

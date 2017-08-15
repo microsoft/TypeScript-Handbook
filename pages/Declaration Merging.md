@@ -268,7 +268,7 @@ You can use module augmentation to tell the compiler about it:
 // map.ts
 import { Observable } from "./observable";
 declare module "./observable" {
-    interface Observable<T> {
+    export interface Observable<T> {
         map<U>(f: (x: T) => U): Observable<U>;
     }
 }

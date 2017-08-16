@@ -53,7 +53,7 @@ enum Enum {
     A
 }
 let a = Enum.A;
-let nameOfA = Enum[Enum.A]; // "A"
+let nameOfA = Enum[a]; // "A"
 ```
 
 is compiled to:
@@ -64,7 +64,7 @@ var Enum;
     Enum[Enum["A"] = 0] = "A";
 })(Enum || (Enum = {}));
 var a = Enum.A;
-var nameOfA = Enum[Enum.A]; // "A"
+var nameOfA = Enum[a]; // "A"
 ```
 
 In generated code an enum is compiled into an object that stores both forward (`name` -> `value`) and reverse (`value` -> `name`) mappings.

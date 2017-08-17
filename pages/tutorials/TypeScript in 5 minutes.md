@@ -118,9 +118,9 @@ Notice that classes and interfaces play well together, letting the programmer de
 Also of note, the use of `public` on arguments to the constructor is a shorthand that allows us to automatically create properties with that name.
 
 ```ts
-class Student {
+class Student implements Person {
     fullName: string;
-    constructor(public firstName, public middleInitial, public lastName) {
+    constructor(public firstName: string, public middleInitial: string, public lastName: string) {
         this.fullName = firstName + " " + middleInitial + " " + lastName;
     }
 }

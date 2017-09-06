@@ -46,8 +46,9 @@ interface Box {
 let box: Box = {height: 5, width: 6, scale: 10};
 ```
 
-Non-function members of the interfaces must be unique.
-The compiler will issue an error if the interfaces both declare a non-function member of the same name.
+Non-function members of the interfaces should be unique. 
+If they are not unique, they must be of the same type.
+The compiler will issue an error if the interfaces both declare a non-function member of the same name, but of different types.
 
 For function members, each function member of the same name is treated as describing an overload of the same function.
 Of note, too, is that in the case of interface `A` merging with later interface `A`, the second interface will have a higher precedence than the first.

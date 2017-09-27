@@ -66,7 +66,7 @@ An intrinsic element always begins with a lowercase letter, and a value-based el
 
 Intrinsic elements are looked up on the special interface `JSX.IntrinsicElements`.
 By default, if this interface is not specified, then anything goes and intrinsic elements will not be type checked.
-However, if interface *is* present, then the name of the intrinsic element is looked up as a property on the `JSX.IntrinsicElements` interface.
+However, if this interface *is* present, then the name of the intrinsic element is looked up as a property on the `JSX.IntrinsicElements` interface.
 For example:
 
 ```ts

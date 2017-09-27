@@ -291,7 +291,7 @@ class Dog extends Animal {
     breed: string;
 }
 
-// Error: indexing with a 'string' will sometimes get you a Dog!
+// Error: indexing with a 'string' will sometimes get you an Animal!
 interface NotOkay {
     [x: number]: Animal;
     [x: string]: Dog;
@@ -502,20 +502,21 @@ interface SelectableControl extends Control {
     select(): void;
 }
 
-class Button extends Control {
+class Button extends Control implements SelectableControl {
     select() { }
 }
 
 class TextBox extends Control {
-    select() { }
+
 }
 
-class Image {
+// Error: Property 'state' is missing in type 'Image'.
+class Image implements SelectableControl {
     select() { }
 }
 
 class Location {
-    select() { }
+
 }
 ```
 

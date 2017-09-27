@@ -33,8 +33,8 @@ Option                                         | Type      | Default            
 `--locale`                                     | `string`  | *(platform specific)*          | The locale to use to show error messages, e.g. en-us.
 `--mapRoot`                                    | `string`  |                                | Specifies the location where debugger should locate map files instead of generated locations. Use this flag if the .map files will be located at run-time in a different location than the .js files. The location specified will be embedded in the sourceMap to direct the debugger where the map files will be located.
 `--maxNodeModuleJsDepth`                       | `number`  | `0`                            | The maximum dependency depth to search under node_modules and load JavaScript files. Only applicable with `--allowJs`.
-`--module`<br/>`-m`                            | `string`  | `target === "ES6" ? "ES6" : "CommonJS"`   | Specify module code generation: `"None"`, `"CommonJS"`, `"AMD"`, `"System"`, `"UMD"`, `"ES6"`, or `"ES2015"`.<br/>► Only `"AMD"` and `"System"` can be used in conjunction with `--outFile`.<br/>► `"ES6"` and `"ES2015"` values may be used when targeting `"ES5"` or lower.
-`--moduleResolution`                           | `string`  | `module === "AMD" | "System" | "ES6" ?  "Classic" : "Node"`                    | Determine how modules get resolved. Either `"Node"` for Node.js/io.js style resolution, or `"Classic"`. See [Module Resolution documentation](./Module Resolution.md) for more details.
+`--module`<br/>`-m`                            | `string`  | `target === "ES3" or "ES5" ? "CommonJS" : "ES6"`   | Specify module code generation: `"None"`, `"CommonJS"`, `"AMD"`, `"System"`, `"UMD"`, `"ES6"`, `"ES2015"` or `"ESNext"`.<br/>► Only `"AMD"` and `"System"` can be used in conjunction with `--outFile`.<br/>► `"ES6"` and `"ES2015"` values may be used when targeting `"ES5"` or lower.
+`--moduleResolution`                           | `string`  | `module === "AMD" or "System" or "ES6" ?  "Classic" : "Node"`                    | Determine how modules get resolved. Either `"Node"` for Node.js/io.js style resolution, or `"Classic"`. See [Module Resolution documentation](./Module Resolution.md) for more details.
 `--newLine`                                    | `string`  | *(platform specific)*          | Use the specified end of line sequence to be used when emitting files: `"crlf"` (windows) or `"lf"` (unix)."
 `--noEmit`                                     | `boolean` | `false`                        | Do not emit outputs.
 `--noEmitHelpers`                              | `boolean` | `false`                        | Do not generate custom helper functions like `__extends` in compiled output.
@@ -46,6 +46,7 @@ Option                                         | Type      | Default            
 `--noImplicitUseStrict`                        | `boolean` | `false`                        | Do not emit `"use strict"` directives in module output.
 `--noLib`                                      | `boolean` | `false`                        | Do not include the default library file (`lib.d.ts`).
 `--noResolve`                                  | `boolean` | `false`                        | Do not add triple-slash references or module import targets to the list of compiled files.
+`--noStrictGenericChecks`                      | `boolean` | `false`                        | Disable strict checking of generic signatures in function types.
 `--noUnusedLocals`                             | `boolean` | `false`                        | Report errors on unused locals.
 `--noUnusedParameters`                         | `boolean` | `false`                        | Report errors on unused parameters.
 ~~`--out`~~                                    | `string`  |                                | DEPRECATED. Use `--outFile` instead.
@@ -53,6 +54,7 @@ Option                                         | Type      | Default            
 `--outFile`                                    | `string`  |                                | Concatenate and emit output to single file. The order of concatenation is determined by the list of files passed to the compiler on the command line along with triple-slash references and imports. See output file order documentation for more details.
 `paths`<sup>[2]</sup>                          | `Object`  |                                | List of path mapping entries for module names to locations relative to the `baseUrl`. See [Module Resolution documentation](./Module Resolution.md#path-mapping) for more details.
 `--preserveConstEnums`                         | `boolean` | `false`                        | Do not erase const enum declarations in generated code. See [const enums documentation](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#94-constant-enum-declarations) for more details.
+`--preserveSymlinks`                            | `boolean` | `false`                       | Do not resolve symlinks to their real path; treat a symlinked file like a real one.
 `--pretty`<sup>[1]</sup>                       | `boolean` | `false`                        | Stylize errors and messages using color and context.
 `--project`<br/>`-p`                           | `string`  |                                | Compile a project given a valid configuration file.<br/>The argument can be a file path to a valid JSON configuration file, or a directory path to a directory containing a `tsconfig.json` file.<br/>See [tsconfig.json](./tsconfig.json.md) documentation for more details.
 `--reactNamespace`                             | `string`  | `"React"`                      | DEPRECATED. Use `--jsxFactory` instead.<br/>Specifies the object invoked for `createElement` and `__spread` when targeting `"react"` JSX emit.
@@ -81,4 +83,4 @@ Option                                         | Type      | Default            
 ## Related
 
 * Setting compiler options in [`tsconfig.json`](./tsconfig.json.md) files.
-* Setting compiler options in [MSBuild projects](./Compiler Options in MSBuild.md).
+* Setting compiler options in [MSBuild projects](./Compiler-Options-in-MSBuild.md).

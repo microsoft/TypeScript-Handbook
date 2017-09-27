@@ -644,7 +644,8 @@ let search = { food: "rich", ...defaults };
 Then the `food` property in `defaults` overwrites `food: "rich"`, which is not what we want in this case.
 
 Object spread also has a couple of other surprising limits.
-First, it only includes own, enumerable properties.
+First, it only includes an objects'
+[own, enumerable properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties).
 Basically, that means you lose methods when you spread instances of an object:
 
 ```ts

@@ -76,7 +76,7 @@ document.body.innerHTML = greeter(user);
 Re-compiling, you'll now see an error:
 
 ```shell
-greeter.ts(7,26): error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.
+error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.
 ```
 
 Similarly, try removing all the arguments to the greeter call.
@@ -120,7 +120,7 @@ Also of note, the use of `public` on arguments to the constructor is a shorthand
 ```ts
 class Student {
     fullName: string;
-    constructor(public firstName, public middleInitial, public lastName) {
+    constructor(public firstName: string, public middleInitial: string, public lastName: string) {
         this.fullName = firstName + " " + middleInitial + " " + lastName;
     }
 }

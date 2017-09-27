@@ -102,7 +102,7 @@ The `for..await..of` statement is only legal within an Async Function or Async G
 
 ##### Caveats
 
-* Keep in mind that our support for async iterators relies on support for `Symbol.asyncIterator` to exist at runtime. You may need to polyfill `Symbol.asyncIterator`, which for simple purposes can be as simple as: `(Symbol as any).asyncIterator = Symbol.asyncIterator || Symbol.from("Symbol.asyncIterator");`
+* Keep in mind that our support for async iterators relies on support for `Symbol.asyncIterator` to exist at runtime. You may need to polyfill `Symbol.asyncIterator`, which for simple purposes can be as simple as: `(Symbol as any).asyncIterator = Symbol.asyncIterator || Symbol.for("Symbol.asyncIterator");`
 * You also need to include `esnext` in your `--lib` option, to get the `AsyncIterator` declaration if you do not already have it.
 * Finally, if your target is ES5 or ES3, you'll also need to set the `--downlevelIterators` flag.
 
@@ -132,7 +132,7 @@ A generic parameter default follows the following rules:
 * Required type parameters must not follow optional type parameters.
 * Default types for a type parameter must satisfy the constraint for the type parameter, if it exists.
 * When specifying type arguments, you are only required to specify type arguments for the required type parameters. Unspecified type parameters will resolve to their default types.
-* If a default type is specified and inference cannot chose a candidate, the default type is inferred.
+* If a default type is specified and inference cannot choose a candidate, the default type is inferred.
 * A class or interface declaration that merges with an existing class or interface declaration may introduce a default for an existing type parameter.
 * A class or interface declaration that merges with an existing class or interface declaration may introduce a new type parameter as long as it specifies a default.
 

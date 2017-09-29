@@ -184,10 +184,11 @@ function warnUser(): void {
 }
 ```
 
-Declaring variables of type `void` is not useful because you can only assign `undefined` or `null` to them:
+Declaring variables of type `void` is not useful because you can only assign `undefined`, `null` or a void function call to them:
 
 ```ts
 let unusable: void = undefined;
+let meaningless: void = (function () {})();
 ```
 
 # Null and Undefined

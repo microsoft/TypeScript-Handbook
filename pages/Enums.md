@@ -81,7 +81,7 @@ In other words, if you were debugging and had to read the runtime value of a num
 
 ## Heterogeneous enums
 
-Techically enums can be mixed with string and numeric members, but it's not clear why you would ever want to do so:
+Technically enums can be mixed with string and numeric members, but it's not clear why you would ever want to do so:
 
 ```ts
 enum BooleanLikeHeterogeneousEnum {

@@ -868,7 +868,7 @@ In these examples, the properties list is `keyof T` and the resulting type is so
 This is a good template for any general use of mapped types.
 That's because this kind of transformation is [homomorphic](https://en.wikipedia.org/wiki/Homomorphism), which means that the mapping applies only to properties of `T` and no others.
 The compiler knows that it can copy all the existing property modifiers before adding any new ones.
-For example, if `Person.name` were readonly, `Partial<Person>.name` would be readonly and optional.
+For example, if `Person.name` was readonly, `Partial<Person>.name` would be readonly and optional.
 
 Here's one more example, in which `T[P]` is wrapped in a `Proxy<T>` class:
 

@@ -120,11 +120,11 @@ An enum member is considered constant if:
 * The enum member is initialized with a constant enum expression.
   A constant enum expression is a subset of TypeScript expressions that can be fully evaluated at compile time.
   An expression is a constant enum expression if it is:
-  * a literal enum expression (basically a string literal or a numeric literal)
-  * a reference to previously defined constant enum member (which can originate from a different enum).
-  * a parenthesized constant enum expression
-  * one of the `+`, `-`, `~` unary operators applied to constant enum expression
-  * `+`, `-`, `*`, `/`, `%`, `<<`, `>>`, `>>>`, `&`, `|`, `^` binary operators with constant enum expressions as  operands
+  1. a literal enum expression (basically a string literal or a numeric literal)
+  2. a reference to previously defined constant enum member (which can originate from a different enum).
+  3. a parenthesized constant enum expression
+  4. one of the `+`, `-`, `~` unary operators applied to constant enum expression
+  5. `+`, `-`, `*`, `/`, `%`, `<<`, `>>`, `>>>`, `&`, `|`, `^` binary operators with constant enum expressions as  operands
   It is a compile time error for constant enum expressions to be evaluated to `NaN` or `Infinity`.
 
 In all other cases enum member is considered computed.

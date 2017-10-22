@@ -1,5 +1,7 @@
 In TypeScript 2.0, it has become significantly easier to consume declaration files, in acquiring, using, and finding them.
-This page details exactly how to do all three
+This page details exactly how to do all three.
+
+Please remind that if the npm package you use already includes declarations as written in [Publishing](./Publishing.md), you have nothing to do.
 
 # Downloading
 

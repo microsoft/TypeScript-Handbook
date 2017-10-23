@@ -1,8 +1,6 @@
 In TypeScript 2.0, it has become significantly easier to consume declaration files, in acquiring, using, and finding them.
 This page details exactly how to do all three.
 
-Please remind that if the npm package you use already includes declarations as written in [Publishing](./Publishing.md), you have nothing to do.
-
 # Downloading
 
 Getting type declarations in TypeScript 2.0 and above requires no tools apart from npm.
@@ -12,6 +10,8 @@ As an example, getting the declarations for a library like lodash takes nothing 
 ```cmd
 npm install --save @types/lodash
 ```
+
+It is worth noting that if the npm package already includes its declaration file as described in [Publishing](./Publishing.md), downloading the corresponding `@types` package is not needed.
 
 # Consuming
 

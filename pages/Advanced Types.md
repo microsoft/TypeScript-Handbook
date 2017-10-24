@@ -543,7 +543,7 @@ Much of the time when we talk about "singleton types", we're referring to both e
 
 # Discriminated Unions
 
-You can combine singleton types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
+You can combine singleton types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions*.
 Discriminated unions are useful in functional programming.
 Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today.
 There are three ingredients:

@@ -237,7 +237,7 @@ Instead libraries have traditionally made themselves available using a single gl
 This is called the "namespace pattern", and webpack allows us to continue leveraging libraries written that way.
 With our entry for `"react": "React"`, webpack will work its magic to make any import of `"react"` load from the `React` variable.
 
-You can learn more about configuring webpack [here](http://webpack.github.io/docs/configuration.html).
+You can learn more about configuring webpack [here](https://webpack.js.org/configuration).
 
 # Putting it all together
 

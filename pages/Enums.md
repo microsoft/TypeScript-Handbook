@@ -174,7 +174,7 @@ interface Square {
 let c: Circle = {
     kind: ShapeKind.Square,
     //    ~~~~~~~~~~~~~~~~ Error!
-    radius: number,
+    radius: 100,
 }
 ```
 

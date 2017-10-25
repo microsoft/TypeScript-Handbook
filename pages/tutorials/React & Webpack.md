@@ -45,8 +45,7 @@ Now we'll turn this folder into an npm package.
 npm init
 ```
 
-You'll be given a series of prompts.
-You can use the defaults except for your entry point.
+You'll be given a series of prompts, but you can feel free to use the defaults.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
 # Install our dependencies

@@ -84,6 +84,7 @@ Compiler Option                              | MSBuild Property Name            
 `--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
 `--sourceMap`                                | TypeScriptSourceMap                        | File path
 `--sourceRoot`                               | TypeScriptSourceRoot                       | File path
+`--strict`                                   | TypeScriptStrict                           | boolean
 `--strictFunctionTypes`                      | TypeScriptStrictFunctionTypes              | boolean
 `--strictNullChecks`                         | TypeScriptStrictNullChecks                 | boolean
 `--stripInternal`                            | TypeScriptStripInternal                    | boolean

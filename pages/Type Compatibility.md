@@ -138,7 +138,7 @@ listenEvent(EventType.Mouse, (e: number) => console.log(e));
 ## Optional Parameters and Rest Parameters
 
 When comparing functions for compatibility, optional and required parameters are interchangeable.
-Extra optional parameters of the source type are not an error, and optional parameters of the target type without corresponding parameters in the target type are not an error.
+Extra optional parameters of the source type are not an error, and optional parameters of the target type without corresponding parameters in the source type are not an error.
 
 When a function has a rest parameter, it is treated as if it were an infinite series of optional parameters.
 
@@ -202,7 +202,7 @@ s = a;  //OK
 ## Private and protected members in classes
 
 Private and protected members in a class affect their compatibility.
-When an instance of a class is checked for compatibility, if the instance contains a private member, then the target type must also contain a private member that originated from the same class.
+When an instance of a class is checked for compatibility, if the target type contains a private member, then the source type must also contain a private member that originated from the same class.
 Likewise, the same applies for an instance with a protected member.
 This allows a class to be assignment compatible with its super class, but *not* with classes from a different inheritance hierarchy which otherwise have the same shape.
 

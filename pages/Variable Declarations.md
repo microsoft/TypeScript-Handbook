@@ -505,7 +505,7 @@ let o = {
     a: "foo",
     b: 12,
     c: "bar"
-}
+};
 let { a, b } = o;
 ```
 
@@ -578,7 +578,7 @@ function f({ a, b }: C): void {
 ```
 
 But specifying defaults is more common for parameters, and getting defaults right with destructuring can be tricky.
-First of all, you need to remember to put the type before the default value.
+First of all, you need to remember to put the pattern before the default value.
 
 ```ts
 function f({ a, b } = { a: "", b: 0 }): void {
@@ -587,6 +587,8 @@ function f({ a, b } = { a: "", b: 0 }): void {
 f(); // ok, default to { a: "", b: 0 }
 ```
 
+> The snippet above is an example of type inference, explained later in the handbook.
+
 Then, you need to remember to give a default for optional properties on the destructured property instead of the main initializer.
 Remember that `C` was defined with `b` optional:
 
@@ -594,9 +596,9 @@ Remember that `C` was defined with `b` optional:
 function f({ a, b = 0 } = { a: "" }): void {
     // ...
 }
-f({ a: "yes" }) // ok, default b = 0
-f() // ok, default to { a: "" }, which then defaults b = 0
-f({}) // error, 'a' is required if you supply an argument
+f({ a: "yes" }); // ok, default b = 0
+f(); // ok, default to { a: "" }, which then defaults b = 0
+f({}); // error, 'a' is required if you supply an argument
 ```
 
 Use destructuring with care.
@@ -642,7 +644,8 @@ let search = { food: "rich", ...defaults };
 Then the `food` property in `defaults` overwrites `food: "rich"`, which is not what we want in this case.
 
 Object spread also has a couple of other surprising limits.
-First, it only includes own, enumerable properties.
+First, it only includes an objects'
+[own, enumerable properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties).
 Basically, that means you lose methods when you spread instances of an object:
 
 ```ts

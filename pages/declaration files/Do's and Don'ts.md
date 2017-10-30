@@ -162,7 +162,7 @@ Note that this collapsing should only occur when all overloads have the same ret
 *Why*: This is important for two reasons.
 
 TypeScript resolves signature compatibility by seeing if any signature of the target can be invoked with the arguments of the source,
-  *and extraneuous arguments are allowed*.
+  *and extraneous arguments are allowed*.
 This code, for example, exposes a bug only when the signature is correctly written using optional parameters:
 
 ```ts

@@ -104,7 +104,7 @@ By default all *visible* "`@types`" packages are included in your compilation.
 Packages in `node_modules/@types` of any enclosing folder are considered *visible*;
 specifically, that means packages within `./node_modules/@types/`,  `../node_modules/@types/`, `../../node_modules/@types/`, and so on.
 
-If `typesRoots` is specified, *only* packages under `typeRoots` will be included.
+If `typeRoots` is specified, *only* packages under `typeRoots` will be included.
 For example:
 
 ```json
@@ -199,7 +199,7 @@ Setting a top-level property `compileOnSave` signals to the IDE to generate all 
 }
 ```
 
-This feature is currently supported in Visual Studio 2015 with TypeScript 1.8.4 and above, and [atom-typescript](https://github.com/TypeStrong/atom-typescript/blob/master/docs/tsconfig.md#compileonsave) plugin.
+This feature is currently supported in Visual Studio 2015 with TypeScript 1.8.4 and above, and [atom-typescript](https://github.com/TypeStrong/atom-typescript#compile-on-save) plugin.
 
 ## Schema
 

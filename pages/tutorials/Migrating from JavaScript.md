@@ -4,6 +4,8 @@ Converting a JavaScript codebase over to TypeScript is, while somewhat tedious, 
 In this tutorial, we're going to look at how you might start out.
 We assume you've read enough of the handbook to write new TypeScript code.
 
+If you're looking to convert a React project, we recommend looking at the [React Conversion Guide](https://github.com/Microsoft/TypeScript-React-Conversion-Guide#typescript-react-conversion-guide) first.
+
 # Setting up your Directories
 
 If you're writing in plain JavaScript, it's likely that you're running your JavaScript directly,
@@ -391,7 +393,7 @@ For instance, imagine a `Point` class, and imagine a function that we wish to ad
 
 ```ts
 class Point {
-    constuctor(public x, public y) {}
+    constructor(public x, public y) {}
     getDistance(p: Point) {
         let dx = p.x - this.x;
         let dy = p.y - this.y;

@@ -5,7 +5,7 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 
 # Introduction
 
-Starting with the ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
+Starting with ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
 
 Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported using one of the [`export` forms](#export).
 Conversely, to consume a variable, function, class, interface, etc. exported from a different module, it has to be imported using one of the [`import` forms](#import).
@@ -221,7 +221,7 @@ TypeScript supports `export =` to model the traditional CommonJS and AMD workflo
 The `export =` syntax specifies a single object that is exported from the module.
 This can be a class, interface, namespace, function, or enum.
 
-When importing a module using `export =`, TypeScript-specific `import let = require("module")` must be used to import the module.
+When importing a module using `export =`, TypeScript-specific `import module = require("module")` must be used to import the module.
 
 ##### ZipCodeValidator.ts
 
@@ -492,7 +492,7 @@ declare module "path" {
 }
 ```
 
-Now we can `/// <reference>` `node.d.ts` and then load the modules using `import url = require("url");`.
+Now we can `/// <reference>` `node.d.ts` and then load the modules using `import url = require("url");` or `import * as URL from "url"`.
 
 ```ts
 /// <reference path="node.d.ts"/>
@@ -581,8 +581,8 @@ Consumers of your module should have as little friction as possible when using t
 Adding too many levels of nesting tends to be cumbersome, so think carefully about how you want to structure things.
 
 Exporting a namespace from your module is an example of adding too many layers of nesting.
-While namespaces sometimes have their uses, they add an extra level of indirection when using modules.
-This can quickly becomes a pain point for users, and is usually unnecessary.
+While namespaces sometime have their uses, they add an extra level of indirection when using modules.
+This can quickly become a pain point for users, and is usually unnecessary.
 
 Static methods on an exported class have a similar problem - the class itself adds a layer of nesting.
 Unless it increases expressivity or intent in a clearly useful way, consider simply exporting a helper function.

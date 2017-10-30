@@ -127,14 +127,14 @@ You can read more about the process in Node.js documentation on [loading modules
 
 TypeScript will mimic the Node.js run-time resolution strategy in order to locate definition files for modules at compile-time.
 To accomplish this, TypeScript overlays the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) over the Node's resolution logic.
-TypeScript will also use a field in `package.json` named `"typings"` to mirror the purpose of `"main"` - the compiler will use it to find the "main" definition file to consult.
+TypeScript will also use a field in `package.json` named `"types"` to mirror the purpose of `"main"` - the compiler will use it to find the "main" definition file to consult.
 
 For example, an import statement like `import { b } from "./moduleB"` in  `/root/src/moduleA.ts` would result in attempting the following locations for locating `"./moduleB"`:
 
 1. `/root/src/moduleB.ts`
 2. `/root/src/moduleB.tsx`
 3. `/root/src/moduleB.d.ts`
-4. `/root/src/moduleB/package.json` (if it specifies a `"typings"` property)
+4. `/root/src/moduleB/package.json` (if it specifies a `"types"` property)
 5. `/root/src/moduleB/index.ts`
 6. `/root/src/moduleB/index.tsx`
 7. `/root/src/moduleB/index.d.ts`
@@ -147,7 +147,7 @@ So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would res
 1. `/root/src/node_modules/moduleB.ts`
 2. `/root/src/node_modules/moduleB.tsx`
 3. `/root/src/node_modules/moduleB.d.ts`
-4. `/root/src/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+4. `/root/src/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
 5. `/root/src/node_modules/moduleB/index.ts`
 6. `/root/src/node_modules/moduleB/index.tsx`
 7. `/root/src/node_modules/moduleB/index.d.ts`
@@ -155,7 +155,7 @@ So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would res
 8. `/root/node_modules/moduleB.ts`
 9. `/root/node_modules/moduleB.tsx`
 10. `/root/node_modules/moduleB.d.ts`
-11. `/root/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+11. `/root/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
 12. `/root/node_modules/moduleB/index.ts`
 13. `/root/node_modules/moduleB/index.tsx`
 14. `/root/node_modules/moduleB/index.d.ts`
@@ -163,7 +163,7 @@ So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would res
 15. `/node_modules/moduleB.ts`
 16. `/node_modules/moduleB.tsx`
 17. `/node_modules/moduleB.d.ts`
-18. `/node_modules/moduleB/package.json` (if it specifies a `"typings"` property)
+18. `/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
 19. `/node_modules/moduleB/index.ts`
 20. `/node_modules/moduleB/index.tsx`
 21. `/node_modules/moduleB/index.d.ts`
@@ -204,7 +204,7 @@ You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/d
 ### Path mapping
 
 Sometimes modules are not directly located under *baseUrl*.
-For instance, an import to a module `"jquery"` would be translated at runtime to `"node_modules\jquery\dist\jquery.slim.min.js"`.
+For instance, an import to a module `"jquery"` would be translated at runtime to `"node_modules/jquery/dist/jquery.slim.min.js"`.
 Loaders use a mapping configuration to map module names to files at run-time, see [RequireJs documentation](http://requirejs.org/docs/api.html#config-paths) and [SystemJS documentation](https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#paths).
 
 The TypeScript compiler supports the declaration of such mappings using `"paths"` property in `tsconfig.json` files.
@@ -215,11 +215,15 @@ Here is an example for how to specify the `"paths"` property for `jquery`.
   "compilerOptions": {
     "baseUrl": ".", // This must be specified if "paths" is.
     "paths": {
-      "jquery": ["node_modules/jquery/dist/jquery"]
+      "jquery": ["node_modules/jquery/dist/jquery"] // This mapping is relative to "baseUrl"
     }
   }
 }
 ```
+
+Please notice that `"paths"` are resolved relative to `"baseUrl"`.
+When setting `"baseUrl"` to another value than `"."`, i.e. the directory of `tsconfig.json`, the mappings must be changed accordingly.
+Say, you set `"baseUrl": "./src"` in the above example, then jquery should be mapped to `"../node_modules/jquery/dist/jquery"`.
 
 Using `"paths"` also allows for more sophisticated mappings including multiple fall back locations.
 Consider a project configuration where only some modules are available in one location, and the rest are in another.
@@ -256,8 +260,8 @@ The corresponding `tsconfig.json` would look like:
 
 This tells the compiler for any module import that matches the pattern `"*"` (i.e. all values), to look in two locations:
 
- 1. `"*"`: meaning the same name unchanged, so map `<moduleName>` => `<baseUrl>\<moduleName>`
- 2. `"generated\*"` meaning the module name with an appended prefix "generated", so map `<moduleName>` => `<baseUrl>\generated\<moduleName>`
+ 1. `"*"`: meaning the same name unchanged, so map `<moduleName>` => `<baseUrl>/<moduleName>`
+ 2. `"generated/*"` meaning the module name with an appended prefix "generated", so map `<moduleName>` => `<baseUrl>/generated/<moduleName>`
 
 Following this logic, the compiler will attempt to resolve the two imports as such:
 
@@ -319,6 +323,35 @@ So following our example, the `tsconfig.json` file should look like:
 
 Every time the compiler sees a relative module import in a subfolder of one of the `rootDirs`, it will attempt to look for this import in each of the entries of `rootDirs`.
 
+The flexibility of `rootDirs` is not limited to specifying a list of physical source directories that are logically merged. The supplied array may include any number of ad hoc, arbitrary directory names, regardless of whether they exist or not. This allows the compiler to capture sophisticated bundling and runtime features such as conditional inclusion and project specific loader plugins in a type safe way.
+
+Consider an internationalization scenario where a build tool automatically generates locale specific bundles by interpolating a special path token, say `#{locale}`, as part of a relative module path such as `./#{locale}/messages`. In this hypothetical setup the tool enumerates supported locales, mapping the abstracted path into `./zh/messages`, `./de/messages`, and so forth.
+
+Assume that each of these modules exports an array of strings. For example `./zh/messages` might contain:
+
+```ts
+export default [
+    "您好吗",
+    "很高兴认识你"
+];
+```
+
+By leveraging `rootDirs` we can inform the compiler of this mapping and thereby allow it to safely resolve `./#{locale}/messages`, even though the directory will never exist. For example, with the following `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "rootDirs": [
+      "src/zh",
+      "src/de",
+      "src/#{locale}"
+    ]
+  }
+}
+```
+
+The compiler will now resolve `import messages from './#{locale}/messages'` to `import messages from './zh/messages'` for tooling purposes, allowing development in a locale agnostic manner without compromising design time support.
+
 ## Tracing module resolution
 
 As discussed earlier, the compiler can visit files outside the current folder when resolving a module.
@@ -358,7 +391,7 @@ File 'node_modules/typescript.ts' does not exist.
 File 'node_modules/typescript.tsx' does not exist.
 File 'node_modules/typescript.d.ts' does not exist.
 Found 'package.json' at 'node_modules/typescript/package.json'.
-'package.json' has 'typings' field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
+'package.json' has 'types' field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
 File 'node_modules/typescript/lib/typescript.d.ts' exist - use it as a module resolution result.
 ======== Module name 'typescript' was successfully resolved to 'node_modules/typescript/lib/typescript.d.ts'. ========
 ```
@@ -373,9 +406,9 @@ File 'node_modules/typescript/lib/typescript.d.ts' exist - use it as a module re
 
  > Module resolution kind is not specified, using **'NodeJs'**.
 
-* Loading of typings from npm packages
+* Loading of types from npm packages
 
- > 'package.json' has **'typings'** field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
+ > 'package.json' has **'types'** field './lib/typescript.d.ts' that references 'node_modules/typescript/lib/typescript.d.ts'.
 
 * Final result
 

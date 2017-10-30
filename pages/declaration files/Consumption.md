@@ -1,5 +1,5 @@
 In TypeScript 2.0, it has become significantly easier to consume declaration files, in acquiring, using, and finding them.
-This page details exactly how to do all three
+This page details exactly how to do all three.
 
 # Downloading
 
@@ -10,6 +10,8 @@ As an example, getting the declarations for a library like lodash takes nothing 
 ```cmd
 npm install --save @types/lodash
 ```
+
+It is worth noting that if the npm package already includes its declaration file as described in [Publishing](./Publishing.md), downloading the corresponding `@types` package is not needed.
 
 # Consuming
 

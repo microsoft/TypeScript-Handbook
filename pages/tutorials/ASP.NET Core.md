@@ -2,28 +2,28 @@
 
 ## Install ASP.NET Core and TypeScript
 
-First, [install ASP.NET Core](https://get.asp.net) if you need it.
-This quick-start guide uses Visual Studio, which means that you'll need Visual Studio 2015 in order to use ASP.NET Core.
+First, [install ASP.NET Core](https://get.asp.net) if you need it. This quick-start guide requires Visual Studio 2015 or 2017.
 
-Next, if your version of Visual Studio does not already have TypeScript, you can install it for [Visual Studio 2015](http://www.microsoft.com/en-us/download/details.aspx?id=48593).
+Next, if your version of Visual Studio does not already have the latest TypeScript, you can [install it](http://www.microsoft.com/en-us/download/details.aspx?id=48593).
 
 ## Create a new project
 
 1. Choose **File**
 2. Choose **New Project** (Ctrl + Shift + N)
 3. Choose **Visual C#**
-4. Choose **ASP.NET Web Application**
+4. For VS2015, choose **ASP.NET Web Application** > **ASP.NET 5 Empty**, and let's uncheck "Host in the cloud" since we're going to run this locally.
 
-   ![Create new ASP.NET project](../../assets/images/tutorials/aspnet/new-asp-project.png)
+    ![Use empty template](../../assets/images/tutorials/aspnet/new-asp-project-empty.png)
 
-5. Choose **ASP.NET 5 Empty**
+    For VS2017, choose **ASP.NET Core Web Application (.NET Core)** > **ASP.NET Core 1.1 Empty** instead.
 
-   Let's uncheck "Host in the cloud" since we're going to run this locally.
-   ![Use empty template](../../assets/images/tutorials/aspnet/new-asp-project-empty.png)
+    ![Use empty template VS2017](../../assets/images/tutorials/aspnet/new-asp-project-empty-17.PNG)
 
 Run the application and make sure that it works.
 
 ## Set up the server
+
+### VS2015
 
 In `project.json` add another entry in `"dependencies"`:
 
@@ -51,6 +51,24 @@ public void Configure(IApplicationBuilder app)
     app.UseStaticFiles();
 }
 ```
+
+### VS2017
+
+Open **Dependencies** > **Manage NuGet Packages** > **Browse**. Search and install `Microsoft.AspNetCore.StaticFiles` 1.1.2:
+
+![Install Microsoft.AspNetCore.StaticFiles](../../assets/images/tutorials/aspnet/install-nuget-packages.png)
+
+Replace the body of `Configure` in `Startup.cs` with
+
+```cs
+public void Configure(IApplicationBuilder app)
+{
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
+}
+```
+
+You may need to restart VS for the red squiggly lines below `UseDefaultFiles` and `UseStaticFiles` to disappear.
 
 # Add TypeScript
 
@@ -203,7 +221,7 @@ Use the following code for `index.html`:
 ## Debug
 
 1. In Edge, press F12 and click the **Debugger** tab.
-2. Look in the first localhost folder, then src/app.ts
+2. Look in the first localhost folder, then scripts/app.ts
 3. Put a breakpoint on the line with `return`.
 4. Type in the boxes and confirm that the breakpoint hits in TypeScript code and that inspection works correctly.
 
@@ -216,12 +234,30 @@ Next we'll include Angular and write a simple Angular app.
 
 ## Add NPM dependencies
 
-Add the following `"dependencies"` to `package.json` to install Angular 2 and SystemJS:
+Add Angular 2 and SystemJS to `dependencies` in `package.json`.
+
+For VS2015, the new `dependencies` list:
 
 ```json
   "dependencies": {
     "angular2": "2.0.0-beta.11",
     "systemjs": "0.19.24",
+    "gulp": "3.9.0",
+    "del": "2.2.0"
+  },
+```
+
+For VS2017, due to the deprecation of peer dependencies in NPM3, we need to list Angular 2's peer dependencies directly as dependencies as well:
+
+```json
+  "dependencies": {
+    "angular2": "2.0.0-beta.11",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.2",
+    "zone.js": "^0.6.4",
+    "systemjs": "0.19.24",
+    "gulp": "3.9.0",
+    "del": "2.2.0"
   },
 ```
 
@@ -252,7 +288,7 @@ Our tsconfig should now look like this:
     "files": [
         "./app.ts",
         "./model.ts",
-        "./main.ts",
+        "./main.ts"
     ],
     "compileOnSave": true
 }
@@ -288,7 +324,7 @@ var paths = {
 };
 
 gulp.task('lib', function () {
-    gulp.src(paths.libs).pipe(gulp.dest('wwwroot/scripts/lib'))
+    gulp.src(paths.libs).pipe(gulp.dest('wwwroot/scripts/lib'));
 });
 
 gulp.task('clean', function () {
@@ -296,7 +332,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('default', ['lib'], function () {
-    gulp.src(paths.scripts).pipe(gulp.dest('wwwroot/scripts'))
+    gulp.src(paths.scripts).pipe(gulp.dest('wwwroot/scripts'));
 });
 ```
 
@@ -306,6 +342,8 @@ Again, make sure that Task Runner Explorer sees the new `lib` task after you sav
 
 First, change the code in `app.ts` to:
 
+{% raw %}
+
 ```ts
 import {Component} from "angular2/core"
 import {MyModel} from "./model"
@@ -314,7 +352,7 @@ import {MyModel} from "./model"
     selector: `my-app`,
     template: `<div>Hello from {{getCompiler()}}</div>`
 })
-class MyApp {
+export class MyApp {
     model = new MyModel();
     getCompiler() {
         return this.model.compiler;
@@ -322,7 +360,9 @@ class MyApp {
 }
 ```
 
-Then add another TypeScript file in `src` named `model.ts`:
+{% endraw %}
+
+Then add another TypeScript file in `scripts` named `model.ts`:
 
 ```ts
 export class MyModel {
@@ -330,7 +370,7 @@ export class MyModel {
 }
 ```
 
-And then another TypeScript file in `src` named `main.ts`:
+And then another TypeScript file in `scripts` named `main.ts`:
 
 ```ts
 import {bootstrap} from "angular2/platform/browser";

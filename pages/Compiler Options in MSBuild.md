@@ -63,6 +63,7 @@ Compiler Option                              | MSBuild Property Name            
 `--noImplicitReturns`                        | TypeScriptNoImplicitReturns                | boolean
 `--noImplicitThis`                           | TypeScriptNoImplicitThis                   | boolean
 `--noImplicitUseStrict`                      | TypeScriptNoImplicitUseStrict              | boolean
+`--noStrictGenericChecks`                    | TypeScriptNoStrictGenericChecks            | boolean
 `--noUnusedLocals`                           | TypeScriptNoUnusedLocals                   | boolean
 `--noUnusedParameters`                       | TypeScriptNoUnusedParameters               | boolean
 `--noLib`                                    | TypeScriptNoLib                            | boolean
@@ -72,6 +73,7 @@ Compiler Option                              | MSBuild Property Name            
 `--outFile`                                  | TypeScriptOutFile                          | File path
 `--paths`                                    | *Not supported in MSBuild*                 |
 `--preserveConstEnums`                       | TypeScriptPreserveConstEnums               | boolean
+`--preserveSymlinks`                         | TypeScriptPreserveSymlinks                 | boolean
 `--listEmittedFiles`                         | *Not supported in MSBuild*                 |
 `--pretty`                                   | *Not supported in MSBuild*                 |
 `--reactNamespace`                           | TypeScriptReactNamespace                   | string
@@ -82,6 +84,8 @@ Compiler Option                              | MSBuild Property Name            
 `--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
 `--sourceMap`                                | TypeScriptSourceMap                        | File path
 `--sourceRoot`                               | TypeScriptSourceRoot                       | File path
+`--strict`                                   | TypeScriptStrict                           | boolean
+`--strictFunctionTypes`                      | TypeScriptStrictFunctionTypes              | boolean
 `--strictNullChecks`                         | TypeScriptStrictNullChecks                 | boolean
 `--stripInternal`                            | TypeScriptStripInternal                    | boolean
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean

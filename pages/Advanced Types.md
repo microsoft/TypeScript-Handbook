@@ -512,14 +512,43 @@ function createElement(tagName: string): Element {
 }
 ```
 
+# Numeric Literal Types
+
+TypeScript also has numeric literal types.
+
+```ts
+function rollDie(): 1 | 2 | 3 | 4 | 5 | 6 {
+    // ...
+}
+```
+
+These are seldom written explicitly, they can be useful when narrowing can catch bugs:
+
+```ts
+function foo(x: number) {
+    if (x !== 1 || x !== 2) {
+        //         ~~~~~~~
+        // Operator '!==' cannot be applied to types '1' and '2'.
+    }
+}
+```
+
+In other words, `x` must be `1` when it gets compared to `2`, meaning that the above check is making an invalid comparison.
+
+# Enum Member Types
+
+As mentioned in [our section on enums](./Enums.md#union-enums-and-enum-member-types), enum members have types when every member is literal-initialized.
+
+Much of the time when we talk about "singleton types", we're referring to both enum member types as well as numeric/string literal types, though many users will use "singleton types" and "literal types" interchangeably.
+
 # Discriminated Unions
 
-You can combine string literal types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
+You can combine singleton types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
 Discriminated unions are useful in functional programming.
 Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today.
 There are three ingredients:
 
-1. Types that have a common, string literal property &mdash; the *discriminant*.
+1. Types that have a common, singleton type property &mdash; the *discriminant*.
 2. A type alias that takes the union of those types &mdash; the *union*.
 3. Type guards on the common property.
 
@@ -839,7 +868,7 @@ In these examples, the properties list is `keyof T` and the resulting type is so
 This is a good template for any general use of mapped types.
 That's because this kind of transformation is [homomorphic](https://en.wikipedia.org/wiki/Homomorphism), which means that the mapping applies only to properties of `T` and no others.
 The compiler knows that it can copy all the existing property modifiers before adding any new ones.
-For example, if `Person.name` were readonly, `Partial<Person>.name` would be readonly and optional.
+For example, if `Person.name` was readonly, `Partial<Person>.name` would be readonly and optional.
 
 Here's one more example, in which `T[P]` is wrapped in a `Proxy<T>` class:
 
@@ -863,7 +892,7 @@ Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in Typ
 type Pick<T, K extends keyof T> = {
     [P in K]: T[P];
 }
-type Record<K extends string | number, T> = {
+type Record<K extends string, T> = {
     [P in K]: T;
 }
 ```

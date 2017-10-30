@@ -2,7 +2,7 @@
 
 With the introduction of Classes in TypeScript and ES6, there now exist certain scenarios that require additional features to support annotating or modifying classes and class members.
 Decorators provide a way to add both annotations and a meta-programming syntax for class declarations and members.
-Decorators are a [stage 1 proposal](https://github.com/wycats/javascript-decorators/blob/master/README.md) for JavaScript and are available as an experimental feature of TypeScript.
+Decorators are a [stage 2 proposal](https://github.com/tc39/proposal-decorators) for JavaScript and are available as an experimental feature of TypeScript.
 
 > NOTE&emsp; Decorators are an experimental feature that may change in future releases.
 
@@ -163,6 +163,28 @@ function sealed(constructor: Function) {
 
 When `@sealed` is executed, it will seal both the constructor and its prototype.
 
+Next we have an example of how to override the constructor.
+
+```ts
+function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        newProperty = "new property";
+        hello = "override";
+    }
+}
+
+@classDecorator
+class Greeter {
+    property = "property";
+    hello: string;
+    constructor(m: string) {
+        this.hello = m;
+    }
+}
+
+console.log(new Greeter("world"));
+```
+
 ## Method Decorators
 
 A *Method Decorator* is declared just before a method declaration.
@@ -272,12 +294,8 @@ The expression for the property decorator will be called as a function at runtim
 2. The name of the member.
 
 > NOTE&emsp; A *Property Descriptor* is not provided as an argument to a property decorator due to how property decorators are initialized in TypeScript.
-This is because there is currently no mechanism to describe an instance property when defining members of a prototype, and no way to observe or modify the initializer for a property.
+This is because there is currently no mechanism to describe an instance property when defining members of a prototype, and no way to observe or modify the initializer for a property. The return value is ignored too.
 As such, a property decorator can only be used to observe that a property of a specific name has been declared for a class.
-
-If the property decorator returns a value, it will be used as the *Property Descriptor* for the member.
-
-> NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
 
 We can use this information to record metadata about the property, as in the following example:
 

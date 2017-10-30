@@ -66,7 +66,7 @@ An intrinsic element always begins with a lowercase letter, and a value-based el
 
 Intrinsic elements are looked up on the special interface `JSX.IntrinsicElements`.
 By default, if this interface is not specified, then anything goes and intrinsic elements will not be type checked.
-However, if interface *is* present, then the name of the intrinsic element is looked up as a property on the `JSX.IntrinsicElements` interface.
+However, if this interface *is* present, then the name of the intrinsic element is looked up as a property on the `JSX.IntrinsicElements` interface.
 For example:
 
 ```ts
@@ -102,7 +102,57 @@ import MyComponent from "./myComponent";
 <SomeOtherComponent />; // error
 ```
 
-It is possible to limit the type of a value-based element.
+There are two ways to define a value-based element:
+
+1. Stateless Functional Component (SFC)
+2. Class Component
+
+Because these two types of value-based elements are indistinguishable from each other in JSX expression, we first try to resolve the expression as Stateless Functional Component using overload resolution. If the process successes, then we are done resolving the expression to its declaration. If we fail to resolve as SFC, we will then try to resolve as a class component. If that fails, we will report an error.
+
+### Stateless Functional Component
+
+As the name suggested, the component is defined as JavaScript function where its first argument is a `props` object.
+We enforce that its return type must be assignable to `JSX.Element`
+
+```ts
+interface FooProp {
+  name: string;
+  X: number;
+  Y: number;
+}
+
+declare function AnotherComponent(prop: {name: string});
+function ComponentFoo(prop: FooProp) {
+  return <AnotherComponent name=prop.name />;
+}
+
+const Button = (prop: {value: string}, context: { color: string }) => <button>
+```
+
+Because SFC is simply a JavaScript function, we can utilize function overload here as well.
+
+```ts
+interface ClickableProps {
+  children: JSX.Element[] | JSX.Element
+}
+
+interface HomeProps extends ClickableProps {
+  home: JSX.Element;
+}
+
+interface SideProps extends ClickableProps {
+  side: JSX.Element | string;
+}
+
+function MainButton(prop: HomeProps): JSX.Element;
+function MainButton(prop: SideProps): JSX.Element {
+  ...
+}
+```
+
+### Class Component
+
+It is possible to limit the type of a class component.
 However, for this we must introduce two new terms: the *element class type* and the *element instance type*.
 
 Given `<Expr />`, the *element class type* is the type of `Expr`.
@@ -238,6 +288,75 @@ var badProps = {};
 <foo {...badProps} />; // error
 ```
 
+## Children Type Checking
+
+In 2.3, we introduce type checking of *children*. *children* is a property in an *element attributes type* which we have determined from type checking attributes.
+Similar to how we use `JSX.ElementAttributesProperty` to determine the name of *props*, we use `JSX.ElementChildrenAttribute` to determine the name of *children*.
+`JSX.ElementChildrenAttribute` should be declared with a single property.
+
+```ts
+declare namespace JSX {
+  interface ElementChildrenAttribute {
+    children: {};  // specify children name to use
+  }
+}
+```
+
+Without explicitly specify type of children, we will use default type from [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
+
+```ts
+<div>
+  <h1>Hello</h1>
+</div>;
+
+<div>
+  <h1>Hello</h1>
+  World
+</div>;
+
+const CustomComp = (props) => <div>props.children</div>
+<CustomComp>
+  <div>Hello World</div>
+  {"This is just a JS expression..." + 1000}
+</CustomComp>
+```
+
+You can specify type of *children* like any other attribute. This will overwritten default type from [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
+
+```ts
+interface PropsType {
+  children: JSX.Element
+  name: string
+}
+
+class Component extends React.Component<PropsType, {}> {
+  render() {
+    return (
+      <h2>
+        this.props.children
+      </h2>
+    )
+  }
+}
+
+// OK
+<Component>
+  <h1>Hello World</h1>
+</Component>
+
+// Error: children is of type JSX.Element not array of JSX.Element
+<Component>
+  <h1>Hello World</h1>
+  <h2>Hello World</h2>
+</Component>
+
+// Error: children is of type JSX.Element not array of JSX.Element or string.
+<Component>
+  <h1>Hello</h1>
+  World
+</Component>
+```
+
 # The JSX result type
 
 By default the result of a JSX expression is typed as `any`.
@@ -266,7 +385,7 @@ var a = <div>
 
 # React integration
 
-To use JSX with React you should use the [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/react).
+To use JSX with React you should use the [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
 These typings define the `JSX` namespace appropriately for use with React.
 
 ```ts

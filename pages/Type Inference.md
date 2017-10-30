@@ -41,9 +41,7 @@ To correct this, instead explicitly provide the type when no one type is a super
 let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
 ```
 
-When no best common type is found, the resulting inference is the empty object type, `{}`.
-Because this type has no members, attempting to use any properties of it will cause an error.
-This result allows you to still use the object in a type-agnostic manner, while providing type safety in cases where the type of the object can't be implicitly determined.
+When no best common type is found, the resulting inference is the union array type, `(Rhino | Elephant | Snake)[]`.
 
 # Contextual Type
 
@@ -52,7 +50,7 @@ This is known as "contextual typing". Contextual typing occurs when the type of 
 
 ```ts
 window.onmousedown = function(mouseEvent) {
-    console.log(mouseEvent.buton);  //<- Error
+    console.log(mouseEvent.button);  //<- Error
 };
 ```
 
@@ -65,7 +63,7 @@ Had we written the above example:
 
 ```ts
 window.onmousedown = function(mouseEvent: any) {
-    console.log(mouseEvent.buton);  //<- Now, no error is given
+    console.log(mouseEvent.button);  //<- Now, no error is given
 };
 ```
 

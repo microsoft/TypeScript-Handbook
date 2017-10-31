@@ -38,6 +38,30 @@ Of course, one of the most fundamental patterns in class-based programming is be
 
 Let's take a look at an example:
 
+
+```ts
+class Animal {
+    move(distanceInMeters: number = 0) {
+        console.log(`Animal moved ${distanceInMeters}m.`);
+    }
+}
+
+class Dog extends Animal {
+    bark() {
+        console.log('Woof! Woof!');
+    }
+}
+
+const dog = new Dog();
+dog.bark();
+dog.move(10);
+dog.bark();
+```
+
+This example show the most basic inheritance feature : child classes inherit parent properties and methods.
+
+Let's look at a more complex example:
+
 ```ts
 class Animal {
     name: string;

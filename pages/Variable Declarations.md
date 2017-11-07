@@ -428,7 +428,7 @@ Applying the [principle of least privilege](https://en.wikipedia.org/wiki/Princi
 The rationale is that if a variable didn't need to get written to, others working on the same codebase shouldn't automatically be able to write to the object, and will need to consider whether they really need to reassign to the variable.
 Using `const` also makes code more predictable when reasoning about flow of data.
 
-On the other hand, `let` is not any longer to write out than `var`, and many users will prefer its brevity.
+On the other hand, `let` is not any longer to write out than `const`, and many users will prefer its brevity.
 The majority of this handbook uses `let` declarations in that interest.
 
 Use your best judgement, and if applicable, consult the matter with the rest of your team.

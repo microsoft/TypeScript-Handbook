@@ -32,11 +32,10 @@ Adorn property assignments with JSDoc to specify the type of the property as nee
 
 ```js
 class C {
-	constructor() {
-		/** @type {number | undefined} */
-		this.prop = undefined;
-
-	}
+    constructor() {
+        /** @type {number | undefined} */
+	this.prop = undefined;
+    }
 }
 
 
@@ -58,7 +57,7 @@ const fs = require("fs");
 
 // export function readFile
 module.exports.readFile = function(f) {
-	return fs.readFileSync(f);	
+    return fs.readFileSync(f);	
 }
 ```
 
@@ -92,7 +91,7 @@ For instance:
 
 ```js
 function bar(a, b){
-	console.log(a + " " + b);
+    console.log(a + " " + b);
 }
 
 bar(1);       // OK, second argument considered optional
@@ -135,7 +134,7 @@ import { Component } from "react";
 
 class MyComponent extends Component {
     render() {
-        this.props.b; // Allowed, since this.props is of type any
+       this.props.b; // Allowed, since this.props is of type any
     }
 }
 ```

@@ -48,7 +48,7 @@ A *Decorator Factory* is simply a function that returns the expression that will
 We can write a decorator factory in the following fashion:
 
 ```ts
-function color(value: string) { // this is the decorator factory
+function color(value: string): any { // this is the decorator factory
     return function (target) { // this is the decorator
         // do something with 'target' and 'value'...
     }
@@ -203,6 +203,10 @@ If the method decorator returns a value, it will be used as the *Property Descri
 
 > NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
 
+A return type is expected at the method decorator factory and it must be `any` or `void`.
+
+> NOTE&emsp; If no return is supplied, the method decorator will not be acceptable.
+
 The following is an example of a method decorator (`@enumerable`) applied to a method on the `Greeter` class:
 
 ```ts
@@ -222,7 +226,7 @@ class Greeter {
 We can define the `@enumerable` decorator using the following function declaration:
 
 ```ts
-function enumerable(value: boolean) {
+function enumerable(value: boolean): any {
     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         descriptor.enumerable = value;
     };

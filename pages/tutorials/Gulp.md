@@ -398,7 +398,7 @@ Like Uglify, Babelify mangles code, so we'll need vinyl-buffer and gulp-sourcema
 By default Babelify will only process files with extensions of `.js`, `.es`, `.es6` and `.jsx` so we need to add the `.ts` extension as an option to Babelify.
 
 ```shell
-npm install --save-dev babelify babel-preset-es2015 vinyl-buffer gulp-sourcemaps
+npm install --save-dev babelify babel-core babel-preset-es2015 vinyl-buffer gulp-sourcemaps
 ```
 
 Now change your gulpfile to the following:

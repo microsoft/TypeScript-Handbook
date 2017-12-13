@@ -344,6 +344,7 @@ First, accessors require you to set the compiler to output ECMAScript 5 or highe
 Downlevelling to ECMAScript 3 is not supported.
 Second, accessors with a `get` and no `set` are automatically inferred to be `readonly`.
 This is helpful when generating a `.d.ts` file from your code, because users of your property can see that they can't change it.
+Third, it is a common convention to prefix the backing field with an underscore (e.g. `_fullName`) as a convenient way to differentiate its name from the get/set accessor name (e.g., `fullName`).
 
 # Static Properties
 

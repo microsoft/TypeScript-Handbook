@@ -179,7 +179,7 @@ let c: Circle = {
 ```
 
 The other change is that enum types themselves effectively become a *union* of each enum member.
-While we haven't discussed [union types](./Advanced Types.md#union-types) yet, all that you need to know is that with union enums, the type system is able to leverage the fact that it knows the exact set of values that exist in the enum itself.
+While we haven't discussed [union types](./Advanced-Types.md#union-types) yet, all that you need to know is that with union enums, the type system is able to leverage the fact that it knows the exact set of values that exist in the enum itself.
 Because of that, TypeScript can catch silly bugs where we might be comparing values incorrectly.
 For example:
 

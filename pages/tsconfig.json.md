@@ -68,7 +68,7 @@ Example `tsconfig.json` files:
 
 ## Details
 
-The `"compilerOptions"` property can be omitted, in which case the compiler's defaults are used. See our full list of supported [Compiler Options](./Compiler Options.md).
+The `"compilerOptions"` property can be omitted, in which case the compiler's defaults are used. See our full list of supported [Compiler Options](./Compiler-Options.md).
 
 The `"files"` property takes a list of relative or absolute file paths.
 The `"include"` and `"exclude"` properties take a list of glob-like file patterns.

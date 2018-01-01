@@ -762,7 +762,7 @@ function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
 ```
 
 In `getProperty`, `o: T` and `name: K`, so that means `o[name]: T[K]`.
-Once you return the T[K] result, the compiler will instantiate the actual type of the key, so the return type of `getProperty` will vary according to which property you request.
+Once you return `the T[K]` result, the compiler will instantiate the actual type of the key, so the return type of `getProperty` will vary according to which property you request.
 
 ```ts
 let name: string = getProperty(person, 'name');

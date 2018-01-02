@@ -136,6 +136,13 @@ Specify `"types": []` to disable automatic inclusion of `@types` packages.
 Keep in mind that automatic inclusion is only important if you're using files with global declarations (as opposed to files declared as modules).
 If you use an `import "foo"` statement, for instance, TypeScript may still look through `node_modules` & `node_modules/@types` folders to find the `foo` package.
 
+### `typeAcquisition`
+
+The top-level option `typeAcquisition` can be used to control how certain editors automatically add type declarations to your project while in the editor.
+This setting has no effect on commandline compilation, and doesn't change the type system in any other way.
+
+For more information, see the [Automatic Type Acquisition documentation](https://billti.github.io/jsdocs/articles/types/ata.html) page on the JavaScript in VS Documentation website.
+
 ## Configuration inheritance with `extends`
 
 A `tsconfig.json` file can inherit configurations from another file using the `extends` property.

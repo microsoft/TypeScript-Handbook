@@ -135,7 +135,7 @@ For example, if we had the value `2` but weren't sure what that mapped to in the
 enum Color {Red = 1, Green, Blue}
 let colorName: string = Color[2];
 
-alert(colorName); // Displays 'Green' as it's value is 2 above
+alert(colorName); // Displays 'Green' as its value is 2 above
 ```
 
 # Any

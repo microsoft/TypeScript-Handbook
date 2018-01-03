@@ -39,6 +39,7 @@ Option                                         | Type      | Default            
 `--noEmit`                                     | `boolean` | `false`                        | Do not emit outputs.
 `--noEmitHelpers`                              | `boolean` | `false`                        | Do not generate custom helper functions like `__extends` in compiled output.
 `--noEmitOnError`                              | `boolean` | `false`                        | Do not emit outputs if any errors were reported.
+`--noErrorTruncation`                          | `boolean` | `false`                        | Do not truncate error messages.
 `--noFallthroughCasesInSwitch`                 | `boolean` | `false`                        | Report errors for fallthrough cases in switch statement.
 `--noImplicitAny`                              | `boolean` | `false`                        | Raise error on expressions and declarations with an implied `any` type.
 `--noImplicitReturns`                          | `boolean` | `false`                        | Report error when not all code paths in function return a value.

@@ -254,7 +254,7 @@ strings.forEach(s => {
 
 # Code Generation for Modules
 
-Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
+Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), [UMD](https://github.com/umdjs/umd), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
 For more information on what the `define`, `require` and `register` calls in the generated code do, consult the documentation for each module loader.
 
 This simple example shows how the names used during importing and exporting get translated into the module loading code.
@@ -547,7 +547,7 @@ console.log(data, fileContent);
 ### UMD modules
 
 Some libraries are designed to be used in many module loaders, or with no module loading (global variables).
-These are known as [UMD](https://github.com/umdjs/umd) or [Isomorphic](http://isomorphic.net) modules.
+These are known as [UMD](https://github.com/umdjs/umd) modules.
 These libraries can be accessed through either an import or a global variable.
 For example:
 

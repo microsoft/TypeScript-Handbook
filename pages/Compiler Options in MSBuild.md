@@ -35,6 +35,7 @@ Compiler Option                              | MSBuild Property Name            
 `--disableSizeLimit`                         | *Not supported in MSBuild*                 |
 `--emitBOM`                                  | TypeScriptEmitBOM                          | boolean
 `--emitDecoratorMetadata`                    | TypeScriptEmitDecoratorMetadata            | boolean
+`--esModuleInterop`                          | TypeScriptESModuleInterop                  | boolean
 `--experimentalAsyncFunctions`               | TypeScriptExperimentalAsyncFunctions       | boolean
 `--experimentalDecorators`                   | TypeScriptExperimentalDecorators           | boolean
 `--forceConsistentCasingInFileNames`         | TypeScriptForceConsistentCasingInFileNames | boolean
@@ -87,6 +88,7 @@ Compiler Option                              | MSBuild Property Name            
 `--strict`                                   | TypeScriptStrict                           | boolean
 `--strictFunctionTypes`                      | TypeScriptStrictFunctionTypes              | boolean
 `--strictNullChecks`                         | TypeScriptStrictNullChecks                 | boolean
+`--strictPropertyInitialization`             | TypeScriptStrictPropertyInitialization     | boolean
 `--stripInternal`                            | TypeScriptStripInternal                    | boolean
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
 `--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean

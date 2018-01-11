@@ -89,12 +89,12 @@ Relative paths are fairly straightforward.
 As an example, let's consider a file located at `/root/src/moduleA.js`, which contains the import `var x = require("./moduleB");`
 Node.js resolves that import in the following order:
 
-1. As the file named `/root/src/moduleB.js`, if it exists.
+1. Ask the file named `/root/src/moduleB.js`, if it exists.
 
-2. As the folder `/root/src/moduleB` if it contains a file named `package.json` that specifies a `"main"` module.
+2. Ask the folder `/root/src/moduleB` if it contains a file named `package.json` that specifies a `"main"` module.
    In our example, if Node.js found the file `/root/src/moduleB/package.json` containing `{ "main": "lib/mainModule.js" }`, then Node.js will refer to `/root/src/moduleB/lib/mainModule.js`.
 
-3. As the folder `/root/src/moduleB` if it contains a file named `index.js`.
+3. Ask the folder `/root/src/moduleB` if it contains a file named `index.js`.
    That file is implicitly considered that folder's "main" module.
 
 You can read more about this in Node.js documentation on [file modules](https://nodejs.org/api/modules.html#modules_file_modules) and [folder modules](https://nodejs.org/api/modules.html#modules_folders_as_modules).

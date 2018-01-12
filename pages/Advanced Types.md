@@ -849,7 +849,7 @@ type Flags = {
 ```
 
 Real applications, however, look like `Readonly` or `Partial` above.
-They're based on some existing type, and they transform the fields in some way.
+They're based on some existing type, and they transform the properties in some way.
 That's where `keyof` and indexed access types come in:
 
 ```ts

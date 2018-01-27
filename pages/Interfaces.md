@@ -506,8 +506,12 @@ class Button extends Control implements SelectableControl {
     select() { }
 }
 
-class TextBox extends Control {
+class Input extends Control {
     select() { }
+}
+
+class TextBox extends Input implements SelectableControl {
+
 }
 
 // Error: Property 'state' is missing in type 'Image'.

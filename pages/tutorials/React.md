@@ -235,6 +235,12 @@ import './Hello.css';
 
 # Writing tests with Jest
 
+If you never used Jest, you may have to install it as a development dependency first.
+
+```sh
+npm install -D jest jest-cli jest-config
+```
+
 We had a certain set of assumptions about our `Hello` component.
 Let's reiterate what they were:
 
@@ -252,15 +258,21 @@ Enzyme is similar, but builds on jsdom and makes it easier to make certain queri
 Let's install it as a development-time dependency.
 
 ```sh
-npm install -D enzyme @types/enzyme react-addons-test-utils
+npm install -D enzyme @types/enzyme enzyme-adapter-react-16 @types/enzyme-adapter-react-16
+```
+
+If your react version is below 15.5.0, you have to install the following as well:
+
+```sh
+npm install -D react-addons-test-utils
 ```
 
 Notice we installed packages `enzyme` as well as `@types/enzyme`.
 The `enzyme` package refers to the package containing JavaScript code that actually gets run, while `@types/enzyme` is a package that contains declaration files (`.d.ts` files) so that TypeScript can understand how you can use Enzyme.
 You can learn more about `@types` packages [here](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html).
 
-We also had to install `react-addons-test-utils`.
-This is something `enzyme` expects to be installed.
+We also had to install `enzyme-adapter-react` and `react-addons-test-utils`.
+These are something `enzyme` expects to be installed. The former as consturctor of enzyme is necessary, the latter is necessary when your react version below 15.5.0.
 
 Now that we've got Enzyme set up, let's start writing our test!
 Let's create a file named `src/components/Hello.test.tsx`, adjacent to our `Hello.tsx` file from earlier.
@@ -270,7 +282,10 @@ Let's create a file named `src/components/Hello.test.tsx`, adjacent to our `Hell
 
 import * as React from 'react';
 import * as enzyme from 'enzyme';
+import * as Adapter from 'enzyme-adapter-react-16';
 import Hello from './Hello';
+
+enzyme.configure({ adapter: new Adapter() });
 
 it('renders the correct text when no enthusiasm level is given', () => {
   const hello = enzyme.shallow(<Hello name='Daniel' />);

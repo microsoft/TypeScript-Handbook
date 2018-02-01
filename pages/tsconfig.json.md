@@ -129,7 +129,9 @@ For instance:
 ```
 
 This `tsconfig.json` file will *only* include  `./node_modules/@types/node`, `./node_modules/@types/lodash` and `./node_modules/@types/express`.
-Other packages under `node_modules/@types/*` will not be included.
+Other packages under `node_modules/@types/*` will not be included. 
+
+A types package is a folder with a file called `index.d.ts` or a folder with a `package.json` that has a `types` field.
 
 Specify `"types": []` to disable automatic inclusion of `@types` packages.
 

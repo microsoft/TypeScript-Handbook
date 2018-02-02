@@ -4,8 +4,11 @@ There are two main ways you can publish your declaration files to npm:
 1. bundling with your npm package, or
 2. publishing to the [@types organization](https://www.npmjs.com/~types) on npm.
 
-If you control the npm package you are publishing declarations for, then the first approach is favored.
-That way, your declarations and JavaScript always travel together.
+If your package is written in TypeScript then the first approach is favored.
+Use the `--declaration` flag to generate declaration files.
+This way, your declarations and JavaScript always be in sync.
+
+If your package is not written in TypeScript then the second is the prefered approch.
 
 # Including declarations in your npm package
 

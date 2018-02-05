@@ -8,7 +8,7 @@ TypeScript 2.7 adds support for declaring const-named properties on types includ
 // Lib
 export const SERIALIZE = Symbol("serialize-method-key");
 
-export interface  {
+export interface Serializable {
     [SERIALIZE](obj: {}): string;
 }
 ```

@@ -35,6 +35,7 @@ Compiler Option                              | MSBuild Property Name            
 `--disableSizeLimit`                         | *Not supported in MSBuild*                 |
 `--emitBOM`                                  | TypeScriptEmitBOM                          | boolean
 `--emitDecoratorMetadata`                    | TypeScriptEmitDecoratorMetadata            | boolean
+`--emitDeclarationOnly`                      | TypeScriptEmitDeclarationOnly              | boolean
 `--esModuleInterop`                          | TypeScriptESModuleInterop                  | boolean
 `--experimentalAsyncFunctions`               | TypeScriptExperimentalAsyncFunctions       | boolean
 `--experimentalDecorators`                   | TypeScriptExperimentalDecorators           | boolean

@@ -184,7 +184,7 @@ let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```
 
 However, a better approach might be to add a string index signature if you're sure that the object can have some extra properties that are used in some special way.
-If `SquareConfig`s can have `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it like so:
+If `SquareConfig` can have `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it like so:
 
 ```ts
 interface SquareConfig {

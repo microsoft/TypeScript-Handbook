@@ -2,7 +2,7 @@
 
 [JSX](https://facebook.github.io/jsx/) is an embeddable XML-like syntax.
 It is meant to be transformed into valid JavaScript, though the semantics of that transformation are implementation-specific.
-JSX came to popularity with the [React](http://facebook.github.io/react/) framework, but has since seen other applications as well.
+JSX came to popularity with the [React](https://reactjs.org/) framework, but has since seen other applications as well.
 TypeScript supports embedding, type checking, and compiling JSX directly into JavaScript.
 
 # Basic usage

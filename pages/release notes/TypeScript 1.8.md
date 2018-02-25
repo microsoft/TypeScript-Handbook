@@ -131,7 +131,7 @@ switch (x % 3) {
 
 # Stateless Function Components in React
 
-TypeScript now supports [Stateless Function components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions).
+TypeScript now supports [Stateless Function components](https://reactjs.org/docs/components-and-props.html#functional-and-class-components).
 These are lightweight components that easily compose other components:
 
 ```ts

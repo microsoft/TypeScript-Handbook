@@ -1,4 +1,4 @@
-This guide will teach you how to wire up TypeScript with [React](http://facebook.github.io/react/) and [webpack](http://webpack.github.io/).
+This guide will teach you how to wire up TypeScript with [React](https://reactjs.org/) and [webpack](https://webpack.js.org/).
 
 If you're starting a brand new project, take a look at the [React Quick Start guide](/samples/index.html) first.
 
@@ -125,7 +125,7 @@ export interface HelloProps { compiler: string; framework: string; }
 export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
 ```
 
-Note that while this example uses [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions), we could also make our example a little *classier* as well.
+Note that while this example uses [stateless functional components](https://reactjs.org/docs/components-and-props.html#functional-and-class-components), we could also make our example a little *classier* as well.
 
 ```ts
 import * as React from "react";

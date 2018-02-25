@@ -1,4 +1,4 @@
-This quick start guide will teach you how to wire up TypeScript with [React](http://facebook.github.io/react/).
+This quick start guide will teach you how to wire up TypeScript with [React](https://reactjs.org/).
 By the end, you'll have
 
 * a project with React and TypeScript
@@ -9,7 +9,7 @@ By the end, you'll have
 We'll use the [create-react-app](https://github.com/facebookincubator/create-react-app) tool to quickly get set up.
 
 We assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
-You may also want to get a sense of [the basics with React](https://facebook.github.io/react/docs/hello-world.html).
+You may also want to get a sense of [the basics with React](https://reactjs.org/docs/hello-world.html).
 
 # Install create-react-app
 
@@ -146,7 +146,7 @@ We also wrote `Hello` as a stateless function component (an SFC).
 To be specific, `Hello` is a function that takes a `Props` object, and destructures it.
 If `enthusiasmLevel` isn't given in our `Props` object, it will default to `1`.
 
-Writing functions is one of two primary [ways React allows us to make components]((https://facebook.github.io/react/docs/components-and-props.html#functional-and-class-components)).
+Writing functions is one of two primary [ways React allows us to make components]((https://reactjs.org/docs/components-and-props.html#functional-and-class-components)).
 If we wanted, we *could* have written it out as a class as follows:
 
 ```ts
@@ -169,7 +169,7 @@ class Hello extends React.Component<Props, object> {
 }
 ```
 
-Classes are useful [when our component instances have some state](https://facebook.github.io/react/docs/state-and-lifecycle.html).
+Classes are useful [when our component instances have some state](https://reactjs.org/docs/state-and-lifecycle.html).
 But we don't really need to think about state in this example - in fact, we specified it as `object` in `React.Component<Props, object>`, so writing an SFC tends to be shorter.
 Local component state is more useful at the presentational level when creating generic UI elements that can be shared between libraries.
 For our application's lifecycle, we will revisit how applications manage general state with Redux in a bit.
@@ -449,7 +449,7 @@ It's important that the `enthusiasmLevel` property come last, since otherwise it
 You may want to write a few tests for your reducer.
 Since reducers are pure functions, they can be passed arbitrary data.
 For every input, reducers can tested by checking their newly produced state.
-Consider looking into Jest's [toEqual](https://facebook.github.io/jest/docs/expect.html#toequalvalue) method to accomplish this.
+Consider looking into Jest's [toEqual](https://facebook.github.io/jest/docs/en/expect.html#toequalvalue) method to accomplish this.
 
 ## Making a container
 

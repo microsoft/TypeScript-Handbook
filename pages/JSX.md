@@ -129,7 +129,7 @@ function ComponentFoo(prop: FooProp) {
 const Button = (prop: {value: string}, context: { color: string }) => <button>
 ```
 
-Because SFC is simply a JavaScript function, we can utilize function overload here as well.
+Because an SFC is simply a JavaScript function, we can utilize function overload here as well.
 
 ```ts
 interface ClickableProps {

@@ -107,7 +107,7 @@ There are two ways to define a value-based element:
 1. Stateless Functional Component (SFC)
 2. Class Component
 
-Because these two types of value-based elements are indistinguishable from each other in JSX expression, we first try to resolve the expression as Stateless Functional Component using overload resolution. If the process successes, then we are done resolving the expression to its declaration. If we fail to resolve as SFC, we will then try to resolve as a class component. If that fails, we will report an error.
+Because these two types of value-based elements are indistinguishable from each other in JSX expression, we first try to resolve the expression as Stateless Functional Component using overload resolution. If the process succeeds, then we are done resolving the expression to its declaration. If we fail to resolve as SFC, we will then try to resolve as a class component. If that fails, we will report an error.
 
 ### Stateless Functional Component
 

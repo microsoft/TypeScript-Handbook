@@ -76,11 +76,11 @@ npm install --save-dev typescript awesome-typescript-loader source-map-loader
 ```
 
 Both of these dependencies will let TypeScript and webpack play well together.
-awesome-typescript-loader helps Webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
-source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
+`awesome-typescript-loader` helps Webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
+`source-map-loader` uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
 This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
 
-Please note that awesome-typescript-loader is not the only loader for typescript.
+Please note that `awesome-typescript-loader` is not the only loader for typescript.
 You could instead use [ts-loader](https://github.com/TypeStrong/ts-loader).
 Read about the differences between them [here](https://github.com/s-panferov/awesome-typescript-loader#differences-between-ts-loader)
 

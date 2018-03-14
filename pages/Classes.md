@@ -190,7 +190,7 @@ Even though `Employee` also has a `private` member called `name`, it's not the o
 
 ## Understanding `protected`
 
-The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can also be accessed by instances of deriving classes. For example,
+The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can also be accessed within deriving classes. For example,
 
 ```ts
 class Person {

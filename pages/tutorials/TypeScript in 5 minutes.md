@@ -35,7 +35,13 @@ document.body.innerHTML = greeter(user);
 We used a `.ts` extension, but this code is just JavaScript.
 You could have copy/pasted this straight out of an existing JavaScript app.
 
-At the command line, run the TypeScript compiler:
+At command line, navigate to folder that contains your `greeter.ts` and initialize it as a TypeScript project:
+
+```shell
+tsc --init
+```
+
+Then, run the TypeScript compiler:
 
 ```shell
 tsc greeter.ts

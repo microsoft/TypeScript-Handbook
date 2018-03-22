@@ -8,7 +8,7 @@ If your package is written in TypeScript then the first approach is favored.
 Use the `--declaration` flag to generate declaration files.
 This way, your declarations and JavaScript always be in sync.
 
-If your package is not written in TypeScript then the second is the prefered approch.
+If your package is not written in TypeScript then the second is the preferred approach.
 
 # Including declarations in your npm package
 
@@ -53,7 +53,7 @@ For example, imagine we authored a package that used Browserify and TypeScript.
 
 Here, our package depends on the `browserify` and `typescript` packages.
 `browserify` does not bundle its declaration files with its npm packages, so we needed to depend on `@types/browserify` for its declarations.
-`typescript`, on the other hand, packages its declaration files, so there was no need for any additional dependencies
+`typescript`, on the other hand, packages its declaration files, so there was no need for any additional dependencies.
 
 Our package exposes declarations from each of those, so any user of our `browserify-typescript-extension` package needs to have these dependencies as well.
 For that reason, we used `"dependencies"` and not `"devDependencies"`, because otherwise our consumers would have needed to manually install those packages.

@@ -16,7 +16,7 @@ Option                                         | Type      | Default            
 `--disableSizeLimit`                           | `boolean` | `false`                        | Disable size limitation on JavaScript project.
 `--downlevelIteration`                         | `boolean` | `false`                        | Provide full support for iterables in `for..of`, spread and destructuring when targeting ES5 or ES3.
 `--emitBOM`                                    | `boolean` | `false`                        | Emit a UTF-8 Byte Order Mark (BOM) in the beginning of output files.
-`--emitDeclarationOnly`                        | `boolean` | `false`                        | Only emit '.d.ts' declaration files. 
+`--emitDeclarationOnly`                        | `boolean` | `false`                        | Only emit '.d.ts' declaration files.
 `--emitDecoratorMetadata`<sup>[1]</sup>        | `boolean` | `false`                        | Emit design-type metadata for decorated declarations in source. See [issue #2577](https://github.com/Microsoft/TypeScript/issues/2577) for details.
 `--esModuleInterop`                            | `boolean` | `false`                        | Emit `__importStar` and `__importDefault` helpers for runtime babel ecosystem compatibility and enable `--allowSyntheticDefaultImports` for typesystem compatibility.
 `--experimentalDecorators`<sup>[1]</sup>       | `boolean` | `false`                        | Enables experimental support for ES decorators.

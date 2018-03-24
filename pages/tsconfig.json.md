@@ -82,7 +82,7 @@ If a segment of a glob pattern includes only `*` or `.*`, then only files with s
 
 If the `"files"` and `"include"` are both left unspecified, the compiler defaults to including all TypeScript (`.ts`, `.d.ts` and `.tsx`) files in the containing directory and subdirectories except those excluded using the `"exclude"` property. JS files (`.js` and `.jsx`) are also included if `allowJs` is set to true.
 If the `"files"` or `"include"` properties are specified, the compiler will instead include the union of the files included by those two properties.
-Files in the directory specified using the `"outDir"` compiler option are excluded as long as `"exclude"` property is not specfied. 
+Files in the directory specified using the `"outDir"` compiler option are excluded as long as `"exclude"` property is not specfied.
 
 Files included using `"include"` can be filtered using the `"exclude"` property.
 However, files included explicitly using the `"files"` property are always included regardless of `"exclude"`.
@@ -129,7 +129,7 @@ For instance:
 ```
 
 This `tsconfig.json` file will *only* include  `./node_modules/@types/node`, `./node_modules/@types/lodash` and `./node_modules/@types/express`.
-Other packages under `node_modules/@types/*` will not be included. 
+Other packages under `node_modules/@types/*` will not be included.
 
 A types package is a folder with a file called `index.d.ts` or a folder with a `package.json` that has a `types` field.
 

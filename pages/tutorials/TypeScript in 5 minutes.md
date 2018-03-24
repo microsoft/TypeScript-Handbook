@@ -25,7 +25,7 @@ function greeter(person) {
     return "Hello, " + person;
 }
 
-var user = "Jane User";
+let user = "Jane User";
 
 document.body.innerHTML = greeter(user);
 ```
@@ -52,7 +52,7 @@ function greeter(person: string) {
     return "Hello, " + person;
 }
 
-var user = "Jane User";
+let user = "Jane User";
 
 document.body.innerHTML = greeter(user);
 ```
@@ -68,7 +68,7 @@ function greeter(person: string) {
     return "Hello, " + person;
 }
 
-var user = [0, 1, 2];
+let user = [0, 1, 2];
 
 document.body.innerHTML = greeter(user);
 ```
@@ -76,7 +76,7 @@ document.body.innerHTML = greeter(user);
 Re-compiling, you'll now see an error:
 
 ```shell
-greeter.ts(7,26): Supplied parameters do not match any signature of call target
+error TS2345: Argument of type 'number[]' is not assignable to parameter of type 'string'.
 ```
 
 Similarly, try removing all the arguments to the greeter call.
@@ -102,7 +102,7 @@ function greeter(person: Person) {
     return "Hello, " + person.firstName + " " + person.lastName;
 }
 
-var user = { firstName: "Jane", lastName: "User" };
+let user = { firstName: "Jane", lastName: "User" };
 
 document.body.innerHTML = greeter(user);
 ```
@@ -120,7 +120,7 @@ Also of note, the use of `public` on arguments to the constructor is a shorthand
 ```ts
 class Student {
     fullName: string;
-    constructor(public firstName, public middleInitial, public lastName) {
+    constructor(public firstName: string, public middleInitial: string, public lastName: string) {
         this.fullName = firstName + " " + middleInitial + " " + lastName;
     }
 }
@@ -134,7 +134,7 @@ function greeter(person : Person) {
     return "Hello, " + person.firstName + " " + person.lastName;
 }
 
-var user = new Student("Jane", "M.", "User");
+let user = new Student("Jane", "M.", "User");
 
 document.body.innerHTML = greeter(user);
 ```

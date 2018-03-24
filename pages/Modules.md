@@ -5,7 +5,7 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 
 # Introduction
 
-Starting with the ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
+Starting with ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
 
 Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported using one of the [`export` forms](#export).
 Conversely, to consume a variable, function, class, interface, etc. exported from a different module, it has to be imported using one of the [`import` forms](#import).
@@ -17,6 +17,7 @@ At runtime the module loader is responsible for locating and executing all depen
 Well-known modules loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
 
 In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
+Conversely, a file without any top-level `import` or `export` declarations is treated as a script whose contents are available in the global scope (and therefore to modules as well).
 
 # Export
 
@@ -221,7 +222,7 @@ TypeScript supports `export =` to model the traditional CommonJS and AMD workflo
 The `export =` syntax specifies a single object that is exported from the module.
 This can be a class, interface, namespace, function, or enum.
 
-When importing a module using `export =`, TypeScript-specific `import module = require("module")` must be used to import the module.
+When exporting a module using `export =`, TypeScript-specific `import module = require("module")` must be used to import the module.
 
 ##### ZipCodeValidator.ts
 
@@ -254,7 +255,7 @@ strings.forEach(s => {
 
 # Code Generation for Modules
 
-Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), isomorphic ([UMD](https://github.com/umdjs/umd)), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
+Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), [UMD](https://github.com/umdjs/umd), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
 For more information on what the `define`, `require` and `register` calls in the generated code do, consult the documentation for each module loader.
 
 This simple example shows how the names used during importing and exporting get translated into the module loading code.
@@ -431,7 +432,7 @@ if (needZipValidation) {
 ```ts
 declare function require(moduleNames: string[], onLoad: (...args: any[]) => void): void;
 
-import  * as Zip from "./ZipCodeValidator";
+import * as Zip from "./ZipCodeValidator";
 
 if (needZipValidation) {
     require(["./ZipCodeValidator"], (ZipCodeValidator: typeof Zip) => {
@@ -547,14 +548,14 @@ console.log(data, fileContent);
 ### UMD modules
 
 Some libraries are designed to be used in many module loaders, or with no module loading (global variables).
-These are known as [UMD](https://github.com/umdjs/umd) or [Isomorphic](http://isomorphic.net) modules.
+These are known as [UMD](https://github.com/umdjs/umd) modules.
 These libraries can be accessed through either an import or a global variable.
 For example:
 
 ##### math-lib.d.ts
 
 ```ts
-export const isPrime(x: number): boolean;
+export function isPrime(x: number): boolean;
 export as namespace mathLib;
 ```
 
@@ -581,8 +582,8 @@ Consumers of your module should have as little friction as possible when using t
 Adding too many levels of nesting tends to be cumbersome, so think carefully about how you want to structure things.
 
 Exporting a namespace from your module is an example of adding too many layers of nesting.
-While namespaces sometimes have their uses, they add an extra level of indirection when using modules.
-This can quickly becomes a pain point for users, and is usually unnecessary.
+While namespaces sometime have their uses, they add an extra level of indirection when using modules.
+This can quickly become a pain point for users, and is usually unnecessary.
 
 Static methods on an exported class have a similar problem - the class itself adds a layer of nesting.
 Unless it increases expressivity or intent in a clearly useful way, consider simply exporting a helper function.

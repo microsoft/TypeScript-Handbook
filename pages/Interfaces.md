@@ -85,7 +85,7 @@ interface SquareConfig {
 
 function createSquare(config: SquareConfig): { color: string; area: number } {
     let newSquare = {color: "white", area: 100};
-    if (config.color) {
+    if (config.clor) {
         // Error: Property 'clor' does not exist on type 'SquareConfig'
         newSquare.color = config.clor;
     }
@@ -184,7 +184,7 @@ let mySquare = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
 ```
 
 However, a better approach might be to add a string index signature if you're sure that the object can have some extra properties that are used in some special way.
-If `SquareConfig`s can have `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it like so:
+If `SquareConfig` can have `color` and `width` properties with the above types, but could *also* have any number of other properties, then we could define it like so:
 
 ```ts
 interface SquareConfig {
@@ -291,7 +291,7 @@ class Dog extends Animal {
     breed: string;
 }
 
-// Error: indexing with a 'string' will sometimes get you a Dog!
+// Error: indexing with a numeric string might get you a completely separate type of Animal!
 interface NotOkay {
     [x: number]: Animal;
     [x: string]: Dog;
@@ -502,7 +502,7 @@ interface SelectableControl extends Control {
     select(): void;
 }
 
-class Button extends Control {
+class Button extends Control implements SelectableControl {
     select() { }
 }
 
@@ -510,12 +510,13 @@ class TextBox extends Control {
     select() { }
 }
 
-class Image {
+// Error: Property 'state' is missing in type 'Image'.
+class Image implements SelectableControl {
     select() { }
 }
 
 class Location {
-    select() { }
+
 }
 ```
 

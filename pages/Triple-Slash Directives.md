@@ -40,18 +40,18 @@ If the compiler flag `--noResolve` is specified, triple-slash references are ign
 ## `/// <reference types="..." />`
 
 Similar to a `/// <reference path="..." />` directive,  this directive serves as a declaration of *dependency*;
-a `/// <reference types="..." />`, however, declares a dependency on an `@types` package.
+a `/// <reference types="..." />` directive, however, declares a dependency on a package.
 
-Including `/// <reference types="node" />` in a declaration file declares that this file uses names declared in `@types/node/index.d.ts`;
+The process of resolving these package names is similar to the process of resolving module names in an `import` statement.
+An easy way to think of triple-slash-reference-types directives are as an `import` for declaration packages.
+
+For example, including `/// <reference types="node" />` in a declaration file declares that this file uses names declared in `@types/node/index.d.ts`;
 and thus, this package needs to be included in the compilation along with the declaration file.
-
-The process of resolving these `@types` package names are similar to process of resolving module names in an `import` statement.
-An easy way to think of triple-slash-reference-types directives as an `import` for declaration packages.
 
 Use these directives only when you're authoring a `d.ts` file by hand.
 
 For declaration files generated during compilation, the compiler will automatically add `/// <reference types="..." />` for you;
-A `/// <reference types="..." />` in a generated declaration file is added *if and only if* the resulting file uses any declarations from the referenced `@types` package.
+A `/// <reference types="..." />` in a generated declaration file is added *if and only if* the resulting file uses any declarations from the referenced package.
 
 For declaring a dependency on an `@types` package in a `.ts` file, use `--types` on the command line or in your `tsconfig.json` instead.
 See [using `@types`, `typeRoots` and `types` in `tsconfig.json` files](./tsconfig.json.md#types-typeroots-and-types) for more details.

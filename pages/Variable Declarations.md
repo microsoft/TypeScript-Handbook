@@ -428,10 +428,9 @@ Applying the [principle of least privilege](https://en.wikipedia.org/wiki/Princi
 The rationale is that if a variable didn't need to get written to, others working on the same codebase shouldn't automatically be able to write to the object, and will need to consider whether they really need to reassign to the variable.
 Using `const` also makes code more predictable when reasoning about flow of data.
 
-On the other hand, `let` is not any longer to write out than `var`, and many users will prefer its brevity.
-The majority of this handbook uses `let` declarations in that interest.
-
 Use your best judgement, and if applicable, consult the matter with the rest of your team.
+
+The majority of this handbook uses `let` declarations.
 
 # Destructuring
 
@@ -644,7 +643,8 @@ let search = { food: "rich", ...defaults };
 Then the `food` property in `defaults` overwrites `food: "rich"`, which is not what we want in this case.
 
 Object spread also has a couple of other surprising limits.
-First, it only includes own, enumerable properties.
+First, it only includes an objects'
+[own, enumerable properties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties).
 Basically, that means you lose methods when you spread instances of an object:
 
 ```ts

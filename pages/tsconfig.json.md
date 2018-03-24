@@ -82,7 +82,7 @@ If a segment of a glob pattern includes only `*` or `.*`, then only files with s
 
 If the `"files"` and `"include"` are both left unspecified, the compiler defaults to including all TypeScript (`.ts`, `.d.ts` and `.tsx`) files in the containing directory and subdirectories except those excluded using the `"exclude"` property. JS files (`.js` and `.jsx`) are also included if `allowJs` is set to true.
 If the `"files"` or `"include"` properties are specified, the compiler will instead include the union of the files included by those two properties.
-Files in the directory specified using the `"outDir"` compiler option are always excluded unless explicitly included via the `"files"` property (even when the "`exclude`" property is specified).
+Files in the directory specified using the `"outDir"` compiler option are excluded as long as `"exclude"` property is not specfied. 
 
 Files included using `"include"` can be filtered using the `"exclude"` property.
 However, files included explicitly using the `"files"` property are always included regardless of `"exclude"`.
@@ -104,7 +104,7 @@ By default all *visible* "`@types`" packages are included in your compilation.
 Packages in `node_modules/@types` of any enclosing folder are considered *visible*;
 specifically, that means packages within `./node_modules/@types/`,  `../node_modules/@types/`, `../../node_modules/@types/`, and so on.
 
-If `typesRoots` is specified, *only* packages under `typeRoots` will be included.
+If `typeRoots` is specified, *only* packages under `typeRoots` will be included.
 For example:
 
 ```json
@@ -129,7 +129,9 @@ For instance:
 ```
 
 This `tsconfig.json` file will *only* include  `./node_modules/@types/node`, `./node_modules/@types/lodash` and `./node_modules/@types/express`.
-Other packages under `node_modules/@types/*` will not be included.
+Other packages under `node_modules/@types/*` will not be included. 
+
+A types package is a folder with a file called `index.d.ts` or a folder with a `package.json` that has a `types` field.
 
 Specify `"types": []` to disable automatic inclusion of `@types` packages.
 
@@ -199,7 +201,7 @@ Setting a top-level property `compileOnSave` signals to the IDE to generate all 
 }
 ```
 
-This feature is currently supported in Visual Studio 2015 with TypeScript 1.8.4 and above, and [atom-typescript](https://github.com/TypeStrong/atom-typescript/blob/master/docs/tsconfig.md#compileonsave) plugin.
+This feature is currently supported in Visual Studio 2015 with TypeScript 1.8.4 and above, and [atom-typescript](https://github.com/TypeStrong/atom-typescript#compile-on-save) plugin.
 
 ## Schema
 

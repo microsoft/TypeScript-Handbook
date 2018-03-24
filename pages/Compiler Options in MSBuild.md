@@ -35,6 +35,8 @@ Compiler Option                              | MSBuild Property Name            
 `--disableSizeLimit`                         | *Not supported in MSBuild*                 |
 `--emitBOM`                                  | TypeScriptEmitBOM                          | boolean
 `--emitDecoratorMetadata`                    | TypeScriptEmitDecoratorMetadata            | boolean
+`--emitDeclarationOnly`                      | TypeScriptEmitDeclarationOnly              | boolean
+`--esModuleInterop`                          | TypeScriptESModuleInterop                  | boolean
 `--experimentalAsyncFunctions`               | TypeScriptExperimentalAsyncFunctions       | boolean
 `--experimentalDecorators`                   | TypeScriptExperimentalDecorators           | boolean
 `--forceConsistentCasingInFileNames`         | TypeScriptForceConsistentCasingInFileNames | boolean
@@ -63,6 +65,7 @@ Compiler Option                              | MSBuild Property Name            
 `--noImplicitReturns`                        | TypeScriptNoImplicitReturns                | boolean
 `--noImplicitThis`                           | TypeScriptNoImplicitThis                   | boolean
 `--noImplicitUseStrict`                      | TypeScriptNoImplicitUseStrict              | boolean
+`--noStrictGenericChecks`                    | TypeScriptNoStrictGenericChecks            | boolean
 `--noUnusedLocals`                           | TypeScriptNoUnusedLocals                   | boolean
 `--noUnusedParameters`                       | TypeScriptNoUnusedParameters               | boolean
 `--noLib`                                    | TypeScriptNoLib                            | boolean
@@ -72,6 +75,7 @@ Compiler Option                              | MSBuild Property Name            
 `--outFile`                                  | TypeScriptOutFile                          | File path
 `--paths`                                    | *Not supported in MSBuild*                 |
 `--preserveConstEnums`                       | TypeScriptPreserveConstEnums               | boolean
+`--preserveSymlinks`                         | TypeScriptPreserveSymlinks                 | boolean
 `--listEmittedFiles`                         | *Not supported in MSBuild*                 |
 `--pretty`                                   | *Not supported in MSBuild*                 |
 `--reactNamespace`                           | TypeScriptReactNamespace                   | string
@@ -82,7 +86,10 @@ Compiler Option                              | MSBuild Property Name            
 `--skipDefaultLibCheck`                      | TypeScriptSkipDefaultLibCheck              | boolean
 `--sourceMap`                                | TypeScriptSourceMap                        | File path
 `--sourceRoot`                               | TypeScriptSourceRoot                       | File path
+`--strict`                                   | TypeScriptStrict                           | boolean
+`--strictFunctionTypes`                      | TypeScriptStrictFunctionTypes              | boolean
 `--strictNullChecks`                         | TypeScriptStrictNullChecks                 | boolean
+`--strictPropertyInitialization`             | TypeScriptStrictPropertyInitialization     | boolean
 `--stripInternal`                            | TypeScriptStripInternal                    | boolean
 `--suppressExcessPropertyErrors`             |  TypeScriptSuppressExcessPropertyErrors    | boolean
 `--suppressImplicitAnyIndexErrors`           | TypeScriptSuppressImplicitAnyIndexErrors   | boolean
@@ -101,7 +108,7 @@ The authoritative mappings between MSBuild XML tags and `tsc` compiler options l
 ## ToolsVersion
 
 The value of `<TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>` property in the project file identifies the compiler version to use to build (1.7 in this example).
-This allows a project to build against the save versions of the compiler on different machines.
+This allows a project to build against the same versions of the compiler on different machines.
 
 If `TypeScriptToolsVersion` is not specified, the latest compiler version installed on the machine will be used to build.
 

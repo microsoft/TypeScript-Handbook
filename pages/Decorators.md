@@ -163,7 +163,7 @@ function sealed(constructor: Function) {
 
 When `@sealed` is executed, it will seal both the constructor and its prototype.
 
-Next we have a example how to override the constructor.
+Next we have an example of how to override the constructor.
 
 ```ts
 function classDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
@@ -294,12 +294,8 @@ The expression for the property decorator will be called as a function at runtim
 2. The name of the member.
 
 > NOTE&emsp; A *Property Descriptor* is not provided as an argument to a property decorator due to how property decorators are initialized in TypeScript.
-This is because there is currently no mechanism to describe an instance property when defining members of a prototype, and no way to observe or modify the initializer for a property.
+This is because there is currently no mechanism to describe an instance property when defining members of a prototype, and no way to observe or modify the initializer for a property. The return value is ignored too.
 As such, a property decorator can only be used to observe that a property of a specific name has been declared for a class.
-
-If the property decorator returns a value, it will be used as the *Property Descriptor* for the member.
-
-> NOTE&emsp; The return value is ignored if your script target is less than `ES5`.
 
 We can use this information to record metadata about the property, as in the following example:
 

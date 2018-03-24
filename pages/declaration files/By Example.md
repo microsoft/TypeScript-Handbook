@@ -115,9 +115,11 @@ declare function getWidget(s: string): Widget[];
 > When specifying a greeting, you must pass a `GreetingSettings` object.
 > This object has the following properties:
 >
-> 1- greeting: Mandatory string
-> 2- duration: Optional length of time (in milliseconds)
-> 3- color: Optional string, e.g. '#ff00ff'
+> 1 - greeting: Mandatory string
+>
+> 2 - duration: Optional length of time (in milliseconds)
+>
+> 3 - color: Optional string, e.g. '#ff00ff'
 
 *Code*
 

@@ -14,6 +14,12 @@ The [Library Structures](./Library Structures.md) guide helps you understand com
 If you're editing an existing file, you probably don't need to read this section.
 Authors of new declaration files must read this section to properly understand how the format of the library influences the writing of the declaration file.
 
+## By Example
+
+Many times, we are faced with writing a declaration file when we only have examples of the underlying library to guide us.
+The [By Example](./By Example.md) section shows many common API patterns and how to write declarations for each of them.
+This guide is aimed at the TypeScript novice who may not yet be familiar with every language construct in TypeScript.
+
 ## "Do"s and "Don't"s
 
 Many common mistakes in declaration files can be easily avoided.
@@ -21,12 +27,6 @@ The [Do's and Don'ts](./Do's and Don'ts.md) section identifies common errors,
   describes how to detect them,
   and how to fix them.
 Everyone should read this section to help themselves avoid common mistakes.
-
-## By Example
-
-Many times, we are faced with writing a declaration file when we only have examples of the underlying library to guide us.
-The [By Example](./By Example.md) section shows many common API patterns and how to write declarations for each of them.
-This guide is aimed at the TypeScript novice who may not yet be familiar with every language construct in TypeScript.
 
 ## Deep Dive
 

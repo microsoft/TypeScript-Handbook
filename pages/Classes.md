@@ -34,9 +34,36 @@ This calls into the constructor we defined earlier, creating a new object with t
 # Inheritance
 
 In TypeScript, we can use common object-oriented patterns.
-Of course, one of the most fundamental patterns in class-based programming is being able to extend existing classes to create new ones using inheritance.
+One of the most fundamental patterns in class-based programming is being able to extend existing classes to create new ones using inheritance.
 
 Let's take a look at an example:
+
+```ts
+class Animal {
+    move(distanceInMeters: number = 0) {
+        console.log(`Animal moved ${distanceInMeters}m.`);
+    }
+}
+
+class Dog extends Animal {
+    bark() {
+        console.log('Woof! Woof!');
+    }
+}
+
+const dog = new Dog();
+dog.bark();
+dog.move(10);
+dog.bark();
+```
+
+This example shows the most basic inheritance feature: classes inherit properties and methods from base classes.
+Here, `Dog` is a *derived* class that derives from the `Animal` *base* class using the `extends` keyword.
+Derived classes are often called *subclasses*, and base classes are often called *superclasses*.
+
+Because `Dog` extends the functionality from `Animal`, we were able to create an instance of `Dog` that could both `bark()` and `move()`.
+
+Let's now look at a more complex example.
 
 ```ts
 class Animal {
@@ -70,14 +97,16 @@ sam.move();
 tom.move(34);
 ```
 
-This example covers quite a few of the inheritance features in TypeScript that are common to other languages.
-Here we see the `extends` keywords used to create a subclass. You can see this where `Horse` and `Snake` subclass the base class `Animal` and gain access to its features.
+This example covers a few other features we didn't previously mention.
+Again, we see the `extends` keywords used to create two new subclasses of `Animal`: `Horse` and `Snake`.
 
-Derived classes that contain constructor functions must call `super()` which will execute the constructor function on the base class.
+One difference from the prior example is that each derived class that contains a constructor function *must* call `super()` which will execute the constructor of the base class.
+What's more, before we *ever* access a property on `this` in a constructor body, we *have* to call `super()`.
+This is an important rule that TypeScript will enforce.
 
 The example also shows how to override methods in the base class with methods that are specialized for the subclass.
 Here both `Snake` and `Horse` create a `move` method that overrides the `move` from `Animal`, giving it functionality specific to each class.
-Note that even though `tom` is declared as an `Animal`, since its value is a `Horse`, when `tom.move(34)` calls the overriding method in `Horse`:
+Note that even though `tom` is declared as an `Animal`, since its value is a `Horse`, calling `tom.move(34)` will call the overriding method in `Horse`:
 
 ```Text
 Slithering...
@@ -161,7 +190,7 @@ Even though `Employee` also has a `private` member called `name`, it's not the o
 
 ## Understanding `protected`
 
-The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can also be accessed by instances of deriving classes. For example,
+The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can also be accessed within deriving classes. For example,
 
 ```ts
 class Person {

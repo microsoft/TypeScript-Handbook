@@ -140,7 +140,7 @@ const lengths = mapObject(names, s => s.length);  // { foo: number, bar: number,
 
 # Object Spread and Rest
 
-TypeScript 2.1 brings support for [ES2017 Spread and Rest](https://github.com/sebmarkbage/ecmascript-rest-spread).
+TypeScript 2.1 brings support for [ESnext Spread and Rest](https://github.com/sebmarkbage/ecmascript-rest-spread).
 
 Similar to array spread, spreading an object can be handy to get a shallow copy:
 

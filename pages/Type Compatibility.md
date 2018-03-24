@@ -78,7 +78,7 @@ Each parameter in `x` must have a corresponding parameter in `y` with a compatib
 Note that the names of the parameters are not considered, only their types.
 In this case, every parameter of `x` has a corresponding compatible parameter in `y`, so the assignment is allowed.
 
-The second assignment is an error, because y has a required second parameter that 'x' does not have, so the assignment is disallowed.
+The second assignment is an error, because `y` has a required second parameter that `x` does not have, so the assignment is disallowed.
 
 You may be wondering why we allow 'discarding' parameters like in the example `y = x`.
 The reason for this assignment to be allowed is that ignoring extra function parameters is actually quite common in JavaScript.

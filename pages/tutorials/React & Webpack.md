@@ -1,6 +1,8 @@
-This quick start guide will teach you how to wire up TypeScript with [React](http://facebook.github.io/react/) and [webpack](http://webpack.github.io/).
+This guide will teach you how to wire up TypeScript with [React](https://reactjs.org/) and [webpack](https://webpack.js.org/).
 
-We assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
+If you're starting a brand new project, take a look at the [React Quick Start guide](/samples/index.html) first.
+
+Otherwise, we assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
 
 # Lay out the project
 
@@ -43,8 +45,7 @@ Now we'll turn this folder into an npm package.
 npm init
 ```
 
-You'll be given a series of prompts.
-You can use the defaults except for your entry point.
+You'll be given a series of prompts, but you can feel free to use the defaults.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
 # Install our dependencies
@@ -124,7 +125,7 @@ export interface HelloProps { compiler: string; framework: string; }
 export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
 ```
 
-Note that while this example uses [stateless functional components](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions)), we could also make our example a little *classier* as well.
+Note that while this example uses [stateless functional components](https://reactjs.org/docs/components-and-props.html#functional-and-class-components), we could also make our example a little *classier* as well.
 
 ```ts
 import * as React from "react";
@@ -132,8 +133,8 @@ import * as React from "react";
 export interface HelloProps { compiler: string; framework: string; }
 
 // 'HelloProps' describes the shape of props.
-// State is never set so we use the 'undefined' type.
-export class Hello extends React.Component<HelloProps, undefined> {
+// State is never set so we use the '{}' type.
+export class Hello extends React.Component<HelloProps, {}> {
     render() {
         return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
     }
@@ -172,8 +173,8 @@ Create a file at the root of `proj` named `index.html` with the following conten
         <div id="example"></div>
 
         <!-- Dependencies -->
-        <script src="./node_modules/react/dist/react.js"></script>
-        <script src="./node_modules/react-dom/dist/react-dom.js"></script>
+        <script src="./node_modules/react/umd/react.development.js"></script>
+        <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
 
         <!-- Main -->
         <script src="./dist/bundle.js"></script>
@@ -235,7 +236,7 @@ Instead libraries have traditionally made themselves available using a single gl
 This is called the "namespace pattern", and webpack allows us to continue leveraging libraries written that way.
 With our entry for `"react": "React"`, webpack will work its magic to make any import of `"react"` load from the `React` variable.
 
-You can learn more about configuring webpack [here](http://webpack.github.io/docs/configuration.html).
+You can learn more about configuring webpack [here](https://webpack.js.org/concepts).
 
 # Putting it all together
 

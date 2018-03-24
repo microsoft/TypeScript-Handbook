@@ -19,7 +19,7 @@ function add(x, y) {
 }
 
 // Anonymous function
-let myAdd = function(x, y) { return x+y; };
+let myAdd = function(x, y) { return x + y; };
 ```
 
 Just as in JavaScript, functions can refer to variables outside of the function body.
@@ -45,7 +45,7 @@ function add(x: number, y: number): number {
     return x + y;
 }
 
-let myAdd = function(x: number, y: number): number { return x+y; };
+let myAdd = function(x: number, y: number): number { return x + y; };
 ```
 
 We can add types to each of the parameters and then to the function itself to add a return type.
@@ -56,8 +56,8 @@ TypeScript can figure the return type out by looking at the return statements, s
 Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type.
 
 ```ts
-let myAdd: (x: number, y: number)=>number =
-    function(x: number, y: number): number { return x+y; };
+let myAdd: (x: number, y: number) => number =
+    function(x: number, y: number): number { return x + y; };
 ```
 
 A function's type has the same two parts: the type of the arguments and the return type.
@@ -67,7 +67,7 @@ This name is just to help with readability.
 We could have instead written:
 
 ```ts
-let myAdd: (baseValue:number, increment:number) => number =
+let myAdd: (baseValue: number, increment: number) => number =
     function(x: number, y: number): number { return x + y; };
 ```
 
@@ -90,7 +90,7 @@ In playing with the example, you may notice that the TypeScript compiler can fig
 let myAdd = function(x: number, y: number): number { return  x + y; };
 
 // The parameters 'x' and 'y' have the type number
-let myAdd: (baseValue:number, increment:number) => number =
+let myAdd: (baseValue: number, increment: number) => number =
     function(x, y) { return x + y; };
 ```
 

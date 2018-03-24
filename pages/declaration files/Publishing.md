@@ -4,8 +4,11 @@ There are two main ways you can publish your declaration files to npm:
 1. bundling with your npm package, or
 2. publishing to the [@types organization](https://www.npmjs.com/~types) on npm.
 
-If you control the npm package you are publishing declarations for, then the first approach is favored.
-That way, your declarations and JavaScript always travel together.
+If your package is written in TypeScript then the first approach is favored.
+Use the `--declaration` flag to generate declaration files.
+This way, your declarations and JavaScript always be in sync.
+
+If your package is not written in TypeScript then the second is the preferred approach.
 
 # Including declarations in your npm package
 
@@ -40,17 +43,17 @@ For example, imagine we authored a package that used Browserify and TypeScript.
     "version": "1.0.0",
     "main": "./lib/main.js",
     "types": "./lib/main.d.ts",
-    "dependencies": [
-        "browserify@latest",
-        "@types/browserify@latest",
-        "typescript@next"
-    ]
+    "dependencies": {
+        "browserify": "latest",
+        "@types/browserify": "latest",
+        "typescript": "next"
+    }
 }
 ```
 
 Here, our package depends on the `browserify` and `typescript` packages.
 `browserify` does not bundle its declaration files with its npm packages, so we needed to depend on `@types/browserify` for its declarations.
-`typescript`, on the other hand, packages its declaration files, so there was no need for any additional dependencies
+`typescript`, on the other hand, packages its declaration files, so there was no need for any additional dependencies.
 
 Our package exposes declarations from each of those, so any user of our `browserify-typescript-extension` package needs to have these dependencies as well.
 For that reason, we used `"dependencies"` and not `"devDependencies"`, because otherwise our consumers would have needed to manually install those packages.

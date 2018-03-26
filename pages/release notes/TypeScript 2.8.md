@@ -303,6 +303,77 @@ type T6 = T3<B>;  // "a" | "b"
 type T7 = T4<A, B>;  // "a" | "b"
 ```
 
+# Better handling for namespace patterns in `.js` files
+
+TypeScript 2.8 adds support for understanding more namespace patterns in `.js` files.
+Empty object literals declarations on top level, just like functions and classes, are now recognized as as namespace declarations in JavaScript.
+
+```js
+var ns = {};     // recognized as a declaration for a namespace `ns`
+ns.constant = 1; // recognized as a declaration for var `constant`
+```
+
+Assignments at the top-level should behave the same way; in other words, a `var` or `const` declaration is not required.
+
+```js
+app = {}; // does NOT need to be `var app = {}`
+app.C = class {
+};
+app.f = function() {
+};
+app.prop = 1;
+```
+
+## IIFEs as namespace declarations
+
+An IIFE returning a function, class or empty object literal, is also recognized as a namespace:
+
+```js
+var C = (function () {
+  function C(n) {
+    this.p = n;
+  }
+  return C;
+})();
+C.staticProperty = 1;
+```
+
+## Defaulted declarations
+
+"Defaulted declarations" allow initializers that reference the declared name in the left side of a logical or:
+
+```js
+my = window.my || {};
+my.app = my.app || {};
+```
+
+## Prototype assignment
+
+You can assign an object literal directly to the prototype property. Individual prototype assignments still work too:
+
+```ts
+var C = function (p) {
+  this.p = p;
+};
+C.prototype = {
+  m() {
+    console.log(this.p);
+  }
+};
+C.prototype.q = function(r) {
+  return this.p === r;
+};
+```
+
+## Nested and merged declarations
+
+Nesting works to any level now, and merges correctly across files. Previously neither was the case.
+
+```js
+var app = window.app || {};
+app.C = class { };
+```
+
 # Per-file JSX factories
 
 TypeScript 2.8 adds support for a per-file configurable JSX factory name using `@jsx dom` paragma.

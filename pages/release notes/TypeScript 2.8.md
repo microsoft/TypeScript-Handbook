@@ -117,7 +117,8 @@ type T42 = FunctionProperties<Part>;  // { updatePart(newName: string): void }
 type T43 = NonFunctionProperties<Part>;  // { id: number, name: string, subparts: Part[] }
 ```
 
-Similar to union and intersection types, conditional types are not permitted to reference themselves recursively (however, indirect references through interface types or object literal types are allowed, as illustrated by the `DeepReadonly<T>` example above). For example the following is an error.
+Similar to union and intersection types, conditional types are not permitted to reference themselves recursively.
+For example the following is an error.
 
 ##### Example
 

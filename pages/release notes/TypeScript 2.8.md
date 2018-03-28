@@ -134,7 +134,7 @@ It is possible to have multiple `infer` locations for the same type variable.
 For example, the following extracts the return type of a function type:
 
 ```ts
-type ReturnType<T> = T extends (...args: any[]) => infer R ? R : T;
+type ReturnType<T> = T extends (...args: any[]) => infer R ? R : never;
 ```
 
 Conditional types can be nested to form a sequence of pattern matches that are evaluated in order:

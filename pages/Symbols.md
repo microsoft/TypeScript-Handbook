@@ -59,7 +59,7 @@ A method that determines if a constructor object recognizes an object as one of 
 
 ## `Symbol.isConcatSpreadable`
 
-A Boolean value indicating that an object should be flatten to its array elements by Array.prototype.concat.
+A Boolean value indicating that an object should be flattened to its array elements by Array.prototype.concat.
 
 ## `Symbol.iterator`
 

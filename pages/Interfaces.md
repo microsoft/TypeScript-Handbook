@@ -223,7 +223,7 @@ interface SearchFunc {
 }
 ```
 
-Once defined, we can use this function type interface like we would other interfaces.
+Once defined, we can use this function type interface like we would in other interfaces.
 Here, we show how you can create a variable of a function type and assign it a function value of the same type.
 
 ```ts

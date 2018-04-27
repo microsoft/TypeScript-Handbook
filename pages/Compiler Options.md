@@ -85,6 +85,7 @@ Option                                         | Type      | Default            
 
 * <sup>[1]</sup> These options are experimental.
 * <sup>[2]</sup> These options are only allowed in `tsconfig.json`, and not through command-line switches.
+* Due to a limitation in the argument parser, `tsc` will [fail](https://github.com/Microsoft/TypeScript/issues/18581) on the command line if its last argument is one that can take multiple options (like `--types`) but none are passed. As a workaround you can add another argument at the end, e.g. `tsc --types --pretty`.
 
 ## Related
 

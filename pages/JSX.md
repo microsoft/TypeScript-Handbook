@@ -2,8 +2,8 @@
 
 [JSX](https://facebook.github.io/jsx/) is an embeddable XML-like syntax.
 It is meant to be transformed into valid JavaScript, though the semantics of that transformation are implementation-specific.
-JSX came to popularity with the [React](https://reactjs.org/) framework, but has since seen other applications as well.
-TypeScript supports embedding, type checking, and compiling JSX directly into JavaScript.
+JSX rose to popularity with the [React](https://reactjs.org/) framework, but has since seen other implementations as well.
+TypeScript supports embedding, type checking, and compiling JSX directly to JavaScript.
 
 # Basic usage
 
@@ -37,17 +37,17 @@ Recall how to write a type assertion:
 var foo = <foo>bar;
 ```
 
-Here we are asserting the variable `bar` to have the type `foo`.
-Since TypeScript also uses angle brackets for type assertions, JSX's syntax introduces certain parsing difficulties. As a result, TypeScript disallows angle bracket type assertions in `.tsx` files.
+This asserts the variable `bar` to have the type `foo`.
+Since TypeScript also uses angle brackets for type assertions, combining it with JSX's syntax would introduce certain parsing difficulties. As a result, TypeScript disallows angle bracket type assertions in `.tsx` files.
 
-To make up for this loss of functionality in `.tsx` files, a new type assertion operator has been added: `as`.
-The above example can easily be rewritten with the `as` operator.
+Since the above syntax cannot be used in `.tsx` files, an alternate type assertion operator should be used: `as`.
+The example can easily be rewritten with the `as` operator.
 
 ```ts
 var foo = bar as foo;
 ```
 
-The `as` operator is available in both `.ts` and `.tsx` files, and is identical in behavior to the other type assertion style.
+The `as` operator is available in both `.ts` and `.tsx` files, and is identical in behavior to the angle-bracket type assertion style.
 
 # Type Checking
 
@@ -107,12 +107,12 @@ There are two ways to define a value-based element:
 1. Stateless Functional Component (SFC)
 2. Class Component
 
-Because these two types of value-based elements are indistinguishable from each other in JSX expression, we first try to resolve the expression as Stateless Functional Component using overload resolution. If the process succeeds, then we are done resolving the expression to its declaration. If we fail to resolve as SFC, we will then try to resolve as a class component. If that fails, we will report an error.
+Because these two types of value-based elements are indistinguishable from each other in a JSX expression, first TS tries to resolve the expression as Stateless Functional Component using overload resolution. If the process succeeds, then TS finishes resolving the expression to its declaration. If the value fails to resolve as SFC, TS will then try to resolve it as a class component. If that fails, TS will report an error.
 
 ### Stateless Functional Component
 
 As the name suggests, the component is defined as JavaScript function where its first argument is a `props` object.
-We enforce that its return type must be assignable to `JSX.Element`
+TS enforces that its return type must be assignable to `JSX.Element`.
 
 ```ts
 interface FooProp {
@@ -129,7 +129,7 @@ function ComponentFoo(prop: FooProp) {
 const Button = (prop: {value: string}, context: { color: string }) => <button>
 ```
 
-Because an SFC is simply a JavaScript function, we can utilize function overload here as well.
+Because an SFC is simply a JavaScript function, function overloads may be used here as well:
 
 ```ts
 interface ClickableProps {
@@ -152,14 +152,14 @@ function MainButton(prop: SideProps): JSX.Element {
 
 ### Class Component
 
-It is possible to limit the type of a class component.
-However, for this we must introduce two new terms: the *element class type* and the *element instance type*.
+It is possible to define the type of a class component.
+However, to do so it is best to understand two new terms: the *element class type* and the *element instance type*.
 
 Given `<Expr />`, the *element class type* is the type of `Expr`.
-So in the example above, if `MyComponent` was an ES6 class the class type would be that class.
+So in the example above, if `MyComponent` was an ES6 class the class type would be that class's constructor and statics.
 If `MyComponent` was a factory function, the class type would be that function.
 
-Once the class type is established, the instance type is determined by the union of the return types of the class type's call signatures and construct signatures.
+Once the class type is established, the instance type is determined by the union of the return types of the class type's construct or call signatures (whichever is present).
 So again, in the case of an ES6 class, the instance type would be the type of an instance of that class, and in the case of a factory function, it would be the type of the value returned from the function.
 
 ```ts
@@ -239,6 +239,7 @@ It is determined by the type of a property on the *element instance type* that w
 Which property to use is determined by `JSX.ElementAttributesProperty`.
 It should be declared with a single property.
 The name of that property is then used.
+As of TypeScript 2.8, if `JSX.ElementAttributesProperty` is not provided, the type of first parameter of the class element's constructor or SFC's call will be used instead.
 
 ```ts
 declare namespace JSX {
@@ -278,6 +279,8 @@ declare namespace JSX {
 
 > Note: If an attribute name is not a valid JS identifier (like a `data-*` attribute), it is not considered to be an error if it is not found in the element attributes type.
 
+Additionally, the `JSX.IntrinsicAttributes` interface can be used to specify extra properties used by the JSX framework which are not generally used by the components' props or arguments - for instance `key` in React. Specializing further, the generic `JSX.IntrinsicClassAttributes<T>` type may also be used to specify the same kind of extra attributes just for class components (and not SFCs). In this type, the generic parameter corresponds to the class instance type. In React, this is used to allow the `ref` attribute of type `Ref<T>`. Generally speaking, all of the properties on these interfaces should be optional, unless you intend that users of your JSX framework need to provide some attribute on every tag.
+
 The spread operator also works:
 
 ```JSX
@@ -290,8 +293,8 @@ var badProps = {};
 
 ## Children Type Checking
 
-In 2.3, we introduce type checking of *children*. *children* is a property in an *element attributes type* which we have determined from type checking attributes.
-Similar to how we use `JSX.ElementAttributesProperty` to determine the name of *props*, we use `JSX.ElementChildrenAttribute` to determine the name of *children*.
+In TypeScript 2.3, TS introduced type checking of *children*. *children* is a special property in an *element attributes type* where child *JSXExpression*s are taken to be inserted into the attributes.
+Similar to how TS uses `JSX.ElementAttributesProperty` to determine the name of *props*, TS uses `JSX.ElementChildrenAttribute` to determine the name of *children* within those props.
 `JSX.ElementChildrenAttribute` should be declared with a single property.
 
 ```ts
@@ -301,8 +304,6 @@ declare namespace JSX {
   }
 }
 ```
-
-Without explicitly specify type of children, we will use default type from [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
 
 ```ts
 <div>
@@ -321,7 +322,7 @@ const CustomComp = (props) => <div>props.children</div>
 </CustomComp>
 ```
 
-You can specify type of *children* like any other attribute. This will overwritten default type from [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
+You can specify the type of *children* like any other attribute. This will override the default type from, eg the [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react) if you use them.
 
 ```ts
 interface PropsType {
@@ -333,7 +334,7 @@ class Component extends React.Component<PropsType, {}> {
   render() {
     return (
       <h2>
-        this.props.children
+        {this.props.children}
       </h2>
     )
   }
@@ -404,3 +405,21 @@ class MyComponent extends React.Component<Props, {}> {
 <MyComponent foo="bar" />; // ok
 <MyComponent foo={0} />; // error
 ```
+
+# Factory Functions
+
+The exact factory function used by the `jsx: react` compiler option is configurable. It may be set using either the `jsxFactory` command line option, or an inline `@jsx` comment pragma to set it on a per-file basis. For example, if you set `jsxFactory` to `createElement`, `</div>` will emit as `createElement("div")` instead of `React.createElement("div")`.
+
+The comment pragma version may be used like so (in TypeScript 2.8):
+```ts
+import preact = require("preact");
+/* @jsx preact.h */
+const x = </div>;
+```
+emits as
+```ts
+const preact = require("preact");
+const x = preact.h("div", null);
+```
+
+The factory chosen will also affect where the `JSX` namespace is looked up (for type checking information) before falling back to the global one. If the factory is defined as `React.createElement` (the default), the compiler will check for `React.JSX` before checking for a global `JSX`. If the factory is defined as `h`, it will check for `h.JSX` before a global `JSX`.

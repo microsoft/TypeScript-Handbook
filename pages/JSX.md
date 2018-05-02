@@ -239,7 +239,7 @@ It is determined by the type of a property on the *element instance type* that w
 Which property to use is determined by `JSX.ElementAttributesProperty`.
 It should be declared with a single property.
 The name of that property is then used.
-As of 2.8, if `JSX.ElementAttributesProperty` is not provided, the type of first parameter of the class element's constructor or SFC's call will be used instead.
+As of TypeScript 2.8, if `JSX.ElementAttributesProperty` is not provided, the type of first parameter of the class element's constructor or SFC's call will be used instead.
 
 ```ts
 declare namespace JSX {
@@ -293,7 +293,7 @@ var badProps = {};
 
 ## Children Type Checking
 
-In 2.3, TS introduced type checking of *children*. *children* is a special property in an *element attributes type* where child *JSXExpression*s are taken to be inserted into the attributes.
+In TypeScript 2.3, TS introduced type checking of *children*. *children* is a special property in an *element attributes type* where child *JSXExpression*s are taken to be inserted into the attributes.
 Similar to how TS uses `JSX.ElementAttributesProperty` to determine the name of *props*, TS uses `JSX.ElementChildrenAttribute` to determine the name of *children* within those props.
 `JSX.ElementChildrenAttribute` should be declared with a single property.
 
@@ -405,3 +405,21 @@ class MyComponent extends React.Component<Props, {}> {
 <MyComponent foo="bar" />; // ok
 <MyComponent foo={0} />; // error
 ```
+
+# Factory Functions
+
+The exact factory function used by the `jsx: react` compiler option is configurable. It may be set using either the `jsxFactory` command line option, or an inline `@jsx` comment pragma to set it on a per-file basis. For example, if you set `jsxFactory` to `createElement`, `</div>` will emit as `createElement("div")` instead of `React.createElement("div")`.
+
+The comment pragma version may be used like so (in TypeScript 2.8):
+```ts
+import preact = require("preact");
+/* @jsx preact.h */
+const x = </div>;
+```
+emits as
+```ts
+const preact = require("preact");
+const x = preact.h("div", null);
+```
+
+The factory chosen will also affect where the `JSX` namespace is looked up (for type checking information) before falling back to the global one. If the factory is defined as `React.createElement` (the default), the compiler will check for `React.JSX` before checking for a global `JSX`. If the factory is defined as `h`, it will check for `h.JSX` before a global `JSX`.

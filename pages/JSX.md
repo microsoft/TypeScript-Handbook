@@ -411,12 +411,15 @@ class MyComponent extends React.Component<Props, {}> {
 The exact factory function used by the `jsx: react` compiler option is configurable. It may be set using either the `jsxFactory` command line option, or an inline `@jsx` comment pragma to set it on a per-file basis. For example, if you set `jsxFactory` to `createElement`, `</div>` will emit as `createElement("div")` instead of `React.createElement("div")`.
 
 The comment pragma version may be used like so (in TypeScript 2.8):
+
 ```ts
 import preact = require("preact");
 /* @jsx preact.h */
 const x = </div>;
 ```
-emits as
+
+emits as:
+
 ```ts
 const preact = require("preact");
 const x = preact.h("div", null);

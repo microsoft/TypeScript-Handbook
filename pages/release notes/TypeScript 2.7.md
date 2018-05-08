@@ -45,7 +45,7 @@ let b = x[Bar]; // has type 'string'
 ## `unique symbol`
 
 To enable treating symbols as unique literals  a new type `unique symbol` is available.
-`unique symbol` is are subtype of `symbol`, and are produced only from calling `Symbol()` or `Symbol.for()`, or from explicit type annotations.
+`unique symbol` is a subtype of `symbol`, and are produced only from calling `Symbol()` or `Symbol.for()`, or from explicit type annotations.
 The new type is only allowed on `const` declarations and `readonly static` properties, and in order to reference a specific unique symbol, you'll have to use the `typeof` operator.
 Each reference to a `unique symbol` implies a completely unique identity that's tied to a given declaration.
 

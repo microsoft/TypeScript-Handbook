@@ -9,7 +9,7 @@ If you're looking to convert a React project, we recommend looking at the [React
 # Setting up your Directories
 
 If you're writing in plain JavaScript, it's likely that you're running your JavaScript directly,
-  where your `.js` files in a `src`, `lib`, or `dist` directory, and then ran as desired.
+  where your `.js` files are in a `src`, `lib`, or `dist` directory, and then ran as desired.
 
 If that's the case, the files that you've written are going to be used as inputs to TypeScript, and you'll run the outputs it produces.
 During our JS to TS migration, we'll need to separate our input files to prevent TypeScript from overwriting them.

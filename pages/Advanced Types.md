@@ -706,7 +706,7 @@ With index types, you can get the compiler to check code that uses dynamic prope
 For example, a common Javascript pattern is to pick a subset of properties from an object:
 
 ```js
-function pluck(o, names) {
+function props(o, names) {
     return names.map(n => o[n]);
 }
 ```
@@ -714,7 +714,7 @@ function pluck(o, names) {
 Here's how you would write and use this function in TypeScript, using the **index type query** and **indexed access** operators:
 
 ```ts
-function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+function props<T, K extends keyof T>(o: T, names: K[]): T[K][] {
   return names.map(n => o[n]);
 }
 
@@ -726,7 +726,7 @@ let person: Person = {
     name: 'Jarid',
     age: 35
 };
-let strings: string[] = pluck(person, ['name']); // ok, string[]
+let strings: string[] = props(person, ['name']); // ok, string[]
 ```
 
 The compiler checks that `name` is actually a property on `Person`.
@@ -741,11 +741,11 @@ let personProps: keyof Person; // 'name' | 'age'
 
 `keyof Person` is completely interchangeable with `'name' | 'age'`.
 The difference is that if you add another property to `Person`, say `address: string`, then `keyof Person` will automatically update to be `'name' | 'age' | 'address'`.
-And you can use `keyof` in generic contexts like `pluck`, where you can't possibly know the property names ahead of time.
-That means the compiler will check that you pass the right set of property names to `pluck`:
+And you can use `keyof` in generic contexts like `props`, where you can't possibly know the property names ahead of time.
+That means the compiler will check that you pass the right set of property names to `props`:
 
 ```ts
-pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
+props(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
 ```
 
 The second operator is `T[K]`, the **indexed access operator**.

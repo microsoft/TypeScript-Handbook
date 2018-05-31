@@ -19,7 +19,7 @@ let p: Named;
 p = new Person();
 ```
 
-In nominally-typed languages like C# or Java, the equivalent code would be an error because the `Person` class does not explicitly describe itself as being an implementor of the `Named` interface.
+In nominally-typed languages like C# or Java, the equivalent code would be an error because the `Person` class does not explicitly describe itself as being an implementer of the `Named` interface.
 
 TypeScript's structural type system was designed based on how JavaScript code is typically written.
 Because JavaScript widely uses anonymous objects like function expressions and object literals, it's much more natural to represent the kinds of relationships found in JavaScript libraries with a structural type system instead of a nominal one.
@@ -255,10 +255,11 @@ identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
 
 ## Subtype vs Assignment
 
-So far, we've used 'compatible', which is not a term defined in the language spec.
+So far, we've used "compatible", which is not a term defined in the language spec.
 In TypeScript, there are two kinds of compatibility: subtype and assignment.
-These differ only in that assignment extends subtype compatibility with rules to allow assignment to and from `any` and to and from enum with corresponding numeric values.
+These differ only in that assignment extends subtype compatibility with rules to allow assignment to and from `any`, and to and from `enum` with corresponding numeric values.
 
 Different places in the language use one of the two compatibility mechanisms, depending on the situation.
-For practical purposes, type compatibility is dictated by assignment compatibility even in the cases of the `implements` and `extends` clauses.
+For practical purposes, type compatibility is dictated by assignment compatibility, even in the cases of the `implements` and `extends` clauses.
+
 For more information, see the [TypeScript spec](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md).

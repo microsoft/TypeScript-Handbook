@@ -216,7 +216,7 @@ let stringNumeric = new GenericNumber<string>();
 stringNumeric.zeroValue = "";
 stringNumeric.add = function(x, y) { return x + y; };
 
-alert(stringNumeric.add(stringNumeric.zeroValue, "test"));
+console.log(stringNumeric.add(stringNumeric.zeroValue, "test"));
 ```
 
 Just as with interface, putting the type parameter on the class itself lets us make sure all of the properties of the class are working with the same type.

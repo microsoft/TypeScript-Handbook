@@ -135,7 +135,7 @@ For example, if we had the value `2` but weren't sure what that mapped to in the
 enum Color {Red = 1, Green, Blue}
 let colorName: string = Color[2];
 
-alert(colorName); // Displays 'Green' as its value is 2 above
+console.log(colorName); // Displays 'Green' as its value is 2 above
 ```
 
 # Any
@@ -180,7 +180,7 @@ You may commonly see this as the return type of functions that do not return a v
 
 ```ts
 function warnUser(): void {
-    alert("This is my warning message");
+    console.log("This is my warning message");
 }
 ```
 

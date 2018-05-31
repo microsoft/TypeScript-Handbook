@@ -163,7 +163,7 @@ namespace Animal {
 
 namespace Animal {
     export function doAnimalsHaveMuscles() {
-        return haveMuscles;  // <-- error, haveMuscles is not visible here
+        return haveMuscles;  // Error, because haveMuscles is not accessible here
     }
 }
 ```
@@ -207,7 +207,7 @@ namespace buildLabel {
     export let prefix = "Hello, ";
 }
 
-alert(buildLabel("Sam Smith"));
+console.log(buildLabel("Sam Smith"));
 ```
 
 Similarly, namespaces can be used to extend enums with static members:

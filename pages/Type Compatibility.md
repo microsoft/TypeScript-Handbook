@@ -102,7 +102,7 @@ let x = () => ({name: "Alice"});
 let y = () => ({name: "Alice", location: "Seattle"});
 
 x = y; // OK
-y = x; // Error because x() lacks a location property
+y = x; // Error, because x() lacks a location property
 ```
 
 The type system enforces that the source function's return type be a subtype of the target type's return type.
@@ -172,7 +172,7 @@ enum Status { Ready, Waiting };
 enum Color { Red, Blue, Green };
 
 let status = Status.Ready;
-status = Color.Green;  //error
+status = Color.Green;  // Error
 ```
 
 # Classes
@@ -195,8 +195,8 @@ class Size {
 let a: Animal;
 let s: Size;
 
-a = s;  //OK
-s = a;  //OK
+a = s;  // OK
+s = a;  // OK
 ```
 
 ## Private and protected members in classes
@@ -216,7 +216,7 @@ interface Empty<T> {
 let x: Empty<number>;
 let y: Empty<string>;
 
-x = y;  // okay, y matches structure of x
+x = y;  // OK, because y matches structure of x
 ```
 
 In the above, `x` and `y` are compatible because their structures do not use the type argument in a differentiating way.
@@ -229,7 +229,7 @@ interface NotEmpty<T> {
 let x: NotEmpty<number>;
 let y: NotEmpty<string>;
 
-x = y;  // error, x and y are not compatible
+x = y;  // Error, because x and y are not compatible
 ```
 
 In this way, a generic type that has its type arguments specified acts just like a non-generic type.
@@ -248,7 +248,7 @@ let reverse = function<U>(y: U): U {
     // ...
 }
 
-identity = reverse;  // Okay because (x: any)=>any matches (y: any)=>any
+identity = reverse;  // OK, because (x: any) => any matches (y: any) => any
 ```
 
 # Advanced Topics

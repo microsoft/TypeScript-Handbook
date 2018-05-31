@@ -51,11 +51,11 @@ If properties are never set in the class body, they are considered unknown. If y
 In a `.js` files CommonJS module format is allowed as an input module format. Assignments to `exports`, and `module.exports` are recognized as export declarations. Similarly, `require` function calls are recognized as module imports. For example:
 
 ```ts
-// import module "fs"
+// Import module "fs"
 const fs = require("fs");
 
 
-// export function readFile
+// Export function readFile
 module.exports.readFile = function(f) {
     return fs.readFileSync(f);
 }
@@ -106,9 +106,9 @@ JSDoc annotated functions are excluded from this rule. Use JSDoc optional parame
  */
 function sayHello(somebody) {
     if (!somebody) {
-        somebody = 'John Doe';
+        somebody = "John Doe";
     }
-    alert('Hello ' + somebody);
+    console.log("Hello " + somebody);
 }
 
 sayHello();
@@ -132,7 +132,7 @@ import { Component } from "react";
 
 class MyComponent extends Component {
     render() {
-       this.props.b; // Allowed, since this.props is of type any
+        this.props.b; // Allowed, since this.props is of type any
     }
 }
 ```

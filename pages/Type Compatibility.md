@@ -50,7 +50,7 @@ The same rule for assignment is used when checking function call arguments:
 
 ```ts
 function greet(n: Named) {
-    alert("Hello, " + n.name);
+    console.log("Hello, " + n.name);
 }
 greet(y); // OK
 ```

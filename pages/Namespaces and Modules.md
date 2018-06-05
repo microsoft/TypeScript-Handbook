@@ -41,7 +41,7 @@ In this section we'll describe various common pitfalls in using namespaces and m
 ## `/// <reference>`-ing a module
 
 A common mistake is to try to use the `/// <reference ... />` syntax to refer to a module file, rather than using an `import` statement.
-To understand the distinction, we first need to understand how compiler can locate the type information for a module based on the path of an `import` (e.g. the `...` in `import x from "...";`, `import x = require("...");`, etc.) path.
+To understand the distinction, we first need to understand how the compiler can locate the type information for a module based on the path of an `import` (e.g. the `...` in `import x from "...";`, `import x = require("...");`, etc.) path.
 
 The compiler will try to find a `.ts`, `.tsx`, and then a `.d.ts` with the appropriate path.
 If a specific file could not be found, then the compiler will look for an *ambient module declaration*.

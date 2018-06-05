@@ -53,7 +53,7 @@ TypeScript can figure the return type out by looking at the return statements, s
 
 ## Writing the function type
 
-Now that we've typed the function, let's write the full type of the function out by looking at the each piece of the function type.
+Now that we've typed the function, let's write the full type of the function out by looking at each piece of the function type.
 
 ```ts
 let myAdd: (x: number, y: number) => number =

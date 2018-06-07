@@ -122,7 +122,7 @@ import * as React from "react";
 
 export interface HelloProps { compiler: string; framework: string; }
 
-export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
+export const Hello:React.SFC<HelloProps> = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
 ```
 
 Note that while this example uses [stateless functional components](https://reactjs.org/docs/components-and-props.html#functional-and-class-components), we could also make our example a little *classier* as well.

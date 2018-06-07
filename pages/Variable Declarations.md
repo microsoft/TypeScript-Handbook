@@ -583,7 +583,7 @@ First of all, you need to remember to put the pattern before the default value.
 function f({ a="", b=0 }): void {
     // ...
 }
-f(); // ok, default to { a: "", b: 0 }
+f();
 ```
 
 > The snippet above is an example of type inference, explained later in the handbook.

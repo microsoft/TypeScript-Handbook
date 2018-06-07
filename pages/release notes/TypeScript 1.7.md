@@ -14,7 +14,7 @@ In the following example, each input element will be printed out one at a time w
 // printDelayed is a 'Promise<void>'
 async function printDelayed(elements: string[]) {
     for (const element of elements) {
-        await delay(200);
+        await delay(400);
         console.log(element);
     }
 }

@@ -580,7 +580,7 @@ But specifying defaults is more common for parameters, and getting defaults righ
 First of all, you need to remember to put the pattern before the default value.
 
 ```ts
-function f({ a, b } = { a: "", b: 0 }): void {
+function f({ a="", b=0 }): void {
     // ...
 }
 f(); // ok, default to { a: "", b: 0 }

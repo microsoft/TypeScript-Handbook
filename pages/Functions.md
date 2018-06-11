@@ -234,7 +234,6 @@ Let's look at an example:
 ```ts
 let deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
-    cards: Array(52),
     createCardPicker: function() {
         return function() {
             let pickedCard = Math.floor(Math.random() * 52);
@@ -266,7 +265,6 @@ Arrow functions capture the `this` where the function is created rather than whe
 ```ts
 let deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
-    cards: Array(52),
     createCardPicker: function() {
         // NOTE: the line below is now an arrow function, allowing us to capture 'this' right here
         return () => {
@@ -309,12 +307,10 @@ interface Card {
 }
 interface Deck {
     suits: string[];
-    cards: number[];
     createCardPicker(this: Deck): () => Card;
 }
 let deck: Deck = {
     suits: ["hearts", "spades", "clubs", "diamonds"],
-    cards: Array(52),
     // NOTE: The function now explicitly specifies that its callee must be of type Deck
     createCardPicker: function(this: Deck) {
         return () => {

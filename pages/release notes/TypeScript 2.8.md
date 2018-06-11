@@ -403,6 +403,6 @@ Starting with TypeScript 2.8 the `JSX` namespace will be looked under the `jsxNa
 For backward compatibility the global `JSX` namespace is used as a fallback if none was defined on the factory function.
 Combined with the per-file `@jsx` pragma, each file can have a different JSX factory.
 
-# New `--emitDeclarationsOnly`
+# New `--emitDeclarationOnly`
 
-`--emitDeclarationsOnly` allows for *only* generating declaration files; `.js`/`.jsx` output generation will be skipped with this flag. The flag is useful when the `.js` output generation is handled by a different transpiler like Babel.
+`--emitDeclarationOnly` allows for *only* generating declaration files; `.js`/`.jsx` output generation will be skipped with this flag. The flag is useful when the `.js` output generation is handled by a different transpiler like Babel.

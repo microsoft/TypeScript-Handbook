@@ -92,7 +92,7 @@ Any files that are referenced by files included via the `"files"` or `"include"`
 Similarly, if a file `B.ts` is referenced by another file `A.ts`, then `B.ts` cannot be excluded unless the referencing file `A.ts` is also specified in the `"exclude"` list.
 
 Please note that the compiler does not include files that can be possible outputs; e.g. if the input includes `index.ts`, then `index.d.ts` and `index.js` are excluded.
-In general, having files that differ only in extension next to each other is not recomended.
+In general, having files that differ only in extension next to each other is not recommended.
 
 A `tsconfig.json` file is permitted to be completely empty, which compiles all files included by default (as described above) with the default compiler options.
 

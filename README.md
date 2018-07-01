@@ -2,7 +2,7 @@
 
 > 번역 프로젝트 기여자
 
-ByeongGiKim , Jaeho Lee
+ByeongGi Kim , Jaeho Lee
 
 ## 문서 빌드 방법 
 1. gitbook-cli 설치

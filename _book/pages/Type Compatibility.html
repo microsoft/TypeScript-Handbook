@@ -1,0 +1,710 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Type Compatibility · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Advanced Types.html" />
+    
+    
+    <link rel="prev" href="Type Inference.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Type Compatibility</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>Type compatibility in TypeScript is based on structural subtyping.
+Structural typing is a way of relating types based solely on their members.
+This is in contrast with nominal typing.
+Consider the following code:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Named {
+    name: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">class</span> Person {
+    name: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">let</span> p: Named;
+<span class="hljs-comment">// OK, because of structural typing</span>
+p = <span class="hljs-keyword">new</span> Person();
+</code></pre>
+<p>In nominally-typed languages like C# or Java, the equivalent code would be an error because the <code>Person</code> class does not explicitly describe itself as being an implementer of the <code>Named</code> interface.</p>
+<p>TypeScript&apos;s structural type system was designed based on how JavaScript code is typically written.
+Because JavaScript widely uses anonymous objects like function expressions and object literals, it&apos;s much more natural to represent the kinds of relationships found in JavaScript libraries with a structural type system instead of a nominal one.</p>
+<h2 id="a-note-on-soundness">A Note on Soundness</h2>
+<p>TypeScript&apos;s type system allows certain operations that can&apos;t be known at compile-time to be safe. When a type system has this property, it is said to not be &quot;sound&quot;. The places where TypeScript allows unsound behavior were carefully considered, and throughout this document we&apos;ll explain where these happen and the motivating scenarios behind them.</p>
+<h1 id="starting-out">Starting out</h1>
+<p>The basic rule for TypeScript&apos;s structural type system is that <code>x</code> is compatible with <code>y</code> if <code>y</code> has at least the same members as <code>x</code>. For example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Named {
+    name: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">let</span> x: Named;
+<span class="hljs-comment">// y&apos;s inferred type is { name: string; location: string; }</span>
+<span class="hljs-keyword">let</span> y = { name: <span class="hljs-string">&quot;Alice&quot;</span>, location: <span class="hljs-string">&quot;Seattle&quot;</span> };
+x = y;
+</code></pre>
+<p>To check whether <code>y</code> can be assigned to <code>x</code>, the compiler checks each property of <code>x</code> to find a corresponding compatible property in <code>y</code>.
+In this case, <code>y</code> must have a member called <code>name</code> that is a string. It does, so the assignment is allowed.</p>
+<p>The same rule for assignment is used when checking function call arguments:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">n: Named</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hello, &quot;</span> + n.name);
+}
+greet(y); <span class="hljs-comment">// OK</span>
+</code></pre>
+<p>Note that <code>y</code> has an extra <code>location</code> property, but this does not create an error.
+Only members of the target type (<code>Named</code> in this case) are considered when checking for compatibility.</p>
+<p>This comparison process proceeds recursively, exploring the type of each member and sub-member.</p>
+<h1 id="comparing-two-functions">Comparing two functions</h1>
+<p>While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible is a bit more involved.
+Let&apos;s start with a basic example of two functions that differ only in their parameter lists:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> x = (a: <span class="hljs-built_in">number</span>) =&gt; <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> y = (b: <span class="hljs-built_in">number</span>, s: <span class="hljs-built_in">string</span>) =&gt; <span class="hljs-number">0</span>;
+
+y = x; <span class="hljs-comment">// OK</span>
+x = y; <span class="hljs-comment">// Error</span>
+</code></pre>
+<p>To check if <code>x</code> is assignable to <code>y</code>, we first look at the parameter list.
+Each parameter in <code>x</code> must have a corresponding parameter in <code>y</code> with a compatible type.
+Note that the names of the parameters are not considered, only their types.
+In this case, every parameter of <code>x</code> has a corresponding compatible parameter in <code>y</code>, so the assignment is allowed.</p>
+<p>The second assignment is an error, because <code>y</code> has a required second parameter that <code>x</code> does not have, so the assignment is disallowed.</p>
+<p>You may be wondering why we allow &apos;discarding&apos; parameters like in the example <code>y = x</code>.
+The reason for this assignment to be allowed is that ignoring extra function parameters is actually quite common in JavaScript.
+For example, <code>Array#forEach</code> provides three parameters to the callback function: the array element, its index, and the containing array.
+Nevertheless, it&apos;s very useful to provide a callback that only uses the first parameter:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> items = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+
+<span class="hljs-comment">// Don&apos;t force these extra parameters</span>
+items.forEach((item, index, array) =&gt; <span class="hljs-built_in">console</span>.log(item));
+
+<span class="hljs-comment">// Should be OK!</span>
+items.forEach(item =&gt; <span class="hljs-built_in">console</span>.log(item));
+</code></pre>
+<p>Now let&apos;s look at how return types are treated, using two functions that differ only by their return type:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> x = () =&gt; ({name: <span class="hljs-string">&quot;Alice&quot;</span>});
+<span class="hljs-keyword">let</span> y = () =&gt; ({name: <span class="hljs-string">&quot;Alice&quot;</span>, location: <span class="hljs-string">&quot;Seattle&quot;</span>});
+
+x = y; <span class="hljs-comment">// OK</span>
+y = x; <span class="hljs-comment">// Error, because x() lacks a location property</span>
+</code></pre>
+<p>The type system enforces that the source function&apos;s return type be a subtype of the target type&apos;s return type.</p>
+<h2 id="function-parameter-bivariance">Function Parameter Bivariance</h2>
+<p>When comparing the types of function parameters, assignment succeeds if either the source parameter is assignable to the target parameter, or vice versa.
+This is unsound because a caller might end up being given a function that takes a more specialized type, but invokes the function with a less specialized type.
+In practice, this sort of error is rare, and allowing this enables many common JavaScript patterns. A brief example:</p>
+<pre><code class="lang-ts">enum EventType { Mouse, Keyboard }
+
+interface Event { timestamp: number; }
+interface MouseEvent extends Event { x: number; y: number }
+interface KeyEvent extends Event { keyCode: number }
+
+function listenEvent(eventType: EventType, handler: (n: Event) =&gt; void) {
+    /* ... */
+}
+
+// Unsound, but useful and common
+listenEvent(EventType.Mouse, (e: MouseEvent) =&gt; console.log(e.x + &quot;,&quot; + e.y));
+
+// Undesirable alternatives in presence of soundness
+listenEvent(EventType.Mouse, (e: Event) =&gt; console.log((&lt;MouseEvent&gt;e).x + &quot;,&quot; + (&lt;MouseEvent&gt;e).y));
+listenEvent(EventType.Mouse, &lt;(e: Event) =&gt; void&gt;((e: MouseEvent) =&gt; console.log(e.x + &quot;,&quot; + e.y)));
+
+// Still disallowed (clear error). Type safety enforced for wholly incompatible types
+listenEvent(EventType.Mouse, (e: number) =&gt; console.log(e));
+</code></pre>
+<h2 id="optional-parameters-and-rest-parameters">Optional Parameters and Rest Parameters</h2>
+<p>When comparing functions for compatibility, optional and required parameters are interchangeable.
+Extra optional parameters of the source type are not an error, and optional parameters of the target type without corresponding parameters in the source type are not an error.</p>
+<p>When a function has a rest parameter, it is treated as if it were an infinite series of optional parameters.</p>
+<p>This is unsound from a type system perspective, but from a runtime point of view the idea of an optional parameter is generally not well-enforced since passing <code>undefined</code> in that position is equivalent for most functions.</p>
+<p>The motivating example is the common pattern of a function that takes a callback and invokes it with some predictable (to the programmer) but unknown (to the type system) number of arguments:</p>
+<pre><code class="lang-ts">function invokeLater(args: any[], callback: (...args: any[]) =&gt; void) {
+    /* ... Invoke callback with &apos;args&apos; ... */
+}
+
+// Unsound - invokeLater &quot;might&quot; provide any number of arguments
+invokeLater([1, 2], (x, y) =&gt; console.log(x + &quot;, &quot; + y));
+
+// Confusing (x and y are actually required) and undiscoverable
+invokeLater([1, 2], (x?, y?) =&gt; console.log(x + &quot;, &quot; + y));
+</code></pre>
+<h2 id="functions-with-overloads">Functions with overloads</h2>
+<p>When a function has overloads, each overload in the source type must be matched by a compatible signature on the target type.
+This ensures that the target function can be called in all the same situations as the source function.</p>
+<h1 id="enums">Enums</h1>
+<p>Enums are compatible with numbers, and numbers are compatible with enums. Enum values from different enum types are considered incompatible. For example,</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Status { Ready, Waiting };
+<span class="hljs-keyword">enum</span> Color { Red, Blue, Green };
+
+<span class="hljs-keyword">let</span> status = Status.Ready;
+status = Color.Green;  <span class="hljs-comment">// Error</span>
+</code></pre>
+<h1 id="classes">Classes</h1>
+<p>Classes work similarly to object literal types and interfaces with one exception: they have both a static and an instance type.
+When comparing two objects of a class type, only members of the instance are compared.
+Static members and constructors do not affect compatibility.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Animal {
+    feet: <span class="hljs-built_in">number</span>;
+    <span class="hljs-keyword">constructor</span>(name: string, numFeet: number) { }
+}
+
+<span class="hljs-keyword">class</span> Size {
+    feet: <span class="hljs-built_in">number</span>;
+    <span class="hljs-keyword">constructor</span>(numFeet: number) { }
+}
+
+<span class="hljs-keyword">let</span> a: Animal;
+<span class="hljs-keyword">let</span> s: Size;
+
+a = s;  <span class="hljs-comment">// OK</span>
+s = a;  <span class="hljs-comment">// OK</span>
+</code></pre>
+<h2 id="private-and-protected-members-in-classes">Private and protected members in classes</h2>
+<p>Private and protected members in a class affect their compatibility.
+When an instance of a class is checked for compatibility, if the target type contains a private member, then the source type must also contain a private member that originated from the same class.
+Likewise, the same applies for an instance with a protected member.
+This allows a class to be assignment compatible with its super class, but <em>not</em> with classes from a different inheritance hierarchy which otherwise have the same shape.</p>
+<h1 id="generics">Generics</h1>
+<p>Because TypeScript is a structural type system, type parameters only affect the resulting type when consumed as part of the type of a member. For example,</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Empty&lt;T&gt; {
+}
+<span class="hljs-keyword">let</span> x: Empty&lt;<span class="hljs-built_in">number</span>&gt;;
+<span class="hljs-keyword">let</span> y: Empty&lt;<span class="hljs-built_in">string</span>&gt;;
+
+x = y;  <span class="hljs-comment">// OK, because y matches structure of x</span>
+</code></pre>
+<p>In the above, <code>x</code> and <code>y</code> are compatible because their structures do not use the type argument in a differentiating way.
+Changing this example by adding a member to <code>Empty&lt;T&gt;</code> shows how this works:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> NotEmpty&lt;T&gt; {
+    data: T;
+}
+<span class="hljs-keyword">let</span> x: NotEmpty&lt;<span class="hljs-built_in">number</span>&gt;;
+<span class="hljs-keyword">let</span> y: NotEmpty&lt;<span class="hljs-built_in">string</span>&gt;;
+
+x = y;  <span class="hljs-comment">// Error, because x and y are not compatible</span>
+</code></pre>
+<p>In this way, a generic type that has its type arguments specified acts just like a non-generic type.</p>
+<p>For generic types that do not have their type arguments specified, compatibility is checked by specifying <code>any</code> in place of all unspecified type arguments.
+The resulting types are then checked for compatibility, just as in the non-generic case.</p>
+<p>For example,</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> identity = <span class="hljs-function"><span class="hljs-keyword">function</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">x: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-keyword">let</span> reverse = <span class="hljs-function"><span class="hljs-keyword">function</span>&lt;<span class="hljs-title">U</span>&gt;(<span class="hljs-params">y: U</span>): <span class="hljs-title">U</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+identity = reverse;  <span class="hljs-comment">// OK, because (x: any) =&gt; any matches (y: any) =&gt; any</span>
+</code></pre>
+<h1 id="advanced-topics">Advanced Topics</h1>
+<h2 id="subtype-vs-assignment">Subtype vs Assignment</h2>
+<p>So far, we&apos;ve used &quot;compatible&quot;, which is not a term defined in the language spec.
+In TypeScript, there are two kinds of compatibility: subtype and assignment.
+These differ only in that assignment extends subtype compatibility with rules to allow assignment to and from <code>any</code>, and to and from <code>enum</code> with corresponding numeric values.</p>
+<p>Different places in the language use one of the two compatibility mechanisms, depending on the situation.
+For practical purposes, type compatibility is dictated by assignment compatibility, even in the cases of the <code>implements</code> and <code>extends</code> clauses.</p>
+<p>For more information, see the <a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md" target="_blank">TypeScript spec</a>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Type Inference.html" class="navigation navigation-prev " aria-label="Previous page: Type Inference">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Advanced Types.html" class="navigation navigation-next " aria-label="Next page: Advanced Types">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Type Compatibility","level":"1.10","depth":1,"next":{"title":"Advanced Types","level":"1.11","depth":1,"path":"pages/Advanced Types.md","ref":"./pages/Advanced Types.md","articles":[]},"previous":{"title":"Type Inference","level":"1.9","depth":1,"path":"pages/Type Inference.md","ref":"./pages/Type Inference.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Type Compatibility.md","mtime":"2018-07-01T10:24:27.721Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

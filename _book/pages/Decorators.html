@@ -1,0 +1,927 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Decorators · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Mixins.html" />
+    
+    
+    <link rel="prev" href="JSX.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Decorators</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>With the introduction of Classes in TypeScript and ES6, there now exist certain scenarios that require additional features to support annotating or modifying classes and class members.
+Decorators provide a way to add both annotations and a meta-programming syntax for class declarations and members.
+Decorators are a <a href="https://github.com/tc39/proposal-decorators" target="_blank">stage 2 proposal</a> for JavaScript and are available as an experimental feature of TypeScript.</p>
+<blockquote>
+<p>NOTE&#x2003; Decorators are an experimental feature that may change in future releases.</p>
+</blockquote>
+<p>To enable experimental support for decorators, you must enable the <code>experimentalDecorators</code> compiler option either on the command line or in your <code>tsconfig.json</code>:</p>
+<p><strong>Command Line</strong>:</p>
+<pre><code class="lang-shell">tsc --target ES5 --experimentalDecorators
+</code></pre>
+<p><strong>tsconfig.json</strong>:</p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;compilerOptions&quot;</span>: {
+        <span class="hljs-string">&quot;target&quot;</span>: <span class="hljs-string">&quot;ES5&quot;</span>,
+        <span class="hljs-string">&quot;experimentalDecorators&quot;</span>: <span class="hljs-literal">true</span>
+    }
+}
+</code></pre>
+<h1 id="decorators">Decorators</h1>
+<p>A <em>Decorator</em> is a special kind of declaration that can be attached to a <a href="#class-decorators">class declaration</a>, <a href="#method-decorators">method</a>, <a href="#accessor-decorators">accessor</a>, <a href="#property-decorators">property</a>, or <a href="#parameter-decorators">parameter</a>.
+Decorators use the form <code>@expression</code>, where <code>expression</code> must evaluate to a function that will be called at runtime with information about the decorated declaration.</p>
+<p>For example, given the decorator <code>@sealed</code> we might write the <code>sealed</code> function as follows:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sealed</span>(<span class="hljs-params">target</span>) </span>{
+    <span class="hljs-comment">// do something with &apos;target&apos; ...</span>
+}
+</code></pre>
+<blockquote>
+<p>NOTE&#x2003; You can see a more detailed example of a decorator in <a href="#class-decorators">Class Decorators</a>, below.</p>
+</blockquote>
+<h2 id="decorator-factories">Decorator Factories</h2>
+<p>If we want to customize how a decorator is applied to a declaration, we can write a decorator factory.
+A <em>Decorator Factory</em> is simply a function that returns the expression that will be called by the decorator at runtime.</p>
+<p>We can write a decorator factory in the following fashion:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">color</span>(<span class="hljs-params">value: <span class="hljs-built_in">string</span></span>) </span>{ <span class="hljs-comment">// this is the decorator factory</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">target</span>) </span>{ <span class="hljs-comment">// this is the decorator</span>
+        <span class="hljs-comment">// do something with &apos;target&apos; and &apos;value&apos;...</span>
+    }
+}
+</code></pre>
+<blockquote>
+<p>NOTE&#x2003; You can see a more detailed example of a decorator factory in <a href="#method-decorators">Method Decorators</a>, below.</p>
+</blockquote>
+<h2 id="decorator-composition">Decorator Composition</h2>
+<p>Multiple decorators can be applied to a declaration, as in the following examples:</p>
+<ul>
+<li><p>On a single line:</p>
+<pre><code class="lang-ts">@f @g x
+</code></pre>
+</li>
+<li><p>On multiple lines:</p>
+<pre><code class="lang-ts">@f
+@g
+x
+</code></pre>
+</li>
+</ul>
+<p>When multiple decorators apply to a single declaration, their evaluation is similar to <a href="http://en.wikipedia.org/wiki/Function_composition" target="_blank">function composition in mathematics</a>. In this model, when composing functions <em>f</em> and <em>g</em>, the resulting composite (<em>f</em> &#x2218; <em>g</em>)(<em>x</em>) is equivalent to <em>f</em>(<em>g</em>(<em>x</em>)).</p>
+<p>As such, the following steps are performed when evaluating multiple decorators on a single declaration in TypeScript:</p>
+<ol>
+<li>The expressions for each decorator are evaluated top-to-bottom.</li>
+<li>The results are then called as functions from bottom-to-top.</li>
+</ol>
+<p>If we were to use <a href="#decorator-factories">decorator factories</a>, we can observe this evaluation order with the following example:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;f(): evaluated&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">target, propertyKey: <span class="hljs-built_in">string</span>, descriptor: PropertyDescriptor</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;f(): called&quot;</span>);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">g</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;g(): evaluated&quot;</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">target, propertyKey: <span class="hljs-built_in">string</span>, descriptor: PropertyDescriptor</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;g(): called&quot;</span>);
+    }
+}
+
+<span class="hljs-keyword">class</span> C {
+    @f()
+    @g()
+    method() {}
+}
+</code></pre>
+<p>Which would print this output to the console:</p>
+<pre><code class="lang-shell">f(): evaluated
+g(): evaluated
+g(): called
+f(): called
+</code></pre>
+<h2 id="decorator-evaluation">Decorator Evaluation</h2>
+<p>There is a well defined order to how decorators applied to various declarations inside of a class are applied:</p>
+<ol>
+<li><em>Parameter Decorators</em>, followed by <em>Method</em>, <em>Accessor</em>, or <em>Property Decorators</em> are applied for each instance member.</li>
+<li><em>Parameter Decorators</em>, followed by <em>Method</em>, <em>Accessor</em>, or <em>Property Decorators</em> are applied for each static member.</li>
+<li><em>Parameter Decorators</em> are applied for the constructor.</li>
+<li><em>Class Decorators</em> are applied for the class.</li>
+</ol>
+<h2 id="class-decorators">Class Decorators</h2>
+<p>A <em>Class Decorator</em> is declared just before a class declaration.
+The class decorator is applied to the constructor of the class and can be used to observe, modify, or replace a class definition.
+A class decorator cannot be used in a declaration file, or in any other ambient context (such as on a <code>declare</code> class).</p>
+<p>The expression for the class decorator will be called as a function at runtime, with the constructor of the decorated class as its only argument.</p>
+<p>If the class decorator returns a value, it will replace the class declaration with the provided constructor function.</p>
+<blockquote>
+<p>NOTE&#xA0; Should you chose to return a new constructor function, you must take care to maintain the original prototype.
+The logic that applies decorators at runtime will <strong>not</strong> do this for you.</p>
+</blockquote>
+<p>The following is an example of a class decorator (<code>@sealed</code>) applied to the <code>Greeter</code> class:</p>
+<pre><code class="lang-ts">@sealed
+<span class="hljs-keyword">class</span> Greeter {
+    greeting: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(message: string) {
+        <span class="hljs-keyword">this</span>.greeting = message;
+    }
+    greet() {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + <span class="hljs-keyword">this</span>.greeting;
+    }
+}
+</code></pre>
+<p>We can define the <code>@sealed</code> decorator using the following function declaration:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sealed</span>(<span class="hljs-params">constructor: <span class="hljs-built_in">Function</span></span>) </span>{
+    <span class="hljs-built_in">Object</span>.seal(<span class="hljs-keyword">constructor</span>);
+    Object.seal(<span class="hljs-keyword">constructor</span>.prototype);
+}
+</code></pre>
+<p>When <code>@sealed</code> is executed, it will seal both the constructor and its prototype.</p>
+<p>Next we have an example of how to override the constructor.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">classDecorator</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> </span>{<span class="hljs-keyword">new</span>(...args:<span class="hljs-built_in">any</span>[]):{}}&gt;(<span class="hljs-keyword">constructor</span>:T) {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">class</span> extends <span class="hljs-keyword">constructor</span> {
+        newProperty = <span class="hljs-string">&quot;new property&quot;</span>;
+        hello = <span class="hljs-string">&quot;override&quot;</span>;
+    }
+}
+
+@classDecorator
+<span class="hljs-keyword">class</span> Greeter {
+    property = <span class="hljs-string">&quot;property&quot;</span>;
+    hello: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(m: string) {
+        <span class="hljs-keyword">this</span>.hello = m;
+    }
+}
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">new</span> Greeter(<span class="hljs-string">&quot;world&quot;</span>));
+</code></pre>
+<h2 id="method-decorators">Method Decorators</h2>
+<p>A <em>Method Decorator</em> is declared just before a method declaration.
+The decorator is applied to the <em>Property Descriptor</em> for the method, and can be used to observe, modify, or replace a method definition.
+A method decorator cannot be used in a declaration file, on an overload, or in any other ambient context (such as in a <code>declare</code> class).</p>
+<p>The expression for the method decorator will be called as a function at runtime, with the following three arguments:</p>
+<ol>
+<li>Either the constructor function of the class for a static member, or the prototype of the class for an instance member.</li>
+<li>The name of the member.</li>
+<li>The <em>Property Descriptor</em> for the member.</li>
+</ol>
+<blockquote>
+<p>NOTE&#x2003; The <em>Property Descriptor</em> will be <code>undefined</code> if your script target is less than <code>ES5</code>.</p>
+</blockquote>
+<p>If the method decorator returns a value, it will be used as the <em>Property Descriptor</em> for the method.</p>
+<blockquote>
+<p>NOTE&#x2003; The return value is ignored if your script target is less than <code>ES5</code>.</p>
+</blockquote>
+<p>The following is an example of a method decorator (<code>@enumerable</code>) applied to a method on the <code>Greeter</code> class:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Greeter {
+    greeting: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(message: string) {
+        <span class="hljs-keyword">this</span>.greeting = message;
+    }
+
+    @enumerable(<span class="hljs-literal">false</span>)
+    greet() {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + <span class="hljs-keyword">this</span>.greeting;
+    }
+}
+</code></pre>
+<p>We can define the <code>@enumerable</code> decorator using the following function declaration:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">enumerable</span>(<span class="hljs-params">value: <span class="hljs-built_in">boolean</span></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">target: <span class="hljs-built_in">any</span>, propertyKey: <span class="hljs-built_in">string</span>, descriptor: PropertyDescriptor</span>) </span>{
+        descriptor.enumerable = value;
+    };
+}
+</code></pre>
+<p>The <code>@enumerable(false)</code> decorator here is a <a href="#decorator-factories">decorator factory</a>.
+When the <code>@enumerable(false)</code> decorator is called, it modifies the <code>enumerable</code> property of the property descriptor.</p>
+<h2 id="accessor-decorators">Accessor Decorators</h2>
+<p>An <em>Accessor Decorator</em> is declared just before an accessor declaration.
+The accessor decorator is applied to the <em>Property Descriptor</em> for the accessor and can be used to observe, modify, or replace an accessor&apos;s definitions.
+An accessor decorator cannot be used in a declaration file, or in any other ambient context (such as in a <code>declare</code> class).</p>
+<blockquote>
+<p>NOTE&#x2003; TypeScript disallows decorating both the <code>get</code> and <code>set</code> accessor for a single member.
+Instead, all decorators for the member must be applied to the first accessor specified in document order.
+This is because decorators apply to a <em>Property Descriptor</em>, which combines both the <code>get</code> and <code>set</code> accessor, not each declaration separately.</p>
+</blockquote>
+<p>The expression for the accessor decorator will be called as a function at runtime, with the following three arguments:</p>
+<ol>
+<li>Either the constructor function of the class for a static member, or the prototype of the class for an instance member.</li>
+<li>The name of the member.</li>
+<li>The <em>Property Descriptor</em> for the member.</li>
+</ol>
+<blockquote>
+<p>NOTE&#x2003; The <em>Property Descriptor</em> will be <code>undefined</code> if your script target is less than <code>ES5</code>.</p>
+</blockquote>
+<p>If the accessor decorator returns a value, it will be used as the <em>Property Descriptor</em> for the member.</p>
+<blockquote>
+<p>NOTE&#x2003; The return value is ignored if your script target is less than <code>ES5</code>.</p>
+</blockquote>
+<p>The following is an example of an accessor decorator (<code>@configurable</code>) applied to a member of the <code>Point</code> class:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Point {
+    <span class="hljs-keyword">private</span> _x: <span class="hljs-built_in">number</span>;
+    <span class="hljs-keyword">private</span> _y: <span class="hljs-built_in">number</span>;
+    <span class="hljs-keyword">constructor</span>(x: number, y: number) {
+        <span class="hljs-keyword">this</span>._x = x;
+        <span class="hljs-keyword">this</span>._y = y;
+    }
+
+    @configurable(<span class="hljs-literal">false</span>)
+    <span class="hljs-keyword">get</span> x() { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._x; }
+
+    @configurable(<span class="hljs-literal">false</span>)
+    <span class="hljs-keyword">get</span> y() { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._y; }
+}
+</code></pre>
+<p>We can define the <code>@configurable</code> decorator using the following function declaration:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">configurable</span>(<span class="hljs-params">value: <span class="hljs-built_in">boolean</span></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">target: <span class="hljs-built_in">any</span>, propertyKey: <span class="hljs-built_in">string</span>, descriptor: PropertyDescriptor</span>) </span>{
+        descriptor.configurable = value;
+    };
+}
+</code></pre>
+<h2 id="property-decorators">Property Decorators</h2>
+<p>A <em>Property Decorator</em> is declared just before a property declaration.
+A property decorator cannot be used in a declaration file, or in any other ambient context (such as in a <code>declare</code> class).</p>
+<p>The expression for the property decorator will be called as a function at runtime, with the following two arguments:</p>
+<ol>
+<li>Either the constructor function of the class for a static member, or the prototype of the class for an instance member.</li>
+<li>The name of the member.</li>
+</ol>
+<blockquote>
+<p>NOTE&#x2003; A <em>Property Descriptor</em> is not provided as an argument to a property decorator due to how property decorators are initialized in TypeScript.
+This is because there is currently no mechanism to describe an instance property when defining members of a prototype, and no way to observe or modify the initializer for a property. The return value is ignored too.
+As such, a property decorator can only be used to observe that a property of a specific name has been declared for a class.</p>
+</blockquote>
+<p>We can use this information to record metadata about the property, as in the following example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Greeter {
+    @format(<span class="hljs-string">&quot;Hello, %s&quot;</span>)
+    greeting: <span class="hljs-built_in">string</span>;
+
+    <span class="hljs-keyword">constructor</span>(message: string) {
+        <span class="hljs-keyword">this</span>.greeting = message;
+    }
+    greet() {
+        <span class="hljs-keyword">let</span> formatString = getFormat(<span class="hljs-keyword">this</span>, <span class="hljs-string">&quot;greeting&quot;</span>);
+        <span class="hljs-keyword">return</span> formatString.replace(<span class="hljs-string">&quot;%s&quot;</span>, <span class="hljs-keyword">this</span>.greeting);
+    }
+}
+</code></pre>
+<p>We can then define the <code>@format</code> decorator and <code>getFormat</code> functions using the following function declarations:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;reflect-metadata&quot;</span>;
+
+<span class="hljs-keyword">const</span> formatMetadataKey = Symbol(<span class="hljs-string">&quot;format&quot;</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">format</span>(<span class="hljs-params">formatString: <span class="hljs-built_in">string</span></span>) </span>{
+    <span class="hljs-keyword">return</span> Reflect.metadata(formatMetadataKey, formatString);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getFormat</span>(<span class="hljs-params">target: <span class="hljs-built_in">any</span>, propertyKey: <span class="hljs-built_in">string</span></span>) </span>{
+    <span class="hljs-keyword">return</span> Reflect.getMetadata(formatMetadataKey, target, propertyKey);
+}
+</code></pre>
+<p>The <code>@format(&quot;Hello, %s&quot;)</code> decorator here is a <a href="#decorator-factories">decorator factory</a>.
+When <code>@format(&quot;Hello, %s&quot;)</code> is called, it adds a metadata entry for the property using the <code>Reflect.metadata</code> function from the <code>reflect-metadata</code> library.
+When <code>getFormat</code> is called, it reads the metadata value for the format.</p>
+<blockquote>
+<p>NOTE&#x2003; This example requires the <code>reflect-metadata</code> library.
+See <a href="#metadata">Metadata</a> for more information about the <code>reflect-metadata</code> library.</p>
+</blockquote>
+<h2 id="parameter-decorators">Parameter Decorators</h2>
+<p>A <em>Parameter Decorator</em> is declared just before a parameter declaration.
+The parameter decorator is applied to the function for a class constructor or method declaration.
+A parameter decorator cannot be used in a declaration file, an overload, or in any other ambient context (such as in a <code>declare</code> class).</p>
+<p>The expression for the parameter decorator will be called as a function at runtime, with the following three arguments:</p>
+<ol>
+<li>Either the constructor function of the class for a static member, or the prototype of the class for an instance member.</li>
+<li>The name of the member.</li>
+<li>The ordinal index of the parameter in the function&apos;s parameter list.</li>
+</ol>
+<blockquote>
+<p>NOTE&#x2003; A parameter decorator can only be used to observe that a parameter has been declared on a method.</p>
+</blockquote>
+<p>The return value of the parameter decorator is ignored.</p>
+<p>The following is an example of a parameter decorator (<code>@required</code>) applied to parameter of a member of the <code>Greeter</code> class:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Greeter {
+    greeting: <span class="hljs-built_in">string</span>;
+
+    <span class="hljs-keyword">constructor</span>(message: string) {
+        <span class="hljs-keyword">this</span>.greeting = message;
+    }
+
+    @validate
+    greet(@required name: <span class="hljs-built_in">string</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello &quot;</span> + name + <span class="hljs-string">&quot;, &quot;</span> + <span class="hljs-keyword">this</span>.greeting;
+    }
+}
+</code></pre>
+<p>We can then define the <code>@required</code> and <code>@validate</code> decorators using the following function declarations:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;reflect-metadata&quot;</span>;
+
+<span class="hljs-keyword">const</span> requiredMetadataKey = Symbol(<span class="hljs-string">&quot;required&quot;</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">required</span>(<span class="hljs-params">target: <span class="hljs-built_in">Object</span>, propertyKey: <span class="hljs-built_in">string</span> | symbol, parameterIndex: <span class="hljs-built_in">number</span></span>) </span>{
+    <span class="hljs-keyword">let</span> existingRequiredParameters: <span class="hljs-built_in">number</span>[] = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyKey) || [];
+    existingRequiredParameters.push(parameterIndex);
+    Reflect.defineMetadata(requiredMetadataKey, existingRequiredParameters, target, propertyKey);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate</span>(<span class="hljs-params">target: <span class="hljs-built_in">any</span>, propertyName: <span class="hljs-built_in">string</span>, descriptor: TypedPropertyDescriptor&lt;<span class="hljs-built_in">Function</span>&gt;</span>) </span>{
+    <span class="hljs-keyword">let</span> method = descriptor.value;
+    descriptor.value = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">let</span> requiredParameters: <span class="hljs-built_in">number</span>[] = Reflect.getOwnMetadata(requiredMetadataKey, target, propertyName);
+        <span class="hljs-keyword">if</span> (requiredParameters) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> parameterIndex of requiredParameters) {
+                <span class="hljs-keyword">if</span> (parameterIndex &gt;= <span class="hljs-built_in">arguments</span>.length || <span class="hljs-built_in">arguments</span>[parameterIndex] === <span class="hljs-literal">undefined</span>) {
+                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;Missing required argument.&quot;</span>);
+                }
+            }
+        }
+
+        <span class="hljs-keyword">return</span> method.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);
+    }
+}
+</code></pre>
+<p>The <code>@required</code> decorator adds a metadata entry that marks the parameter as required.
+The <code>@validate</code> decorator then wraps the existing <code>greet</code> method in a function that validates the arguments before invoking the original method.</p>
+<blockquote>
+<p>NOTE&#x2003; This example requires the <code>reflect-metadata</code> library.
+See <a href="#metadata">Metadata</a> for more information about the <code>reflect-metadata</code> library.</p>
+</blockquote>
+<h2 id="metadata">Metadata</h2>
+<p>Some examples use the <code>reflect-metadata</code> library which adds a polyfill for an <a href="https://github.com/rbuckton/ReflectDecorators" target="_blank">experimental metadata API</a>.
+This library is not yet part of the ECMAScript (JavaScript) standard.
+However, once decorators are officially adopted as part of the ECMAScript standard these extensions will be proposed for adoption.</p>
+<p>You can install this library via npm:</p>
+<pre><code class="lang-shell">npm i reflect-metadata --save
+</code></pre>
+<p>TypeScript includes experimental support for emitting certain types of metadata for declarations that have decorators.
+To enable this experimental support, you must set the <code>emitDecoratorMetadata</code> compiler option either on the command line or in your <code>tsconfig.json</code>:</p>
+<p><strong>Command Line</strong>:</p>
+<pre><code class="lang-shell">tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata
+</code></pre>
+<p><strong>tsconfig.json</strong>:</p>
+<pre><code class="lang-json">{
+    <span class="hljs-string">&quot;compilerOptions&quot;</span>: {
+        <span class="hljs-string">&quot;target&quot;</span>: <span class="hljs-string">&quot;ES5&quot;</span>,
+        <span class="hljs-string">&quot;experimentalDecorators&quot;</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-string">&quot;emitDecoratorMetadata&quot;</span>: <span class="hljs-literal">true</span>
+    }
+}
+</code></pre>
+<p>When enabled, as long as the <code>reflect-metadata</code> library has been imported, additional design-time type information will be exposed at runtime.</p>
+<p>We can see this in action in the following example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;reflect-metadata&quot;</span>;
+
+<span class="hljs-keyword">class</span> Point {
+    x: <span class="hljs-built_in">number</span>;
+    y: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">class</span> Line {
+    <span class="hljs-keyword">private</span> _p0: Point;
+    <span class="hljs-keyword">private</span> _p1: Point;
+
+    @validate
+    <span class="hljs-keyword">set</span> p0(value: Point) { <span class="hljs-keyword">this</span>._p0 = value; }
+    <span class="hljs-keyword">get</span> p0() { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._p0; }
+
+    @validate
+    <span class="hljs-keyword">set</span> p1(value: Point) { <span class="hljs-keyword">this</span>._p1 = value; }
+    <span class="hljs-keyword">get</span> p1() { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._p1; }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validate</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">target: <span class="hljs-built_in">any</span>, propertyKey: <span class="hljs-built_in">string</span>, descriptor: TypedPropertyDescriptor&lt;T&gt;</span>) </span>{
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">set</span> = descriptor.set;
+    descriptor.set = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">value: T</span>) </span>{
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">type</span> = Reflect.getMetadata(<span class="hljs-string">&quot;design:type&quot;</span>, target, propertyKey);
+        <span class="hljs-keyword">if</span> (!(value <span class="hljs-keyword">instanceof</span> <span class="hljs-keyword">type</span>)) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&quot;Invalid type.&quot;</span>);
+        }
+        <span class="hljs-keyword">set</span>(value);
+    }
+}
+</code></pre>
+<p>The TypeScript compiler will inject design-time type information using the <code>@Reflect.metadata</code> decorator.
+You could consider it the equivalent of the following TypeScript:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Line {
+    <span class="hljs-keyword">private</span> _p0: Point;
+    <span class="hljs-keyword">private</span> _p1: Point;
+
+    @validate
+    @Reflect.metadata(<span class="hljs-string">&quot;design:type&quot;</span>, Point)
+    <span class="hljs-keyword">set</span> p0(value: Point) { <span class="hljs-keyword">this</span>._p0 = value; }
+    <span class="hljs-keyword">get</span> p0() { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._p0; }
+
+    @validate
+    @Reflect.metadata(<span class="hljs-string">&quot;design:type&quot;</span>, Point)
+    <span class="hljs-keyword">set</span> p1(value: Point) { <span class="hljs-keyword">this</span>._p1 = value; }
+    <span class="hljs-keyword">get</span> p1() { <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._p1; }
+}
+</code></pre>
+<blockquote>
+<p>NOTE&#x2003; Decorator metadata is an experimental feature and may introduce breaking changes in future releases.</p>
+</blockquote>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="JSX.html" class="navigation navigation-prev " aria-label="Previous page: JSX">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Mixins.html" class="navigation navigation-next " aria-label="Next page: Mixins">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Decorators","level":"1.20","depth":1,"next":{"title":"Mixins","level":"1.21","depth":1,"path":"pages/Mixins.md","ref":"./pages/Mixins.md","articles":[]},"previous":{"title":"JSX","level":"1.19","depth":1,"path":"pages/JSX.md","ref":"./pages/JSX.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Decorators.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

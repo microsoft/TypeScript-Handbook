@@ -1,0 +1,731 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Namespaces · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Namespaces and Modules.html" />
+    
+    
+    <link rel="prev" href="Modules.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Namespaces</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p><strong>A note about terminology:</strong>
+It&apos;s important to note that in TypeScript 1.5, the nomenclature has changed.
+&quot;Internal modules&quot; are now &quot;namespaces&quot;.
+&quot;External modules&quot; are now simply &quot;modules&quot;, as to align with <a href="http://www.ecma-international.org/ecma-262/6.0/" target="_blank">ECMAScript 2015</a>&apos;s terminology, (namely that <code>module X {</code> is equivalent to the now-preferred <code>namespace X {</code>).</p>
+</blockquote>
+<h1 id="introduction">Introduction</h1>
+<p>This post outlines the various ways to organize your code using namespaces (previously &quot;internal modules&quot;) in TypeScript.
+As we alluded in our note about terminology, &quot;internal modules&quot; are now referred to as &quot;namespaces&quot;.
+Additionally, anywhere the <code>module</code> keyword was used when declaring an internal module, the <code>namespace</code> keyword can and should be used instead.
+This avoids confusing new users by overloading them with similarly named terms.</p>
+<h1 id="first-steps">First steps</h1>
+<p>Let&apos;s start with the program we&apos;ll be using as our example throughout this page.
+We&apos;ve written a small set of simplistic string validators, as you might write to check a user&apos;s input on a form in a webpage or check the format of an externally-provided data file.</p>
+<h2 id="validators-in-a-single-file">Validators in a single file</h2>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> StringValidator {
+    isAcceptable(s: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;
+}
+
+<span class="hljs-keyword">let</span> lettersRegexp = <span class="hljs-regexp">/^[A-Za-z]+$/</span>;
+<span class="hljs-keyword">let</span> numberRegexp = <span class="hljs-regexp">/^[0-9]+$/</span>;
+
+<span class="hljs-keyword">class</span> LettersOnlyValidator <span class="hljs-keyword">implements</span> StringValidator {
+    isAcceptable(s: <span class="hljs-built_in">string</span>) {
+        <span class="hljs-keyword">return</span> lettersRegexp.test(s);
+    }
+}
+
+<span class="hljs-keyword">class</span> ZipCodeValidator <span class="hljs-keyword">implements</span> StringValidator {
+    isAcceptable(s: <span class="hljs-built_in">string</span>) {
+        <span class="hljs-keyword">return</span> s.length === <span class="hljs-number">5</span> &amp;&amp; numberRegexp.test(s);
+    }
+}
+
+<span class="hljs-comment">// Some samples to try</span>
+<span class="hljs-keyword">let</span> strings = [<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot;98052&quot;</span>, <span class="hljs-string">&quot;101&quot;</span>];
+
+<span class="hljs-comment">// Validators to use</span>
+<span class="hljs-keyword">let</span> validators: { [s: <span class="hljs-built_in">string</span>]: StringValidator; } = {};
+validators[<span class="hljs-string">&quot;ZIP code&quot;</span>] = <span class="hljs-keyword">new</span> ZipCodeValidator();
+validators[<span class="hljs-string">&quot;Letters only&quot;</span>] = <span class="hljs-keyword">new</span> LettersOnlyValidator();
+
+<span class="hljs-comment">// Show whether each string passed each validator</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> s of strings) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> name <span class="hljs-keyword">in</span> validators) {
+        <span class="hljs-keyword">let</span> isMatch = validators[name].isAcceptable(s);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&apos;<span class="hljs-subst">${ s }</span>&apos; <span class="hljs-subst">${ isMatch ? &quot;matches&quot; : &quot;does not match&quot; }</span> &apos;<span class="hljs-subst">${ name }</span>&apos;.`</span>);
+    }
+}
+</code></pre>
+<h1 id="namespacing">Namespacing</h1>
+<p>As we add more validators, we&apos;re going to want to have some kind of organization scheme so that we can keep track of our types and not worry about name collisions with other objects.
+Instead of putting lots of different names into the global namespace, let&apos;s wrap up our objects into a namespace.</p>
+<p>In this example, we&apos;ll move all validator-related entities into a namespace called <code>Validation</code>.
+Because we want the interfaces and classes here to be visible outside the namespace, we preface them with <code>export</code>.
+Conversely, the variables <code>lettersRegexp</code> and <code>numberRegexp</code> are implementation details, so they are left unexported and will not be visible to code outside the namespace.
+In the test code at the bottom of the file, we now need to qualify the names of the types when used outside the namespace, e.g. <code>Validation.LettersOnlyValidator</code>.</p>
+<h2 id="namespaced-validators">Namespaced Validators</h2>
+<pre><code class="lang-ts"><span class="hljs-keyword">namespace</span> Validation {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> StringValidator {
+        isAcceptable(s: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;
+    }
+
+    <span class="hljs-keyword">const</span> lettersRegexp = <span class="hljs-regexp">/^[A-Za-z]+$/</span>;
+    <span class="hljs-keyword">const</span> numberRegexp = <span class="hljs-regexp">/^[0-9]+$/</span>;
+
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LettersOnlyValidator <span class="hljs-keyword">implements</span> StringValidator {
+        isAcceptable(s: <span class="hljs-built_in">string</span>) {
+            <span class="hljs-keyword">return</span> lettersRegexp.test(s);
+        }
+    }
+
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ZipCodeValidator <span class="hljs-keyword">implements</span> StringValidator {
+        isAcceptable(s: <span class="hljs-built_in">string</span>) {
+            <span class="hljs-keyword">return</span> s.length === <span class="hljs-number">5</span> &amp;&amp; numberRegexp.test(s);
+        }
+    }
+}
+
+<span class="hljs-comment">// Some samples to try</span>
+<span class="hljs-keyword">let</span> strings = [<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot;98052&quot;</span>, <span class="hljs-string">&quot;101&quot;</span>];
+
+<span class="hljs-comment">// Validators to use</span>
+<span class="hljs-keyword">let</span> validators: { [s: <span class="hljs-built_in">string</span>]: Validation.StringValidator; } = {};
+validators[<span class="hljs-string">&quot;ZIP code&quot;</span>] = <span class="hljs-keyword">new</span> Validation.ZipCodeValidator();
+validators[<span class="hljs-string">&quot;Letters only&quot;</span>] = <span class="hljs-keyword">new</span> Validation.LettersOnlyValidator();
+
+<span class="hljs-comment">// Show whether each string passed each validator</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> s of strings) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> name <span class="hljs-keyword">in</span> validators) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&quot;<span class="hljs-subst">${ s }</span>&quot; - <span class="hljs-subst">${ validators[name].isAcceptable(s) ? &quot;matches&quot; : &quot;does not match&quot; }</span> <span class="hljs-subst">${ name }</span>`</span>);
+    }
+}
+</code></pre>
+<h1 id="splitting-across-files">Splitting Across Files</h1>
+<p>As our application grows, we&apos;ll want to split the code across multiple files to make it easier to maintain.</p>
+<h2 id="multi-file-namespaces">Multi-file namespaces</h2>
+<p>Here, we&apos;ll split our <code>Validation</code> namespace across many files.
+Even though the files are separate, they can each contribute to the same namespace and can be consumed as if they were all defined in one place.
+Because there are dependencies between files, we&apos;ll add reference tags to tell the compiler about the relationships between the files.
+Our test code is otherwise unchanged.</p>
+<h5 id="validationts">Validation.ts</h5>
+<pre><code class="lang-ts"><span class="hljs-keyword">namespace</span> Validation {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> StringValidator {
+        isAcceptable(s: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;
+    }
+}
+</code></pre>
+<h5 id="lettersonlyvalidatorts">LettersOnlyValidator.ts</h5>
+<pre><code class="lang-ts"><span class="hljs-comment">/// &lt;reference path=&quot;Validation.ts&quot; /&gt;</span>
+<span class="hljs-keyword">namespace</span> Validation {
+    <span class="hljs-keyword">const</span> lettersRegexp = <span class="hljs-regexp">/^[A-Za-z]+$/</span>;
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> LettersOnlyValidator <span class="hljs-keyword">implements</span> StringValidator {
+        isAcceptable(s: <span class="hljs-built_in">string</span>) {
+            <span class="hljs-keyword">return</span> lettersRegexp.test(s);
+        }
+    }
+}
+</code></pre>
+<h5 id="zipcodevalidatorts">ZipCodeValidator.ts</h5>
+<pre><code class="lang-ts"><span class="hljs-comment">/// &lt;reference path=&quot;Validation.ts&quot; /&gt;</span>
+<span class="hljs-keyword">namespace</span> Validation {
+    <span class="hljs-keyword">const</span> numberRegexp = <span class="hljs-regexp">/^[0-9]+$/</span>;
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> ZipCodeValidator <span class="hljs-keyword">implements</span> StringValidator {
+        isAcceptable(s: <span class="hljs-built_in">string</span>) {
+            <span class="hljs-keyword">return</span> s.length === <span class="hljs-number">5</span> &amp;&amp; numberRegexp.test(s);
+        }
+    }
+}
+</code></pre>
+<h5 id="testts">Test.ts</h5>
+<pre><code class="lang-ts"><span class="hljs-comment">/// &lt;reference path=&quot;Validation.ts&quot; /&gt;</span>
+<span class="hljs-comment">/// &lt;reference path=&quot;LettersOnlyValidator.ts&quot; /&gt;</span>
+<span class="hljs-comment">/// &lt;reference path=&quot;ZipCodeValidator.ts&quot; /&gt;</span>
+
+<span class="hljs-comment">// Some samples to try</span>
+<span class="hljs-keyword">let</span> strings = [<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot;98052&quot;</span>, <span class="hljs-string">&quot;101&quot;</span>];
+
+<span class="hljs-comment">// Validators to use</span>
+<span class="hljs-keyword">let</span> validators: { [s: <span class="hljs-built_in">string</span>]: Validation.StringValidator; } = {};
+validators[<span class="hljs-string">&quot;ZIP code&quot;</span>] = <span class="hljs-keyword">new</span> Validation.ZipCodeValidator();
+validators[<span class="hljs-string">&quot;Letters only&quot;</span>] = <span class="hljs-keyword">new</span> Validation.LettersOnlyValidator();
+
+<span class="hljs-comment">// Show whether each string passed each validator</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> s of strings) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> name <span class="hljs-keyword">in</span> validators) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`&quot;<span class="hljs-subst">${ s }</span>&quot; - <span class="hljs-subst">${ validators[name].isAcceptable(s) ? &quot;matches&quot; : &quot;does not match&quot; }</span> <span class="hljs-subst">${ name }</span>`</span>);
+    }
+}
+</code></pre>
+<p>Once there are multiple files involved, we&apos;ll need to make sure all of the compiled code gets loaded.
+There are two ways of doing this.</p>
+<p>First, we can use concatenated output using the <code>--outFile</code> flag to compile all of the input files into a single JavaScript output file:</p>
+<pre><code class="lang-Shell">tsc --outFile sample.js Test.ts
+</code></pre>
+<p>The compiler will automatically order the output file based on the reference tags present in the files. You can also specify each file individually:</p>
+<pre><code class="lang-Shell">tsc --outFile sample.js Validation.ts LettersOnlyValidator.ts ZipCodeValidator.ts Test.ts
+</code></pre>
+<p>Alternatively, we can use per-file compilation (the default) to emit one JavaScript file for each input file.
+If multiple JS files get produced, we&apos;ll need to use <code>&lt;script&gt;</code> tags on our webpage to load each emitted file in the appropriate order, for example:</p>
+<h5 id="mytestpagehtml-excerpt">MyTestPage.html (excerpt)</h5>
+<pre><code class="lang-html">    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;Validation.js&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> /&gt;</span><span class="handlebars"><span class="xml">
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;LettersOnlyValidator.js&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> /&gt;</span><span class="handlebars"><span class="xml">
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;ZipCodeValidator.js&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> /&gt;</span><span class="handlebars"><span class="xml">
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;Test.js&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> /&gt;</span><span class="undefined">
+</span></span></span></span></span></span></span></code></pre>
+<h1 id="aliases">Aliases</h1>
+<p>Another way that you can simplify working with of namespaces is to use <code>import q = x.y.z</code> to create shorter names for commonly-used objects.
+Not to be confused with the <code>import x = require(&quot;name&quot;)</code> syntax used to load modules, this syntax simply creates an alias for the specified symbol.
+You can use these sorts of imports (commonly referred to as aliases) for any kind of identifier, including objects created from module imports.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">namespace</span> Shapes {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">namespace</span> Polygons {
+        <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Triangle { }
+        <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Square { }
+    }
+}
+
+<span class="hljs-keyword">import</span> polygons = Shapes.Polygons;
+<span class="hljs-keyword">let</span> sq = <span class="hljs-keyword">new</span> polygons.Square(); <span class="hljs-comment">// Same as &apos;new Shapes.Polygons.Square()&apos;</span>
+</code></pre>
+<p>Notice that we don&apos;t use the <code>require</code> keyword; instead we assign directly from the qualified name of the symbol we&apos;re importing.
+This is similar to using <code>var</code>, but also works on the type and namespace meanings of the imported symbol.
+Importantly, for values, <code>import</code> is a distinct reference from the original symbol, so changes to an aliased <code>var</code> will not be reflected in the original variable.</p>
+<h1 id="working-with-other-javascript-libraries">Working with Other JavaScript Libraries</h1>
+<p>To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
+Because most JavaScript libraries expose only a few top-level objects, namespaces are a good way to represent them.</p>
+<p>We call declarations that don&apos;t define an implementation &quot;ambient&quot;.
+Typically these are defined in <code>.d.ts</code> files.
+If you&apos;re familiar with C/C++, you can think of these as <code>.h</code> files.
+Let&apos;s look at a few examples.</p>
+<h2 id="ambient-namespaces">Ambient Namespaces</h2>
+<p>The popular library D3 defines its functionality in a global object called <code>d3</code>.
+Because this library is loaded through a <code>&lt;script&gt;</code> tag (instead of a module loader), its declaration uses namespaces to define its shape.
+For the TypeScript compiler to see this shape, we use an ambient namespace declaration.
+For example, we could begin writing it as follows:</p>
+<h5 id="d3dts-simplified-excerpt">D3.d.ts (simplified excerpt)</h5>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> D3 {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Selectors {
+        select: {
+            (selector: <span class="hljs-built_in">string</span>): Selection;
+            (element: EventTarget): Selection;
+        };
+    }
+
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Event {
+        x: <span class="hljs-built_in">number</span>;
+        y: <span class="hljs-built_in">number</span>;
+    }
+
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Base <span class="hljs-keyword">extends</span> Selectors {
+        event: Event;
+    }
+}
+
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">var</span> d3: D3.Base;
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Modules.html" class="navigation navigation-prev " aria-label="Previous page: Modules">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Namespaces and Modules.html" class="navigation navigation-next " aria-label="Next page: Namespaces and Modules">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Namespaces","level":"1.15","depth":1,"next":{"title":"Namespaces and Modules","level":"1.16","depth":1,"path":"pages/Namespaces and Modules.md","ref":"./pages/Namespaces and Modules.md","articles":[]},"previous":{"title":"Modules","level":"1.14","depth":1,"path":"pages/Modules.md","ref":"./pages/Modules.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Namespaces.md","mtime":"2018-07-01T10:24:27.721Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

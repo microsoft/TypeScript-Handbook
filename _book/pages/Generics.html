@@ -1,0 +1,746 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Generics · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Enums.html" />
+    
+    
+    <link rel="prev" href="Functions.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Generics</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>A major part of software engineering is building components that not only have well-defined and consistent APIs, but are also reusable.
+Components that are capable of working on the data of today as well as the data of tomorrow will give you the most flexible capabilities for building up large software systems.</p>
+<p>In languages like C# and Java, one of the main tools in the toolbox for creating reusable components is <em>generics</em>, that is, being able to create a component that can work over a variety of types rather than a single one.
+This allows users to consume these components and use their own types.</p>
+<h1 id="hello-world-of-generics">Hello World of Generics</h1>
+<p>To start off, let&apos;s do the &quot;hello world&quot; of generics: the identity function.
+The identity function is a function that will return back whatever is passed in.
+You can think of this in a similar way to the <code>echo</code> command.</p>
+<p>Without generics, we would either have to give the identity function a specific type:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>(<span class="hljs-params">arg: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+</code></pre>
+<p>Or, we could describe the identity function using the <code>any</code> type:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>(<span class="hljs-params">arg: <span class="hljs-built_in">any</span></span>): <span class="hljs-title">any</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+</code></pre>
+<p>While using <code>any</code> is certainly generic in that it will cause the function to accept any and all types for the type of <code>arg</code>, we actually are losing the information about what that type was when the function returns.
+If we passed in a number, the only information we have is that any type could be returned.</p>
+<p>Instead, we need a way of capturing the type of the argument in such a way that we can also use it to denote what is being returned.
+Here, we will use a <em>type variable</em>, a special kind of variable that works on types rather than values.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+</code></pre>
+<p>We&apos;ve now added a type variable <code>T</code> to the identity function.
+This <code>T</code> allows us to capture the type the user provides (e.g. <code>number</code>), so that we can use that information later.
+Here, we use <code>T</code> again as the return type. On inspection, we can now see the same type is used for the argument and the return type.
+This allows us to traffic that type information in one side of the function and out the other.</p>
+<p>We say that this version of the <code>identity</code> function is generic, as it works over a range of types.
+Unlike using <code>any</code>, it&apos;s also just as precise (ie, it doesn&apos;t lose any information) as the first <code>identity</code> function that used numbers for the argument and return type.</p>
+<p>Once we&apos;ve written the generic identity function, we can call it in one of two ways.
+The first way is to pass all of the arguments, including the type argument, to the function:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> output = identity&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-string">&quot;myString&quot;</span>);  <span class="hljs-comment">// type of output will be &apos;string&apos;</span>
+</code></pre>
+<p>Here we explicitly set <code>T</code> to be <code>string</code> as one of the arguments to the function call, denoted using the <code>&lt;&gt;</code> around the arguments rather than <code>()</code>.</p>
+<p>The second way is also perhaps the most common. Here we use <em>type argument inference</em> -- that is, we want the compiler to set the value of <code>T</code> for us automatically based on the type of the argument we pass in:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> output = identity(<span class="hljs-string">&quot;myString&quot;</span>);  <span class="hljs-comment">// type of output will be &apos;string&apos;</span>
+</code></pre>
+<p>Notice that we didn&apos;t have to explicitly pass the type in the angle brackets (<code>&lt;&gt;</code>); the compiler just looked at the value <code>&quot;myString&quot;</code>, and set <code>T</code> to its type.
+While type argument inference can be a helpful tool to keep code shorter and more readable, you may need to explicitly pass in the type arguments as we did in the previous example when the compiler fails to infer the type, as may happen in more complex examples.</p>
+<h1 id="working-with-generic-type-variables">Working with Generic Type Variables</h1>
+<p>When you begin to use generics, you&apos;ll notice that when you create generic functions like <code>identity</code>, the compiler will enforce that you use any generically typed parameters in the body of the function correctly.
+That is, that you actually treat these parameters as if they could be any and all types.</p>
+<p>Let&apos;s take our <code>identity</code> function from earlier:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+</code></pre>
+<p>What if we want to also log the length of the argument <code>arg</code> to the console with each call?
+We might be tempted to write this:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-built_in">console</span>.log(arg.length);  <span class="hljs-comment">// Error: T doesn&apos;t have .length</span>
+    <span class="hljs-keyword">return</span> arg;
+}
+</code></pre>
+<p>When we do, the compiler will give us an error that we&apos;re using the <code>.length</code> member of <code>arg</code>, but nowhere have we said that <code>arg</code> has this member.
+Remember, we said earlier that these type variables stand in for any and all types, so someone using this function could have passed in a <code>number</code> instead, which does not have a <code>.length</code> member.</p>
+<p>Let&apos;s say that we&apos;ve actually intended this function to work on arrays of <code>T</code> rather than <code>T</code> directly. Since we&apos;re working with arrays, the <code>.length</code> member should be available.
+We can describe this just like we would create arrays of other types:</p>
+<pre><code class="lang-ts">function loggingIdentity&lt;T&gt;(arg: T[]): T[] {
+    console.log(arg.length);  // Array has a .length, so no more error
+    return arg;
+}
+</code></pre>
+<p>You can read the type of <code>loggingIdentity</code> as &quot;the generic function <code>loggingIdentity</code> takes a type parameter <code>T</code>, and an argument <code>arg</code> which is an array of <code>T</code>s, and returns an array of <code>T</code>s.&quot;
+If we passed in an array of numbers, we&apos;d get an array of numbers back out, as <code>T</code> would bind to <code>number</code>.
+This allows us to use our generic type variable <code>T</code> as part of the types we&apos;re working with, rather than the whole type, giving us greater flexibility.</p>
+<p>We can alternatively write the sample example this way:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: <span class="hljs-built_in">Array</span>&lt;T&gt;</span>): <span class="hljs-title">Array</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+    <span class="hljs-built_in">console</span>.log(arg.length);  <span class="hljs-comment">// Array has a .length, so no more error</span>
+    <span class="hljs-keyword">return</span> arg;
+}
+</code></pre>
+<p>You may already be familiar with this style of type from other languages.
+In the next section, we&apos;ll cover how you can create your own generic types like <code>Array&lt;T&gt;</code>.</p>
+<h1 id="generic-types">Generic Types</h1>
+<p>In previous sections, we created generic identity functions that worked over a range of types.
+In this section, we&apos;ll explore the type of the functions themselves and how to create generic interfaces.</p>
+<p>The type of generic functions is just like those of non-generic functions, with the type parameters listed first, similarly to function declarations:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+
+<span class="hljs-keyword">let</span> myIdentity: &lt;T&gt;(arg: T) =&gt; T = identity;
+</code></pre>
+<p>We could also have used a different name for the generic type parameter in the type, so long as the number of type variables and how the type variables are used line up.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+
+<span class="hljs-keyword">let</span> myIdentity: &lt;U&gt;(arg: U) =&gt; U = identity;
+</code></pre>
+<p>We can also write the generic type as a call signature of an object literal type:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+
+<span class="hljs-keyword">let</span> myIdentity: {&lt;T&gt;(arg: T): T} = identity;
+</code></pre>
+<p>Which leads us to writing our first generic interface.
+Let&apos;s take the object literal from the previous example and move it to an interface:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> GenericIdentityFn {
+    &lt;T&gt;(arg: T): T;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+
+<span class="hljs-keyword">let</span> myIdentity: GenericIdentityFn = identity;
+</code></pre>
+<p>In a similar example, we may want to move the generic parameter to be a parameter of the whole interface.
+This lets us see what type(s) we&apos;re generic over (e.g. <code>Dictionary&lt;string&gt;</code> rather than just <code>Dictionary</code>).
+This makes the type parameter visible to all the other members of the interface.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> GenericIdentityFn&lt;T&gt; {
+    (arg: T): T;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">identity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">return</span> arg;
+}
+
+<span class="hljs-keyword">let</span> myIdentity: GenericIdentityFn&lt;<span class="hljs-built_in">number</span>&gt; = identity;
+</code></pre>
+<p>Notice that our example has changed to be something slightly different.
+Instead of describing a generic function, we now have a non-generic function signature that is a part of a generic type.
+When we use <code>GenericIdentityFn</code>, we now will also need to specify the corresponding type argument (here: <code>number</code>), effectively locking in what the underlying call signature will use.
+Understanding when to put the type parameter directly on the call signature and when to put it on the interface itself will be helpful in describing what aspects of a type are generic.</p>
+<p>In addition to generic interfaces, we can also create generic classes.
+Note that it is not possible to create generic enums and namespaces.</p>
+<h1 id="generic-classes">Generic Classes</h1>
+<p>A generic class has a similar shape to a generic interface.
+Generic classes have a generic type parameter list in angle brackets (<code>&lt;&gt;</code>) following the name of the class.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> GenericNumber&lt;T&gt; {
+    zeroValue: T;
+    add: (x: T, y: T) =&gt; T;
+}
+
+<span class="hljs-keyword">let</span> myGenericNumber = <span class="hljs-keyword">new</span> GenericNumber&lt;<span class="hljs-built_in">number</span>&gt;();
+myGenericNumber.zeroValue = <span class="hljs-number">0</span>;
+myGenericNumber.add = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{ <span class="hljs-keyword">return</span> x + y; };
+</code></pre>
+<p>This is a pretty literal use of the <code>GenericNumber</code> class, but you may have noticed that nothing is restricting it to only use the <code>number</code> type.
+We could have instead used <code>string</code> or even more complex objects.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> stringNumeric = <span class="hljs-keyword">new</span> GenericNumber&lt;<span class="hljs-built_in">string</span>&gt;();
+stringNumeric.zeroValue = <span class="hljs-string">&quot;&quot;</span>;
+stringNumeric.add = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{ <span class="hljs-keyword">return</span> x + y; };
+
+<span class="hljs-built_in">console</span>.log(stringNumeric.add(stringNumeric.zeroValue, <span class="hljs-string">&quot;test&quot;</span>));
+</code></pre>
+<p>Just as with interface, putting the type parameter on the class itself lets us make sure all of the properties of the class are working with the same type.</p>
+<p>As we covered in <a href="Classes.html">our section on classes</a>, a class has two sides to its type: the static side and the instance side.
+Generic classes are only generic over their instance side rather than their static side, so when working with classes, static members can not use the class&apos;s type parameter.</p>
+<h1 id="generic-constraints">Generic Constraints</h1>
+<p>If you remember from an earlier example, you may sometimes want to write a generic function that works on a set of types where you have some knowledge about what capabilities that set of types will have.
+In our <code>loggingIdentity</code> example, we wanted to be able to access the <code>.length</code> property of <code>arg</code>, but the compiler could not prove that every type had a <code>.length</code> property, so it warns us that we can&apos;t make this assumption.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-built_in">console</span>.log(arg.length);  <span class="hljs-comment">// Error: T doesn&apos;t have .length</span>
+    <span class="hljs-keyword">return</span> arg;
+}
+</code></pre>
+<p>Instead of working with any and all types, we&apos;d like to constrain this function to work with any and all types that also have the <code>.length</code> property.
+As long as the type has this member, we&apos;ll allow it, but it&apos;s required to have at least this member.
+To do so, we must list our requirement as a constraint on what T can be.</p>
+<p>To do so, we&apos;ll create an interface that describes our constraint.
+Here, we&apos;ll create an interface that has a single <code>.length</code> property and then we&apos;ll use this interface and the <code>extends</code> keyword to denote our constraint:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Lengthwise {
+    length: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">Lengthwise</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-built_in">console</span>.log(arg.length);  <span class="hljs-comment">// Now we know it has a .length property, so no more error</span>
+    <span class="hljs-keyword">return</span> arg;
+}
+</code></pre>
+<p>Because the generic function is now constrained, it will no longer work over any and all types:</p>
+<pre><code class="lang-ts">loggingIdentity(<span class="hljs-number">3</span>);  <span class="hljs-comment">// Error, number doesn&apos;t have a .length property</span>
+</code></pre>
+<p>Instead, we need to pass in values whose type has all the required properties:</p>
+<pre><code class="lang-ts">loggingIdentity({length: <span class="hljs-number">10</span>, value: <span class="hljs-number">3</span>});
+</code></pre>
+<h2 id="using-type-parameters-in-generic-constraints">Using Type Parameters in Generic Constraints</h2>
+<p>You can declare a type parameter that is constrained by another type parameter.
+For example, here we&apos;d like to get a property from an object given its name.
+We&apos;d like to ensure that we&apos;re not accidentally grabbing a property that does not exist on the <code>obj</code>, so we&apos;ll place a constraint between the two types:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getProperty</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">K</span> <span class="hljs-title">extends</span> <span class="hljs-title">keyof</span> <span class="hljs-title">T</span>&gt;(<span class="hljs-params">obj: T, key: K</span>) </span>{
+    <span class="hljs-keyword">return</span> obj[key];
+}
+
+<span class="hljs-keyword">let</span> x = { a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">3</span>, d: <span class="hljs-number">4</span> };
+
+getProperty(x, <span class="hljs-string">&quot;a&quot;</span>); <span class="hljs-comment">// okay</span>
+getProperty(x, <span class="hljs-string">&quot;m&quot;</span>); <span class="hljs-comment">// error: Argument of type &apos;m&apos; isn&apos;t assignable to &apos;a&apos; | &apos;b&apos; | &apos;c&apos; | &apos;d&apos;.</span>
+</code></pre>
+<h2 id="using-class-types-in-generics">Using Class Types in Generics</h2>
+<p>When creating factories in TypeScript using generics, it is necessary to refer to class types by their constructor functions. For example,</p>
+<pre><code class="lang-ts">function create&lt;T&gt;(c: {new(): T; }): T {
+    return new c();
+}
+</code></pre>
+<p>A more advanced example uses the prototype property to infer and constrain relationships between the constructor function and the instance side of class types.</p>
+<pre><code class="lang-ts">class BeeKeeper {
+    hasMask: boolean;
+}
+
+class ZooKeeper {
+    nametag: string;
+}
+
+class Animal {
+    numLegs: number;
+}
+
+class Bee extends Animal {
+    keeper: BeeKeeper;
+}
+
+class Lion extends Animal {
+    keeper: ZooKeeper;
+}
+
+function createInstance&lt;A extends Animal&gt;(c: new () =&gt; A): A {
+    return new c();
+}
+
+createInstance(Lion).keeper.nametag;  // typechecks!
+createInstance(Bee).keeper.hasMask;   // typechecks!
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Functions.html" class="navigation navigation-prev " aria-label="Previous page: Functions">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Enums.html" class="navigation navigation-next " aria-label="Next page: Enums">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Generics","level":"1.7","depth":1,"next":{"title":"Enums","level":"1.8","depth":1,"path":"pages/Enums.md","ref":"./pages/Enums.md","articles":[]},"previous":{"title":"Functions","level":"1.6","depth":1,"path":"pages/Functions.md","ref":"./pages/Functions.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Generics.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

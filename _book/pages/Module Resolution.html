@@ -1,0 +1,889 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Module Resolution · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Declaration Merging.html" />
+    
+    
+    <link rel="prev" href="Namespaces and Modules.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Module Resolution</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p>This section assumes some basic knowledge about modules.
+Please see the <a href="Modules.html">Modules</a> documentation for more information.</p>
+</blockquote>
+<p><em>Module resolution</em> is the process the compiler uses to figure out what an import refers to.
+Consider an import statement like <code>import { a } from &quot;moduleA&quot;</code>;
+in order to check any use of <code>a</code>, the compiler needs to know exactly what it represents, and will need to check its definition <code>moduleA</code>.</p>
+<p>At this point, the compiler will ask &quot;what&apos;s the shape of <code>moduleA</code>?&quot;
+While this sounds straightforward, <code>moduleA</code> could be defined in one of your own <code>.ts</code>/<code>.tsx</code> files, or in a <code>.d.ts</code> that your code depends on.</p>
+<p>First, the compiler will try to locate a file that represents the imported module.
+To do so the compiler follows one of two different strategies: <a href="#classic">Classic</a> or <a href="#node">Node</a>.
+These strategies tell the compiler <em>where</em> to look for <code>moduleA</code>.</p>
+<p>If that didn&apos;t work and if the module name is non-relative (and in the case of <code>&quot;moduleA&quot;</code>, it is), then the compiler will attempt to locate an <a href="Modules.html#ambient-modules">ambient module declaration</a>.
+We&apos;ll cover non-relative imports next.</p>
+<p>Finally, if the compiler could not resolve the module, it will log an error.
+In this case, the error would be something like <code>error TS2307: Cannot find module &apos;moduleA&apos;.</code></p>
+<h2 id="relative-vs-non-relative-module-imports">Relative vs. Non-relative module imports</h2>
+<p>Module imports are resolved differently based on whether the module reference is relative or non-relative.</p>
+<p>A <em>relative import</em> is one that starts with <code>/</code>, <code>./</code> or <code>../</code>.
+Some examples include:</p>
+<ul>
+<li><code>import Entry from &quot;./components/Entry&quot;;</code></li>
+<li><code>import { DefaultHeaders } from &quot;../constants/http&quot;;</code></li>
+<li><code>import &quot;/mod&quot;;</code></li>
+</ul>
+<p>Any other import is considered <strong>non-relative</strong>.
+Some examples include:</p>
+<ul>
+<li><code>import * as $ from &quot;jquery&quot;;</code></li>
+<li><code>import { Component } from &quot;@angular/core&quot;;</code></li>
+</ul>
+<p>A relative import is resolved relative to the importing file and <em>cannot</em> resolve to an ambient module declaration.
+You should use relative imports for your own modules that are guaranteed to maintain their relative location at runtime.</p>
+<p>A non-relative import can be resolved relative to <code>baseUrl</code>, or through path mapping, which we&apos;ll cover below.
+They can also resolve to <a href="Modules.html#ambient-modules">ambient module declarations</a>.
+Use non-relative paths when importing any of your external dependencies.</p>
+<h2 id="module-resolution-strategies">Module Resolution Strategies</h2>
+<p>There are two possible module resolution strategies: <a href="#node">Node</a> and <a href="#classic">Classic</a>.
+You can use the <code>--moduleResolution</code> flag to specify the module resolution strategy.
+If not specified, the default is <a href="#classic">Classic</a> for <code>--module AMD | System | ES2015</code> or <a href="#node">Node</a> otherwise.</p>
+<h3 id="classic">Classic</h3>
+<p>This used to be TypeScript&apos;s default resolution strategy.
+Nowadays, this strategy is mainly present for backward compatibility.</p>
+<p>A relative import will be resolved relative to the importing file.
+So <code>import { b } from &quot;./moduleB&quot;</code> in source file <code>/root/src/folder/A.ts</code> would result in the following lookups:</p>
+<ol>
+<li><code>/root/src/folder/moduleB.ts</code></li>
+<li><code>/root/src/folder/moduleB.d.ts</code></li>
+</ol>
+<p>For non-relative module imports, however, the compiler walks up the directory tree starting with the directory containing the importing file, trying to locate a matching definition file.</p>
+<p>For example:</p>
+<p>A non-relative import to <code>moduleB</code> such as <code>import { b } from &quot;moduleB&quot;</code>, in a source file <code>/root/src/folder/A.ts</code>, would result in attempting the following locations for locating <code>&quot;moduleB&quot;</code>:</p>
+<ol>
+<li><code>/root/src/folder/moduleB.ts</code></li>
+<li><code>/root/src/folder/moduleB.d.ts</code></li>
+<li><code>/root/src/moduleB.ts</code></li>
+<li><code>/root/src/moduleB.d.ts</code></li>
+<li><code>/root/moduleB.ts</code></li>
+<li><code>/root/moduleB.d.ts</code></li>
+<li><code>/moduleB.ts</code></li>
+<li><code>/moduleB.d.ts</code></li>
+</ol>
+<h3 id="node">Node</h3>
+<p>This resolution strategy attempts to mimic the <a href="https://nodejs.org/" target="_blank">Node.js</a> module resolution mechanism at runtime.
+The full Node.js resolution algorithm is outlined in <a href="https://nodejs.org/api/modules.html#modules_all_together" target="_blank">Node.js module documentation</a>.</p>
+<h4 id="how-nodejs-resolves-modules">How Node.js resolves modules</h4>
+<p>To understand what steps the TS compiler will follow, it is important to shed some light on Node.js modules.
+Traditionally, imports in Node.js are performed by calling a function named <code>require</code>.
+The behavior Node.js takes will differ depending on if <code>require</code> is given a relative path or a non-relative path.</p>
+<p>Relative paths are fairly straightforward.
+As an example, let&apos;s consider a file located at <code>/root/src/moduleA.js</code>, which contains the import <code>var x = require(&quot;./moduleB&quot;);</code>
+Node.js resolves that import in the following order:</p>
+<ol>
+<li><p>Ask the file named <code>/root/src/moduleB.js</code>, if it exists.</p>
+</li>
+<li><p>Ask the folder <code>/root/src/moduleB</code> if it contains a file named <code>package.json</code> that specifies a <code>&quot;main&quot;</code> module.
+In our example, if Node.js found the file <code>/root/src/moduleB/package.json</code> containing <code>{ &quot;main&quot;: &quot;lib/mainModule.js&quot; }</code>, then Node.js will refer to <code>/root/src/moduleB/lib/mainModule.js</code>.</p>
+</li>
+<li><p>Ask the folder <code>/root/src/moduleB</code> if it contains a file named <code>index.js</code>.
+That file is implicitly considered that folder&apos;s &quot;main&quot; module.</p>
+</li>
+</ol>
+<p>You can read more about this in Node.js documentation on <a href="https://nodejs.org/api/modules.html#modules_file_modules" target="_blank">file modules</a> and <a href="https://nodejs.org/api/modules.html#modules_folders_as_modules" target="_blank">folder modules</a>.</p>
+<p>However, resolution for a <a href="#relative-vs-non-relative-module-imports">non-relative module name</a> is performed differently.
+Node will look for your modules in special folders named <code>node_modules</code>.
+A <code>node_modules</code> folder can be on the same level as the current file, or higher up in the directory chain.
+Node will walk up the directory chain, looking through each <code>node_modules</code> until it finds the module you tried to load.</p>
+<p>Following up our example above, consider if <code>/root/src/moduleA.js</code> instead used a non-relative path and had the import <code>var x = require(&quot;moduleB&quot;);</code>.
+Node would then try to resolve <code>moduleB</code> to each of the locations until one worked.</p>
+<ol>
+<li><code>/root/src/node_modules/moduleB.js</code></li>
+<li><code>/root/src/node_modules/moduleB/package.json</code> (if it specifies a <code>&quot;main&quot;</code> property)</li>
+<li><code>/root/src/node_modules/moduleB/index.js</code>
+<br><br></li>
+<li><code>/root/node_modules/moduleB.js</code></li>
+<li><code>/root/node_modules/moduleB/package.json</code> (if it specifies a <code>&quot;main&quot;</code> property)</li>
+<li><code>/root/node_modules/moduleB/index.js</code>
+<br><br></li>
+<li><code>/node_modules/moduleB.js</code></li>
+<li><code>/node_modules/moduleB/package.json</code> (if it specifies a <code>&quot;main&quot;</code> property)</li>
+<li><code>/node_modules/moduleB/index.js</code></li>
+</ol>
+<p>Notice that Node.js jumped up a directory in steps (4) and (7).</p>
+<p>You can read more about the process in Node.js documentation on <a href="https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders" target="_blank">loading modules from <code>node_modules</code></a>.</p>
+<h4 id="how-typescript-resolves-modules">How TypeScript resolves modules</h4>
+<p>TypeScript will mimic the Node.js run-time resolution strategy in order to locate definition files for modules at compile-time.
+To accomplish this, TypeScript overlays the TypeScript source file extensions (<code>.ts</code>, <code>.tsx</code>, and <code>.d.ts</code>) over the Node&apos;s resolution logic.
+TypeScript will also use a field in <code>package.json</code> named <code>&quot;types&quot;</code> to mirror the purpose of <code>&quot;main&quot;</code> - the compiler will use it to find the &quot;main&quot; definition file to consult.</p>
+<p>For example, an import statement like <code>import { b } from &quot;./moduleB&quot;</code> in  <code>/root/src/moduleA.ts</code> would result in attempting the following locations for locating <code>&quot;./moduleB&quot;</code>:</p>
+<ol>
+<li><code>/root/src/moduleB.ts</code></li>
+<li><code>/root/src/moduleB.tsx</code></li>
+<li><code>/root/src/moduleB.d.ts</code></li>
+<li><code>/root/src/moduleB/package.json</code> (if it specifies a <code>&quot;types&quot;</code> property)</li>
+<li><code>/root/src/moduleB/index.ts</code></li>
+<li><code>/root/src/moduleB/index.tsx</code></li>
+<li><code>/root/src/moduleB/index.d.ts</code></li>
+</ol>
+<p>Recall that Node.js looked for a file named <code>moduleB.js</code>, then an applicable <code>package.json</code>, and then for an <code>index.js</code>.</p>
+<p>Similarly a non-relative import will follow the Node.js resolution logic, first looking up a file, then looking up an applicable folder.
+So <code>import { b } from &quot;moduleB&quot;</code> in source file <code>/root/src/moduleA.ts</code> would result in the following lookups:</p>
+<ol>
+<li><code>/root/src/node_modules/moduleB.ts</code></li>
+<li><code>/root/src/node_modules/moduleB.tsx</code></li>
+<li><code>/root/src/node_modules/moduleB.d.ts</code></li>
+<li><code>/root/src/node_modules/moduleB/package.json</code> (if it specifies a <code>&quot;types&quot;</code> property)</li>
+<li><code>/root/src/node_modules/moduleB/index.ts</code></li>
+<li><code>/root/src/node_modules/moduleB/index.tsx</code></li>
+<li><code>/root/src/node_modules/moduleB/index.d.ts</code>
+<br><br></li>
+<li><code>/root/node_modules/moduleB.ts</code></li>
+<li><code>/root/node_modules/moduleB.tsx</code></li>
+<li><code>/root/node_modules/moduleB.d.ts</code></li>
+<li><code>/root/node_modules/moduleB/package.json</code> (if it specifies a <code>&quot;types&quot;</code> property)</li>
+<li><code>/root/node_modules/moduleB/index.ts</code></li>
+<li><code>/root/node_modules/moduleB/index.tsx</code></li>
+<li><code>/root/node_modules/moduleB/index.d.ts</code>
+<br><br></li>
+<li><code>/node_modules/moduleB.ts</code></li>
+<li><code>/node_modules/moduleB.tsx</code></li>
+<li><code>/node_modules/moduleB.d.ts</code></li>
+<li><code>/node_modules/moduleB/package.json</code> (if it specifies a <code>&quot;types&quot;</code> property)</li>
+<li><code>/node_modules/moduleB/index.ts</code></li>
+<li><code>/node_modules/moduleB/index.tsx</code></li>
+<li><code>/node_modules/moduleB/index.d.ts</code></li>
+</ol>
+<p>Don&apos;t be intimidated by the number of steps here - TypeScript is still only jumping up directories twice at steps (8) and (15).
+This is really no more complex than what Node.js itself is doing.</p>
+<h2 id="additional-module-resolution-flags">Additional module resolution flags</h2>
+<p>A project source layout sometimes does not match that of the output.
+Usually a set of build steps result in generating the final output.
+These include compiling <code>.ts</code> files into <code>.js</code>, and copying dependencies from different source locations to a single output location.
+The net result is that modules at runtime may have different names than the source files containing their definitions.
+Or module paths in the final output may not match their corresponding source file paths at compile time.</p>
+<p>The TypeScript compiler has a set of additional flags to <em>inform</em> the compiler of transformations that are expected to happen to the sources to generate the final output.</p>
+<p>It is important to note that the compiler will <em>not</em> perform any of these transformations;
+it just uses these pieces of information to guide the process of resolving a module import to its definition file.</p>
+<h3 id="base-url">Base URL</h3>
+<p>Using a <code>baseUrl</code> is a common practice in applications using AMD module loaders where modules are &quot;deployed&quot; to a single folder at run-time.
+The sources of these modules can live in different directories, but a build script will put them all together.</p>
+<p>Setting <code>baseUrl</code> informs the compiler where to find modules.
+All module imports with non-relative names are assumed to be relative to the <code>baseUrl</code>.</p>
+<p>Value of <em>baseUrl</em> is determined as either:</p>
+<ul>
+<li>value of <em>baseUrl</em> command line argument (if given path is relative, it is computed based on current directory)</li>
+<li>value of <em>baseUrl</em> property in &apos;tsconfig.json&apos; (if given path is relative, it is computed based on the location of &apos;tsconfig.json&apos;)</li>
+</ul>
+<p>Note that relative module imports are not impacted by setting the baseUrl, as they are always resolved relative to their importing files.</p>
+<p>You can find more documentation on baseUrl in <a href="http://requirejs.org/docs/api.html#config-baseUrl" target="_blank">RequireJS</a> and <a href="https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#baseurl" target="_blank">SystemJS</a> documentation.</p>
+<h3 id="path-mapping">Path mapping</h3>
+<p>Sometimes modules are not directly located under <em>baseUrl</em>.
+For instance, an import to a module <code>&quot;jquery&quot;</code> would be translated at runtime to <code>&quot;node_modules/jquery/dist/jquery.slim.min.js&quot;</code>.
+Loaders use a mapping configuration to map module names to files at run-time, see <a href="http://requirejs.org/docs/api.html#config-paths" target="_blank">RequireJs documentation</a> and <a href="https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#paths" target="_blank">SystemJS documentation</a>.</p>
+<p>The TypeScript compiler supports the declaration of such mappings using <code>&quot;paths&quot;</code> property in <code>tsconfig.json</code> files.
+Here is an example for how to specify the <code>&quot;paths&quot;</code> property for <code>jquery</code>.</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;compilerOptions&quot;</span>: {
+    <span class="hljs-string">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-comment">// This must be specified if &quot;paths&quot; is.</span>
+    <span class="hljs-string">&quot;paths&quot;</span>: {
+      <span class="hljs-string">&quot;jquery&quot;</span>: [<span class="hljs-string">&quot;node_modules/jquery/dist/jquery&quot;</span>] <span class="hljs-comment">// This mapping is relative to &quot;baseUrl&quot;</span>
+    }
+  }
+}
+</code></pre>
+<p>Please notice that <code>&quot;paths&quot;</code> are resolved relative to <code>&quot;baseUrl&quot;</code>.
+When setting <code>&quot;baseUrl&quot;</code> to another value than <code>&quot;.&quot;</code>, i.e. the directory of <code>tsconfig.json</code>, the mappings must be changed accordingly.
+Say, you set <code>&quot;baseUrl&quot;: &quot;./src&quot;</code> in the above example, then jquery should be mapped to <code>&quot;../node_modules/jquery/dist/jquery&quot;</code>.</p>
+<p>Using <code>&quot;paths&quot;</code> also allows for more sophisticated mappings including multiple fall back locations.
+Consider a project configuration where only some modules are available in one location, and the rest are in another.
+A build step would put them all together in one place.
+The project layout may look like:</p>
+<pre><code class="lang-tree">projectRoot
+&#x251C;&#x2500;&#x2500; folder1
+&#x2502;   &#x251C;&#x2500;&#x2500; file1.ts (imports &apos;folder1/file2&apos; and &apos;folder2/file3&apos;)
+&#x2502;   &#x2514;&#x2500;&#x2500; file2.ts
+&#x251C;&#x2500;&#x2500; generated
+&#x2502;   &#x251C;&#x2500;&#x2500; folder1
+&#x2502;   &#x2514;&#x2500;&#x2500; folder2
+&#x2502;       &#x2514;&#x2500;&#x2500; file3.ts
+&#x2514;&#x2500;&#x2500; tsconfig.json
+</code></pre>
+<p>The corresponding <code>tsconfig.json</code> would look like:</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;compilerOptions&quot;</span>: {
+    <span class="hljs-string">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;.&quot;</span>,
+    <span class="hljs-string">&quot;paths&quot;</span>: {
+      <span class="hljs-string">&quot;*&quot;</span>: [
+        <span class="hljs-string">&quot;*&quot;</span>,
+        <span class="hljs-string">&quot;generated/*&quot;</span>
+      ]
+    }
+  }
+}
+</code></pre>
+<p>This tells the compiler for any module import that matches the pattern <code>&quot;*&quot;</code> (i.e. all values), to look in two locations:</p>
+<ol>
+<li><code>&quot;*&quot;</code>: meaning the same name unchanged, so map <code>&lt;moduleName&gt;</code> =&gt; <code>&lt;baseUrl&gt;/&lt;moduleName&gt;</code></li>
+<li><code>&quot;generated/*&quot;</code> meaning the module name with an appended prefix &quot;generated&quot;, so map <code>&lt;moduleName&gt;</code> =&gt; <code>&lt;baseUrl&gt;/generated/&lt;moduleName&gt;</code></li>
+</ol>
+<p>Following this logic, the compiler will attempt to resolve the two imports as such:</p>
+<ul>
+<li>import &apos;folder1/file2&apos;<ol>
+<li>pattern &apos;*&apos; is matched and wildcard captures the whole module name</li>
+<li>try first substitution in the list: &apos;*&apos; -&gt; <code>folder1/file2</code></li>
+<li>result of substitution is non-relative name - combine it with <em>baseUrl</em> -&gt; <code>projectRoot/folder1/file2.ts</code>.</li>
+<li>File exists. Done.</li>
+</ol>
+</li>
+<li>import &apos;folder2/file3&apos;<ol>
+<li>pattern &apos;*&apos; is matched and wildcard captures the whole module name</li>
+<li>try first substitution in the list: &apos;*&apos; -&gt; <code>folder2/file3</code></li>
+<li>result of substitution is non-relative name - combine it with <em>baseUrl</em> -&gt; <code>projectRoot/folder2/file3.ts</code>.</li>
+<li>File does not exist, move to the second substitution</li>
+<li>second substitution &apos;generated/*&apos; -&gt; <code>generated/folder2/file3</code></li>
+<li>result of substitution is non-relative name - combine it with <em>baseUrl</em> -&gt; <code>projectRoot/generated/folder2/file3.ts</code>.</li>
+<li>File exists. Done.</li>
+</ol>
+</li>
+</ul>
+<h3 id="virtual-directories-with-rootdirs">Virtual Directories with <code>rootDirs</code></h3>
+<p>Sometimes the project sources from multiple directories at compile time are all combined to generate a single output directory.
+This can be viewed as a set of source directories create a &quot;virtual&quot; directory.</p>
+<p>Using &apos;rootDirs&apos;, you can inform the compiler of the <em>roots</em> making up this &quot;virtual&quot; directory;
+and thus the compiler can resolve relative modules imports within these &quot;virtual&quot; directories <em>as if</em> were merged together in one directory.</p>
+<p>For example consider this project structure:</p>
+<pre><code class="lang-tree"> src
+ &#x2514;&#x2500;&#x2500; views
+     &#x2514;&#x2500;&#x2500; view1.ts (imports &apos;./template1&apos;)
+     &#x2514;&#x2500;&#x2500; view2.ts
+
+ generated
+ &#x2514;&#x2500;&#x2500; templates
+         &#x2514;&#x2500;&#x2500; views
+             &#x2514;&#x2500;&#x2500; template1.ts (imports &apos;./view2&apos;)
+</code></pre>
+<p>Files in <code>src/views</code> are user code for some UI controls.
+Files in <code>generated/templates</code> are UI template binding code auto-generated by a template generator as part of the build.
+A build step will copy the files in <code>/src/views</code> and <code>/generated/templates/views</code> to the same directory in the output.
+At run-time, a view can expect its template to exist next to it, and thus should import it using a relative name as <code>&quot;./template&quot;</code>.</p>
+<p>To specify this relationship to the compiler, use<code>&quot;rootDirs&quot;</code>.
+<code>&quot;rootDirs&quot;</code> specify a list of <em>roots</em> whose contents are expected to merge at run-time.
+So following our example, the <code>tsconfig.json</code> file should look like:</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;compilerOptions&quot;</span>: {
+    <span class="hljs-string">&quot;rootDirs&quot;</span>: [
+      <span class="hljs-string">&quot;src/views&quot;</span>,
+      <span class="hljs-string">&quot;generated/templates/views&quot;</span>
+    ]
+  }
+}
+</code></pre>
+<p>Every time the compiler sees a relative module import in a subfolder of one of the <code>rootDirs</code>, it will attempt to look for this import in each of the entries of <code>rootDirs</code>.</p>
+<p>The flexibility of <code>rootDirs</code> is not limited to specifying a list of physical source directories that are logically merged. The supplied array may include any number of ad hoc, arbitrary directory names, regardless of whether they exist or not. This allows the compiler to capture sophisticated bundling and runtime features such as conditional inclusion and project specific loader plugins in a type safe way.</p>
+<p>Consider an internationalization scenario where a build tool automatically generates locale specific bundles by interpolating a special path token, say <code>#{locale}</code>, as part of a relative module path such as <code>./#{locale}/messages</code>. In this hypothetical setup the tool enumerates supported locales, mapping the abstracted path into <code>./zh/messages</code>, <code>./de/messages</code>, and so forth.</p>
+<p>Assume that each of these modules exports an array of strings. For example <code>./zh/messages</code> might contain:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> [
+    <span class="hljs-string">&quot;&#x60A8;&#x597D;&#x5417;&quot;</span>,
+    <span class="hljs-string">&quot;&#x5F88;&#x9AD8;&#x5174;&#x8BA4;&#x8BC6;&#x4F60;&quot;</span>
+];
+</code></pre>
+<p>By leveraging <code>rootDirs</code> we can inform the compiler of this mapping and thereby allow it to safely resolve <code>./#{locale}/messages</code>, even though the directory will never exist. For example, with the following <code>tsconfig.json</code>:</p>
+<pre><code class="lang-json">{
+  <span class="hljs-string">&quot;compilerOptions&quot;</span>: {
+    <span class="hljs-string">&quot;rootDirs&quot;</span>: [
+      <span class="hljs-string">&quot;src/zh&quot;</span>,
+      <span class="hljs-string">&quot;src/de&quot;</span>,
+      <span class="hljs-string">&quot;src/#{locale}&quot;</span>
+    ]
+  }
+}
+</code></pre>
+<p>The compiler will now resolve <code>import messages from &apos;./#{locale}/messages&apos;</code> to <code>import messages from &apos;./zh/messages&apos;</code> for tooling purposes, allowing development in a locale agnostic manner without compromising design time support.</p>
+<h2 id="tracing-module-resolution">Tracing module resolution</h2>
+<p>As discussed earlier, the compiler can visit files outside the current folder when resolving a module.
+This can be hard when diagnosing why a module is not resolved, or is resolved to an incorrect definition.
+Enabling the compiler module resolution tracing using <code>--traceResolution</code> provides insight in what happened during the module resolution process.</p>
+<p>Let&apos;s say we have a sample application that uses the <code>typescript</code> module.
+<code>app.ts</code> has an import like <code>import * as ts from &quot;typescript&quot;</code>.</p>
+<pre><code class="lang-tree">&#x2502;   tsconfig.json
+&#x251C;&#x2500;&#x2500;&#x2500;node_modules
+&#x2502;   &#x2514;&#x2500;&#x2500;&#x2500;typescript
+&#x2502;       &#x2514;&#x2500;&#x2500;&#x2500;lib
+&#x2502;               typescript.d.ts
+&#x2514;&#x2500;&#x2500;&#x2500;src
+        app.ts
+</code></pre>
+<p>Invoking the compiler with <code>--traceResolution</code></p>
+<pre><code class="lang-shell">tsc --traceResolution
+</code></pre>
+<p>Results in an output such as:</p>
+<pre><code class="lang-txt">======== Resolving module &apos;typescript&apos; from &apos;src/app.ts&apos;. ========
+Module resolution kind is not specified, using &apos;NodeJs&apos;.
+Loading module &apos;typescript&apos; from &apos;node_modules&apos; folder.
+File &apos;src/node_modules/typescript.ts&apos; does not exist.
+File &apos;src/node_modules/typescript.tsx&apos; does not exist.
+File &apos;src/node_modules/typescript.d.ts&apos; does not exist.
+File &apos;src/node_modules/typescript/package.json&apos; does not exist.
+File &apos;node_modules/typescript.ts&apos; does not exist.
+File &apos;node_modules/typescript.tsx&apos; does not exist.
+File &apos;node_modules/typescript.d.ts&apos; does not exist.
+Found &apos;package.json&apos; at &apos;node_modules/typescript/package.json&apos;.
+&apos;package.json&apos; has &apos;types&apos; field &apos;./lib/typescript.d.ts&apos; that references &apos;node_modules/typescript/lib/typescript.d.ts&apos;.
+File &apos;node_modules/typescript/lib/typescript.d.ts&apos; exist - use it as a module resolution result.
+======== Module name &apos;typescript&apos; was successfully resolved to &apos;node_modules/typescript/lib/typescript.d.ts&apos;. ========
+</code></pre>
+<h4 id="things-to-look-out-for">Things to look out for</h4>
+<ul>
+<li><p>Name and location of the import</p>
+<blockquote>
+<p>======== Resolving module <strong>&apos;typescript&apos;</strong> from <strong>&apos;src/app.ts&apos;</strong>. ========</p>
+</blockquote>
+</li>
+<li><p>The strategy the compiler is following</p>
+<blockquote>
+<p>Module resolution kind is not specified, using <strong>&apos;NodeJs&apos;</strong>.</p>
+</blockquote>
+</li>
+<li><p>Loading of types from npm packages</p>
+<blockquote>
+<p>&apos;package.json&apos; has <strong>&apos;types&apos;</strong> field &apos;./lib/typescript.d.ts&apos; that references &apos;node_modules/typescript/lib/typescript.d.ts&apos;.</p>
+</blockquote>
+</li>
+<li><p>Final result</p>
+<blockquote>
+<p>======== Module name &apos;typescript&apos; was <strong>successfully resolved</strong> to &apos;node_modules/typescript/lib/typescript.d.ts&apos;. ========</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="using---noresolve">Using <code>--noResolve</code></h2>
+<p>Normally the compiler will attempt to resolve all module imports before it starts the compilation process.
+Every time it successfully resolves an <code>import</code> to a file, the file is added to the set of files the compiler will process later on.</p>
+<p>The <code>--noResolve</code> compiler options instructs the compiler not to &quot;add&quot; any files to the compilation that were not passed on the command line.
+It will still try to resolve the module to files, but if the file is not specified, it will not be included.</p>
+<p>For instance:</p>
+<h4 id="appts">app.ts</h4>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> * as A from <span class="hljs-string">&quot;moduleA&quot;</span> <span class="hljs-comment">// OK, &apos;moduleA&apos; passed on the command-line</span>
+<span class="hljs-keyword">import</span> * as B from <span class="hljs-string">&quot;moduleB&quot;</span> <span class="hljs-comment">// Error TS2307: Cannot find module &apos;moduleB&apos;.</span>
+</code></pre>
+<pre><code class="lang-shell">tsc app.ts moduleA.ts --noResolve
+</code></pre>
+<p>Compiling <code>app.ts</code> using <code>--noResolve</code> should result in:</p>
+<ul>
+<li>Correctly finding <code>moduleA</code> as it was passed on the command-line.</li>
+<li>Error for not finding <code>moduleB</code> as it was not passed.</li>
+</ul>
+<h2 id="common-questions">Common Questions</h2>
+<h3 id="why-does-a-module-in-the-exclude-list-still-get-picked-up-by-the-compiler">Why does a module in the exclude list still get picked up by the compiler?</h3>
+<p><code>tsconfig.json</code> turns a folder into a &#x201C;project&#x201D;.
+Without specifying any <code>&#x201C;exclude&#x201D;</code> or <code>&#x201C;files&#x201D;</code> entries, all files in the folder containing the <code>tsconfig.json</code> and all its sub-directories are included in your compilation.
+If you want to exclude some of the files use <code>&#x201C;exclude&#x201D;</code>, if you would rather specify all the files instead of letting the compiler look them up, use <code>&#x201C;files&#x201D;</code>.</p>
+<p>That was <code>tsconfig.json</code> automatic inclusion.
+That does not embed module resolution as discussed above.
+If the compiler identified a file as a target of a module import, it will be included in the compilation regardless if it was excluded in the previous steps.</p>
+<p>So to exclude a file from the compilation, you need to exclude it and <strong>all</strong> files that have an <code>import</code> or <code>/// &lt;reference path=&quot;...&quot; /&gt;</code> directive to it.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Namespaces and Modules.html" class="navigation navigation-prev " aria-label="Previous page: Namespaces and Modules">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Declaration Merging.html" class="navigation navigation-next " aria-label="Next page: Declaration Merging">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Module Resolution","level":"1.17","depth":1,"next":{"title":"Declaration Merging","level":"1.18","depth":1,"path":"pages/Declaration Merging.md","ref":"./pages/Declaration Merging.md","articles":[]},"previous":{"title":"Namespaces and Modules","level":"1.16","depth":1,"path":"pages/Namespaces and Modules.md","ref":"./pages/Namespaces and Modules.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Module Resolution.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

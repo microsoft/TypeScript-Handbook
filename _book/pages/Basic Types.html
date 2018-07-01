@@ -1,0 +1,715 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Basic Types · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Variable Declarations.html" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Basic Types</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>For programs to be useful, we need to be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.
+In TypeScript, we support much the same types as you would expect in JavaScript, with a convenient enumeration type thrown in to help things along.</p>
+<h1 id="boolean">Boolean</h1>
+<p>The most basic datatype is the simple true/false value, which JavaScript and TypeScript call a <code>boolean</code> value.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> isDone: <span class="hljs-built_in">boolean</span> = <span class="hljs-literal">false</span>;
+</code></pre>
+<h1 id="number">Number</h1>
+<p>As in JavaScript, all numbers in TypeScript are floating point values.
+These floating point numbers get the type <code>number</code>.
+In addition to hexadecimal and decimal literals, TypeScript also supports binary and octal literals introduced in ECMAScript 2015.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> decimal: <span class="hljs-built_in">number</span> = <span class="hljs-number">6</span>;
+<span class="hljs-keyword">let</span> hex: <span class="hljs-built_in">number</span> = <span class="hljs-number">0xf00d</span>;
+<span class="hljs-keyword">let</span> binary: <span class="hljs-built_in">number</span> = <span class="hljs-number">0b1010</span>;
+<span class="hljs-keyword">let</span> octal: <span class="hljs-built_in">number</span> = <span class="hljs-number">0o744</span>;
+</code></pre>
+<h1 id="string">String</h1>
+<p>Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data.
+As in other languages, we use the type <code>string</code> to refer to these textual datatypes.
+Just like JavaScript, TypeScript also uses double quotes (<code>&quot;</code>) or single quotes (<code>&apos;</code>) to surround string data.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> color: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;blue&quot;</span>;
+color = <span class="hljs-string">&apos;red&apos;</span>;
+</code></pre>
+<p>You can also use <em>template strings</em>, which can span multiple lines and have embedded expressions.
+These strings are surrounded by the backtick/backquote (<code>` </code>) character, and embedded expressions are of the form <code>${ expr }</code>.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> fullName: <span class="hljs-built_in">string</span> = <span class="hljs-string">`Bob Bobbington`</span>;
+<span class="hljs-keyword">let</span> age: <span class="hljs-built_in">number</span> = <span class="hljs-number">37</span>;
+<span class="hljs-keyword">let</span> sentence: <span class="hljs-built_in">string</span> = <span class="hljs-string">`Hello, my name is <span class="hljs-subst">${ fullName }</span>.
+
+I&apos;ll be <span class="hljs-subst">${ age + 1 }</span> years old next month.`</span>;
+</code></pre>
+<p>This is equivalent to declaring <code>sentence</code> like so:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> sentence: <span class="hljs-built_in">string</span> = <span class="hljs-string">&quot;Hello, my name is &quot;</span> + fullName + <span class="hljs-string">&quot;.\n\n&quot;</span> +
+    <span class="hljs-string">&quot;I&apos;ll be &quot;</span> + (age + <span class="hljs-number">1</span>) + <span class="hljs-string">&quot; years old next month.&quot;</span>;
+</code></pre>
+<h1 id="array">Array</h1>
+<p>TypeScript, like JavaScript, allows you to work with arrays of values.
+Array types can be written in one of two ways.
+In the first, you use the type of the elements followed by <code>[]</code> to denote an array of that element type:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> list: <span class="hljs-built_in">number</span>[] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+</code></pre>
+<p>The second way uses a generic array type, <code>Array&lt;elemType&gt;</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> list: <span class="hljs-built_in">Array</span>&lt;<span class="hljs-built_in">number</span>&gt; = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+</code></pre>
+<h1 id="tuple">Tuple</h1>
+<p>Tuple types allow you to express an array where the type of a fixed number of elements is known, but need not be the same.
+For example, you may want to represent a value as a pair of a <code>string</code> and a <code>number</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// Declare a tuple type</span>
+<span class="hljs-keyword">let</span> x: [<span class="hljs-built_in">string</span>, <span class="hljs-built_in">number</span>];
+<span class="hljs-comment">// Initialize it</span>
+x = [<span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-number">10</span>]; <span class="hljs-comment">// OK</span>
+<span class="hljs-comment">// Initialize it incorrectly</span>
+x = [<span class="hljs-number">10</span>, <span class="hljs-string">&quot;hello&quot;</span>]; <span class="hljs-comment">// Error</span>
+</code></pre>
+<p>When accessing an element with a known index, the correct type is retrieved:</p>
+<pre><code class="lang-ts"><span class="hljs-built_in">console</span>.log(x[<span class="hljs-number">0</span>].substr(<span class="hljs-number">1</span>)); <span class="hljs-comment">// OK</span>
+<span class="hljs-built_in">console</span>.log(x[<span class="hljs-number">1</span>].substr(<span class="hljs-number">1</span>)); <span class="hljs-comment">// Error, &apos;number&apos; does not have &apos;substr&apos;</span>
+</code></pre>
+<p>When accessing an element outside the set of known indices, a union type is used instead:</p>
+<pre><code class="lang-ts">x[<span class="hljs-number">3</span>] = <span class="hljs-string">&quot;world&quot;</span>; <span class="hljs-comment">// OK, &apos;string&apos; can be assigned to &apos;string | number&apos;</span>
+
+<span class="hljs-built_in">console</span>.log(x[<span class="hljs-number">5</span>].toString()); <span class="hljs-comment">// OK, &apos;string&apos; and &apos;number&apos; both have &apos;toString&apos;</span>
+
+x[<span class="hljs-number">6</span>] = <span class="hljs-literal">true</span>; <span class="hljs-comment">// Error, &apos;boolean&apos; isn&apos;t &apos;string | number&apos;</span>
+</code></pre>
+<p>Union types are an advanced topic that we&apos;ll cover in a later chapter.</p>
+<h1 id="enum">Enum</h1>
+<p>A helpful addition to the standard set of datatypes from JavaScript is the <code>enum</code>.
+As in languages like C#, an enum is a way of giving more friendly names to sets of numeric values.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Color {Red, Green, Blue}
+<span class="hljs-keyword">let</span> c: Color = Color.Green;
+</code></pre>
+<p>By default, enums begin numbering their members starting at <code>0</code>.
+You can change this by manually setting the value of one of its members.
+For example, we can start the previous example at <code>1</code> instead of <code>0</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Color {Red = <span class="hljs-number">1</span>, Green, Blue}
+<span class="hljs-keyword">let</span> c: Color = Color.Green;
+</code></pre>
+<p>Or, even manually set all the values in the enum:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Color {Red = <span class="hljs-number">1</span>, Green = <span class="hljs-number">2</span>, Blue = <span class="hljs-number">4</span>}
+<span class="hljs-keyword">let</span> c: Color = Color.Green;
+</code></pre>
+<p>A handy feature of enums is that you can also go from a numeric value to the name of that value in the enum.
+For example, if we had the value <code>2</code> but weren&apos;t sure what that mapped to in the <code>Color</code> enum above, we could look up the corresponding name:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Color {Red = <span class="hljs-number">1</span>, Green, Blue}
+<span class="hljs-keyword">let</span> colorName: <span class="hljs-built_in">string</span> = Color[<span class="hljs-number">2</span>];
+
+<span class="hljs-built_in">console</span>.log(colorName); <span class="hljs-comment">// Displays &apos;Green&apos; as its value is 2 above</span>
+</code></pre>
+<h1 id="any">Any</h1>
+<p>We may need to describe the type of variables that we do not know when we are writing an application.
+These values may come from dynamic content, e.g. from the user or a 3rd party library.
+In these cases, we want to opt-out of type-checking and let the values pass through compile-time checks.
+To do so, we label these with the <code>any</code> type:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> notSure: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
+notSure = <span class="hljs-string">&quot;maybe a string instead&quot;</span>;
+notSure = <span class="hljs-literal">false</span>; <span class="hljs-comment">// okay, definitely a boolean</span>
+</code></pre>
+<p>The <code>any</code> type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type-checking during compilation.
+You might expect <code>Object</code> to play a similar role, as it does in other languages.
+But variables of type <code>Object</code> only allow you to assign any value to them - you can&apos;t call arbitrary methods on them, even ones that actually exist:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> notSure: <span class="hljs-built_in">any</span> = <span class="hljs-number">4</span>;
+notSure.ifItExists(); <span class="hljs-comment">// okay, ifItExists might exist at runtime</span>
+notSure.toFixed(); <span class="hljs-comment">// okay, toFixed exists (but the compiler doesn&apos;t check)</span>
+
+<span class="hljs-keyword">let</span> prettySure: <span class="hljs-built_in">Object</span> = <span class="hljs-number">4</span>;
+prettySure.toFixed(); <span class="hljs-comment">// Error: Property &apos;toFixed&apos; doesn&apos;t exist on type &apos;Object&apos;.</span>
+</code></pre>
+<p>The <code>any</code> type is also handy if you know some part of the type, but perhaps not all of it.
+For example, you may have an array but the array has a mix of different types:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> list: <span class="hljs-built_in">any</span>[] = [<span class="hljs-number">1</span>, <span class="hljs-literal">true</span>, <span class="hljs-string">&quot;free&quot;</span>];
+
+list[<span class="hljs-number">1</span>] = <span class="hljs-number">100</span>;
+</code></pre>
+<h1 id="void">Void</h1>
+<p><code>void</code> is a little like the opposite of <code>any</code>: the absence of having any type at all.
+You may commonly see this as the return type of functions that do not return a value:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">warnUser</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span> </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;This is my warning message&quot;</span>);
+}
+</code></pre>
+<p>Declaring variables of type <code>void</code> is not useful because you can only assign <code>undefined</code> or <code>null</code> to them:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> unusable: <span class="hljs-built_in">void</span> = <span class="hljs-literal">undefined</span>;
+</code></pre>
+<h1 id="null-and-undefined">Null and Undefined</h1>
+<p>In TypeScript, both <code>undefined</code> and <code>null</code> actually have their own types named <code>undefined</code> and <code>null</code> respectively.
+Much like <code>void</code>, they&apos;re not extremely useful on their own:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// Not much else we can assign to these variables!</span>
+<span class="hljs-keyword">let</span> u: <span class="hljs-literal">undefined</span> = <span class="hljs-literal">undefined</span>;
+<span class="hljs-keyword">let</span> n: <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+</code></pre>
+<p>By default <code>null</code> and <code>undefined</code> are subtypes of all other types.
+That means you can assign <code>null</code> and <code>undefined</code> to something like <code>number</code>.</p>
+<p>However, when using the <code>--strictNullChecks</code> flag, <code>null</code> and <code>undefined</code> are only assignable to <code>void</code> and their respective types.
+This helps avoid <em>many</em> common errors.
+In cases where you want to pass in either a <code>string</code> or <code>null</code> or <code>undefined</code>, you can use the union type <code>string | null | undefined</code>.
+Once again, more on union types later on.</p>
+<blockquote>
+<p>As a note: we encourage the use of <code>--strictNullChecks</code> when possible, but for the purposes of this handbook, we will assume it is turned off.</p>
+</blockquote>
+<h1 id="never">Never</h1>
+<p>The <code>never</code> type represents the type of values that never occur.
+For instance, <code>never</code> is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns;
+Variables also acquire the type <code>never</code> when narrowed by any type guards that can never be true.</p>
+<p>The <code>never</code> type is a subtype of, and assignable to, every type; however, <em>no</em> type is a subtype of, or assignable to, <code>never</code> (except <code>never</code> itself).
+Even <code>any</code> isn&apos;t assignable to <code>never</code>.</p>
+<p>Some examples of functions returning <code>never</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// Function returning never must have unreachable end point</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">error</span>(<span class="hljs-params">message: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">never</span> </span>{
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(message);
+}
+
+<span class="hljs-comment">// Inferred return type is never</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fail</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> error(<span class="hljs-string">&quot;Something failed&quot;</span>);
+}
+
+<span class="hljs-comment">// Function returning never must have unreachable end point</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">infiniteLoop</span>(<span class="hljs-params"></span>): <span class="hljs-title">never</span> </span>{
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+    }
+}
+</code></pre>
+<h1 id="object">Object</h1>
+<p><code>object</code> is a type that represents the non-primitive type, i.e. any thing that is not <code>number</code>, <code>string</code>, <code>boolean</code>, <code>symbol</code>, <code>null</code>, or <code>undefined</code>.</p>
+<p>With <code>object</code> type, APIs like <code>Object.create</code> can be better represented. For example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">create</span>(<span class="hljs-params">o: object | <span class="hljs-literal">null</span></span>): <span class="hljs-title">void</span></span>;
+
+create({ prop: <span class="hljs-number">0</span> }); <span class="hljs-comment">// OK</span>
+create(<span class="hljs-literal">null</span>); <span class="hljs-comment">// OK</span>
+
+create(<span class="hljs-number">42</span>); <span class="hljs-comment">// Error</span>
+create(<span class="hljs-string">&quot;string&quot;</span>); <span class="hljs-comment">// Error</span>
+create(<span class="hljs-literal">false</span>); <span class="hljs-comment">// Error</span>
+create(<span class="hljs-literal">undefined</span>); <span class="hljs-comment">// Error</span>
+</code></pre>
+<h1 id="type-assertions">Type assertions</h1>
+<p>Sometimes you&apos;ll end up in a situation where you&apos;ll know more about a value than TypeScript does.
+Usually this will happen when you know the type of some entity could be more specific than its current type.</p>
+<p><em>Type assertions</em> are a way to tell the compiler &quot;trust me, I know what I&apos;m doing.&quot;
+A type assertion is like a type cast in other languages, but performs no special checking or restructuring of data.
+It has no runtime impact, and is used purely by the compiler.
+TypeScript assumes that you, the programmer, have performed any special checks that you need.</p>
+<p>Type assertions have two forms.
+One is the &quot;angle-bracket&quot; syntax:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> someValue: <span class="hljs-built_in">any</span> = <span class="hljs-string">&quot;this is a string&quot;</span>;
+
+<span class="hljs-keyword">let</span> strLength: <span class="hljs-built_in">number</span> = (&lt;<span class="hljs-built_in">string</span>&gt;someValue).length;
+</code></pre>
+<p>And the other is the <code>as</code>-syntax:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> someValue: <span class="hljs-built_in">any</span> = <span class="hljs-string">&quot;this is a string&quot;</span>;
+
+<span class="hljs-keyword">let</span> strLength: <span class="hljs-built_in">number</span> = (someValue as <span class="hljs-built_in">string</span>).length;
+</code></pre>
+<p>The two samples are equivalent.
+Using one over the other is mostly a choice of preference; however, when using TypeScript with JSX, only <code>as</code>-style assertions are allowed.</p>
+<h1 id="a-note-about-let">A note about <code>let</code></h1>
+<p>You may&apos;ve noticed that so far, we&apos;ve been using the <code>let</code> keyword instead of JavaScript&apos;s <code>var</code> keyword which you might be more familiar with.
+The <code>let</code> keyword is actually a newer JavaScript construct that TypeScript makes available.
+We&apos;ll discuss the details later, but many common problems in JavaScript are alleviated by using <code>let</code>, so you should use it instead of <code>var</code> whenever possible.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Variable Declarations.html" class="navigation navigation-next " aria-label="Next page: Variable Declarations">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Basic Types","level":"1.2","depth":1,"next":{"title":"Variable Declarations","level":"1.3","depth":1,"path":"pages/Variable Declarations.md","ref":"./pages/Variable Declarations.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Basic Types.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

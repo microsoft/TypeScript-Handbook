@@ -1,0 +1,606 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Namespaces and Modules · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Module Resolution.html" />
+    
+    
+    <link rel="prev" href="Namespaces.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Namespaces and Modules</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <blockquote>
+<p><strong>A note about terminology:</strong>
+It&apos;s important to note that in TypeScript 1.5, the nomenclature has changed.
+&quot;Internal modules&quot; are now &quot;namespaces&quot;.
+&quot;External modules&quot; are now simply &quot;modules&quot;, as to align with <a href="http://www.ecma-international.org/ecma-262/6.0/" target="_blank">ECMAScript 2015</a>&apos;s terminology, (namely that <code>module X {</code> is equivalent to the now-preferred <code>namespace X {</code>).</p>
+</blockquote>
+<h1 id="introduction">Introduction</h1>
+<p>This post outlines the various ways to organize your code using namespaces and modules in TypeScript.
+We&apos;ll also go over some advanced topics of how to use namespaces and modules, and address some common pitfalls when using them in TypeScript.</p>
+<p>See the <a href="Modules.html">Modules</a> documentation for more information about modules.
+See the <a href="Namespaces.html">Namespaces</a> documentation for more information about namespaces.</p>
+<h1 id="using-namespaces">Using Namespaces</h1>
+<p>Namespaces are simply named JavaScript objects in the global namespace.
+This makes namespaces a very simple construct to use.
+They can span multiple files, and can be concatenated using <code>--outFile</code>.
+Namespaces can be a good way to structure your code in a Web Application, with all dependencies included as <code>&lt;script&gt;</code> tags in your HTML page.</p>
+<p>Just like all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.</p>
+<h1 id="using-modules">Using Modules</h1>
+<p>Just like namespaces, modules can contain both code and declarations.
+The main difference is that modules <em>declare</em> their dependencies.</p>
+<p>Modules also have a dependency on a module loader (such as CommonJs/Require.js).
+For a small JS application this might not be optimal, but for larger applications, the cost comes with long term modularity and maintainability benefits.
+Modules provide for better code reuse, stronger isolation and better tooling support for bundling.</p>
+<p>It is also worth noting that, for Node.js applications, modules are the default and the recommended approach to structure your code.</p>
+<p>Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine implementations.
+Thus, for new projects modules would be the recommended code organization mechanism.</p>
+<h1 id="pitfalls-of-namespaces-and-modules">Pitfalls of Namespaces and Modules</h1>
+<p>In this section we&apos;ll describe various common pitfalls in using namespaces and modules, and how to avoid them.</p>
+<h2 id="reference-ing-a-module"><code>/// &lt;reference&gt;</code>-ing a module</h2>
+<p>A common mistake is to try to use the <code>/// &lt;reference ... /&gt;</code> syntax to refer to a module file, rather than using an <code>import</code> statement.
+To understand the distinction, we first need to understand how the compiler can locate the type information for a module based on the path of an <code>import</code> (e.g. the <code>...</code> in <code>import x from &quot;...&quot;;</code>, <code>import x = require(&quot;...&quot;);</code>, etc.) path.</p>
+<p>The compiler will try to find a <code>.ts</code>, <code>.tsx</code>, and then a <code>.d.ts</code> with the appropriate path.
+If a specific file could not be found, then the compiler will look for an <em>ambient module declaration</em>.
+Recall that these need to be declared in a <code>.d.ts</code> file.</p>
+<ul>
+<li><p><code>myModules.d.ts</code></p>
+<pre><code class="lang-ts"><span class="hljs-comment">// In a .d.ts file or .ts file that is not a module:</span>
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">module</span> &quot;SomeModule&quot; {
+    <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>): <span class="hljs-title">string</span></span>;
+}
+</code></pre>
+</li>
+<li><p><code>myOtherModule.ts</code></p>
+<pre><code class="lang-ts"><span class="hljs-comment">/// &lt;reference path=&quot;myModules.d.ts&quot; /&gt;</span>
+<span class="hljs-keyword">import</span> * as m from <span class="hljs-string">&quot;SomeModule&quot;</span>;
+</code></pre>
+</li>
+</ul>
+<p>The reference tag here allows us to locate the declaration file that contains the declaration for the ambient module.
+This is how the <code>node.d.ts</code> file that several of the TypeScript samples use is consumed.</p>
+<h2 id="needless-namespacing">Needless Namespacing</h2>
+<p>If you&apos;re converting a program from namespaces to modules, it can be easy to end up with a file that looks like this:</p>
+<ul>
+<li><p><code>shapes.ts</code></p>
+<pre><code class="lang-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">namespace</span> Shapes {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Triangle { <span class="hljs-comment">/* ... */</span> }
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Square { <span class="hljs-comment">/* ... */</span> }
+}
+</code></pre>
+</li>
+</ul>
+<p>The top-level module here <code>Shapes</code> wraps up <code>Triangle</code> and <code>Square</code> for no reason.
+This is confusing and annoying for consumers of your module:</p>
+<ul>
+<li><p><code>shapeConsumer.ts</code></p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> * as shapes from <span class="hljs-string">&quot;./shapes&quot;</span>;
+<span class="hljs-keyword">let</span> t = <span class="hljs-keyword">new</span> shapes.Shapes.Triangle(); <span class="hljs-comment">// shapes.Shapes?</span>
+</code></pre>
+</li>
+</ul>
+<p>A key feature of modules in TypeScript is that two different modules will never contribute names to the same scope.
+Because the consumer of a module decides what name to assign it, there&apos;s no need to proactively wrap up the exported symbols in a namespace.</p>
+<p>To reiterate why you shouldn&apos;t try to namespace your module contents, the general idea of namespacing is to provide logical grouping of constructs and to prevent name collisions.
+Because the module file itself is already a logical grouping, and its top-level name is defined by the code that imports it, it&apos;s unnecessary to use an additional module layer for exported objects.</p>
+<p>Here&apos;s a revised example:</p>
+<ul>
+<li><p><code>shapes.ts</code></p>
+<pre><code class="lang-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Triangle { <span class="hljs-comment">/* ... */</span> }
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Square { <span class="hljs-comment">/* ... */</span> }
+</code></pre>
+</li>
+<li><p><code>shapeConsumer.ts</code></p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> * as shapes from <span class="hljs-string">&quot;./shapes&quot;</span>;
+<span class="hljs-keyword">let</span> t = <span class="hljs-keyword">new</span> shapes.Triangle();
+</code></pre>
+</li>
+</ul>
+<h2 id="trade-offs-of-modules">Trade-offs of Modules</h2>
+<p>Just as there is a one-to-one correspondence between JS files and modules, TypeScript has a one-to-one correspondence between module source files and their emitted JS files.
+One effect of this is that it&apos;s not possible to concatenate multiple module source files depending on the module system you target.
+For instance, you can&apos;t use the <code>outFile</code> option while targeting <code>commonjs</code> or <code>umd</code>, but with TypeScript 1.8 and later, <a href="release%20notes/TypeScript%201.8.md#concatenate-amd-and-system-modules-with---outfile">it&apos;s possible</a> to use <code>outFile</code> when targeting <code>amd</code> or <code>system</code>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Namespaces.html" class="navigation navigation-prev " aria-label="Previous page: Namespaces">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Module Resolution.html" class="navigation navigation-next " aria-label="Next page: Module Resolution">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Namespaces and Modules","level":"1.16","depth":1,"next":{"title":"Module Resolution","level":"1.17","depth":1,"path":"pages/Module Resolution.md","ref":"./pages/Module Resolution.md","articles":[]},"previous":{"title":"Namespaces","level":"1.15","depth":1,"path":"pages/Namespaces.md","ref":"./pages/Namespaces.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Namespaces and Modules.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

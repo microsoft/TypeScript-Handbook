@@ -1,0 +1,805 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Declaration Merging · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="JSX.html" />
+    
+    
+    <link rel="prev" href="Module Resolution.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Declaration Merging</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>Some of the unique concepts in TypeScript describe the shape of JavaScript objects at the type level.
+One example that is especially unique to TypeScript is the concept of &apos;declaration merging&apos;.
+Understanding this concept will give you an advantage when working with existing JavaScript.
+It also opens the door to more advanced abstraction concepts.</p>
+<p>For the purposes of this article, &quot;declaration merging&quot; means that the compiler merges two separate declarations declared with the same name into a single definition.
+This merged definition has the features of both of the original declarations.
+Any number of declarations can be merged; it&apos;s not limited to just two declarations.</p>
+<h1 id="basic-concepts">Basic Concepts</h1>
+<p>In TypeScript, a declaration creates entities in at least one of three groups: namespace, type, or value.
+Namespace-creating declarations create a namespace, which contains names that are accessed using a dotted notation.
+Type-creating declarations do just that: they create a type that is visible with the declared shape and bound to the given name.
+Lastly, value-creating declarations create values that are visible in the output JavaScript.</p>
+<table>
+<thead>
+<tr>
+<th>Declaration Type</th>
+<th style="text-align:center">Namespace</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td>Class</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td>Enum</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td>Interface</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>Type Alias</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td>Function</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td>Variable</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">X</td>
+</tr>
+</tbody>
+</table>
+<p>Understanding what is created with each declaration will help you understand what is merged when you perform a declaration merge.</p>
+<h1 id="merging-interfaces">Merging Interfaces</h1>
+<p>The simplest, and perhaps most common, type of declaration merging is interface merging.
+At the most basic level, the merge mechanically joins the members of both declarations into a single interface with the same name.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Box {
+    height: <span class="hljs-built_in">number</span>;
+    width: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">interface</span> Box {
+    scale: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">let</span> box: Box = {height: <span class="hljs-number">5</span>, width: <span class="hljs-number">6</span>, scale: <span class="hljs-number">10</span>};
+</code></pre>
+<p>Non-function members of the interfaces should be unique.
+If they are not unique, they must be of the same type.
+The compiler will issue an error if the interfaces both declare a non-function member of the same name, but of different types.</p>
+<p>For function members, each function member of the same name is treated as describing an overload of the same function.
+Of note, too, is that in the case of interface <code>A</code> merging with later interface <code>A</code>, the second interface will have a higher precedence than the first.</p>
+<p>That is, in the example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Cloner {
+    clone(animal: Animal): Animal;
+}
+
+<span class="hljs-keyword">interface</span> Cloner {
+    clone(animal: Sheep): Sheep;
+}
+
+<span class="hljs-keyword">interface</span> Cloner {
+    clone(animal: Dog): Dog;
+    clone(animal: Cat): Cat;
+}
+</code></pre>
+<p>The three interfaces will merge to create a single declaration as so:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Cloner {
+    clone(animal: Dog): Dog;
+    clone(animal: Cat): Cat;
+    clone(animal: Sheep): Sheep;
+    clone(animal: Animal): Animal;
+}
+</code></pre>
+<p>Notice that the elements of each group maintains the same order, but the groups themselves are merged with later overload sets ordered first.</p>
+<p>One exception to this rule is specialized signatures.
+If a signature has a parameter whose type is a <em>single</em> string literal type (e.g. not a union of string literals), then it will be bubbled toward the top of its merged overload list.</p>
+<p>For instance, the following interfaces will merge together:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Document {
+    createElement(tagName: <span class="hljs-built_in">any</span>): Element;
+}
+<span class="hljs-keyword">interface</span> Document {
+    createElement(tagName: <span class="hljs-string">&quot;div&quot;</span>): HTMLDivElement;
+    createElement(tagName: <span class="hljs-string">&quot;span&quot;</span>): HTMLSpanElement;
+}
+<span class="hljs-keyword">interface</span> Document {
+    createElement(tagName: <span class="hljs-built_in">string</span>): HTMLElement;
+    createElement(tagName: <span class="hljs-string">&quot;canvas&quot;</span>): HTMLCanvasElement;
+}
+</code></pre>
+<p>The resulting merged declaration of <code>Document</code> will be the following:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Document {
+    createElement(tagName: <span class="hljs-string">&quot;canvas&quot;</span>): HTMLCanvasElement;
+    createElement(tagName: <span class="hljs-string">&quot;div&quot;</span>): HTMLDivElement;
+    createElement(tagName: <span class="hljs-string">&quot;span&quot;</span>): HTMLSpanElement;
+    createElement(tagName: <span class="hljs-built_in">string</span>): HTMLElement;
+    createElement(tagName: <span class="hljs-built_in">any</span>): Element;
+}
+</code></pre>
+<h1 id="merging-namespaces">Merging Namespaces</h1>
+<p>Similarly to interfaces, namespaces of the same name will also merge their members.
+Since namespaces create both a namespace and a value, we need to understand how both merge.</p>
+<p>To merge the namespaces, type definitions from exported interfaces declared in each namespace are themselves merged, forming a single namespace with merged interface definitions inside.</p>
+<p>To merge the namespace value, at each declaration site, if a namespace already exists with the given name, it is further extended by taking the existing namespace and adding the exported members of the second namespace to the first.</p>
+<p>The declaration merge of <code>Animals</code> in this example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">namespace</span> Animals {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Zebra { }
+}
+
+<span class="hljs-keyword">namespace</span> Animals {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Legged { numberOfLegs: <span class="hljs-built_in">number</span>; }
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Dog { }
+}
+</code></pre>
+<p>is equivalent to:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">namespace</span> Animals {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">interface</span> Legged { numberOfLegs: <span class="hljs-built_in">number</span>; }
+
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Zebra { }
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Dog { }
+}
+</code></pre>
+<p>This model of namespace merging is a helpful starting place, but we also need to understand what happens with non-exported members.
+Non-exported members are only visible in the original (un-merged) namespace. This means that after merging, merged members that came from other declarations cannot see non-exported members.</p>
+<p>We can see this more clearly in this example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">namespace</span> Animal {
+    <span class="hljs-keyword">let</span> haveMuscles = <span class="hljs-literal">true</span>;
+
+    <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animalsHaveMuscles</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> haveMuscles;
+    }
+}
+
+<span class="hljs-keyword">namespace</span> Animal {
+    <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doAnimalsHaveMuscles</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> haveMuscles;  <span class="hljs-comment">// Error, because haveMuscles is not accessible here</span>
+    }
+}
+</code></pre>
+<p>Because <code>haveMuscles</code> is not exported, only the <code>animalsHaveMuscles</code> function that shares the same un-merged namespace can see the symbol.
+The <code>doAnimalsHaveMuscles</code> function, even though it&apos;s part of the merged <code>Animal</code> namespace can not see this un-exported member.</p>
+<h1 id="merging-namespaces-with-classes-functions-and-enums">Merging Namespaces with Classes, Functions, and Enums</h1>
+<p>Namespaces are flexible enough to also merge with other types of declarations.
+To do so, the namespace declaration must follow the declaration it will merge with. The resulting declaration has properties of both declaration types.
+TypeScript uses this capability to model some of the patterns in JavaScript as well as other programming languages.</p>
+<h2 id="merging-namespaces-with-classes">Merging Namespaces with Classes</h2>
+<p>This gives the user a way of describing inner classes.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Album {
+    label: Album.AlbumLabel;
+}
+<span class="hljs-keyword">namespace</span> Album {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> AlbumLabel { }
+}
+</code></pre>
+<p>The visibility rules for merged members is the same as described in the &apos;Merging Namespaces&apos; section, so we must export the <code>AlbumLabel</code> class for the merged class to see it.
+The end result is a class managed inside of another class.
+You can also use namespaces to add more static members to an existing class.</p>
+<p>In addition to the pattern of inner classes, you may also be familiar with JavaScript practice of creating a function and then extending the function further by adding properties onto the function.
+TypeScript uses declaration merging to build up definitions like this in a type-safe way.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildLabel</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">string</span> </span>{
+    <span class="hljs-keyword">return</span> buildLabel.prefix + name + buildLabel.suffix;
+}
+
+<span class="hljs-keyword">namespace</span> buildLabel {
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> suffix = <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-keyword">export</span> <span class="hljs-keyword">let</span> prefix = <span class="hljs-string">&quot;Hello, &quot;</span>;
+}
+
+<span class="hljs-built_in">console</span>.log(buildLabel(<span class="hljs-string">&quot;Sam Smith&quot;</span>));
+</code></pre>
+<p>Similarly, namespaces can be used to extend enums with static members:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Color {
+    red = <span class="hljs-number">1</span>,
+    green = <span class="hljs-number">2</span>,
+    blue = <span class="hljs-number">4</span>
+}
+
+<span class="hljs-keyword">namespace</span> Color {
+    <span class="hljs-keyword">export</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mixColor</span>(<span class="hljs-params">colorName: <span class="hljs-built_in">string</span></span>) </span>{
+        <span class="hljs-keyword">if</span> (colorName == <span class="hljs-string">&quot;yellow&quot;</span>) {
+            <span class="hljs-keyword">return</span> Color.red + Color.green;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (colorName == <span class="hljs-string">&quot;white&quot;</span>) {
+            <span class="hljs-keyword">return</span> Color.red + Color.green + Color.blue;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (colorName == <span class="hljs-string">&quot;magenta&quot;</span>) {
+            <span class="hljs-keyword">return</span> Color.red + Color.blue;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (colorName == <span class="hljs-string">&quot;cyan&quot;</span>) {
+            <span class="hljs-keyword">return</span> Color.green + Color.blue;
+        }
+    }
+}
+</code></pre>
+<h1 id="disallowed-merges">Disallowed Merges</h1>
+<p>Not all merges are allowed in TypeScript.
+Currently, classes can not merge with other classes or with variables.
+For information on mimicking class merging, see the <a href="Mixins.html">Mixins in TypeScript</a> section.</p>
+<h1 id="module-augmentation">Module Augmentation</h1>
+<p>Although JavaScript modules do not support merging, you can patch existing objects by importing and then updating them.
+Let&apos;s look at a toy Observable example:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// observable.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Observable</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+    <span class="hljs-comment">// ... implementation left as an exercise for the reader ...</span>
+}
+
+<span class="hljs-comment">// map.js</span>
+<span class="hljs-keyword">import</span> { Observable } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./observable&quot;</span>;
+Observable.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-comment">// ... another exercise for the reader</span>
+}
+</code></pre>
+<p>This works fine in TypeScript too, but the compiler doesn&apos;t know about <code>Observable.prototype.map</code>.
+You can use module augmentation to tell the compiler about it:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// observable.ts stays the same</span>
+<span class="hljs-comment">// map.ts</span>
+<span class="hljs-keyword">import</span> { Observable } from <span class="hljs-string">&quot;./observable&quot;</span>;
+<span class="hljs-keyword">declare</span> <span class="hljs-keyword">module</span> &quot;./observable&quot; {
+    <span class="hljs-keyword">interface</span> Observable&lt;T&gt; {
+        map&lt;U&gt;(f: (x: T) =&gt; U): Observable&lt;U&gt;;
+    }
+}
+Observable.prototype.map = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">f</span>) </span>{
+    <span class="hljs-comment">// ... another exercise for the reader</span>
+}
+
+
+<span class="hljs-comment">// consumer.ts</span>
+<span class="hljs-keyword">import</span> { Observable } from <span class="hljs-string">&quot;./observable&quot;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./map&quot;</span>;
+<span class="hljs-keyword">let</span> o: Observable&lt;<span class="hljs-built_in">number</span>&gt;;
+o.map(x =&gt; x.toFixed());
+</code></pre>
+<p>The module name is resolved the same way as module specifiers in <code>import</code>/<code>export</code>.
+See <a href="Modules.html">Modules</a> for more information.
+Then the declarations in an augmentation are merged as if they were declared in the same file as the original.
+However, you can&apos;t declare new top-level declarations in the augmentation -- just patches to existing declarations.</p>
+<h2 id="global-augmentation">Global augmentation</h2>
+<p>You can also add declarations to the global scope from inside a module:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// observable.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Observable&lt;T&gt; {
+    <span class="hljs-comment">// ... still no implementation ...</span>
+}
+
+<span class="hljs-keyword">declare</span> global {
+    <span class="hljs-keyword">interface</span> Array&lt;T&gt; {
+        toObservable(): Observable&lt;T&gt;;
+    }
+}
+
+<span class="hljs-built_in">Array</span>.prototype.toObservable = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>Global augmentations have the same behavior and limits as module augmentations.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Module Resolution.html" class="navigation navigation-prev " aria-label="Previous page: Module Resolution">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="JSX.html" class="navigation navigation-next " aria-label="Next page: JSX">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Declaration Merging","level":"1.18","depth":1,"next":{"title":"JSX","level":"1.19","depth":1,"path":"pages/JSX.md","ref":"./pages/JSX.md","articles":[]},"previous":{"title":"Module Resolution","level":"1.17","depth":1,"path":"pages/Module Resolution.md","ref":"./pages/Module Resolution.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Declaration Merging.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

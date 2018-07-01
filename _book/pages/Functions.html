@@ -1,0 +1,882 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Functions · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Generics.html" />
+    
+    
+    <link rel="prev" href="Classes.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Functions</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>Functions are the fundamental building block of any applications in JavaScript.
+They&apos;re how you build up layers of abstraction, mimicking classes, information hiding, and modules.
+In TypeScript, while there are classes, namespaces, and modules, functions still play the key role in describing how to <em>do</em> things.
+TypeScript also adds some new capabilities to the standard JavaScript functions to make them easier to work with.</p>
+<h1 id="functions">Functions</h1>
+<p>To begin, just as in JavaScript, TypeScript functions can be created both as a named function or as an anonymous function.
+This allows you to choose the most appropriate approach for your application, whether you&apos;re building a list of functions in an API or a one-off function to hand off to another function.</p>
+<p>To quickly recap what these two approaches look like in JavaScript:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// Named function</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x, y</span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-comment">// Anonymous function</span>
+<span class="hljs-keyword">let</span> myAdd = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{ <span class="hljs-keyword">return</span> x + y; };
+</code></pre>
+<p>Just as in JavaScript, functions can refer to variables outside of the function body.
+When they do so, they&apos;re said to <code>capture</code> these variables.
+While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> z = <span class="hljs-number">100</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addToZ</span>(<span class="hljs-params">x, y</span>) </span>{
+    <span class="hljs-keyword">return</span> x + y + z;
+}
+</code></pre>
+<h1 id="function-types">Function Types</h1>
+<h2 id="typing-the-function">Typing the function</h2>
+<p>Let&apos;s add types to our simple examples from earlier:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">return</span> x + y;
+}
+
+<span class="hljs-keyword">let</span> myAdd = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{ <span class="hljs-keyword">return</span> x + y; };
+</code></pre>
+<p>We can add types to each of the parameters and then to the function itself to add a return type.
+TypeScript can figure the return type out by looking at the return statements, so we can also optionally leave this off in many cases.</p>
+<h2 id="writing-the-function-type">Writing the function type</h2>
+<p>Now that we&apos;ve typed the function, let&apos;s write the full type of the function out by looking at each piece of the function type.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> myAdd: (x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span>) =&gt; <span class="hljs-built_in">number</span> =
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{ <span class="hljs-keyword">return</span> x + y; };
+</code></pre>
+<p>A function&apos;s type has the same two parts: the type of the arguments and the return type.
+When writing out the whole function type, both parts are required.
+We write out the parameter types just like a parameter list, giving each parameter a name and a type.
+This name is just to help with readability.
+We could have instead written:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> myAdd: (baseValue: <span class="hljs-built_in">number</span>, increment: <span class="hljs-built_in">number</span>) =&gt; <span class="hljs-built_in">number</span> =
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{ <span class="hljs-keyword">return</span> x + y; };
+</code></pre>
+<p>As long as the parameter types line up, it&apos;s considered a valid type for the function, regardless of the names you give the parameters in the function type.</p>
+<p>The second part is the return type.
+We make it clear which is the return type by using a fat arrow (<code>=&gt;</code>) between the parameters and the return type.
+As mentioned before, this is a required part of the function type, so if the function doesn&apos;t return a value, you would use <code>void</code> instead of leaving it off.</p>
+<p>Of note, only the parameters and the return type make up the function type.
+Captured variables are not reflected in the type.
+In effect, captured variables are part of the &quot;hidden state&quot; of any function and do not make up its API.</p>
+<h2 id="inferring-the-types">Inferring the types</h2>
+<p>In playing with the example, you may notice that the TypeScript compiler can figure out the type if you have types on one side of the equation but not the other:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// myAdd has the full function type</span>
+<span class="hljs-keyword">let</span> myAdd = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">number</span> </span>{ <span class="hljs-keyword">return</span>  x + y; };
+
+<span class="hljs-comment">// The parameters &apos;x&apos; and &apos;y&apos; have the type number</span>
+<span class="hljs-keyword">let</span> myAdd: (baseValue: <span class="hljs-built_in">number</span>, increment: <span class="hljs-built_in">number</span>) =&gt; <span class="hljs-built_in">number</span> =
+    <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">x, y</span>) </span>{ <span class="hljs-keyword">return</span> x + y; };
+</code></pre>
+<p>This is called &quot;contextual typing&quot;, a form of type inference.
+This helps cut down on the amount of effort to keep your program typed.</p>
+<h1 id="optional-and-default-parameters">Optional and Default Parameters</h1>
+<p>In TypeScript, every parameter is assumed to be required by the function.
+This doesn&apos;t mean that it can&apos;t be given <code>null</code> or <code>undefined</code>, but rather, when the function is called the compiler will check that the user has provided a value for each parameter.
+The compiler also assumes that these parameters are the only parameters that will be passed to the function.
+In short, the number of arguments given to a function has to match the number of parameters the function expects.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName: <span class="hljs-built_in">string</span></span>) </span>{
+    <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + lastName;
+}
+
+<span class="hljs-keyword">let</span> result1 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>);                  <span class="hljs-comment">// error, too few parameters</span>
+<span class="hljs-keyword">let</span> result2 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>, <span class="hljs-string">&quot;Sr.&quot;</span>);  <span class="hljs-comment">// error, too many parameters</span>
+<span class="hljs-keyword">let</span> result3 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>);         <span class="hljs-comment">// ah, just right</span>
+</code></pre>
+<p>In JavaScript, every parameter is optional, and users may leave them off as they see fit.
+When they do, their value is <code>undefined</code>.
+We can get this functionality in TypeScript by adding a <code>?</code> to the end of parameters we want to be optional.
+For example, let&apos;s say we want the last name parameter from above to be optional:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName?: <span class="hljs-built_in">string</span></span>) </span>{
+    <span class="hljs-keyword">if</span> (lastName)
+        <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + lastName;
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-keyword">return</span> firstName;
+}
+
+<span class="hljs-keyword">let</span> result1 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>);                  <span class="hljs-comment">// works correctly now</span>
+<span class="hljs-keyword">let</span> result2 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>, <span class="hljs-string">&quot;Sr.&quot;</span>);  <span class="hljs-comment">// error, too many parameters</span>
+<span class="hljs-keyword">let</span> result3 = buildName(<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Adams&quot;</span>);         <span class="hljs-comment">// ah, just right</span>
+</code></pre>
+<p>Any optional parameters must follow required parameters.
+Had we wanted to make the first name optional rather than the last name, we would need to change the order of parameters in the function, putting the first name last in the list.</p>
+<p>In TypeScript, we can also set a value that a parameter will be assigned if the user does not provide one, or if the user passes <code>undefined</code> in its place.
+These are called default-initialized parameters.
+Let&apos;s take the previous example and default the last name to <code>&quot;Smith&quot;</code>.</p>
+<pre><code class="lang-ts">function buildName(firstName: string, lastName = &quot;Smith&quot;) {
+    return firstName + &quot; &quot; + lastName;
+}
+
+let result1 = buildName(&quot;Bob&quot;);                  // works correctly now, returns &quot;Bob Smith&quot;
+let result2 = buildName(&quot;Bob&quot;, undefined);       // still works, also returns &quot;Bob Smith&quot;
+let result3 = buildName(&quot;Bob&quot;, &quot;Adams&quot;, &quot;Sr.&quot;);  // error, too many parameters
+let result4 = buildName(&quot;Bob&quot;, &quot;Adams&quot;);         // ah, just right
+</code></pre>
+<p>Default-initialized parameters that come after all required parameters are treated as optional, and just like optional parameters, can be omitted when calling their respective function.
+This means optional parameters and trailing default parameters will share commonality in their types, so both</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, lastName?: <span class="hljs-built_in">string</span></span>) </span>{
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>and</p>
+<pre><code class="lang-ts">function buildName(firstName: string, lastName = &quot;Smith&quot;) {
+    // ...
+}
+</code></pre>
+<p>share the same type <code>(firstName: string, lastName?: string) =&gt; string</code>.
+The default value of <code>lastName</code> disappears in the type, only leaving behind the fact that the parameter is optional.</p>
+<p>Unlike plain optional parameters, default-initialized parameters don&apos;t <em>need</em> to occur after required parameters.
+If a default-initialized parameter comes before a required parameter, users need to explicitly pass <code>undefined</code> to get the default initialized value.
+For example, we could write our last example with only a default initializer on <code>firstName</code>:</p>
+<pre><code class="lang-ts">function buildName(firstName = &quot;Will&quot;, lastName: string) {
+    return firstName + &quot; &quot; + lastName;
+}
+
+let result1 = buildName(&quot;Bob&quot;);                  // error, too few parameters
+let result2 = buildName(&quot;Bob&quot;, &quot;Adams&quot;, &quot;Sr.&quot;);  // error, too many parameters
+let result3 = buildName(&quot;Bob&quot;, &quot;Adams&quot;);         // okay and returns &quot;Bob Adams&quot;
+let result4 = buildName(undefined, &quot;Adams&quot;);     // okay and returns &quot;Will Adams&quot;
+</code></pre>
+<h1 id="rest-parameters">Rest Parameters</h1>
+<p>Required, optional, and default parameters all have one thing in common: they talk about one parameter at a time.
+Sometimes, you want to work with multiple parameters as a group, or you may not know how many parameters a function will ultimately take.
+In JavaScript, you can work with the arguments directly using the <code>arguments</code> variable that is visible inside every function body.</p>
+<p>In TypeScript, you can gather these arguments together into a variable:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, ...restOfName: <span class="hljs-built_in">string</span>[]</span>) </span>{
+    <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + restOfName.join(<span class="hljs-string">&quot; &quot;</span>);
+}
+
+<span class="hljs-keyword">let</span> employeeName = buildName(<span class="hljs-string">&quot;Joseph&quot;</span>, <span class="hljs-string">&quot;Samuel&quot;</span>, <span class="hljs-string">&quot;Lucas&quot;</span>, <span class="hljs-string">&quot;MacKinzie&quot;</span>);
+</code></pre>
+<p><em>Rest parameters</em> are treated as a boundless number of optional parameters.
+When passing arguments for a rest parameter, you can use as many as you want; you can even pass none.
+The compiler will build an array of the arguments passed in with the name given after the ellipsis (<code>...</code>), allowing you to use it in your function.</p>
+<p>The ellipsis is also used in the type of the function with rest parameters:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">buildName</span>(<span class="hljs-params">firstName: <span class="hljs-built_in">string</span>, ...restOfName: <span class="hljs-built_in">string</span>[]</span>) </span>{
+    <span class="hljs-keyword">return</span> firstName + <span class="hljs-string">&quot; &quot;</span> + restOfName.join(<span class="hljs-string">&quot; &quot;</span>);
+}
+
+<span class="hljs-keyword">let</span> buildNameFun: (fname: <span class="hljs-built_in">string</span>, ...rest: <span class="hljs-built_in">string</span>[]) =&gt; <span class="hljs-built_in">string</span> = buildName;
+</code></pre>
+<h1 id="this"><code>this</code></h1>
+<p>Learning how to use <code>this</code> in JavaScript is something of a rite of passage.
+Since TypeScript is a superset of JavaScript, TypeScript developers also need to learn how to use <code>this</code> and how to spot when it&apos;s not being used correctly.
+Fortunately, TypeScript lets you catch incorrect uses of <code>this</code> with a couple of techniques.
+If you need to learn how <code>this</code> works in JavaScript, though, first read Yehuda Katz&apos;s <a href="http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/" target="_blank">Understanding JavaScript Function Invocation and &quot;this&quot;</a>.
+Yehuda&apos;s article explains the inner workings of <code>this</code> very well, so we&apos;ll just cover the basics here.</p>
+<h2 id="this-and-arrow-functions"><code>this</code> and arrow functions</h2>
+<p>In JavaScript, <code>this</code> is a variable that&apos;s set when a function is called.
+This makes it a very powerful and flexible feature, but it comes at the cost of always having to know about the context that a function is executing in.
+This is notoriously confusing, especially when returning a function or passing a function as an argument.</p>
+<p>Let&apos;s look at an example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> deck = {
+    suits: [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>],
+    cards: <span class="hljs-built_in">Array</span>(<span class="hljs-number">52</span>),
+    createCardPicker: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">52</span>);
+            <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-built_in">Math</span>.floor(pickedCard / <span class="hljs-number">13</span>);
+
+            <span class="hljs-keyword">return</span> {suit: <span class="hljs-keyword">this</span>.suits[pickedSuit], card: pickedCard % <span class="hljs-number">13</span>};
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> cardPicker = deck.createCardPicker();
+<span class="hljs-keyword">let</span> pickedCard = cardPicker();
+
+alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard.suit);
+</code></pre>
+<p>Notice that <code>createCardPicker</code> is a function that itself returns a function.
+If we tried to run the example, we would get an error instead of the expected alert box.
+This is because the <code>this</code> being used in the function created by <code>createCardPicker</code> will be set to <code>window</code> instead of our <code>deck</code> object.
+That&apos;s because we call <code>cardPicker()</code> on its own.
+A top-level non-method syntax call like this will use <code>window</code> for <code>this</code>.
+(Note: under strict mode, <code>this</code> will be <code>undefined</code> rather than <code>window</code>).</p>
+<p>We can fix this by making sure the function is bound to the correct <code>this</code> before we return the function to be used later.
+This way, regardless of how it&apos;s later used, it will still be able to see the original <code>deck</code> object.
+To do this, we change the function expression to use the ECMAScript 6 arrow syntax.
+Arrow functions capture the <code>this</code> where the function is created rather than where it is invoked:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> deck = {
+    suits: [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>],
+    cards: <span class="hljs-built_in">Array</span>(<span class="hljs-number">52</span>),
+    createCardPicker: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> the line below is now an arrow function, allowing us to capture &apos;this&apos; right here</span>
+        <span class="hljs-keyword">return</span> () =&gt; {
+            <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">52</span>);
+            <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-built_in">Math</span>.floor(pickedCard / <span class="hljs-number">13</span>);
+
+            <span class="hljs-keyword">return</span> {suit: <span class="hljs-keyword">this</span>.suits[pickedSuit], card: pickedCard % <span class="hljs-number">13</span>};
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> cardPicker = deck.createCardPicker();
+<span class="hljs-keyword">let</span> pickedCard = cardPicker();
+
+alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard.suit);
+</code></pre>
+<p>Even better, TypeScript will warn you when you make this mistake if you pass the <code>--noImplicitThis</code> flag to the compiler.
+It will point out that <code>this</code> in <code>this.suits[pickedSuit]</code> is of type <code>any</code>.</p>
+<h2 id="this-parameters"><code>this</code> parameters</h2>
+<p>Unfortunately, the type of <code>this.suits[pickedSuit]</code> is still <code>any</code>.
+That&apos;s because <code>this</code> comes from the function expression inside the object literal.
+To fix this, you can provide an explicit <code>this</code> parameter.
+<code>this</code> parameters are fake parameters that come first in the parameter list of a function:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"><span class="hljs-keyword">this</span>: <span class="hljs-built_in">void</span></span>) </span>{
+    <span class="hljs-comment">// make sure `this` is unusable in this standalone function</span>
+}
+</code></pre>
+<p>Let&apos;s add a couple of interfaces to our example above, <code>Card</code> and <code>Deck</code>, to make the types clearer and easier to reuse:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Card {
+    suit: <span class="hljs-built_in">string</span>;
+    card: <span class="hljs-built_in">number</span>;
+}
+<span class="hljs-keyword">interface</span> Deck {
+    suits: <span class="hljs-built_in">string</span>[];
+    cards: <span class="hljs-built_in">number</span>[];
+    createCardPicker(<span class="hljs-keyword">this</span>: Deck): () =&gt; Card;
+}
+<span class="hljs-keyword">let</span> deck: Deck = {
+    suits: [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>],
+    cards: <span class="hljs-built_in">Array</span>(<span class="hljs-number">52</span>),
+    <span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> The function now explicitly specifies that its callee must be of type Deck</span>
+    createCardPicker: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-keyword">this</span>: Deck</span>) </span>{
+        <span class="hljs-keyword">return</span> () =&gt; {
+            <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">52</span>);
+            <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-built_in">Math</span>.floor(pickedCard / <span class="hljs-number">13</span>);
+
+            <span class="hljs-keyword">return</span> {suit: <span class="hljs-keyword">this</span>.suits[pickedSuit], card: pickedCard % <span class="hljs-number">13</span>};
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> cardPicker = deck.createCardPicker();
+<span class="hljs-keyword">let</span> pickedCard = cardPicker();
+
+alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard.suit);
+</code></pre>
+<p>Now TypeScript knows that <code>createCardPicker</code> expects to be called on a <code>Deck</code> object.
+That means that <code>this</code> is of type <code>Deck</code> now, not <code>any</code>, so <code>--noImplicitThis</code> will not cause any errors.</p>
+<h3 id="this-parameters-in-callbacks"><code>this</code> parameters in callbacks</h3>
+<p>You can also run into errors with <code>this</code> in callbacks, when you pass functions to a library that will later call them.
+Because the library that calls your callback will call it like a normal function, <code>this</code> will be <code>undefined</code>.
+With some work you can use <code>this</code> parameters to prevent errors with callbacks too.
+First, the library author needs to annotate the callback type with <code>this</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> UIElement {
+    addClickListener(onclick: (<span class="hljs-keyword">this</span>: <span class="hljs-built_in">void</span>, e: Event) =&gt; <span class="hljs-built_in">void</span>): <span class="hljs-built_in">void</span>;
+}
+</code></pre>
+<p><code>this: void</code> means that <code>addClickListener</code> expects <code>onclick</code> to be a function that does not require a <code>this</code> type.
+Second, annotate your calling code with <code>this</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Handler {
+    info: <span class="hljs-built_in">string</span>;
+    onClickBad(<span class="hljs-keyword">this</span>: Handler, e: Event) {
+        <span class="hljs-comment">// oops, used this here. using this callback would crash at runtime</span>
+        <span class="hljs-keyword">this</span>.info = e.message;
+    }
+}
+<span class="hljs-keyword">let</span> h = <span class="hljs-keyword">new</span> Handler();
+uiElement.addClickListener(h.onClickBad); <span class="hljs-comment">// error!</span>
+</code></pre>
+<p>With <code>this</code> annotated, you make it explicit that <code>onClickBad</code> must be called on an instance of <code>Handler</code>.
+Then TypeScript will detect that <code>addClickListener</code> requires a function that has <code>this: void</code>.
+To fix the error, change the type of <code>this</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Handler {
+    info: <span class="hljs-built_in">string</span>;
+    onClickGood(<span class="hljs-keyword">this</span>: <span class="hljs-built_in">void</span>, e: Event) {
+        <span class="hljs-comment">// can&apos;t use this here because it&apos;s of type void!</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;clicked!&apos;</span>);
+    }
+}
+<span class="hljs-keyword">let</span> h = <span class="hljs-keyword">new</span> Handler();
+uiElement.addClickListener(h.onClickGood);
+</code></pre>
+<p>Because <code>onClickGood</code> specifies its <code>this</code> type as <code>void</code>, it is legal to pass to <code>addClickListener</code>.
+Of course, this also means that it can&apos;t use <code>this.info</code>.
+If you want both then you&apos;ll have to use an arrow function:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Handler {
+    info: <span class="hljs-built_in">string</span>;
+    onClickGood = (e: Event) =&gt; { <span class="hljs-keyword">this</span>.info = e.message }
+}
+</code></pre>
+<p>This works because arrow functions don&apos;t capture <code>this</code>, so you can always pass them to something that expects <code>this: void</code>.
+The downside is that one arrow function is created per object of type Handler.
+Methods, on the other hand, are only created once and attached to Handler&apos;s prototype.
+They are shared between all objects of type Handler.</p>
+<h1 id="overloads">Overloads</h1>
+<p>JavaScript is inherently a very dynamic language.
+It&apos;s not uncommon for a single JavaScript function to return different types of objects based on the shape of the arguments passed in.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> suits = [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pickCard</span>(<span class="hljs-params">x</span>): <span class="hljs-title">any</span> </span>{
+    <span class="hljs-comment">// Check to see if we&apos;re working with an object/array</span>
+    <span class="hljs-comment">// if so, they gave us the deck and we&apos;ll pick the card</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x == <span class="hljs-string">&quot;object&quot;</span>) {
+        <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * x.length);
+        <span class="hljs-keyword">return</span> pickedCard;
+    }
+    <span class="hljs-comment">// Otherwise just let them pick the card</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x == <span class="hljs-string">&quot;number&quot;</span>) {
+        <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-built_in">Math</span>.floor(x / <span class="hljs-number">13</span>);
+        <span class="hljs-keyword">return</span> { suit: suits[pickedSuit], card: x % <span class="hljs-number">13</span> };
+    }
+}
+
+<span class="hljs-keyword">let</span> myDeck = [{ suit: <span class="hljs-string">&quot;diamonds&quot;</span>, card: <span class="hljs-number">2</span> }, { suit: <span class="hljs-string">&quot;spades&quot;</span>, card: <span class="hljs-number">10</span> }, { suit: <span class="hljs-string">&quot;hearts&quot;</span>, card: <span class="hljs-number">4</span> }];
+<span class="hljs-keyword">let</span> pickedCard1 = myDeck[pickCard(myDeck)];
+alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard1.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard1.suit);
+
+<span class="hljs-keyword">let</span> pickedCard2 = pickCard(<span class="hljs-number">15</span>);
+alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard2.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard2.suit);
+</code></pre>
+<p>Here the <code>pickCard</code> function will return two different things based on what the user has passed in.
+If the users passes in an object that represents the deck, the function will pick the card.
+If the user picks the card, we tell them which card they&apos;ve picked.
+But how do we describe this to the type system?</p>
+<p>The answer is to supply multiple function types for the same function as a list of overloads.
+This list is what the compiler will use to resolve function calls.
+Let&apos;s create a list of overloads that describe what our <code>pickCard</code> accepts and what it returns.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> suits = [<span class="hljs-string">&quot;hearts&quot;</span>, <span class="hljs-string">&quot;spades&quot;</span>, <span class="hljs-string">&quot;clubs&quot;</span>, <span class="hljs-string">&quot;diamonds&quot;</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pickCard</span>(<span class="hljs-params">x: {suit: <span class="hljs-built_in">string</span>; card: <span class="hljs-built_in">number</span>; }[]</span>): <span class="hljs-title">number</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pickCard</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span></span>): </span>{suit: <span class="hljs-built_in">string</span>; card: <span class="hljs-built_in">number</span>; };
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pickCard</span>(<span class="hljs-params">x</span>): <span class="hljs-title">any</span> </span>{
+    <span class="hljs-comment">// Check to see if we&apos;re working with an object/array</span>
+    <span class="hljs-comment">// if so, they gave us the deck and we&apos;ll pick the card</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x == <span class="hljs-string">&quot;object&quot;</span>) {
+        <span class="hljs-keyword">let</span> pickedCard = <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * x.length);
+        <span class="hljs-keyword">return</span> pickedCard;
+    }
+    <span class="hljs-comment">// Otherwise just let them pick the card</span>
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> x == <span class="hljs-string">&quot;number&quot;</span>) {
+        <span class="hljs-keyword">let</span> pickedSuit = <span class="hljs-built_in">Math</span>.floor(x / <span class="hljs-number">13</span>);
+        <span class="hljs-keyword">return</span> { suit: suits[pickedSuit], card: x % <span class="hljs-number">13</span> };
+    }
+}
+
+<span class="hljs-keyword">let</span> myDeck = [{ suit: <span class="hljs-string">&quot;diamonds&quot;</span>, card: <span class="hljs-number">2</span> }, { suit: <span class="hljs-string">&quot;spades&quot;</span>, card: <span class="hljs-number">10</span> }, { suit: <span class="hljs-string">&quot;hearts&quot;</span>, card: <span class="hljs-number">4</span> }];
+<span class="hljs-keyword">let</span> pickedCard1 = myDeck[pickCard(myDeck)];
+alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard1.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard1.suit);
+
+<span class="hljs-keyword">let</span> pickedCard2 = pickCard(<span class="hljs-number">15</span>);
+alert(<span class="hljs-string">&quot;card: &quot;</span> + pickedCard2.card + <span class="hljs-string">&quot; of &quot;</span> + pickedCard2.suit);
+</code></pre>
+<p>With this change, the overloads now give us type-checked calls to the <code>pickCard</code> function.</p>
+<p>In order for the compiler to pick the correct typecheck, it follows a similar process to the underlying JavaScript.
+It looks at the overload list, and proceeding with the first overload attempts to call the function with the provided parameters.
+If it finds a match, it picks this overload as the correct overload.
+For this reason, it&apos;s customary to order overloads from most specific to least specific.</p>
+<p>Note that the <code>function pickCard(x): any</code> piece is not part of the overload list, so it only has two overloads: one that takes an object and one that takes a number.
+Calling <code>pickCard</code> with any other parameter types would cause an error.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Classes.html" class="navigation navigation-prev " aria-label="Previous page: Classes">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Generics.html" class="navigation navigation-next " aria-label="Next page: Generics">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Functions","level":"1.6","depth":1,"next":{"title":"Generics","level":"1.7","depth":1,"path":"pages/Generics.md","ref":"./pages/Generics.md","articles":[]},"previous":{"title":"Classes","level":"1.5","depth":1,"path":"pages/Classes.md","ref":"./pages/Classes.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Functions.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

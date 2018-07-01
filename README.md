@@ -1,8 +1,23 @@
 # TypeScript-Handbook
 
-[![Build Status](https://travis-ci.org/Microsoft/TypeScript-Handbook.svg)](https://travis-ci.org/Microsoft/TypeScript-Handbook)
+> 번역 프로젝트 기여자
 
-The TypeScript Handbook is a comprehensive guide to the TypeScript language.
-It is meant to be read online at [the TypeScript website](https://www.typescriptlang.org/docs/handbook/basic-types.html) or [directly from this repository](./pages/Basic%20Types.md).
+ByeongGiKim , Jaeho Lee
 
-For a more formal description of the language, see the [latest TypeScript Language Specification](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md).
+## 문서 빌드 방법 
+1. gitbook-cli 설치
+
+```bash
+    npm install -g gitbook-cli
+```
+
+2. gitbook build 하기 
+
+```bash
+    gitbook build
+```
+2. gitbook  로컬 서버에서 작업 진행 
+
+```bash
+    gitbook serve
+```

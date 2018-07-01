@@ -1,0 +1,882 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>JSX · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Decorators.html" />
+    
+    
+    <link rel="prev" href="Declaration Merging.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >JSX</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p><a href="https://facebook.github.io/jsx/" target="_blank">JSX</a> is an embeddable XML-like syntax.
+It is meant to be transformed into valid JavaScript, though the semantics of that transformation are implementation-specific.
+JSX rose to popularity with the <a href="https://reactjs.org/" target="_blank">React</a> framework, but has since seen other implementations as well.
+TypeScript supports embedding, type checking, and compiling JSX directly to JavaScript.</p>
+<h1 id="basic-usage">Basic usage</h1>
+<p>In order to use JSX you must do two things.</p>
+<ol>
+<li>Name your files with a <code>.tsx</code> extension</li>
+<li>Enable the <code>jsx</code> option</li>
+</ol>
+<p>TypeScript ships with three JSX modes: <code>preserve</code>, <code>react</code>, and <code>react-native</code>.
+These modes only affect the emit stage - type checking is unaffected.
+The <code>preserve</code> mode will keep the JSX as part of the output to be further consumed by another transform step (e.g. <a href="https://babeljs.io/" target="_blank">Babel</a>).
+Additionally the output will have a <code>.jsx</code> file extension.
+The <code>react</code> mode will emit <code>React.createElement</code>, does not need to go through a JSX transformation before use, and the output will have a <code>.js</code> file extension.
+The <code>react-native</code> mode is the equivalent of <code>preserve</code> in that it keeps all JSX, but the output will instead have a <code>.js</code> file extension.</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Input</th>
+<th>Output</th>
+<th>Output File Extension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>preserve</code></td>
+<td><code>&lt;div /&gt;</code></td>
+<td><code>&lt;div /&gt;</code></td>
+<td><code>.jsx</code></td>
+</tr>
+<tr>
+<td><code>react</code></td>
+<td><code>&lt;div /&gt;</code></td>
+<td><code>React.createElement(&quot;div&quot;)</code></td>
+<td><code>.js</code></td>
+</tr>
+<tr>
+<td><code>react-native</code></td>
+<td><code>&lt;div /&gt;</code></td>
+<td><code>&lt;div /&gt;</code></td>
+<td><code>.js</code></td>
+</tr>
+</tbody>
+</table>
+<p>You can specify this mode using either the <code>--jsx</code> command line flag or the corresponding option in your <a href="tsconfig.json.md">tsconfig.json</a> file.</p>
+<blockquote>
+<p><em>Note: The identifier <code>React</code> is hard-coded, so you must make React available with an uppercase R.</em></p>
+</blockquote>
+<h1 id="the-as-operator">The <code>as</code> operator</h1>
+<p>Recall how to write a type assertion:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">var</span> foo = &lt;foo&gt;bar;
+</code></pre>
+<p>This asserts the variable <code>bar</code> to have the type <code>foo</code>.
+Since TypeScript also uses angle brackets for type assertions, combining it with JSX&apos;s syntax would introduce certain parsing difficulties. As a result, TypeScript disallows angle bracket type assertions in <code>.tsx</code> files.</p>
+<p>Since the above syntax cannot be used in <code>.tsx</code> files, an alternate type assertion operator should be used: <code>as</code>.
+The example can easily be rewritten with the <code>as</code> operator.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">var</span> foo = bar as foo;
+</code></pre>
+<p>The <code>as</code> operator is available in both <code>.ts</code> and <code>.tsx</code> files, and is identical in behavior to the angle-bracket type assertion style.</p>
+<h1 id="type-checking">Type Checking</h1>
+<p>In order to understand type checking with JSX, you must first understand the difference between intrinsic elements and value-based elements.
+Given a JSX expression <code>&lt;expr /&gt;</code>, <code>expr</code> may either refer to something intrinsic to the environment (e.g. a <code>div</code> or <code>span</code> in a DOM environment) or to a custom component that you&apos;ve created.
+This is important for two reasons:</p>
+<ol>
+<li>For React, intrinsic elements are emitted as strings (<code>React.createElement(&quot;div&quot;)</code>), whereas a component you&apos;ve created is not (<code>React.createElement(MyComponent)</code>).</li>
+<li>The types of the attributes being passed in the JSX element should be looked up differently.
+Intrinsic element attributes should be known <em>intrinsically</em> whereas components will likely want to specify their own set of attributes.</li>
+</ol>
+<p>TypeScript uses the <a href="http://facebook.github.io/react/docs/jsx-in-depth.html#html-tags-vs.-react-components" target="_blank">same convention that React does</a> for distinguishing between these.
+An intrinsic element always begins with a lowercase letter, and a value-based element always begins with an uppercase letter.</p>
+<h2 id="intrinsic-elements">Intrinsic elements</h2>
+<p>Intrinsic elements are looked up on the special interface <code>JSX.IntrinsicElements</code>.
+By default, if this interface is not specified, then anything goes and intrinsic elements will not be type checked.
+However, if this interface <em>is</em> present, then the name of the intrinsic element is looked up as a property on the <code>JSX.IntrinsicElements</code> interface.
+For example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> JSX {
+    <span class="hljs-keyword">interface</span> IntrinsicElements {
+        foo: <span class="hljs-built_in">any</span>
+    }
+}
+
+&lt;foo /&gt;; <span class="hljs-comment">// ok</span>
+&lt;bar /&gt;; <span class="hljs-comment">// error</span>
+</code></pre>
+<p>In the above example, <code>&lt;foo /&gt;</code> will work fine but <code>&lt;bar /&gt;</code> will result in an error since it has not been specified on <code>JSX.IntrinsicElements</code>.</p>
+<blockquote>
+<p>Note: You can also specify a catch-all string indexer on <code>JSX.IntrinsicElements</code> as follows:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> JSX {
+   <span class="hljs-keyword">interface</span> IntrinsicElements {
+       [elemName: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">any</span>;
+   }
+}
+</code></pre>
+</blockquote>
+<h2 id="value-based-elements">Value-based elements</h2>
+<p>Value based elements are simply looked up by identifiers that are in scope.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> MyComponent from <span class="hljs-string">&quot;./myComponent&quot;</span>;
+
+&lt;MyComponent /&gt;; <span class="hljs-comment">// ok</span>
+&lt;SomeOtherComponent /&gt;; <span class="hljs-comment">// error</span>
+</code></pre>
+<p>There are two ways to define a value-based element:</p>
+<ol>
+<li>Stateless Functional Component (SFC)</li>
+<li>Class Component</li>
+</ol>
+<p>Because these two types of value-based elements are indistinguishable from each other in a JSX expression, first TS tries to resolve the expression as Stateless Functional Component using overload resolution. If the process succeeds, then TS finishes resolving the expression to its declaration. If the value fails to resolve as SFC, TS will then try to resolve it as a class component. If that fails, TS will report an error.</p>
+<h3 id="stateless-functional-component">Stateless Functional Component</h3>
+<p>As the name suggests, the component is defined as JavaScript function where its first argument is a <code>props</code> object.
+TS enforces that its return type must be assignable to <code>JSX.Element</code>.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> FooProp {
+  name: <span class="hljs-built_in">string</span>;
+  X: <span class="hljs-built_in">number</span>;
+  Y: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">AnotherComponent</span>(<span class="hljs-params">prop: {name: <span class="hljs-built_in">string</span>}</span>)</span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ComponentFoo</span>(<span class="hljs-params">prop: FooProp</span>) </span>{
+  <span class="hljs-keyword">return</span> &lt;AnotherComponent name={prop.name} /&gt;;
+}
+
+<span class="hljs-keyword">const</span> Button = (prop: {value: <span class="hljs-built_in">string</span>}, context: { color: <span class="hljs-built_in">string</span> }) =&gt; &lt;button&gt;
+</code></pre>
+<p>Because an SFC is simply a JavaScript function, function overloads may be used here as well:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ClickableProps {
+  children: JSX.Element[] | JSX.Element
+}
+
+<span class="hljs-keyword">interface</span> HomeProps <span class="hljs-keyword">extends</span> ClickableProps {
+  home: JSX.Element;
+}
+
+<span class="hljs-keyword">interface</span> SideProps <span class="hljs-keyword">extends</span> ClickableProps {
+  side: JSX.Element | <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainButton</span>(<span class="hljs-params">prop: HomeProps</span>): <span class="hljs-title">JSX</span>.<span class="hljs-title">Element</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MainButton</span>(<span class="hljs-params">prop: SideProps</span>): <span class="hljs-title">JSX</span>.<span class="hljs-title">Element</span> </span>{
+  ...
+}
+</code></pre>
+<h3 id="class-component">Class Component</h3>
+<p>It is possible to define the type of a class component.
+However, to do so it is best to understand two new terms: the <em>element class type</em> and the <em>element instance type</em>.</p>
+<p>Given <code>&lt;Expr /&gt;</code>, the <em>element class type</em> is the type of <code>Expr</code>.
+So in the example above, if <code>MyComponent</code> was an ES6 class the class type would be that class&apos;s constructor and statics.
+If <code>MyComponent</code> was a factory function, the class type would be that function.</p>
+<p>Once the class type is established, the instance type is determined by the union of the return types of the class type&apos;s construct or call signatures (whichever is present).
+So again, in the case of an ES6 class, the instance type would be the type of an instance of that class, and in the case of a factory function, it would be the type of the value returned from the function.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> MyComponent {
+  render() {}
+}
+
+<span class="hljs-comment">// use a construct signature</span>
+<span class="hljs-keyword">var</span> myComponent = <span class="hljs-keyword">new</span> MyComponent();
+
+<span class="hljs-comment">// element class type =&gt; MyComponent</span>
+<span class="hljs-comment">// element instance type =&gt; { render: () =&gt; void }</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyFactoryFunction</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> {
+    render: () =&gt; {
+    }
+  }
+}
+
+<span class="hljs-comment">// use a call signature</span>
+<span class="hljs-keyword">var</span> myComponent = MyFactoryFunction();
+
+<span class="hljs-comment">// element class type =&gt; FactoryFunction</span>
+<span class="hljs-comment">// element instance type =&gt; { render: () =&gt; void }</span>
+</code></pre>
+<p>The element instance type is interesting because it must be assignable to <code>JSX.ElementClass</code> or it will result in an error.
+By default <code>JSX.ElementClass</code> is <code>{}</code>, but it can be augmented to limit the use of JSX to only those types that conform to the proper interface.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> JSX {
+  <span class="hljs-keyword">interface</span> ElementClass {
+    render: <span class="hljs-built_in">any</span>;
+  }
+}
+
+<span class="hljs-keyword">class</span> MyComponent {
+  render() {}
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">MyFactoryFunction</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> { render: () =&gt; {} }
+}
+
+&lt;MyComponent /&gt;; <span class="hljs-comment">// ok</span>
+&lt;MyFactoryFunction /&gt;; <span class="hljs-comment">// ok</span>
+
+<span class="hljs-keyword">class</span> NotAValidComponent {}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">NotAValidFactoryFunction</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> {};
+}
+
+&lt;NotAValidComponent /&gt;; <span class="hljs-comment">// error</span>
+&lt;NotAValidFactoryFunction /&gt;; <span class="hljs-comment">// error</span>
+</code></pre>
+<h2 id="attribute-type-checking">Attribute type checking</h2>
+<p>The first step to type checking attributes is to determine the <em>element attributes type</em>.
+This is slightly different between intrinsic and value-based elements.</p>
+<p>For intrinsic elements, it is the type of the property on <code>JSX.IntrinsicElements</code></p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> JSX {
+  <span class="hljs-keyword">interface</span> IntrinsicElements {
+    foo: { bar?: <span class="hljs-built_in">boolean</span> }
+  }
+}
+
+<span class="hljs-comment">// element attributes type for &apos;foo&apos; is &apos;{bar?: boolean}&apos;</span>
+&lt;foo bar /&gt;;
+</code></pre>
+<p>For value-based elements, it is a bit more complex.
+It is determined by the type of a property on the <em>element instance type</em> that was previously determined.
+Which property to use is determined by <code>JSX.ElementAttributesProperty</code>.
+It should be declared with a single property.
+The name of that property is then used.
+As of TypeScript 2.8, if <code>JSX.ElementAttributesProperty</code> is not provided, the type of first parameter of the class element&apos;s constructor or SFC&apos;s call will be used instead.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> JSX {
+  <span class="hljs-keyword">interface</span> ElementAttributesProperty {
+    props; <span class="hljs-comment">// specify the property name to use</span>
+  }
+}
+
+<span class="hljs-keyword">class</span> MyComponent {
+  <span class="hljs-comment">// specify the property on the element instance type</span>
+  props: {
+    foo?: <span class="hljs-built_in">string</span>;
+  }
+}
+
+<span class="hljs-comment">// element attributes type for &apos;MyComponent&apos; is &apos;{foo?: string}&apos;</span>
+&lt;MyComponent foo=<span class="hljs-string">&quot;bar&quot;</span> /&gt;
+</code></pre>
+<p>The element attribute type is used to type check the attributes in the JSX.
+Optional and required properties are supported.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> JSX {
+  <span class="hljs-keyword">interface</span> IntrinsicElements {
+    foo: { requiredProp: <span class="hljs-built_in">string</span>; optionalProp?: <span class="hljs-built_in">number</span> }
+  }
+}
+
+&lt;foo requiredProp=<span class="hljs-string">&quot;bar&quot;</span> /&gt;; <span class="hljs-comment">// ok</span>
+&lt;foo requiredProp=<span class="hljs-string">&quot;bar&quot;</span> optionalProp={<span class="hljs-number">0</span>} /&gt;; <span class="hljs-comment">// ok</span>
+&lt;foo /&gt;; <span class="hljs-comment">// error, requiredProp is missing</span>
+&lt;foo requiredProp={<span class="hljs-number">0</span>} /&gt;; <span class="hljs-comment">// error, requiredProp should be a string</span>
+&lt;foo requiredProp=<span class="hljs-string">&quot;bar&quot;</span> unknownProp /&gt;; <span class="hljs-comment">// error, unknownProp does not exist</span>
+&lt;foo requiredProp=<span class="hljs-string">&quot;bar&quot;</span> some-unknown-prop /&gt;; <span class="hljs-comment">// ok, because &apos;some-unknown-prop&apos; is not a valid identifier</span>
+</code></pre>
+<blockquote>
+<p>Note: If an attribute name is not a valid JS identifier (like a <code>data-*</code> attribute), it is not considered to be an error if it is not found in the element attributes type.</p>
+</blockquote>
+<p>Additionally, the <code>JSX.IntrinsicAttributes</code> interface can be used to specify extra properties used by the JSX framework which are not generally used by the components&apos; props or arguments - for instance <code>key</code> in React. Specializing further, the generic <code>JSX.IntrinsicClassAttributes&lt;T&gt;</code> type may also be used to specify the same kind of extra attributes just for class components (and not SFCs). In this type, the generic parameter corresponds to the class instance type. In React, this is used to allow the <code>ref</code> attribute of type <code>Ref&lt;T&gt;</code>. Generally speaking, all of the properties on these interfaces should be optional, unless you intend that users of your JSX framework need to provide some attribute on every tag.</p>
+<p>The spread operator also works:</p>
+<pre><code class="lang-JSX"><span class="hljs-keyword">var</span> props = { requiredProp: <span class="hljs-string">&quot;bar&quot;</span> };
+&lt;foo {...props} /&gt;; // ok
+
+var badProps = {};
+&lt;foo {...badProps} /&gt;; // error
+</code></pre>
+<h2 id="children-type-checking">Children Type Checking</h2>
+<p>In TypeScript 2.3, TS introduced type checking of <em>children</em>. <em>children</em> is a special property in an <em>element attributes type</em> where child <em>JSXExpression</em>s are taken to be inserted into the attributes.
+Similar to how TS uses <code>JSX.ElementAttributesProperty</code> to determine the name of <em>props</em>, TS uses <code>JSX.ElementChildrenAttribute</code> to determine the name of <em>children</em> within those props.
+<code>JSX.ElementChildrenAttribute</code> should be declared with a single property.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">namespace</span> JSX {
+  <span class="hljs-keyword">interface</span> ElementChildrenAttribute {
+    children: {};  <span class="hljs-comment">// specify children name to use</span>
+  }
+}
+</code></pre>
+<pre><code class="lang-ts">&lt;div&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+&lt;/div&gt;;
+
+&lt;div&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  World
+&lt;/div&gt;;
+
+const CustomComp = (props) =&gt; &lt;div&gt;props.children&lt;/div&gt;
+&lt;CustomComp&gt;
+  &lt;div&gt;Hello World&lt;/div&gt;
+  {&quot;This is just a JS expression...&quot; + 1000}
+&lt;/CustomComp&gt;
+</code></pre>
+<p>You can specify the type of <em>children</em> like any other attribute. This will override the default type from, eg the <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react" target="_blank">React typings</a> if you use them.</p>
+<pre><code class="lang-ts">interface PropsType {
+  children: JSX.Element
+  name: string
+}
+
+class Component extends React.Component&lt;PropsType, {}&gt; {
+  render() {
+    return (
+      &lt;h2&gt;
+        {this.props.children}
+      &lt;/h2&gt;
+    )
+  }
+}
+
+// OK
+&lt;Component&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/Component&gt;
+
+// Error: children is of type JSX.Element not array of JSX.Element
+&lt;Component&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;h2&gt;Hello World&lt;/h2&gt;
+&lt;/Component&gt;
+
+// Error: children is of type JSX.Element not array of JSX.Element or string.
+&lt;Component&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  World
+&lt;/Component&gt;
+</code></pre>
+<h1 id="the-jsx-result-type">The JSX result type</h1>
+<p>By default the result of a JSX expression is typed as <code>any</code>.
+You can customize the type by specifying the <code>JSX.Element</code> interface.
+However, it is not possible to retrieve type information about the element, attributes or children of the JSX from this interface.
+It is a black box.</p>
+<h1 id="embedding-expressions">Embedding Expressions</h1>
+<p>JSX allows you to embed expressions between tags by surrounding the expressions with curly braces (<code>{ }</code>).</p>
+<pre><code class="lang-JSX"><span class="hljs-keyword">var</span> a = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  {[&quot;foo&quot;, &quot;bar&quot;].map(i =&gt; <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{i / 2}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>)}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+</code></pre>
+<p>The above code will result in an error since you cannot divide a string by a number.
+The output, when using the <code>preserve</code> option, looks like:</p>
+<pre><code class="lang-JSX"><span class="hljs-keyword">var</span> a = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  {[&quot;foo&quot;, &quot;bar&quot;].map(function (i) { return <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{i / 2}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>; })}
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+</code></pre>
+<h1 id="react-integration">React integration</h1>
+<p>To use JSX with React you should use the <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react" target="_blank">React typings</a>.
+These typings define the <code>JSX</code> namespace appropriately for use with React.</p>
+<pre><code class="lang-ts">/// &lt;reference path=&quot;react.d.ts&quot; /&gt;
+
+interface Props {
+  foo: string;
+}
+
+class MyComponent extends React.Component&lt;Props, {}&gt; {
+  render() {
+    return &lt;span&gt;{this.props.foo}&lt;/span&gt;
+  }
+}
+
+&lt;MyComponent foo=&quot;bar&quot; /&gt;; // ok
+&lt;MyComponent foo={0} /&gt;; // error
+</code></pre>
+<h1 id="factory-functions">Factory Functions</h1>
+<p>The exact factory function used by the <code>jsx: react</code> compiler option is configurable. It may be set using either the <code>jsxFactory</code> command line option, or an inline <code>@jsx</code> comment pragma to set it on a per-file basis. For example, if you set <code>jsxFactory</code> to <code>createElement</code>, <code>&lt;div /&gt;</code> will emit as <code>createElement(&quot;div&quot;)</code> instead of <code>React.createElement(&quot;div&quot;)</code>.</p>
+<p>The comment pragma version may be used like so (in TypeScript 2.8):</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">import</span> preact = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;preact&quot;</span>);
+<span class="hljs-comment">/* @jsx preact.h */</span>
+<span class="hljs-keyword">const</span> x = &lt;div /&gt;;
+</code></pre>
+<p>emits as:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">const</span> preact = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;preact&quot;</span>);
+<span class="hljs-keyword">const</span> x = preact.h(<span class="hljs-string">&quot;div&quot;</span>, <span class="hljs-literal">null</span>);
+</code></pre>
+<p>The factory chosen will also affect where the <code>JSX</code> namespace is looked up (for type checking information) before falling back to the global one. If the factory is defined as <code>React.createElement</code> (the default), the compiler will check for <code>React.JSX</code> before checking for a global <code>JSX</code>. If the factory is defined as <code>h</code>, it will check for <code>h.JSX</code> before a global <code>JSX</code>.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Declaration Merging.html" class="navigation navigation-prev " aria-label="Previous page: Declaration Merging">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Decorators.html" class="navigation navigation-next " aria-label="Next page: Decorators">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"JSX","level":"1.19","depth":1,"next":{"title":"Decorators","level":"1.20","depth":1,"path":"pages/Decorators.md","ref":"./pages/Decorators.md","articles":[]},"previous":{"title":"Declaration Merging","level":"1.18","depth":1,"path":"pages/Declaration Merging.md","ref":"./pages/Declaration Merging.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/JSX.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

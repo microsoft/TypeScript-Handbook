@@ -1,0 +1,747 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Enums · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Type Inference.html" />
+    
+    
+    <link rel="prev" href="Generics.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Enums</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="enums">Enums</h1>
+<p>Enums allow us to define a set of named constants.
+Using enums can make it easier to document intent, or create a set of distinct cases.
+TypeScript provides both numeric and string-based enums.</p>
+<h2 id="numeric-enums">Numeric enums</h2>
+<p>We&apos;ll first start off with numeric enums, which are probably more familiar if you&apos;re coming from other languages.
+An enum can be defined using the <code>enum</code> keyword.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Direction {
+    Up = <span class="hljs-number">1</span>,
+    Down,
+    Left,
+    Right,
+}
+</code></pre>
+<p>Above, we have a numeric enum where <code>Up</code> is initialized with <code>1</code>.
+All of the following members are auto-incremented from that point on.
+In other words, <code>Direction.Up</code> has the value <code>1</code>,  <code>Down</code> has <code>2</code>, <code>Left</code> has <code>3</code>, and <code>Right</code> has <code>4</code>.</p>
+<p>If we wanted, we could leave off the initializers entirely:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+}
+</code></pre>
+<p>Here, <code>Up</code> would have the value <code>0</code>, <code>Down</code> would have <code>1</code>, etc.
+This auto-incrementing behavior is useful for cases where we might not care about the member values themselves, but do care that each value is distinct from other values in the same enum.</p>
+<p>Using an enum is simple: just access any member as a property off of the enum itself, and declare types using the name of the enum:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Response {
+    No = <span class="hljs-number">0</span>,
+    Yes = <span class="hljs-number">1</span>,
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">respond</span>(<span class="hljs-params">recipient: <span class="hljs-built_in">string</span>, message: Response</span>): <span class="hljs-title">void</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+respond(<span class="hljs-string">&quot;Princess Caroline&quot;</span>, Response.Yes)
+</code></pre>
+<p>Numeric enums can be mixed in <a href="#computed-and-constant-members">computed and constant members (see below)</a>.
+The short story is, enums without initializers either need to be first, or have to come after numeric enums initialized with numeric constants or other constant enum members.
+In other words, the following isn&apos;t allowed:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> E {
+    A = getSomeValue(),
+    B, <span class="hljs-comment">// error! &apos;A&apos; is not constant-initialized, so &apos;B&apos; needs an initializer</span>
+}
+</code></pre>
+<h2 id="string-enums">String enums</h2>
+<p>String enums are a similar concept, but have some subtle <a href="#enums-at-runtime">runtime differences</a> as documented below.
+In a string enum, each member has to be constant-initialized with a string literal, or with another string enum member.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Direction {
+    Up = <span class="hljs-string">&quot;UP&quot;</span>,
+    Down = <span class="hljs-string">&quot;DOWN&quot;</span>,
+    Left = <span class="hljs-string">&quot;LEFT&quot;</span>,
+    Right = <span class="hljs-string">&quot;RIGHT&quot;</span>,
+}
+</code></pre>
+<p>While string enums don&apos;t have auto-incrementing behavior, string enums have the benefit that they &quot;serialize&quot; well.
+In other words, if you were debugging and had to read the runtime value of a numeric enum, the value is often opaque - it doesn&apos;t convey any useful meaning on its own (though <a href="#enums-at-runtime">reverse mapping</a> can often help), string enums allow you to give a meaningful and readable value when your code runs, independent of the name of the enum member itself.</p>
+<h2 id="heterogeneous-enums">Heterogeneous enums</h2>
+<p>Technically enums can be mixed with string and numeric members, but it&apos;s not clear why you would ever want to do so:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> BooleanLikeHeterogeneousEnum {
+    No = <span class="hljs-number">0</span>,
+    Yes = <span class="hljs-string">&quot;YES&quot;</span>,
+}
+</code></pre>
+<p>Unless you&apos;re really trying to take advantage of JavaScript&apos;s runtime behavior in a clever way, it&apos;s advised that you don&apos;t do this.</p>
+<h2 id="computed-and-constant-members">Computed and constant members</h2>
+<p>Each enum member has a value associated with it which can be either <em>constant</em> or <em>computed</em>.
+An enum member is considered constant if:</p>
+<ul>
+<li><p>It is the first member in the enum and it has no initializer, in which case it&apos;s assigned the value <code>0</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// E.X is constant:</span>
+<span class="hljs-keyword">enum</span> E { X }
+</code></pre>
+</li>
+<li><p>It does not have an initializer and the preceding enum member was a <em>numeric</em> constant.
+In this case the value of the current enum member will be the value of the preceding enum member plus one.</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// All enum members in &apos;E1&apos; and &apos;E2&apos; are constant.</span>
+
+<span class="hljs-keyword">enum</span> E1 { X, Y, Z }
+
+<span class="hljs-keyword">enum</span> E2 {
+    A = <span class="hljs-number">1</span>, B, C
+}
+</code></pre>
+</li>
+<li><p>The enum member is initialized with a constant enum expression.
+A constant enum expression is a subset of TypeScript expressions that can be fully evaluated at compile time.
+An expression is a constant enum expression if it is:</p>
+<ol>
+<li>a literal enum expression (basically a string literal or a numeric literal)</li>
+<li>a reference to previously defined constant enum member (which can originate from a different enum).</li>
+<li>a parenthesized constant enum expression</li>
+<li>one of the <code>+</code>, <code>-</code>, <code>~</code> unary operators applied to constant enum expression</li>
+<li><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&gt;&gt;&gt;</code>, <code>&amp;</code>, <code>|</code>, <code>^</code> binary operators with constant enum expressions as  operands
+It is a compile time error for constant enum expressions to be evaluated to <code>NaN</code> or <code>Infinity</code>.</li>
+</ol>
+</li>
+</ul>
+<p>In all other cases enum member is considered computed.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> FileAccess {
+    <span class="hljs-comment">// constant members</span>
+    None,
+    Read    = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">1</span>,
+    Write   = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>,
+    ReadWrite  = Read | Write,
+    <span class="hljs-comment">// computed member</span>
+    G = <span class="hljs-string">&quot;123&quot;</span>.length
+}
+</code></pre>
+<h2 id="union-enums-and-enum-member-types">Union enums and enum member types</h2>
+<p>There is a special subset of constant enum members that aren&apos;t calculated: literal enum members.
+A literal enum member is a constant enum member with no initialized value, or with values that are initialized to</p>
+<ul>
+<li>any string literal (e.g. <code>&quot;foo&quot;</code>, <code>&quot;bar</code>, <code>&quot;baz&quot;</code>)</li>
+<li>any numeric literal (e.g. <code>1</code>, <code>100</code>)</li>
+<li>a unary minus applied to any numeric literal (e.g. <code>-1</code>, <code>-100</code>)</li>
+</ul>
+<p>When all members in an enum have literal enum values, some special semantics come to play.</p>
+<p>The first is that enum members also become types as well!
+For example, we can say that certain members can <em>only</em> have the value of an enum member:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> ShapeKind {
+    Circle,
+    Square,
+}
+
+<span class="hljs-keyword">interface</span> Circle {
+    kind: ShapeKind.Circle;
+    radius: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">interface</span> Square {
+    kind: ShapeKind.Square;
+    sideLength: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">let</span> c: Circle = {
+    kind: ShapeKind.Square,
+    <span class="hljs-comment">//    ~~~~~~~~~~~~~~~~ Error!</span>
+    radius: <span class="hljs-number">100</span>,
+}
+</code></pre>
+<p>The other change is that enum types themselves effectively become a <em>union</em> of each enum member.
+While we haven&apos;t discussed <a href="Advanced%20Types.md#union-types">union types</a> yet, all that you need to know is that with union enums, the type system is able to leverage the fact that it knows the exact set of values that exist in the enum itself.
+Because of that, TypeScript can catch silly bugs where we might be comparing values incorrectly.
+For example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> E {
+    Foo,
+    Bar,
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x: E</span>) </span>{
+    <span class="hljs-keyword">if</span> (x !== E.Foo || x !== E.Bar) {
+        <span class="hljs-comment">//             ~~~~~~~~~~~</span>
+        <span class="hljs-comment">// Error! Operator &apos;!==&apos; cannot be applied to types &apos;E.Foo&apos; and &apos;E.Bar&apos;.</span>
+    }
+}
+</code></pre>
+<p>In that example, we first checked whether <code>x</code> was <em>not</em> <code>E.Foo</code>.
+If that check succeeds, then our <code>||</code> will short-circuit, and the body of the &apos;if&apos; will get run.
+However, if the check didn&apos;t succeed, then <code>x</code> can <em>only</em> be <code>E.Foo</code>, so it doesn&apos;t make sense to see whether it&apos;s equal to <code>E.Bar</code>.</p>
+<h2 id="enums-at-runtime">Enums at runtime</h2>
+<p>Enums are real objects that exist at runtime.
+For example, the following enum</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> E {
+    X, Y, Z
+}
+</code></pre>
+<p>can actually be passed around to functions</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">obj: { X: <span class="hljs-built_in">number</span> }</span>) </span>{
+    <span class="hljs-keyword">return</span> obj.X;
+}
+
+<span class="hljs-comment">// Works, since &apos;E&apos; has a property named &apos;X&apos; which is a number.</span>
+f(E);
+</code></pre>
+<h3 id="reverse-mappings">Reverse mappings</h3>
+<p>In addition to creating an object with property names for members, numeric enums members also get a <em>reverse mapping</em> from enum values to enum names.
+For example, in this example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">enum</span> Enum {
+    A
+}
+<span class="hljs-keyword">let</span> a = Enum.A;
+<span class="hljs-keyword">let</span> nameOfA = Enum[a]; <span class="hljs-comment">// &quot;A&quot;</span>
+</code></pre>
+<p>TypeScript might compile this down to something like the the following JavaScript:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Enum;
+(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Enum</span>) </span>{
+    Enum[Enum[<span class="hljs-string">&quot;A&quot;</span>] = <span class="hljs-number">0</span>] = <span class="hljs-string">&quot;A&quot;</span>;
+})(Enum || (Enum = {}));
+<span class="hljs-keyword">var</span> a = Enum.A;
+<span class="hljs-keyword">var</span> nameOfA = Enum[a]; <span class="hljs-comment">// &quot;A&quot;</span>
+</code></pre>
+<p>In this generated code, an enum is compiled into an object that stores both forward (<code>name</code> -&gt; <code>value</code>) and reverse (<code>value</code> -&gt; <code>name</code>) mappings.
+References to other enum members are always emitted as property accesses and never inlined.</p>
+<p>Keep in mind that string enum members <em>do not</em> get a reverse mapping generated at all.</p>
+<h3 id="const-enums"><code>const</code> enums</h3>
+<p>In most cases, enums are a perfectly valid solution.
+However sometimes requirements are tighter.
+To avoid paying the cost of extra generated code and additional indirection when accessing enum values, it&apos;s possible to use <code>const</code> enums.
+Const enums are defined using the <code>const</code> modifier on our enums:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">const</span> <span class="hljs-keyword">enum</span> Enum {
+    A = <span class="hljs-number">1</span>,
+    B = A * <span class="hljs-number">2</span>
+}
+</code></pre>
+<p>Const enums can only use constant enum expressions and unlike regular enums they are completely removed during compilation.
+Const enum members are inlined at use sites.
+This is possible since const enums cannot have computed members.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">const</span> <span class="hljs-keyword">enum</span> Directions {
+    Up,
+    Down,
+    Left,
+    Right
+}
+
+<span class="hljs-keyword">let</span> directions = [Directions.Up, Directions.Down, Directions.Left, Directions.Right]
+</code></pre>
+<p>in generated code will become</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> directions = [<span class="hljs-number">0</span> <span class="hljs-comment">/* Up */</span>, <span class="hljs-number">1</span> <span class="hljs-comment">/* Down */</span>, <span class="hljs-number">2</span> <span class="hljs-comment">/* Left */</span>, <span class="hljs-number">3</span> <span class="hljs-comment">/* Right */</span>];
+</code></pre>
+<h2 id="ambient-enums">Ambient enums</h2>
+<p>Ambient enums are used to describe the shape of already existing enum types.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">declare</span> <span class="hljs-keyword">enum</span> Enum {
+    A = <span class="hljs-number">1</span>,
+    B,
+    C = <span class="hljs-number">2</span>
+}
+</code></pre>
+<p>One important difference between ambient and non-ambient enums is that, in regular enums, members that don&apos;t have an initializer will be considered constant if its preceding enum member is considered constant.
+In contrast, an ambient (and non-const) enum member that does not have initializer is <em>always</em> considered computed.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Generics.html" class="navigation navigation-prev " aria-label="Previous page: Generics">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Type Inference.html" class="navigation navigation-next " aria-label="Next page: Type Inference">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Enums","level":"1.8","depth":1,"next":{"title":"Type Inference","level":"1.9","depth":1,"path":"pages/Type Inference.md","ref":"./pages/Type Inference.md","articles":[]},"previous":{"title":"Generics","level":"1.7","depth":1,"path":"pages/Generics.md","ref":"./pages/Generics.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Enums.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

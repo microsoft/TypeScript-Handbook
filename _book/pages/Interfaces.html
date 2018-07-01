@@ -1,0 +1,921 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Interfaces · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Classes.html" />
+    
+    
+    <link rel="prev" href="Variable Declarations.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Interfaces</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>One of TypeScript&apos;s core principles is that type-checking focuses on the <em>shape</em> that values have.
+This is sometimes called &quot;duck typing&quot; or &quot;structural subtyping&quot;.
+In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining contracts within your code as well as contracts with code outside of your project.</p>
+<h1 id="our-first-interface">Our First Interface</h1>
+<p>The easiest way to see how interfaces work is to start with a simple example:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printLabel</span>(<span class="hljs-params">labelledObj: { label: <span class="hljs-built_in">string</span> }</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(labelledObj.label);
+}
+
+<span class="hljs-keyword">let</span> myObj = {size: <span class="hljs-number">10</span>, label: <span class="hljs-string">&quot;Size 10 Object&quot;</span>};
+printLabel(myObj);
+</code></pre>
+<p>The type-checker checks the call to <code>printLabel</code>.
+The <code>printLabel</code> function has a single parameter that requires that the object passed in has a property called <code>label</code> of type string.
+Notice that our object actually has more properties than this, but the compiler only checks that <em>at least</em> the ones required are present and match the types required.
+There are some cases where TypeScript isn&apos;t as lenient, which we&apos;ll cover in a bit.</p>
+<p>We can write the same example again, this time using an interface to describe the requirement of having the <code>label</code> property that is a string:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> LabelledValue {
+    label: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">printLabel</span>(<span class="hljs-params">labelledObj: LabelledValue</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(labelledObj.label);
+}
+
+<span class="hljs-keyword">let</span> myObj = {size: <span class="hljs-number">10</span>, label: <span class="hljs-string">&quot;Size 10 Object&quot;</span>};
+printLabel(myObj);
+</code></pre>
+<p>The interface <code>LabelledValue</code> is a name we can now use to describe the requirement in the previous example.
+It still represents having a single property called <code>label</code> that is of type string.
+Notice we didn&apos;t have to explicitly say that the object we pass to <code>printLabel</code> implements this interface like we might have to in other languages.
+Here, it&apos;s only the shape that matters. If the object we pass to the function meets the requirements listed, then it&apos;s allowed.</p>
+<p>It&apos;s worth pointing out that the type-checker does not require that these properties come in any sort of order, only that the properties the interface requires are present and have the required type.</p>
+<h1 id="optional-properties">Optional Properties</h1>
+<p>Not all properties of an interface may be required.
+Some exist under certain conditions or may not be there at all.
+These optional properties are popular when creating patterns like &quot;option bags&quot; where you pass an object to a function that only has a couple of properties filled in.</p>
+<p>Here&apos;s an example of this pattern:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> SquareConfig {
+    color?: <span class="hljs-built_in">string</span>;
+    width?: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createSquare</span>(<span class="hljs-params">config: SquareConfig</span>): </span>{color: <span class="hljs-built_in">string</span>; area: <span class="hljs-built_in">number</span>} {
+    <span class="hljs-keyword">let</span> newSquare = {color: <span class="hljs-string">&quot;white&quot;</span>, area: <span class="hljs-number">100</span>};
+    <span class="hljs-keyword">if</span> (config.color) {
+        newSquare.color = config.color;
+    }
+    <span class="hljs-keyword">if</span> (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    <span class="hljs-keyword">return</span> newSquare;
+}
+
+<span class="hljs-keyword">let</span> mySquare = createSquare({color: <span class="hljs-string">&quot;black&quot;</span>});
+</code></pre>
+<p>Interfaces with optional properties are written similar to other interfaces, with each optional property denoted by a <code>?</code> at the end of the property name in the declaration.</p>
+<p>The advantage of optional properties is that you can describe these possibly available properties while still also preventing use of properties that are not part of the interface.
+For example, had we mistyped the name of the <code>color</code> property in <code>createSquare</code>, we would get an error message letting us know:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> SquareConfig {
+    color?: <span class="hljs-built_in">string</span>;
+    width?: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createSquare</span>(<span class="hljs-params">config: SquareConfig</span>): </span>{ color: <span class="hljs-built_in">string</span>; area: <span class="hljs-built_in">number</span> } {
+    <span class="hljs-keyword">let</span> newSquare = {color: <span class="hljs-string">&quot;white&quot;</span>, area: <span class="hljs-number">100</span>};
+    <span class="hljs-keyword">if</span> (config.clor) {
+        <span class="hljs-comment">// Error: Property &apos;clor&apos; does not exist on type &apos;SquareConfig&apos;</span>
+        newSquare.color = config.clor;
+    }
+    <span class="hljs-keyword">if</span> (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    <span class="hljs-keyword">return</span> newSquare;
+}
+
+<span class="hljs-keyword">let</span> mySquare = createSquare({color: <span class="hljs-string">&quot;black&quot;</span>});
+</code></pre>
+<h1 id="readonly-properties">Readonly properties</h1>
+<p>Some properties should only be modifiable when an object is first created.
+You can specify this by putting <code>readonly</code> before the name of the property:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Point {
+    readonly x: <span class="hljs-built_in">number</span>;
+    readonly y: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<p>You can construct a <code>Point</code> by assigning an object literal.
+After the assignment, <code>x</code> and <code>y</code> can&apos;t be changed.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> p1: Point = { x: <span class="hljs-number">10</span>, y: <span class="hljs-number">20</span> };
+p1.x = <span class="hljs-number">5</span>; <span class="hljs-comment">// error!</span>
+</code></pre>
+<p>TypeScript comes with a <code>ReadonlyArray&lt;T&gt;</code> type that is the same as <code>Array&lt;T&gt;</code> with all mutating methods removed, so you can make sure you don&apos;t change your arrays after creation:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> a: <span class="hljs-built_in">number</span>[] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-keyword">let</span> ro: ReadonlyArray&lt;<span class="hljs-built_in">number</span>&gt; = a;
+ro[<span class="hljs-number">0</span>] = <span class="hljs-number">12</span>; <span class="hljs-comment">// error!</span>
+ro.push(<span class="hljs-number">5</span>); <span class="hljs-comment">// error!</span>
+ro.length = <span class="hljs-number">100</span>; <span class="hljs-comment">// error!</span>
+a = ro; <span class="hljs-comment">// error!</span>
+</code></pre>
+<p>On the last line of the snippet you can see that even assigning the entire <code>ReadonlyArray</code> back to a normal array is illegal.
+You can still override it with a type assertion, though:</p>
+<pre><code class="lang-ts">a = ro as <span class="hljs-built_in">number</span>[];
+</code></pre>
+<h2 id="readonly-vs-const"><code>readonly</code> vs <code>const</code></h2>
+<p>The easiest way to remember whether to use readonly or const is to ask whether you&apos;re using it on a variable or a property.
+Variables use <code>const</code> whereas properties use <code>readonly</code>.</p>
+<h1 id="excess-property-checks">Excess Property Checks</h1>
+<p>In our first example using interfaces, TypeScript lets us pass <code>{ size: number; label: string; }</code> to something that only expected a <code>{ label: string; }</code>.
+We also just learned about optional properties, and how they&apos;re useful when describing so-called &quot;option bags&quot;.</p>
+<p>However, combining the two naively would let you to shoot yourself in the foot the same way you might in JavaScript.
+For example, taking our last example using <code>createSquare</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> SquareConfig {
+    color?: <span class="hljs-built_in">string</span>;
+    width?: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createSquare</span>(<span class="hljs-params">config: SquareConfig</span>): </span>{ color: <span class="hljs-built_in">string</span>; area: <span class="hljs-built_in">number</span> } {
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-keyword">let</span> mySquare = createSquare({ colour: <span class="hljs-string">&quot;red&quot;</span>, width: <span class="hljs-number">100</span> });
+</code></pre>
+<p>Notice the given argument to <code>createSquare</code> is spelled <em><code>colour</code></em> instead of <code>color</code>.
+In plain JavaScript, this sort of thing fails silently.</p>
+<p>You could argue that this program is correctly typed, since the <code>width</code> properties are compatible, there&apos;s no <code>color</code> property present, and the extra <code>colour</code> property is insignificant.</p>
+<p>However, TypeScript takes the stance that there&apos;s probably a bug in this code.
+Object literals get special treatment and undergo <em>excess property checking</em> when assigning them to other variables, or passing them as arguments.
+If an object literal has any properties that the &quot;target type&quot; doesn&apos;t have, you&apos;ll get an error.</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// error: &apos;colour&apos; not expected in type &apos;SquareConfig&apos;</span>
+<span class="hljs-keyword">let</span> mySquare = createSquare({ colour: <span class="hljs-string">&quot;red&quot;</span>, width: <span class="hljs-number">100</span> });
+</code></pre>
+<p>Getting around these checks is actually really simple.
+The easiest method is to just use a type assertion:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> mySquare = createSquare({ width: <span class="hljs-number">100</span>, opacity: <span class="hljs-number">0.5</span> } as SquareConfig);
+</code></pre>
+<p>However, a better approach might be to add a string index signature if you&apos;re sure that the object can have some extra properties that are used in some special way.
+If <code>SquareConfig</code> can have <code>color</code> and <code>width</code> properties with the above types, but could <em>also</em> have any number of other properties, then we could define it like so:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> SquareConfig {
+    color?: <span class="hljs-built_in">string</span>;
+    width?: <span class="hljs-built_in">number</span>;
+    [propName: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">any</span>;
+}
+</code></pre>
+<p>We&apos;ll discuss index signatures in a bit, but here we&apos;re saying a <code>SquareConfig</code> can have any number of properties, and as long as they aren&apos;t <code>color</code> or <code>width</code>, their types don&apos;t matter.</p>
+<p>One final way to get around these checks, which might be a bit surprising, is to assign the object to another variable:
+Since <code>squareOptions</code> won&apos;t undergo excess property checks, the compiler won&apos;t give you an error.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> squareOptions = { colour: <span class="hljs-string">&quot;red&quot;</span>, width: <span class="hljs-number">100</span> };
+<span class="hljs-keyword">let</span> mySquare = createSquare(squareOptions);
+</code></pre>
+<p>Keep in mind that for simple code like above, you probably shouldn&apos;t be trying to &quot;get around&quot; these checks.
+For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors are actually bugs.
+That means if you&apos;re running into excess property checking problems for something like option bags, you might need to revise some of your type declarations.
+In this instance, if it&apos;s okay to pass an object with both a <code>color</code> or <code>colour</code> property to <code>createSquare</code>, you should fix up the definition of <code>SquareConfig</code> to reflect that.</p>
+<h1 id="function-types">Function Types</h1>
+<p>Interfaces are capable of describing the wide range of shapes that JavaScript objects can take.
+In addition to describing an object with properties, interfaces are also capable of describing function types.</p>
+<p>To describe a function type with an interface, we give the interface a call signature.
+This is like a function declaration with only the parameter list and return type given. Each parameter in the parameter list requires both name and type.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> SearchFunc {
+    (source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<p>Once defined, we can use this function type interface like we would other interfaces.
+Here, we show how you can create a variable of a function type and assign it a function value of the same type.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> mySearch: SearchFunc;
+mySearch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">source: <span class="hljs-built_in">string</span>, subString: <span class="hljs-built_in">string</span></span>) </span>{
+    <span class="hljs-keyword">let</span> result = source.search(subString);
+    <span class="hljs-keyword">return</span> result &gt; <span class="hljs-number">-1</span>;
+}
+</code></pre>
+<p>For function types to correctly type-check, the names of the parameters do not need to match.
+We could have, for example, written the above example like this:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> mySearch: SearchFunc;
+mySearch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">src: <span class="hljs-built_in">string</span>, sub: <span class="hljs-built_in">string</span></span>): <span class="hljs-title">boolean</span> </span>{
+    <span class="hljs-keyword">let</span> result = src.search(sub);
+    <span class="hljs-keyword">return</span> result &gt; <span class="hljs-number">-1</span>;
+}
+</code></pre>
+<p>Function parameters are checked one at a time, with the type in each corresponding parameter position checked against each other.
+If you do not want to specify types at all, TypeScript&apos;s contextual typing can infer the argument types since the function value is assigned directly to a variable of type <code>SearchFunc</code>.
+Here, also, the return type of our function expression is implied by the values it returns (here <code>false</code> and <code>true</code>).
+Had the function expression returned numbers or strings, the type-checker would have warned us that return type doesn&apos;t match the return type described in the <code>SearchFunc</code> interface.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> mySearch: SearchFunc;
+mySearch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">src, sub</span>) </span>{
+    <span class="hljs-keyword">let</span> result = src.search(sub);
+    <span class="hljs-keyword">return</span> result &gt; <span class="hljs-number">-1</span>;
+}
+</code></pre>
+<h1 id="indexable-types">Indexable Types</h1>
+<p>Similarly to how we can use interfaces to describe function types, we can also describe types that we can &quot;index into&quot; like <code>a[10]</code>, or <code>ageMap[&quot;daniel&quot;]</code>.
+Indexable types have an <em>index signature</em> that describes the types we can use to index into the object, along with the corresponding return types when indexing.
+Let&apos;s take an example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> StringArray {
+    [index: <span class="hljs-built_in">number</span>]: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">let</span> myArray: StringArray;
+myArray = [<span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Fred&quot;</span>];
+
+<span class="hljs-keyword">let</span> myStr: <span class="hljs-built_in">string</span> = myArray[<span class="hljs-number">0</span>];
+</code></pre>
+<p>Above, we have a <code>StringArray</code> interface that has an index signature.
+This index signature states that when a <code>StringArray</code> is indexed with a <code>number</code>, it will return a <code>string</code>.</p>
+<p>There are two types of supported index signatures: string and number.
+It is possible to support both types of indexers, but the type returned from a numeric indexer must be a subtype of the type returned from the string indexer.
+This is because when indexing with a <code>number</code>, JavaScript will actually convert that to a <code>string</code> before indexing into an object.
+That means that indexing with <code>100</code> (a <code>number</code>) is the same thing as indexing with <code>&quot;100&quot;</code> (a <code>string</code>), so the two need to be consistent.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Animal {
+    name: <span class="hljs-built_in">string</span>;
+}
+<span class="hljs-keyword">class</span> Dog extends Animal {
+    breed: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-comment">// Error: indexing with a numeric string might get you a completely separate type of Animal!</span>
+<span class="hljs-keyword">interface</span> NotOkay {
+    [x: <span class="hljs-built_in">number</span>]: Animal;
+    [x: <span class="hljs-built_in">string</span>]: Dog;
+}
+</code></pre>
+<p>While string index signatures are a powerful way to describe the &quot;dictionary&quot; pattern, they also enforce that all properties match their return type.
+This is because a string index declares that <code>obj.property</code> is also available as <code>obj[&quot;property&quot;]</code>.
+In the following example, <code>name</code>&apos;s type does not match the string index&apos;s type, and the type-checker gives an error:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> NumberDictionary {
+    [index: <span class="hljs-built_in">string</span>]: <span class="hljs-built_in">number</span>;
+    length: <span class="hljs-built_in">number</span>;    <span class="hljs-comment">// ok, length is a number</span>
+    name: <span class="hljs-built_in">string</span>;      <span class="hljs-comment">// error, the type of &apos;name&apos; is not a subtype of the indexer</span>
+}
+</code></pre>
+<p>Finally, you can make index signatures readonly in order to prevent assignment to their indices:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ReadonlyStringArray {
+    readonly [index: <span class="hljs-built_in">number</span>]: <span class="hljs-built_in">string</span>;
+}
+<span class="hljs-keyword">let</span> myArray: ReadonlyStringArray = [<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;Bob&quot;</span>];
+myArray[<span class="hljs-number">2</span>] = <span class="hljs-string">&quot;Mallory&quot;</span>; <span class="hljs-comment">// error!</span>
+</code></pre>
+<p>You can&apos;t set <code>myArray[2]</code> because the index signature is readonly.</p>
+<h1 id="class-types">Class Types</h1>
+<h2 id="implementing-an-interface">Implementing an interface</h2>
+<p>One of the most common uses of interfaces in languages like C# and Java, that of explicitly enforcing that a class meets a particular contract, is also possible in TypeScript.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ClockInterface {
+    currentTime: <span class="hljs-built_in">Date</span>;
+}
+
+<span class="hljs-keyword">class</span> Clock <span class="hljs-keyword">implements</span> ClockInterface {
+    currentTime: <span class="hljs-built_in">Date</span>;
+    <span class="hljs-keyword">constructor</span>(h: number, m: number) { }
+}
+</code></pre>
+<p>You can also describe methods in an interface that are implemented in the class, as we do with <code>setTime</code> in the below example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ClockInterface {
+    currentTime: <span class="hljs-built_in">Date</span>;
+    setTime(d: <span class="hljs-built_in">Date</span>);
+}
+
+<span class="hljs-keyword">class</span> Clock <span class="hljs-keyword">implements</span> ClockInterface {
+    currentTime: <span class="hljs-built_in">Date</span>;
+    setTime(d: <span class="hljs-built_in">Date</span>) {
+        <span class="hljs-keyword">this</span>.currentTime = d;
+    }
+    <span class="hljs-keyword">constructor</span>(h: number, m: number) { }
+}
+</code></pre>
+<p>Interfaces describe the public side of the class, rather than both the public and private side.
+This prohibits you from using them to check that a class also has particular types for the private side of the class instance.</p>
+<h2 id="difference-between-the-static-and-instance-sides-of-classes">Difference between the static and instance sides of classes</h2>
+<p>When working with classes and interfaces, it helps to keep in mind that a class has <em>two</em> types: the type of the static side and the type of the instance side.
+You may notice that if you create an interface with a construct signature and try to create a class that implements this interface you get an error:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ClockConstructor {
+    <span class="hljs-keyword">new</span> (hour: <span class="hljs-built_in">number</span>, minute: <span class="hljs-built_in">number</span>);
+}
+
+<span class="hljs-keyword">class</span> Clock <span class="hljs-keyword">implements</span> ClockConstructor {
+    currentTime: <span class="hljs-built_in">Date</span>;
+    <span class="hljs-keyword">constructor</span>(h: number, m: number) { }
+}
+</code></pre>
+<p>This is because when a class implements an interface, only the instance side of the class is checked.
+Since the constructor sits in the static side, it is not included in this check.</p>
+<p>Instead, you would need to work with the static side of the class directly.
+In this example, we define two interfaces, <code>ClockConstructor</code> for the constructor and <code>ClockInterface</code> for the instance methods.
+Then for convenience we define a constructor function <code>createClock</code> that creates instances of the type that is passed to it.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> ClockConstructor {
+    <span class="hljs-keyword">new</span> (hour: <span class="hljs-built_in">number</span>, minute: <span class="hljs-built_in">number</span>): ClockInterface;
+}
+<span class="hljs-keyword">interface</span> ClockInterface {
+    tick();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createClock</span>(<span class="hljs-params">ctor: ClockConstructor, hour: <span class="hljs-built_in">number</span>, minute: <span class="hljs-built_in">number</span></span>): <span class="hljs-title">ClockInterface</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ctor(hour, minute);
+}
+
+<span class="hljs-keyword">class</span> DigitalClock <span class="hljs-keyword">implements</span> ClockInterface {
+    <span class="hljs-keyword">constructor</span>(h: number, m: number) { }
+    tick() {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;beep beep&quot;</span>);
+    }
+}
+<span class="hljs-keyword">class</span> AnalogClock <span class="hljs-keyword">implements</span> ClockInterface {
+    <span class="hljs-keyword">constructor</span>(h: number, m: number) { }
+    tick() {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;tick tock&quot;</span>);
+    }
+}
+
+<span class="hljs-keyword">let</span> digital = createClock(DigitalClock, <span class="hljs-number">12</span>, <span class="hljs-number">17</span>);
+<span class="hljs-keyword">let</span> analog = createClock(AnalogClock, <span class="hljs-number">7</span>, <span class="hljs-number">32</span>);
+</code></pre>
+<p>Because <code>createClock</code>&apos;s first parameter is of type <code>ClockConstructor</code>, in <code>createClock(AnalogClock, 7, 32)</code>, it checks that <code>AnalogClock</code> has the correct constructor signature.</p>
+<h1 id="extending-interfaces">Extending Interfaces</h1>
+<p>Like classes, interfaces can extend each other.
+This allows you to copy the members of one interface into another, which gives you more flexibility in how you separate your interfaces into reusable components.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Shape {
+    color: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">interface</span> Square <span class="hljs-keyword">extends</span> Shape {
+    sideLength: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">let</span> square = &lt;Square&gt;{};
+square.color = <span class="hljs-string">&quot;blue&quot;</span>;
+square.sideLength = <span class="hljs-number">10</span>;
+</code></pre>
+<p>An interface can extend multiple interfaces, creating a combination of all of the interfaces.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Shape {
+    color: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">interface</span> PenStroke {
+    penWidth: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">interface</span> Square <span class="hljs-keyword">extends</span> Shape, PenStroke {
+    sideLength: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">let</span> square = &lt;Square&gt;{};
+square.color = <span class="hljs-string">&quot;blue&quot;</span>;
+square.sideLength = <span class="hljs-number">10</span>;
+square.penWidth = <span class="hljs-number">5.0</span>;
+</code></pre>
+<h1 id="hybrid-types">Hybrid Types</h1>
+<p>As we mentioned earlier, interfaces can describe the rich types present in real world JavaScript.
+Because of JavaScript&apos;s dynamic and flexible nature, you may occasionally encounter an object that works as a combination of some of the types described above.</p>
+<p>One such example is an object that acts as both a function and an object, with additional properties:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Counter {
+    (start: <span class="hljs-built_in">number</span>): <span class="hljs-built_in">string</span>;
+    interval: <span class="hljs-built_in">number</span>;
+    reset(): <span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCounter</span>(<span class="hljs-params"></span>): <span class="hljs-title">Counter</span> </span>{
+    <span class="hljs-keyword">let</span> counter = &lt;Counter&gt;<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">start: <span class="hljs-built_in">number</span></span>) </span>{ };
+    counter.interval = <span class="hljs-number">123</span>;
+    counter.reset = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{ };
+    <span class="hljs-keyword">return</span> counter;
+}
+
+<span class="hljs-keyword">let</span> c = getCounter();
+c(<span class="hljs-number">10</span>);
+c.reset();
+c.interval = <span class="hljs-number">5.0</span>;
+</code></pre>
+<p>When interacting with 3rd-party JavaScript, you may need to use patterns like the above to fully describe the shape of the type.</p>
+<h1 id="interfaces-extending-classes">Interfaces Extending Classes</h1>
+<p>When an interface type extends a class type it inherits the members of the class but not their implementations.
+It is as if the interface had declared all of the members of the class without providing an implementation.
+Interfaces inherit even the private and protected members of a base class.
+This means that when you create an interface that extends a class with private or protected members, that interface type can only be implemented by that class or a subclass of it.</p>
+<p>This is useful when you have a large inheritance hierarchy, but want to specify that your code works with only subclasses that have certain properties.
+The subclasses don&apos;t have to be related besides inheriting from the base class.
+For example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Control {
+    <span class="hljs-keyword">private</span> state: <span class="hljs-built_in">any</span>;
+}
+
+<span class="hljs-keyword">interface</span> SelectableControl <span class="hljs-keyword">extends</span> Control {
+    select(): <span class="hljs-built_in">void</span>;
+}
+
+<span class="hljs-keyword">class</span> Button extends Control <span class="hljs-keyword">implements</span> SelectableControl {
+    select() { }
+}
+
+<span class="hljs-keyword">class</span> TextBox extends Control {
+    select() { }
+}
+
+<span class="hljs-comment">// Error: Property &apos;state&apos; is missing in type &apos;Image&apos;.</span>
+<span class="hljs-keyword">class</span> Image <span class="hljs-keyword">implements</span> SelectableControl {
+    select() { }
+}
+
+<span class="hljs-keyword">class</span> Location {
+
+}
+</code></pre>
+<p>In the above example, <code>SelectableControl</code> contains all of the members of <code>Control</code>, including the private <code>state</code> property.
+Since <code>state</code> is a private member it is only possible for descendants of <code>Control</code> to implement <code>SelectableControl</code>.
+This is because only descendants of <code>Control</code> will have a <code>state</code> private member that originates in the same declaration, which is a requirement for private members to be compatible.</p>
+<p>Within the <code>Control</code> class it is possible to access the <code>state</code> private member through an instance of <code>SelectableControl</code>.
+Effectively, a <code>SelectableControl</code> acts like a <code>Control</code> that is known to have a <code>select</code> method.
+The <code>Button</code> and <code>TextBox</code> classes are subtypes of <code>SelectableControl</code> (because they both inherit from <code>Control</code> and have a <code>select</code> method), but the <code>Image</code> and <code>Location</code> classes are not.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Variable Declarations.html" class="navigation navigation-prev " aria-label="Previous page: Variable Declarations">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Classes.html" class="navigation navigation-next " aria-label="Next page: Classes">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Interfaces","level":"1.4","depth":1,"next":{"title":"Classes","level":"1.5","depth":1,"path":"pages/Classes.md","ref":"./pages/Classes.md","articles":[]},"previous":{"title":"Variable Declarations","level":"1.3","depth":1,"path":"pages/Variable Declarations.md","ref":"./pages/Variable Declarations.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Interfaces.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,636 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Type Checking JavaScript Files · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="Triple-Slash Directives.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Type Checking JavaScript Files</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <p>TypeScript 2.3 and later support a mode of type-checking and reporting errors in <code>.js</code> files with <code>--checkJs</code>.</p>
+<p>You can skip checking some files by adding <code>// @ts-nocheck</code> comment to them; conversely you can choose to check only a few <code>.js</code> files by adding <code>// @ts-check</code> comment to them without setting <code>--checkJs</code>.
+You can also ignore errors on specific lines by adding <code>// @ts-ignore</code> on the preceding line.</p>
+<p>Here are some notable differences on how checking work in <code>.js</code> file from <code>.ts</code> file:</p>
+<h2 id="using-types-in-jsdoc">Using types in JSDoc</h2>
+<p>In a <code>.js</code> file, types can often be inferred just like in <code>.ts</code> files.
+Likewise, when types can&apos;t be inferred, they can be specified using JSDoc the same way that type annotations do in a <code>.ts</code> file.</p>
+<p>JSDoc annotations adorning a declaration will be used to set the type of that declaration. For example:</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** @type {number} */</span>
+<span class="hljs-keyword">var</span> x;
+
+x = <span class="hljs-number">0</span>;      <span class="hljs-comment">// OK</span>
+x = <span class="hljs-literal">false</span>;  <span class="hljs-comment">// Error: boolean is not assignable to number</span>
+</code></pre>
+<p>You can find the full list of supported JSDoc patterns in the <a href="https://github.com/Microsoft/TypeScript/wiki/JSDoc-support-in-JavaScript" target="_blank">JSDoc support in JavaScript documentation</a>.</p>
+<h2 id="property-declaration-inferred-from-assignments-in-class-bodies">Property declaration inferred from assignments in class bodies</h2>
+<p>ES2015/ES6 does not have a means for declaring properties on classes. Properties are dynamically assigned, just like in the case of object literals.</p>
+<p>In a <code>.js</code> file property declarations are inferred from assignments to the properties inside the class body. The type of properties is the union of the types of all the right-hand values in these assignments. Properties defined in the constructor are always assumed to exist, where as ones defined in methods, getters, or setters are considered optional.</p>
+<p>Adorn property assignments with JSDoc to specify the type of the property as needed. For instance:</p>
+<pre><code class="lang-js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span> </span>{
+    <span class="hljs-keyword">constructor</span>() {
+        <span class="hljs-comment">/** @type {number | undefined} */</span>
+        <span class="hljs-keyword">this</span>.prop = <span class="hljs-literal">undefined</span>;
+    }
+}
+
+
+<span class="hljs-keyword">let</span> c = <span class="hljs-keyword">new</span> C();
+c.prop = <span class="hljs-number">0</span>;         <span class="hljs-comment">// OK</span>
+c.prop = <span class="hljs-string">&quot;string&quot;</span>;  <span class="hljs-comment">// Error: string is not assignable to number|undefined</span>
+</code></pre>
+<p>If properties are never set in the class body, they are considered unknown. If your class has properties that are only read from, consider adding an initialization in the constructor to undefined, e.g. <code>this.prop = undefined;</code>.</p>
+<h2 id="commonjs-module-input-support">CommonJS module input support</h2>
+<p>In a <code>.js</code> files CommonJS module format is allowed as an input module format. Assignments to <code>exports</code>, and <code>module.exports</code> are recognized as export declarations. Similarly, <code>require</code> function calls are recognized as module imports. For example:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// Import module &quot;fs&quot;</span>
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>);
+
+
+<span class="hljs-comment">// Export function readFile</span>
+<span class="hljs-keyword">module</span>.exports.readFile = function(f) {
+    <span class="hljs-keyword">return</span> fs.readFileSync(f);
+}
+</code></pre>
+<h2 id="object-literals-are-open-ended">Object literals are open-ended</h2>
+<p>By default object literals in variable declarations provide the type of a declaration. No new members can be added that were not specified in the original initialization. This rule is relaxed in a <code>.js</code> file; object literals have an open-ended type, allowing adding and looking up properties that were not defined originally. For instance:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> obj = { a: <span class="hljs-number">1</span> };
+obj.b = <span class="hljs-number">2</span>;  <span class="hljs-comment">// Allowed</span>
+</code></pre>
+<p>Object literals get a default index signature <code>[x:string]: any</code> that allows them to be treated as open maps instead of closed objects.</p>
+<p>Similar to other special JS checking behaviors, this behavior can be changed by specifying a JSDoc type for the variable. For example:</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** @type {{a: number}} */</span>
+<span class="hljs-keyword">var</span> obj = { a: <span class="hljs-number">1</span> };
+obj.b = <span class="hljs-number">2</span>;  <span class="hljs-comment">// Error, type {a: number} does not have property b</span>
+</code></pre>
+<h2 id="function-parameters-are-optional-by-default">Function parameters are optional by default</h2>
+<p>Since there is no way to specify optionality on parameters in JS (without specifying a default value), all function parameters in <code>.js</code> file are considered optional. Calls with fewer arguments are allowed.</p>
+<p>It is important to note that it is an error to call a function with too many arguments.</p>
+<p>For instance:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params">a, b</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(a + <span class="hljs-string">&quot; &quot;</span> + b);
+}
+
+bar(<span class="hljs-number">1</span>);       <span class="hljs-comment">// OK, second argument considered optional</span>
+bar(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+bar(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">// Error, too many arguments</span>
+</code></pre>
+<p>JSDoc annotated functions are excluded from this rule. Use JSDoc optional parameter syntax to express optionality. e.g.:</p>
+<pre><code class="lang-js"><span class="hljs-comment">/**
+ * @param {string} [somebody] - Somebody&apos;s name.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params">somebody</span>) </span>{
+    <span class="hljs-keyword">if</span> (!somebody) {
+        somebody = <span class="hljs-string">&quot;John Doe&quot;</span>;
+    }
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Hello &quot;</span> + somebody);
+}
+
+sayHello();
+</code></pre>
+<h2 id="var-args-parameter-declaration-inferred-from-use-of-arguments">Var-args parameter declaration inferred from use of <code>arguments</code></h2>
+<p>A function whose body has a reference to the <code>arguments</code> reference is implicitly considered to have a var-arg parameter (i.e. <code>(...arg: any[]) =&gt; any</code>). Use JSDoc var-arg syntax to specify the type of the arguments.</p>
+<h2 id="unspecified-type-parameters-default-to-any">Unspecified type parameters default to <code>any</code></h2>
+<p>An unspecified generic type parameter defaults to <code>any</code>. There are few places where this happens:</p>
+<h4 id="in-extends-clause">In extends clause</h4>
+<p>For instance, <code>React.Component</code> is defined to have two generic type parameters, <code>Props</code> and <code>State</code>.
+In a <code>.js</code> file, there is no legal way to specify these in the extends clause. By default the type arguments will be <code>any</code>:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">this</span>.props.b; <span class="hljs-comment">// Allowed, since this.props is of type any</span>
+    }
+}
+</code></pre>
+<p>Use JSDoc <code>@augments</code> to specify the types explicitly. for instance:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">import</span> { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+
+<span class="hljs-comment">/**
+ * @augments {Component&lt;{a: number}, State&gt;}
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+    render() {
+        <span class="hljs-keyword">this</span>.props.b; <span class="hljs-comment">// Error: b does not exist on {a:number}</span>
+    }
+}
+</code></pre>
+<h4 id="in-jsdoc-references">In JSDoc references</h4>
+<p>An unspecified generic type argument in JSDoc defaults to any:</p>
+<pre><code class="lang-js"><span class="hljs-comment">/** @type{Array} */</span>
+<span class="hljs-keyword">var</span> x = [];
+
+x.push(<span class="hljs-number">1</span>);        <span class="hljs-comment">// OK</span>
+x.push(<span class="hljs-string">&quot;string&quot;</span>); <span class="hljs-comment">// OK, x is of type Array&lt;any&gt;</span>
+
+
+<span class="hljs-comment">/** @type{Array.&lt;number&gt;} */</span>
+<span class="hljs-keyword">var</span> y = [];
+
+y.push(<span class="hljs-number">1</span>);        <span class="hljs-comment">// OK</span>
+y.push(<span class="hljs-string">&quot;string&quot;</span>); <span class="hljs-comment">// Error, string is not assignable to number</span>
+</code></pre>
+<h4 id="in-function-calls">In function calls</h4>
+<p>A call to generic functions uses arguments to infer the generic type parameters. Sometimes this process fails to infer any types, mainly because of lack on inference sources; in these cases, the generic type parameters will default to <code>any</code>. For example:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>((resolve, reject) =&gt; { reject() });
+
+p; <span class="hljs-comment">// Promise&lt;any&gt;;</span>
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Triple-Slash Directives.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Triple-Slash Directives">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Type Checking JavaScript Files","level":"1.23","depth":1,"previous":{"title":"Triple-Slash Directives","level":"1.22","depth":1,"path":"pages/Triple-Slash Directives.md","ref":"./pages/Triple-Slash Directives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Type Checking JavaScript Files.md","mtime":"2018-07-01T10:24:27.721Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

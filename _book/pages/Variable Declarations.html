@@ -1,0 +1,993 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Variable Declarations · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Interfaces.html" />
+    
+    
+    <link rel="prev" href="Basic Types.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Variable Declarations</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="variable-declarations">Variable Declarations</h1>
+<p><code>let</code> and <code>const</code> are two relatively new types of variable declarations in JavaScript.
+As we mentioned earlier, <code>let</code> is similar to <code>var</code> in some respects, but allows users to avoid some of the common &quot;gotchas&quot; that users run into in JavaScript.
+<code>const</code> is an augmentation of <code>let</code> in that it prevents re-assignment to a variable.</p>
+<p>With TypeScript being a superset of JavaScript, the language naturally supports <code>let</code> and <code>const</code>.
+Here we&apos;ll elaborate more on these new declarations and why they&apos;re preferable to <code>var</code>.</p>
+<p>If you&apos;ve used JavaScript offhandedly, the next section might be a good way to refresh your memory.
+If you&apos;re intimately familiar with all the quirks of <code>var</code> declarations in JavaScript, you might find it easier to skip ahead.</p>
+<h1 id="var-declarations"><code>var</code> declarations</h1>
+<p>Declaring a variable in JavaScript has always traditionally been done with the <code>var</code> keyword.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+</code></pre>
+<p>As you might&apos;ve figured out, we just declared a variable named <code>a</code> with the value <code>10</code>.</p>
+<p>We can also declare a variable inside of a function:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> message = <span class="hljs-string">&quot;Hello, world!&quot;</span>;
+
+    <span class="hljs-keyword">return</span> message;
+}
+</code></pre>
+<p>and we can also access those same variables within other functions:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> a = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">g</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> b = a + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">return</span> b;
+    }
+}
+
+<span class="hljs-keyword">var</span> g = f();
+g(); <span class="hljs-comment">// returns &apos;11&apos;</span>
+</code></pre>
+<p>In this above example, <code>g</code> captured the variable <code>a</code> declared in <code>f</code>.
+At any point that <code>g</code> gets called, the value of <code>a</code> will be tied to the value of <code>a</code> in <code>f</code>.
+Even if <code>g</code> is called once <code>f</code> is done running, it will be able to access and modify <code>a</code>.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>;
+
+    a = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">var</span> b = g();
+    a = <span class="hljs-number">3</span>;
+
+    <span class="hljs-keyword">return</span> b;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">g</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> a;
+    }
+}
+
+f(); <span class="hljs-comment">// returns &apos;2&apos;</span>
+</code></pre>
+<h2 id="scoping-rules">Scoping rules</h2>
+<p><code>var</code> declarations have some odd scoping rules for those used to other languages.
+Take the following example:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">shouldInitialize: <span class="hljs-built_in">boolean</span></span>) </span>{
+    <span class="hljs-keyword">if</span> (shouldInitialize) {
+        <span class="hljs-keyword">var</span> x = <span class="hljs-number">10</span>;
+    }
+
+    <span class="hljs-keyword">return</span> x;
+}
+
+f(<span class="hljs-literal">true</span>);  <span class="hljs-comment">// returns &apos;10&apos;</span>
+f(<span class="hljs-literal">false</span>); <span class="hljs-comment">// returns &apos;undefined&apos;</span>
+</code></pre>
+<p>Some readers might do a double-take at this example.
+The variable <code>x</code> was declared <em>within the <code>if</code> block</em>, and yet we were able to access it from outside that block.
+That&apos;s because <code>var</code> declarations are accessible anywhere within their containing function, module, namespace, or global scope - all which we&apos;ll go over later on - regardless of the containing block.
+Some people call this <em><code>var</code>-scoping</em> or <em>function-scoping</em>.
+Parameters are also function scoped.</p>
+<p>These scoping rules can cause several types of mistakes.
+One problem they exacerbate is the fact that it is not an error to declare the same variable multiple times:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sumMatrix</span>(<span class="hljs-params">matrix: <span class="hljs-built_in">number</span>[][]</span>) </span>{
+    <span class="hljs-keyword">var</span> sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; matrix.length; i++) {
+        <span class="hljs-keyword">var</span> currentRow = matrix[i];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; currentRow.length; i++) {
+            sum += currentRow[i];
+        }
+    }
+
+    <span class="hljs-keyword">return</span> sum;
+}
+</code></pre>
+<p>Maybe it was easy to spot out for some, but the inner <code>for</code>-loop will accidentally overwrite the variable <code>i</code> because <code>i</code> refers to the same function-scoped variable.
+As experienced developers know by now, similar sorts of bugs slip through code reviews and can be an endless source of frustration.</p>
+<h2 id="variable-capturing-quirks">Variable capturing quirks</h2>
+<p>Take a quick second to guess what the output of the following snippet is:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(i); }, <span class="hljs-number">100</span> * i);
+}
+</code></pre>
+<p>For those unfamiliar, <code>setTimeout</code> will try to execute a function after a certain number of milliseconds (though waiting for anything else to stop running).</p>
+<p>Ready? Take a look:</p>
+<pre><code class="lang-text">10
+10
+10
+10
+10
+10
+10
+10
+10
+10
+</code></pre>
+<p>Many JavaScript developers are intimately familiar with this behavior, but if you&apos;re surprised, you&apos;re certainly not alone.
+Most people expect the output to be</p>
+<pre><code class="lang-text">0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</code></pre>
+<p>Remember what we mentioned earlier about variable capturing?
+Every function expression we pass to <code>setTimeout</code> actually refers to the same <code>i</code> from the same scope.</p>
+<p>Let&apos;s take a minute to consider what that means.
+<code>setTimeout</code> will run a function after some number of milliseconds, <em>but only</em> after the <code>for</code> loop has stopped executing;
+By the time the <code>for</code> loop has stopped executing, the value of <code>i</code> is <code>10</code>.
+So each time the given function gets called, it will print out <code>10</code>!</p>
+<p>A common work around is to use an IIFE - an Immediately Invoked Function Expression - to capture <code>i</code> at each iteration:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) {
+    <span class="hljs-comment">// capture the current state of &apos;i&apos;</span>
+    <span class="hljs-comment">// by invoking a function with its current value</span>
+    (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">i</span>) </span>{
+        setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(i); }, <span class="hljs-number">100</span> * i);
+    })(i);
+}
+</code></pre>
+<p>This odd-looking pattern is actually pretty common.
+The <code>i</code> in the parameter list actually shadows the <code>i</code> declared in the <code>for</code> loop, but since we named them the same, we didn&apos;t have to modify the loop body too much.</p>
+<h1 id="let-declarations"><code>let</code> declarations</h1>
+<p>By now you&apos;ve figured out that <code>var</code> has some problems, which is precisely why <code>let</code> statements were introduced.
+Apart from the keyword used, <code>let</code> statements are written the same way <code>var</code> statements are.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> hello = <span class="hljs-string">&quot;Hello!&quot;</span>;
+</code></pre>
+<p>The key difference is not in the syntax, but in the semantics, which we&apos;ll now dive into.</p>
+<h2 id="block-scoping">Block-scoping</h2>
+<p>When a variable is declared using <code>let</code>, it uses what some call <em>lexical-scoping</em> or <em>block-scoping</em>.
+Unlike variables declared with <code>var</code> whose scopes leak out to their containing function, block-scoped variables are not visible outside of their nearest containing block or <code>for</code>-loop.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">input: <span class="hljs-built_in">boolean</span></span>) </span>{
+    <span class="hljs-keyword">let</span> a = <span class="hljs-number">100</span>;
+
+    <span class="hljs-keyword">if</span> (input) {
+        <span class="hljs-comment">// Still okay to reference &apos;a&apos;</span>
+        <span class="hljs-keyword">let</span> b = a + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">return</span> b;
+    }
+
+    <span class="hljs-comment">// Error: &apos;b&apos; doesn&apos;t exist here</span>
+    <span class="hljs-keyword">return</span> b;
+}
+</code></pre>
+<p>Here, we have two local variables <code>a</code> and <code>b</code>.
+<code>a</code>&apos;s scope is limited to the body of <code>f</code> while <code>b</code>&apos;s scope is limited to the containing <code>if</code> statement&apos;s block.</p>
+<p>Variables declared in a <code>catch</code> clause also have similar scoping rules.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">try</span> {
+    <span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;oh no!&quot;</span>;
+}
+<span class="hljs-keyword">catch</span> (e) {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Oh well.&quot;</span>);
+}
+
+<span class="hljs-comment">// Error: &apos;e&apos; doesn&apos;t exist here</span>
+<span class="hljs-built_in">console</span>.log(e);
+</code></pre>
+<p>Another property of block-scoped variables is that they can&apos;t be read or written to before they&apos;re actually declared.
+While these variables are &quot;present&quot; throughout their scope, all points up until their declaration are part of their <em>temporal dead zone</em>.
+This is just a sophisticated way of saying you can&apos;t access them before the <code>let</code> statement, and luckily TypeScript will let you know that.</p>
+<pre><code class="lang-ts">a++; <span class="hljs-comment">// illegal to use &apos;a&apos; before it&apos;s declared;</span>
+<span class="hljs-keyword">let</span> a;
+</code></pre>
+<p>Something to note is that you can still <em>capture</em> a block-scoped variable before it&apos;s declared.
+The only catch is that it&apos;s illegal to call that function before the declaration.
+If targeting ES2015, a modern runtime will throw an error; however, right now TypeScript is permissive and won&apos;t report this as an error.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// okay to capture &apos;a&apos;</span>
+    <span class="hljs-keyword">return</span> a;
+}
+
+<span class="hljs-comment">// illegal call &apos;foo&apos; before &apos;a&apos; is declared</span>
+<span class="hljs-comment">// runtimes should throw an error here</span>
+foo();
+
+<span class="hljs-keyword">let</span> a;
+</code></pre>
+<p>For more information on temporal dead zones, see relevant content on the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let" target="_blank">Mozilla Developer Network</a>.</p>
+<h2 id="re-declarations-and-shadowing">Re-declarations and Shadowing</h2>
+<p>With <code>var</code> declarations, we mentioned that it didn&apos;t matter how many times you declared your variables; you just got one.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">var</span> x;
+    <span class="hljs-keyword">var</span> x;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-keyword">var</span> x;
+    }
+}
+</code></pre>
+<p>In the above example, all declarations of <code>x</code> actually refer to the <em>same</em> <code>x</code>, and this is perfectly valid.
+This often ends up being a source of bugs.
+Thankfully, <code>let</code> declarations are not as forgiving.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> x = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">let</span> x = <span class="hljs-number">20</span>; <span class="hljs-comment">// error: can&apos;t re-declare &apos;x&apos; in the same scope</span>
+</code></pre>
+<p>The variables don&apos;t necessarily need to both be block-scoped for TypeScript to tell us that there&apos;s a problem.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">100</span>; <span class="hljs-comment">// error: interferes with parameter declaration</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">g</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">let</span> x = <span class="hljs-number">100</span>;
+    <span class="hljs-keyword">var</span> x = <span class="hljs-number">100</span>; <span class="hljs-comment">// error: can&apos;t have both declarations of &apos;x&apos;</span>
+}
+</code></pre>
+<p>That&apos;s not to say that block-scoped variable can never be declared with a function-scoped variable.
+The block-scoped variable just needs to be declared within a distinctly different block.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">condition, x</span>) </span>{
+    <span class="hljs-keyword">if</span> (condition) {
+        <span class="hljs-keyword">let</span> x = <span class="hljs-number">100</span>;
+        <span class="hljs-keyword">return</span> x;
+    }
+
+    <span class="hljs-keyword">return</span> x;
+}
+
+f(<span class="hljs-literal">false</span>, <span class="hljs-number">0</span>); <span class="hljs-comment">// returns &apos;0&apos;</span>
+f(<span class="hljs-literal">true</span>, <span class="hljs-number">0</span>);  <span class="hljs-comment">// returns &apos;100&apos;</span>
+</code></pre>
+<p>The act of introducing a new name in a more nested scope is called <em>shadowing</em>.
+It is a bit of a double-edged sword in that it can introduce certain bugs on its own in the event of accidental shadowing, while also preventing certain bugs.
+For instance, imagine we had written our earlier <code>sumMatrix</code> function using <code>let</code> variables.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sumMatrix</span>(<span class="hljs-params">matrix: <span class="hljs-built_in">number</span>[][]</span>) </span>{
+    <span class="hljs-keyword">let</span> sum = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; matrix.length; i++) {
+        <span class="hljs-keyword">var</span> currentRow = matrix[i];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; currentRow.length; i++) {
+            sum += currentRow[i];
+        }
+    }
+
+    <span class="hljs-keyword">return</span> sum;
+}
+</code></pre>
+<p>This version of the loop will actually perform the summation correctly because the inner loop&apos;s <code>i</code> shadows <code>i</code> from the outer loop.</p>
+<p>Shadowing should <em>usually</em> be avoided in the interest of writing clearer code.
+While there are some scenarios where it may be fitting to take advantage of it, you should use your best judgement.</p>
+<h2 id="block-scoped-variable-capturing">Block-scoped variable capturing</h2>
+<p>When we first touched on the idea of variable capturing with <code>var</code> declaration, we briefly went into how variables act once captured.
+To give a better intuition of this, each time a scope is run, it creates an &quot;environment&quot; of variables.
+That environment and its captured variables can exist even after everything within its scope has finished executing.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">theCityThatAlwaysSleeps</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">let</span> getCity;
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-keyword">let</span> city = <span class="hljs-string">&quot;Seattle&quot;</span>;
+        getCity = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+            <span class="hljs-keyword">return</span> city;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> getCity();
+}
+</code></pre>
+<p>Because we&apos;ve captured <code>city</code> from within its environment, we&apos;re still able to access it despite the fact that the <code>if</code> block finished executing.</p>
+<p>Recall that with our earlier <code>setTimeout</code> example, we ended up needing to use an IIFE to capture the state of a variable for every iteration of the <code>for</code> loop.
+In effect, what we were doing was creating a new variable environment for our captured variables.
+That was a bit of a pain, but luckily, you&apos;ll never have to do that again in TypeScript.</p>
+<p><code>let</code> declarations have drastically different behavior when declared as part of a loop.
+Rather than just introducing a new environment to the loop itself, these declarations sort of create a new scope <em>per iteration</em>.
+Since this is what we were doing anyway with our IIFE, we can change our old <code>setTimeout</code> example to just use a <code>let</code> declaration.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span> ; i++) {
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{ <span class="hljs-built_in">console</span>.log(i); }, <span class="hljs-number">100</span> * i);
+}
+</code></pre>
+<p>and as expected, this will print out</p>
+<pre><code class="lang-text">0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</code></pre>
+<h1 id="const-declarations"><code>const</code> declarations</h1>
+<p><code>const</code> declarations are another way of declaring variables.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">const</span> numLivesForCat = <span class="hljs-number">9</span>;
+</code></pre>
+<p>They are like <code>let</code> declarations but, as their name implies, their value cannot be changed once they are bound.
+In other words, they have the same scoping rules as <code>let</code>, but you can&apos;t re-assign to them.</p>
+<p>This should not be confused with the idea that the values they refer to are <em>immutable</em>.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">const</span> numLivesForCat = <span class="hljs-number">9</span>;
+<span class="hljs-keyword">const</span> kitty = {
+    name: <span class="hljs-string">&quot;Aurora&quot;</span>,
+    numLives: numLivesForCat,
+}
+
+<span class="hljs-comment">// Error</span>
+kitty = {
+    name: <span class="hljs-string">&quot;Danielle&quot;</span>,
+    numLives: numLivesForCat
+};
+
+<span class="hljs-comment">// all &quot;okay&quot;</span>
+kitty.name = <span class="hljs-string">&quot;Rory&quot;</span>;
+kitty.name = <span class="hljs-string">&quot;Kitty&quot;</span>;
+kitty.name = <span class="hljs-string">&quot;Cat&quot;</span>;
+kitty.numLives--;
+</code></pre>
+<p>Unless you take specific measures to avoid it, the internal state of a <code>const</code> variable is still modifiable.
+Fortunately, TypeScript allows you to specify that members of an object are <code>readonly</code>.
+The <a href="Interfaces.html">chapter on Interfaces</a> has the details.</p>
+<h1 id="let-vs-const"><code>let</code> vs. <code>const</code></h1>
+<p>Given that we have two types of declarations with similar scoping semantics, it&apos;s natural to find ourselves asking which one to use.
+Like most broad questions, the answer is: it depends.</p>
+<p>Applying the <a href="https://en.wikipedia.org/wiki/Principle_of_least_privilege" target="_blank">principle of least privilege</a>, all declarations other than those you plan to modify should use <code>const</code>.
+The rationale is that if a variable didn&apos;t need to get written to, others working on the same codebase shouldn&apos;t automatically be able to write to the object, and will need to consider whether they really need to reassign to the variable.
+Using <code>const</code> also makes code more predictable when reasoning about flow of data.</p>
+<p>Use your best judgement, and if applicable, consult the matter with the rest of your team.</p>
+<p>The majority of this handbook uses <code>let</code> declarations.</p>
+<h1 id="destructuring">Destructuring</h1>
+<p>Another ECMAScript 2015 feature that TypeScript has is destructuring.
+For a complete reference, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank">the article on the Mozilla Developer Network</a>.
+In this section, we&apos;ll give a short overview.</p>
+<h2 id="array-destructuring">Array destructuring</h2>
+<p>The simplest form of destructuring is array destructuring assignment:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> input = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];
+<span class="hljs-keyword">let</span> [first, second] = input;
+<span class="hljs-built_in">console</span>.log(first); <span class="hljs-comment">// outputs 1</span>
+<span class="hljs-built_in">console</span>.log(second); <span class="hljs-comment">// outputs 2</span>
+</code></pre>
+<p>This creates two new variables named <code>first</code> and <code>second</code>.
+This is equivalent to using indexing, but is much more convenient:</p>
+<pre><code class="lang-ts">first = input[<span class="hljs-number">0</span>];
+second = input[<span class="hljs-number">1</span>];
+</code></pre>
+<p>Destructuring works with already-declared variables as well:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// swap variables</span>
+[first, second] = [second, first];
+</code></pre>
+<p>And with parameters to a function:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">[first, second]: [<span class="hljs-built_in">number</span>, <span class="hljs-built_in">number</span>]</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(first);
+    <span class="hljs-built_in">console</span>.log(second);
+}
+f([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>]);
+</code></pre>
+<p>You can create a variable for the remaining items in a list using the syntax <code>...</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> [first, ...rest] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-built_in">console</span>.log(first); <span class="hljs-comment">// outputs 1</span>
+<span class="hljs-built_in">console</span>.log(rest); <span class="hljs-comment">// outputs [ 2, 3, 4 ]</span>
+</code></pre>
+<p>Of course, since this is JavaScript, you can just ignore trailing elements you don&apos;t care about:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> [first] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-built_in">console</span>.log(first); <span class="hljs-comment">// outputs 1</span>
+</code></pre>
+<p>Or other elements:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> [, second, , fourth] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+</code></pre>
+<h2 id="object-destructuring">Object destructuring</h2>
+<p>You can also destructure objects:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> o = {
+    a: <span class="hljs-string">&quot;foo&quot;</span>,
+    b: <span class="hljs-number">12</span>,
+    c: <span class="hljs-string">&quot;bar&quot;</span>
+};
+<span class="hljs-keyword">let</span> { a, b } = o;
+</code></pre>
+<p>This creates new variables <code>a</code> and <code>b</code> from <code>o.a</code> and <code>o.b</code>.
+Notice that you can skip <code>c</code> if you don&apos;t need it.</p>
+<p>Like array destructuring, you can have assignment without declaration:</p>
+<pre><code class="lang-ts">({ a, b } = { a: <span class="hljs-string">&quot;baz&quot;</span>, b: <span class="hljs-number">101</span> });
+</code></pre>
+<p>Notice that we had to surround this statement with parentheses.
+JavaScript normally parses a <code>{</code> as the start of block.</p>
+<p>You can create a variable for the remaining items in an object using the syntax <code>...</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> { a, ...passthrough } = o;
+<span class="hljs-keyword">let</span> total = passthrough.b + passthrough.c.length;
+</code></pre>
+<h3 id="property-renaming">Property renaming</h3>
+<p>You can also give different names to properties:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> { a: newName1, b: newName2 } = o;
+</code></pre>
+<p>Here the syntax starts to get confusing.
+You can read <code>a: newName1</code> as &quot;<code>a</code> as <code>newName1</code>&quot;.
+The direction is left-to-right, as if you had written:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> newName1 = o.a;
+<span class="hljs-keyword">let</span> newName2 = o.b;
+</code></pre>
+<p>Confusingly, the colon here does <em>not</em> indicate the type.
+The type, if you specify it, still needs to be written after the entire destructuring:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> { a, b }: { a: <span class="hljs-built_in">string</span>, b: <span class="hljs-built_in">number</span> } = o;
+</code></pre>
+<h3 id="default-values">Default values</h3>
+<p>Default values let you specify a default value in case a property is undefined:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">keepWholeObject</span>(<span class="hljs-params">wholeObject: { a: <span class="hljs-built_in">string</span>, b?: <span class="hljs-built_in">number</span> }</span>) </span>{
+    <span class="hljs-keyword">let</span> { a, b = <span class="hljs-number">1001</span> } = wholeObject;
+}
+</code></pre>
+<p><code>keepWholeObject</code> now has a variable for <code>wholeObject</code> as well as the properties <code>a</code> and <code>b</code>, even if <code>b</code> is undefined.</p>
+<h2 id="function-declarations">Function declarations</h2>
+<p>Destructuring also works in function declarations.
+For simple cases this is straightforward:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> C = { a: <span class="hljs-built_in">string</span>, b?: <span class="hljs-built_in">number</span> }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">{ a, b }: C</span>): <span class="hljs-title">void</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>But specifying defaults is more common for parameters, and getting defaults right with destructuring can be tricky.
+First of all, you need to remember to put the pattern before the default value.</p>
+<pre><code class="lang-ts">function f({ a=&quot;&quot;, b=0 } = {}): void {
+    // ...
+}
+f();
+</code></pre>
+<blockquote>
+<p>The snippet above is an example of type inference, explained later in the handbook.</p>
+</blockquote>
+<p>Then, you need to remember to give a default for optional properties on the destructured property instead of the main initializer.
+Remember that <code>C</code> was defined with <code>b</code> optional:</p>
+<pre><code class="lang-ts">function f({ a, b = 0 } = { a: &quot;&quot; }): void {
+    // ...
+}
+f({ a: &quot;yes&quot; }); // ok, default b = 0
+f(); // ok, default to { a: &quot;&quot; }, which then defaults b = 0
+f({}); // error, &apos;a&apos; is required if you supply an argument
+</code></pre>
+<p>Use destructuring with care.
+As the previous example demonstrates, anything but the simplest destructuring expression is confusing.
+This is especially true with deeply nested destructuring, which gets <em>really</em> hard to understand even without piling on renaming, default values, and type annotations.
+Try to keep destructuring expressions small and simple.
+You can always write the assignments that destructuring would generate yourself.</p>
+<h2 id="spread">Spread</h2>
+<p>The spread operator is the opposite of destructuring.
+It allows you to spread an array into another array, or an object into another object.
+For example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> first = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];
+<span class="hljs-keyword">let</span> second = [<span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+<span class="hljs-keyword">let</span> bothPlus = [<span class="hljs-number">0</span>, ...first, ...second, <span class="hljs-number">5</span>];
+</code></pre>
+<p>This gives bothPlus the value <code>[0, 1, 2, 3, 4, 5]</code>.
+Spreading creates a shallow copy of <code>first</code> and <code>second</code>.
+They are not changed by the spread.</p>
+<p>You can also spread objects:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> defaults = { food: <span class="hljs-string">&quot;spicy&quot;</span>, price: <span class="hljs-string">&quot;$$&quot;</span>, ambiance: <span class="hljs-string">&quot;noisy&quot;</span> };
+<span class="hljs-keyword">let</span> search = { ...defaults, food: <span class="hljs-string">&quot;rich&quot;</span> };
+</code></pre>
+<p>Now <code>search</code> is <code>{ food: &quot;rich&quot;, price: &quot;$$&quot;, ambiance: &quot;noisy&quot; }</code>.
+Object spreading is more complex than array spreading.
+Like array spreading, it proceeds from left-to-right, but the result is still an object.
+This means that properties that come later in the spread object overwrite properties that come earlier.
+So if we modify the previous example to spread at the end:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> defaults = { food: <span class="hljs-string">&quot;spicy&quot;</span>, price: <span class="hljs-string">&quot;$$&quot;</span>, ambiance: <span class="hljs-string">&quot;noisy&quot;</span> };
+<span class="hljs-keyword">let</span> search = { food: <span class="hljs-string">&quot;rich&quot;</span>, ...defaults };
+</code></pre>
+<p>Then the <code>food</code> property in <code>defaults</code> overwrites <code>food: &quot;rich&quot;</code>, which is not what we want in this case.</p>
+<p>Object spread also has a couple of other surprising limits.
+First, it only includes an objects&apos;
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties" target="_blank">own, enumerable properties</a>.
+Basically, that means you lose methods when you spread instances of an object:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> C {
+  p = <span class="hljs-number">12</span>;
+  m() {
+  }
+}
+<span class="hljs-keyword">let</span> c = <span class="hljs-keyword">new</span> C();
+<span class="hljs-keyword">let</span> clone = { ...c };
+clone.p; <span class="hljs-comment">// ok</span>
+clone.m(); <span class="hljs-comment">// error!</span>
+</code></pre>
+<p>Second, the Typescript compiler doesn&apos;t allow spreads of type parameters from generic functions.
+That feature is expected in future versions of the language.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Basic Types.html" class="navigation navigation-prev " aria-label="Previous page: Basic Types">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Interfaces.html" class="navigation navigation-next " aria-label="Next page: Interfaces">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Variable Declarations","level":"1.3","depth":1,"next":{"title":"Interfaces","level":"1.4","depth":1,"path":"pages/Interfaces.md","ref":"./pages/Interfaces.md","articles":[]},"previous":{"title":"Basic Types","level":"1.2","depth":1,"path":"pages/Basic Types.md","ref":"./pages/Basic Types.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Variable Declarations.md","mtime":"2018-07-01T10:24:27.721Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

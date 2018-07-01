@@ -1,0 +1,1229 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Advanced Types · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Symbols.html" />
+    
+    
+    <link rel="prev" href="Type Compatibility.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Advanced Types</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="intersection-types">Intersection Types</h1>
+<p>An intersection type combines multiple types into one.
+This allows you to add together existing types to get a single type that has all the features you need.
+For example, <code>Person &amp; Serializable &amp; Loggable</code> is a <code>Person</code> <em>and</em> <code>Serializable</code> <em>and</em> <code>Loggable</code>.
+That means an object of this type will have all members of all three types.</p>
+<p>You will mostly see intersection types used for mixins and other concepts that don&apos;t fit in the classic object-oriented mold.
+(There are a lot of these in JavaScript!)
+Here&apos;s a simple example that shows how to create a mixin:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">extend</span>&lt;<span class="hljs-title">T</span>, <span class="hljs-title">U</span>&gt;(<span class="hljs-params">first: T, second: U</span>): <span class="hljs-title">T</span> &amp; <span class="hljs-title">U</span> </span>{
+    <span class="hljs-keyword">let</span> result = &lt;T &amp; U&gt;{};
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> id <span class="hljs-keyword">in</span> first) {
+        (&lt;<span class="hljs-built_in">any</span>&gt;result)[id] = (&lt;<span class="hljs-built_in">any</span>&gt;first)[id];
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> id <span class="hljs-keyword">in</span> second) {
+        <span class="hljs-keyword">if</span> (!result.hasOwnProperty(id)) {
+            (&lt;<span class="hljs-built_in">any</span>&gt;result)[id] = (&lt;<span class="hljs-built_in">any</span>&gt;second)[id];
+        }
+    }
+    <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-keyword">class</span> Person {
+    <span class="hljs-keyword">constructor</span>(public name: string) { }
+}
+<span class="hljs-keyword">interface</span> Loggable {
+    log(): <span class="hljs-built_in">void</span>;
+}
+<span class="hljs-keyword">class</span> ConsoleLogger <span class="hljs-keyword">implements</span> Loggable {
+    log() {
+        <span class="hljs-comment">// ...</span>
+    }
+}
+<span class="hljs-keyword">var</span> jim = extend(<span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;Jim&quot;</span>), <span class="hljs-keyword">new</span> ConsoleLogger());
+<span class="hljs-keyword">var</span> n = jim.name;
+jim.log();
+</code></pre>
+<h1 id="union-types">Union Types</h1>
+<p>Union types are closely related to intersection types, but they are used very differently.
+Occasionally, you&apos;ll run into a library that expects a parameter to be either a <code>number</code> or a <code>string</code>.
+For instance, take the following function:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">/**
+ * Takes a string and adds &quot;padding&quot; to the left.
+ * If &apos;padding&apos; is a string, then &apos;padding&apos; is appended to the left side.
+ * If &apos;padding&apos; is a number, then that number of spaces is added to the left side.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">padLeft</span>(<span class="hljs-params">value: <span class="hljs-built_in">string</span>, padding: <span class="hljs-built_in">any</span></span>) </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> padding === <span class="hljs-string">&quot;number&quot;</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>(padding + <span class="hljs-number">1</span>).join(<span class="hljs-string">&quot; &quot;</span>) + value;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> padding === <span class="hljs-string">&quot;string&quot;</span>) {
+        <span class="hljs-keyword">return</span> padding + value;
+    }
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Expected string or number, got &apos;<span class="hljs-subst">${padding}</span>&apos;.`</span>);
+}
+
+padLeft(<span class="hljs-string">&quot;Hello world&quot;</span>, <span class="hljs-number">4</span>); <span class="hljs-comment">// returns &quot;    Hello world&quot;</span>
+</code></pre>
+<p>The problem with <code>padLeft</code> is that its <code>padding</code> parameter is typed as <code>any</code>.
+That means that we can call it with an argument that&apos;s neither a <code>number</code> nor a <code>string</code>, but TypeScript will be okay with it.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> indentedString = padLeft(<span class="hljs-string">&quot;Hello world&quot;</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// passes at compile time, fails at runtime.</span>
+</code></pre>
+<p>In traditional object-oriented code, we might abstract over the two types by creating a hierarchy of types.
+While this is much more explicit, it&apos;s also a little bit overkill.
+One of the nice things about the original version of <code>padLeft</code> was that we were able to just pass in primitives.
+That meant that usage was simple and concise.
+This new approach also wouldn&apos;t help if we were just trying to use a function that already exists elsewhere.</p>
+<p>Instead of <code>any</code>, we can use a <em>union type</em> for the <code>padding</code> parameter:</p>
+<pre><code class="lang-ts"><span class="hljs-comment">/**
+ * Takes a string and adds &quot;padding&quot; to the left.
+ * If &apos;padding&apos; is a string, then &apos;padding&apos; is appended to the left side.
+ * If &apos;padding&apos; is a number, then that number of spaces is added to the left side.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">padLeft</span>(<span class="hljs-params">value: <span class="hljs-built_in">string</span>, padding: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-keyword">let</span> indentedString = padLeft(<span class="hljs-string">&quot;Hello world&quot;</span>, <span class="hljs-literal">true</span>); <span class="hljs-comment">// errors during compilation</span>
+</code></pre>
+<p>A union type describes a value that can be one of several types.
+We use the vertical bar (<code>|</code>) to separate each type, so <code>number | string | boolean</code> is the type of a value that can be a <code>number</code>, a <code>string</code>, or a <code>boolean</code>.</p>
+<p>If we have a value that has a union type, we can only access members that are common to all types in the union.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Bird {
+    fly();
+    layEggs();
+}
+
+<span class="hljs-keyword">interface</span> Fish {
+    swim();
+    layEggs();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getSmallPet</span>(<span class="hljs-params"></span>): <span class="hljs-title">Fish</span> | <span class="hljs-title">Bird</span> </span>{
+    <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-keyword">let</span> pet = getSmallPet();
+pet.layEggs(); <span class="hljs-comment">// okay</span>
+pet.swim();    <span class="hljs-comment">// errors</span>
+</code></pre>
+<p>Union types can be a bit tricky here, but it just takes a bit of intuition to get used to.
+If a value has the type <code>A | B</code>, we only know for <em>certain</em> that it has members that both <code>A</code> <em>and</em> <code>B</code> have.
+In this example, <code>Bird</code> has a member named <code>fly</code>.
+We can&apos;t be sure whether a variable typed as <code>Bird | Fish</code> has a <code>fly</code> method.
+If the variable is really a <code>Fish</code> at runtime, then calling <code>pet.fly()</code> will fail.</p>
+<h1 id="type-guards-and-differentiating-types">Type Guards and Differentiating Types</h1>
+<p>Union types are useful for modeling situations when values can overlap in the types they can take on.
+What happens when we need to know specifically whether we have a <code>Fish</code>?
+A common idiom in JavaScript to differentiate between two possible values is to check for the presence of a member.
+As we mentioned, you can only access members that are guaranteed to be in all the constituents of a union type.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> pet = getSmallPet();
+
+<span class="hljs-comment">// Each of these property accesses will cause an error</span>
+<span class="hljs-keyword">if</span> (pet.swim) {
+    pet.swim();
+}
+<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pet.fly) {
+    pet.fly();
+}
+</code></pre>
+<p>To get the same code working, we&apos;ll need to use a type assertion:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> pet = getSmallPet();
+
+<span class="hljs-keyword">if</span> ((&lt;Fish&gt;pet).swim) {
+    (&lt;Fish&gt;pet).swim();
+}
+<span class="hljs-keyword">else</span> {
+    (&lt;Bird&gt;pet).fly();
+}
+</code></pre>
+<h2 id="user-defined-type-guards">User-Defined Type Guards</h2>
+<p>Notice that we had to use type assertions several times.
+It would be much better if once we performed the check, we could know the type of <code>pet</code> within each branch.</p>
+<p>It just so happens that TypeScript has something called a <em>type guard</em>.
+A type guard is some expression that performs a runtime check that guarantees the type in some scope.
+To define a type guard, we simply need to define a function whose return type is a <em>type predicate</em>:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isFish</span>(<span class="hljs-params">pet: Fish | Bird</span>): <span class="hljs-title">pet</span> <span class="hljs-title">is</span> <span class="hljs-title">Fish</span> </span>{
+    <span class="hljs-keyword">return</span> (&lt;Fish&gt;pet).swim !== <span class="hljs-literal">undefined</span>;
+}
+</code></pre>
+<p><code>pet is Fish</code> is our type predicate in this example.
+A predicate takes the form <code>parameterName is Type</code>, where <code>parameterName</code> must be the name of a parameter from the current function signature.</p>
+<p>Any time <code>isFish</code> is called with some variable, TypeScript will <em>narrow</em> that variable to that specific type if the original type is compatible.</p>
+<pre><code class="lang-ts"><span class="hljs-comment">// Both calls to &apos;swim&apos; and &apos;fly&apos; are now okay.</span>
+
+<span class="hljs-keyword">if</span> (isFish(pet)) {
+    pet.swim();
+}
+<span class="hljs-keyword">else</span> {
+    pet.fly();
+}
+</code></pre>
+<p>Notice that TypeScript not only knows that <code>pet</code> is a <code>Fish</code> in the <code>if</code> branch;
+it also knows that in the <code>else</code> branch, you <em>don&apos;t</em> have a <code>Fish</code>, so you must have a <code>Bird</code>.</p>
+<h2 id="typeof-type-guards"><code>typeof</code> type guards</h2>
+<p>Let&apos;s go back and write the code for the version of <code>padLeft</code> that uses union types.
+We could write it with type predicates as follows:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isNumber</span>(<span class="hljs-params">x: <span class="hljs-built_in">any</span></span>): <span class="hljs-title">x</span> <span class="hljs-title">is</span> <span class="hljs-title">number</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&quot;number&quot;</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isString</span>(<span class="hljs-params">x: <span class="hljs-built_in">any</span></span>): <span class="hljs-title">x</span> <span class="hljs-title">is</span> <span class="hljs-title">string</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> x === <span class="hljs-string">&quot;string&quot;</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">padLeft</span>(<span class="hljs-params">value: <span class="hljs-built_in">string</span>, padding: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) </span>{
+    <span class="hljs-keyword">if</span> (isNumber(padding)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>(padding + <span class="hljs-number">1</span>).join(<span class="hljs-string">&quot; &quot;</span>) + value;
+    }
+    <span class="hljs-keyword">if</span> (isString(padding)) {
+        <span class="hljs-keyword">return</span> padding + value;
+    }
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Expected string or number, got &apos;<span class="hljs-subst">${padding}</span>&apos;.`</span>);
+}
+</code></pre>
+<p>However, having to define a function to figure out if a type is a primitive is kind of a pain.
+Luckily, you don&apos;t need to abstract <code>typeof x === &quot;number&quot;</code> into its own function because TypeScript will recognize it as a type guard on its own.
+That means we could just write these checks inline.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">padLeft</span>(<span class="hljs-params">value: <span class="hljs-built_in">string</span>, padding: <span class="hljs-built_in">string</span> | <span class="hljs-built_in">number</span></span>) </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> padding === <span class="hljs-string">&quot;number&quot;</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>(padding + <span class="hljs-number">1</span>).join(<span class="hljs-string">&quot; &quot;</span>) + value;
+    }
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> padding === <span class="hljs-string">&quot;string&quot;</span>) {
+        <span class="hljs-keyword">return</span> padding + value;
+    }
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">`Expected string or number, got &apos;<span class="hljs-subst">${padding}</span>&apos;.`</span>);
+}
+</code></pre>
+<p>These <em><code>typeof</code> type guards</em> are recognized in two different forms: <code>typeof v === &quot;typename&quot;</code> and <code>typeof v !== &quot;typename&quot;</code>, where <code>&quot;typename&quot;</code> must be <code>&quot;number&quot;</code>, <code>&quot;string&quot;</code>, <code>&quot;boolean&quot;</code>, or <code>&quot;symbol&quot;</code>.
+While TypeScript won&apos;t stop you from comparing to other strings, the language won&apos;t recognize those expressions as type guards.</p>
+<h2 id="instanceof-type-guards"><code>instanceof</code> type guards</h2>
+<p>If you&apos;ve read about <code>typeof</code> type guards and are familiar with the <code>instanceof</code> operator in JavaScript, you probably have some idea of what this section is about.</p>
+<p><em><code>instanceof</code> type guards</em> are a way of narrowing types using their constructor function.
+For instance, let&apos;s borrow our industrial string-padder example from earlier:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Padder {
+    getPaddingString(): <span class="hljs-built_in">string</span>
+}
+
+<span class="hljs-keyword">class</span> SpaceRepeatingPadder <span class="hljs-keyword">implements</span> Padder {
+    <span class="hljs-keyword">constructor</span>(private numSpaces: number) { }
+    getPaddingString() {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>(<span class="hljs-keyword">this</span>.numSpaces + <span class="hljs-number">1</span>).join(<span class="hljs-string">&quot; &quot;</span>);
+    }
+}
+
+<span class="hljs-keyword">class</span> StringPadder <span class="hljs-keyword">implements</span> Padder {
+    <span class="hljs-keyword">constructor</span>(private value: string) { }
+    getPaddingString() {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.value;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getRandomPadder</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.random() &lt; <span class="hljs-number">0.5</span> ?
+        <span class="hljs-keyword">new</span> SpaceRepeatingPadder(<span class="hljs-number">4</span>) :
+        <span class="hljs-keyword">new</span> StringPadder(<span class="hljs-string">&quot;  &quot;</span>);
+}
+
+<span class="hljs-comment">// Type is &apos;SpaceRepeatingPadder | StringPadder&apos;</span>
+<span class="hljs-keyword">let</span> padder: Padder = getRandomPadder();
+
+<span class="hljs-keyword">if</span> (padder <span class="hljs-keyword">instanceof</span> SpaceRepeatingPadder) {
+    padder; <span class="hljs-comment">// type narrowed to &apos;SpaceRepeatingPadder&apos;</span>
+}
+<span class="hljs-keyword">if</span> (padder <span class="hljs-keyword">instanceof</span> StringPadder) {
+    padder; <span class="hljs-comment">// type narrowed to &apos;StringPadder&apos;</span>
+}
+</code></pre>
+<p>The right side of the <code>instanceof</code> needs to be a constructor function, and TypeScript will narrow down to:</p>
+<ol>
+<li>the type of the function&apos;s <code>prototype</code> property if its type is not <code>any</code></li>
+<li>the union of types returned by that type&apos;s construct signatures</li>
+</ol>
+<p>in that order.</p>
+<h1 id="nullable-types">Nullable types</h1>
+<p>TypeScript has two special types, <code>null</code> and <code>undefined</code>, that have the values null and undefined respectively.
+We mentioned these briefly in <a href="Basic%20Types.md">the Basic Types section</a>.
+By default, the type checker considers <code>null</code> and <code>undefined</code> assignable to anything.
+Effectively, <code>null</code> and <code>undefined</code> are valid values of every type.
+That means it&apos;s not possible to <em>stop</em> them from being assigned to any type, even when you would like to prevent it.
+The inventor of <code>null</code>, Tony Hoare, calls this his <a href="https://en.wikipedia.org/wiki/Null_pointer#History" target="_blank">&quot;billion dollar mistake&quot;</a>.</p>
+<p>The <code>--strictNullChecks</code> flag fixes this: when you declare a variable, it doesn&apos;t automatically include <code>null</code> or <code>undefined</code>.
+You can include them explicitly using a union type:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> s = <span class="hljs-string">&quot;foo&quot;</span>;
+s = <span class="hljs-literal">null</span>; <span class="hljs-comment">// error, &apos;null&apos; is not assignable to &apos;string&apos;</span>
+<span class="hljs-keyword">let</span> sn: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> = <span class="hljs-string">&quot;bar&quot;</span>;
+sn = <span class="hljs-literal">null</span>; <span class="hljs-comment">// ok</span>
+
+sn = <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// error, &apos;undefined&apos; is not assignable to &apos;string | null&apos;</span>
+</code></pre>
+<p>Note that TypeScript treats <code>null</code> and <code>undefined</code> differently in order to match JavaScript semantics.
+<code>string | null</code> is a different type than <code>string | undefined</code> and <code>string | undefined | null</code>.</p>
+<h2 id="optional-parameters-and-properties">Optional parameters and properties</h2>
+<p>With <code>--strictNullChecks</code>, an optional parameter automatically adds <code>| undefined</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span>, y?: <span class="hljs-built_in">number</span></span>) </span>{
+    <span class="hljs-keyword">return</span> x + (y || <span class="hljs-number">0</span>);
+}
+f(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+f(<span class="hljs-number">1</span>);
+f(<span class="hljs-number">1</span>, <span class="hljs-literal">undefined</span>);
+f(<span class="hljs-number">1</span>, <span class="hljs-literal">null</span>); <span class="hljs-comment">// error, &apos;null&apos; is not assignable to &apos;number | undefined&apos;</span>
+</code></pre>
+<p>The same is true for optional properties:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> C {
+    a: <span class="hljs-built_in">number</span>;
+    b?: <span class="hljs-built_in">number</span>;
+}
+<span class="hljs-keyword">let</span> c = <span class="hljs-keyword">new</span> C();
+c.a = <span class="hljs-number">12</span>;
+c.a = <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// error, &apos;undefined&apos; is not assignable to &apos;number&apos;</span>
+c.b = <span class="hljs-number">13</span>;
+c.b = <span class="hljs-literal">undefined</span>; <span class="hljs-comment">// ok</span>
+c.b = <span class="hljs-literal">null</span>; <span class="hljs-comment">// error, &apos;null&apos; is not assignable to &apos;number | undefined&apos;</span>
+</code></pre>
+<h2 id="type-guards-and-type-assertions">Type guards and type assertions</h2>
+<p>Since nullable types are implemented with a union, you need to use a type guard to get rid of the <code>null</code>.
+Fortunately, this is the same code you&apos;d write in JavaScript:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">sn: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span></span>): <span class="hljs-title">string</span> </span>{
+    <span class="hljs-keyword">if</span> (sn == <span class="hljs-literal">null</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;default&quot;</span>;
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> sn;
+    }
+}
+</code></pre>
+<p>The <code>null</code> elimination is pretty obvious here, but you can use terser operators too:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span>(<span class="hljs-params">sn: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span></span>): <span class="hljs-title">string</span> </span>{
+    <span class="hljs-keyword">return</span> sn || <span class="hljs-string">&quot;default&quot;</span>;
+}
+</code></pre>
+<p>In cases where the compiler can&apos;t eliminate <code>null</code> or <code>undefined</code>, you can use the type assertion operator to manually remove them.
+The syntax is postfix <code>!</code>: <code>identifier!</code> removes <code>null</code> and <code>undefined</code> from the type of <code>identifier</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">broken</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span></span>): <span class="hljs-title">string</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postfix</span>(<span class="hljs-params">epithet: <span class="hljs-built_in">string</span></span>) </span>{
+    <span class="hljs-keyword">return</span> name.charAt(<span class="hljs-number">0</span>) + <span class="hljs-string">&apos;.  the &apos;</span> + epithet; <span class="hljs-comment">// error, &apos;name&apos; is possibly null</span>
+  }
+  name = name || <span class="hljs-string">&quot;Bob&quot;</span>;
+  <span class="hljs-keyword">return</span> postfix(<span class="hljs-string">&quot;great&quot;</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fixed</span>(<span class="hljs-params">name: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span></span>): <span class="hljs-title">string</span> </span>{
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">postfix</span>(<span class="hljs-params">epithet: <span class="hljs-built_in">string</span></span>) </span>{
+    <span class="hljs-keyword">return</span> name!.charAt(<span class="hljs-number">0</span>) + <span class="hljs-string">&apos;.  the &apos;</span> + epithet; <span class="hljs-comment">// ok</span>
+  }
+  name = name || <span class="hljs-string">&quot;Bob&quot;</span>;
+  <span class="hljs-keyword">return</span> postfix(<span class="hljs-string">&quot;great&quot;</span>);
+}
+</code></pre>
+<p>The example uses a nested function here because the compiler can&apos;t eliminate nulls inside a nested function (except immediately-invoked function expressions).
+That&apos;s because it can&apos;t track all calls to the nested function, especially if you return it from the outer function.
+Without knowing where the function is called, it can&apos;t know what the type of <code>name</code> will be at the time the body executes.</p>
+<h1 id="type-aliases">Type Aliases</h1>
+<p>Type aliases create a new name for a type.
+Type aliases are sometimes similar to interfaces, but can name primitives, unions, tuples, and any other types that you&apos;d otherwise have to write by hand.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Name = <span class="hljs-built_in">string</span>;
+<span class="hljs-keyword">type</span> NameResolver = () =&gt; <span class="hljs-built_in">string</span>;
+<span class="hljs-keyword">type</span> NameOrResolver = Name | NameResolver;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params">n: NameOrResolver</span>): <span class="hljs-title">Name</span> </span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> n === <span class="hljs-string">&quot;string&quot;</span>) {
+        <span class="hljs-keyword">return</span> n;
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> n();
+    }
+}
+</code></pre>
+<p>Aliasing doesn&apos;t actually create a new type - it creates a new <em>name</em> to refer to that type.
+Aliasing a primitive is not terribly useful, though it can be used as a form of documentation.</p>
+<p>Just like interfaces, type aliases can also be generic - we can just add type parameters and use them on the right side of the alias declaration:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Container&lt;T&gt; = { value: T };
+</code></pre>
+<p>We can also have a type alias refer to itself in a property:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Tree&lt;T&gt; = {
+    value: T;
+    left: Tree&lt;T&gt;;
+    right: Tree&lt;T&gt;;
+}
+</code></pre>
+<p>Together with intersection types, we can make some pretty mind-bending types:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> LinkedList&lt;T&gt; = T &amp; { next: LinkedList&lt;T&gt; };
+
+<span class="hljs-keyword">interface</span> Person {
+    name: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">var</span> people: LinkedList&lt;Person&gt;;
+<span class="hljs-keyword">var</span> s = people.name;
+<span class="hljs-keyword">var</span> s = people.next.name;
+<span class="hljs-keyword">var</span> s = people.next.next.name;
+<span class="hljs-keyword">var</span> s = people.next.next.next.name;
+</code></pre>
+<p>However, it&apos;s not possible for a type alias to appear anywhere else on the right side of the declaration:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Yikes = <span class="hljs-built_in">Array</span>&lt;Yikes&gt;; <span class="hljs-comment">// error</span>
+</code></pre>
+<h2 id="interfaces-vs-type-aliases">Interfaces vs. Type Aliases</h2>
+<p>As we mentioned, type aliases can act sort of like interfaces; however, there are some subtle differences.</p>
+<p>One difference is that interfaces create a new name that is used everywhere.
+Type aliases don&apos;t create a new name &#x2014; for instance, error messages won&apos;t use the alias name.
+In the code below, hovering over <code>interfaced</code> in an editor will show that it returns an <code>Interface</code>, but will show that <code>aliased</code> returns object literal type.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Alias = { num: <span class="hljs-built_in">number</span> }
+<span class="hljs-keyword">interface</span> Interface {
+    num: <span class="hljs-built_in">number</span>;
+}
+<span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">aliased</span>(<span class="hljs-params">arg: Alias</span>): <span class="hljs-title">Alias</span></span>;
+<span class="hljs-keyword">declare</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">interfaced</span>(<span class="hljs-params">arg: Interface</span>): <span class="hljs-title">Interface</span></span>;
+</code></pre>
+<p>A second more important difference is that type aliases cannot be extended or implemented from (nor can they extend/implement other types).
+Because <a href="https://en.wikipedia.org/wiki/Open/closed_principle" target="_blank">an ideal property of software is being open to extension</a>, you should always use an interface over a type alias if possible.</p>
+<p>On the other hand, if you can&apos;t express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.</p>
+<h1 id="string-literal-types">String Literal Types</h1>
+<p>String literal types allow you to specify the exact value a string must have.
+In practice string literal types combine nicely with union types, type guards, and type aliases.
+You can use these features together to get enum-like behavior with strings.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Easing = <span class="hljs-string">&quot;ease-in&quot;</span> | <span class="hljs-string">&quot;ease-out&quot;</span> | <span class="hljs-string">&quot;ease-in-out&quot;</span>;
+<span class="hljs-keyword">class</span> UIElement {
+    animate(dx: <span class="hljs-built_in">number</span>, dy: <span class="hljs-built_in">number</span>, easing: Easing) {
+        <span class="hljs-keyword">if</span> (easing === <span class="hljs-string">&quot;ease-in&quot;</span>) {
+            <span class="hljs-comment">// ...</span>
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (easing === <span class="hljs-string">&quot;ease-out&quot;</span>) {
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (easing === <span class="hljs-string">&quot;ease-in-out&quot;</span>) {
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// error! should not pass null or undefined.</span>
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> button = <span class="hljs-keyword">new</span> UIElement();
+button.animate(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;ease-in&quot;</span>);
+button.animate(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;uneasy&quot;</span>); <span class="hljs-comment">// error: &quot;uneasy&quot; is not allowed here</span>
+</code></pre>
+<p>You can pass any of the three allowed strings, but any other string will give the error</p>
+<pre><code class="lang-text">Argument of type &apos;&quot;uneasy&quot;&apos; is not assignable to parameter of type &apos;&quot;ease-in&quot; | &quot;ease-out&quot; | &quot;ease-in-out&quot;&apos;
+</code></pre>
+<p>String literal types can be used in the same way to distinguish overloads:</p>
+<pre><code class="lang-ts">function createElement(tagName: &quot;img&quot;): HTMLImageElement;
+function createElement(tagName: &quot;input&quot;): HTMLInputElement;
+// ... more overloads ...
+function createElement(tagName: string): Element {
+    // ... code goes here ...
+}
+</code></pre>
+<h1 id="numeric-literal-types">Numeric Literal Types</h1>
+<p>TypeScript also has numeric literal types.</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rollDie</span>(<span class="hljs-params"></span>): 1 | 2 | 3 | 4 | 5 | 6 </span>{
+    <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>These are seldom written explicitly, they can be useful when narrowing can catch bugs:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params">x: <span class="hljs-built_in">number</span></span>) </span>{
+    <span class="hljs-keyword">if</span> (x !== <span class="hljs-number">1</span> || x !== <span class="hljs-number">2</span>) {
+        <span class="hljs-comment">//         ~~~~~~~</span>
+        <span class="hljs-comment">// Operator &apos;!==&apos; cannot be applied to types &apos;1&apos; and &apos;2&apos;.</span>
+    }
+}
+</code></pre>
+<p>In other words, <code>x</code> must be <code>1</code> when it gets compared to <code>2</code>, meaning that the above check is making an invalid comparison.</p>
+<h1 id="enum-member-types">Enum Member Types</h1>
+<p>As mentioned in <a href="Enums.html#union-enums-and-enum-member-types">our section on enums</a>, enum members have types when every member is literal-initialized.</p>
+<p>Much of the time when we talk about &quot;singleton types&quot;, we&apos;re referring to both enum member types as well as numeric/string literal types, though many users will use &quot;singleton types&quot; and &quot;literal types&quot; interchangeably.</p>
+<h1 id="discriminated-unions">Discriminated Unions</h1>
+<p>You can combine singleton types, union types, type guards, and type aliases to build an advanced pattern called <em>discriminated unions</em>, also known as <em>tagged unions</em> or <em>algebraic data types</em>.
+Discriminated unions are useful in functional programming.
+Some languages automatically discriminate unions for you; TypeScript instead builds on JavaScript patterns as they exist today.
+There are three ingredients:</p>
+<ol>
+<li>Types that have a common, singleton type property &#x2014; the <em>discriminant</em>.</li>
+<li>A type alias that takes the union of those types &#x2014; the <em>union</em>.</li>
+<li>Type guards on the common property.</li>
+</ol>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Square {
+    kind: <span class="hljs-string">&quot;square&quot;</span>;
+    size: <span class="hljs-built_in">number</span>;
+}
+<span class="hljs-keyword">interface</span> Rectangle {
+    kind: <span class="hljs-string">&quot;rectangle&quot;</span>;
+    width: <span class="hljs-built_in">number</span>;
+    height: <span class="hljs-built_in">number</span>;
+}
+<span class="hljs-keyword">interface</span> Circle {
+    kind: <span class="hljs-string">&quot;circle&quot;</span>;
+    radius: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<p>First we declare the interfaces we will union.
+Each interface has a <code>kind</code> property with a different string literal type.
+The <code>kind</code> property is called the <em>discriminant</em> or <em>tag</em>.
+The other properties are specific to each interface.
+Notice that the interfaces are currently unrelated.
+Let&apos;s put them into a union:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Shape = Square | Rectangle | Circle;
+</code></pre>
+<p>Now let&apos;s use the discriminated union:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span>(<span class="hljs-params">s: Shape</span>) </span>{
+    <span class="hljs-keyword">switch</span> (s.kind) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;square&quot;</span>: <span class="hljs-keyword">return</span> s.size * s.size;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;rectangle&quot;</span>: <span class="hljs-keyword">return</span> s.height * s.width;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;circle&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * s.radius ** <span class="hljs-number">2</span>;
+    }
+}
+</code></pre>
+<h2 id="exhaustiveness-checking">Exhaustiveness checking</h2>
+<p>We would like the compiler to tell us when we don&apos;t cover all variants of the discriminated union.
+For example, if we add <code>Triangle</code> to <code>Shape</code>, we need to update <code>area</code> as well:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Shape = Square | Rectangle | Circle | Triangle;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span>(<span class="hljs-params">s: Shape</span>) </span>{
+    <span class="hljs-keyword">switch</span> (s.kind) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;square&quot;</span>: <span class="hljs-keyword">return</span> s.size * s.size;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;rectangle&quot;</span>: <span class="hljs-keyword">return</span> s.height * s.width;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;circle&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * s.radius ** <span class="hljs-number">2</span>;
+    }
+    <span class="hljs-comment">// should error here - we didn&apos;t handle case &quot;triangle&quot;</span>
+}
+</code></pre>
+<p>There are two ways to do this.
+The first is to turn on <code>--strictNullChecks</code> and specify a return type:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span>(<span class="hljs-params">s: Shape</span>): <span class="hljs-title">number</span> </span>{ <span class="hljs-comment">// error: returns number | undefined</span>
+    <span class="hljs-keyword">switch</span> (s.kind) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;square&quot;</span>: <span class="hljs-keyword">return</span> s.size * s.size;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;rectangle&quot;</span>: <span class="hljs-keyword">return</span> s.height * s.width;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;circle&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * s.radius ** <span class="hljs-number">2</span>;
+    }
+}
+</code></pre>
+<p>Because the <code>switch</code> is no longer exhaustive, TypeScript is aware that the function could sometimes return <code>undefined</code>.
+If you have an explicit return type <code>number</code>, then you will get an error that the return type is actually <code>number | undefined</code>.
+However, this method is quite subtle and, besides, <code>--strictNullChecks</code> does not always work with old code.</p>
+<p>The second method uses the <code>never</code> type that the compiler uses to check for exhaustiveness:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">assertNever</span>(<span class="hljs-params">x: never</span>): <span class="hljs-title">never</span> </span>{
+    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;Unexpected object: &quot;</span> + x);
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">area</span>(<span class="hljs-params">s: Shape</span>) </span>{
+    <span class="hljs-keyword">switch</span> (s.kind) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;square&quot;</span>: <span class="hljs-keyword">return</span> s.size * s.size;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;rectangle&quot;</span>: <span class="hljs-keyword">return</span> s.height * s.width;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;circle&quot;</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.PI * s.radius ** <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> assertNever(s); <span class="hljs-comment">// error here if there are missing cases</span>
+    }
+}
+</code></pre>
+<p>Here, <code>assertNever</code> checks that <code>s</code> is of type <code>never</code> &#x2014; the type that&apos;s left after all other cases have been removed.
+If you forget a case, then <code>s</code> will have a real type and you will get a type error.
+This method requires you to define an extra function, but it&apos;s much more obvious when you forget it.</p>
+<h1 id="polymorphic-this-types">Polymorphic <code>this</code> types</h1>
+<p>A polymorphic <code>this</code> type represents a type that is the <em>subtype</em> of the containing class or interface.
+This is called <em>F</em>-bounded polymorphism.
+This makes hierarchical fluent interfaces much easier to express, for example.
+Take a simple calculator that returns <code>this</code> after each operation:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> BasicCalculator {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">constructor</span>(protected value: number = 0) { }
+    <span class="hljs-keyword">public</span> currentValue(): <span class="hljs-built_in">number</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.value;
+    }
+    <span class="hljs-keyword">public</span> add(operand: <span class="hljs-built_in">number</span>): <span class="hljs-keyword">this</span> {
+        <span class="hljs-keyword">this</span>.value += operand;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+    <span class="hljs-keyword">public</span> multiply(operand: <span class="hljs-built_in">number</span>): <span class="hljs-keyword">this</span> {
+        <span class="hljs-keyword">this</span>.value *= operand;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+    <span class="hljs-comment">// ... other operations go here ...</span>
+}
+
+<span class="hljs-keyword">let</span> v = <span class="hljs-keyword">new</span> BasicCalculator(<span class="hljs-number">2</span>)
+            .multiply(<span class="hljs-number">5</span>)
+            .add(<span class="hljs-number">1</span>)
+            .currentValue();
+</code></pre>
+<p>Since the class uses <code>this</code> types, you can extend it and the new class can use the old methods with no changes.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> ScientificCalculator extends BasicCalculator {
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">constructor</span>(value = 0) {
+        <span class="hljs-keyword">super</span>(value);
+    }
+    <span class="hljs-keyword">public</span> sin() {
+        <span class="hljs-keyword">this</span>.value = <span class="hljs-built_in">Math</span>.sin(<span class="hljs-keyword">this</span>.value);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+    }
+    <span class="hljs-comment">// ... other operations go here ...</span>
+}
+
+<span class="hljs-keyword">let</span> v = <span class="hljs-keyword">new</span> ScientificCalculator(<span class="hljs-number">2</span>)
+        .multiply(<span class="hljs-number">5</span>)
+        .sin()
+        .add(<span class="hljs-number">1</span>)
+        .currentValue();
+</code></pre>
+<p>Without <code>this</code> types, <code>ScientificCalculator</code> would not have been able to extend <code>BasicCalculator</code> and keep the fluent interface.
+<code>multiply</code> would have returned <code>BasicCalculator</code>, which doesn&apos;t have the <code>sin</code> method.
+However, with <code>this</code> types, <code>multiply</code> returns <code>this</code>, which is <code>ScientificCalculator</code> here.</p>
+<h1 id="index-types">Index types</h1>
+<p>With index types, you can get the compiler to check code that uses dynamic property names.
+For example, a common Javascript pattern is to pick a subset of properties from an object:</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pluck</span>(<span class="hljs-params">o, names</span>) </span>{
+    <span class="hljs-keyword">return</span> names.map(n =&gt; o[n]);
+}
+</code></pre>
+<p>Here&apos;s how you would write and use this function in TypeScript, using the <strong>index type query</strong> and <strong>indexed access</strong> operators:</p>
+<pre><code class="lang-ts">function pluck&lt;T, K extends keyof T&gt;(o: T, names: K[]): T[K][] {
+  return names.map(n =&gt; o[n]);
+}
+
+interface Person {
+    name: string;
+    age: number;
+}
+let person: Person = {
+    name: &apos;Jarid&apos;,
+    age: 35
+};
+let strings: string[] = pluck(person, [&apos;name&apos;]); // ok, string[]
+</code></pre>
+<p>The compiler checks that <code>name</code> is actually a property on <code>Person</code>.
+The example introduces a couple of new type operators.
+First is <code>keyof T</code>, the <strong>index type query operator</strong>.
+For any type <code>T</code>, <code>keyof T</code> is the union of known, public property names of <code>T</code>.
+For example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> personProps: keyof Person; <span class="hljs-comment">// &apos;name&apos; | &apos;age&apos;</span>
+</code></pre>
+<p><code>keyof Person</code> is completely interchangeable with <code>&apos;name&apos; | &apos;age&apos;</code>.
+The difference is that if you add another property to <code>Person</code>, say <code>address: string</code>, then <code>keyof Person</code> will automatically update to be <code>&apos;name&apos; | &apos;age&apos; | &apos;address&apos;</code>.
+And you can use <code>keyof</code> in generic contexts like <code>pluck</code>, where you can&apos;t possibly know the property names ahead of time.
+That means the compiler will check that you pass the right set of property names to <code>pluck</code>:</p>
+<pre><code class="lang-ts">pluck(person, [<span class="hljs-string">&apos;age&apos;</span>, <span class="hljs-string">&apos;unknown&apos;</span>]); <span class="hljs-comment">// error, &apos;unknown&apos; is not in &apos;name&apos; | &apos;age&apos;</span>
+</code></pre>
+<p>The second operator is <code>T[K]</code>, the <strong>indexed access operator</strong>.
+Here, the type syntax reflects the expression syntax.
+That means that <code>person[&apos;name&apos;]</code> has the type <code>Person[&apos;name&apos;]</code> &#x2014; which in our example is just <code>string</code>.
+However, just like index type queries, you can use <code>T[K]</code> in a generic context, which is where its real power comes to life.
+You just have to make sure that the type variable <code>K extends keyof T</code>.
+Here&apos;s another example with a function named <code>getProperty</code>.</p>
+<pre><code class="lang-ts">function getProperty&lt;T, K extends keyof T&gt;(o: T, name: K): T[K] {
+    return o[name]; // o[name] is of type T[K]
+}
+</code></pre>
+<p>In <code>getProperty</code>, <code>o: T</code> and <code>name: K</code>, so that means <code>o[name]: T[K]</code>.
+Once you return the <code>T[K]</code> result, the compiler will instantiate the actual type of the key, so the return type of <code>getProperty</code> will vary according to which property you request.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> name: <span class="hljs-built_in">string</span> = getProperty(person, <span class="hljs-string">&apos;name&apos;</span>);
+<span class="hljs-keyword">let</span> age: <span class="hljs-built_in">number</span> = getProperty(person, <span class="hljs-string">&apos;age&apos;</span>);
+<span class="hljs-keyword">let</span> unknown = getProperty(person, <span class="hljs-string">&apos;unknown&apos;</span>); <span class="hljs-comment">// error, &apos;unknown&apos; is not in &apos;name&apos; | &apos;age&apos;</span>
+</code></pre>
+<h2 id="index-types-and-string-index-signatures">Index types and string index signatures</h2>
+<p><code>keyof</code> and <code>T[K]</code> interact with string index signatures.
+If you have a type with a string index signature, <code>keyof T</code> will just be <code>string</code>.
+And <code>T[string]</code> is just the type of the index signature:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> Map&lt;T&gt; {
+    [key: <span class="hljs-built_in">string</span>]: T;
+}
+<span class="hljs-keyword">let</span> keys: keyof Map&lt;<span class="hljs-built_in">number</span>&gt;; <span class="hljs-comment">// string</span>
+<span class="hljs-keyword">let</span> value: Map&lt;<span class="hljs-built_in">number</span>&gt;[<span class="hljs-string">&apos;foo&apos;</span>]; <span class="hljs-comment">// number</span>
+</code></pre>
+<h1 id="mapped-types">Mapped types</h1>
+<p>A common task is to take an existing type and make each of its properties optional:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> PersonPartial {
+    name?: <span class="hljs-built_in">string</span>;
+    age?: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<p>Or we might want a readonly version:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">interface</span> PersonReadonly {
+    readonly name: <span class="hljs-built_in">string</span>;
+    readonly age: <span class="hljs-built_in">number</span>;
+}
+</code></pre>
+<p>This happens often enough in Javascript that TypeScript provides a way to create new types based on old types &#x2014; <strong>mapped types</strong>.
+In a mapped type, the new type transforms each property in the old type in the same way.
+For example, you can make all properties of a type <code>readonly</code> or optional.
+Here are a couple of examples:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Readonly&lt;T&gt; = {
+    readonly [P <span class="hljs-keyword">in</span> keyof T]: T[P];
+}
+<span class="hljs-keyword">type</span> Partial&lt;T&gt; = {
+    [P <span class="hljs-keyword">in</span> keyof T]?: T[P];
+}
+</code></pre>
+<p>And to use it:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> PersonPartial = Partial&lt;Person&gt;;
+<span class="hljs-keyword">type</span> ReadonlyPerson = Readonly&lt;Person&gt;;
+</code></pre>
+<p>Let&apos;s take a look at the simplest mapped type and its parts:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Keys = <span class="hljs-string">&apos;option1&apos;</span> | <span class="hljs-string">&apos;option2&apos;</span>;
+<span class="hljs-keyword">type</span> Flags = { [K <span class="hljs-keyword">in</span> Keys]: <span class="hljs-built_in">boolean</span> };
+</code></pre>
+<p>The syntax resembles the syntax for index signatures with a <code>for .. in</code> inside.
+There are three parts:</p>
+<ol>
+<li>The type variable <code>K</code>, which gets bound to each property in turn.</li>
+<li>The string literal union <code>Keys</code>, which contains the names of properties to iterate over.</li>
+<li>The resulting type of the property.</li>
+</ol>
+<p>In this simple example, <code>Keys</code> is a hard-coded list of property names and the property type is always <code>boolean</code>, so this mapped type is equivalent to writing:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Flags = {
+    option1: <span class="hljs-built_in">boolean</span>;
+    option2: <span class="hljs-built_in">boolean</span>;
+}
+</code></pre>
+<p>Real applications, however, look like <code>Readonly</code> or <code>Partial</code> above.
+They&apos;re based on some existing type, and they transform the properties in some way.
+That&apos;s where <code>keyof</code> and indexed access types come in:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> NullablePerson = { [P <span class="hljs-keyword">in</span> keyof Person]: Person[P] | <span class="hljs-literal">null</span> }
+<span class="hljs-keyword">type</span> PartialPerson = { [P <span class="hljs-keyword">in</span> keyof Person]?: Person[P] }
+</code></pre>
+<p>But it&apos;s more useful to have a general version.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Nullable&lt;T&gt; = { [P <span class="hljs-keyword">in</span> keyof T]: T[P] | <span class="hljs-literal">null</span> }
+<span class="hljs-keyword">type</span> Partial&lt;T&gt; = { [P <span class="hljs-keyword">in</span> keyof T]?: T[P] }
+</code></pre>
+<p>In these examples, the properties list is <code>keyof T</code> and the resulting type is some variant of <code>T[P]</code>.
+This is a good template for any general use of mapped types.
+That&apos;s because this kind of transformation is <a href="https://en.wikipedia.org/wiki/Homomorphism" target="_blank">homomorphic</a>, which means that the mapping applies only to properties of <code>T</code> and no others.
+The compiler knows that it can copy all the existing property modifiers before adding any new ones.
+For example, if <code>Person.name</code> was readonly, <code>Partial&lt;Person&gt;.name</code> would be readonly and optional.</p>
+<p>Here&apos;s one more example, in which <code>T[P]</code> is wrapped in a <code>Proxy&lt;T&gt;</code> class:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Proxy&lt;T&gt; = {
+    <span class="hljs-keyword">get</span>(): T;
+    <span class="hljs-keyword">set</span>(value: T): <span class="hljs-built_in">void</span>;
+}
+<span class="hljs-keyword">type</span> Proxify&lt;T&gt; = {
+    [P <span class="hljs-keyword">in</span> keyof T]: Proxy&lt;T[P]&gt;;
+}
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">proxify</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">o: T</span>): <span class="hljs-title">Proxify</span>&lt;<span class="hljs-title">T</span>&gt; </span>{
+   <span class="hljs-comment">// ... wrap proxies ...</span>
+}
+<span class="hljs-keyword">let</span> proxyProps = proxify(props);
+</code></pre>
+<p>Note that <code>Readonly&lt;T&gt;</code> and <code>Partial&lt;T&gt;</code> are so useful, they are included in TypeScript&apos;s standard library along with <code>Pick</code> and <code>Record</code>:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> Pick&lt;T, K extends keyof T&gt; = {
+    [P <span class="hljs-keyword">in</span> K]: T[P];
+}
+<span class="hljs-keyword">type</span> Record&lt;K extends <span class="hljs-built_in">string</span>, T&gt; = {
+    [P <span class="hljs-keyword">in</span> K]: T;
+}
+</code></pre>
+<p><code>Readonly</code>, <code>Partial</code> and <code>Pick</code> are homomorphic whereas <code>Record</code> is not.
+One clue that <code>Record</code> is not homomorphic is that it doesn&apos;t take an input type to copy properties from:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">type</span> ThreeStringProps = Record&lt;<span class="hljs-string">&apos;prop1&apos;</span> | <span class="hljs-string">&apos;prop2&apos;</span> | <span class="hljs-string">&apos;prop3&apos;</span>, <span class="hljs-built_in">string</span>&gt;
+</code></pre>
+<p>Non-homomorphic types are essentially creating new properties, so they can&apos;t copy property modifiers from anywhere.</p>
+<h2 id="inference-from-mapped-types">Inference from mapped types</h2>
+<p>Now that you know how to wrap the properties of a type, the next thing you&apos;ll want to do is unwrap them.
+Fortunately, that&apos;s pretty easy:</p>
+<pre><code class="lang-ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">unproxify</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">t: Proxify&lt;T&gt;</span>): <span class="hljs-title">T</span> </span>{
+    <span class="hljs-keyword">let</span> result = {} as T;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> k <span class="hljs-keyword">in</span> t) {
+        result[k] = t[k].get();
+    }
+    <span class="hljs-keyword">return</span> result;
+}
+
+<span class="hljs-keyword">let</span> originalProps = unproxify(proxyProps);
+</code></pre>
+<p>Note that this unwrapping inference only works on homomorphic mapped types.
+If the mapped type is not homomorphic you&apos;ll have to give an explicit type parameter to your unwrapping function.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Type Compatibility.html" class="navigation navigation-prev " aria-label="Previous page: Type Compatibility">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Symbols.html" class="navigation navigation-next " aria-label="Next page: Symbols">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Advanced Types","level":"1.11","depth":1,"next":{"title":"Symbols","level":"1.12","depth":1,"path":"pages/Symbols.md","ref":"./pages/Symbols.md","articles":[]},"previous":{"title":"Type Compatibility","level":"1.10","depth":1,"path":"pages/Type Compatibility.md","ref":"./pages/Type Compatibility.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Advanced Types.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,953 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Classes · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Functions.html" />
+    
+    
+    <link rel="prev" href="Interfaces.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="Basic Types.html">
+            
+                <a href="Basic Types.html">
+            
+                    
+                    Basic Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="Variable Declarations.html">
+            
+                <a href="Variable Declarations.html">
+            
+                    
+                    Variable Declarations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="Interfaces.html">
+            
+                <a href="Interfaces.html">
+            
+                    
+                    Interfaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="Classes.html">
+            
+                <a href="Classes.html">
+            
+                    
+                    Classes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="Functions.html">
+            
+                <a href="Functions.html">
+            
+                    
+                    Functions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Generics.html">
+            
+                <a href="Generics.html">
+            
+                    
+                    Generics
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="Enums.html">
+            
+                <a href="Enums.html">
+            
+                    
+                    Enums
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="Type Inference.html">
+            
+                <a href="Type Inference.html">
+            
+                    
+                    Type Inference
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="Type Compatibility.html">
+            
+                <a href="Type Compatibility.html">
+            
+                    
+                    Type Compatibility
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="Advanced Types.html">
+            
+                <a href="Advanced Types.html">
+            
+                    
+                    Advanced Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="Symbols.html">
+            
+                <a href="Symbols.html">
+            
+                    
+                    Symbols
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="Iterators and Generators.html">
+            
+                <a href="Iterators and Generators.html">
+            
+                    
+                    Iterators and Generators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="Modules.html">
+            
+                <a href="Modules.html">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="Namespaces.html">
+            
+                <a href="Namespaces.html">
+            
+                    
+                    Namespaces
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="Namespaces and Modules.html">
+            
+                <a href="Namespaces and Modules.html">
+            
+                    
+                    Namespaces and Modules
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="Module Resolution.html">
+            
+                <a href="Module Resolution.html">
+            
+                    
+                    Module Resolution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="Declaration Merging.html">
+            
+                <a href="Declaration Merging.html">
+            
+                    
+                    Declaration Merging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="JSX.html">
+            
+                <a href="JSX.html">
+            
+                    
+                    JSX
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="Decorators.html">
+            
+                <a href="Decorators.html">
+            
+                    
+                    Decorators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="Mixins.html">
+            
+                <a href="Mixins.html">
+            
+                    
+                    Mixins
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="Triple-Slash Directives.html">
+            
+                <a href="Triple-Slash Directives.html">
+            
+                    
+                    Triple-Slash Directives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="Type Checking JavaScript Files.html">
+            
+                <a href="Type Checking JavaScript Files.html">
+            
+                    
+                    Type Checking JavaScript Files
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Classes</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="introduction">Introduction</h1>
+<p>Traditional JavaScript uses functions and prototype-based inheritance to build up reusable components, but this may feel a bit awkward to programmers more comfortable with an object-oriented approach, where classes inherit functionality and objects are built from these classes.
+Starting with ECMAScript 2015, also known as ECMAScript 6, JavaScript programmers will be able to build their applications using this object-oriented class-based approach.
+In TypeScript, we allow developers to use these techniques now, and compile them down to JavaScript that works across all major browsers and platforms, without having to wait for the next version of JavaScript.</p>
+<h1 id="classes">Classes</h1>
+<p>Let&apos;s take a look at a simple class-based example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Greeter {
+    greeting: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(message: string) {
+        <span class="hljs-keyword">this</span>.greeting = message;
+    }
+    greet() {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + <span class="hljs-keyword">this</span>.greeting;
+    }
+}
+
+<span class="hljs-keyword">let</span> greeter = <span class="hljs-keyword">new</span> Greeter(<span class="hljs-string">&quot;world&quot;</span>);
+</code></pre>
+<p>The syntax should look familiar if you&apos;ve used C# or Java before.
+We declare a new class <code>Greeter</code>. This class has three members: a property called <code>greeting</code>, a constructor, and a method <code>greet</code>.</p>
+<p>You&apos;ll notice that in the class when we refer to one of the members of the class we prepend <code>this.</code>.
+This denotes that it&apos;s a member access.</p>
+<p>In the last line we construct an instance of the <code>Greeter</code> class using <code>new</code>.
+This calls into the constructor we defined earlier, creating a new object with the <code>Greeter</code> shape, and running the constructor to initialize it.</p>
+<h1 id="inheritance">Inheritance</h1>
+<p>In TypeScript, we can use common object-oriented patterns.
+One of the most fundamental patterns in class-based programming is being able to extend existing classes to create new ones using inheritance.</p>
+<p>Let&apos;s take a look at an example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Animal {
+    move(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Animal moved <span class="hljs-subst">${distanceInMeters}</span>m.`</span>);
+    }
+}
+
+<span class="hljs-keyword">class</span> Dog extends Animal {
+    bark() {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Woof! Woof!&apos;</span>);
+    }
+}
+
+<span class="hljs-keyword">const</span> dog = <span class="hljs-keyword">new</span> Dog();
+dog.bark();
+dog.move(<span class="hljs-number">10</span>);
+dog.bark();
+</code></pre>
+<p>This example shows the most basic inheritance feature: classes inherit properties and methods from base classes.
+Here, <code>Dog</code> is a <em>derived</em> class that derives from the <code>Animal</code> <em>base</em> class using the <code>extends</code> keyword.
+Derived classes are often called <em>subclasses</em>, and base classes are often called <em>superclasses</em>.</p>
+<p>Because <code>Dog</code> extends the functionality from <code>Animal</code>, we were able to create an instance of <code>Dog</code> that could both <code>bark()</code> and <code>move()</code>.</p>
+<p>Let&apos;s now look at a more complex example.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Animal {
+    name: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(theName: string) { <span class="hljs-keyword">this</span>.name = theName; }
+    move(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${this.name}</span> moved <span class="hljs-subst">${distanceInMeters}</span>m.`</span>);
+    }
+}
+
+<span class="hljs-keyword">class</span> Snake extends Animal {
+    <span class="hljs-keyword">constructor</span>(name: string) { <span class="hljs-keyword">super</span>(name); }
+    move(distanceInMeters = <span class="hljs-number">5</span>) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Slithering...&quot;</span>);
+        <span class="hljs-keyword">super</span>.move(distanceInMeters);
+    }
+}
+
+<span class="hljs-keyword">class</span> Horse extends Animal {
+    <span class="hljs-keyword">constructor</span>(name: string) { <span class="hljs-keyword">super</span>(name); }
+    move(distanceInMeters = <span class="hljs-number">45</span>) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Galloping...&quot;</span>);
+        <span class="hljs-keyword">super</span>.move(distanceInMeters);
+    }
+}
+
+<span class="hljs-keyword">let</span> sam = <span class="hljs-keyword">new</span> Snake(<span class="hljs-string">&quot;Sammy the Python&quot;</span>);
+<span class="hljs-keyword">let</span> tom: Animal = <span class="hljs-keyword">new</span> Horse(<span class="hljs-string">&quot;Tommy the Palomino&quot;</span>);
+
+sam.move();
+tom.move(<span class="hljs-number">34</span>);
+</code></pre>
+<p>This example covers a few other features we didn&apos;t previously mention.
+Again, we see the <code>extends</code> keywords used to create two new subclasses of <code>Animal</code>: <code>Horse</code> and <code>Snake</code>.</p>
+<p>One difference from the prior example is that each derived class that contains a constructor function <em>must</em> call <code>super()</code> which will execute the constructor of the base class.
+What&apos;s more, before we <em>ever</em> access a property on <code>this</code> in a constructor body, we <em>have</em> to call <code>super()</code>.
+This is an important rule that TypeScript will enforce.</p>
+<p>The example also shows how to override methods in the base class with methods that are specialized for the subclass.
+Here both <code>Snake</code> and <code>Horse</code> create a <code>move</code> method that overrides the <code>move</code> from <code>Animal</code>, giving it functionality specific to each class.
+Note that even though <code>tom</code> is declared as an <code>Animal</code>, since its value is a <code>Horse</code>, calling <code>tom.move(34)</code> will call the overriding method in <code>Horse</code>:</p>
+<pre><code class="lang-Text">Slithering...
+Sammy the Python moved 5m.
+Galloping...
+Tommy the Palomino moved 34m.
+</code></pre>
+<h1 id="public-private-and-protected-modifiers">Public, private, and protected modifiers</h1>
+<h2 id="public-by-default">Public by default</h2>
+<p>In our examples, we&apos;ve been able to freely access the members that we declared throughout our programs.
+If you&apos;re familiar with classes in other languages, you may have noticed in the above examples we haven&apos;t had to use the word <code>public</code> to accomplish this; for instance, C# requires that each member be explicitly labeled <code>public</code> to be visible.
+In TypeScript, each member is <code>public</code> by default.</p>
+<p>You may still mark a member <code>public</code> explicitly.
+We could have written the <code>Animal</code> class from the previous section in the following way:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Animal {
+    <span class="hljs-keyword">public</span> name: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">constructor</span>(theName: string) { <span class="hljs-keyword">this</span>.name = theName; }
+    <span class="hljs-keyword">public</span> move(distanceInMeters: <span class="hljs-built_in">number</span>) {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">${this.name}</span> moved <span class="hljs-subst">${distanceInMeters}</span>m.`</span>);
+    }
+}
+</code></pre>
+<h2 id="understanding-private">Understanding <code>private</code></h2>
+<p>When a member is marked <code>private</code>, it cannot be accessed from outside of its containing class. For example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Animal {
+    <span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(theName: string) { <span class="hljs-keyword">this</span>.name = theName; }
+}
+
+<span class="hljs-keyword">new</span> Animal(<span class="hljs-string">&quot;Cat&quot;</span>).name; <span class="hljs-comment">// Error: &apos;name&apos; is private;</span>
+</code></pre>
+<p>TypeScript is a structural type system.
+When we compare two different types, regardless of where they came from, if the types of all members are compatible, then we say the types themselves are compatible.</p>
+<p>However, when comparing types that have <code>private</code> and <code>protected</code> members, we treat these types differently.
+For two types to be considered compatible, if one of them has a <code>private</code> member, then the other must have a <code>private</code> member that originated in the same declaration.
+The same applies to <code>protected</code> members.</p>
+<p>Let&apos;s look at an example to better see how this plays out in practice:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Animal {
+    <span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(theName: string) { <span class="hljs-keyword">this</span>.name = theName; }
+}
+
+<span class="hljs-keyword">class</span> Rhino extends Animal {
+    <span class="hljs-keyword">constructor</span>() { <span class="hljs-keyword">super</span>(<span class="hljs-string">&quot;Rhino&quot;</span>); }
+}
+
+<span class="hljs-keyword">class</span> Employee {
+    <span class="hljs-keyword">private</span> name: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(theName: string) { <span class="hljs-keyword">this</span>.name = theName; }
+}
+
+<span class="hljs-keyword">let</span> animal = <span class="hljs-keyword">new</span> Animal(<span class="hljs-string">&quot;Goat&quot;</span>);
+<span class="hljs-keyword">let</span> rhino = <span class="hljs-keyword">new</span> Rhino();
+<span class="hljs-keyword">let</span> employee = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">&quot;Bob&quot;</span>);
+
+animal = rhino;
+animal = employee; <span class="hljs-comment">// Error: &apos;Animal&apos; and &apos;Employee&apos; are not compatible</span>
+</code></pre>
+<p>In this example, we have an <code>Animal</code> and a <code>Rhino</code>, with <code>Rhino</code> being a subclass of <code>Animal</code>.
+We also have a new class <code>Employee</code> that looks identical to <code>Animal</code> in terms of shape.
+We create some instances of these classes and then try to assign them to each other to see what will happen.
+Because <code>Animal</code> and <code>Rhino</code> share the <code>private</code> side of their shape from the same declaration of <code>private name: string</code> in <code>Animal</code>, they are compatible. However, this is not the case for <code>Employee</code>.
+When we try to assign from an <code>Employee</code> to <code>Animal</code> we get an error that these types are not compatible.
+Even though <code>Employee</code> also has a <code>private</code> member called <code>name</code>, it&apos;s not the one we declared in <code>Animal</code>.</p>
+<h2 id="understanding-protected">Understanding <code>protected</code></h2>
+<p>The <code>protected</code> modifier acts much like the <code>private</code> modifier with the exception that members declared <code>protected</code> can also be accessed within deriving classes. For example,</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Person {
+    <span class="hljs-keyword">protected</span> name: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(name: string) { <span class="hljs-keyword">this</span>.name = name; }
+}
+
+<span class="hljs-keyword">class</span> Employee extends Person {
+    <span class="hljs-keyword">private</span> department: <span class="hljs-built_in">string</span>;
+
+    <span class="hljs-keyword">constructor</span>(name: string, department: string) {
+        <span class="hljs-keyword">super</span>(name);
+        <span class="hljs-keyword">this</span>.department = department;
+    }
+
+    <span class="hljs-keyword">public</span> getElevatorPitch() {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello, my name is <span class="hljs-subst">${this.name}</span> and I work in <span class="hljs-subst">${this.department}</span>.`</span>;
+    }
+}
+
+<span class="hljs-keyword">let</span> howard = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">&quot;Howard&quot;</span>, <span class="hljs-string">&quot;Sales&quot;</span>);
+<span class="hljs-built_in">console</span>.log(howard.getElevatorPitch());
+<span class="hljs-built_in">console</span>.log(howard.name); <span class="hljs-comment">// error</span>
+</code></pre>
+<p>Notice that while we can&apos;t use <code>name</code> from outside of <code>Person</code>, we can still use it from within an instance method of <code>Employee</code> because <code>Employee</code> derives from <code>Person</code>.</p>
+<p>A constructor may also be marked <code>protected</code>.
+This means that the class cannot be instantiated outside of its containing class, but can be extended. For example,</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Person {
+    <span class="hljs-keyword">protected</span> name: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">constructor</span>(theName: string) { <span class="hljs-keyword">this</span>.name = theName; }
+}
+
+<span class="hljs-comment">// Employee can extend Person</span>
+<span class="hljs-keyword">class</span> Employee extends Person {
+    <span class="hljs-keyword">private</span> department: <span class="hljs-built_in">string</span>;
+
+    <span class="hljs-keyword">constructor</span>(name: string, department: string) {
+        <span class="hljs-keyword">super</span>(name);
+        <span class="hljs-keyword">this</span>.department = department;
+    }
+
+    <span class="hljs-keyword">public</span> getElevatorPitch() {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">`Hello, my name is <span class="hljs-subst">${this.name}</span> and I work in <span class="hljs-subst">${this.department}</span>.`</span>;
+    }
+}
+
+<span class="hljs-keyword">let</span> howard = <span class="hljs-keyword">new</span> Employee(<span class="hljs-string">&quot;Howard&quot;</span>, <span class="hljs-string">&quot;Sales&quot;</span>);
+<span class="hljs-keyword">let</span> john = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">&quot;John&quot;</span>); <span class="hljs-comment">// Error: The &apos;Person&apos; constructor is protected</span>
+</code></pre>
+<h1 id="readonly-modifier">Readonly modifier</h1>
+<p>You can make properties readonly by using the <code>readonly</code> keyword.
+Readonly properties must be initialized at their declaration or in the constructor.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Octopus {
+    readonly name: <span class="hljs-built_in">string</span>;
+    readonly numberOfLegs: <span class="hljs-built_in">number</span> = <span class="hljs-number">8</span>;
+    <span class="hljs-keyword">constructor</span> (theName: string) {
+        <span class="hljs-keyword">this</span>.name = theName;
+    }
+}
+<span class="hljs-keyword">let</span> dad = <span class="hljs-keyword">new</span> Octopus(<span class="hljs-string">&quot;Man with the 8 strong legs&quot;</span>);
+dad.name = <span class="hljs-string">&quot;Man with the 3-piece suit&quot;</span>; <span class="hljs-comment">// error! name is readonly.</span>
+</code></pre>
+<h2 id="parameter-properties">Parameter properties</h2>
+<p>In our last example, we had to declare a readonly member <code>name</code> and a constructor parameter <code>theName</code> in the <code>Octopus</code> class, and we then immediately set <code>name</code> to <code>theName</code>.
+This turns out to be a very common practice.
+<em>Parameter properties</em> let you create and initialize a member in one place.
+Here&apos;s a further revision of the previous <code>Octopus</code> class using a parameter property:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Octopus {
+    readonly numberOfLegs: <span class="hljs-built_in">number</span> = <span class="hljs-number">8</span>;
+    <span class="hljs-keyword">constructor</span>(readonly name: string) {
+    }
+}
+</code></pre>
+<p>Notice how we dropped <code>theName</code> altogether and just use the shortened <code>readonly name: string</code> parameter on the constructor to create and initialize the <code>name</code> member.
+We&apos;ve consolidated the declarations and assignment into one location.</p>
+<p>Parameter properties are declared by prefixing a constructor parameter with an accessibility modifier or <code>readonly</code>, or both.
+Using <code>private</code> for a parameter property declares and initializes a private member; likewise, the same is done for <code>public</code>, <code>protected</code>, and <code>readonly</code>.</p>
+<h1 id="accessors">Accessors</h1>
+<p>TypeScript supports getters/setters as a way of intercepting accesses to a member of an object.
+This gives you a way of having finer-grained control over how a member is accessed on each object.</p>
+<p>Let&apos;s convert a simple class to use <code>get</code> and <code>set</code>.
+First, let&apos;s start with an example without getters and setters.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Employee {
+    fullName: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">let</span> employee = <span class="hljs-keyword">new</span> Employee();
+employee.fullName = <span class="hljs-string">&quot;Bob Smith&quot;</span>;
+<span class="hljs-keyword">if</span> (employee.fullName) {
+    <span class="hljs-built_in">console</span>.log(employee.fullName);
+}
+</code></pre>
+<p>While allowing people to randomly set <code>fullName</code> directly is pretty handy, this might get us in trouble if people can change names on a whim.</p>
+<p>In this version, we check to make sure the user has a secret passcode available before we allow them to modify the employee.
+We do this by replacing the direct access to <code>fullName</code> with a <code>set</code> that will check the passcode.
+We add a corresponding <code>get</code> to allow the previous example to continue to work seamlessly.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> passcode = <span class="hljs-string">&quot;secret passcode&quot;</span>;
+
+<span class="hljs-keyword">class</span> Employee {
+    <span class="hljs-keyword">private</span> _fullName: <span class="hljs-built_in">string</span>;
+
+    <span class="hljs-keyword">get</span> fullName(): <span class="hljs-built_in">string</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._fullName;
+    }
+
+    <span class="hljs-keyword">set</span> fullName(newName: <span class="hljs-built_in">string</span>) {
+        <span class="hljs-keyword">if</span> (passcode &amp;&amp; passcode == <span class="hljs-string">&quot;secret passcode&quot;</span>) {
+            <span class="hljs-keyword">this</span>._fullName = newName;
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Error: Unauthorized update of employee!&quot;</span>);
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> employee = <span class="hljs-keyword">new</span> Employee();
+employee.fullName = <span class="hljs-string">&quot;Bob Smith&quot;</span>;
+<span class="hljs-keyword">if</span> (employee.fullName) {
+    <span class="hljs-built_in">console</span>.log(employee.fullName);
+}
+</code></pre>
+<p>To prove to ourselves that our accessor is now checking the passcode, we can modify the passcode and see that when it doesn&apos;t match we instead get the message warning us we don&apos;t have access to update the employee.</p>
+<p>A couple of things to note about accessors:</p>
+<p>First, accessors require you to set the compiler to output ECMAScript 5 or higher.
+Downlevelling to ECMAScript 3 is not supported.
+Second, accessors with a <code>get</code> and no <code>set</code> are automatically inferred to be <code>readonly</code>.
+This is helpful when generating a <code>.d.ts</code> file from your code, because users of your property can see that they can&apos;t change it.</p>
+<h1 id="static-properties">Static Properties</h1>
+<p>Up to this point, we&apos;ve only talked about the <em>instance</em> members of the class, those that show up on the object when it&apos;s instantiated.
+We can also create <em>static</em> members of a class, those that are visible on the class itself rather than on the instances.
+In this example, we use <code>static</code> on the origin, as it&apos;s a general value for all grids.
+Each instance accesses this value through prepending the name of the class.
+Similarly to prepending <code>this.</code> in front of instance accesses, here we prepend <code>Grid.</code> in front of static accesses.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Grid {
+    <span class="hljs-keyword">static</span> origin = {x: <span class="hljs-number">0</span>, y: <span class="hljs-number">0</span>};
+    calculateDistanceFromOrigin(point: {x: <span class="hljs-built_in">number</span>; y: <span class="hljs-built_in">number</span>;}) {
+        <span class="hljs-keyword">let</span> xDist = (point.x - Grid.origin.x);
+        <span class="hljs-keyword">let</span> yDist = (point.y - Grid.origin.y);
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.sqrt(xDist * xDist + yDist * yDist) / <span class="hljs-keyword">this</span>.scale;
+    }
+    <span class="hljs-keyword">constructor</span> (public scale: number) { }
+}
+
+<span class="hljs-keyword">let</span> grid1 = <span class="hljs-keyword">new</span> Grid(<span class="hljs-number">1.0</span>);  <span class="hljs-comment">// 1x scale</span>
+<span class="hljs-keyword">let</span> grid2 = <span class="hljs-keyword">new</span> Grid(<span class="hljs-number">5.0</span>);  <span class="hljs-comment">// 5x scale</span>
+
+<span class="hljs-built_in">console</span>.log(grid1.calculateDistanceFromOrigin({x: <span class="hljs-number">10</span>, y: <span class="hljs-number">10</span>}));
+<span class="hljs-built_in">console</span>.log(grid2.calculateDistanceFromOrigin({x: <span class="hljs-number">10</span>, y: <span class="hljs-number">10</span>}));
+</code></pre>
+<h1 id="abstract-classes">Abstract Classes</h1>
+<p>Abstract classes are base classes from which other classes may be derived.
+They may not be instantiated directly.
+Unlike an interface, an abstract class may contain implementation details for its members.
+The <code>abstract</code> keyword is used to define abstract classes as well as abstract methods within an abstract class.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> Animal {
+    <span class="hljs-keyword">abstract</span> makeSound(): <span class="hljs-built_in">void</span>;
+    move(): <span class="hljs-built_in">void</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;roaming the earth...&quot;</span>);
+    }
+}
+</code></pre>
+<p>Methods within an abstract class that are marked as abstract do not contain an implementation and must be implemented in derived classes.
+Abstract methods share a similar syntax to interface methods.
+Both define the signature of a method without including a method body.
+However, abstract methods must include the <code>abstract</code> keyword and may optionally include access modifiers.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> Department {
+
+    <span class="hljs-keyword">constructor</span>(public name: string) {
+    }
+
+    printName(): <span class="hljs-built_in">void</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Department name: &quot;</span> + <span class="hljs-keyword">this</span>.name);
+    }
+
+    <span class="hljs-keyword">abstract</span> printMeeting(): <span class="hljs-built_in">void</span>; <span class="hljs-comment">// must be implemented in derived classes</span>
+}
+
+<span class="hljs-keyword">class</span> AccountingDepartment extends Department {
+
+    <span class="hljs-keyword">constructor</span>() {
+        <span class="hljs-keyword">super</span>(<span class="hljs-string">&quot;Accounting and Auditing&quot;</span>); <span class="hljs-comment">// constructors in derived classes must call super()</span>
+    }
+
+    printMeeting(): <span class="hljs-built_in">void</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;The Accounting Department meets each Monday at 10am.&quot;</span>);
+    }
+
+    generateReports(): <span class="hljs-built_in">void</span> {
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Generating accounting reports...&quot;</span>);
+    }
+}
+
+<span class="hljs-keyword">let</span> department: Department; <span class="hljs-comment">// ok to create a reference to an abstract type</span>
+department = <span class="hljs-keyword">new</span> Department(); <span class="hljs-comment">// error: cannot create an instance of an abstract class</span>
+department = <span class="hljs-keyword">new</span> AccountingDepartment(); <span class="hljs-comment">// ok to create and assign a non-abstract subclass</span>
+department.printName();
+department.printMeeting();
+department.generateReports(); <span class="hljs-comment">// error: method doesn&apos;t exist on declared abstract type</span>
+</code></pre>
+<h1 id="advanced-techniques">Advanced Techniques</h1>
+<h2 id="constructor-functions">Constructor functions</h2>
+<p>When you declare a class in TypeScript, you are actually creating multiple declarations at the same time.
+The first is the type of the <em>instance</em> of the class.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Greeter {
+    greeting: <span class="hljs-built_in">string</span>;
+    <span class="hljs-keyword">constructor</span>(message: string) {
+        <span class="hljs-keyword">this</span>.greeting = message;
+    }
+    greet() {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + <span class="hljs-keyword">this</span>.greeting;
+    }
+}
+
+<span class="hljs-keyword">let</span> greeter: Greeter;
+greeter = <span class="hljs-keyword">new</span> Greeter(<span class="hljs-string">&quot;world&quot;</span>);
+<span class="hljs-built_in">console</span>.log(greeter.greet());
+</code></pre>
+<p>Here, when we say <code>let greeter: Greeter</code>, we&apos;re using <code>Greeter</code> as the type of instances of the class <code>Greeter</code>.
+This is almost second nature to programmers from other object-oriented languages.</p>
+<p>We&apos;re also creating another value that we call the <em>constructor function</em>.
+This is the function that is called when we <code>new</code> up instances of the class.
+To see what this looks like in practice, let&apos;s take a look at the JavaScript created by the above example:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">let</span> Greeter = (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Greeter</span>(<span class="hljs-params">message</span>) </span>{
+        <span class="hljs-keyword">this</span>.greeting = message;
+    }
+    Greeter.prototype.greet = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + <span class="hljs-keyword">this</span>.greeting;
+    };
+    <span class="hljs-keyword">return</span> Greeter;
+})();
+
+<span class="hljs-keyword">let</span> greeter;
+greeter = <span class="hljs-keyword">new</span> Greeter(<span class="hljs-string">&quot;world&quot;</span>);
+<span class="hljs-built_in">console</span>.log(greeter.greet());
+</code></pre>
+<p>Here, <code>let Greeter</code> is going to be assigned the constructor function.
+When we call <code>new</code> and run this function, we get an instance of the class.
+The constructor function also contains all of the static members of the class.
+Another way to think of each class is that there is an <em>instance</em> side and a <em>static</em> side.</p>
+<p>Let&apos;s modify the example a bit to show this difference:</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Greeter {
+    <span class="hljs-keyword">static</span> standardGreeting = <span class="hljs-string">&quot;Hello, there&quot;</span>;
+    greeting: <span class="hljs-built_in">string</span>;
+    greet() {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.greeting) {
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello, &quot;</span> + <span class="hljs-keyword">this</span>.greeting;
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> Greeter.standardGreeting;
+        }
+    }
+}
+
+<span class="hljs-keyword">let</span> greeter1: Greeter;
+greeter1 = <span class="hljs-keyword">new</span> Greeter();
+<span class="hljs-built_in">console</span>.log(greeter1.greet());
+
+<span class="hljs-keyword">let</span> greeterMaker: <span class="hljs-keyword">typeof</span> Greeter = Greeter;
+greeterMaker.standardGreeting = <span class="hljs-string">&quot;Hey there!&quot;</span>;
+
+<span class="hljs-keyword">let</span> greeter2: Greeter = <span class="hljs-keyword">new</span> greeterMaker();
+<span class="hljs-built_in">console</span>.log(greeter2.greet());
+</code></pre>
+<p>In this example, <code>greeter1</code> works similarly to before.
+We instantiate the <code>Greeter</code> class, and use this object.
+This we have seen before.</p>
+<p>Next, we then use the class directly.
+Here we create a new variable called <code>greeterMaker</code>.
+This variable will hold the class itself, or said another way its constructor function.
+Here we use <code>typeof Greeter</code>, that is &quot;give me the type of the <code>Greeter</code> class itself&quot; rather than the instance type.
+Or, more precisely, &quot;give me the type of the symbol called <code>Greeter</code>,&quot; which is the type of the constructor function.
+This type will contain all of the static members of Greeter along with the constructor that creates instances of the <code>Greeter</code> class.
+We show this by using <code>new</code> on <code>greeterMaker</code>, creating new instances of <code>Greeter</code> and invoking them as before.</p>
+<h2 id="using-a-class-as-an-interface">Using a class as an interface</h2>
+<p>As we said in the previous section, a class declaration creates two things: a type representing instances of the class and a constructor function.
+Because classes create types, you can use them in the same places you would be able to use interfaces.</p>
+<pre><code class="lang-ts"><span class="hljs-keyword">class</span> Point {
+    x: <span class="hljs-built_in">number</span>;
+    y: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">interface</span> Point3d <span class="hljs-keyword">extends</span> Point {
+    z: <span class="hljs-built_in">number</span>;
+}
+
+<span class="hljs-keyword">let</span> point3d: Point3d = {x: <span class="hljs-number">1</span>, y: <span class="hljs-number">2</span>, z: <span class="hljs-number">3</span>};
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="Interfaces.html" class="navigation navigation-prev " aria-label="Previous page: Interfaces">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="Functions.html" class="navigation navigation-next " aria-label="Next page: Functions">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Classes","level":"1.5","depth":1,"next":{"title":"Functions","level":"1.6","depth":1,"path":"pages/Functions.md","ref":"./pages/Functions.md","articles":[]},"previous":{"title":"Interfaces","level":"1.4","depth":1,"path":"pages/Interfaces.md","ref":"./pages/Interfaces.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"pages/Classes.md","mtime":"2018-07-01T10:24:27.717Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-07-01T11:21:25.430Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

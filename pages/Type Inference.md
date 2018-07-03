@@ -2,9 +2,14 @@
 
 In this section, we will cover type inference in TypeScript. Namely, we'll discuss where and how types are inferred.
 
-# Basics
+이 섹션에서는, 우리는 TypeScript 에서의 타입 추론을 탐구할것이다. 말그대로, 우리는 어디서 , 어떻게 타입들이 추론이 되어지에 대해서 이야기할것이다.
+
+# Basics(기본)
 
 In TypeScript, there are several places where type inference is used to provide type information when there is no explicit type annotation. For example, in this code
+
+TypeScript에서 , 타입 어노테이션이 명시적이지 않는 곳이 있을때 , 타입 추론이 타입 정보를 제공해주는 몇명 곳에서 있다. 예를들면, 이 코드에서. 
+
 
 ```ts
 let x = 3;
@@ -13,12 +18,20 @@ let x = 3;
 The type of the `x` variable is inferred to be `number`.
 This kind of inference takes place when initializing variables and members, setting parameter default values, and determining function return types.
 
+`x` 변수의 타입은 `number`로 추론되어진다.
+이런 종류의 추론은 변수나 멤버들, 기본값 파라미터를 세팅하거나, 함수의 리턴 타입을 결정할때 일어난다.
+
 In most cases, type inference is straightforward.
 In the following sections, we'll explore some of the nuances in how types are inferred.
+
+많은 경우에서, 타입추론은 아주쉽게 일어난다.
+다은 섹션에서, 우리는 어덯게 타입이 되어지는 것에 대한 몇몇 미묘한 부분들에 대해서 볼것이다.
 
 # Best common type
 
 When a type inference is made from several expressions, the types of those expressions are used to calculate a "best common type". For example,
+
+타입 추론은 몇몇 표현식으부터 만들어질때, 그러한 표현식의 타입들은 "best common type"으로 계산되어 사용되어 진다. 예를들면,
 
 ```ts
 let x = [0, 1, null];
@@ -28,7 +41,13 @@ To infer the type of `x` in the example above, we must consider the type of each
 Here we are given two choices for the type of the array: `number` and `null`.
 The best common type algorithm considers each candidate type, and picks the type that is compatible with all the other candidates.
 
+위 예시에서 `x`의 타입을 추론하기 위해는, 우리는 각각 타입의 배열 요소를 고려해야만 한다.
+배열의 타입에 대해서 2가지 선택이 주어진다:`number` 그리고 `null`.
+best common type algorithm은 각각의 후보 타입을 고려하고, 모든 모다른 후보자들과 호환될수 있는 타입을 선택한다.
+
 Because the best common type has to be chosen from the provided candidate types, there are some cases where types share a common structure, but no one type is the super type of all candidate types. For example:
+
+
 
 ```ts
 let zoo = [new Rhino(), new Elephant(), new Snake()];

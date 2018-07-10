@@ -43,7 +43,7 @@ let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
 
 When no best common type is found, the resulting inference is the union array type, `(Rhino | Elephant | Snake)[]`.
 
-# Contextual Type
+# Contextual Typing
 
 Type inference also works in "the other direction" in some cases in TypeScript.
 This is known as "contextual typing". Contextual typing occurs when the type of an expression is implied by its location. For example:
@@ -55,7 +55,7 @@ window.onmousedown = function(mouseEvent) {
 };
 ```
 
-Here, Typescript type checker used the type of the `Window.onmousedown` function to infer the type of the function expression on the right hand side of the assignment.
+Here, the Typescript type checker used the type of the `Window.onmousedown` function to infer the type of the function expression on the right hand side of the assignment.
 When it did so, it was able to infer the [type](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) of the `mouseEvent` parameter, which does contain a `button` property, but not a `kangaroo` property.
 
 Typescript is smart enough to infer the type of things in other contexts as well:

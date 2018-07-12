@@ -938,14 +938,19 @@ T extends U ? X : Y
 The type above means when `T` is assignable to `U` the type is `X`, otherwise the type is `Y`.
 
 A conditional type `T extends U ? X : Y` is either *resolved* to `X` or `Y`, or *deferred* because the condition depends on one or more type variables.
-Whether to resolve or defer is determined as follows:
+When `T` or `U` contains type variables, whether to resolve to `X` or `Y`, or to defer, is determined by whether or not a the type system has enough information to conclude that `T` is always assignable to `U`.
 
-* First, given types `T'` and `U'` that are instantiations of `T` and `U` where all occurrences of type parameters are replaced with `any`, if `T'` is not assignable to `U'`, the conditional type is resolved to `Y`. Intuitively, if the most permissive instantiation of `T` is not assignable to the most permissive instantiation of `U`, we know that no instantiation will be and we can just resolve to `Y`.
-* Next, for each type variable introduced by an `infer` (more later) declaration within `U` collect a set of candidate types by inferring from `T` to `U` (using the same inference algorithm as type inference for generic functions). For a given `infer` type variable `V`, if any candidates were inferred from co-variant positions, the type inferred for `V` is a union of those candidates. Otherwise, if any candidates were inferred from contra-variant positions, the type inferred for `V` is an intersection of those candidates. Otherwise, the type inferred for `V` is `never`.
-* Then, given a type `T''` that is an instantiation of `T` where all `infer` type variables are replaced with the types inferred in the previous step, if `T''` is *definitely assignable* to `U`, the conditional type is resolved to `X`. The definitely assignable relation is the same as the regular assignable relation, except that type variable constraints are not considered. Intuitively, when a type is definitely assignable to another type, we know that it will be assignable for *all instantiations* of those types.
-* Otherwise, the condition depends on one or more type variables and the conditional type is deferred.
+As an example of some types that are immediately resolved, we can take a look at the following example:
 
-##### Example
+```ts
+declare function f<T extends boolean>(x: T): T extends true ? string : number;
+
+// Type is 'string | number
+let x = f(Math.random() < 0.5)
+
+```
+
+Another example would be the `TypeName` type alias, which uses nested conditional types:
 
 ```ts
 type TypeName<T> =
@@ -962,6 +967,31 @@ type T2 = TypeName<true>;  // "boolean"
 type T3 = TypeName<() => void>;  // "function"
 type T4 = TypeName<string[]>;  // "object"
 ```
+
+But as an example of a place where conditonal types are deferred - where they stick around instead of picking a branch - would be in the following:
+
+```ts
+interface Foo {
+    propA: boolean;
+    propB: boolean;
+}
+
+declare function f<T>(x: T): T extends Foo ? string : number;
+
+function foo<U>(x: U) {
+    // Has type 'U extends Foo ? string : number'
+    let a = f(x);
+
+    // This assignment is allowed though!
+    let b: string | number = a;
+}
+```
+
+In the above, the variable `a` has a conditional type that hasn't yet chosen a branch.
+When another piece of code ends up calling `foo`, it will substitute in `U` with some other type, and TypeScript will re-evaluate the conditional type, deciding whether it can actually pick a branch.
+
+In the meantime, we can assign a conditional type to any other target type as long as each branch of the conditional is assignable to that target.
+So in our example above we were able to assign `U extends Foo ? string : number` to `string | number` since no matter what the conditional evaluates to, it's known to be either `string` or `number`.
 
 ## Distributive conditional types
 

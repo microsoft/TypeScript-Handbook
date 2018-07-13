@@ -31,7 +31,7 @@ Another way to describe the example is that the type `(x: T) => void` is _bivari
 
 ```ts
 interface Comparer<T> {
-    compare: (a: T, b: T) => number;
+    (a: T, b: T) => number;
 }
 
 declare let animalComparer: Comparer<Animal>;

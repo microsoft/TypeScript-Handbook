@@ -120,21 +120,16 @@ Also of note, the use of `public` on arguments to the constructor is a shorthand
 ```ts
 class Student {
     fullName: string;
-    constructor(public firstName: string, public middleInitial: string, public lastName: string) {
-        this.fullName = firstName + " " + middleInitial + " " + lastName;
+    constructor(public fistrName: string, public middleInitial: string, public lastName: string) {
+        this.fullName = fistrName + ' ' + middleInitial + ' ' + lastName;
     }
 }
 
-interface Person {
-    firstName: string;
-    lastName: string;
+function greeter(student: Student) {
+    return 'Hello,' + ' ' + student.fullName + '!';
 }
 
-function greeter(person : Person) {
-    return "Hello, " + person.firstName + " " + person.lastName;
-}
-
-let user = new Student("Jane", "M.", "User");
+let user = new Student('Jane', 'M.', 'Doe');
 
 document.body.innerHTML = greeter(user);
 ```

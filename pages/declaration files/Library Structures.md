@@ -82,12 +82,12 @@ Be sure to read the ["Preventing Name Conflicts" footnote](#preventing-name-conf
 ## Modular Libraries
 
 Some libraries only work in a module loader environment.
-For example, because `express` only works in Node.js and must be loaded using the CommonJS `require` function.
+For example, `express` only works in Node.js and must be loaded using the CommonJS `require` function.
 
 ECMAScript 2015 (also known as ES2015, ECMAScript 6, and ES6), CommonJS, and RequireJS have similar notions of *importing* a *module*.
 In JavaScript CommonJS (Node.js), for example, you would write
 
-```ts
+```js
 var fs = require("fs");
 ```
 
@@ -105,7 +105,7 @@ var someLib = require('someLib');
 
 or
 
-```ts
+```js
 define(..., ['someLib'], function(someLib) {
 
 });
@@ -142,7 +142,7 @@ console.log(moment.format());
 
 whereas in a vanilla browser environment you would write:
 
-```ts
+```js
 console.log(moment.format());
 ```
 
@@ -180,7 +180,7 @@ There are three templates available for modules,
 
 Use [`module-function.d.ts`](./templates/module-function.d.ts.md) if your module can be *called* like a function:
 
-```ts
+```js
 var x = require("foo");
 // Note: calling 'x' as a function
 var y = x(42);
@@ -190,7 +190,7 @@ Be sure to read the [footnote "The Impact of ES6 on Module Call Signatures"](#th
 
 Use [`module-class.d.ts`](./templates/module-class.d.ts.md) if your module can be *constructed* using `new`:
 
-```ts
+```js
 var x = require("bar");
 // Note: using 'new' operator on the imported variable
 var y = new x("hello");
@@ -224,7 +224,7 @@ Global plugins are generally easy to identify from their documentation.
 
 You'll see examples that look like this:
 
-```ts
+```js
 var x = "hello, world";
 // Creates new methods on built-in types
 console.log(x.startsWithHello());
@@ -252,7 +252,7 @@ In general, they're similar to global plugins, but need a `require` call to acti
 
 You might see documentation like this:
 
-```ts
+```js
 // 'require' call that doesn't use its return value
 var unused = require("magic-string-time");
 /* or */

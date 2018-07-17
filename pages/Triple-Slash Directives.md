@@ -56,6 +56,22 @@ A `/// <reference types="..." />` in a generated declaration file is added *if a
 For declaring a dependency on an `@types` package in a `.ts` file, use `--types` on the command line or in your `tsconfig.json` instead.
 See [using `@types`, `typeRoots` and `types` in `tsconfig.json` files](./tsconfig.json.md#types-typeroots-and-types) for more details.
 
+## `/// <reference lib="..." />`
+
+This directive allows a file to explicitly include an existing built-in _lib_ file.
+
+Built-in _lib_ files are referenced in the same fashion as the `"lib"` compiler option in _tsconfig.json_ (e.g. use `lib="es2015"` and not `lib="lib.es2015.d.ts"`, etc.).
+
+For declaration file authors who relay on built-in types, e.g. DOM APIs or built-in JS run-time constructors like `Symbol` or `Iterable`, triple-slash-reference lib directives are the recommended. Previously these .d.ts files had to add forward/duplicate declarations of such types.
+
+For example, adding `/// <reference lib="es2017.string" />` to one of the files in a compilation is equivalent to compiling with `--lib es2017.string`.
+
+```ts
+/// <reference lib="es2017.string" />
+
+"foo".padStart(4);
+```
+
 ## `/// <reference no-default-lib="true"/>`
 
 This directive marks a file as a *default library*.

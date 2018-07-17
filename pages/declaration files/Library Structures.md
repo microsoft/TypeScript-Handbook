@@ -273,7 +273,8 @@ Use the [`global-modifying-module.d.ts`](./templates/global-modifying-module.d.t
 
 # Consuming Dependencies
 
-There are several kinds of dependencies you might have.
+There are several kinds of dependencies your library might have.
+This section shows how to import them into the declaration file.
 
 ## Dependencies on Global Libraries
 

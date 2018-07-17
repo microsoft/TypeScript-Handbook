@@ -363,3 +363,38 @@ In ES6 module loaders, the top-level object (here imported as `exp`) can only ha
   the top-level module object is *never* callable.
 The most common solution here is to define a `default` export for a callable/constructable object;
   some module loader shims will automatically detect this situation and replace the top-level object with the `default` export.
+
+## Library file layout
+
+The layout of your declaration files should mirror the layout of the library.
+
+A library can consist of multiple modules, such as
+
+```Text
+myLib
+  +---- index.js
+  +---- foo.js
+  +---- bar
+         +---- index.js
+         +---- baz.js
+```
+
+These could be imported as
+
+```js
+var a = require("myLib");
+var b = require("myLib/foo");
+var c = require("myLib/bar");
+var d = require("myLib/bar/baz");
+```
+
+Your declaration files should thus be
+
+```Text
+@types/myLib
+  +---- index.d.ts
+  +---- foo.d.ts
+  +---- bar
+         +---- index.d.ts
+         +---- baz.d.ts
+```

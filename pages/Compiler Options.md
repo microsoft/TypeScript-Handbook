@@ -85,7 +85,7 @@ Option                                         | Type      | Default            
 `--types`                                      | `string[]`|                                | List of names of type definitions to include. See [@types, --typeRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
 `--typeRoots`                                  | `string[]`|                                | List of folders to include type definitions from. See [@types, --typeRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version.
-`--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes.
+`--watch`<br/>`-w`                             |           |                                | Run the compiler in watch mode. Watch input files and trigger recompilation on changes. The implementation of watching files and directories can be configured using environment variable. See [configuring watch](./Configuring%20Watch.md) for more details.
 
 * <sup>[1]</sup> These options are experimental.
 * <sup>[2]</sup> These options are only allowed in `tsconfig.json`, and not through command-line switches.

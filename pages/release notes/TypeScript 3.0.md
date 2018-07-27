@@ -1,3 +1,11 @@
+# Project Refrences
+
+TypeScript 3.0 introduces a new concept of project references. Project references allow TypeScript projects to depend on other TypeScript projects - specifically, allowing `tsconfig.json` files to reference other `tsconfig.json` files. Specifying these dependencies makes it easier to split your code into smaller projects, since it gives TypeScript (and tools around it) a way to understand build ordering and output structure. 
+
+TypeScript 3.0 introduces also introducing a new mode for tsc, the `--build` flag, that works hand-in-hand with project references to enable faster TypeScript builds.
+
+See [Project References handbook page](../Project%20References.md) for more documentation.
+
 # Tuples in rest parameters and spread expressions
 
 TypeScript 3.0 adds support to multiple new capabilities to interact with function parameter lists as tuple types.

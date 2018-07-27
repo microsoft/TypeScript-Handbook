@@ -8,7 +8,8 @@ We're also introducing a new mode for `tsc`, the `--build` flag, that works hand
 
 Let's look at a fairly normal program and see how project references can help us better organize it.
 Imagine you have a project with two modules, `converter` and `units`, and a corresponding test file for each:
-```
+
+```shell
 /src/converter.ts
 /src/units.ts
 /test/converter-tests.ts
@@ -17,7 +18,8 @@ Imagine you have a project with two modules, `converter` and `units`, and a corr
 ```
 
 The test files import the implementation files and do some testing:
-```
+
+```ts
 // converter-tests.ts
 import * as converter from "../converter";
 
@@ -25,21 +27,24 @@ assert.areEqual(converter.celsiusToFahrenheit(0), 32);
 ```
 
 Previously, this structure was rather awkward to work with if you used a single tsconfig file:
- * It was possible for the implementation files to import the test files
- * It wasn't possible to build `test` and `src` at the same time without having `src` appear in the output folder name, which you probably don't want
- * Changing just the *internals* in the implementation files required *typechecking* the tests again, even though this wouldn't ever cause new errors
- * Changing just the tests required typechecking the implementation again, even if nothing changed
+
+* It was possible for the implementation files to import the test files
+* It wasn't possible to build `test` and `src` at the same time without having `src` appear in the output folder name, which you probably don't want
+* Changing just the *internals* in the implementation files required *typechecking* the tests again, even though this wouldn't ever cause new errors
+* Changing just the tests required typechecking the implementation again, even if nothing changed
 
 You could use multiple tsconfig files to solve *some* of those problems, but new ones would appear:
- * There's no built-in up-to-date checking, so you end up always running `tsc` twice
- * Invoking `tsc` twice incurs more startup time overhead
- * `tsc -w` can't run on multiple config files at once
+
+* There's no built-in up-to-date checking, so you end up always running `tsc` twice
+* Invoking `tsc` twice incurs more startup time overhead
+* `tsc -w` can't run on multiple config files at once
 
 Project references can solve all of these problems and more.
 
 # What is a Project Reference?
 
 `tsconfig.json` files have a new top-level property, `references`. It's an array of objects that specifies projects to reference:
+
 ```js
 {
     "compilerOptions": {
@@ -54,9 +59,10 @@ Project references can solve all of these problems and more.
 The `path` property of each reference can point to a directory containing a `tsconfig.json` file, or to the config file itself (which may have any name).
 
 When you reference a project, new things happen:
- * Importing modules from a referenced project will instead load its *output* declaration file (`.d.ts`)
- * If the referenced project produces an `outFile`, the output file `.d.ts` file's declarations will be visible in this project
- * Build mode (see below) will automatically build the referenced project if needed
+
+* Importing modules from a referenced project will instead load its *output* declaration file (`.d.ts`)
+* If the referenced project produces an `outFile`, the output file `.d.ts` file's declarations will be visible in this project
+* Build mode (see below) will automatically build the referenced project if needed
 
 By separating into multiple projects, you can greatly improve the speed of typechecking and compiling, reduce memory usage when using an editor, and improve enforcement of the logical groupings of your program.
 
@@ -65,9 +71,10 @@ By separating into multiple projects, you can greatly improve the speed of typec
 Referenced projects must have the new `composite` setting enabled.
 This setting is needed to ensure TypeScript can quickly determine where to find the outputs of the referenced project.
 Enabling the `composite` flag changes a few things:
- * The `rootDir` setting, if not explicitly set, defaults to the directory containing the `tsconfig` file
- * All implementation files must be matched by an `include` pattern or listed in the `files` array. If this constraint is violated, `tsc` will inform you which files weren't specified
- * `declaration` must be turned on
+
+* The `rootDir` setting, if not explicitly set, defaults to the directory containing the `tsconfig` file
+* All implementation files must be matched by an `include` pattern or listed in the `files` array. If this constraint is violated, `tsc` will inform you which files weren't specified
+* `declaration` must be turned on
 
 # `declarationMaps`
 
@@ -77,6 +84,7 @@ If you enable `--declarationMap`, you'll be able to use editor features like "Go
 # `prepend` with `outFile`
 
 You can also enable prepending the output of a dependency using the `prepend` option in a reference:
+
 ```js
    "references": [
        { "path": "../utils", "prepend": true }
@@ -88,15 +96,17 @@ This works for both `.js` files and `.d.ts` files, and source map files will als
 
 `tsc` will only ever use existing files on disk to do this process, so it's possible to create a project where a correct output file can't be generated because some project's output would be present more than once in the resulting file.
 For example:
-```
+
+```txt
    A
-  ^ ^ 
+  ^ ^
  /   \
 B     C
  ^   ^
   \ /
    D
 ```
+
 It's important in this situation to not prepend at each reference, because you'll end up with two copies of `A` in the output of `D` - this can lead to unexpected results.
 
 # Caveats for Project References
@@ -116,9 +126,10 @@ In 3.0 you can use the `--build` flag with `tsc`.
 This is effectively a new entry point for `tsc` that behaves more like a build orchestrator than a simple compiler.
 
 Running `tsc --build` (`tsc -b` for short) will do the following:
- * Find all referenced projects 
- * Detect if they are up-to-date
- * Build out-of-date projects in the correct order
+
+* Find all referenced projects
+* Detect if they are up-to-date
+* Build out-of-date projects in the correct order
 
 You can provide `tsc -b` with multiple config file paths (e.g. `tsc -b src test`).
 Just like `tsc -p`, specifying the config file name itself is unnecessary if it's named `tsconfig.json`.
@@ -127,7 +138,7 @@ Just like `tsc -p`, specifying the config file name itself is unnecessary if it'
 
 You can specify any number of config files:
 
-```
+```shell
  > tsc -b                                # Build the tsconfig.json in the current directory
  > tsc -b src                            # Build src/tsconfig.json
  > tsc -b foo/release.tsconfig.json bar  # Build foo/release.tsconfig.json and bar/tsconfig.json
@@ -136,11 +147,12 @@ You can specify any number of config files:
 Don't worry about ordering the files you pass on the commandline - `tsc` will re-order them if needed so that dependencies are always built first.
 
 There are also some flags specific to `tsc -b`:
- * `--verbose`: Prints out verbose logging to explain what's going on (may be combined with any other flag)
- * `--dry`: Shows what would be done but doesn't actually build anything
- * `--clean`: Deletes the outputs of the specified projects (may be combined with `--dry`)
- * `--force`: Act as if all projects are out of date
- * `--watch`: Watch mode (may not be combined with any flag except `--verbose`)
+
+* `--verbose`: Prints out verbose logging to explain what's going on (may be combined with any other flag)
+* `--dry`: Shows what would be done but doesn't actually build anything
+* `--clean`: Deletes the outputs of the specified projects (may be combined with `--dry`)
+* `--force`: Act as if all projects are out of date
+* `--watch`: Watch mode (may not be combined with any flag except `--verbose`)
 
 # Caveats
 
@@ -153,9 +165,11 @@ If you check in any build outputs (`.js`, `.d.ts`, `.d.ts.map`, etc.), you may n
 # MSBuild
 
 If you have an msbuild project, you can turn enable build mode by adding
-```XML
+
+```xml
     <TypeScriptBuildMode>true</TypeScriptBuildMode>
 ```
+
 to your proj file. This will enable automatic incremental build as well as cleaning.
 
 Note that as with `tsconfig.json` / `-p`, existing TypeScript project properties will not be respected - all settings should be managed using your tsconfig file.

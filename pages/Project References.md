@@ -1,18 +1,10 @@
-Docs/blogpost work in progress below (will edit this based on feedback)
-
-I'd encourage anyone following this thread to give it a try. I'm working on the monorepo scenario now to iron out any last bugs/features there and should have some guidance on it soon
-
-----------
-
-# Project References
-
 Project references are a new feature in TypeScript 3.0 that allow you to structure your TypeScript programs into smaller pieces.
 
 By doing this, you can greatly improve build times, enforce logical separation between components, and organize your code in new and better ways.
 
 We're also introducing a new mode for `tsc`, the `--build` flag, that works hand in hand with project references to enable faster TypeScript builds.
 
-## An Example Project
+# An Example Project
 
 Let's look at a fairly normal program and see how project references can help us better organize it.
 Imagine you have a project with two modules, `converter` and `units`, and a corresponding test file for each:
@@ -45,10 +37,10 @@ You could use multiple tsconfig files to solve *some* of those problems, but new
 
 Project references can solve all of these problems and more.
 
-## What is a Project Reference?
+# What is a Project Reference?
 
 `tsconfig.json` files have a new top-level property, `references`. It's an array of objects that specifies projects to reference:
-```json
+```js
 {
     "compilerOptions": {
         // The usual
@@ -68,7 +60,7 @@ When you reference a project, new things happen:
 
 By separating into multiple projects, you can greatly improve the speed of typechecking and compiling, reduce memory usage when using an editor, and improve enforcement of the logical groupings of your program.
 
-## `composite`
+# `composite`
 
 Referenced projects must have the new `composite` setting enabled.
 This setting is needed to ensure TypeScript can quickly determine where to find the outputs of the referenced project.
@@ -77,15 +69,15 @@ Enabling the `composite` flag changes a few things:
  * All implementation files must be matched by an `include` pattern or listed in the `files` array. If this constraint is violated, `tsc` will inform you which files weren't specified
  * `declaration` must be turned on
 
-## `declarationMaps`
+# `declarationMaps`
 
 We've also added support for [declaration source maps](https://github.com/Microsoft/TypeScript/issues/14479).
 If you enable `--declarationMap`, you'll be able to use editor features like "Go to Definition" and Rename to transparently navigate and edit code across project boundaries in supported editors.
 
-## `prepend` with `outFile`
+# `prepend` with `outFile`
 
 You can also enable prepending the output of a dependency using the `prepend` option in a reference:
-```
+```js
    "references": [
        { "path": "../utils", "prepend": true }
    ]
@@ -107,7 +99,7 @@ B     C
 ```
 It's important in this situation to not prepend at each reference, because you'll end up with two copies of `A` in the output of `D` - this can lead to unexpected results.
 
-## Caveats for Project References
+# Caveats for Project References
 
 Project references have a few trade-offs you should be aware of.
 
@@ -150,7 +142,7 @@ There are also some flags specific to `tsc -b`:
  * `--force`: Act as if all projects are out of date
  * `--watch`: Watch mode (may not be combined with any flag except `--verbose`)
 
-## Caveats
+# Caveats
 
 Normally, `tsc` will produce outputs (`.js` and `.d.ts`) in the presence of syntax or type errors, unless `noEmitOnError` is on.
 Doing this in an incremental build system would be very bad - if one of your out-of-date dependencies had a new error, you'd only see it *once* because a subsequent build would skip building the now up-to-date project.
@@ -158,10 +150,10 @@ For this reason, `tsc -b` effectively acts as if `noEmitOnError` is enabled for 
 
 If you check in any build outputs (`.js`, `.d.ts`, `.d.ts.map`, etc.), you may need to run a `--force` build after certain source control operations depending on whether your source control tool preserves timestmaps between the local copy and the remote copy.
 
-## msbuild
+# MSBuild
 
 If you have an msbuild project, you can turn enable build mode by adding
-```
+```XML
     <TypeScriptBuildMode>true</TypeScriptBuildMode>
 ```
 to your proj file. This will enable automatic incremental build as well as cleaning.
@@ -196,6 +188,8 @@ Layout for compilations using `outFile` is more flexible because relative paths 
 One thing to keep in mind is that you'll generally want to not use `prepend` until the "last" project - this will improve build times and reduce the amount of I/O needed in any given build.
 The TypeScript repo itself is a good reference here - we have some "library" projects and some "endpoint" projects; "endpoint" projects are kept as small as possible and pull in only the libraries they need.
 
+<!--
 ## Structuring for monorepos
 
 TODO: Experiment more and figure this out. Rush and Lerna seem to have different models that imply different things on our end
+-->

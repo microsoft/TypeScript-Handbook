@@ -54,7 +54,7 @@ This utility is useful for representing assignment expressions that will fail at
 function freeze<T>(obj: T): Readonly<T>;
 ```
 
-# `Record<K, T>`
+# `Record<K,T>`
 
 Constructs a type with a set of properties `K` of type `T`. This utility can be used to map the properties of a type to another type.
 
@@ -74,7 +74,7 @@ const x: Record<Page, PageInfo> = {
 };
 ```
 
-# `Pick<T, K>`
+# `Pick<T,K>`
 
 Constructs a type by picking the set of properties `K` from `T`.
 
@@ -95,7 +95,7 @@ const todo: TodoPreview = {
 };
 ```
 
-# `Exclude<T, U>`
+# `Exclude<T,U>`
 
 Constructs a type by excluding from `T` all properties that are assignable to `U`.
 
@@ -107,7 +107,7 @@ type T1 = Exclude<"a" | "b" | "c", "a" | "b">;  // "c"
 type T2 = Exclude<string | number | (() => void), Function>;  // string | number
 ```
 
-# `Extract<T, U>`
+# `Extract<T,U>`
 
 Constructs a type by extracting from `T` all properties that are assignable to `U`.
 

@@ -48,7 +48,7 @@ todo.title = 'Hello'; // Error: cannot reassign a readonly property
 
 This utility is useful for representing assignment expressions that will fail at runtime (i.e. when attempting to reassign properties of a [frozen object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)).
 
-##### Object.freeze
+##### `Object.freeze`
 
 ```ts
 function freeze<T>(obj: T): Readonly<T>;
@@ -74,7 +74,7 @@ const x: Record<Page, PageInfo> = {
 };
 ```
 
-# Pick<T, K>
+# `Pick<T, K>`
 
 Constructs a type by picking the set of properties `K` from `T`.
 
@@ -95,7 +95,7 @@ const todo: TodoPreview = {
 };
 ```
 
-# Exclude<T, U>
+# `Exclude<T, U>`
 
 Constructs a type by excluding from `T` all properties that are assignable to `U`.
 
@@ -107,7 +107,7 @@ type T1 = Exclude<"a" | "b" | "c", "a" | "b">;  // "c"
 type T2 = Exclude<string | number | (() => void), Function>;  // string | number
 ```
 
-# Extract<T, U>
+# `Extract<T, U>`
 
 Constructs a type by extracting from `T` all properties that are assignable to `U`.
 
@@ -118,7 +118,7 @@ type T0 = Extract<"a" | "b" | "c", "a" | "f">;  // "a"
 type T1 = Extract<string | number | (() => void), Function>;  // () => void
 ```
 
-# NonNullable<T>
+# `NonNullable<T>`
 
 Constructs a type by excluding `null` and `undefined` from `T`.
 
@@ -129,7 +129,7 @@ type T0 = NonNullable<string | number | undefined>;  // string | number
 type T1 = NonNullable<string[] | null | undefined>;  // string[]
 ```
 
-# ReturnType<T>
+# `ReturnType<T>`
 
 Constructs a type consisting of the return type of function `T`.
 
@@ -147,7 +147,7 @@ type T7 = ReturnType<string>;  // Error
 type T8 = ReturnType<Function>;  // Error
 ```
 
-# InstanceType<T>
+# `InstanceType<T>`
 
 Constructs a type consisting of the instance type of a constructor function type `T`.
 
@@ -166,7 +166,7 @@ type T3 = InstanceType<string>;  // Error
 type T4 = InstanceType<Function>;  // Error
 ```
 
-# Required<T>
+# `Required<T>`
 
 Constructs a type consisting of all properties of `T` set to required.
 
@@ -183,7 +183,7 @@ const obj: Props = { a: 5 }; // OK
 const obj2: Required<Props> = { a: 5 }; // Error: property 'b' missing
 ```
 
-# ThisType<T>
+# `ThisType<T>`
 
 This utility does not return a transformed type. Instead, it serves a marker for a contextual `this` type. Note that the `--noImplicitThis` flag must be enabled to use this utility.
 

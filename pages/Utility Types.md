@@ -2,6 +2,19 @@
 
 TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally.
 
+## Table of contents
+* [`Partial<T>`](#partialt)
+* [`Readonly<T>`](#readonlyt)
+* [`Record<K,T>`](#recordkt)
+* [`Pick<T,K>`](#picktk)
+* [`Exclude<T,U>`](#excludetu)
+* [`Extract<T,U>`](#extracttu)
+* [`NonNullable<T>`](#nonnullablet)
+* [`ReturnType<T>`](#returntypet)
+* [`InstanceType<T>`](#instancetypet)
+* [`Required<T>`](#requiredt)
+* [`ThisType<T>`](#thistypet)
+
 # `Partial<T>`
 
 Constructs a type with all properties of `T` set to optional. This utility will return a type that represents all subsets of a given type.

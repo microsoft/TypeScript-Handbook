@@ -298,7 +298,7 @@ export interface Props {
 export class Greet extends React.Component<Props> {
     render() {
         const { name } = this.props;
-        return <div>Hello ${name.toUpperCase()}!</div>;
+        return <div>Hello {name.toUpperCase()}!</div>;
     }
     static defaultProps = { name: "world"};
 }
@@ -319,7 +319,7 @@ For stateless function components (SFCs) use ES2015 default initializers for SFC
 
 ```tsx
 function Greet({ name = "world" }: Props) {
-    return <div>Hello ${name.toUpperCase()}!</div>;
+    return <div>Hello {name.toUpperCase()}!</div>;
 }
 ```
 

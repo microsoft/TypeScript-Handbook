@@ -533,7 +533,7 @@ function foo(x: number) {
 }
 ```
 
-In other words, `x` must be `1` when it gets compared to `2`, meaning that the above check is making an invalid comparison.
+In other words, `x` must be `1` when it gets compared to `2`, meaning that the above check is making an invalid comparison. This can also be seen to follow from De Morgan's laws for sets.
 
 # Enum Member Types
 

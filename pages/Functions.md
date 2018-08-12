@@ -1,6 +1,6 @@
 # Introduction
 
-Functions are the fundamental building block of any applications in JavaScript.
+Functions are the fundamental building block of any application in JavaScript.
 They're how you build up layers of abstraction, mimicking classes, information hiding, and modules.
 In TypeScript, while there are classes, namespaces, and modules, functions still play the key role in describing how to *do* things.
 TypeScript also adds some new capabilities to the standard JavaScript functions to make them easier to work with.
@@ -24,7 +24,7 @@ let myAdd = function(x, y) { return x + y; };
 
 Just as in JavaScript, functions can refer to variables outside of the function body.
 When they do so, they're said to `capture` these variables.
-While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.
+While understanding how this works and the trade-offs when using this technique are outside of the scope of this article, having a firm understanding of how this mechanic works is an important piece of working with JavaScript and TypeScript.
 
 ```ts
 let z = 100;

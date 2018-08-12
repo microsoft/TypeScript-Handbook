@@ -205,7 +205,7 @@ If multiple JS files get produced, we'll need to use `<script>` tags on our webp
 
 # Aliases
 
-Another way that you can simplify working with of namespaces is to use `import q = x.y.z` to create shorter names for commonly-used objects.
+Another way that you can simplify working with namespaces is to use `import q = x.y.z` to create shorter names for commonly-used objects.
 Not to be confused with the `import x = require("name")` syntax used to load modules, this syntax simply creates an alias for the specified symbol.
 You can use these sorts of imports (commonly referred to as aliases) for any kind of identifier, including objects created from module imports.
 

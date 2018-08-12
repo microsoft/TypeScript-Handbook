@@ -82,7 +82,7 @@ Be sure to read the ["Preventing Name Conflicts" footnote](#preventing-name-conf
 ## Modular Libraries
 
 Some libraries only work in a module loader environment.
-For example, because `express` only works in Node.js and must be loaded using the CommonJS `require` function.
+For example, because `express` only works in Node.js, it must be loaded using the CommonJS `require` function.
 
 ECMAScript 2015 (also known as ES2015, ECMAScript 6, and ES6), CommonJS, and RequireJS have similar notions of *importing* a *module*.
 In JavaScript CommonJS (Node.js), for example, you would write

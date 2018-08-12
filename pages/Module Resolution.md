@@ -126,7 +126,7 @@ You can read more about the process in Node.js documentation on [loading modules
 #### How TypeScript resolves modules
 
 TypeScript will mimic the Node.js run-time resolution strategy in order to locate definition files for modules at compile-time.
-To accomplish this, TypeScript overlays the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) over the Node's resolution logic.
+To accomplish this, TypeScript overlays the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) over Node's resolution logic.
 TypeScript will also use a field in `package.json` named `"types"` to mirror the purpose of `"main"` - the compiler will use it to find the "main" definition file to consult.
 
 For example, an import statement like `import { b } from "./moduleB"` in  `/root/src/moduleA.ts` would result in attempting the following locations for locating `"./moduleB"`:

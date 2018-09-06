@@ -706,16 +706,16 @@ With index types, you can get the compiler to check code that uses dynamic prope
 For example, a common Javascript pattern is to pick a subset of properties from an object:
 
 ```js
-function pluck(o, names) {
-    return names.map(n => o[n]);
+function pluck(o, props) {
+    return props.map(n => o[n]);
 }
 ```
 
 Here's how you would write and use this function in TypeScript, using the **index type query** and **indexed access** operators:
 
 ```ts
-function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
-  return names.map(n => o[n]);
+function pluck<T, K extends keyof T>(o: T, props: K[]): T[K][] {
+  return props.map(n => o[n]);
 }
 
 interface Person {

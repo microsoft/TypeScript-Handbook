@@ -8,6 +8,7 @@ Option                                         | Type      | Default            
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
 `--alwaysStrict`                               | `boolean` | `false`                        | Parse in strict mode and emit `"use strict"` for each source file
 `--baseUrl`                                    | `string`  |                                | Base directory to resolve non-relative module names. See [Module Resolution documentation](./Module Resolution.md#base-url) for more details.
+`--build`<br/>`-b`                             | `boolean` | `false`                        | Builds this project and all of its dependencies specified by [project references](https://www.typescriptlang.org/docs/handbook/project-references.html). Note that this flag is not compatible with others on this page. See more [here](https://www.typescriptlang.org/docs/handbook/project-references.html)
 `--charset`                                    | `string`  | `"utf8"`                       | The character set of the input files.
 `--checkJs`                                    | `boolean` | `false`                        | Report errors in `.js` files. Use in conjunction with `--allowJs`.
 `--declaration`<br/>`-d`                       | `boolean` | `false`                        | Generates corresponding `.d.ts` file.

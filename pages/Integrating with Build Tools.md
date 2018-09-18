@@ -169,6 +169,8 @@ module.exports = {
 
 See [more details on ts-loader here](https://www.npmjs.com/package/ts-loader).
 
+Create a typescript+webpack project in your browser with this [visual webpack configuration tool](https://webpack.jakoblind.no/)
+
 Alternatives:
 
 * [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)

@@ -91,7 +91,6 @@ interface Fetcher {
 ```ts
 /* WRONG */
 declare function beforeAll(action: () => void, timeout?: number): void;
-declare function beforeAll(action: (done: DoneFn) => void, timeout?: number): void;
 ```
 
 *Do* write a single overload using the maximum arity:

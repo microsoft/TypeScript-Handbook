@@ -1195,7 +1195,7 @@ type T18 = ReturnType<Function>;  // Error
 
 type T20 = InstanceType<typeof C>;  // C
 type T21 = InstanceType<any>;  // any
-type T22 = InstanceType<never>;  // any
+type T22 = InstanceType<never>;  // never
 type T23 = InstanceType<string>;  // Error
 type T24 = InstanceType<Function>;  // Error
 ```

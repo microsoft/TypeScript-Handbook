@@ -102,7 +102,8 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "noImplicitAny": true,
         "module": "commonjs",
         "target": "es5",
-        "jsx": "react"
+        "jsx": "react",
+        "lib": ["es6", "dom"]
     },
     "include": [
         "./src/**/*"

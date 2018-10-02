@@ -50,7 +50,7 @@ This is known as "contextual typing". Contextual typing occurs when the type of 
 
 ```ts
 window.onmousedown = function(mouseEvent) {
-    console.log(mouseEvent.myButton);  //<- Error
+    console.log(mouseEvent.clickTime);  //<- Error
 };
 ```
 
@@ -63,7 +63,7 @@ Had we written the above example:
 
 ```ts
 window.onmousedown = function(mouseEvent: any) {
-    console.log(mouseEvent.myButton);  //<- Now, no error is given
+    console.log(mouseEvent.clickTime);  //<- Now, no error is given
 };
 ```
 

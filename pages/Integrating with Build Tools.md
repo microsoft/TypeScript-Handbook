@@ -1,6 +1,6 @@
 Build tools
 
-* [Babel](#Babel)
+* [Babel](#babel)
 * [Browserify](#browserify)
 * [Duo](#duo)
 * [Grunt](#grunt)

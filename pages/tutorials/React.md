@@ -233,6 +233,61 @@ So in `src/components/Hello.tsx`, we'll add the following import.
 import './Hello.css';
 ```
 
+## Styling with styled-components 💅
+
+If you prefer to write your styles in css-in-js way, there is also an easy way to add this feature to our project. Firstly let's add a file that we will use as an endpoint for our styles.
+In `src/theme/styled-components.ts` add the import for the library and typescript helper module:
+
+```ts
+import * as styledComponents from "styled-components";
+import { ThemedStyledComponentsModule } from "styled-components";
+```
+You will need to define an interface and you are ready to go with listing the APIs you would want to use:
+
+```ts
+export IThemeInterface {
+  primaryColor: string;
+};
+
+const {
+  default: styled,
+  css,
+  injectGlobal,
+  keyframes,
+  ThemeProvider
+} = styledComponents as ThemedStyledComponentsModule<IThemeInterface>;
+```
+
+Now let's export everything to make it ready for use in our component:
+
+```ts
+export default styled;
+export { css, injectGlobal, keyframes, ThemeProvider };
+```
+As we have our `styled-components` prepared for use with typescript we can specify the import and continue with writing actual styles:
+
+In `Hello.tsx`:
+
+```ts
+import styled from './theme/styled-components'
+
+const StyledHello = styled.div`
+  text-align: center;
+  margin: 20px;
+  font-size: 48px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+`
+```
+Now just change your `div` with `StyledHello`, remove classes and enjoy working with styled components!
+
+```ts
+      <StyledHello>
+          Hello {name + getExclamationMarks(enthusiasmLevel)}
+      </StyledHello>
+```
+
+
+
 # Writing tests with Jest
 
 We had a certain set of assumptions about our `Hello` component.

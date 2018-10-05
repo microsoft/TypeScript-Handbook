@@ -28,6 +28,7 @@
 
 
 # Intersection Types
+<b><a href="#">↥ back to top</a></b>
 
 An intersection type combines multiple types into one.
 This allows you to add together existing types to get a single type that has all the features you need.
@@ -69,6 +70,7 @@ jim.log();
 ```
 
 # Union Types
+<b><a href="#">↥ back to top</a></b>
 
 Union types are closely related to intersection types, but they are used very differently.
 Occasionally, you'll run into a library that expects a parameter to be either a `number` or a `string`.
@@ -153,6 +155,7 @@ We can't be sure whether a variable typed as `Bird | Fish` has a `fly` method.
 If the variable is really a `Fish` at runtime, then calling `pet.fly()` will fail.
 
 # Type Guards and Differentiating Types
+<b><a href="#">↥ back to top</a></b>
 
 Union types are useful for modeling situations when values can overlap in the types they can take on.
 What happens when we need to know specifically whether we have a `Fish`?
@@ -313,6 +316,7 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 in that order.
 
 # Nullable types
+<b><a href="#">↥ back to top</a></b>
 
 TypeScript has two special types, `null` and `undefined`, that have the values null and undefined respectively.
 We mentioned these briefly in [the Basic Types section](./Basic Types.md).
@@ -415,6 +419,7 @@ That's because it can't track all calls to the nested function, especially if yo
 Without knowing where the function is called, it can't know what the type of `name` will be at the time the body executes.
 
 # Type Aliases
+<b><a href="#">↥ back to top</a></b>
 
 Type aliases create a new name for a type.
 Type aliases are sometimes similar to interfaces, but can name primitives, unions, tuples, and any other types that you'd otherwise have to write by hand.
@@ -497,6 +502,7 @@ Because [an ideal property of software is being open to extension](https://en.wi
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.
 
 # String Literal Types
+<b><a href="#">↥ back to top</a></b>
 
 String literal types allow you to specify the exact value a string must have.
 In practice string literal types combine nicely with union types, type guards, and type aliases.
@@ -542,6 +548,7 @@ function createElement(tagName: string): Element {
 ```
 
 # Numeric Literal Types
+<b><a href="#">↥ back to top</a></b>
 
 TypeScript also has numeric literal types.
 
@@ -565,12 +572,14 @@ function foo(x: number) {
 In other words, `x` must be `1` when it gets compared to `2`, meaning that the above check is making an invalid comparison.
 
 # Enum Member Types
+<b><a href="#">↥ back to top</a></b>
 
 As mentioned in [our section on enums](./Enums.md#union-enums-and-enum-member-types), enum members have types when every member is literal-initialized.
 
 Much of the time when we talk about "singleton types", we're referring to both enum member types as well as numeric/string literal types, though many users will use "singleton types" and "literal types" interchangeably.
 
 # Discriminated Unions
+<b><a href="#">↥ back to top</a></b>
 
 You can combine singleton types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
 Discriminated unions are useful in functional programming.
@@ -675,6 +684,7 @@ If you forget a case, then `s` will have a real type and you will get a type err
 This method requires you to define an extra function, but it's much more obvious when you forget it.
 
 # Polymorphic `this` types
+<b><a href="#">↥ back to top</a></b>
 
 A polymorphic `this` type represents a type that is the *subtype* of the containing class or interface.
 This is called *F*-bounded polymorphism.
@@ -730,6 +740,7 @@ Without `this` types, `ScientificCalculator` would not have been able to extend 
 However, with `this` types, `multiply` returns `this`, which is `ScientificCalculator` here.
 
 # Index types
+<b><a href="#">↥ back to top</a></b>
 
 With index types, you can get the compiler to check code that uses dynamic property names.
 For example, a common Javascript pattern is to pick a subset of properties from an object:
@@ -814,6 +825,7 @@ let value: Map<number>['foo']; // number
 ```
 
 # Mapped types
+<b><a href="#">↥ back to top</a></b>
 
 A common task is to take an existing type and make each of its properties optional:
 
@@ -956,6 +968,7 @@ Note that this unwrapping inference only works on homomorphic mapped types.
 If the mapped type is not homomorphic you'll have to give an explicit type parameter to your unwrapping function.
 
 # Conditional Types
+<b><a href="#">↥ back to top</a></b>
 
 TypeScript 2.8 introduces *conditional types* which add the ability to express non-uniform type mappings.
 A conditional type selects one of two possible types based on a condition expressed as a type relationship test:

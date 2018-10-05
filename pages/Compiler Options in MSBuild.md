@@ -1,4 +1,12 @@
+# Table of contents
+- [Overview](#overview)
+- [Mappings](#mappings)
+- [What is supported in my version of Visual Studio?](#what-is-supported-in-my-version-of-visual-studio)
+- [ToolsVersion](#toolsversion)
+- [TypeScriptCompileBlocked](#typescriptcompileblocked)
+
 ## Overview
+<b><a href="#">↥ back to top</a></b>
 
 Compiler options can be specified using MSBuild properties within an MSBuild project.
 
@@ -19,6 +27,7 @@ Compiler options can be specified using MSBuild properties within an MSBuild pro
 ```
 
 ## Mappings
+<b><a href="#">↥ back to top</a></b>
 
 Compiler Option                              | MSBuild Property Name                      | Allowed Values
 ---------------------------------------------|--------------------------------------------|-----------------
@@ -101,11 +110,13 @@ Compiler Option                              | MSBuild Property Name            
 *MSBuild only option*                        | TypeScriptAdditionalFlags                  | *Any compiler option*
 
 ## What is supported in my version of Visual Studio?
+<b><a href="#">↥ back to top</a></b>
 
 Look in your `C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets` file.
 The authoritative mappings between MSBuild XML tags and `tsc` compiler options live in there.
 
 ## ToolsVersion
+<b><a href="#">↥ back to top</a></b>
 
 The value of `<TypeScriptToolsVersion>1.7</TypeScriptToolsVersion>` property in the project file identifies the compiler version to use to build (1.7 in this example).
 This allows a project to build against the same versions of the compiler on different machines.
@@ -115,6 +126,7 @@ If `TypeScriptToolsVersion` is not specified, the latest compiler version instal
 Users using newer versions of TS, will see a prompt to upgrade their project on first load.
 
 ## TypeScriptCompileBlocked
+<b><a href="#">↥ back to top</a></b>
 
 If you are using a different build tool to build your project (e.g. gulp, grunt , etc.) and VS for the development and debugging experience, set `<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>` in your project.
 This should give you all the editing support, but not the build when you hit F5.

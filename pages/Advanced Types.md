@@ -1,4 +1,4 @@
-# Intersection Types
+# [Intersection Types](#intersection-types)
 
 An intersection type combines multiple types into one.
 This allows you to add together existing types to get a single type that has all the features you need.
@@ -39,7 +39,7 @@ var n = jim.name;
 jim.log();
 ```
 
-# Union Types
+# [Union Types](#union-types)
 
 Union types are closely related to intersection types, but they are used very differently.
 Occasionally, you'll run into a library that expects a parameter to be either a `number` or a `string`.
@@ -123,7 +123,7 @@ In this example, `Bird` has a member named `fly`.
 We can't be sure whether a variable typed as `Bird | Fish` has a `fly` method.
 If the variable is really a `Fish` at runtime, then calling `pet.fly()` will fail.
 
-# Type Guards and Differentiating Types
+# [Type Guards and Differentiating Types](#type-guards)
 
 Union types are useful for modeling situations when values can overlap in the types they can take on.
 What happens when we need to know specifically whether we have a `Fish`?
@@ -155,7 +155,7 @@ else {
 }
 ```
 
-## User-Defined Type Guards
+## [User-Defined Type Guards](#user-defined-type-guards)
 
 Notice that we had to use type assertions several times.
 It would be much better if once we performed the check, we could know the type of `pet` within each branch.
@@ -189,7 +189,7 @@ else {
 Notice that TypeScript not only knows that `pet` is a `Fish` in the `if` branch;
 it also knows that in the `else` branch, you *don't* have a `Fish`, so you must have a `Bird`.
 
-## `typeof` type guards
+## [`typeof` type guards](#typeof-type-guards)
 
 Let's go back and write the code for the version of `padLeft` that uses union types.
 We could write it with type predicates as follows:
@@ -233,7 +233,7 @@ function padLeft(value: string, padding: string | number) {
 These *`typeof` type guards* are recognized in two different forms: `typeof v === "typename"` and `typeof v !== "typename"`, where `"typename"` must be `"number"`, `"string"`, `"boolean"`, or `"symbol"`.
 While TypeScript won't stop you from comparing to other strings, the language won't recognize those expressions as type guards.
 
-## `instanceof` type guards
+## [`instanceof` type guards](#instanceof-type-guards)
 
 If you've read about `typeof` type guards and are familiar with the `instanceof` operator in JavaScript, you probably have some idea of what this section is about.
 
@@ -283,7 +283,7 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 
 in that order.
 
-# Nullable types
+# [Nullable Types](#nullable-types)
 
 TypeScript has two special types, `null` and `undefined`, that have the values null and undefined respectively.
 We mentioned these briefly in [the Basic Types section](./Basic Types.md).
@@ -307,7 +307,7 @@ sn = undefined; // error, 'undefined' is not assignable to 'string | null'
 Note that TypeScript treats `null` and `undefined` differently in order to match JavaScript semantics.
 `string | null` is a different type than `string | undefined` and `string | undefined | null`.
 
-## Optional parameters and properties
+## [Optional parameters and properties](#optional-parameters-properties)
 
 With `--strictNullChecks`, an optional parameter automatically adds `| undefined`:
 
@@ -336,7 +336,7 @@ c.b = undefined; // ok
 c.b = null; // error, 'null' is not assignable to 'number | undefined'
 ```
 
-## Type guards and type assertions
+## [Type guards and type assertions](#type-guards-type-assertions)
 
 Since nullable types are implemented with a union, you need to use a type guard to get rid of the `null`.
 Fortunately, this is the same code you'd write in JavaScript:
@@ -385,7 +385,7 @@ The example uses a nested function here because the compiler can't eliminate nul
 That's because it can't track all calls to the nested function, especially if you return it from the outer function.
 Without knowing where the function is called, it can't know what the type of `name` will be at the time the body executes.
 
-# Type Aliases
+# [Type Aliases](#type-aliases)
 
 Type aliases create a new name for a type.
 Type aliases are sometimes similar to interfaces, but can name primitives, unions, tuples, and any other types that you'd otherwise have to write by hand.
@@ -445,7 +445,7 @@ However, it's not possible for a type alias to appear anywhere else on the right
 type Yikes = Array<Yikes>; // error
 ```
 
-## Interfaces vs. Type Aliases
+## [Interfaces vs. Type Aliases](#interfaces-type-aliases)
 
 As we mentioned, type aliases can act sort of like interfaces; however, there are some subtle differences.
 
@@ -467,7 +467,7 @@ Because [an ideal property of software is being open to extension](https://en.wi
 
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.
 
-# String Literal Types
+# [String Literal Types](#string-literal-types)
 
 String literal types allow you to specify the exact value a string must have.
 In practice string literal types combine nicely with union types, type guards, and type aliases.
@@ -512,7 +512,7 @@ function createElement(tagName: string): Element {
 }
 ```
 
-# Numeric Literal Types
+# [Numeric Literal Types](#numeric-literal-types)
 
 TypeScript also has numeric literal types.
 
@@ -535,13 +535,13 @@ function foo(x: number) {
 
 In other words, `x` must be `1` when it gets compared to `2`, meaning that the above check is making an invalid comparison.
 
-# Enum Member Types
+# [Enum Member Types](#enum-member-types)
 
 As mentioned in [our section on enums](./Enums.md#union-enums-and-enum-member-types), enum members have types when every member is literal-initialized.
 
 Much of the time when we talk about "singleton types", we're referring to both enum member types as well as numeric/string literal types, though many users will use "singleton types" and "literal types" interchangeably.
 
-# Discriminated Unions
+# [Discriminated Unions](#discriminated-unions)
 
 You can combine singleton types, union types, type guards, and type aliases to build an advanced pattern called *discriminated unions*, also known as *tagged unions* or *algebraic data types*.
 Discriminated unions are useful in functional programming.
@@ -591,7 +591,7 @@ function area(s: Shape) {
 }
 ```
 
-## Exhaustiveness checking
+## [Exhaustiveness checking](#exhaustiveness-checking)
 
 We would like the compiler to tell us when we don't cover all variants of the discriminated union.
 For example, if we add `Triangle` to `Shape`, we need to update `area` as well:
@@ -645,7 +645,7 @@ Here, `assertNever` checks that `s` is of type `never` &mdash; the type that's l
 If you forget a case, then `s` will have a real type and you will get a type error.
 This method requires you to define an extra function, but it's much more obvious when you forget it.
 
-# Polymorphic `this` types
+# [Polymorphic `this` types](#polymorphic-this-types)
 
 A polymorphic `this` type represents a type that is the *subtype* of the containing class or interface.
 This is called *F*-bounded polymorphism.
@@ -700,7 +700,7 @@ Without `this` types, `ScientificCalculator` would not have been able to extend 
 `multiply` would have returned `BasicCalculator`, which doesn't have the `sin` method.
 However, with `this` types, `multiply` returns `this`, which is `ScientificCalculator` here.
 
-# Index types
+# [Index types](#index-types)
 
 With index types, you can get the compiler to check code that uses dynamic property names.
 For example, a common Javascript pattern is to pick a subset of properties from an object:
@@ -770,7 +770,7 @@ let age: number = getProperty(person, 'age');
 let unknown = getProperty(person, 'unknown'); // error, 'unknown' is not in 'name' | 'age'
 ```
 
-## Index types and string index signatures
+## [Index types and string index signatures](#index-types-string-index-signatures)
 
 `keyof` and `T[K]` interact with string index signatures.
 If you have a type with a string index signature, `keyof T` will just be `string`.
@@ -784,7 +784,7 @@ let keys: keyof Map<number>; // string
 let value: Map<number>['foo']; // number
 ```
 
-# Mapped types
+# [Mapped types](#mapped-types)
 
 A common task is to take an existing type and make each of its properties optional:
 
@@ -906,7 +906,7 @@ type ThreeStringProps = Record<'prop1' | 'prop2' | 'prop3', string>
 
 Non-homomorphic types are essentially creating new properties, so they can't copy property modifiers from anywhere.
 
-## Inference from mapped types
+## [Inference from mapped types](#inference-from-mapped-types)
 
 Now that you know how to wrap the properties of a type, the next thing you'll want to do is unwrap them.
 Fortunately, that's pretty easy:
@@ -926,7 +926,7 @@ let originalProps = unproxify(proxyProps);
 Note that this unwrapping inference only works on homomorphic mapped types.
 If the mapped type is not homomorphic you'll have to give an explicit type parameter to your unwrapping function.
 
-# Conditional Types
+# [Conditional Types](#conditional-types)
 
 TypeScript 2.8 introduces *conditional types* which add the ability to express non-uniform type mappings.
 A conditional type selects one of two possible types based on a condition expressed as a type relationship test:
@@ -993,7 +993,7 @@ When another piece of code ends up calling `foo`, it will substitute in `U` with
 In the meantime, we can assign a conditional type to any other target type as long as each branch of the conditional is assignable to that target.
 So in our example above we were able to assign `U extends Foo ? string : number` to `string | number` since no matter what the conditional evaluates to, it's known to be either `string` or `number`.
 
-## Distributive conditional types
+## [Distributive conditional types](#distribute-conditional-types)
 
 Conditional types in which the checked type is a naked type parameter are called *distributive conditional types*.
 Distributive conditional types are automatically distributed over union types during instantiation.
@@ -1084,7 +1084,7 @@ For example the following is an error.
 type ElementType<T> = T extends any[] ? ElementType<T[number]> : T;  // Error
 ```
 
-## Type inference in conditional types
+## [Type inference in conditional types](#type-inference-in-conditional-types)
 
 Within the `extends` clause of a conditional type, it is now possible to have `infer` declarations that introduce a type variable to be inferred.
 Such inferred type variables may be referenced in the true branch of the conditional type.
@@ -1152,7 +1152,7 @@ type AnyFunction = (...args: any[]) => any;
 type ReturnType<T extends AnyFunction> = T extends (...args: any[]) => infer R ? R : any;
 ```
 
-## Predefined conditional types
+## [Predefined conditional types](#predefined-conditional-types)
 
 TypeScript 2.8 adds several predefined conditional types to `lib.d.ts`:
 

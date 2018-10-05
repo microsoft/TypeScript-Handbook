@@ -5,7 +5,7 @@ Triple-slash directives are **only** valid at the top of their containing file.
 A triple-slash directive can only be preceded by single or multi-line comments, including other triple-slash directives.
 If they are encountered following a statement or a declaration they are treated as regular single-line comments, and hold no special meaning.
 
-## `/// <reference path="..." />`
+## [`/// <reference path="..." />`](#reference-path)
 
 The `/// <reference path="..." />` directive is the most common of this group.
 It serves as a declaration of *dependency* between files.
@@ -15,7 +15,7 @@ Triple-slash references instruct the compiler to include additional files in the
 They also serve as a method to order the output when using `--out` or `--outFile`.
 Files are emitted to the output file location in the same order as the input after preprocessing pass.
 
-### Preprocessing input files
+### [Preprocessing input files](#preprocessing-input-files)
 
 The compiler performs a preprocessing pass on input files to resolve all triple-slash reference directives.
 During this process, additional files are added to the compilation.
@@ -28,16 +28,16 @@ Triple-slash references are resolved in a depth first manner, in the order they 
 
 A triple-slash reference path is resolved relative to the containing file, if unrooted.
 
-### Errors
+### [Errors](#errors)
 
 It is an error to reference a file that does not exist.
 It is an error for a file to have a triple-slash reference to itself.
 
-### Using `--noResolve`
+### [Using `--noResolve`](#using-noresolve)
 
 If the compiler flag `--noResolve` is specified, triple-slash references are ignored; they neither result in adding new files, nor change the order of the files provided.
 
-## `/// <reference types="..." />`
+## [`/// <reference types="..." />`](#reference-types)
 
 Similar to a `/// <reference path="..." />` directive,  this directive serves as a declaration of *dependency*;
 a `/// <reference types="..." />` directive, however, declares a dependency on a package.
@@ -56,7 +56,7 @@ A `/// <reference types="..." />` in a generated declaration file is added *if a
 For declaring a dependency on an `@types` package in a `.ts` file, use `--types` on the command line or in your `tsconfig.json` instead.
 See [using `@types`, `typeRoots` and `types` in `tsconfig.json` files](./tsconfig.json.md#types-typeroots-and-types) for more details.
 
-## `/// <reference lib="..." />`
+## [`/// <reference lib="..." />`](#reference-lib)
 
 This directive allows a file to explicitly include an existing built-in _lib_ file.
 
@@ -72,7 +72,7 @@ For example, adding `/// <reference lib="es2017.string" />` to one of the files 
 "foo".padStart(4);
 ```
 
-## `/// <reference no-default-lib="true"/>`
+## [`/// <reference no-default-lib="true"/>`](#reference-no-default-lib-true)
 
 This directive marks a file as a *default library*.
 You will see this comment at the top of `lib.d.ts` and its different variants.
@@ -82,7 +82,7 @@ The impact here is similar to passing `--noLib` on the command line.
 
 Also note that when passing `--skipDefaultLibCheck`, the compiler will only skip checking files with `/// <reference no-default-lib="true"/>`.
 
-## `/// <amd-module />`
+## [`/// <amd-module />`](#amd-module)
 
 By default AMD modules are generated anonymous.
 This can lead to problems when other tools are used to process the resulting modules, such as bundlers (e.g. `r.js`).
@@ -112,7 +112,7 @@ define("NamedModule", ["require", "exports"], function (require, exports) {
 });
 ```
 
-## `/// <amd-dependency />`
+## [`/// <amd-dependency />`](#amd-dependency)
 
 > **Note**: this directive has been deprecated. Use `import "moduleName";` statements instead.
 

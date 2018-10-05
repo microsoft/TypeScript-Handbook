@@ -1,4 +1,4 @@
-# Introduction
+# [Introduction](#introduction)
 
 Type compatibility in TypeScript is based on structural subtyping.
 Structural typing is a way of relating types based solely on their members.
@@ -28,7 +28,7 @@ Because JavaScript widely uses anonymous objects like function expressions and o
 
 TypeScript's type system allows certain operations that can't be known at compile-time to be safe. When a type system has this property, it is said to not be "sound". The places where TypeScript allows unsound behavior were carefully considered, and throughout this document we'll explain where these happen and the motivating scenarios behind them.
 
-# Starting out
+# [Starting out](#starting-out)
 
 The basic rule for TypeScript's structural type system is that `x` is compatible with `y` if `y` has at least the same members as `x`. For example:
 
@@ -60,7 +60,7 @@ Only members of the target type (`Named` in this case) are considered when check
 
 This comparison process proceeds recursively, exploring the type of each member and sub-member.
 
-# Comparing two functions
+# [Comparing two functions](#comparing-two-functions)
 
 While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible is a bit more involved.
 Let's start with a basic example of two functions that differ only in their parameter lists:
@@ -107,7 +107,7 @@ y = x; // Error, because x() lacks a location property
 
 The type system enforces that the source function's return type be a subtype of the target type's return type.
 
-## Function Parameter Bivariance
+## [Function Parameter Bivariance](#function-parameter-bivariance)
 
 When comparing the types of function parameters, assignment succeeds if either the source parameter is assignable to the target parameter, or vice versa.
 This is unsound because a caller might end up being given a function that takes a more specialized type, but invokes the function with a less specialized type.
@@ -135,7 +135,7 @@ listenEvent(EventType.Mouse, <(e: Event) => void>((e: MouseEvent) => console.log
 listenEvent(EventType.Mouse, (e: number) => console.log(e));
 ```
 
-## Optional Parameters and Rest Parameters
+## [Optional Parameters and Rest Parameters](#optional-parameters-and-rest-parameters)
 
 When comparing functions for compatibility, optional and required parameters are interchangeable.
 Extra optional parameters of the source type are not an error, and optional parameters of the target type without corresponding parameters in the source type are not an error.
@@ -158,12 +158,12 @@ invokeLater([1, 2], (x, y) => console.log(x + ", " + y));
 invokeLater([1, 2], (x?, y?) => console.log(x + ", " + y));
 ```
 
-## Functions with overloads
+## [Functions with overloads](#functions-with-overloads)
 
 When a function has overloads, each overload in the source type must be matched by a compatible signature on the target type.
 This ensures that the target function can be called in all the same situations as the source function.
 
-# Enums
+# [Enums](#enums)
 
 Enums are compatible with numbers, and numbers are compatible with enums. Enum values from different enum types are considered incompatible. For example,
 
@@ -175,7 +175,7 @@ let status = Status.Ready;
 status = Color.Green;  // Error
 ```
 
-# Classes
+# [Classes](#classes)
 
 Classes work similarly to object literal types and interfaces with one exception: they have both a static and an instance type.
 When comparing two objects of a class type, only members of the instance are compared.
@@ -199,14 +199,14 @@ a = s;  // OK
 s = a;  // OK
 ```
 
-## Private and protected members in classes
+## [Private and protected members in classes](#private-and-protected-members-in-classes)
 
 Private and protected members in a class affect their compatibility.
 When an instance of a class is checked for compatibility, if the target type contains a private member, then the source type must also contain a private member that originated from the same class.
 Likewise, the same applies for an instance with a protected member.
 This allows a class to be assignment compatible with its super class, but *not* with classes from a different inheritance hierarchy which otherwise have the same shape.
 
-# Generics
+# [Generics](#generics)
 
 Because TypeScript is a structural type system, type parameters only affect the resulting type when consumed as part of the type of a member. For example,
 
@@ -251,9 +251,9 @@ let reverse = function<U>(y: U): U {
 identity = reverse;  // OK, because (x: any) => any matches (y: any) => any
 ```
 
-# Advanced Topics
+# [Advanced Topics](#advanced-topics)
 
-## Subtype vs Assignment
+## [Subtype vs Assignment](#subtype-assignment)
 
 So far, we've used "compatible", which is not a term defined in the language spec.
 In TypeScript, there are two kinds of compatibility: subtype and assignment.

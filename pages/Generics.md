@@ -1,4 +1,4 @@
-# Introduction
+# [Introduction](#introduction)
 
 A major part of software engineering is building components that not only have well-defined and consistent APIs, but are also reusable.
 Components that are capable of working on the data of today as well as the data of tomorrow will give you the most flexible capabilities for building up large software systems.
@@ -6,7 +6,7 @@ Components that are capable of working on the data of today as well as the data 
 In languages like C# and Java, one of the main tools in the toolbox for creating reusable components is *generics*, that is, being able to create a component that can work over a variety of types rather than a single one.
 This allows users to consume these components and use their own types.
 
-# Hello World of Generics
+# [Hello World of Generics](#hello-world-of-generics)
 
 To start off, let's do the "hello world" of generics: the identity function.
 The identity function is a function that will return back whatever is passed in.
@@ -66,7 +66,7 @@ let output = identity("myString");  // type of output will be 'string'
 Notice that we didn't have to explicitly pass the type in the angle brackets (`<>`); the compiler just looked at the value `"myString"`, and set `T` to its type.
 While type argument inference can be a helpful tool to keep code shorter and more readable, you may need to explicitly pass in the type arguments as we did in the previous example when the compiler fails to infer the type, as may happen in more complex examples.
 
-# Working with Generic Type Variables
+# [Working with Generic Type Variables](#working-with-generic-type-variables)
 
 When you begin to use generics, you'll notice that when you create generic functions like `identity`, the compiler will enforce that you use any generically typed parameters in the body of the function correctly.
 That is, that you actually treat these parameters as if they could be any and all types.
@@ -118,7 +118,7 @@ function loggingIdentity<T>(arg: Array<T>): Array<T> {
 You may already be familiar with this style of type from other languages.
 In the next section, we'll cover how you can create your own generic types like `Array<T>`.
 
-# Generic Types
+# [Generic Types](#generic-types)
 
 In previous sections, we created generic identity functions that worked over a range of types.
 In this section, we'll explore the type of the functions themselves and how to create generic interfaces.
@@ -192,7 +192,7 @@ Understanding when to put the type parameter directly on the call signature and 
 In addition to generic interfaces, we can also create generic classes.
 Note that it is not possible to create generic enums and namespaces.
 
-# Generic Classes
+# [Generic Classes](#generic-classes)
 
 A generic class has a similar shape to a generic interface.
 Generic classes have a generic type parameter list in angle brackets (`<>`) following the name of the class.
@@ -224,7 +224,7 @@ Just as with interface, putting the type parameter on the class itself lets us m
 As we covered in [our section on classes](./Classes.md), a class has two sides to its type: the static side and the instance side.
 Generic classes are only generic over their instance side rather than their static side, so when working with classes, static members can not use the class's type parameter.
 
-# Generic Constraints
+# [Generic Constraints](#generic-constraints)
 
 If you remember from an earlier example, you may sometimes want to write a generic function that works on a set of types where you have some knowledge about what capabilities that set of types will have.
 In our `loggingIdentity` example, we wanted to be able to access the `.length` property of `arg`, but the compiler could not prove that every type had a `.length` property, so it warns us that we can't make this assumption.
@@ -266,7 +266,7 @@ Instead, we need to pass in values whose type has all the required properties:
 loggingIdentity({length: 10, value: 3});
 ```
 
-## Using Type Parameters in Generic Constraints
+## [Using Type Parameters in Generic Constraints](#type-parameters-in-generic-constraints)
 
 You can declare a type parameter that is constrained by another type parameter.
 For example, here we'd like to get a property from an object given its name.
@@ -283,7 +283,7 @@ getProperty(x, "a"); // okay
 getProperty(x, "m"); // error: Argument of type 'm' isn't assignable to 'a' | 'b' | 'c' | 'd'.
 ```
 
-## Using Class Types in Generics
+## [Using Class Types in Generics](#class-types-in-generics)
 
 When creating factories in TypeScript using generics, it is necessary to refer to class types by their constructor functions. For example,
 

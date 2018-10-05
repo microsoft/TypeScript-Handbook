@@ -1,10 +1,10 @@
-# Introduction
+# [Introduction](#introduction)
 
 Traditional JavaScript uses functions and prototype-based inheritance to build up reusable components, but this may feel a bit awkward to programmers more comfortable with an object-oriented approach, where classes inherit functionality and objects are built from these classes.
 Starting with ECMAScript 2015, also known as ECMAScript 6, JavaScript programmers will be able to build their applications using this object-oriented class-based approach.
 In TypeScript, we allow developers to use these techniques now, and compile them down to JavaScript that works across all major browsers and platforms, without having to wait for the next version of JavaScript.
 
-# Classes
+# [Classes](#classes)
 
 Let's take a look at a simple class-based example:
 
@@ -31,7 +31,7 @@ This denotes that it's a member access.
 In the last line we construct an instance of the `Greeter` class using `new`.
 This calls into the constructor we defined earlier, creating a new object with the `Greeter` shape, and running the constructor to initialize it.
 
-# Inheritance
+# [Inheritance](#inheritance)
 
 In TypeScript, we can use common object-oriented patterns.
 One of the most fundamental patterns in class-based programming is being able to extend existing classes to create new ones using inheritance.
@@ -115,9 +115,9 @@ Galloping...
 Tommy the Palomino moved 34m.
 ```
 
-# Public, private, and protected modifiers
+# [Public, private, and protected modifiers](#public-private-protected)
 
-## Public by default
+## [Public by default](#public-default)
 
 In our examples, we've been able to freely access the members that we declared throughout our programs.
 If you're familiar with classes in other languages, you may have noticed in the above examples we haven't had to use the word `public` to accomplish this; for instance, C# requires that each member be explicitly labeled `public` to be visible.
@@ -136,7 +136,7 @@ class Animal {
 }
 ```
 
-## Understanding `private`
+## [Understanding `private`](#private)
 
 When a member is marked `private`, it cannot be accessed from outside of its containing class. For example:
 
@@ -188,7 +188,7 @@ Because `Animal` and `Rhino` share the `private` side of their shape from the sa
 When we try to assign from an `Employee` to `Animal` we get an error that these types are not compatible.
 Even though `Employee` also has a `private` member called `name`, it's not the one we declared in `Animal`.
 
-## Understanding `protected`
+## [Understanding `protected`](#protected)
 
 The `protected` modifier acts much like the `private` modifier with the exception that members declared `protected` can also be accessed within deriving classes. For example,
 
@@ -245,7 +245,7 @@ let howard = new Employee("Howard", "Sales");
 let john = new Person("John"); // Error: The 'Person' constructor is protected
 ```
 
-# Readonly modifier
+# [Readonly modifier](#readonly)
 
 You can make properties readonly by using the `readonly` keyword.
 Readonly properties must be initialized at their declaration or in the constructor.
@@ -262,7 +262,7 @@ let dad = new Octopus("Man with the 8 strong legs");
 dad.name = "Man with the 3-piece suit"; // error! name is readonly.
 ```
 
-## Parameter properties
+## [Parameter properties](#parameter-properties)
 
 In our last example, we had to declare a readonly member `name` and a constructor parameter `theName` in the `Octopus` class, and we then immediately set `name` to `theName`.
 This turns out to be a very common practice.
@@ -283,7 +283,7 @@ We've consolidated the declarations and assignment into one location.
 Parameter properties are declared by prefixing a constructor parameter with an accessibility modifier or `readonly`, or both.
 Using `private` for a parameter property declares and initializes a private member; likewise, the same is done for `public`, `protected`, and `readonly`.
 
-# Accessors
+# [Accessors](#accessors)
 
 TypeScript supports getters/setters as a way of intercepting accesses to a member of an object.
 This gives you a way of having finer-grained control over how a member is accessed on each object.
@@ -345,7 +345,7 @@ Downlevelling to ECMAScript 3 is not supported.
 Second, accessors with a `get` and no `set` are automatically inferred to be `readonly`.
 This is helpful when generating a `.d.ts` file from your code, because users of your property can see that they can't change it.
 
-# Static Properties
+# [Static Properties](#static-properties)
 
 Up to this point, we've only talked about the *instance* members of the class, those that show up on the object when it's instantiated.
 We can also create *static* members of a class, those that are visible on the class itself rather than on the instances.
@@ -371,7 +371,7 @@ console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
 console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
 ```
 
-# Abstract Classes
+# [Abstract Classes](#abstract-classes)
 
 Abstract classes are base classes from which other classes may be derived.
 They may not be instantiated directly.
@@ -428,9 +428,9 @@ department.printMeeting();
 department.generateReports(); // error: method doesn't exist on declared abstract type
 ```
 
-# Advanced Techniques
+# [Advanced Techniques](#advanced-techniques)
 
-## Constructor functions
+## [Constructor functions](#constructor-functions)
 
 When you declare a class in TypeScript, you are actually creating multiple declarations at the same time.
 The first is the type of the *instance* of the class.
@@ -518,7 +518,7 @@ Or, more precisely, "give me the type of the symbol called `Greeter`," which is 
 This type will contain all of the static members of Greeter along with the constructor that creates instances of the `Greeter` class.
 We show this by using `new` on `greeterMaker`, creating new instances of `Greeter` and invoking them as before.
 
-## Using a class as an interface
+## [Using a class as an interface](#class-as-interface)
 
 As we said in the previous section, a class declaration creates two things: a type representing instances of the class and a constructor function.
 Because classes create types, you can use them in the same places you would be able to use interfaces.

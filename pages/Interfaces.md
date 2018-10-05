@@ -1,10 +1,10 @@
-# Introduction
+# [Introduction
 
 One of TypeScript's core principles is that type-checking focuses on the *shape* that values have.
 This is sometimes called "duck typing" or "structural subtyping".
 In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining contracts within your code as well as contracts with code outside of your project.
 
-# Our First Interface
+# [Our First Interface
 
 The easiest way to see how interfaces work is to start with a simple example:
 
@@ -44,7 +44,7 @@ Here, it's only the shape that matters. If the object we pass to the function me
 
 It's worth pointing out that the type-checker does not require that these properties come in any sort of order, only that the properties the interface requires are present and have the required type.
 
-# Optional Properties
+# [Optional Properties
 
 Not all properties of an interface may be required.
 Some exist under certain conditions or may not be there at all.
@@ -98,7 +98,7 @@ function createSquare(config: SquareConfig): { color: string; area: number } {
 let mySquare = createSquare({color: "black"});
 ```
 
-# Readonly properties
+# [Readonly properties
 
 Some properties should only be modifiable when an object is first created.
 You can specify this by putting `readonly` before the name of the property:
@@ -136,12 +136,12 @@ You can still override it with a type assertion, though:
 a = ro as number[];
 ```
 
-## `readonly` vs `const`
+## [`readonly` vs `const`
 
 The easiest way to remember whether to use readonly or const is to ask whether you're using it on a variable or a property.
 Variables use `const` whereas properties use `readonly`.
 
-# Excess Property Checks
+# [Excess Property Checks
 
 In our first example using interfaces, TypeScript lets us pass `{ size: number; label: string; }` to something that only expected a `{ label: string; }`.
 We also just learned about optional properties, and how they're useful when describing so-called "option bags".
@@ -209,7 +209,7 @@ For more complex object literals that have methods and hold state, you might nee
 That means if you're running into excess property checking problems for something like option bags, you might need to revise some of your type declarations.
 In this instance, if it's okay to pass an object with both a `color` or `colour` property to `createSquare`, you should fix up the definition of `SquareConfig` to reflect that.
 
-# Function Types
+# [Function Types
 
 Interfaces are capable of describing the wide range of shapes that JavaScript objects can take.
 In addition to describing an object with properties, interfaces are also capable of describing function types.
@@ -258,7 +258,7 @@ mySearch = function(src, sub) {
 }
 ```
 
-# Indexable Types
+# [Indexable Types
 
 Similarly to how we can use interfaces to describe function types, we can also describe types that we can "index into" like `a[10]`, or `ageMap["daniel"]`.
 Indexable types have an *index signature* that describes the types we can use to index into the object, along with the corresponding return types when indexing.
@@ -322,9 +322,9 @@ myArray[2] = "Mallory"; // error!
 
 You can't set `myArray[2]` because the index signature is readonly.
 
-# Class Types
+# [Class Types
 
-## Implementing an interface
+## [Implementing an interface
 
 One of the most common uses of interfaces in languages like C# and Java, that of explicitly enforcing that a class meets a particular contract, is also possible in TypeScript.
 
@@ -359,7 +359,7 @@ class Clock implements ClockInterface {
 Interfaces describe the public side of the class, rather than both the public and private side.
 This prohibits you from using them to check that a class also has particular types for the private side of the class instance.
 
-## Difference between the static and instance sides of classes
+## [Difference between the static and instance sides of classes
 
 When working with classes and interfaces, it helps to keep in mind that a class has *two* types: the type of the static side and the type of the instance side.
 You may notice that if you create an interface with a construct signature and try to create a class that implements this interface you get an error:
@@ -413,7 +413,7 @@ let analog = createClock(AnalogClock, 7, 32);
 
 Because `createClock`'s first parameter is of type `ClockConstructor`, in `createClock(AnalogClock, 7, 32)`, it checks that `AnalogClock` has the correct constructor signature.
 
-# Extending Interfaces
+# [Extending Interfaces
 
 Like classes, interfaces can extend each other.
 This allows you to copy the members of one interface into another, which gives you more flexibility in how you separate your interfaces into reusable components.
@@ -453,7 +453,7 @@ square.sideLength = 10;
 square.penWidth = 5.0;
 ```
 
-# Hybrid Types
+# [Hybrid Types
 
 As we mentioned earlier, interfaces can describe the rich types present in real world JavaScript.
 Because of JavaScript's dynamic and flexible nature, you may occasionally encounter an object that works as a combination of some of the types described above.
@@ -482,7 +482,7 @@ c.interval = 5.0;
 
 When interacting with 3rd-party JavaScript, you may need to use patterns like the above to fully describe the shape of the type.
 
-# Interfaces Extending Classes
+# [Interfaces Extending Classes
 
 When an interface type extends a class type it inherits the members of the class but not their implementations.
 It is as if the interface had declared all of the members of the class without providing an implementation.

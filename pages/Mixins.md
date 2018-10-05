@@ -1,9 +1,9 @@
-# Introduction
+# [Introduction](#introduction)
 
 Along with traditional OO hierarchies, another popular way of building up classes from reusable components is to build them by combining simpler partial classes.
 You may be familiar with the idea of mixins or traits for languages like Scala, and the pattern has also reached some popularity in the JavaScript community.
 
-# Mixin sample
+# [Mixin sample](#mixin-sample)
 
 In the code below, we show how you can model mixins in TypeScript.
 After the code, we'll break down how it works.
@@ -64,7 +64,7 @@ function applyMixins(derivedCtor: any, baseCtors: any[]) {
 }
 ```
 
-# Understanding the sample
+# [Understanding the sample](#understanding-the-sample)
 
 The code sample starts with the two classes that will act as our mixins.
 You can see each one is focused on a particular activity or capability.

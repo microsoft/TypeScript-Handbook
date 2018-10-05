@@ -1,11 +1,11 @@
-# Introduction
+# [Introduction](#introduction)
 
 Functions are the fundamental building block of any applications in JavaScript.
 They're how you build up layers of abstraction, mimicking classes, information hiding, and modules.
 In TypeScript, while there are classes, namespaces, and modules, functions still play the key role in describing how to *do* things.
 TypeScript also adds some new capabilities to the standard JavaScript functions to make them easier to work with.
 
-# Functions
+# [Functions](#functions)
 
 To begin, just as in JavaScript, TypeScript functions can be created both as a named function or as an anonymous function.
 This allows you to choose the most appropriate approach for your application, whether you're building a list of functions in an API or a one-off function to hand off to another function.
@@ -34,9 +34,9 @@ function addToZ(x, y) {
 }
 ```
 
-# Function Types
+# [Function Types](#function-types)
 
-## Typing the function
+## [Typing the function](#typing-the-function)
 
 Let's add types to our simple examples from earlier:
 
@@ -51,7 +51,7 @@ let myAdd = function(x: number, y: number): number { return x + y; };
 We can add types to each of the parameters and then to the function itself to add a return type.
 TypeScript can figure the return type out by looking at the return statements, so we can also optionally leave this off in many cases.
 
-## Writing the function type
+## [Writing the function type](#writing-function-type)
 
 Now that we've typed the function, let's write the full type of the function out by looking at each piece of the function type.
 
@@ -81,7 +81,7 @@ Of note, only the parameters and the return type make up the function type.
 Captured variables are not reflected in the type.
 In effect, captured variables are part of the "hidden state" of any function and do not make up its API.
 
-## Inferring the types
+## [Inferring the types](#inferring-types)
 
 In playing with the example, you may notice that the TypeScript compiler can figure out the type if you have types on one side of the equation but not the other:
 
@@ -97,7 +97,7 @@ let myAdd: (baseValue: number, increment: number) => number =
 This is called "contextual typing", a form of type inference.
 This helps cut down on the amount of effort to keep your program typed.
 
-# Optional and Default Parameters
+# [Optional and Default Parameters](#parameters-optional-default)
 
 In TypeScript, every parameter is assumed to be required by the function.
 This doesn't mean that it can't be given `null` or `undefined`, but rather, when the function is called the compiler will check that the user has provided a value for each parameter.
@@ -185,7 +185,7 @@ let result3 = buildName("Bob", "Adams");         // okay and returns "Bob Adams"
 let result4 = buildName(undefined, "Adams");     // okay and returns "Will Adams"
 ```
 
-# Rest Parameters
+# [Rest Parameters](#rest-parameters)
 
 Required, optional, and default parameters all have one thing in common: they talk about one parameter at a time.
 Sometimes, you want to work with multiple parameters as a group, or you may not know how many parameters a function will ultimately take.
@@ -215,7 +215,7 @@ function buildName(firstName: string, ...restOfName: string[]) {
 let buildNameFun: (fname: string, ...rest: string[]) => string = buildName;
 ```
 
-# `this`
+# [`this`](#this)
 
 Learning how to use `this` in JavaScript is something of a rite of passage.
 Since TypeScript is a superset of JavaScript, TypeScript developers also need to learn how to use `this` and how to spot when it's not being used correctly.
@@ -223,7 +223,7 @@ Fortunately, TypeScript lets you catch incorrect uses of `this` with a couple of
 If you need to learn how `this` works in JavaScript, though, first read Yehuda Katz's [Understanding JavaScript Function Invocation and "this"](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/).
 Yehuda's article explains the inner workings of `this` very well, so we'll just cover the basics here.
 
-## `this` and arrow functions
+## [`this` and arrow functions](#this-arrow-functions)
 
 In JavaScript, `this` is a variable that's set when a function is called.
 This makes it a very powerful and flexible feature, but it comes at the cost of always having to know about the context that a function is executing in.
@@ -287,7 +287,7 @@ alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 Even better, TypeScript will warn you when you make this mistake if you pass the `--noImplicitThis` flag to the compiler.
 It will point out that `this` in `this.suits[pickedSuit]` is of type `any`.
 
-## `this` parameters
+## [`this` parameters](#this-parameters)
 
 Unfortunately, the type of `this.suits[pickedSuit]` is still `any`.
 That's because `this` comes from the function expression inside the object literal.
@@ -335,7 +335,7 @@ alert("card: " + pickedCard.card + " of " + pickedCard.suit);
 Now TypeScript knows that `createCardPicker` expects to be called on a `Deck` object.
 That means that `this` is of type `Deck` now, not `any`, so `--noImplicitThis` will not cause any errors.
 
-### `this` parameters in callbacks
+### [`this` parameters in callbacks](#this-parameters-in-callbacks)
 
 You can also run into errors with `this` in callbacks, when you pass functions to a library that will later call them.
 Because the library that calls your callback will call it like a normal function, `this` will be `undefined`.
@@ -395,7 +395,7 @@ The downside is that one arrow function is created per object of type Handler.
 Methods, on the other hand, are only created once and attached to Handler's prototype.
 They are shared between all objects of type Handler.
 
-# Overloads
+# [Overloads](#overloads)
 
 JavaScript is inherently a very dynamic language.
 It's not uncommon for a single JavaScript function to return different types of objects based on the shape of the arguments passed in.

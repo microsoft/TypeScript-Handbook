@@ -1,8 +1,8 @@
-# Introduction
+# [Introduction](#introduction)
 
 TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally.
 
-## Table of contents
+## [Table of contents](#table-of-contents)
 * [`Partial<T>`](#partialt)
 * [`Readonly<T>`](#readonlyt)
 * [`Record<K,T>`](#recordkt)
@@ -15,7 +15,7 @@ TypeScript provides several utility types to facilitate common type transformati
 * [`Required<T>`](#requiredt)
 * [`ThisType<T>`](#thistypet)
 
-# `Partial<T>`
+# [`Partial<T>`](#partial)
 
 Constructs a type with all properties of `T` set to optional. This utility will return a type that represents all subsets of a given type.
 
@@ -41,7 +41,7 @@ const todo2 = updateTodo(todo1, {
 });
 ```
 
-# `Readonly<T>`
+# [`Readonly<T>`](#readonly)
 
 Constructs a type with all properties of `T` set to `readonly`, meaning the properties of the constructed type cannot be reassigned.
 
@@ -67,7 +67,7 @@ This utility is useful for representing assignment expressions that will fail at
 function freeze<T>(obj: T): Readonly<T>;
 ```
 
-# `Record<K,T>`
+# [`Record<K,T>`](#record)
 
 Constructs a type with a set of properties `K` of type `T`. This utility can be used to map the properties of a type to another type.
 
@@ -87,7 +87,7 @@ const x: Record<Page, PageInfo> = {
 };
 ```
 
-# `Pick<T,K>`
+# [`Pick<T,K>`](#pick)
 
 Constructs a type by picking the set of properties `K` from `T`.
 
@@ -108,7 +108,7 @@ const todo: TodoPreview = {
 };
 ```
 
-# `Exclude<T,U>`
+# [`Exclude<T,U>`](#excludes)
 
 Constructs a type by excluding from `T` all properties that are assignable to `U`.
 
@@ -120,7 +120,7 @@ type T1 = Exclude<"a" | "b" | "c", "a" | "b">;  // "c"
 type T2 = Exclude<string | number | (() => void), Function>;  // string | number
 ```
 
-# `Extract<T,U>`
+# [`Extract<T,U>`](#extract)
 
 Constructs a type by extracting from `T` all properties that are assignable to `U`.
 
@@ -131,7 +131,7 @@ type T0 = Extract<"a" | "b" | "c", "a" | "f">;  // "a"
 type T1 = Extract<string | number | (() => void), Function>;  // () => void
 ```
 
-# `NonNullable<T>`
+# [`NonNullable<T>`](#nonnullable)
 
 Constructs a type by excluding `null` and `undefined` from `T`.
 
@@ -142,7 +142,7 @@ type T0 = NonNullable<string | number | undefined>;  // string | number
 type T1 = NonNullable<string[] | null | undefined>;  // string[]
 ```
 
-# `ReturnType<T>`
+# [`ReturnType<T>`](#returntype)
 
 Constructs a type consisting of the return type of function `T`.
 
@@ -160,7 +160,7 @@ type T7 = ReturnType<string>;  // Error
 type T8 = ReturnType<Function>;  // Error
 ```
 
-# `InstanceType<T>`
+# [`InstanceType<T>`](#instancetype)
 
 Constructs a type consisting of the instance type of a constructor function type `T`.
 
@@ -179,7 +179,7 @@ type T3 = InstanceType<string>;  // Error
 type T4 = InstanceType<Function>;  // Error
 ```
 
-# `Required<T>`
+# [`Required<T>`](#required)
 
 Constructs a type consisting of all properties of `T` set to required.
 
@@ -196,7 +196,7 @@ const obj: Props = { a: 5 }; // OK
 const obj2: Required<Props> = { a: 5 }; // Error: property 'b' missing
 ```
 
-# `ThisType<T>`
+# [`ThisType<T>`](#thistype)
 
 This utility does not return a transformed type. Instead, it serves a marker for a contextual `this` type. Note that the `--noImplicitThis` flag must be enabled to use this utility.
 

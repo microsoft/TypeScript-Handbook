@@ -1,4 +1,4 @@
-# `async`/`await` support in ES6 targets (Node v4+)
+# [`async`/`await` support in ES6 targets (Node v4+)](#async-await-support-in-es6-targets)
 
 TypeScript now supports asynchronous functions for engines that have native support for ES6 generators, e.g. Node v4 and above.
 Asynchronous functions are prefixed with the `async` keyword;
@@ -33,7 +33,7 @@ printDelayed(["Hello", "beautiful", "asynchronous", "world"]).then(() => {
 
 For more information see [Async Functions](http://blogs.msdn.com/b/typescript/archive/2015/11/03/what-about-async-await.aspx) blog post.
 
-# Support for `--target ES6` with `--module`
+# [Support for `--target ES6` with `--module`](#target-es6-with-module)
 
 TypeScript 1.7 adds `ES6` to the list of options available for the `--module` flag and allows you to specify the module output when targeting `ES6`.
 This provides more flexibility to target exactly the features you want in specific runtimes.
@@ -49,7 +49,7 @@ This provides more flexibility to target exactly the features you want in specif
 }
 ```
 
-# `this`-typing
+# [`this`-typing](#this-typing)
 
 It is a common pattern to return the current object (i.e. `this`) from a method to create [fluent-style APIs](https://en.wikipedia.org/wiki/Fluent_interface).
 For instance, consider the following `BasicCalculator` module:
@@ -143,7 +143,7 @@ interface MyType {
 }
 ```
 
-# ES7 exponentiation operator
+# [ES7 exponentiation operator](#es7-exponentiation-operator)
 
 TypeScript 1.7 supports upcoming [ES7/ES2016 exponentiation operators](https://github.com/rwaldron/exponentiation-operator): `**` and `**=`.
 The operators will be transformed in the output to ES3/ES5 using `Math.pow`.
@@ -166,7 +166,7 @@ y = Math.pow(y, 2);
 var z = -(Math.pow(4, 3));
 ```
 
-# Improved checking for destructuring object literal
+# [Improved checking for destructuring object literal](#improved-checking-for-destructuring-object-literal)
 
 TypeScript 1.7 makes checking of destructuring patterns with an object literal or array literal initializers less rigid and more intuitive.
 
@@ -203,7 +203,7 @@ f2({ y: 1 });  // Error, x not optional
 f2({ x: 1, y: 1 });
 ```
 
-# Support for decorators when targeting ES3
+# [Support for decorators when targeting ES3](#support-for-decorators-when-targeting-es3)
 
 Decorators are now allowed when targeting ES3.
 TypeScript 1.7 removes the ES5-specific use of `reduceRight` from the `__decorate` helper.

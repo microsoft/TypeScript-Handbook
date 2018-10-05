@@ -1,13 +1,13 @@
 A nightly build from the [TypeScript's `master`](https://github.com/Microsoft/TypeScript/tree/master) branch is published by midnight PST to NPM and NuGet.
 Here is how you can get it and use it with your tools.
 
-## Using npm
+## [Using npm](#using-npm)
 
 ```shell
 npm install -g typescript@next
 ```
 
-## Using NuGet with MSBuild
+## [Using NuGet with MSBuild](#using-nuget-with-msbuild)
 
 > Note: You'll need to configure your project to use the NuGet packages.
 Please see [Configuring MSBuild projects to use NuGet](https://github.com/Microsoft/TypeScript/wiki/Configuring-MSBuild-projects-to-use-NuGet) for more information.
@@ -19,7 +19,7 @@ There are two packages:
 * `Microsoft.TypeScript.Compiler`: Tools only (`tsc.exe`, `lib.d.ts`, etc.) .
 * `Microsoft.TypeScript.MSBuild`: Tools as above, as well as MSBuild tasks and targets (`Microsoft.TypeScript.targets`, `Microsoft.TypeScript.Default.props`, etc.)
 
-## Updating your IDE to use the nightly builds
+## [Updating your IDE to use the nightly builds](#updating-your-ide-to-use-nightly-builds)
 
 You can also update your IDE to use the nightly drop.
 First you will need to install the package through npm.
@@ -27,7 +27,7 @@ You can either install the npm package globally or to a local `node_modules` fol
 
 The rest of this section assumes `typescript@next` is already installed.
 
-### Visual Studio Code
+### [Visual Studio Code](#visual-studio-code)
 
 Update `.vscode/settings.json` with the following:
 
@@ -37,7 +37,7 @@ Update `.vscode/settings.json` with the following:
 
 More information is available at [VSCode documentation](https://code.visualstudio.com/Docs/languages/typescript#_using-newer-typescript-versions).
 
-### Sublime Text
+### [Sublime Text](#sublime-text)
 
 Update the `Settings - User` file with the following:
 
@@ -47,7 +47,7 @@ Update the `Settings - User` file with the following:
 
 More information is available at the [TypeScript Plugin for Sublime Text installation documentation](https://github.com/Microsoft/TypeScript-Sublime-Plugin#installation).
 
-### Visual Studio 2013 and 2015
+### [Visual Studio 2013 and 2015](#visual-studio-2013-2015)
 
 > Note: Most changes do not require you to install a new version of the VS TypeScript plugin.
 
@@ -71,7 +71,7 @@ The nightly build currently does not include the full plugin setup, but we are w
   VSDevMode.ps1 12 -tsScript <path to your folder>/node_modules/typescript/lib
   ```
 
-### IntelliJ IDEA (Mac)
+### [IntelliJ IDEA (Mac)](#intellij-idea)
 
 Go to `Preferences` > `Languages & Frameworks` > `TypeScript`:
  > TypeScript Version: If you installed with npm: `/usr/local/lib/node_modules/typescript/lib`

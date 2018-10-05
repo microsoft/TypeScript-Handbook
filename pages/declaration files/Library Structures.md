@@ -1,4 +1,4 @@
-# Overview
+# [Overview](#overview)
 
 Broadly speaking, the way you *structure* your declaration file depends on how the library is consumed.
 There are many ways of offering a library for consumption in JavaScript, and you'll need to write your declaration file to match it.
@@ -7,7 +7,7 @@ This guide covers how to identify common library patterns, and how to write decl
 Each type of major library structuring pattern has a corresponding file in the [Templates](./Templates.md) section.
 You can start with these templates to help you get going faster.
 
-# Identifying Kinds of Libraries
+# [Identifying Kinds of Libraries](#identifying-kinds-of-libraries)
 
 First, we'll review the kinds of libraries TypeScript declaration files can represent.
 We'll briefly show how each kind of library is *used*, how it is *written*, and list some example libraries from the real world.
@@ -17,7 +17,7 @@ We'll give hints on how to identify structure both based on its *usage* and its 
 Depending on the library's documentation and organization, one might be easier than the other.
 We recommend using whichever is more comfortable to you.
 
-## Global Libraries
+## [Global Libraries](#global-libraries)
 
 A *global* library is one that can be accessed from the global scope (i.e. without using any form of `import`).
 Many libraries simply expose one or more global variables for use.
@@ -37,7 +37,7 @@ Today, most popular globally-accessible libraries are actually written as UMD li
 UMD library documentation is hard to distinguish from global library documentation.
 Before writing a global declaration file, make sure the library isn't actually UMD.
 
-### Identifying a Global Library from Code
+### [Identifying a Global Library from Code](#identifying-global-library-from-code)
 
 Global library code is usually extremely simple.
 A global "Hello, world" library might look like this:
@@ -74,12 +74,12 @@ You *won't* see:
 Because it's usually easy to turn a global library into a UMD library, very few popular libraries are still written in the global style.
 However, libraries that are small and require the DOM (or have *no* dependencies) may still be global.
 
-### Global Library Template
+### [Global Library Template](#global-library-template)
 
 The template file [`global.d.ts`](./templates/global.d.ts.md) defines an example library `myLib`.
 Be sure to read the ["Preventing Name Conflicts" footnote](#preventing-name-conflicts).
 
-## Modular Libraries
+## [Modular Libraries](#modular-libraries)
 
 Some libraries only work in a module loader environment.
 For example, because `express` only works in Node.js and must be loaded using the CommonJS `require` function.
@@ -113,7 +113,7 @@ define(..., ['someLib'], function(someLib) {
 
 As with global modules, you might see these examples in the documentation of a UMD module, so be sure to check the code or documentation.
 
-### Identifying a Module Library from Code
+### [Identifying a Module Library from Code](#identifying-module-library-from-code)
 
 Modular libraries will typically have at least some of the following:
 
@@ -129,7 +129,7 @@ They will rarely have:
 
 Many popular Node.js libraries are in the module family, such as [`express`](http://expressjs.com/), [`gulp`](http://gulpjs.com/), and [`request`](https://github.com/request/request).
 
-## *UMD*
+## [*UMD*](#umd)
 
 A *UMD* module is one that can *either* be used as module (through an import), or as a global (when run in an environment without a module loader).
 Many popular libraries, such as [Moment.js](http://momentjs.com/), are written this way.
@@ -146,7 +146,7 @@ whereas in a vanilla browser environment you would write:
 console.log(moment.format());
 ```
 
-### Identifying a UMD library
+### [Identifying a UMD library](#identifying-umd-library)
 
 [UMD modules](https://github.com/umdjs/umd) check for the existence of a module loader environment.
 This is an easy-to-spot pattern that looks something like this:
@@ -200,7 +200,7 @@ The same [footnote](#the-impact-of-es6-on-module-plugins) applies to these modul
 
 If your module is not callable or constructable, use the [`module.d.ts`](./templates/module.d.ts.md) file.
 
-## *Module Plugin* or *UMD Plugin*
+## [*Module Plugin* or *UMD Plugin*](#module-plugin-or-umd-plugin)
 
 A *module plugin* changes the shape of another module (either UMD or module).
 For example, in Moment.js, `moment-range` adds a new `range` method to the `moment` object.
@@ -211,14 +211,14 @@ For the purposes of writing a declaration file, you'll write the same code wheth
 
 Use the [`module-plugin.d.ts`](./templates/module-plugin.d.ts.md) template.
 
-## *Global Plugin*
+## [*Global Plugin*](#global-plugin)
 
 A *global plugin* is global code that changes the shape of some global.
 As with *global-modifying modules*, these raise the possibility of runtime conflict.
 
 For example, some libraries add new functions to `Array.prototype` or `String.prototype`.
 
-### Identifying global plugins
+### [Identifying global plugins](#identifying-global-plugins)
 
 Global plugins are generally easy to identify from their documentation.
 
@@ -238,14 +238,14 @@ console.log(y.reverseAndSort());
 
 Use the [`global-plugin.d.ts`](./templates/global-plugin.d.ts.md) template.
 
-## *Global-modifying Modules*
+## [*Global-modifying Modules*](#global-modifying-modules)
 
 A *global-modifying module* alters existing values in the global scope when they are imported.
 For example, there might exist a library which adds new members to `String.prototype` when imported.
 This pattern is somewhat dangerous due to the possibility of runtime conflicts,
   but we can still write a declaration file for it.
 
-### Identifying global-modifying modules
+### [Identifying global-modifying modules](#identifying-global-modifying-modules)
 
 Global-modifying modules are generally easy to identify from their documentation.
 In general, they're similar to global plugins, but need a `require` call to activate their effects.
@@ -271,11 +271,11 @@ console.log(y.reverseAndSort());
 
 Use the [`global-modifying-module.d.ts`](./templates/global-modifying-module.d.ts.md) template.
 
-# Consuming Dependencies
+# [Consuming Dependencies](#consuming-dependencies)
 
 There are several kinds of dependencies you might have.
 
-## Dependencies on Global Libraries
+## [Dependencies on Global Libraries](#dependencies-on-global-libraries)
 
 If your library depends on a global library, use a `/// <reference types="..." />` directive:
 
@@ -285,7 +285,7 @@ If your library depends on a global library, use a `/// <reference types="..." /
 function getThing(): someLib.thing;
 ```
 
-## Dependencies on Modules
+## [Dependencies on Modules](#dependencies-on-modules)
 
 If your library depends on a module, use an `import` statement:
 
@@ -295,9 +295,9 @@ import * as moment from "moment";
 function getThing(): moment;
 ```
 
-## Dependencies on UMD libraries
+## [Dependencies on UMD libraries](#dependencies-on-umd-libraries)
 
-### From a Global Library
+### [From a Global Library](#from-a-global-library)
 
 If your global library depends on a UMD module, use a `/// <reference types` directive:
 
@@ -307,7 +307,7 @@ If your global library depends on a UMD module, use a `/// <reference types` dir
 function getThing(): moment;
 ```
 
-### From a Module or UMD Library
+### [From a Module or UMD Library](#from-a-module-or-umd-library)
 
 If your module or UMD library depends on a UMD library, use an `import` statement:
 
@@ -317,9 +317,9 @@ import * as someLib from 'someLib';
 
 Do *not* use a `/// <reference` directive to declare a dependency to a UMD library!
 
-# Footnotes
+# [Footnotes](#footnotes)
 
-## Preventing Name Conflicts
+## [Preventing Name Conflicts](#preventing-name-conflicts)
 
 Note that it's possible to define many types in the global scope when writing a global declaration file.
 We strongly discourage this as it leads to possible unresolvable name conflicts when many declaration files are in a project.
@@ -342,13 +342,13 @@ interface CatsKittySettings { }
 
 This guidance also ensures that the library can be transitioned to UMD without breaking declaration file users.
 
-## The Impact of ES6 on Module Plugins
+## [The Impact of ES6 on Module Plugins](#es6-on-module-plugins)
 
 Some plugins add or modify top-level exports on existing modules.
 While this is legal in CommonJS and other loaders, ES6 modules are considered immutable and this pattern will not be possible.
 Because TypeScript is loader-agnostic, there is no compile-time enforcement of this policy, but developers intending to transition to an ES6 module loader should be aware of this.
 
-## The Impact of ES6 on Module Call Signatures
+## [The Impact of ES6 on Module Call Signatures](#es6-on-module-call-signatures)
 
 Many popular libraries, such as Express, expose themselves as a callable function when imported.
 For example, the typical Express usage looks like this:

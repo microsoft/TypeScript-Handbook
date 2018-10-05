@@ -3,7 +3,7 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
 "External modules" are now simply "modules", as to align with [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
 
-# Introduction
+# [Introduction](#introduction)
 
 This post outlines the various ways to organize your code using namespaces and modules in TypeScript.
 We'll also go over some advanced topics of how to use namespaces and modules, and address some common pitfalls when using them in TypeScript.
@@ -11,7 +11,7 @@ We'll also go over some advanced topics of how to use namespaces and modules, an
 See the [Modules](./Modules.md) documentation for more information about modules.
 See the [Namespaces](./Namespaces.md) documentation for more information about namespaces.
 
-# Using Namespaces
+# [Using Namespaces](#using-namespaces)
 
 Namespaces are simply named JavaScript objects in the global namespace.
 This makes namespaces a very simple construct to use.
@@ -20,7 +20,7 @@ Namespaces can be a good way to structure your code in a Web Application, with a
 
 Just like all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.
 
-# Using Modules
+# [Using Modules](#using-modules)
 
 Just like namespaces, modules can contain both code and declarations.
 The main difference is that modules *declare* their dependencies.
@@ -34,11 +34,11 @@ It is also worth noting that, for Node.js applications, modules are the default 
 Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine implementations.
 Thus, for new projects modules would be the recommended code organization mechanism.
 
-# Pitfalls of Namespaces and Modules
+# [Pitfalls of Namespaces and Modules](#pitfalls-of-namespaces-and-modules)
 
 In this section we'll describe various common pitfalls in using namespaces and modules, and how to avoid them.
 
-## `/// <reference>`-ing a module
+## [`/// <reference>`-ing a module](#referencing-a-module)
 
 A common mistake is to try to use the `/// <reference ... />` syntax to refer to a module file, rather than using an `import` statement.
 To understand the distinction, we first need to understand how the compiler can locate the type information for a module based on the path of an `import` (e.g. the `...` in `import x from "...";`, `import x = require("...");`, etc.) path.
@@ -66,7 +66,7 @@ Recall that these need to be declared in a `.d.ts` file.
 The reference tag here allows us to locate the declaration file that contains the declaration for the ambient module.
 This is how the `node.d.ts` file that several of the TypeScript samples use is consumed.
 
-## Needless Namespacing
+## [Needless Namespacing](#needless-namespacing)
 
 If you're converting a program from namespaces to modules, it can be easy to end up with a file that looks like this:
 
@@ -111,7 +111,7 @@ Here's a revised example:
   let t = new shapes.Triangle();
   ```
 
-## Trade-offs of Modules
+## [Trade-offs of Modules](#trade-offs-of-modules)
 
 Just as there is a one-to-one correspondence between JS files and modules, TypeScript has a one-to-one correspondence between module source files and their emitted JS files.
 One effect of this is that it's not possible to concatenate multiple module source files depending on the module system you target.

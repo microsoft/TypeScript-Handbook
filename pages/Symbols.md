@@ -1,4 +1,4 @@
-# Introduction
+# [Introduction](#introduction)
 
 Starting with ECMAScript 2015, `symbol` is a primitive data type, just like `number` and `string`.
 
@@ -46,56 +46,56 @@ let c = new C();
 let className = c[getClassNameSymbol](); // "C"
 ```
 
-# Well-known Symbols
+# [Well-known Symbols](#well-known-symbols)
 
 In addition to user-defined symbols, there are well-known built-in symbols.
 Built-in symbols are used to represent internal language behaviors.
 
 Here is a list of well-known symbols:
 
-## `Symbol.hasInstance`
+## [`Symbol.hasInstance`](#symbol-hasinstance)
 
 A method that determines if a constructor object recognizes an object as one of the constructor’s instances. Called by the semantics of the instanceof operator.
 
-## `Symbol.isConcatSpreadable`
+## [`Symbol.isConcatSpreadable`](#symbol-isconcatspreadable)
 
 A Boolean value indicating that an object should be flattened to its array elements by Array.prototype.concat.
 
-## `Symbol.iterator`
+## [`Symbol.iterator`](#symbol-iterator)
 
 A method that returns the default iterator for an object. Called by the semantics of the for-of statement.
 
-## `Symbol.match`
+## [`Symbol.match`](#symbol-match)
 
 A regular expression method that matches the regular expression against a string. Called by the `String.prototype.match` method.
 
-## `Symbol.replace`
+## [`Symbol.replace`](#symbol-replace)
 
 A regular expression method that replaces matched substrings of a string. Called by the `String.prototype.replace` method.
 
-## `Symbol.search`
+## [`Symbol.search`](#symbol-search)
 
 A regular expression method that returns the index within a string that matches the regular expression. Called by the `String.prototype.search` method.
 
-## `Symbol.species`
+## [`Symbol.species`](#symbol-species)
 
 A function valued property that is the constructor function that is used to create derived objects.
 
-## `Symbol.split`
+## [`Symbol.split`](#symbol-split)
 
 A regular expression method that splits a string at the indices that match the regular expression.
 Called by the `String.prototype.split` method.
 
-## `Symbol.toPrimitive`
+## [`Symbol.toPrimitive`](#symbol-toprimitive)
 
 A method that converts an object to a corresponding primitive value.
 Called by the `ToPrimitive` abstract operation.
 
-## `Symbol.toStringTag`
+## [`Symbol.toStringTag`](#symbol-tostringtag)
 
 A String value that is used in the creation of the default string description of an object.
 Called by the built-in method `Object.prototype.toString`.
 
-## `Symbol.unscopables`
+## [`Symbol.unscopables`](#symbol-unscopables)
 
 An Object whose own property names are property names that are excluded from the 'with' environment bindings of the associated objects.

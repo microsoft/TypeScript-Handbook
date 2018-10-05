@@ -18,7 +18,7 @@ We'll cover non-relative imports next.
 Finally, if the compiler could not resolve the module, it will log an error.
 In this case, the error would be something like `error TS2307: Cannot find module 'moduleA'.`
 
-## Relative vs. Non-relative module imports
+## [Relative vs. Non-relative module imports
 
 Module imports are resolved differently based on whether the module reference is relative or non-relative.
 
@@ -42,13 +42,13 @@ A non-relative import can be resolved relative to `baseUrl`, or through path map
 They can also resolve to [ambient module declarations](./Modules.md#ambient-modules).
 Use non-relative paths when importing any of your external dependencies.
 
-## Module Resolution Strategies
+## [Module Resolution Strategies
 
 There are two possible module resolution strategies: [Node](#node) and [Classic](#classic).
 You can use the `--moduleResolution` flag to specify the module resolution strategy.
 If not specified, the default is [Classic](#classic) for `--module AMD | System | ES2015` or [Node](#node) otherwise.
 
-### Classic
+### [Classic
 
 This used to be TypeScript's default resolution strategy.
 Nowadays, this strategy is mainly present for backward compatibility.
@@ -74,12 +74,12 @@ A non-relative import to `moduleB` such as `import { b } from "moduleB"`, in a s
 7. `/moduleB.ts`
 8. `/moduleB.d.ts`
 
-### Node
+### [Node
 
 This resolution strategy attempts to mimic the [Node.js](https://nodejs.org/) module resolution mechanism at runtime.
 The full Node.js resolution algorithm is outlined in [Node.js module documentation](https://nodejs.org/api/modules.html#modules_all_together).
 
-#### How Node.js resolves modules
+#### [How Node.js resolves modules
 
 To understand what steps the TS compiler will follow, it is important to shed some light on Node.js modules.
 Traditionally, imports in Node.js are performed by calling a function named `require`.
@@ -123,7 +123,7 @@ Notice that Node.js jumped up a directory in steps (4) and (7).
 
 You can read more about the process in Node.js documentation on [loading modules from `node_modules`](https://nodejs.org/api/modules.html#modules_loading_from_node_modules_folders).
 
-#### How TypeScript resolves modules
+#### [How TypeScript resolves modules
 
 TypeScript will mimic the Node.js run-time resolution strategy in order to locate definition files for modules at compile-time.
 To accomplish this, TypeScript overlays the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) over the Node's resolution logic.
@@ -171,7 +171,7 @@ So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would res
 Don't be intimidated by the number of steps here - TypeScript is still only jumping up directories twice at steps (8) and (15).
 This is really no more complex than what Node.js itself is doing.
 
-## Additional module resolution flags
+## [Additional module resolution flags
 
 A project source layout sometimes does not match that of the output.
 Usually a set of build steps result in generating the final output.
@@ -184,7 +184,7 @@ The TypeScript compiler has a set of additional flags to *inform* the compiler o
 It is important to note that the compiler will *not* perform any of these transformations;
 it just uses these pieces of information to guide the process of resolving a module import to its definition file.
 
-### Base URL
+### [Base URL
 
 Using a `baseUrl` is a common practice in applications using AMD module loaders where modules are "deployed" to a single folder at run-time.
 The sources of these modules can live in different directories, but a build script will put them all together.
@@ -201,7 +201,7 @@ Note that relative module imports are not impacted by setting the baseUrl, as th
 
 You can find more documentation on baseUrl in [RequireJS](http://requirejs.org/docs/api.html#config-baseUrl) and [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/config-api.md#baseurl) documentation.
 
-### Path mapping
+### [Path mapping
 
 Sometimes modules are not directly located under *baseUrl*.
 For instance, an import to a module `"jquery"` would be translated at runtime to `"node_modules/jquery/dist/jquery.slim.min.js"`.
@@ -279,7 +279,7 @@ Following this logic, the compiler will attempt to resolve the two imports as su
   6. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/generated/folder2/file3.ts`.
   7. File exists. Done.
 
-### Virtual Directories with `rootDirs`
+### [Virtual Directories with `rootDirs`
 
 Sometimes the project sources from multiple directories at compile time are all combined to generate a single output directory.
 This can be viewed as a set of source directories create a "virtual" directory.
@@ -352,7 +352,7 @@ By leveraging `rootDirs` we can inform the compiler of this mapping and thereby 
 
 The compiler will now resolve `import messages from './#{locale}/messages'` to `import messages from './zh/messages'` for tooling purposes, allowing development in a locale agnostic manner without compromising design time support.
 
-## Tracing module resolution
+## [Tracing module resolution
 
 As discussed earlier, the compiler can visit files outside the current folder when resolving a module.
 This can be hard when diagnosing why a module is not resolved, or is resolved to an incorrect definition.
@@ -396,7 +396,7 @@ File 'node_modules/typescript/lib/typescript.d.ts' exist - use it as a module re
 ======== Module name 'typescript' was successfully resolved to 'node_modules/typescript/lib/typescript.d.ts'. ========
 ```
 
-#### Things to look out for
+#### [Things to look out for
 
 * Name and location of the import
 
@@ -414,7 +414,7 @@ File 'node_modules/typescript/lib/typescript.d.ts' exist - use it as a module re
 
  > ======== Module name 'typescript' was **successfully resolved** to 'node_modules/typescript/lib/typescript.d.ts'. ========
 
-## Using `--noResolve`
+## [Using `--noResolve`
 
 Normally the compiler will attempt to resolve all module imports before it starts the compilation process.
 Every time it successfully resolves an `import` to a file, the file is added to the set of files the compiler will process later on.
@@ -424,7 +424,7 @@ It will still try to resolve the module to files, but if the file is not specifi
 
 For instance:
 
-#### app.ts
+#### [app.ts
 
 ```ts
 import * as A from "moduleA" // OK, 'moduleA' passed on the command-line
@@ -440,9 +440,9 @@ Compiling `app.ts` using `--noResolve` should result in:
 * Correctly finding `moduleA` as it was passed on the command-line.
 * Error for not finding `moduleB` as it was not passed.
 
-## Common Questions
+## [Common Questions
 
-### Why does a module in the exclude list still get picked up by the compiler?
+### [Why does a module in the exclude list still get picked up by the compiler?
 
 `tsconfig.json` turns a folder into a “project”.
 Without specifying any `“exclude”` or `“files”` entries, all files in the folder containing the `tsconfig.json` and all its sub-directories are included in your compilation.

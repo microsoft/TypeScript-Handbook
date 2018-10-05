@@ -9,7 +9,7 @@ Build tools
 * [MSBuild](#msbuild)
 * [NuGet](#nuget)
 
-# Browserify
+# [Browserify](#browserify)
 
 ### Install
 
@@ -38,7 +38,7 @@ browserify()
 
 More details: [smrq/tsify](https://github.com/smrq/tsify)
 
-# Duo
+# [Duo](#duo)
 
 ### Install
 
@@ -74,7 +74,7 @@ Duo(__dirname)
 
 More details: [frankwallis/duo-typescript](https://github.com/frankwallis/duo-typescript)
 
-# Grunt
+# [Grunt](#grunt)
 
 ### Install
 
@@ -100,7 +100,7 @@ module.exports = function(grunt) {
 
 More details: [TypeStrong/grunt-ts](https://github.com/TypeStrong/grunt-ts)
 
-# Gulp
+# [Gulp](#gulp)
 
 ### Install
 
@@ -126,7 +126,7 @@ gulp.task("default", function () {
 
 More details: [ivogabe/gulp-typescript](https://github.com/ivogabe/gulp-typescript)
 
-# Jspm
+# [Jspm](#jspm)
 
 ### Install
 
@@ -138,7 +138,7 @@ _Note: Currently TypeScript support in jspm is in 0.16beta_
 
 More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSamples/tree/master/jspm)
 
-# Webpack
+# [Webpack](#webpack)
 
 ### Install
 
@@ -173,7 +173,7 @@ Alternatives:
 
 * [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
 
-# MSBuild
+# [MSBuild](#msbuild)
 
 Update project file to include locally installed `Microsoft.TypeScript.Default.props` (at the top) and `Microsoft.TypeScript.targets` (at the bottom) files:
 
@@ -204,7 +204,7 @@ Update project file to include locally installed `Microsoft.TypeScript.Default.p
 
 More details about defining MSBuild compiler options: [Setting Compiler Options in MSBuild projects](./Compiler Options in MSBuild.md)
 
-# NuGet
+# [NuGet](#nuget)
 
 * Right-Click -> Manage NuGet Packages
 * Search for `Microsoft.TypeScript.MSBuild`

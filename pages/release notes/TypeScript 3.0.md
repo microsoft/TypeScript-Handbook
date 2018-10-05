@@ -1,4 +1,4 @@
-# Project References
+# [Project References](#project-references)
 
 TypeScript 3.0 introduces a new concept of project references. Project references allow TypeScript projects to depend on other TypeScript projects - specifically, allowing `tsconfig.json` files to reference other `tsconfig.json` files. Specifying these dependencies makes it easier to split your code into smaller projects, since it gives TypeScript (and tools around it) a way to understand build ordering and output structure.
 
@@ -6,7 +6,7 @@ TypeScript 3.0 introduces also introducing a new mode for tsc, the `--build` fla
 
 See [Project References handbook page](../Project%20References.md) for more documentation.
 
-# Tuples in rest parameters and spread expressions
+# [Tuples in rest parameters and spread expressions](#tuples-in-rest-parameters-and-spread-expressions)
 
 TypeScript 3.0 adds support to multiple new capabilities to interact with function parameter lists as tuple types.
 TypeScript 3.0 adds support for:
@@ -19,7 +19,7 @@ TypeScript 3.0 adds support for:
 
 With these features it becomes possible to strongly type a number of higher-order functions that transform functions and their parameter lists.
 
-## Rest parameters with tuple types
+## [Rest parameters with tuple types](#rest-parameters-with-tuple-types)
 
 When a rest parameter has a tuple type, the tuple type is expanded into a sequence of discrete parameters.
 For example the following two declarations are equivalent:
@@ -32,7 +32,7 @@ declare function foo(...args: [number, string, boolean]): void;
 declare function foo(args_0: number, args_1: string, args_2: boolean): void;
 ```
 
-## Spread expressions with tuple types
+## [Spread expressions with tuple types](#spread-expressions-with-tuple-types)
 
 When a function call includes a spread expression of a tuple type as the last argument, the spread expression corresponds to a sequence of discrete arguments of the tuple element types.
 
@@ -45,7 +45,7 @@ foo(args[0], args[1], args[2]);
 foo(...args);
 ```
 
-## Generic rest parameters
+## [Generic rest parameters](#generic-rest-parameters)
 
 A rest parameter is permitted to have a generic type that is constrained to an array type, and type inference can infer tuple types for such generic rest parameters. This enables higher-order capturing and spreading of partial parameter lists:
 
@@ -70,7 +70,7 @@ In the declaration of `f2` above, type inference infers types `number`, `[string
 
 Note that when a tuple type is inferred from a sequence of parameters and later expanded into a parameter list, as is the case for `U`, the original parameter names are used in the expansion (however, the names have no semantic meaning and are not otherwise observable).
 
-## Optional elements in tuple types
+## [Optional elements in tuple types](#optional-elements-in-tuple-types)
 
 Tuple types now permit a `?` postfix on element types to indicate that the element is optional:
 
@@ -92,7 +92,7 @@ When tuple types are inferred for rest parameters, optional parameters in the so
 The `length` property of a tuple type with optional elements is a union of numeric literal types representing the possible lengths.
 For example, the type of the `length` property in the tuple type `[number, string?, boolean?]` is `1 | 2 | 3`.
 
-### Rest elements in tuple types
+### [Rest elements in tuple types](#rest-elements-in-tuple-types)
 
 The last element of a tuple type can be a rest element of the form `...X`, where `X` is an array type.
 A rest element indicates that the tuple type is open-ended and may have zero or more additional elements of the array element type.
@@ -112,7 +112,7 @@ const t2 = tuple("bar", ...numbers);  // [string, ...number[]]
 
 The type of the `length` property of a tuple type with a rest element is `number`.
 
-# New `unknown` top type
+# [New `unknown` top type](#new-unknown-top-type)
 
 TypeScript 3.0 introduces a new top type `unknown`.
 `unknown` is the type-safe counterpart of `any`.
@@ -280,7 +280,7 @@ class C1 {
 }
 ```
 
-# Support for `defaultProps` in JSX
+# [Support for `defaultProps` in JSX](#support-for-defaultprops-in-jsx)
 
 TypeScript 2.9 and earlier didn’t leverage [React `defaultProps`](https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values) declarations inside JSX components.
 Users would often have to declare properties optional and use non-null assertions inside of `render`, or they'd use type-assertions to fix up the type of the component before exporting it.
@@ -307,9 +307,9 @@ export class Greet extends React.Component<Props> {
 let el = <Greet />
 ```
 
-## Caveats
+## [Caveats](#caveats)
 
-### Explicit types on `defaultProps`
+### [Explicit types on `defaultProps`](#explicit-types-on-defaultprops)
 
 The default-ed properties are inferred from the `defaultProps` property type. If an explicit type annotation is added, e.g. `static defaultProps: Partial<Props>;` the compiler will not be able to identify which properties have defaults (since the type of `defaultProps` include all properties of `Props`).
 
@@ -323,12 +323,12 @@ function Greet({ name = "world" }: Props) {
 }
 ```
 
-#### Changes to `@types/React`
+#### [Changes to `@types/React`](#types-react)
 
 Corresponding changes to add `LibraryManagedAttributes` definition to the `JSX` namespace in `@types/React` are still needed.
 Keep in mind that there are some limitations.
 
-# `/// <reference lib="..." />` reference directives
+# [`/// <reference lib="..." />` reference directives](#reference-lib-reference-directives)
 
 TypeScript adds a new triple-slash-reference directive (`/// <reference lib="name" />`), allowing a file to explicitly include an existing built-in _lib_ file.
 

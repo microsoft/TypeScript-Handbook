@@ -3,7 +3,7 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
 "External modules" are now simply "modules", as to align with [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
 
-# Introduction
+# [Introduction](#introduction)
 
 Starting with ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.
 
@@ -19,9 +19,9 @@ Well-known modules loaders used in JavaScript are the [CommonJS](https://en.wiki
 In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 Conversely, a file without any top-level `import` or `export` declarations is treated as a script whose contents are available in the global scope (and therefore to modules as well).
 
-# Export
+# [Export](#export)
 
-## Exporting a declaration
+## [Exporting a declaration](#exporting-a-declaration)
 
 Any declaration (such as a variable, function, class, type alias, or interface) can be exported by adding the `export` keyword.
 
@@ -45,7 +45,7 @@ export class ZipCodeValidator implements StringValidator {
 }
 ```
 
-## Export statements
+## [Export statements](#export-statements)
 
 Export statements are handy when exports need to be renamed for consumers, so the above example can be written as:
 
@@ -59,7 +59,7 @@ export { ZipCodeValidator };
 export { ZipCodeValidator as mainValidator };
 ```
 
-## Re-exports
+## [Re-exports](#re-exports)
 
 Often modules extend other modules, and partially expose some of their features.
 A re-export does not import it locally, or introduce a local variable.
@@ -87,12 +87,12 @@ export * from "./LettersOnlyValidator"; // exports class 'LettersOnlyValidator'
 export * from "./ZipCodeValidator";  // exports class 'ZipCodeValidator'
 ```
 
-# Import
+# [Import](#import)
 
 Importing is just about as easy as exporting from a module.
 Importing an exported declaration is done through using one of the `import` forms below:
 
-## Import a single export from a module
+## [Import a single export from a module](#import-single-export-from-module)
 
 ```ts
 import { ZipCodeValidator } from "./ZipCodeValidator";
@@ -107,14 +107,14 @@ import { ZipCodeValidator as ZCV } from "./ZipCodeValidator";
 let myValidator = new ZCV();
 ```
 
-## Import the entire module into a single variable, and use it to access the module exports
+## [Import the entire module into a single variable, and use it to access the module exports](#import-entire-module-access-module-exports)
 
 ```ts
 import * as validator from "./ZipCodeValidator";
 let myValidator = new validator.ZipCodeValidator();
 ```
 
-## Import a module for side-effects only
+## [Import a module for side-effects only](#import-module-for-side-effects-only)
 
 Though not recommended practice, some modules set up some global state that can be used by other modules.
 These modules may not have any exports, or the consumer is not interested in any of their exports.
@@ -124,7 +124,7 @@ To import these modules, use:
 import "./my-module.js";
 ```
 
-# Default exports
+# [Default exports](#default-exports)
 
 Each module can optionally export a `default` export.
 Default exports are marked with the keyword `default`; and there can only be one `default` export per module.
@@ -211,7 +211,7 @@ import num from "./OneTwoThree";
 console.log(num); // "123"
 ```
 
-# `export =` and `import = require()`
+# [`export =` and `import = require()`](#export-import-require)
 
 Both CommonJS and AMD generally have the concept of an `exports` object which contains all exports from a module.
 
@@ -253,7 +253,7 @@ strings.forEach(s => {
 });
 ```
 
-# Code Generation for Modules
+# [Code Generation for Modules](#code-generation-for-modules)
 
 Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js ([CommonJS](http://wiki.commonjs.org/wiki/CommonJS)), require.js ([AMD](https://github.com/amdjs/amdjs-api/wiki/AMD)), [UMD](https://github.com/umdjs/umd), [SystemJS](https://github.com/systemjs/systemjs), or [ECMAScript 2015 native modules](http://www.ecma-international.org/ecma-262/6.0/#sec-modules) (ES6) module-loading systems.
 For more information on what the `define`, `require` and `register` calls in the generated code do, consult the documentation for each module loader.
@@ -323,7 +323,7 @@ import { something } from "./mod";
 export var t = something + 1;
 ```
 
-# Simple Example
+# [Simple Example](#simple-example)
 
 Below, we've consolidated the Validator implementations used in previous examples to only export a single named export from each module.
 
@@ -396,7 +396,7 @@ strings.forEach(s => {
 });
 ```
 
-# Optional Module Loading and Other Advanced Loading Scenarios
+# [Optional Module Loading and Other Advanced Loading Scenarios](#optional-module-loading-other-advanced-loading-scenarios)
 
 In some cases, you may want to only load a module under some conditions.
 In TypeScript, we can use the pattern shown below to implement this and other advanced loading scenarios to directly invoke the module loaders without losing type safety.
@@ -457,7 +457,7 @@ if (needZipValidation) {
 }
 ```
 
-# Working with Other JavaScript Libraries
+# [Working with Other JavaScript Libraries](#working-with-other-js-libraries)
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
 
@@ -466,7 +466,7 @@ Typically, these are defined in `.d.ts` files.
 If you're familiar with C/C++, you can think of these as `.h` files.
 Let's look at a few examples.
 
-## Ambient Modules
+## [Ambient Modules](#ambient-modules)
 
 In Node.js, most tasks are accomplished by loading one or more modules.
 We could define each module in its own `.d.ts` file with top-level export declarations, but it's more convenient to write them as one larger `.d.ts` file.
@@ -501,7 +501,7 @@ import * as URL from "url";
 let myUrl = URL.parse("http://www.typescriptlang.org");
 ```
 
-### Shorthand ambient modules
+### [Shorthand ambient modules](#shorthand-ambient-modules)
 
 If you don't want to take the time to write out declarations before using a new module, you can use a shorthand declaration to get started quickly.
 
@@ -518,7 +518,7 @@ import x, {y} from "hot-new-module";
 x(y);
 ```
 
-### Wildcard module declarations
+### [Wildcard module declarations](#wildcard-module-declarations)
 
 Some module loaders such as [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/overview.md#plugin-syntax)
 and [AMD](https://github.com/amdjs/amdjs-api/blob/master/LoaderPlugins.md) allow non-JavaScript content to be imported.
@@ -545,7 +545,7 @@ import data from "json!http://example.com/data.json";
 console.log(data, fileContent);
 ```
 
-### UMD modules
+### [UMD modules](#umd-modules)
 
 Some libraries are designed to be used in many module loaders, or with no module loading (global variables).
 These are known as [UMD](https://github.com/umdjs/umd) modules.
@@ -574,9 +574,9 @@ It can also be used as a global variable, but only inside of a script.
 mathLib.isPrime(2);
 ```
 
-# Guidance for structuring modules
+# [Guidance for structuring modules](#guidance-for-structuring-modules)
 
-## Export as close to top-level as possible
+## [Export as close to top-level as possible](#export-close-to-top-level)
 
 Consumers of your module should have as little friction as possible when using things that you export.
 Adding too many levels of nesting tends to be cumbersome, so think carefully about how you want to structure things.
@@ -588,7 +588,7 @@ This can quickly become a pain point for users, and is usually unnecessary.
 Static methods on an exported class have a similar problem - the class itself adds a layer of nesting.
 Unless it increases expressivity or intent in a clearly useful way, consider simply exporting a helper function.
 
-### If you're only exporting a single `class` or `function`, use `export default`
+### [If you're only exporting a single `class` or `function`, use `export default`](#exporting-single-class-or-function-export-default)
 
 Just as "exporting near the top-level" reduces friction on your module's consumers, so does introducing a default export.
 If a module's primary purpose is to house one specific export, then you should consider exporting it as a default export.
@@ -620,7 +620,7 @@ console.log(f());
 
 This is optimal for consumers. They can name your type whatever they want (`t` in this case) and don't have to do any excessive dotting to find your objects.
 
-### If you're exporting multiple objects, put them all at top-level
+### [If you're exporting multiple objects, put them all at top-level](#exporting-multiple-objects)
 
 #### MyThings.ts
 
@@ -631,7 +631,7 @@ export function someFunc() { /* ... */ }
 
 Conversely when importing:
 
-### Explicitly list imported names
+### [Explicitly list imported names](#explicitly-list-imported-names)
 
 #### Consumer.ts
 
@@ -641,7 +641,7 @@ let x = new SomeType();
 let y = someFunc();
 ```
 
-### Use the namespace import pattern if you're importing a large number of things
+### [Use the namespace import pattern if you're importing a large number of things](#use-namespace-import-pattern)
 
 #### MyLargeModule.ts
 
@@ -659,7 +659,7 @@ import * as myLargeModule from "./MyLargeModule.ts";
 let x = new myLargeModule.Dog();
 ```
 
-## Re-export to extend
+## [Re-export to extend](#re-export-to-extend)
 
 Often you will need to extend functionality on a module.
 A common JS pattern is to augment the original object with *extensions*, similar to how JQuery extensions work.
@@ -801,7 +801,7 @@ let c = new Calculator(2);
 test(c, "001+010="); // prints 3
 ```
 
-## Do not use namespaces in modules
+## [Do not use namespaces in modules](#do-not-use-namespaces-in-modules)
 
 When first moving to a module-based organization, a common tendency is to wrap exports in an additional layer of namespaces.
 Modules have their own scope, and only exported declarations are visible from outside the module.
@@ -822,7 +822,7 @@ From the consumption side, the consumer of any given module gets to pick the nam
 
 > For more discussion about modules and namespaces see [Namespaces and Modules](./Namespaces and Modules.md).
 
-## Red Flags
+## [Red Flags](#red-flags)
 
 All of the following are red flags for module structuring. Double-check that you're not trying to namespace your external modules if any of these apply to your files:
 

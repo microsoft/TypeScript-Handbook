@@ -1,6 +1,6 @@
 Compiler supports configuring how to watch files and directories using the environment variables.
 
-## Configuring file watching using environment variable `TSC_WATCHFILE`
+## [Configuring file watching using environment variable `TSC_WATCHFILE`](#tsc-watchfile)
 
 Option                                         | Description
 -----------------------------------------------|----------------------------------------------------------------------
@@ -11,7 +11,7 @@ Option                                         | Description
 `UseFsEventsOnParentDirectory`                 | This option watches parent directory of the file with `fs.watch` (using file system events) thus being low on CPU but can compromise accuracy.
 default (no value specified)                   | If environment variable `TSC_NONPOLLING_WATCHER` is set to true, watches parent directory of files (just like `UseFsEventsOnParentDirectory`). Otherwise watch files using `fs.watchFile` with `250ms` as the timeout for any file
 
-## Configuring directory watching using environment variable `TSC_WATCHDIRECTORY`
+## [Configuring directory watching using environment variable `TSC_WATCHDIRECTORY`](#tsc-watchdirectory)
 
 The watching of directory on platforms that dont support recursive directory watching natively in node, is supported through recursively creating directory watcher for the child directories using different options selected by `TSC_WATCHDIRECTORY`. Note that on platforms that support native recursive directory watching (e.g windows) the value of this environment variable is ignored.
 
@@ -21,7 +21,7 @@ Option                                         | Description
 `RecursiveDirectoryUsingDynamicPriorityPolling`| Use dynamic polling queue to poll changes to the directory and child directories.
 default (no value specified)                   | Use `fs.watch` to watch directories and child directories
 
-## Background
+## [Background](#background)
 
 `--watch` implementation of the compiler relies on `fs.watch` and `fs.watchFile` provided by node, both of these methods have pros and cons.
 

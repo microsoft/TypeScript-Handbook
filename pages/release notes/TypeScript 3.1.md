@@ -1,4 +1,4 @@
-# Mapped types on tuples and arrays
+# [Mapped types on tuples and arrays](#mapped-types-on-tuples-and-arrays)
 
 In TypeScript 3.1, mapped object types<sup>[[1]](#ts-3-1-only-homomorphic)</sup> over tuples and arrays now produce new tuples/arrays, rather than creating a new type where members like `push()`, `pop()`, and `length` are converted.
 For example:
@@ -16,7 +16,7 @@ In `[number, number]`, there are two numerically named properties: `0` and `1`.
 When given a tuple like that, `MapToPromise` will create a new tuple where the `0` and `1` properties are `Promise`s of the original type.
 So the resulting type `PromiseCoordinate` ends up with the type `[Promise<number>, Promise<number>]`.
 
-# Properties declarations on functions
+# [Properties declarations on functions](#properties-declarations-on-functions)
 
 TypeScript 3.1 brings the ability to define properties on function declarations and `const`-declared functons, simply by assigning to properties on these functions in the same scope.
 This allows us to write canonical JavaScript code without resorting to `namespace` hacks.
@@ -63,7 +63,7 @@ fs.readFile(path, (err, data) => {
 
 <sup id="ts-3-1-only-homomorphic">[1]</sup> More specifically, homomorphic mapped types like in the above form.
 
-# Version selection with `typesVersions`
+# [Version selection with `typesVersions`](#version-selection-with-typesversions)
 
 Feedback from our community, as well as our own experience, has shown us that leveraging the newest TypeScript features while also accomodating users on the older versions are difficult.
 TypeScript introduces a new feature called `typesVersions` to help accomodate these scenarios.
@@ -92,11 +92,11 @@ If we import from `package-name/foo`, we'll try to look for `[...]/node_modules/
 What if we're not running in TypeScript 3.1 in this example?
 Well, if none of the fields in `typesVersions` get matched, TypeScript falls back to the `types` field, so here TypeScript 3.0 and earlier will be redirected to `[...]/node_modules/package-name/index.d.ts`.
 
-## Matching behavior
+## [Matching behavior](#matching-behavior)
 
 The way that TypeScript decides on whether a version of the compiler & language matches is by using Node's [semver ranges](https://github.com/npm/node-semver#ranges).
 
-## Multiple fields
+## [Multiple fields](#multiple-fields)
 
 `typesVersions` can support multiple fields where each field name is specified by the range to match on.
 

@@ -1,6 +1,6 @@
-# Union types
+# [Union types](#union-types)
 
-### Overview
+### [Overview](#overview)
 
 Union types are a powerful way to express a value that can be one of several types. For example, you might have an API for running a program that takes a commandline as either a `string`, a `string[]` or a function that returns a `string`. You can now write:
 
@@ -41,7 +41,7 @@ function formatCommandline(c: string|string[]) {
 }
 ```
 
-### Stricter Generics
+### [Stricter Generics](#stricter-generics)
 
 With union types able to represent a wide range of type scenarios, we've decided to improve the strictness of certain generic calls. Previously, code like this would (surprisingly) compile without error:
 
@@ -69,7 +69,7 @@ var c = choose2('bar', 'foo'); // OK, c: string
 var d = choose2('hello', 42); // OK, d: string|number
 ```
 
-### Better Type Inference
+### [Better Type Inference](#better-type-inference)
 
 Union types also allow for better type inference in arrays and other places where you might have multiple kinds of values in a collection:
 
@@ -79,7 +79,7 @@ x[0] = 'world'; // OK
 x[0] = false; // Error, boolean is not string or number
 ```
 
-# `let` declarations
+# [`let` declarations](#let-declarations)
 
 In JavaScript, `var` declarations are "hoisted" to the top of their enclosing scope. This can result in confusing bugs:
 
@@ -103,7 +103,7 @@ else {
 
 `let` is only available when targeting ECMAScript 6 (`--target ES6`).
 
-# `const` declarations
+# [`const` declarations](#const-declarations)
 
 The other new ES6 declaration type supported in TypeScript is `const`. A `const` variable may not be assigned to, and must be initialized where it is declared. This is useful for declarations where you don't want to change the value after its initialization:
 
@@ -114,7 +114,7 @@ halfPi = 2; // Error, can't assign to a `const`
 
 `const` is only available when targeting ECMAScript 6 (`--target ES6`).
 
-# Template strings
+# [Template strings](#template-strings)
 
 TypeScript now supports ES6 template strings. These are an easy way to embed arbitrary expressions in strings:
 
@@ -130,7 +130,7 @@ var name = "TypeScript!";
 var greeting = "Hello, " + name + "! Your name has " + name.length + " characters";
 ```
 
-# Type Guards
+# [Type Guards](#type-guards)
 
 A common pattern in JavaScript is to use `typeof` or `instanceof` to examine the type of an expression at runtime. TypeScript now understands these conditions and will change type inference accordingly when used in an `if` block.
 
@@ -172,7 +172,7 @@ else {
 }
 ```
 
-# Type Aliases
+# [Type Aliases](#type-aliases)
 
 You can now define an *alias* for a type using the `type` keyword:
 
@@ -185,7 +185,7 @@ type Callback = () => void;
 
 Type aliases are exactly the same as their original types; they are simply alternative names.
 
-# `const enum` (completely inlined enums)
+# [`const enum` (completely inlined enums)](#const-enum)
 
 Enums are very useful, but some programs don't actually need the generated code and would benefit from simply inlining all instances of enum members with their numeric equivalents. The new `const enum` declaration works just like a regular `enum` for type safety, but erases completely at compile time.
 
@@ -213,13 +213,13 @@ enum MyFlags {
 var b = MyFlags.Best; // emits var b = 7;
 ```
 
-# `-noEmitOnError` commandline option
+# [`-noEmitOnError` commandline option](#noemitonerror-commandline-option)
 
 The default behavior for the TypeScript compiler is to still emit .js files if there were type errors (for example, an attempt to assign a `string` to a `number`). This can be undesirable on build servers or other scenarios where only output from a "clean" build is desired. The new flag `noEmitOnError` prevents the compiler from emitting .js code if there were any errors.
 
 This is now the default for MSBuild projects; this allows MSBuild incremental build to work as expected, as outputs are only generated on clean builds.
 
-# AMD Module names
+# [AMD Module names](#amd-module-names)
 
 By default AMD modules are generated anonymous. This can lead to problems when other tools are used to process the resulting modules like a bundlers (e.g. `r.js`).
 

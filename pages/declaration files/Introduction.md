@@ -4,7 +4,7 @@ In this guide, we'll assume basic familiarity with the TypeScript language.
 If you haven't already, you should read the [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/basic-types.html)
   to familiarize yourself with basic concepts, especially types and namespaces.
 
-# Sections
+# Sections](#)
 
 The guide is broken down into the following sections.
 

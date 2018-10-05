@@ -1,4 +1,4 @@
-# ES6 Modules
+# [ES6 Modules](#es6-modules)
 
 TypeScript 1.5 supports ECMAScript 6 (ES6) modules.
 ES6 modules are effectively TypeScript external modules with a new syntax: ES6 modules are separately loaded source files that possibly import other modules and provide a number of externally accessible exports.
@@ -6,7 +6,7 @@ ES6 modules feature several new export and import declarations.
 It is recommended that TypeScript libraries and applications be updated to use the new syntax, but this is not a requirement.
 The new ES6 module syntax coexists with TypeScript's original internal and external module constructs and the constructs can be mixed and matched at will.
 
-#### Export Declarations
+#### [Export Declarations](#export-declarations)
 
 In addition to the existing TypeScript support for decorating declarations with `export`, module members can also be exported using separate export declarations, optionally specifying different names for exports using `as` clauses.
 
@@ -32,7 +32,7 @@ var s = io.read(io.standardOutput);
 io.write(io.standardOutput, s);
 ```
 
-#### Re-exporting
+#### [Re-exporting](#re-exporting)
 
 Using `from` clause a module can copy the exports of a given module to the current module without introducing local names.
 
@@ -48,7 +48,7 @@ export * from "./mod1";
 export * from "./mod2";
 ```
 
-#### Default Export
+#### [Default Export](#default-export)
 
 An export default declaration specifies an expression that becomes the default export of a module:
 
@@ -68,7 +68,7 @@ var g = new Greeter();
 g.sayHello();
 ```
 
-#### Bare Import
+#### [Bare Import](#bare-import)
 
 A "bare import" can be used to import a module only for its side-effects.
 
@@ -78,11 +78,11 @@ import "./polyfills";
 
 For more information about module, please see the [ES6 module support spec](https://github.com/Microsoft/TypeScript/issues/2242).
 
-# Destructuring in declarations and assignments
+# [Destructuring in declarations and assignments](#destructuring-in-declarations-and-assignments)
 
 TypeScript 1.5 adds support to ES6 destructuring declarations and assignments.
 
-#### Declarations
+#### [Declarations](#declarations)
 
 A destructuring declaration introduces one or more named variables and initializes them with values extracted from properties of an object or elements of an array.
 
@@ -110,7 +110,7 @@ var item = { text: "someText", location: [1,2,3], style: "italics" };
 drawText(item);
 ```
 
-#### Assignments
+#### [Assignments](#assignments)
 
 Destructuring patterns can also be used in regular assignment expressions.
 For instance, swapping two variables can be written as a single destructuring assignment:
@@ -121,7 +121,7 @@ var y = 2;
 [x, y] = [y, x];
 ```
 
-# `namespace` keyword
+# [`namespace` keyword](#namespace-keyword)
 
 TypeScript used the `module` keyword to define both "internal modules" and "external modules";
 this has been a bit of confusion for developers new to TypeScript.
@@ -145,11 +145,11 @@ namespace Math {
 }
 ```
 
-# `let` and `const` support
+# [`let` and `const` support](#let-and-const-support)
 
 ES6 `let` and `const` declarations are now supported when targeting ES3 and ES5.
 
-#### Const
+#### [Const](#const)
 
 ```ts
 const MAX = 100;
@@ -158,7 +158,7 @@ const MAX = 100;
        //        operator cannot be a constant.
 ```
 
-#### Block scoped
+#### [Block scoped](#block-scoped)
 
 ```ts
 if (true) {
@@ -173,7 +173,7 @@ else {
 alert(a); // Error: a is not defined in this scope
 ```
 
-# for..of support
+# [for..of support](#for-of-support)
 
 TypeScript 1.5 adds support to ES6 for..of loops on arrays for ES3/ES5 as well as full support for Iterator interfaces when targetting ES6.
 
@@ -193,7 +193,7 @@ for (var _i = 0, _a = expr; _i < _a.length; _i++) {
 }
 ```
 
-# Decorators
+# [Decorators](#decorators)
 
 > TypeScript decorators are based on the [ES7 decorator proposal](https://github.com/wycats/javascript-decorators).
 
@@ -229,7 +229,7 @@ function enumerable(value) {
 }
 ```
 
-# Computed properties
+# [Computed properties](#computed-properties)
 
 Initializing an object with dynamic properties can be a bit of a burden. Take the following example:
 
@@ -258,7 +258,7 @@ function makeNode(name: string, initialNeighbor: Node): Node {
 }
 ```
 
-# Support for `UMD` and `System` module output
+# [Support for `UMD` and `System` module output](#support-for-umd-and-system-module-output)
 
 In addition to `AMD` and `CommonJS` module loaders, TypeScript now supports emitting modules `UMD` ([Universal Module Definition](https://github.com/umdjs/umd)) and [`System`](https://github.com/systemjs/systemjs) module formats.
 
@@ -269,7 +269,7 @@ and
 
 > tsc --module system
 
-# Unicode codepoint escapes in strings
+# [Unicode codepoint escapes in strings](#unicode-codepoint-escapes-in-strings)
 
 ES6 introduces escapes that allow users to represent a Unicode codepoint using just a single escape.
 
@@ -281,7 +281,7 @@ This has the major downside that it’s difficult to discern two independent cha
 With ES6’s codepoint escapes, you can cleanly represent that exact character in strings and template strings with a single escape: `"\u{20bb7}"`.
 TypeScript will emit the string in ES3/ES5 as `"\uD842\uDFB7"`.
 
-# Tagged template strings in ES3/ES5
+# [Tagged template strings in ES3/ES5](#tagged-template-strings-in-es3-es5)
 
 In TypeScript 1.4, we added support for template strings for all targets, and tagged templates for just ES6.
 Thanks to some considerable work done by [@ivogabe](https://github.com/ivogabe), we bridged the gap for for tagged templates in ES3 and ES5.
@@ -308,7 +308,7 @@ function oddRawStrings(strs, n1, n2) {
 var _a;
 ```
 
-# AMD-dependency optional names
+# [AMD-dependency optional names](#amd-dependency-optional-names)
 
 `/// <amd-dependency path="x" />` informs the compiler about a non-TS module dependency that needs to be injected in the resulting module's require call;
 however, there was no way to consume this module in the TS code.
@@ -329,7 +329,7 @@ define(["require", "exports", "legacy/moduleA"], function (require, exports, mod
 });
 ```
 
-# Project support through `tsconfig.json`
+# [Project support through `tsconfig.json`](#project-support-through-tsconfig)
 
 Adding a `tsconfig.json` file in a directory indicates that the directory is the root of a TypeScript project.
 The tsconfig.json file specifies the root files and the compiler options required to compile the project. A project is compiled in one of the following ways:
@@ -351,7 +351,7 @@ The tsconfig.json file specifies the root files and the compiler options require
 
 See the [tsconfig.json wiki page](https://github.com/Microsoft/TypeScript/wiki/tsconfig.json) for more details.
 
-# `--rootDir` command line option
+# [`--rootDir` command line option](#rootdir-command-line-option)
 
 Option `--outDir` duplicates the input hierarchy in the output.
 The compiler computes the root of the input files as the longest common path of all input files;
@@ -362,18 +362,18 @@ Now if a new file `FolderA\3.ts` is added to the input, the output structure wil
 
 `--rootDir` specifies the input directory to be mirrored in output instead of computing it.
 
-# `--noEmitHelpers` command line option
+# [`--noEmitHelpers` command line option](#noemithelpers-command-line-option)
 
 The TypeSript compiler emits a few helpers like `__extends` when needed.
 The helpers are emitted in every file they are referenced in.
 If you want to consolidate all helpers in one place, or override the default behavior, use `--noEmitHelpers` to instructs the compiler not to emit them.
 
-# `--newLine` command line option
+# [`--newLine` command line option](#newline-command-line-option)
 
 By default the output new line character is `\r\n` on Windows based systems and `\n` on *nix based systems.
 `--newLine` command line flag allows overriding this behavior and specifying the new line character to be used in generated output files.
 
-# `--inlineSourceMap` and `inlineSources` command line options
+# [`--inlineSourceMap` and `inlineSources` command line options](#inlinesourcemap-and-inlinesources-command-line-options)
 
 `--inlineSourceMap` causes source map files to be written inline in the generated `.js` files instead of in a independent `.js.map` file.
 `--inlineSources` allows for additionally inlining the source `.ts` file into the `.js` file.

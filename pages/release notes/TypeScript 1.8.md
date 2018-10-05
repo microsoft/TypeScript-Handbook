@@ -1,4 +1,4 @@
-# Type parameters as constraints
+# [Type parameters as constraints](#type-parameters-as-constraints)
 
 With TypeScript 1.8 it becomes possible for a type parameter constraint to reference type parameters from the same type parameter list.
 Previously this was an error.
@@ -19,14 +19,14 @@ assign(x, { b: 10, d: 20 });
 assign(x, { e: 0 });  // Error
 ```
 
-# Control flow analysis errors
+# [Control flow analysis errors](#control-flow-analysis-errors)
 
 TypeScript 1.8 introduces control flow analysis to help catch common errors that users tend to run into.
 Read on to get more details, and check out these errors in action:
 
 ![cfa](https://cloud.githubusercontent.com/assets/8052307/5210657/c5ae0f28-7585-11e4-97d8-86169ef2a160.gif)
 
-### Unreachable code
+### [Unreachable code](#unreachable-code)
 
 Statements guaranteed to not be executed at run time are now correctly flagged as unreachable code errors.
 For instance, statements following unconditional `return`, `throw`, `break` or `continue` statements are considered unreachable.
@@ -62,7 +62,7 @@ function f() {
 
 Since JavaScript automatically terminates the `return` statement at the end of the line, the object literal becomes a block.
 
-### Unused labels
+### [Unused labels](#unused-labels)
 
 Unused labels are also flagged.
 Just like unreachable code checks, these are turned on by default;
@@ -76,7 +76,7 @@ loop: while (x > 0) {  // Error: Unused label.
 }
 ```
 
-### Implicit returns
+### [Implicit returns](#implicit-returns)
 
 Functions with code paths that do not return a value in JS implicitly return `undefined`.
 These can now be flagged by the compiler as implicit returns.
@@ -94,7 +94,7 @@ function f(x) { // Error: Not all code paths return a value.
 }
 ```
 
-### Case clause fall-throughs
+### [Case clause fall-throughs](#case-clause-fall-throughs)
 
 TypeScript can reports errors for fall-through cases in switch statement where the case clause is non-empty.
 This check is turned *off* by default, and can be enabled using `--noFallthroughCasesInSwitch`.
@@ -129,7 +129,7 @@ switch (x % 3) {
 }
 ```
 
-# Stateless Function Components in React
+# [Stateless Function Components in React](#stateless-function-components-in-react)
 
 TypeScript now supports [Stateless Function components](https://reactjs.org/docs/components-and-props.html#functional-and-class-components).
 These are lightweight components that easily compose other components:
@@ -144,7 +144,7 @@ let example = <Greeter name='TypeScript 1.8' />;
 
 For this feature and simplified props, be sure to be use the [latest version of react.d.ts](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/react).
 
-# Simplified `props` type management in React
+# [Simplified `props` type management in React](#simplified-props-type-management-in-react)
 
 In TypeScript 1.8 with the latest version of react.d.ts (see above), we've also greatly simplified the declaration of `props` types.
 
@@ -154,7 +154,7 @@ Specifically:
 * The `ref` and `key` properties will appear with correct types on all components
 * The `ref` property is correctly disallowed on instances of Stateless Function components
 
-# Augmenting global/module scope from modules
+# [Augmenting global/module scope from modules](#augmenting-global-module-scope-from-modules)
 
 Users can now declare any augmentations that they want to make, or that any other consumers already have made, to an existing module.
 Module augmentations look like plain old ambient module declarations (i.e. the `declare module "foo" { }` syntax), and are directly nested either your own modules, or in another top level ambient external module.
@@ -221,7 +221,7 @@ declare global {
 Array.prototype.mapToNumbers = function () { /* ... */ }
 ```
 
-# String literal types
+# [String literal types](#string-literal-types)
 
 It's not uncommon for an API to expect a specific set of strings for certain values.
 For instance, consider a UI library that can move elements across the screen while controlling the ["easing" of the animation.](https://en.wikipedia.org/wiki/Inbetweening)
@@ -262,7 +262,7 @@ interface AnimationOptions {
 new UIElement().animate({ deltaX: 100, deltaY: 100, easing: "ease-inout" });
 ```
 
-# Improved union/intersection type inference
+# [Improved union/intersection type inference](#improved-union-intersection-type-inference)
 
 TypeScript 1.8 improves type inference involving source and target sides that are both union or intersection types.
 For example, when inferring from `string | string[]` to `string | T`, we reduce the types to `string[]` and `T`, thus inferring `string[]` for `T`.
@@ -297,7 +297,7 @@ function test2(x: Maybe<number>) {
 }
 ```
 
-# Concatenate `AMD` and `System` modules with `--outFile`
+# [Concatenate `AMD` and `System` modules with `--outFile`](#concatenate-amd-and-system-modules-with-outfile)
 
 Specifying `--outFile` in conjunction with `--module amd` or `--module system` will concatenate all modules in the compilation into a single output file containing multiple module closures.
 
@@ -339,7 +339,7 @@ define("a", ["require", "exports", "lib/b"], function (require, exports, B) {
 });
 ```
 
-# Support for `default` import interop with SystemJS
+# [Support for `default` import interop with SystemJS](#support-for-default-import-interop-with-systemjs)
 
 Module loaders like SystemJS wrap CommonJS modules and expose then as a `default` ES6 import. This makes it impossible to share the definition files between the SystemJS and CommonJS implementation of the module as the module shape looks different based on the loader.
 
@@ -347,7 +347,7 @@ Setting the new compiler flag `--allowSyntheticDefaultImports` indicates that th
 
 System modules have this flag on by default.
 
-# Allow captured `let`/`const` in loops
+# [Allow captured `let`/`const` in loops](#allow-captured-let-const-in-loops)
 
 Previously an error, now supported in TypeScript 1.8.
 `let`/`const` declarations within loops and captured in functions are now emitted to correctly match `let`/`const` freshness semantics.
@@ -386,7 +386,7 @@ And results in
 4
 ```
 
-# Improved checking for `for..in` statements
+# [Improved checking for `for..in` statements](#improved-checking-for-in-statements)
 
 Previously the type of a `for..in` variable is inferred to `any`; that allowed the compiler to ignore invalid uses within the `for..in` body.
 
@@ -404,11 +404,11 @@ for (var x in a) {   // Type of x is implicitly string
 }
 ```
 
-# Modules are now emitted with a `"use strict";` prologue
+# [Modules are now emitted with a `"use strict";` prologue](#modules-are-now-emitted-with-use-strict-prologue)
 
 Modules were always parsed in strict mode as per ES6, but for non-ES6 targets this was not respected in the generated code. Starting with TypeScript 1.8, emitted modules are always in strict mode. This shouldn't have any visible changes in most code as TS considers most strict mode errors as errors at compile time, but it means that some things which used to silently fail at runtime in your TS code, like assigning to `NaN`, will now loudly fail. You can reference the [MDN Article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode) on strict mode for a detailed list of the differences between strict mode and non-strict mode.
 
-# Including `.js` files with `--allowJs`
+# [Including `.js` files with `--allowJs`](#including-js-files-with-allowjs)
 
 Often there are external source files in your project that may not be authored in TypeScript.
 Alternatively, you might be in the middle of converting a JS code base into TS, but still want to bundle all your JS code into a single file with the output of your new TS code.
@@ -418,7 +418,7 @@ The TypeScript compiler checks the input `.js` files for syntax errors, and emit
 The output can be combined with other `.ts` files as well.
 Source maps are still generated for `.js` files just like with `.ts` files.
 
-# Custom JSX factories using `--reactNamespace`
+# [Custom JSX factories using `--reactNamespace`](#custom-jsx-factories-using-reactnamespace)
 
 Passing `--reactNamespace <JSX factory Name>` along with `--jsx react` allows for using a different JSX factory from the default `React`.
 
@@ -446,7 +446,7 @@ var jsxFactory_1 = require("jsxFactory");
 var div = jsxFactory_1.jsxFactory.createElement("div", null, "Hello JSX!");
 ```
 
-# `this`-based type guards
+# [`this`-based type guards](#this-based-type-guards)
 
 TypeScript 1.8 extends [user-defined type guard functions](./typescript-1.6.html#user-defined-type-guard-functions) to class and interface methods.
 
@@ -485,7 +485,7 @@ else if (fso.isNetworked()) {
 }
 ```
 
-# Official TypeScript NuGet package
+# [Official TypeScript NuGet package](#official-ts-nuget-package)
 
 Starting with TypeScript 1.8, official NuGet packages are available for the Typescript Compiler (`tsc.exe`) as well as the MSBuild integration (`Microsoft.TypeScript.targets` and `Microsoft.TypeScript.Tasks.dll`).
 
@@ -498,7 +498,7 @@ Also, a nightly NuGet package to match the [nightly npm package](http://blogs.ms
 
 * [TypeScript-Preview](https://www.myget.org/gallery/typescript-preview)
 
-# Prettier error messages from `tsc`
+# [Prettier error messages from `tsc`](#prettier-error-messages-from-tsc)
 
 We understand that a ton of monochrome output can be a little difficult on the eyes.
 Colors can help discern where a message starts and ends, and these visual clues are important when error output gets overwhelming.
@@ -507,7 +507,7 @@ By just passing the `--pretty` command line option, TypeScript gives more colorf
 
 ![Showing off pretty error messages in ConEmu](https://raw.githubusercontent.com/wiki/Microsoft/TypeScript/images/new-in-typescript/pretty01.png)
 
-# Colorization of JSX code in VS 2015
+# [Colorization of JSX code in VS 2015](#colorization-of-jsx-code-in-vs-2015)
 
 With TypeScript 1.8, JSX tags are now classified and colorized in Visual Studio 2015.
 
@@ -515,7 +515,7 @@ With TypeScript 1.8, JSX tags are now classified and colorized in Visual Studio 
 
 The classification can be further customized by changing the font and color settings for the `VB XML` color and font settings through `Tools`->`Options`->`Environment`->`Fonts and Colors` page.
 
-# The `--project` (`-p`) flag can now take any file path
+# [The `--project` (`-p`) flag can now take any file path](#project-flag-can-now-take-any-file-path)
 
 The `--project` command line option originally could only take paths to a folder containing a `tsconfig.json`.
 Given the different scenarios for build configurations, it made sense to allow `--project` to point to any other compatible JSON file.
@@ -524,7 +524,7 @@ With this new work, users can easily manage two separate build targets using `ts
 
 The old behavior still remains the same if given a directory - the compiler will try to find a file in the directory named `tsconfig.json`.
 
-# Allow comments in tsconfig.json
+# [Allow comments in tsconfig.json](#allow-comments-in-tsconfig)
 
 It's always nice to be able to document your configuration!
 `tsconfig.json` now accepts single and multi-line comments.
@@ -544,7 +544,7 @@ It's always nice to be able to document your configuration!
 }
 ```
 
-# Support output to IPC-driven files
+# [Support output to IPC-driven files](#support-output-to-ipc-driven-files)
 
 TypeScript 1.8 allows users to use the `--outFile` argument with special file system entities like named pipes, devices, etc.
 
@@ -562,7 +562,7 @@ As an example, we can pipe our emitted JavaScript into a pretty printer like [pr
 tsc foo.ts --outFile /dev/stdout | pretty-js
 ```
 
-# Improved support for `tsconfig.json` in Visual Studio 2015
+# [Improved support for `tsconfig.json` in Visual Studio 2015](#improved-support-for-tsconfig-in-visual-studio-2015)
 
 TypeScript 1.8 allows `tsconfig.json` files in all project types.
 This includes ASP.NET v4 projects, *Console Application*, and the *Html Application with TypeScript* project types.
@@ -574,7 +574,7 @@ This allows you to separate the configuration for different parts of your applic
 We also disable the project properties page when you add a `tsconfig.json` file.
 This means that all configuration changes have to be made in the `tsconfig.json` file itself.
 
-### A couple of limitations
+### [A couple of limitations](#couple-of-limitations)
 
 * If you add a `tsconfig.json` file, TypeScript files that are not considered part of that context are not compiled.
 * Apache Cordova Apps still have the existing limitation of a single `tsconfig.json` file, which must be in either the root or the `scripts` folder.

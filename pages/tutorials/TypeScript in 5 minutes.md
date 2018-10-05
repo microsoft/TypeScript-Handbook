@@ -1,6 +1,6 @@
 Let's get started by building a simple web application with TypeScript.
 
-## Installing TypeScript
+## [Installing TypeScript](#installing-ts)
 
 There are two main ways to get the TypeScript tools:
 
@@ -16,7 +16,7 @@ For NPM users:
 > npm install -g typescript
 ```
 
-## Building your first TypeScript file
+## [Building your first TypeScript file](#building-first-ts-file)
 
 In your editor, type the following JavaScript code in `greeter.ts`:
 
@@ -30,7 +30,7 @@ let user = "Jane User";
 document.body.innerHTML = greeter(user);
 ```
 
-## Compiling your code
+## [Compiling your code](#compiling-your-code)
 
 We used a `.ts` extension, but this code is just JavaScript.
 You could have copy/pasted this straight out of an existing JavaScript app.
@@ -57,7 +57,7 @@ let user = "Jane User";
 document.body.innerHTML = greeter(user);
 ```
 
-## Type annotations
+## [Type annotations](#type-annotations)
 
 Type annotations in TypeScript are lightweight ways to record the intended contract of the function or variable.
 In this case, we intend the greeter function to be called with a single string parameter.
@@ -86,7 +86,7 @@ In both cases, TypeScript can offer static analysis based on both the structure 
 Notice that although there were errors, the `greeter.js` file is still created.
 You can use TypeScript even if there are errors in your code. But in this case, TypeScript is warning that your code will likely not run as expected.
 
-## Interfaces
+## [Interfaces](#interfaces)
 
 Let's develop our sample further. Here we use an interface that describes objects that have a firstName and lastName field.
 In TypeScript, two types are compatible if their internal structure is compatible.
@@ -107,7 +107,7 @@ let user = { firstName: "Jane", lastName: "User" };
 document.body.innerHTML = greeter(user);
 ```
 
-## Classes
+## [Classes](#classes)
 
 Finally, let's extend the example one last time with classes.
 TypeScript supports new features in JavaScript, like support for class-based object-oriented programming.
@@ -142,7 +142,7 @@ document.body.innerHTML = greeter(user);
 Re-run `tsc greeter.ts` and you'll see the generated JavaScript is the same as the earlier code.
 Classes in TypeScript are just a shorthand for the same prototype-based OO that is frequently used in JavaScript.
 
-## Running your TypeScript web app
+## [Running your TypeScript web app](#running-your-ts-web-app)
 
 Now type the following in `greeter.html`:
 

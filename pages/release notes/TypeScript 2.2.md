@@ -1,4 +1,4 @@
-# Support for Mix-in classes
+# [Support for Mix-in classes](#support-for-mix-in-classes)
 
 TypeScript 2.2 adds support for the ECMAScript 2015 mixin class pattern (see [MDN Mixin description](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Mix-ins) and ["Real" Mixins with JavaScript Classes](http://justinfagnani.com/2015/12/21/real-mixins-with-javascript-classes/) for more details) as well as rules for combining mixin construct signatures with regular construct signatures in intersection types.
 
@@ -71,7 +71,7 @@ const WithLocation = <T extends Constructor<Point>>(Base: T) =>
     }
 ```
 
-# `object` type
+# [`object` type](#object-type)
 
 TypeScript did not have a type that represents the non-primitive type, i.e. any thing that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`. Enter the new `object` type.
 
@@ -89,7 +89,7 @@ create(false); // Error
 create(undefined); // Error
 ```
 
-# Support for `new.target`
+# [Support for `new.target`](#new-target)
 
 The `new.target` meta-property is new syntax introduced in ES2015.
 When an instance of a constructor is created via `new`, the value of `new.target` is set to be a reference to the constructor function initially used to allocate the instance.
@@ -140,7 +140,7 @@ function f() {
 }
 ```
 
-# Better checking for `null`/`undefined` in operands of expressions
+# [Better checking for `null`/`undefined` in operands of expressions](#better-checking-for-null-undefined-in-operands-of-expressions)
 
 TypeScript 2.2 improves checking of nullable operands in expressions. Specifically, these are now flagged as errors:
 
@@ -153,7 +153,7 @@ TypeScript 2.2 improves checking of nullable operands in expressions. Specifical
 An operand is considered nullable if the type of the operand is `null` or `undefined` or a union type that includes `null` or `undefined`.
 Note that the union type case only only occurs in `--strictNullChecks` mode because `null` and `undefined` disappear from unions in classic type checking mode.
 
-# Dotted property for types with string index signatures
+# [Dotted property for types with string index signatures](#dotted-property-for-types-with-string-index-signatures)
 
 Types with a string index signature can be indexed using the `[]` notation, but were not allowed to use the `.`.
 Starting with TypeScript 2.2 using either should be allowed.
@@ -173,7 +173,7 @@ map.prop2 = 2;
 This only apply to types with an *explicit* string index signature.
 It is still an error to access unknown properties on a type using `.` notation.
 
-# Support for spread operator on JSX element children
+# [Support for spread operator on JSX element children](#support-for-spread-operator-on-jsx-element-children)
 
 TypeScript 2.2 adds support for using spread on a JSX element children.
 Please see [facebook/jsx#57](https://github.com/facebook/jsx/issues/57) for more details.
@@ -196,7 +196,7 @@ let x: TodoListProps;
 <TodoList {...x} />
 ```
 
-# New `jsx: react-native`
+# [New `jsx: react-native`](#new-jsx-react-native)
 
 React-native build pipeline expects all files to have a `.js` extensions even if the file contains JSX syntax.
 The new `--jsx` value `react-native` will persevere the JSX syntax in the output file, but give it a `.js` extension.

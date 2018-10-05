@@ -1,4 +1,4 @@
-# Introduction
+# [Introduction](#introduction)
 
 The purpose of this guide is to teach you how to write a high-quality definition file.
 This guide is structured by showing documentation for some API, along with sample usage of that API,
@@ -15,9 +15,9 @@ These examples are ordered in approximately increasing order of complexity.
 * [Organizing Types](#organizing-types)
 * [Classes](#classes)
 
-# The Examples
+# [The Examples](#examples)
 
-## Global Variables
+## [Global Variables](#global-variables)
 
 *Documentation*
 
@@ -40,7 +40,7 @@ You can also use `declare let` if the variable is block-scoped.
 declare var foo: number;
 ```
 
-## Global Functions
+## [Global Functions](#global-functions)
 
 *Documentation*
 
@@ -60,7 +60,7 @@ Use `declare function` to declare functions.
 declare function greet(greeting: string): void;
 ```
 
-## Objects with Properties
+## [Objects with Properties](#objects-properties)
 
 *Documentation*
 
@@ -87,7 +87,7 @@ declare namespace myLib {
 }
 ```
 
-## Overloaded Functions
+## [Overloaded Functions](#overloaded-functions)
 
 *Documentation*
 
@@ -108,7 +108,7 @@ declare function getWidget(n: number): Widget;
 declare function getWidget(s: string): Widget[];
 ```
 
-## Reusable Types (Interfaces)
+## [Reusable Types (Interfaces)](#reusable-types-interfaces)
 
 *Documentation*
 
@@ -144,7 +144,7 @@ interface GreetingSettings {
 declare function greet(setting: GreetingSettings): void;
 ```
 
-## Reusable Types (Type Aliases)
+## [Reusable Types (Type Aliases)](#reusable-types-type-aliases)
 
 *Documentation*
 
@@ -173,7 +173,7 @@ type GreetingLike = string | (() => string) | MyGreeter;
 declare function greet(g: GreetingLike): void;
 ```
 
-## Organizing Types
+## [Organizing Types](#organizing-types)
 
 *Documentation*
 
@@ -221,7 +221,7 @@ declare namespace GreetingLib.Options {
 }
 ```
 
-## Classes
+## [Classes](#classes)
 
 *Documentation*
 

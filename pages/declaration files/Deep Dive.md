@@ -1,4 +1,4 @@
-# Definition File Theory: A Deep Dive
+# [Definition File Theory: A Deep Dive](#definition-file-theory)
 
 Structuring modules to give the exact API shape you want can be tricky.
 For example, we might want a module that can be invoked with or without `new` to produce different types,
@@ -8,12 +8,12 @@ For example, we might want a module that can be invoked with or without `new` to
 By reading this guide, you'll have the tools to write complex definition files that expose a friendly API surface.
 This guide focuses on module (or UMD) libraries because the options here are more varied.
 
-## Key Concepts
+## [Key Concepts](#key-concepts)
 
 You can fully understand how to make any shape of definition
   by understanding some key concepts of how TypeScript works.
 
-### Types
+### [Types](#types)
 
 If you're reading this guide, you probably already roughly know what a type in TypeScript is.
 To be more explicit, though, a *type* is introduced with:
@@ -26,7 +26,7 @@ To be more explicit, though, a *type* is introduced with:
 
 Each of these declaration forms creates a new type name.
 
-### Values
+### [Values](#values)
 
 As with types, you probably already understand what a value is.
 Values are runtime names that we can reference in expressions.
@@ -41,7 +41,7 @@ Again, being explicit, the following things create values:
 * An `import` declaration which refers to a value
 * A `function` declaration
 
-### Namespaces
+### [Namespaces](#namespaces)
 
 Types can exist in *namespaces*.
 For example, if we have the declaration `let x: A.B.C`,
@@ -49,7 +49,7 @@ For example, if we have the declaration `let x: A.B.C`,
 
 This distinction is subtle and important -- here, `A.B` is not necessarily a type or a value.
 
-## Simple Combinations: One name, multiple meanings
+## [Simple Combinations: One name, multiple meanings](#simple-combinations)
 
 Given a name `A`, we might find up to three different meanings for `A`: a type, a value or a namespace.
 How the name is interpreted depends on the context in which it is used.
@@ -60,7 +60,7 @@ These meanings might end up referring to entirely different declarations!
 This may seem confusing, but it's actually very convenient as long as we don't excessively overload things.
 Let's look at some useful aspects of this combining behavior.
 
-### Built-in Combinations
+### [Built-in Combinations](#built-in-combinations)
 
 Astute readers will notice that, for example, `class` appeared in both the *type* and *value* lists.
 The declaration `class C { }` creates two things:
@@ -68,7 +68,7 @@ The declaration `class C { }` creates two things:
   and a *value* `C` which refers to the constructor function of the class.
 Enum declarations behave similarly.
 
-### User Combinations
+### [User Combinations](#user-combinations)
 
 Let's say we wrote a module file `foo.d.ts`:
 
@@ -109,7 +109,7 @@ console.log(x.count);
 Again, we've used `Bar` as both a type and a value here.
 Note that we didn't have to declare the `Bar` value as being of the `Bar` type -- they're independent.
 
-## Advanced Combinations
+## [Advanced Combinations](#advanced-combinations)
 
 Some kinds of declarations can be combined across multiple declarations.
 For example, `class C { }` and `interface C { }` can co-exist and both contribute properties to the `C` types.
@@ -121,7 +121,7 @@ A general rule of thumb is that values always conflict with other values of the 
 
 Let's see how this can be used.
 
-### Adding using an `interface`
+### [Adding using an `interface`](#adding-using-interface)
 
 We can add additional members to an `interface` with another `interface` declaration:
 
@@ -153,7 +153,7 @@ console.log(a.x + a.y); // OK
 
 Note that we cannot add to type aliases (`type s = string;`) using an interface.
 
-### Adding using a `namespace`
+### [Adding using a `namespace`](#adding-using-namespace)
 
 A `namespace` declaration can be used to add new types, values, and namespaces in any way which does not create a conflict.
 
@@ -224,7 +224,7 @@ The second  block creates the following name meanings:
 * A value `C` that is a property of the `X.Z` value
 * A type `X`
 
-## Using with `export =` or `import`
+## [Using with `export =` or `import`](#using-with-export-import)
 
 An important rule is that `export` and `import` declarations export or import *all meanings* of their targets.
 

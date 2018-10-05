@@ -1,7 +1,7 @@
 In TypeScript 2.0, it has become significantly easier to consume declaration files, in acquiring, using, and finding them.
 This page details exactly how to do all three.
 
-# Downloading
+# [Downloading](#downloading)
 
 Getting type declarations in TypeScript 2.0 and above requires no tools apart from npm.
 
@@ -13,7 +13,7 @@ npm install --save @types/lodash
 
 It is worth noting that if the npm package already includes its declaration file as described in [Publishing](./Publishing.md), downloading the corresponding `@types` package is not needed.
 
-# Consuming
+# [Consuming](#consuming)
 
 From there you’ll be able to use lodash in your TypeScript code with no fuss.
 This works for both modules and global code.
@@ -31,7 +31,7 @@ or if you’re not using modules, you can just use the global variable `_`.
 _.padStart("Hello TypeScript!", 20, " ");
 ```
 
-# Searching
+# [Searching](#searching)
 
 For the most part, type declaration packages should always have the same name as the package name on `npm`, but prefixed with `@types/`,
   but if you need, you can check out [https://aka.ms/types](https://aka.ms/types) to find the package for your favorite library.

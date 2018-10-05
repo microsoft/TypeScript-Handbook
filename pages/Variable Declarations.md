@@ -1,4 +1,4 @@
-# Variable Declarations
+# [Variable Declarations](#variable-declarations)
 
 `let` and `const` are two relatively new types of variable declarations in JavaScript.
 As we mentioned earlier, `let` is similar to `var` in some respects, but allows users to avoid some of the common "gotchas" that users run into in JavaScript.
@@ -10,7 +10,7 @@ Here we'll elaborate more on these new declarations and why they're preferable t
 If you've used JavaScript offhandedly, the next section might be a good way to refresh your memory.
 If you're intimately familiar with all the quirks of `var` declarations in JavaScript, you might find it easier to skip ahead.
 
-# `var` declarations
+# [`var` declarations](#var-declarations)
 
 Declaring a variable in JavaScript has always traditionally been done with the `var` keyword.
 
@@ -67,7 +67,7 @@ function f() {
 f(); // returns '2'
 ```
 
-## Scoping rules
+## [Scoping rules](#scoping-rules)
 
 `var` declarations have some odd scoping rules for those used to other languages.
 Take the following example:
@@ -111,7 +111,7 @@ function sumMatrix(matrix: number[][]) {
 Maybe it was easy to spot out for some, but the inner `for`-loop will accidentally overwrite the variable `i` because `i` refers to the same function-scoped variable.
 As experienced developers know by now, similar sorts of bugs slip through code reviews and can be an endless source of frustration.
 
-## Variable capturing quirks
+## [Variable capturing quirks](#variable-capturing-quirks)
 
 Take a quick second to guess what the output of the following snippet is:
 
@@ -177,7 +177,7 @@ for (var i = 0; i < 10; i++) {
 This odd-looking pattern is actually pretty common.
 The `i` in the parameter list actually shadows the `i` declared in the `for` loop, but since we named them the same, we didn't have to modify the loop body too much.
 
-# `let` declarations
+# [`let` declarations](#let-declarations)
 
 By now you've figured out that `var` has some problems, which is precisely why `let` statements were introduced.
 Apart from the keyword used, `let` statements are written the same way `var` statements are.
@@ -188,7 +188,7 @@ let hello = "Hello!";
 
 The key difference is not in the syntax, but in the semantics, which we'll now dive into.
 
-## Block-scoping
+## [Block-scoping](#block-scoping)
 
 When a variable is declared using `let`, it uses what some call *lexical-scoping* or *block-scoping*.
 Unlike variables declared with `var` whose scopes leak out to their containing function, block-scoped variables are not visible outside of their nearest containing block or `for`-loop.
@@ -253,7 +253,7 @@ let a;
 
 For more information on temporal dead zones, see relevant content on the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone_and_errors_with_let).
 
-## Re-declarations and Shadowing
+## [Re-declarations and Shadowing](#re-declarations-and-shadowing)
 
 With `var` declarations, we mentioned that it didn't matter how many times you declared your variables; you just got one.
 
@@ -330,7 +330,7 @@ This version of the loop will actually perform the summation correctly because t
 Shadowing should *usually* be avoided in the interest of writing clearer code.
 While there are some scenarios where it may be fitting to take advantage of it, you should use your best judgement.
 
-## Block-scoped variable capturing
+## [Block-scoped variable capturing](#block-scoped-variable-capturing)
 
 When we first touched on the idea of variable capturing with `var` declaration, we briefly went into how variables act once captured.
 To give a better intuition of this, each time a scope is run, it creates an "environment" of variables.
@@ -382,7 +382,7 @@ and as expected, this will print out
 9
 ```
 
-# `const` declarations
+# [`const` declarations](#const-declarations)
 
 `const` declarations are another way of declaring variables.
 
@@ -419,7 +419,7 @@ Unless you take specific measures to avoid it, the internal state of a `const` v
 Fortunately, TypeScript allows you to specify that members of an object are `readonly`.
 The [chapter on Interfaces](./Interfaces.md) has the details.
 
-# `let` vs. `const`
+# [`let` vs. `const`](#let-const)
 
 Given that we have two types of declarations with similar scoping semantics, it's natural to find ourselves asking which one to use.
 Like most broad questions, the answer is: it depends.
@@ -432,13 +432,13 @@ Use your best judgement, and if applicable, consult the matter with the rest of 
 
 The majority of this handbook uses `let` declarations.
 
-# Destructuring
+# [Destructuring](#destructuring)
 
 Another ECMAScript 2015 feature that TypeScript has is destructuring.
 For a complete reference, see [the article on the Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 In this section, we'll give a short overview.
 
-## Array destructuring
+## [Array destructuring](#array-destructuring)
 
 The simplest form of destructuring is array destructuring assignment:
 
@@ -495,7 +495,7 @@ Or other elements:
 let [, second, , fourth] = [1, 2, 3, 4];
 ```
 
-## Object destructuring
+## [Object destructuring](#object-destructuring)
 
 You can also destructure objects:
 
@@ -528,7 +528,7 @@ let total = passthrough.b + passthrough.c.length;
 
 ```
 
-### Property renaming
+### [Property renaming
 
 You can also give different names to properties:
 
@@ -552,7 +552,7 @@ The type, if you specify it, still needs to be written after the entire destruct
 let { a, b }: { a: string, b: number } = o;
 ```
 
-### Default values
+### [Default values
 
 Default values let you specify a default value in case a property is undefined:
 
@@ -564,7 +564,7 @@ function keepWholeObject(wholeObject: { a: string, b?: number }) {
 
 `keepWholeObject` now has a variable for `wholeObject` as well as the properties `a` and `b`, even if `b` is undefined.
 
-## Function declarations
+## [Function declarations](#function-declarations)
 
 Destructuring also works in function declarations.
 For simple cases this is straightforward:
@@ -606,7 +606,7 @@ This is especially true with deeply nested destructuring, which gets *really* ha
 Try to keep destructuring expressions small and simple.
 You can always write the assignments that destructuring would generate yourself.
 
-## Spread
+## [Spread](#spread)
 
 The spread operator is the opposite of destructuring.
 It allows you to spread an array into another array, or an object into another object.

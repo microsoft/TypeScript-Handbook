@@ -1,8 +1,8 @@
-# Introduction
+# [Introduction
 
 In this section, we will cover type inference in TypeScript. Namely, we'll discuss where and how types are inferred.
 
-# Basics
+# [Basics
 
 In TypeScript, there are several places where type inference is used to provide type information when there is no explicit type annotation. For example, in this code
 
@@ -16,7 +16,7 @@ This kind of inference takes place when initializing variables and members, sett
 In most cases, type inference is straightforward.
 In the following sections, we'll explore some of the nuances in how types are inferred.
 
-# Best common type
+# [Best common type
 
 When a type inference is made from several expressions, the types of those expressions are used to calculate a "best common type". For example,
 
@@ -43,7 +43,7 @@ let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
 
 When no best common type is found, the resulting inference is the union array type, `(Rhino | Elephant | Snake)[]`.
 
-# Contextual Type
+# [Contextual Type
 
 Type inference also works in "the other direction" in some cases in TypeScript.
 This is known as "contextual typing". Contextual typing occurs when the type of an expression is implied by its location. For example:

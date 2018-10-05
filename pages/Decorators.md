@@ -1,4 +1,4 @@
-# Introduction
+# [Introduction](#introduction)
 
 With the introduction of Classes in TypeScript and ES6, there now exist certain scenarios that require additional features to support annotating or modifying classes and class members.
 Decorators provide a way to add both annotations and a meta-programming syntax for class declarations and members.
@@ -25,7 +25,7 @@ tsc --target ES5 --experimentalDecorators
 }
 ```
 
-# Decorators
+# [Decorators](#decorators)
 
 A *Decorator* is a special kind of declaration that can be attached to a [class declaration](#class-decorators), [method](#method-decorators), [accessor](#accessor-decorators), [property](#property-decorators), or [parameter](#parameter-decorators).
 Decorators use the form `@expression`, where `expression` must evaluate to a function that will be called at runtime with information about the decorated declaration.
@@ -40,7 +40,7 @@ function sealed(target) {
 
 > NOTE&emsp; You can see a more detailed example of a decorator in [Class Decorators](#class-decorators), below.
 
-## Decorator Factories
+## [Decorator Factories](#decorator-factories)
 
 If we want to customize how a decorator is applied to a declaration, we can write a decorator factory.
 A *Decorator Factory* is simply a function that returns the expression that will be called by the decorator at runtime.
@@ -57,7 +57,7 @@ function color(value: string) { // this is the decorator factory
 
 > NOTE&emsp; You can see a more detailed example of a decorator factory in [Method Decorators](#method-decorators), below.
 
-## Decorator Composition
+## [Decorator Composition](#decorator-composition)
 
 Multiple decorators can be applied to a declaration, as in the following examples:
 
@@ -115,7 +115,7 @@ g(): called
 f(): called
 ```
 
-## Decorator Evaluation
+## [Decorator Evaluation](#decorator-evaluation)
 
 There is a well defined order to how decorators applied to various declarations inside of a class are applied:
 
@@ -124,7 +124,7 @@ There is a well defined order to how decorators applied to various declarations 
 3. *Parameter Decorators* are applied for the constructor.
 4. *Class Decorators* are applied for the class.
 
-## Class Decorators
+## [Class Decorators](#class-decorators)
 
 A *Class Decorator* is declared just before a class declaration.
 The class decorator is applied to the constructor of the class and can be used to observe, modify, or replace a class definition.
@@ -185,7 +185,7 @@ class Greeter {
 console.log(new Greeter("world"));
 ```
 
-## Method Decorators
+## [Method Decorators](#method-decorators)
 
 A *Method Decorator* is declared just before a method declaration.
 The decorator is applied to the *Property Descriptor* for the method, and can be used to observe, modify, or replace a method definition.
@@ -232,7 +232,7 @@ function enumerable(value: boolean) {
 The `@enumerable(false)` decorator here is a [decorator factory](#decorator-factories).
 When the `@enumerable(false)` decorator is called, it modifies the `enumerable` property of the property descriptor.
 
-## Accessor Decorators
+## [Accessor Decorators](#accessor-decorators)
 
 An *Accessor Decorator* is declared just before an accessor declaration.
 The accessor decorator is applied to the *Property Descriptor* for the accessor and can be used to observe, modify, or replace an accessor's definitions.
@@ -283,7 +283,7 @@ function configurable(value: boolean) {
 }
 ```
 
-## Property Decorators
+## [Property Decorators](#property-decorators)
 
 A *Property Decorator* is declared just before a property declaration.
 A property decorator cannot be used in a declaration file, or in any other ambient context (such as in a `declare` class).
@@ -337,7 +337,7 @@ When `getFormat` is called, it reads the metadata value for the format.
 > NOTE&emsp; This example requires the `reflect-metadata` library.
 See [Metadata](#metadata) for more information about the `reflect-metadata` library.
 
-## Parameter Decorators
+## [Parameter Decorators](#parameter-decorators)
 
 A *Parameter Decorator* is declared just before a parameter declaration.
 The parameter decorator is applied to the function for a class constructor or method declaration.
@@ -406,7 +406,7 @@ The `@validate` decorator then wraps the existing `greet` method in a function t
 > NOTE&emsp; This example requires the `reflect-metadata` library.
 See [Metadata](#metadata) for more information about the `reflect-metadata` library.
 
-## Metadata
+## [Metadata](#metadata)
 
 Some examples use the `reflect-metadata` library which adds a polyfill for an [experimental metadata API](https://github.com/rbuckton/ReflectDecorators).
 This library is not yet part of the ECMAScript (JavaScript) standard.

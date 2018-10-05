@@ -1,10 +1,10 @@
-# Enums
+# [Enums](#enums)
 
 Enums allow us to define a set of named constants.
 Using enums can make it easier to document intent, or create a set of distinct cases.
 TypeScript provides both numeric and string-based enums.
 
-## Numeric enums
+## [Numeric enums](#numeric-enums)
 
 We'll first start off with numeric enums, which are probably more familiar if you're coming from other languages.
 An enum can be defined using the `enum` keyword.
@@ -62,7 +62,7 @@ enum E {
 }
 ```
 
-## String enums
+## [String enums](#string-enums)
 
 String enums are a similar concept, but have some subtle [runtime differences](#enums-at-runtime) as documented below.
 In a string enum, each member has to be constant-initialized with a string literal, or with another string enum member.
@@ -79,7 +79,7 @@ enum Direction {
 While string enums don't have auto-incrementing behavior, string enums have the benefit that they "serialize" well.
 In other words, if you were debugging and had to read the runtime value of a numeric enum, the value is often opaque - it doesn't convey any useful meaning on its own (though [reverse mapping](#enums-at-runtime) can often help), string enums allow you to give a meaningful and readable value when your code runs, independent of the name of the enum member itself.
 
-## Heterogeneous enums
+## [Heterogeneous enums](#heterogenous-enums)
 
 Technically enums can be mixed with string and numeric members, but it's not clear why you would ever want to do so:
 
@@ -92,7 +92,7 @@ enum BooleanLikeHeterogeneousEnum {
 
 Unless you're really trying to take advantage of JavaScript's runtime behavior in a clever way, it's advised that you don't do this.
 
-## Computed and constant members
+## [Computed and constant members](#computed-constant-members)
 
 Each enum member has a value associated with it which can be either *constant* or *computed*.
 An enum member is considered constant if:
@@ -141,7 +141,7 @@ enum FileAccess {
 }
 ```
 
-## Union enums and enum member types
+## [Union enums and enum member types](#union-enums)
 
 There is a special subset of constant enum members that aren't calculated: literal enum members.
 A literal enum member is a constant enum member with no initialized value, or with values that are initialized to
@@ -201,7 +201,7 @@ In that example, we first checked whether `x` was *not* `E.Foo`.
 If that check succeeds, then our `||` will short-circuit, and the body of the 'if' will get run.
 However, if the check didn't succeed, then `x` can *only* be `E.Foo`, so it doesn't make sense to see whether it's equal to `E.Bar`.
 
-## Enums at runtime
+## [Enums at runtime](#enums-runtime)
 
 Enums are real objects that exist at runtime.
 For example, the following enum
@@ -223,7 +223,7 @@ function f(obj: { X: number }) {
 f(E);
 ```
 
-### Reverse mappings
+### [Reverse mappings](#reverse-mappings)
 
 In addition to creating an object with property names for members, numeric enums members also get a *reverse mapping* from enum values to enum names.
 For example, in this example:
@@ -252,7 +252,7 @@ References to other enum members are always emitted as property accesses and nev
 
 Keep in mind that string enum members *do not* get a reverse mapping generated at all.
 
-### `const` enums
+### [`const` enums](#const-enums)
 
 In most cases, enums are a perfectly valid solution.
 However sometimes requirements are tighter.
@@ -287,7 +287,7 @@ in generated code will become
 var directions = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];
 ```
 
-## Ambient enums
+## [Ambient enums](#ambient-enums)
 
 Ambient enums are used to describe the shape of already existing enum types.
 

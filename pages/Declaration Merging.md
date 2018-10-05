@@ -1,4 +1,4 @@
-# Introduction
+# [Introduction](#introduction)
 
 Some of the unique concepts in TypeScript describe the shape of JavaScript objects at the type level.
 One example that is especially unique to TypeScript is the concept of 'declaration merging'.
@@ -9,7 +9,7 @@ For the purposes of this article, "declaration merging" means that the compiler 
 This merged definition has the features of both of the original declarations.
 Any number of declarations can be merged; it's not limited to just two declarations.
 
-# Basic Concepts
+# [Basic Concepts](#basic-concepts)
 
 In TypeScript, a declaration creates entities in at least one of three groups: namespace, type, or value.
 Namespace-creating declarations create a namespace, which contains names that are accessed using a dotted notation.
@@ -28,7 +28,7 @@ Lastly, value-creating declarations create values that are visible in the output
 
 Understanding what is created with each declaration will help you understand what is merged when you perform a declaration merge.
 
-# Merging Interfaces
+# [Merging Interfaces](#merging-interfaces)
 
 The simplest, and perhaps most common, type of declaration merging is interface merging.
 At the most basic level, the merge mechanically joins the members of both declarations into a single interface with the same name.
@@ -114,7 +114,7 @@ interface Document {
 }
 ```
 
-# Merging Namespaces
+# [Merging Namespaces](#merging-namespaces)
 
 Similarly to interfaces, namespaces of the same name will also merge their members.
 Since namespaces create both a namespace and a value, we need to understand how both merge.
@@ -171,13 +171,13 @@ namespace Animal {
 Because `haveMuscles` is not exported, only the `animalsHaveMuscles` function that shares the same un-merged namespace can see the symbol.
 The `doAnimalsHaveMuscles` function, even though it's part of the merged `Animal` namespace can not see this un-exported member.
 
-# Merging Namespaces with Classes, Functions, and Enums
+# [Merging Namespaces with Classes, Functions, and Enums](#merging-with-clases-functions-enums)
 
 Namespaces are flexible enough to also merge with other types of declarations.
 To do so, the namespace declaration must follow the declaration it will merge with. The resulting declaration has properties of both declaration types.
 TypeScript uses this capability to model some of the patterns in JavaScript as well as other programming languages.
 
-## Merging Namespaces with Classes
+## [Merging Namespaces with Classes](#merging-namespaces-with-classes)
 
 This gives the user a way of describing inner classes.
 
@@ -237,13 +237,13 @@ namespace Color {
 }
 ```
 
-# Disallowed Merges
+# [Disallowed Merges](#disallowed-merges)
 
 Not all merges are allowed in TypeScript.
 Currently, classes can not merge with other classes or with variables.
 For information on mimicking class merging, see the [Mixins in TypeScript](./Mixins.md) section.
 
-# Module Augmentation
+# [Module Augmentation](#module-augmentation)
 
 Although JavaScript modules do not support merging, you can patch existing objects by importing and then updating them.
 Let's look at a toy Observable example:
@@ -290,7 +290,7 @@ See [Modules](./Modules.md) for more information.
 Then the declarations in an augmentation are merged as if they were declared in the same file as the original.
 However, you can't declare new top-level declarations in the augmentation -- just patches to existing declarations.
 
-## Global augmentation
+## [Global augmentation](#global-augmentation)
 
 You can also add declarations to the global scope from inside a module:
 

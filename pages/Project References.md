@@ -4,7 +4,7 @@ By doing this, you can greatly improve build times, enforce logical separation b
 
 We're also introducing a new mode for `tsc`, the `--build` flag, that works hand in hand with project references to enable faster TypeScript builds.
 
-# An Example Project
+# [An Example Project](#an-example-project)
 
 Let's look at a fairly normal program and see how project references can help us better organize it.
 Imagine you have a project with two modules, `converter` and `units`, and a corresponding test file for each:
@@ -41,7 +41,7 @@ You could use multiple tsconfig files to solve *some* of those problems, but new
 
 Project references can solve all of these problems and more.
 
-# What is a Project Reference?
+# [What is a Project Reference?](#what-is-a-project-reference)
 
 `tsconfig.json` files have a new top-level property, `references`. It's an array of objects that specifies projects to reference:
 
@@ -66,7 +66,7 @@ When you reference a project, new things happen:
 
 By separating into multiple projects, you can greatly improve the speed of typechecking and compiling, reduce memory usage when using an editor, and improve enforcement of the logical groupings of your program.
 
-# `composite`
+# [`composite`](#composite)
 
 Referenced projects must have the new `composite` setting enabled.
 This setting is needed to ensure TypeScript can quickly determine where to find the outputs of the referenced project.
@@ -76,12 +76,12 @@ Enabling the `composite` flag changes a few things:
 * All implementation files must be matched by an `include` pattern or listed in the `files` array. If this constraint is violated, `tsc` will inform you which files weren't specified
 * `declaration` must be turned on
 
-# `declarationMaps`
+# [`declarationMaps`](#declaration-maps)
 
 We've also added support for [declaration source maps](https://github.com/Microsoft/TypeScript/issues/14479).
 If you enable `--declarationMap`, you'll be able to use editor features like "Go to Definition" and Rename to transparently navigate and edit code across project boundaries in supported editors.
 
-# `prepend` with `outFile`
+# [`prepend` with `outFile`](#prepend-with-outfile)
 
 You can also enable prepending the output of a dependency using the `prepend` option in a reference:
 
@@ -109,7 +109,7 @@ B     C
 
 It's important in this situation to not prepend at each reference, because you'll end up with two copies of `A` in the output of `D` - this can lead to unexpected results.
 
-# Caveats for Project References
+# [Caveats for Project References](#caveats-for-project-references)
 
 Project references have a few trade-offs you should be aware of.
 
@@ -119,7 +119,7 @@ We're working on a behind-the-scenes .d.ts generation process that should be abl
 Additionally, to preserve compatability with existing build workflows, `tsc` will *not* automatically build dependencies unless invoked with the `--build` switch.
 Let's learn more about `--build`.
 
-# Build Mode for TypeScript
+# [Build Mode for TypeScript](#build-mode-for-ts)
 
 A long-awaited feature is smart incremental builds for TypeScript projects.
 In 3.0 you can use the `--build` flag with `tsc`.
@@ -134,7 +134,7 @@ Running `tsc --build` (`tsc -b` for short) will do the following:
 You can provide `tsc -b` with multiple config file paths (e.g. `tsc -b src test`).
 Just like `tsc -p`, specifying the config file name itself is unnecessary if it's named `tsconfig.json`.
 
-## `tsc -b` Commandline
+## [`tsc -b` Commandline](#tsc-b-commandline)
 
 You can specify any number of config files:
 
@@ -154,7 +154,7 @@ There are also some flags specific to `tsc -b`:
 * `--force`: Act as if all projects are out of date
 * `--watch`: Watch mode (may not be combined with any flag except `--verbose`)
 
-# Caveats
+# [Caveats](#caveats)
 
 Normally, `tsc` will produce outputs (`.js` and `.d.ts`) in the presence of syntax or type errors, unless `noEmitOnError` is on.
 Doing this in an incremental build system would be very bad - if one of your out-of-date dependencies had a new error, you'd only see it *once* because a subsequent build would skip building the now up-to-date project.
@@ -162,7 +162,7 @@ For this reason, `tsc -b` effectively acts as if `noEmitOnError` is enabled for 
 
 If you check in any build outputs (`.js`, `.d.ts`, `.d.ts.map`, etc.), you may need to run a `--force` build after certain source control operations depending on whether your source control tool preserves timestmaps between the local copy and the remote copy.
 
-# MSBuild
+# [MSBuild](#msbuild)
 
 If you have an msbuild project, you can turn enable build mode by adding
 
@@ -177,9 +177,9 @@ Note that as with `tsconfig.json` / `-p`, existing TypeScript project properties
 Some teams have set up msbuild-based workflows wherein tsconfig files have the same *implicit* graph ordering as the managed projects they are paired with.
 If your solution is like this, you can continue to use `msbuild` with `tsc -p` along with project references; these are fully interoperable.
 
-# Guidance
+# [Guidance](#guidance)
 
-## Overall Structure
+## [Overall Structure](#overall-structure)
 
 With more `tsconfig.json` files, you'll usually want to use [Configuration file inheritance](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) to centralize your common compiler options.
 This way you can change a setting in one file rather than having to edit multiple files.
@@ -190,13 +190,13 @@ Note that starting with 3.0, it is no longer an error to have an empty `files` a
 
 You can see these pattern in the TypeScript repo - see `src/tsconfig_base.json`, `src/tsconfig.json`, and `src/tsc/tsconfig.json` as key examples.
 
-## Structuring for relative modules
+## [Structuring for relative modules](#structuring-for-relative-modules)
 
 In general, not much is needed to transition a repo using relative modules.
 Simply place a `tsconfig.json` file in each subdirectory of a given parent folder, and add `reference`s to these config files to match the intended layering of the program.
 You will need to either set the `outDir` to an explicit subfolder of the output folder, or set the `rootDir` to the common root of all project folders.
 
-## Structuring for outFiles
+## [Structuring for outFiles](#structuring-for-outfiles)
 
 Layout for compilations using `outFile` is more flexible because relative paths don't matter as much.
 One thing to keep in mind is that you'll generally want to not use `prepend` until the "last" project - this will improve build times and reduce the amount of I/O needed in any given build.

@@ -1,6 +1,6 @@
 # TypeScript 2.4
 
-## Dynamic Import Expressions
+## [Dynamic Import Expressions](#dynamic-import-expressions)
 
 Dynamic `import` expressions are a new feature and part of ECMAScript that allows users to asynchronously request a module at any arbitrary point in your program.
 
@@ -17,7 +17,7 @@ async function getZipFile(name: string, files: File[]): Promise<File> {
 
 Many bundlers have support for automatically splitting output bundles based on these `import` expressions, so consider using this new feature with the `esnext` module target.
 
-## String Enums
+## [String Enums](#string-enums)
 
 TypeScript 2.4 now allows enum members to contain string initializers.
 
@@ -32,11 +32,11 @@ enum Colors {
 The caveat is that string-initialized enums can't be reverse-mapped to get the original enum member name.
 In other words, you can't write `Colors["RED"]` to get the string `"Red"`.
 
-## Improved inference for generics
+## [Improved inference for generics](#improved-inference-for-generics)
 
 TypeScript 2.4 introduces a few wonderful changes around the way generics are inferred.
 
-### Return types as inference targets
+### [Return types as inference targets](#return-types-as-inference-targets)
 
 For one, TypeScript can now make inferences for the return type of a call.
 This can improve your experience and catch errors.
@@ -59,7 +59,7 @@ let x: Promise<string> = new Promise(resolve => {
 });
 ```
 
-### Type parameter inference from contextual types
+### [Type parameter inference from contextual types](#type-parameter-inference-from-contextual-types)
 
 Prior to TypeScript 2.4, in the following example
 
@@ -81,7 +81,7 @@ In TypeScript 2.4, the function on the right side implicitly *gains* type parame
 If you use `y` in a way that the type parameter's constraint doesn't support, you'll correctly get an error.
 In this case, the constraint of `T` was (implicitly) `{}`, so the last example will appropriately fail.
 
-### Stricter checking for generic functions
+### [Stricter checking for generic functions](#stricter-checking-for-generic-functions)
 
 TypeScript now tries to unify type parameters when comparing two single-signature types.
 As a result, you'll get stricter checks when relating two generic signatures, and may catch some bugs.
@@ -96,7 +96,7 @@ function f(a: A, b: B) {
 }
 ```
 
-## Strict contravariance for callback parameters
+## [Strict contravariance for callback parameters](#strict-contravariance-for-callback-parameters)
 
 TypeScript has always compared parameters in a bivariant way.
 There are a number of reasons for this, but by-and-large this was not been a huge issue for our users until we saw some of the adverse effects it had with `Promise`s and `Observable`s.
@@ -123,7 +123,7 @@ When relating the type of `map` in TS 2.4, the language will check whether each 
 
 In other words, TypeScript now catches the above bug, which may be a breaking change for some users, but will largely be helpful.
 
-## Weak Type Detection
+## [Weak Type Detection](#weak-type-detection)
 
 TypeScript 2.4 introduces the concept of "weak types".
 Any type that contains nothing but a set of all-optional properties is considered to be *weak*.

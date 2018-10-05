@@ -3,7 +3,7 @@ This guide also adds functionality for [Babel](https://babeljs.io/) functionalit
 
 We assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
 
-# Minimal project
+# [Minimal project](#minimal-project)
 
 Let's start out with a new directory.
 We'll name it `proj` for now, but you can change it to whatever you want.
@@ -30,7 +30,7 @@ mkdir src
 mkdir dist
 ```
 
-## Initialize the project
+## [Initialize the project](#initialize-project)
 
 Now we'll turn this folder into an npm package.
 
@@ -43,7 +43,7 @@ You can use the defaults except for your entry point.
 For your entry point, use `./dist/main.js`.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
-## Install our dependencies
+## [Install our dependencies](#install-our-dependencies)
 
 Now we can use `npm install` to install packages.
 First install `gulp-cli` globally (if you use a Unix system, you may need to prefix the `npm install` commands in this guide with `sudo`).
@@ -59,7 +59,7 @@ Then install `typescript`, `gulp` and `gulp-typescript` in your project's dev de
 npm install --save-dev typescript gulp gulp-typescript
 ```
 
-## Write a simple example
+## [Write a simple example](#write-example)
 
 Let's write a Hello World program.
 In `src`, create the file `main.ts`:
@@ -85,7 +85,7 @@ In the project root, `proj`, create the file `tsconfig.json`:
 }
 ```
 
-## Create a `gulpfile.js`
+## [Create a `gulpfile.js`](#create-gulpfile)
 
 In the project root, create the file `gulpfile.js`:
 
@@ -101,7 +101,7 @@ gulp.task("default", function () {
 });
 ```
 
-## Test the resulting app
+## [Test the resulting app](#test-resulting-app)
 
 ```shell
 gulp
@@ -110,7 +110,7 @@ node dist/main.js
 
 The program should print "Hello from TypeScript!".
 
-# Add modules to the code
+# [Add modules to the code](#add-modules-to-code)
 
 Before we get to Browserify, let's build our code out and add modules to the mix.
 This is the structure you're more likely to use for a real app.
@@ -156,7 +156,7 @@ node dist/main.js
 Notice that even though we used ES2015 module syntax, TypeScript emitted CommonJS modules that Node uses.
 We'll stick with CommonJS for this tutorial, but you could set `module` in the options object to change this.
 
-# Browserify
+# [Browserify](#browserify)
 
 Now let's move this project from Node to the browser.
 To do this, we'd  like to bundle all our modules into one JavaScript file.
@@ -172,7 +172,7 @@ vinyl-source-stream lets us adapt the file output of Browserify back into a form
 npm install --save-dev browserify tsify vinyl-source-stream
 ```
 
-## Create a page
+## [Create a page](#create-a-page)
 
 Create a file in `src` named `index.html`:
 
@@ -251,7 +251,7 @@ Source maps let you debug your original TypeScript code in the browser instead o
 You can test that source maps are working by opening the debugger for your browser and putting a breakpoint inside `main.ts`.
 When you refresh the page the breakpoint should pause the page and let you debug `greet.ts`.
 
-# Watchify, Babel, and Uglify
+# [Watchify, Babel, and Uglify](#watchify-babel-uglify)
 
 Now that we are bundling our code with Browserify and tsify, we can add various features to our build with browserify plugins.
 
@@ -263,7 +263,7 @@ Now that we are bundling our code with Browserify and tsify, we can add various 
 
 * Uglify compacts your code so that it takes less time to download.
 
-## Watchify
+## [Watchify](#watchify)
 
 We'll start with Watchify to provide background compilation:
 
@@ -335,7 +335,7 @@ proj$ gulp
 [10:35:24] 2808 bytes written (0.05 seconds)
 ```
 
-## Uglify
+## [Uglify](#uglify)
 
 First install Uglify.
 Since the point of Uglify is to mangle your code, we also need to install vinyl-buffer and gulp-sourcemaps to keep sourcemaps working.
@@ -391,7 +391,7 @@ gulp
 cat dist/bundle.js
 ```
 
-## Babel
+## [Babel](#babel)
 
 First install Babelify and the Babel preset for ES2015.
 Like Uglify, Babelify mangles code, so we'll need vinyl-buffer and gulp-sourcemaps.

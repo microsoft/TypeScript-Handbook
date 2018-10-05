@@ -1,10 +1,10 @@
-# Iterables
+# [Iterables
 
 An object is deemed iterable if it has an implementation for the [`Symbol.iterator`](Symbols.md#symboliterator) property.
 Some built-in types like `Array`, `Map`, `Set`, `String`, `Int32Array`, `Uint32Array`, etc. have their `Symbol.iterator` property already implemented.
 `Symbol.iterator` function on an object is responsible for returning the list of values to iterate on.
 
-## `for..of` statements
+## [`for..of` statements
 
 `for..of` loops over an iterable object, invoking the `Symbol.iterator` property on the object.
 Here is a simple `for..of` loop on an array:
@@ -17,7 +17,7 @@ for (let entry of someArray) {
 }
 ```
 
-### `for..of` vs. `for..in` statements
+### [`for..of` vs. `for..in` statements
 
 Both `for..of` and `for..in` statements iterate over lists; the values iterated on are different though, `for..in` returns a list of *keys* on the object being iterated, whereas `for..of` returns a list of *values* of the numeric properties of the object being iterated.
 
@@ -51,9 +51,9 @@ for (let pet of pets) {
 }
 ```
 
-### Code generation
+### [Code generation
 
-#### Targeting ES5 and ES3
+#### [Targeting ES5 and ES3
 
 When targeting an ES5 or ES3, iterators are only allowed on values of `Array` type.
 It is an error to use `for..of` loops on non-Array values, even if these non-Array values implement the `Symbol.iterator` property.
@@ -77,6 +77,6 @@ for (var _i = 0; _i < numbers.length; _i++) {
 }
 ```
 
-#### Targeting ECMAScript 2015 and higher
+#### [Targeting ECMAScript 2015 and higher
 
 When targeting an ECMAScipt 2015-compliant engine, the compiler will generate `for..of` loops to target the built-in iterator implementation in the engine.

@@ -4,7 +4,7 @@ If you're starting a brand new project, take a look at the [React Quick Start gu
 
 Otherwise, we assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
 
-# Lay out the project
+# [Lay out the project](#lay-out-the-project)
 
 Let's start out with a new directory.
 We'll name it `proj` for now, but you can change it to whatever you want.
@@ -37,7 +37,7 @@ cd ..
 
 Webpack will eventually generate the `dist` directory for us.
 
-# Initialize the project
+# [Initialize the project](#initialize)
 
 Now we'll turn this folder into an npm package.
 
@@ -48,7 +48,7 @@ npm init
 You'll be given a series of prompts, but you can feel free to use the defaults.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
-# Install our dependencies
+# [Install our dependencies](#install-dependencies)
 
 First ensure Webpack is installed globally.
 
@@ -87,7 +87,7 @@ Read about the differences between them [here](https://github.com/s-panferov/awe
 Notice that we installed TypeScript as a development dependency.
 We could also have linked TypeScript to a global copy with `npm link typescript`, but this is a less common scenario.
 
-# Add a TypeScript configuration file
+# [Add a TypeScript configuration file](#add-ts-config-file)
 
 You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary declaration files.
 
@@ -112,7 +112,7 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
 
 You can learn more about `tsconfig.json` files [here](../tsconfig.json.md).
 
-# Write some code
+# [Write some code](#write-code)
 
 Let's write our first TypeScript file using React.
 First, create a file named `Hello.tsx` in `src/components` and write the following:
@@ -187,7 +187,7 @@ React and React-DOM's npm packages include standalone `.js` files that you can i
 Feel free to copy these files to another directory, or alternatively, host them on a content delivery network (CDN).
 Facebook makes CDN-hosted versions of React available, and you can [read more about that here](http://facebook.github.io/react/downloads.html#development-vs.-production-builds).
 
-# Create a webpack configuration file
+# [Create a webpack configuration file](#create-webpack-config-file)
 
 Create a `webpack.config.js` file at the root of the project directory.
 
@@ -238,7 +238,7 @@ With our entry for `"react": "React"`, webpack will work its magic to make any i
 
 You can learn more about configuring webpack [here](https://webpack.js.org/concepts).
 
-# Putting it all together
+# [Putting it all together](#putting-it-all-together)
 
 Just run:
 

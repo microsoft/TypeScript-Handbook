@@ -11,7 +11,7 @@ We'll use the [create-react-app](https://github.com/facebookincubator/create-rea
 We assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
 You may also want to get a sense of [the basics with React](https://reactjs.org/docs/hello-world.html).
 
-# Install create-react-app
+# [Install create-react-app](#create-react-app)
 
 We're going to use the create-react-app because it sets some useful tools and canonical defaults for React projects.
 This is just a command-line utility to scaffold out new React projects.
@@ -20,7 +20,7 @@ This is just a command-line utility to scaffold out new React projects.
 npm install -g create-react-app
 ```
 
-# Create our new project
+# [Create our new project](#create-new-project)
 
 We'll create a new project called `my-app`:
 
@@ -52,7 +52,7 @@ Of note:
 * `public` contains static assets like the HTML page we're planning to deploy to, or images. You can delete any file in this folder apart from `index.html`.
 * `src` contains our TypeScript and CSS code. `index.tsx` is the entry-point for our file, and is mandatory.
 
-# Running the project
+# [Running the project](#running-project)
 
 Running the project is as simple as running
 
@@ -65,7 +65,7 @@ Typically the server runs at `http://localhost:3000`, but should be automaticall
 
 This tightens the iteration loop by allowing us to quickly preview changes.
 
-# Testing the project
+# [Testing the project](#testing-project)
 
 Testing is also just a command away:
 
@@ -77,7 +77,7 @@ This command runs Jest, an incredibly useful testing utility, against all files 
 Like with the `npm run start` command, Jest will automatically run as soon as it detects changes.
 If you'd like, you can run `npm run start` and `npm run test` side by side so that you can preview changes and test them simultaneously.
 
-# Creating a production build
+# [Creating a production build](#creating-production-build)
 
 When running the project with `npm run start`, we didn't end up with an optimized build.
 Typically, we want the code we ship to users to be as fast and small as possible.
@@ -95,7 +95,7 @@ This will create an optimized JS and CSS build in `./build/static/js` and `./bui
 You won't need to run a production build most of the time,
 but it is useful if you need to measure things like the final size of your app.
 
-# Creating a component
+# [Creating a component](#creating-component)
 
 We're going to write a `Hello` component.
 The component will take the name of whatever we want to greet (which we'll call `name`), and optionally the number of exclamation marks to trail with (`enthusiasmLevel`).
@@ -191,7 +191,7 @@ ReactDOM.render(
 );
 ```
 
-## Type assertions
+## [Type assertions](#type-assertions)
 
 One final thing we'll point out in this section is the line `document.getElementById('root') as HTMLElement`.
 This syntax is called a *type assertion*, sometimes also called a *cast*.
@@ -204,7 +204,7 @@ We're assuming that `getElementById` will actually succeed, so we need convince 
 TypeScript also has a trailing "bang" syntax (`!`), which removes `null` and `undefined` from the prior expression.
 So we *could* have written `document.getElementById('root')!`, but in this case we wanted to be a bit more explicit.
 
-# Adding style 😎
+# [Adding style 😎](#adding-style)
 
 Styling a component with our setup is easy.
 To style our `Hello` component, we can create a CSS file at `src/components/Hello.css`.
@@ -233,7 +233,7 @@ So in `src/components/Hello.tsx`, we'll add the following import.
 import './Hello.css';
 ```
 
-# Writing tests with Jest
+# [Writing tests with Jest](#tests-with-jest)
 
 We had a certain set of assumptions about our `Hello` component.
 Let's reiterate what they were:
@@ -302,12 +302,12 @@ it('throws when the enthusiasm level is negative', () => {
 
 These tests are extremely basic, but you should be able to get the gist of things.
 
-# Adding state management
+# [Adding state management](#adding-state-management)
 
 At this point, if all you're using React for is fetching data once and displaying it, you can consider yourself done.
 But if you're developing an app that's more interactive, then you may need to add state management.
 
-## State management in general
+## [State management in general](#state-management-in-general)
 
 On its own, React is a useful library for creating composable views.
 However, React doesn't come with any facility for synchronizing data between your application.
@@ -330,7 +330,7 @@ however, you should feel encouraged to explore both.
 The following section may have a steep learning curve.
 We strongly suggest you [familiarize yourself with Redux through its documentation](http://redux.js.org/).
 
-## Setting the stage for actions
+## [Setting the stage for actions](#setting-stage-for-actions)
 
 It doesn't make sense to add Redux unless the state of our application changes.
 We need a source of actions that will trigger changes to take place.
@@ -338,7 +338,7 @@ This can be a timer, or something in the UI like a button.
 
 For our purposes, we're going to add two buttons to control the enthusiasm level for our `Hello` component.
 
-## Installing Redux
+## [Installing Redux](#installing-redux)
 
 To add Redux, we'll first install `redux` and `react-redux`, as well as their types, as a dependency.
 
@@ -348,7 +348,7 @@ npm install -S redux react-redux @types/react-redux
 
 In this case we didn't need to install `@types/redux` because Redux already comes with its own definition files (`.d.ts` files).
 
-## Defining our app's state
+## [Defining our app's state](#defining-our-apps-state)
 
 We need to define the shape of the state which Redux will store.
 For this, we can create a file called `src/types/index.tsx` which will contain definitions for types that we might use throughout the program.
@@ -365,7 +365,7 @@ export interface StoreState {
 Our intention is that `languageName` will be the programming language this app was written in (i.e. TypeScript or JavaScript) and `enthusiasmLevel` will vary.
 When we write our first container, we'll understand why we intentionally made our state slightly different from our props.
 
-## Adding actions
+## [Adding actions](#adding-actions)
 
 Let's start off by creating a set of message types that our app can respond to in `src/constants/index.tsx`.
 
@@ -416,7 +416,7 @@ Finally, we made two functions that actually manufacture the actions which we ca
 
 There's clearly boilerplate here, so you should feel free to look into libraries like [redux-actions](https://www.npmjs.com/package/redux-actions) once you've got the hang of things.
 
-## Adding a reducer
+## [Adding a reducer](#adding-a-reducer)
 
 We're ready to write our first reducer!
 Reducers are just functions that generate changes by creating modified copies of our application's state, but that have *no side effects*.
@@ -451,7 +451,7 @@ Since reducers are pure functions, they can be passed arbitrary data.
 For every input, reducers can tested by checking their newly produced state.
 Consider looking into Jest's [toEqual](https://facebook.github.io/jest/docs/en/expect.html#toequalvalue) method to accomplish this.
 
-## Making a container
+## [Making a container](#making-a-container)
 
 When writing with Redux, we will often write components as well as containers.
 Components are often data-agnostic, and work mostly at a presentational level.
@@ -574,7 +574,7 @@ export function mapDispatchToProps(dispatch: Dispatch<actions.EnthusiasmAction>)
 export default connect(mapStateToProps, mapDispatchToProps)(Hello);
 ```
 
-## Creating a store
+## [Creating a store](#creating-a-store)
 
 Let's go back to `src/index.tsx`.
 To put this all together, we need to create a store with an initial state, and set it up with all of our reducers.
@@ -613,7 +613,7 @@ ReactDOM.render(
 
 Notice that `Hello` no longer needs props, since we used our `connect` function to adapt our application's state for our wrapped `Hello` component's props.
 
-# Ejecting
+# [Ejecting](#ejecting)
 
 If at any point, you feel like there are certain customizations that the create-react-app setup has made difficult, you can always opt-out and get the various configuration options you need.
 For example, if you'd like to add a Webpack plugin, it might be necessary to take advantage of the "eject" functionality that create-react-app provides.
@@ -629,7 +629,7 @@ and you should be good to go!
 As a heads up, you may want to commit all your work before running an eject.
 You cannot undo an eject command, so opting out is permanent unless you can recover from a commit prior to running an eject.
 
-# Next steps
+# [Next steps](#next-steps)
 
 create-react-app comes with a lot of great stuff.
 Much of it is documented in the default `README.md` that was generated for our project, so give that a quick read.

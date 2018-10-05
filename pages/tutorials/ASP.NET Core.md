@@ -1,12 +1,12 @@
-# Setup
+# [Setup](#setup)
 
-## Install ASP.NET Core and TypeScript
+## [Install ASP.NET Core and TypeScript](#install-aspnet-core-and-ts)
 
 First, [install ASP.NET Core](https://get.asp.net) if you need it. This quick-start guide requires Visual Studio 2015 or 2017.
 
 Next, if your version of Visual Studio does not already have the latest TypeScript, you can [install it](http://www.microsoft.com/en-us/download/details.aspx?id=48593).
 
-## Create a new project
+## [Create a new project](#create-new-project)
 
 1. Choose **File**
 2. Choose **New Project** (Ctrl + Shift + N)
@@ -21,9 +21,9 @@ Next, if your version of Visual Studio does not already have the latest TypeScri
 
 Run the application and make sure that it works.
 
-## Set up the server
+## [Set up the server](#set-up-the-server)
 
-### VS2015
+### [VS2015](#vs2015)
 
 In `project.json` add another entry in `"dependencies"`:
 
@@ -52,7 +52,7 @@ public void Configure(IApplicationBuilder app)
 }
 ```
 
-### VS2017
+### [VS2017](#vs2017)
 
 Open **Dependencies** > **Manage NuGet Packages** > **Browse**. Search and install `Microsoft.AspNetCore.StaticFiles` 1.1.2:
 
@@ -70,7 +70,7 @@ public void Configure(IApplicationBuilder app)
 
 You may need to restart VS for the red squiggly lines below `UseDefaultFiles` and `UseStaticFiles` to disappear.
 
-# Add TypeScript
+# [Add TypeScript](#add-ts)
 
 The next step is to add a folder for TypeScript.
 
@@ -80,7 +80,7 @@ We'll just call it `scripts`.
 
 ![scripts folder](../../assets/images/tutorials/aspnet/scripts-folder.png)
 
-## Add TypeScript code
+## [Add TypeScript code](#add-ts-code)
 
 Right click on `scripts` and click **New Item**.
 Then choose **TypeScript File** (it may be in the .NET Core section) and name the file `app.ts`.
@@ -99,9 +99,9 @@ function sayHello() {
 }
 ```
 
-## Set up the build
+## [Set up the build](#set-up-the-build)
 
-### Configure the TypeScript compiler
+### [Configure the TypeScript compiler](#configure-the-ts-compiler)
 
 First we need to tell TypeScript how to build.
 Right click on the scripts folder and click **New Item**.
@@ -135,7 +135,7 @@ This is similar to the default, with the following differences:
 `"noImplicitAny"` is good idea whenever you're writing new code &mdash; you can make sure that you don't write any untyped code by mistake.
 `"compileOnSave"` makes it easy to update your code in a running web app.
 
-### Set up NPM
+### [Set up NPM](#set-up-npm)
 
 Now we need to set up NPM so we can download JavaScript packages.
 Right click on the project and click **New Item**.
@@ -152,7 +152,7 @@ Inside `"devDependencies"` add "gulp" and "del":
 Visual Studio should start installing gulp and del as soon as you save the file.
 If not, right-click package.json and then **Restore Packages**.
 
-### Set up gulp
+### [Set up gulp](#set-up-gulp)
 
 Finally, add a new JavaScript file named `gulpfile.js`.
 Put the following code inside:
@@ -188,7 +188,7 @@ If 'default' and 'clean' tasks don't show up, refresh the explorer:
 
 ![Refresh Task Runner Explorer](../../assets/images/tutorials/aspnet/task-runner-explorer.png)
 
-## Write an HTML page
+## [Write an HTML page](#write-html)
 
 Add a New Item named `index.html` inside `wwwroot`.
 Use the following code for `index.html`:
@@ -211,14 +211,14 @@ Use the following code for `index.html`:
 </html>
 ```
 
-## Test
+## [Test](#test)
 
 1. Run the project.
 2. You should see a message when you type in the input boxes:
 
 ![Picture of running demo](../../assets/images/tutorials/aspnet/running-demo.png)
 
-## Debug
+## [Debug](#debug)
 
 1. In Edge, press F12 and click the **Debugger** tab.
 2. Look in the first localhost folder, then scripts/app.ts
@@ -230,9 +230,9 @@ Use the following code for `index.html`:
 That's all you need to know to include basic TypeScript in your ASP.NET project.
 Next we'll include Angular and write a simple Angular app.
 
-# Add Angular 2
+# [Add Angular 2](#add-angular2)
 
-## Add NPM dependencies
+## [Add NPM dependencies](#add-npm-dependencies)
 
 Add Angular 2 and SystemJS to `dependencies` in `package.json`.
 
@@ -261,7 +261,7 @@ For VS2017, due to the deprecation of peer dependencies in NPM3, we need to list
   },
 ```
 
-## Update tsconfig.json
+## [Update tsconfig.json](#update-tsconfig)
 
 Now that Angular 2 and its dependencies are installed, we need to enable TypeScript's experimental support for decorators.
 We also need to add declarations for ES2015, since Angular uses core-js for things like `Promise`.
@@ -294,7 +294,7 @@ Our tsconfig should now look like this:
 }
 ```
 
-## Add Angular to the gulp build
+## [Add Angular to the gulp build](#add-angular-to-gulp)
 
 Finally, we need to make sure that the Angular files are copied as part of the build.
 We need to add:
@@ -338,7 +338,7 @@ gulp.task('default', ['lib'], function () {
 
 Again, make sure that Task Runner Explorer sees the new `lib` task after you save the gulpfile.
 
-## Write a simple Angular app in TypeScript
+## [Write a simple Angular app in TypeScript](#write-angular-in-ts)
 
 First, change the code in `app.ts` to:
 

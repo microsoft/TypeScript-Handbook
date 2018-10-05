@@ -3,19 +3,19 @@ It's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".
 "External modules" are now simply "modules", as to align with [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
 
-# Introduction
+# [Introduction](#introduction)
 
 This post outlines the various ways to organize your code using namespaces (previously "internal modules") in TypeScript.
 As we alluded in our note about terminology, "internal modules" are now referred to as "namespaces".
 Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
 This avoids confusing new users by overloading them with similarly named terms.
 
-# First steps
+# [First steps](#first-steps)
 
 Let's start with the program we'll be using as our example throughout this page.
 We've written a small set of simplistic string validators, as you might write to check a user's input on a form in a webpage or check the format of an externally-provided data file.
 
-## Validators in a single file
+## [Validators in a single file](#validators-in-a-single-file)
 
 ```ts
 interface StringValidator {
@@ -54,7 +54,7 @@ for (let s of strings) {
 }
 ```
 
-# Namespacing
+# [Namespacing](#namespacing)
 
 As we add more validators, we're going to want to have some kind of organization scheme so that we can keep track of our types and not worry about name collisions with other objects.
 Instead of putting lots of different names into the global namespace, let's wrap up our objects into a namespace.
@@ -64,7 +64,7 @@ Because we want the interfaces and classes here to be visible outside the namesp
 Conversely, the variables `lettersRegexp` and `numberRegexp` are implementation details, so they are left unexported and will not be visible to code outside the namespace.
 In the test code at the bottom of the file, we now need to qualify the names of the types when used outside the namespace, e.g. `Validation.LettersOnlyValidator`.
 
-## Namespaced Validators
+## [Namespaced Validators](#namespaced-validators)
 
 ```ts
 namespace Validation {
@@ -104,11 +104,11 @@ for (let s of strings) {
 }
 ```
 
-# Splitting Across Files
+# [Splitting Across Files](#splitting-across-files)
 
 As our application grows, we'll want to split the code across multiple files to make it easier to maintain.
 
-## Multi-file namespaces
+## [Multi-file namespaces](#multi-file-namespaces)
 
 Here, we'll split our `Validation` namespace across many files.
 Even though the files are separate, they can each contribute to the same namespace and can be consumed as if they were all defined in one place.
@@ -203,7 +203,7 @@ If multiple JS files get produced, we'll need to use `<script>` tags on our webp
     <script src="Test.js" type="text/javascript" />
 ```
 
-# Aliases
+# [Aliases](#aliases)
 
 Another way that you can simplify working with of namespaces is to use `import q = x.y.z` to create shorter names for commonly-used objects.
 Not to be confused with the `import x = require("name")` syntax used to load modules, this syntax simply creates an alias for the specified symbol.
@@ -225,7 +225,7 @@ Notice that we don't use the `require` keyword; instead we assign directly from 
 This is similar to using `var`, but also works on the type and namespace meanings of the imported symbol.
 Importantly, for values, `import` is a distinct reference from the original symbol, so changes to an aliased `var` will not be reflected in the original variable.
 
-# Working with Other JavaScript Libraries
+# [Working with Other JavaScript Libraries](#working-with-other-js-libraries)
 
 To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.
 Because most JavaScript libraries expose only a few top-level objects, namespaces are a good way to represent them.
@@ -235,7 +235,7 @@ Typically these are defined in `.d.ts` files.
 If you're familiar with C/C++, you can think of these as `.h` files.
 Let's look at a few examples.
 
-## Ambient Namespaces
+## [Ambient Namespaces](#ambient-namespaces)
 
 The popular library D3 defines its functionality in a global object called `d3`.
 Because this library is loaded through a `<script>` tag (instead of a module loader), its declaration uses namespaces to define its shape.

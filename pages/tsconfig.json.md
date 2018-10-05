@@ -1,17 +1,17 @@
-## Overview
+## [Overview](#overview)
 
 The presence of a `tsconfig.json` file in a directory indicates that the directory is the root of a TypeScript project.
 The `tsconfig.json` file specifies the root files and the compiler options required to compile the project.
 A project is compiled in one of the following ways:
 
-## Using tsconfig.json
+## [Using tsconfig.json](#using-tsconfig)
 
 * By invoking tsc with no input files, in which case the compiler searches for the `tsconfig.json` file starting in the current directory and continuing up the parent directory chain.
 * By invoking tsc with no input files and a `--project` (or just `-p`) command line option that specifies the path of a directory containing a `tsconfig.json` file, or a path to a valid `.json` file containing the configurations.
 
 When input files are specified on the command line, `tsconfig.json` files are ignored.
 
-## Examples
+## [Examples](#examples)
 
 Example `tsconfig.json` files:
 
@@ -66,7 +66,7 @@ Example `tsconfig.json` files:
   }
   ```
 
-## Details
+## [Details](#details)
 
 The `"compilerOptions"` property can be omitted, in which case the compiler's defaults are used. See our full list of supported [Compiler Options](./Compiler Options.md).
 
@@ -98,7 +98,7 @@ A `tsconfig.json` file is permitted to be completely empty, which compiles all f
 
 Compiler options specified on the command line override those specified in the `tsconfig.json` file.
 
-## `@types`, `typeRoots` and `types`
+## [`@types`, `typeRoots` and `types`](#@types-typeroots-and-types)
 
 By default all *visible* "`@types`" packages are included in your compilation.
 Packages in `node_modules/@types` of any enclosing folder are considered *visible*;
@@ -138,7 +138,7 @@ Specify `"types": []` to disable automatic inclusion of `@types` packages.
 Keep in mind that automatic inclusion is only important if you're using files with global declarations (as opposed to files declared as modules).
 If you use an `import "foo"` statement, for instance, TypeScript may still look through `node_modules` & `node_modules/@types` folders to find the `foo` package.
 
-## Configuration inheritance with `extends`
+## [Configuration inheritance with `extends`](#configuration-inheritance-with-extends)
 
 A `tsconfig.json` file can inherit configurations from another file using the `extends` property.
 
@@ -188,7 +188,7 @@ For example:
 }
 ```
 
-## `compileOnSave`
+## [`compileOnSave`](#compile-on-save)
 
 Setting a top-level property `compileOnSave` signals to the IDE to generate all files for a given tsconfig.json upon saving.
 
@@ -203,6 +203,6 @@ Setting a top-level property `compileOnSave` signals to the IDE to generate all 
 
 This feature is currently supported in Visual Studio 2015 with TypeScript 1.8.4 and above, and [atom-typescript](https://github.com/TypeStrong/atom-typescript#compile-on-save) plugin.
 
-## Schema
+## [Schema](#schema)
 
 Schema can be found at: [http://json.schemastore.org/tsconfig](http://json.schemastore.org/tsconfig)

@@ -1,10 +1,25 @@
+# Table of contents
+
+- [Enums](#enums)
+    - [Numeric enums](#numeric-enums)
+    - [String enums](#string-enums)
+    - [Heterogeneous enums](#heterogeneous-enums)
+    - [Computed and constant members](#computed-and-constant-members)
+    - [Union enums and enum member types](#union-enums-and-enum-member-types)
+    - [Enums at runtime](#enums-at-runtime)
+        - [Reverse mappings](#reverse-mappings)
+        - [`const` enums](#const-enums)
+- [Ambient enums](#ambient-enums)
+
 # Enums
+<b><a href="#">↥ back to top</a></b>
 
 Enums allow us to define a set of named constants.
 Using enums can make it easier to document intent, or create a set of distinct cases.
 TypeScript provides both numeric and string-based enums.
 
 ## Numeric enums
+<b><a href="#">↥ back to top</a></b>
 
 We'll first start off with numeric enums, which are probably more familiar if you're coming from other languages.
 An enum can be defined using the `enum` keyword.
@@ -63,6 +78,7 @@ enum E {
 ```
 
 ## String enums
+<b><a href="#">↥ back to top</a></b>
 
 String enums are a similar concept, but have some subtle [runtime differences](#enums-at-runtime) as documented below.
 In a string enum, each member has to be constant-initialized with a string literal, or with another string enum member.
@@ -80,6 +96,7 @@ While string enums don't have auto-incrementing behavior, string enums have the 
 In other words, if you were debugging and had to read the runtime value of a numeric enum, the value is often opaque - it doesn't convey any useful meaning on its own (though [reverse mapping](#enums-at-runtime) can often help), string enums allow you to give a meaningful and readable value when your code runs, independent of the name of the enum member itself.
 
 ## Heterogeneous enums
+<b><a href="#">↥ back to top</a></b>
 
 Technically enums can be mixed with string and numeric members, but it's not clear why you would ever want to do so:
 
@@ -93,6 +110,7 @@ enum BooleanLikeHeterogeneousEnum {
 Unless you're really trying to take advantage of JavaScript's runtime behavior in a clever way, it's advised that you don't do this.
 
 ## Computed and constant members
+<b><a href="#">↥ back to top</a></b>
 
 Each enum member has a value associated with it which can be either *constant* or *computed*.
 An enum member is considered constant if:
@@ -142,6 +160,7 @@ enum FileAccess {
 ```
 
 ## Union enums and enum member types
+<b><a href="#">↥ back to top</a></b>
 
 There is a special subset of constant enum members that aren't calculated: literal enum members.
 A literal enum member is a constant enum member with no initialized value, or with values that are initialized to
@@ -202,6 +221,7 @@ If that check succeeds, then our `||` will short-circuit, and the body of the 'i
 However, if the check didn't succeed, then `x` can *only* be `E.Foo`, so it doesn't make sense to see whether it's equal to `E.Bar`.
 
 ## Enums at runtime
+<b><a href="#">↥ back to top</a></b>
 
 Enums are real objects that exist at runtime.
 For example, the following enum
@@ -288,6 +308,7 @@ var directions = [0 /* Up */, 1 /* Down */, 2 /* Left */, 3 /* Right */];
 ```
 
 ## Ambient enums
+<b><a href="#">↥ back to top</a></b>
 
 Ambient enums are used to describe the shape of already existing enum types.
 

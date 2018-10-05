@@ -1,3 +1,32 @@
+##### Table of Contents  
+* [Intersection Types](#Intersection_Types)  
+* [Union Types](#Union_Types)  
+* [Type Guards and Differentiating Types](#Type_Guards_and_Differentiating_Types)  
+    * [User-Defined Type Guards](#User-Defined_Type_Guards)  
+    * [`typeof` type guards](#typeof_type_guards)  
+    * [`instanceof` type guards](#instanceof_type_guards)  
+* [Nullable types](#Nullable_types)  
+    * [Optional parameters and properties](#Optional_parameters_and_properties)  
+    * [Type guards and type assertions](#Type_guards_and_type_assertions)  
+* [Type Aliases](#Type_Aliases)  
+    * [Interfaces vs. Type Aliases](#Interfaces_vs_Type_Aliases)  
+* [String Literal Types](#String_Literal_Types)  
+* [Numeric Literal Types](#Numeric_Literal_Types)  
+* [Enum Member Types](#Enum_Member_Types)  
+* [Discriminated Unions](#Discriminated_Unions)  
+    * [Exhaustiveness checking](#Exhaustiveness_checking)  
+* [Polymorphic `this` types](#Polymorphic_this_types)  
+* [Index types](#Index_types)  
+    * [Index types and string index signatures](#Index_types_and_string_index_signatures)  
+* [Mapped types](#Mapped_types)  
+    * [Inference from mapped types](#Inference_from_mapped_types)  
+* [Conditional Types](#Conditional_Types)  
+    * [Distributive conditional types](#Distributive_conditional_types)  
+    * [Type inference in conditional types](#Type_inference_in_conditional_types)  
+    * [Predefined conditional types](#Predefined_conditional_types)  
+
+<a name="Intersection_Types"/>
+
 # Intersection Types
 
 An intersection type combines multiple types into one.
@@ -38,6 +67,8 @@ var jim = extend(new Person("Jim"), new ConsoleLogger());
 var n = jim.name;
 jim.log();
 ```
+
+<a name="Union_Types"/>
 
 # Union Types
 
@@ -123,6 +154,8 @@ In this example, `Bird` has a member named `fly`.
 We can't be sure whether a variable typed as `Bird | Fish` has a `fly` method.
 If the variable is really a `Fish` at runtime, then calling `pet.fly()` will fail.
 
+<a name="Type_Guards_and_Differentiating_Types"/>
+
 # Type Guards and Differentiating Types
 
 Union types are useful for modeling situations when values can overlap in the types they can take on.
@@ -154,6 +187,8 @@ else {
     (<Bird>pet).fly();
 }
 ```
+
+<a name="User-Defined_Type_Guards"/>
 
 ## User-Defined Type Guards
 
@@ -188,6 +223,8 @@ else {
 
 Notice that TypeScript not only knows that `pet` is a `Fish` in the `if` branch;
 it also knows that in the `else` branch, you *don't* have a `Fish`, so you must have a `Bird`.
+
+<a name="typeof_type_guards"/>
 
 ## `typeof` type guards
 
@@ -232,6 +269,8 @@ function padLeft(value: string, padding: string | number) {
 
 These *`typeof` type guards* are recognized in two different forms: `typeof v === "typename"` and `typeof v !== "typename"`, where `"typename"` must be `"number"`, `"string"`, `"boolean"`, or `"symbol"`.
 While TypeScript won't stop you from comparing to other strings, the language won't recognize those expressions as type guards.
+
+<a name="instanceof_type_guards"/>
 
 ## `instanceof` type guards
 
@@ -283,6 +322,8 @@ The right side of the `instanceof` needs to be a constructor function, and TypeS
 
 in that order.
 
+<a name="Nullable_types"/>
+
 # Nullable types
 
 TypeScript has two special types, `null` and `undefined`, that have the values null and undefined respectively.
@@ -306,6 +347,8 @@ sn = undefined; // error, 'undefined' is not assignable to 'string | null'
 
 Note that TypeScript treats `null` and `undefined` differently in order to match JavaScript semantics.
 `string | null` is a different type than `string | undefined` and `string | undefined | null`.
+
+<a name="Optional_parameters_and_properties"/>
 
 ## Optional parameters and properties
 
@@ -335,6 +378,8 @@ c.b = 13;
 c.b = undefined; // ok
 c.b = null; // error, 'null' is not assignable to 'number | undefined'
 ```
+
+<a name="Type_guards_and_type_assertions"/>
 
 ## Type guards and type assertions
 
@@ -384,6 +429,8 @@ function fixed(name: string | null): string {
 The example uses a nested function here because the compiler can't eliminate nulls inside a nested function (except immediately-invoked function expressions).
 That's because it can't track all calls to the nested function, especially if you return it from the outer function.
 Without knowing where the function is called, it can't know what the type of `name` will be at the time the body executes.
+
+<a name="Type_Aliases"/>
 
 # Type Aliases
 
@@ -445,6 +492,8 @@ However, it's not possible for a type alias to appear anywhere else on the right
 type Yikes = Array<Yikes>; // error
 ```
 
+<a name="Interfaces_vs_Type_Aliases"/>
+
 ## Interfaces vs. Type Aliases
 
 As we mentioned, type aliases can act sort of like interfaces; however, there are some subtle differences.
@@ -466,6 +515,8 @@ A second more important difference is that type aliases cannot be extended or im
 Because [an ideal property of software is being open to extension](https://en.wikipedia.org/wiki/Open/closed_principle), you should always use an interface over a type alias if possible.
 
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.
+
+<a name="String_Literal_Types"/>
 
 # String Literal Types
 
@@ -512,6 +563,8 @@ function createElement(tagName: string): Element {
 }
 ```
 
+<a name="Numeric_Literal_Types"/>
+
 # Numeric Literal Types
 
 TypeScript also has numeric literal types.
@@ -535,11 +588,15 @@ function foo(x: number) {
 
 In other words, `x` must be `1` when it gets compared to `2`, meaning that the above check is making an invalid comparison.
 
+<a name="Enum_Member_Types"/>
+
 # Enum Member Types
 
 As mentioned in [our section on enums](./Enums.md#union-enums-and-enum-member-types), enum members have types when every member is literal-initialized.
 
 Much of the time when we talk about "singleton types", we're referring to both enum member types as well as numeric/string literal types, though many users will use "singleton types" and "literal types" interchangeably.
+
+<a name="Discriminated_Unions"/>
 
 # Discriminated Unions
 
@@ -590,6 +647,8 @@ function area(s: Shape) {
     }
 }
 ```
+
+<a name="Exhaustiveness_checking"/>
 
 ## Exhaustiveness checking
 
@@ -645,6 +704,8 @@ Here, `assertNever` checks that `s` is of type `never` &mdash; the type that's l
 If you forget a case, then `s` will have a real type and you will get a type error.
 This method requires you to define an extra function, but it's much more obvious when you forget it.
 
+<a name="Polymorphic_this_types"/>
+
 # Polymorphic `this` types
 
 A polymorphic `this` type represents a type that is the *subtype* of the containing class or interface.
@@ -699,6 +760,8 @@ let v = new ScientificCalculator(2)
 Without `this` types, `ScientificCalculator` would not have been able to extend `BasicCalculator` and keep the fluent interface.
 `multiply` would have returned `BasicCalculator`, which doesn't have the `sin` method.
 However, with `this` types, `multiply` returns `this`, which is `ScientificCalculator` here.
+
+<a name="Index_types"/>
 
 # Index types
 
@@ -770,6 +833,8 @@ let age: number = getProperty(person, 'age');
 let unknown = getProperty(person, 'unknown'); // error, 'unknown' is not in 'name' | 'age'
 ```
 
+<a name="Index_types_and_string_index_signatures"/>
+
 ## Index types and string index signatures
 
 `keyof` and `T[K]` interact with string index signatures.
@@ -783,6 +848,8 @@ interface Map<T> {
 let keys: keyof Map<number>; // string
 let value: Map<number>['foo']; // number
 ```
+
+<a name="Mapped_types"/>
 
 # Mapped types
 
@@ -906,6 +973,8 @@ type ThreeStringProps = Record<'prop1' | 'prop2' | 'prop3', string>
 
 Non-homomorphic types are essentially creating new properties, so they can't copy property modifiers from anywhere.
 
+<a name="Inference_from_mapped_types"/>
+
 ## Inference from mapped types
 
 Now that you know how to wrap the properties of a type, the next thing you'll want to do is unwrap them.
@@ -925,6 +994,8 @@ let originalProps = unproxify(proxyProps);
 
 Note that this unwrapping inference only works on homomorphic mapped types.
 If the mapped type is not homomorphic you'll have to give an explicit type parameter to your unwrapping function.
+
+<a name="Conditional_Types"/>
 
 # Conditional Types
 
@@ -992,6 +1063,8 @@ When another piece of code ends up calling `foo`, it will substitute in `U` with
 
 In the meantime, we can assign a conditional type to any other target type as long as each branch of the conditional is assignable to that target.
 So in our example above we were able to assign `U extends Foo ? string : number` to `string | number` since no matter what the conditional evaluates to, it's known to be either `string` or `number`.
+
+<a name="Distributive_conditional_types"/>
 
 ## Distributive conditional types
 
@@ -1084,6 +1157,8 @@ For example the following is an error.
 type ElementType<T> = T extends any[] ? ElementType<T[number]> : T;  // Error
 ```
 
+<a name="Type_inference_in_conditional_types"/>
+
 ## Type inference in conditional types
 
 Within the `extends` clause of a conditional type, it is now possible to have `infer` declarations that introduce a type variable to be inferred.
@@ -1151,6 +1226,8 @@ However, much the same effect can be obtained by erasing the type variables in t
 type AnyFunction = (...args: any[]) => any;
 type ReturnType<T extends AnyFunction> = T extends (...args: any[]) => infer R ? R : any;
 ```
+
+<a name="Predefined_conditional_types"/>
 
 ## Predefined conditional types
 

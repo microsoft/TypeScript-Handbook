@@ -77,7 +77,7 @@ npm install --save-dev typescript awesome-typescript-loader source-map-loader
 
 Both of these dependencies will let TypeScript and webpack play well together.
 awesome-typescript-loader helps Webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
-source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating _its own_ sourcemaps.
+source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
 This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
 
 Please note that awesome-typescript-loader is not the only loader for typescript.
@@ -96,15 +96,17 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
 
 ```json
 {
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
-    "jsx": "react"
-  },
-  "include": ["./src/**/*"]
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "es5",
+        "jsx": "react"
+    },
+    "include": [
+        "./src/**/*"
+    ]
 }
 ```
 
@@ -118,38 +120,24 @@ First, create a file named `Hello.tsx` in `src/components` and write the followi
 ```ts
 import * as React from "react";
 
-export interface HelloProps {
-  compiler: string;
-  framework: string;
-}
+export interface HelloProps { compiler: string; framework: string; }
 
-export const Hello = (props: HelloProps) => (
-  <h1>
-    Hello from {props.compiler} and {props.framework}!
-  </h1>
-);
+export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
 ```
 
-Note that while this example uses [stateless functional components](https://reactjs.org/docs/components-and-props.html#functional-and-class-components), we could also make our example a little _classier_ as well.
+Note that while this example uses [stateless functional components](https://reactjs.org/docs/components-and-props.html#functional-and-class-components), we could also make our example a little *classier* as well.
 
 ```ts
 import * as React from "react";
 
-export interface HelloProps {
-  compiler: string;
-  framework: string;
-}
+export interface HelloProps { compiler: string; framework: string; }
 
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.
 export class Hello extends React.Component<HelloProps, {}> {
-  render() {
-    return (
-      <h1>
-        Hello from {this.props.compiler} and {this.props.framework}!
-      </h1>
-    );
-  }
+    render() {
+        return <h1>Hello from {this.props.compiler} and {this.props.framework}!</h1>;
+    }
 }
 ```
 
@@ -162,13 +150,13 @@ import * as ReactDOM from "react-dom";
 import { Hello } from "./components/Hello";
 
 ReactDOM.render(
-  <Hello compiler="TypeScript" framework="React" />,
-  document.getElementById("example")
+    <Hello compiler="TypeScript" framework="React" />,
+    document.getElementById("example")
 );
 ```
 
 We just imported our `Hello` component into `index.tsx`.
-Notice that unlike with `"react"` or `"react-dom"`, we used a _relative path_ to `Hello.tsx` - this is important.
+Notice that unlike with `"react"` or `"react-dom"`, we used a *relative path* to `Hello.tsx` - this is important.
 If we hadn't, TypeScript would've instead tried looking in our `node_modules` folder.
 
 We'll also need a page to display our `Hello` component.
@@ -205,38 +193,38 @@ Create a `webpack.config.js` file at the root of the project directory.
 
 ```js
 module.exports = {
-  entry: "./src/index.tsx",
-  output: {
-    filename: "bundle.js",
-    path: __dirname + "/dist"
-  },
+    entry: "./src/index.tsx",
+    output: {
+        filename: "bundle.js",
+        path: __dirname + "/dist"
+    },
 
-  // Enable sourcemaps for debugging webpack's output.
-  devtool: "source-map",
+    // Enable sourcemaps for debugging webpack's output.
+    devtool: "source-map",
 
-  resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"]
-  },
+    resolve: {
+        // Add '.ts' and '.tsx' as resolvable extensions.
+        extensions: [".ts", ".tsx", ".js", ".json"]
+    },
 
-  module: {
-    rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+    module: {
+        rules: [
+            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
 
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
-    ]
-  },
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+        ]
+    },
 
-  // When importing a module whose path matches one of the following, just
-  // assume a corresponding global variable exists and use that instead.
-  // This is important because it allows us to avoid bundling all of our
-  // dependencies, which allows browsers to cache those libraries between builds.
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM"
-  }
+    // When importing a module whose path matches one of the following, just
+    // assume a corresponding global variable exists and use that instead.
+    // This is important because it allows us to avoid bundling all of our
+    // dependencies, which allows browsers to cache those libraries between builds.
+    externals: {
+        "react": "React",
+        "react-dom": "ReactDOM"
+    }
 };
 ```
 

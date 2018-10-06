@@ -53,6 +53,31 @@ let sentence: string = "Hello, my name is " + fullName + ".\n\n" +
     "I'll be " + (age + 1) + " years old next month.";
 ```
 
+Template literals can also passed to functions as a argument, functions parses the template literals in to the string literal and values. The first argument will be always array of strings from template literal, which is passed to the function, after first arguments, remaining all are related to expressions value. it can be spread operator(…), which will be an array of expressions value.
+
+```ts
+function postGreeting(template,arg){
+ console.log(template);            
+ // (2) ["Hello, ", ".", raw: Array(2)]
+ console.log(arg);
+ // 20
+return `${template[0]}${arg<12?"Good Morning":arg<17?"Good Afternoon":"Good Evening"}${template[1]}`;
+}
+console.log(postGreeting`Hello, ${new Date().getHours()}.`);
+// Hello, Good Evening.
+```
+*String Raw:-*
+It is added to get strings without processing escape sequences.
+```ts
+(() => { 
+    console.log(String.raw`Addtion of 1 plus 2 is \n ${1 + 2}`);
+    //Addtion of 1 plus 2 is \n 3
+    console.log(`Addtion of 1 plus 2 is \n ${1+2}`);
+    //Addtion of 1 plus 2 is 
+    //3
+})()
+```
+    
 # Array
 
 TypeScript, like JavaScript, allows you to work with arrays of values.

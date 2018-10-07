@@ -26,7 +26,6 @@ x = false;  // Error: boolean is not assignable to number
 
 You can find the full list of supported JSDoc patterns in the [JSDoc support in JavaScript documentation](https://github.com/Microsoft/TypeScript/wiki/JSDoc-support-in-JavaScript).
 
-
 ## Properties are inferred from assignments in class bodies
 
 ES2015 does not have a means for declaring properties on classes. Properties are dynamically assigned, just like object literals.
@@ -53,7 +52,6 @@ class C {
 }
 ```
 
-
 If properties are never set in the class body, they are considered unknown.
 If your class has properties that are only read from, add and then annotate a declaration in the constructor with JSDoc to specify the type.
 You don't even have to give a value if it will be initialised later:
@@ -67,7 +65,6 @@ class C {
         this.count;
     }
 }
-
 
 let c = new C();
 c.prop = 0;          // OK
@@ -114,7 +111,6 @@ Most combinations of assignments and declarations are supported.
 
 Classes are namespaces in `.js` files.
 This can be used to nest classes, for example:
-
 
 ```js
 class C {
@@ -255,7 +251,7 @@ function sum(/* numbers */) {
 
 Since there is no natural syntax for specifying generic type parameters in Javascript, an unspecified type parameter defaults to `any`.
 
-### In extends clause:
+### In extends clause
 
 For instance, `React.Component` is defined to have two type parameters, `Props` and `State`.
 In a `.js` file, there is no legal way to specify these in the extends clause. By default the type arguments will be `any`:
@@ -295,7 +291,6 @@ var x = [];
 
 x.push(1);        // OK
 x.push("string"); // OK, x is of type Array<any>
-
 
 /** @type{Array.<number>} */
 var y = [];
@@ -531,7 +526,6 @@ function ab(){}
 `@typedef` may be used to define complex types.
 Similar syntax works with `@param`.
 
-
 ```js
 /**
  * @typedef {Object} SpecialType - creates a new type named 'SpecialType'
@@ -560,7 +554,6 @@ var specialTypeObject1;
 
 `@param` allows a similar syntax for one-off type specifications.
 Note that the nested property names must be prefixed with the name of the parameter:
-
 
 ```js
 /**
@@ -690,7 +683,6 @@ class SortableSet extends Set {
 ```
 
 Note that `@extends` only works with classes. Currently, there is no way for a constructor function extend a class.
-
 
 ## `@enum`
 

@@ -1,13 +1,13 @@
 # Introduction
 
-Functions are the fundamental building block of any applications in JavaScript.
+Functions are the fundamental building blocks of any applications in JavaScript.
 They're how you build up layers of abstraction, mimicking classes, information hiding, and modules.
 In TypeScript, while there are classes, namespaces, and modules, functions still play the key role in describing how to *do* things.
 TypeScript also adds some new capabilities to the standard JavaScript functions to make them easier to work with.
 
 # Functions
 
-To begin, just as in JavaScript, TypeScript functions can be created both as a named function or as an anonymous function.
+To begin, just as in JavaScript, TypeScript functions can be created either as a named function or as an anonymous function.
 This allows you to choose the most appropriate approach for your application, whether you're building a list of functions in an API or a one-off function to hand off to another function.
 
 To quickly recap what these two approaches look like in JavaScript:
@@ -24,7 +24,7 @@ let myAdd = function(x, y) { return x + y; };
 
 Just as in JavaScript, functions can refer to variables outside of the function body.
 When they do so, they're said to `capture` these variables.
-While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.
+While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding of this mechanism is an important piece of working with JavaScript and TypeScript.
 
 ```ts
 let z = 100;
@@ -49,7 +49,7 @@ let myAdd = function(x: number, y: number): number { return x + y; };
 ```
 
 We can add types to each of the parameters and then to the function itself to add a return type.
-TypeScript can figure the return type out by looking at the return statements, so we can also optionally leave this off in many cases.
+TypeScript can figure out the return type by looking at the return statements, so we can also optionally leave this off in many cases.
 
 ## Writing the function type
 
@@ -150,7 +150,7 @@ let result3 = buildName("Bob", "Adams", "Sr.");  // error, too many parameters
 let result4 = buildName("Bob", "Adams");         // ah, just right
 ```
 
-Default-initialized parameters that come after all required parameters are treated as optional, and just like optional parameters, can be omitted when calling their respective function.
+Default-initialized parameters that come after all required parameters are treated as optional, and just like optional parameters, they can be omitted when calling their respective function.
 This means optional parameters and trailing default parameters will share commonality in their types, so both
 
 ```ts
@@ -258,7 +258,7 @@ That's because we call `cardPicker()` on its own.
 A top-level non-method syntax call like this will use `window` for `this`.
 (Note: under strict mode, `this` will be `undefined` rather than `window`).
 
-We can fix this by making sure the function is bound to the correct `this` before we return the function to be used later.
+We can fix this by making sure that the function is bound to the correct `this` before we return the function to be used later.
 This way, regardless of how it's later used, it will still be able to see the original `deck` object.
 To do this, we change the function expression to use the ECMAScript 6 arrow syntax.
 Arrow functions capture the `this` where the function is created rather than where it is invoked:
@@ -426,7 +426,7 @@ alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 ```
 
 Here the `pickCard` function will return two different things based on what the user has passed in.
-If the users passes in an object that represents the deck, the function will pick the card.
+If the user passes in an object that represents the deck, the function will pick the card.
 If the user picks the card, we tell them which card they've picked.
 But how do we describe this to the type system?
 
@@ -464,7 +464,7 @@ alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 With this change, the overloads now give us type-checked calls to the `pickCard` function.
 
 In order for the compiler to pick the correct typecheck, it follows a similar process to the underlying JavaScript.
-It looks at the overload list, and proceeding with the first overload attempts to call the function with the provided parameters.
+It looks at the overload list, and proceeding with the first overload, attempts to call the function with the provided parameters.
 If it finds a match, it picks this overload as the correct overload.
 For this reason, it's customary to order overloads from most specific to least specific.
 

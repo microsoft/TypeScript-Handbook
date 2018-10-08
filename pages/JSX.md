@@ -315,7 +315,7 @@ declare namespace JSX {
   World
 </div>;
 
-const CustomComp = (props) => <div>props.children</div>
+const CustomComp = (props) => <div>{props.children}</div>
 <CustomComp>
   <div>Hello World</div>
   {"This is just a JS expression..." + 1000}

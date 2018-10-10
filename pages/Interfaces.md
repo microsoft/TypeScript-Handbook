@@ -204,7 +204,8 @@ let squareOptions = { colour: "red", width: 100 };
 let mySquare = createSquare(squareOptions);
 ```
 
-The above workaround will work as long as you have a common property between `squareOptions` and `SquareConfig`. In this example, it was the property `width`. It will however, fail if the variable does not have any common object property. For example:
+The above workaround will work as long as you have a common property between `squareOptions` and `SquareConfig`.
+In this example, it was the property `width`. It will however, fail if the variable does not have any common object property. For example:
 
 ```ts
 let squareOptions = { colour: "red" };

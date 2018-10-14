@@ -7,31 +7,31 @@ var options = {
   files: inputFiles,
   config: {
     "default": false, // Let's disable all rules by default
-    MD003: "atx", // Header style
-    MD004: { style: "asterisk" }, // Unordered list style
-    MD005: true, // Inconsistent indentation for list items at the same level
-    MD006: true, // Consider starting bulleted lists at the beginning of the line
-    MD007: { indent: 4 }, // Unordered list indentation
-    MD009: true, // Trailing spaces
-    MD010: true, // Hard tabs
-    MD011: true, // Reversed link syntax
-    MD012: true, // Multiple consecutive blank lines
-    MD018: true, // No space after hash on atx style header
-    MD019: true, // Multiple spaces after hash on atx style header
-    MD022: true, // Headers should be surrounded by blank lines
-    MD023: true, // Headers must start at the beginning of the line
-    MD026: { punctuation: ".,;:!" }, // Trailing punctuation in header
-    MD027: true, // Multiple spaces after blockquote symbol
-    MD028: true, // Blank line inside blockquote
-    MD029: { style: "ordered" }, // Ordered list item prefix
-    MD030: true, // Spaces after list markers
-    MD031: true, // Fenced code blocks should be surrounded by blank lines
-    MD032: true, // Lists should be surrounded by blank lines
-    MD034: true, // Bare URL used
-    MD035: "---", // Horizontal rule style
-    MD037: true, // Spaces inside emphasis markers
-    MD039: true, // Spaces inside link text
-    MD040: true, // Fenced code blocks should have a language specifieds
+    "heading-increment": "atx", // Header style
+    "ul-style": { style: "asterisk" }, // Unordered list style
+    "list-indent": true, // Inconsistent indentation for list items at the same level
+    "ul-start-left": true, // Consider starting bulleted lists at the beginning of the line
+    "ul-indent": { indent: 4 }, // Unordered list indentation
+    "no-trailing-spaces": true, // Trailing spaces
+    "no-hard-tabs": true, // Hard tabs
+    "no-reversed-links": true, // Reversed link syntax
+    "no-multiple-blanks": true, // Multiple consecutive blank lines
+    "no-missing-space-atx": true, // No space after hash on atx style header
+    "no-multiple-space-atx": true, // Multiple spaces after hash on atx style header
+    "blanks-around-headings": true, // Headers should be surrounded by blank lines
+    "heading-start-left": true, // Headers must start at the beginning of the line
+    "no-trailing-punctuation": { punctuation: ".,;:!" }, // Trailing punctuation in header
+    "no-multiple-space-blockquote": true, // Multiple spaces after blockquote symbol
+    "no-blanks-blockquote": true, // Blank line inside blockquote
+    "ol-prefix": { style: "ordered" }, // Ordered list item prefix
+    "list-marker-space": true, // Spaces after list markers
+    "blanks-around-fences": true, // Fenced code blocks should be surrounded by blank lines
+    "blanks-around-lists": true, // Lists should be surrounded by blank lines
+    "no-bare-urls": true, // Bare URL used
+    "hr-style": "---", // Horizontal rule style
+    "no-space-in-emphasis": true, // Spaces inside emphasis markers
+    "no-space-in-links": true, // Spaces inside link text
+    "fenced-code-language": true, // Fenced code blocks should have a language specifieds
   }
 };
 

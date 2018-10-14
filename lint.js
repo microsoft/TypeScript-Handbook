@@ -6,8 +6,7 @@ var inputFiles = glob.sync("**/*.md", { ignore: "node_modules/**/*" });
 var options = {
   files: inputFiles,
   config: {
-    MD001: false, // Header levels should only increment by one level at a time
-    MD002: false, // First header should be a h1 header
+    "default": false, // Let's disable all rules by default
     MD003: "atx", // Header style
     MD004: { style: "asterisk" }, // Unordered list style
     MD005: true, // Inconsistent indentation for list items at the same level
@@ -17,16 +16,10 @@ var options = {
     MD010: true, // Hard tabs
     MD011: true, // Reversed link syntax
     MD012: true, // Multiple consecutive blank lines
-    MD013: false, // Line length
-    MD014: false, // Dollar signs used before commands without showing output
     MD018: true, // No space after hash on atx style header
     MD019: true, // Multiple spaces after hash on atx style header
-    MD020: false, // No space inside hashes on closed atx style header
-    MD021: false, // Multiple spaces inside hashes on closed atx style header
     MD022: true, // Headers should be surrounded by blank lines
     MD023: true, // Headers must start at the beginning of the line
-    MD024: false, // Multiple headers with the same content
-    MD025: false, // Multiple top level headers in the same document
     MD026: { punctuation: ".,;:!" }, // Trailing punctuation in header
     MD027: true, // Multiple spaces after blockquote symbol
     MD028: true, // Blank line inside blockquote
@@ -34,15 +27,11 @@ var options = {
     MD030: true, // Spaces after list markers
     MD031: true, // Fenced code blocks should be surrounded by blank lines
     MD032: true, // Lists should be surrounded by blank lines
-    MD033: false, // Inline HTML
     MD034: true, // Bare URL used
     MD035: "---", // Horizontal rule style
-    MD036: false, // Emphasis used instead of a header
     MD037: true, // Spaces inside emphasis markers
-    MD038: false, // Spaces inside code span elements
     MD039: true, // Spaces inside link text
-    MD040: true, // Fenced code blocks should have a language specified
-    MD041: false, // First line in file should be a top level header
+    MD040: true, // Fenced code blocks should have a language specifieds
   }
 };
 

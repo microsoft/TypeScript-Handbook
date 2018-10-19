@@ -26,7 +26,7 @@ Because JavaScript widely uses anonymous objects like function expressions and o
 
 ## A Note on Soundness
 
-TypeScript's type system allows certain operations that can't be known at compile-time to be safe. When a type system has this property, it is said to not be "sound". The places where TypeScript allows unsound behavior were carefully considered, and throughout this document we'll explain where these happen and the motivating scenarios behind them.
+TypeScript's type system allows certain operations that can't be known at compile-time to be safe. When a type system has this property, it is said not to be "sound". The places where TypeScript allows unsound behavior were carefully considered, and throughout this document, we'll explain where these happen and the motivating scenarios behind them.
 
 # Starting out
 
@@ -62,7 +62,7 @@ This comparison process proceeds recursively, exploring the type of each member 
 
 # Comparing two functions
 
-While comparing primitive types and object types is relatively straightforward, the question of what kinds of functions should be considered compatible is a bit more involved.
+While comparing primitive types and object types are relatively straightforward, the question of what kinds of functions should be considered compatible is a bit more involved.
 Let's start with a basic example of two functions that differ only in their parameter lists:
 
 ```ts
@@ -78,7 +78,7 @@ Each parameter in `x` must have a corresponding parameter in `y` with a compatib
 Note that the names of the parameters are not considered, only their types.
 In this case, every parameter of `x` has a corresponding compatible parameter in `y`, so the assignment is allowed.
 
-The second assignment is an error, because `y` has a required second parameter that `x` does not have, so the assignment is disallowed.
+The second assignment is an error because `y` has a required second parameter that `x` does not have, so the assignment is disallowed.
 
 You may be wondering why we allow 'discarding' parameters like in the example `y = x`.
 The reason for this assignment to be allowed is that ignoring extra function parameters is actually quite common in JavaScript.
@@ -111,7 +111,7 @@ The type system enforces that the source function's return type be a subtype of 
 
 When comparing the types of function parameters, assignment succeeds if either the source parameter is assignable to the target parameter, or vice versa.
 This is unsound because a caller might end up being given a function that takes a more specialized type, but invokes the function with a less specialized type.
-In practice, this sort of error is rare, and allowing this enables many common JavaScript patterns. A brief example:
+In practice, this sort of error is rare and allowing this enables many common JavaScript patterns. A brief example:
 
 ```ts
 enum EventType { Mouse, Keyboard }
@@ -142,7 +142,7 @@ Extra optional parameters of the source type are not an error, and optional para
 
 When a function has a rest parameter, it is treated as if it were an infinite series of optional parameters.
 
-This is unsound from a type system perspective, but from a runtime point of view the idea of an optional parameter is generally not well-enforced since passing `undefined` in that position is equivalent for most functions.
+This is unsound from a type system perspective, but from a runtime point of view, the idea of an optional parameter is generally not well-enforced since passing `undefined` in that position is equivalent for most functions.
 
 The motivating example is the common pattern of a function that takes a callback and invokes it with some predictable (to the programmer) but unknown (to the type system) number of arguments:
 
@@ -203,8 +203,8 @@ s = a;  // OK
 
 Private and protected members in a class affect their compatibility.
 When an instance of a class is checked for compatibility, if the target type contains a private member, then the source type must also contain a private member that originated from the same class.
-Likewise, the same applies for an instance with a protected member.
-This allows a class to be assignment compatible with its super class, but *not* with classes from a different inheritance hierarchy which otherwise have the same shape.
+Likewise, the same applies to an instance with a protected member.
+This allows a class to be assignment compatible with its super class, but *not* with classes from a different inheritance hierarchy which otherwise has the same shape.
 
 # Generics
 

@@ -60,7 +60,7 @@ export default class Greeter {
 }
 ```
 
-Which in tern can be imported using default imports:
+Which in turn can be imported using default imports:
 
 ```ts
 import Greeter from "./greeter";

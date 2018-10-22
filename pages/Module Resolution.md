@@ -171,7 +171,7 @@ So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would res
 23. `/node_modules/moduleB/index.tsx`
 24. `/node_modules/moduleB/index.d.ts`
 
-Don't be intimidated by the number of steps here - TypeScript is still only jumping up directories twice at steps (8) and (15).
+Don't be intimidated by the number of steps here - TypeScript is still only jumping up directories twice at steps (9) and (17).
 This is really no more complex than what Node.js itself is doing.
 
 ## Additional module resolution flags

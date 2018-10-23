@@ -242,7 +242,7 @@ function infiniteLoop(): never {
 
 # Object
 
-`object` is a type that represents the non-primitive type, i.e. any thing that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`.
+`object` is a type that represents the non-primitive type, i.e. anything that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`.
 
 With `object` type, APIs like `Object.create` can be better represented. For example:
 

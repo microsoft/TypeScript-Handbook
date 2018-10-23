@@ -26,7 +26,7 @@ let octal: number = 0o744;
 
 # String
 
-Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data.
+Another fundamental part of creating programs in JavaScript for web pages and servers alike is working with textual data.
 As in other languages, we use the type `string` to refer to these textual datatypes.
 Just like JavaScript, TypeScript also uses double quotes (`"`) or single quotes (`'`) to surround string data.
 

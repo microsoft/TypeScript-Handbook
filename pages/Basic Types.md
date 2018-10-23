@@ -1,7 +1,7 @@
 # Introduction
 
 For programs to be useful, we need to be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.
-In TypeScript, we support much the same types as you would expect in JavaScript, with a convenient enumeration type thrown in to help things along.
+In TypeScript, we support much of the same types as you would expect in JavaScript, with a convenient enumeration type thrown in to help things along.
 
 # Boolean
 
@@ -71,7 +71,7 @@ let list: Array<number> = [1, 2, 3];
 
 # Tuple
 
-Tuple types allow you to express an array where the type of a fixed number of elements is known, but need not be the same.
+Tuple types allow you to express an array where the type of a fixed number of elements is known, but do not need to be the same.
 For example, you may want to represent a value as a pair of a `string` and a `number`:
 
 ```ts

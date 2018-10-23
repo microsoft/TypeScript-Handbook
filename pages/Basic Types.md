@@ -143,7 +143,7 @@ console.log(colorName); // Displays 'Green' as its value is 2 above
 We may need to describe the type of variables that we do not know when we are writing an application.
 These values may come from dynamic content, e.g. from the user or a 3rd party library.
 In these cases, we want to opt-out of type-checking and let the values pass through compile-time checks.
-To do so, we label these with the `any` type:
+To do so, we label these with `any` type:
 
 ```ts
 let notSure: any = 4;
@@ -151,7 +151,7 @@ notSure = "maybe a string instead";
 notSure = false; // okay, definitely a boolean
 ```
 
-The `any` type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type-checking during compilation.
+`any` type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type-checking during compilation.
 You might expect `Object` to play a similar role, as it does in other languages.
 But variables of type `Object` only allow you to assign any value to them - you can't call arbitrary methods on them, even ones that actually exist:
 
@@ -164,7 +164,7 @@ let prettySure: Object = 4;
 prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
 ```
 
-The `any` type is also handy if you know some part of the type, but perhaps not all of it.
+`any` type is also handy if you know some part of the type, but perhaps not all of it.
 For example, you may have an array but the array has a mix of different types:
 
 ```ts
@@ -193,7 +193,7 @@ let unusable: void = undefined;
 # Null and Undefined
 
 In TypeScript, both `undefined` and `null` actually have their own types named `undefined` and `null` respectively.
-Much like `void`, they're not extremely useful on their own:
+Much like the `void`, they're not extremely useful on their own:
 
 ```ts
 // Not much else we can assign to these variables!
@@ -202,7 +202,7 @@ let n: null = null;
 ```
 
 By default `null` and `undefined` are subtypes of all other types.
-That means you can assign `null` and `undefined` to something like `number`.
+That means you can assign `null` and `undefined` to something like a `number`.
 
 However, when using the `--strictNullChecks` flag, `null` and `undefined` are only assignable to `void` and their respective types.
 This helps avoid *many* common errors.
@@ -261,11 +261,11 @@ create(undefined); // Error
 # Type assertions
 
 Sometimes you'll end up in a situation where you'll know more about a value than TypeScript does.
-Usually this will happen when you know the type of some entity could be more specific than its current type.
+Usually, this will happen when you know the type of some entity could be more specific than its current type.
 
 *Type assertions* are a way to tell the compiler "trust me, I know what I'm doing."
-A type assertion is like a type cast in other languages, but performs no special checking or restructuring of data.
-It has no runtime impact, and is used purely by the compiler.
+A type assertion is like a typecast in other languages but performs no special checking or restructuring of data.
+It has no runtime impact and is used purely by the compiler.
 TypeScript assumes that you, the programmer, have performed any special checks that you need.
 
 Type assertions have two forms.

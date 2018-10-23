@@ -301,7 +301,7 @@ We need to add:
 
 1. The paths to the library files.
 2. Add a `lib` task to pipe the files to `wwwroot`.
-3. Add a dependendency on `lib` to the `default` task.
+3. Add a dependency on `lib` to the `default` task.
 
 The updated `gulpfile.js` should look like this:
 

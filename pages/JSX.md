@@ -5,7 +5,7 @@ It is meant to be transformed into valid JavaScript, though the semantics of tha
 JSX rose to popularity with the [React](https://reactjs.org/) framework, but has since seen other implementations as well.
 TypeScript supports embedding, type checking, and compiling JSX directly to JavaScript.
 
-# Basic usage
+# Basic Usage
 
 In order to use JSX you must do two things.
 
@@ -384,7 +384,7 @@ var a = <div>
 </div>
 ```
 
-# React integration
+# React Integration
 
 To use JSX with React you should use the [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
 These typings define the `JSX` namespace appropriately for use with React.

@@ -22,7 +22,7 @@ During this process, additional files are added to the compilation.
 
 The process starts with a set of *root files*;
 these are the file names specified on the command-line or in the `"files"` list in the `tsconfig.json` file.
-These root files are preprocessed in the same order they are specified.
+These root files are pre-processed in the same order they are specified.
 Before a file is added to the list, all triple-slash references in it are processed, and their targets included.
 Triple-slash references are resolved in a depth first manner, in the order they have been seen in the file.
 

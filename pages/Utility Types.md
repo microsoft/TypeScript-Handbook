@@ -2,7 +2,8 @@
 
 TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally.
 
-## Table of contents
+## Table of Contents
+
 * [`Partial<T>`](#partialt)
 * [`Readonly<T>`](#readonlyt)
 * [`Record<K,T>`](#recordkt)

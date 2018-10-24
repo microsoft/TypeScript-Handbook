@@ -105,7 +105,7 @@ A `node_modules` folder can be on the same level as the current file, or higher 
 Node will walk up the directory chain, looking through each `node_modules` until it finds the module you tried to load.
 
 Following up our example above, consider if `/root/src/moduleA.js` instead used a non-relative path and had the import `var x = require("moduleB");`.
-Node would then try to resolve `moduleB` to each of the locations until one worked.
+Node would then try to resolve `moduleB` to each of the locations until one works.
 
 1. `/root/src/node_modules/moduleB.js`
 2. `/root/src/node_modules/moduleB/package.json` (if it specifies a `"main"` property)

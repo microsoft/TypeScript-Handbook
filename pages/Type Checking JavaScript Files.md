@@ -56,7 +56,7 @@ class C {
 
 If properties are never set in the class body, they are considered unknown.
 If your class has properties that are only read from, add and then annotate a declaration in the constructor with JSDoc to specify the type.
-You don't even have to give a value if it will be initialised later:
+You don't even have to give a value if it will be initialized later:
 
 ```js
 class C {

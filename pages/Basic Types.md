@@ -1,7 +1,7 @@
 # Introduction
 
-For programs to be useful, we need to be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.
-In TypeScript, we support much the same types as you would expect in JavaScript, with a convenient enumeration type thrown in to help things along.
+For programs to be useful, we must be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.
+In TypeScript, we support almost the same types as you would expect in JavaScript, with a convenient enumeration type thrown in to help things along.
 
 # Boolean
 
@@ -26,7 +26,7 @@ let octal: number = 0o744;
 
 # String
 
-Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data.
+Another fundamental part of creating programs in JavaScript for web pages and servers alike is working with textual data.
 As in other languages, we use the type `string` to refer to these textual datatypes.
 Just like JavaScript, TypeScript also uses double quotes (`"`) or single quotes (`'`) to surround string data.
 
@@ -223,7 +223,7 @@ Even `any` isn't assignable to `never`.
 Some examples of functions returning `never`:
 
 ```ts
-// Function returning never must have unreachable end point
+// Function returning never must have unreachable endpoint
 function error(message: string): never {
     throw new Error(message);
 }
@@ -233,7 +233,7 @@ function fail() {
     return error("Something failed");
 }
 
-// Function returning never must have unreachable end point
+// Function returning never must have unreachable endpoint
 function infiniteLoop(): never {
     while (true) {
     }
@@ -242,7 +242,7 @@ function infiniteLoop(): never {
 
 # Object
 
-`object` is a type that represents the non-primitive type, i.e. any thing that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`.
+`object` is a type that represents the non-primitive type, i.e. anything that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`.
 
 With `object` type, APIs like `Object.create` can be better represented. For example:
 
@@ -261,11 +261,11 @@ create(undefined); // Error
 # Type assertions
 
 Sometimes you'll end up in a situation where you'll know more about a value than TypeScript does.
-Usually this will happen when you know the type of some entity could be more specific than its current type.
+Usually, this will happen when you know the type of some entity could be more specific than its current type.
 
 *Type assertions* are a way to tell the compiler "trust me, I know what I'm doing."
-A type assertion is like a type cast in other languages, but performs no special checking or restructuring of data.
-It has no runtime impact, and is used purely by the compiler.
+A type assertion is like a typecast in other languages but performs no special checking or restructuring of data.
+It has no runtime impact and is used purely by the compiler.
 TypeScript assumes that you, the programmer, have performed any special checks that you need.
 
 Type assertions have two forms.
@@ -290,6 +290,6 @@ Using one over the other is mostly a choice of preference; however, when using T
 
 # A note about `let`
 
-You may've noticed that so far, we've been using the `let` keyword instead of JavaScript's `var` keyword which you might be more familiar with.
+You may have noticed that so far, we've been using the `let` keyword instead of JavaScript's `var` keyword which you might be more familiar with.
 The `let` keyword is actually a newer JavaScript construct that TypeScript makes available.
 We'll discuss the details later, but many common problems in JavaScript are alleviated by using `let`, so you should use it instead of `var` whenever possible.

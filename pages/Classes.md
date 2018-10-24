@@ -264,8 +264,7 @@ dad.name = "Man with the 3-piece suit"; // error! name is readonly.
 
 ## Parameter properties
 
-In our last example, we had to declare a readonly member `name` and a constructor parameter `theName` in the `Octopus` class, and we then immediately set `name` to `theName`.
-This turns out to be a very common practice.
+In our last example, we had to declare a readonly member `name` and a constructor parameter `theName` in the `Octopus` class. This is needed in order to have the value of `theName` accessible after the `Octopus` construct is executed.
 *Parameter properties* let you create and initialize a member in one place.
 Here's a further revision of the previous `Octopus` class using a parameter property:
 

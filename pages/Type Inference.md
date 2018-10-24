@@ -16,7 +16,7 @@ This kind of inference takes place when initializing variables and members, sett
 In most cases, type inference is straightforward.
 In the following sections, we'll explore some of the nuances in how types are inferred.
 
-# Best common type
+# Best Common Type
 
 When a type inference is made from several expressions, the types of those expressions are used to calculate a "best common type". For example,
 

@@ -10,7 +10,7 @@
  */
 
 /*~ Note that ES6 modules cannot directly export class objects.
- *~ This file should be imported using the CommonJS-style:
+ *~ This file should be imported using the TypeScript specific style (instead of CommonJS-style):
  *~   import x = require('someLibrary');
  *~
  *~ Refer to the documentation to understand common

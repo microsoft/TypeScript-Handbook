@@ -286,7 +286,7 @@ in that order.
 # Nullable types
 
 TypeScript has two special types, `null` and `undefined`, that have the values null and undefined respectively.
-We mentioned these briefly in [the Basic Types section](./Basic Types.md).
+We mentioned these briefly in [the Basic Types section](./Basic%20Types.md).
 By default, the type checker considers `null` and `undefined` assignable to anything.
 Effectively, `null` and `undefined` are valid values of every type.
 That means it's not possible to *stop* them from being assigned to any type, even when you would like to prevent it.

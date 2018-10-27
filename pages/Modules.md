@@ -224,6 +224,8 @@ This can be a class, interface, namespace, function, or enum.
 
 When exporting a module using `export =`, TypeScript-specific `import module = require("module")` must be used to import the module.
 
+> **Note:** Since the introduction of `--allowSyntheticDefaultImports` [Compiler Options](https://www.typescriptlang.org/docs/handbook/compiler-options.html), TypeScript-specific `import = require()` is not required if this option is set to true.
+
 ##### ZipCodeValidator.ts
 
 ```ts

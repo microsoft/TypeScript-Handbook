@@ -1,13 +1,13 @@
 # Introduction
 
-Functions are the fundamental building block of any applications in JavaScript.
-They're how you build up layers of abstraction, mimicking classes, information hiding, and modules.
+Functions are the fundamental building block of any application in JavaScript.
+They're used to build up layers of abstraction, mimick classes, and hide information and modules.
 In TypeScript, while there are classes, namespaces, and modules, functions still play the key role in describing how to *do* things.
 TypeScript also adds some new capabilities to the standard JavaScript functions to make them easier to work with.
 
 # Functions
 
-To begin, just as in JavaScript, TypeScript functions can be created both as a named function or as an anonymous function.
+Just like in JavaScript, TypeScript functions can be created both as a named functions or as an anonymous functions.
 This allows you to choose the most appropriate approach for your application, whether you're building a list of functions in an API or a one-off function to hand off to another function.
 
 To quickly recap what these two approaches look like in JavaScript:
@@ -22,9 +22,9 @@ function add(x, y) {
 let myAdd = function(x, y) { return x + y; };
 ```
 
-Just as in JavaScript, functions can refer to variables outside of the function body.
+Just like in JavaScript, functions can refer to variables outside of the function body.
 When they do so, they're said to `capture` these variables.
-While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.
+Even though explaining how this works and what are the downsides of this is out of scope of this article, it is important to have a good understanding of this mechanic when working with Javascript or TypeScript.
 
 ```ts
 let z = 100;
@@ -38,7 +38,7 @@ function addToZ(x, y) {
 
 ## Typing the function
 
-Let's add types to our simple examples from earlier:
+Let's add types to our simple example from earlier:
 
 ```ts
 function add(x: number, y: number): number {
@@ -48,12 +48,12 @@ function add(x: number, y: number): number {
 let myAdd = function(x: number, y: number): number { return x + y; };
 ```
 
-We can add types to each of the parameters and then to the function itself to add a return type.
-TypeScript can figure the return type out by looking at the return statements, so we can also optionally leave this off in many cases.
+We can add a type to each of the parameters and then to the function itself to specify the return type.
+TypeScript can figure the return type out by looking at the return statements, so we can also leave this unspecified in many cases.
 
 ## Writing the function type
 
-Now that we've typed the function, let's write the full type of the function out by looking at each piece of the function type.
+Now that we've typed the function, let's write the whole type of the function out by looking at each piece of the function type.
 
 ```ts
 let myAdd: (x: number, y: number) => number =
@@ -71,10 +71,10 @@ let myAdd: (baseValue: number, increment: number) => number =
     function(x: number, y: number): number { return x + y; };
 ```
 
-As long as the parameter types line up, it's considered a valid type for the function, regardless of the names you give the parameters in the function type.
+Regardless of the names you give the parameters, it's considered a valid type for the function as long as the parameters' types match.
 
 The second part is the return type.
-We make it clear which is the return type by using a fat arrow (`=>`) between the parameters and the return type.
+We specify return type by using a fat arrow (`=>`) between the parameters list and the return type.
 As mentioned before, this is a required part of the function type, so if the function doesn't return a value, you would use `void` instead of leaving it off.
 
 Of note, only the parameters and the return type make up the function type.
@@ -133,9 +133,9 @@ let result3 = buildName("Bob", "Adams");         // ah, just right
 ```
 
 Any optional parameters must follow required parameters.
-Had we wanted to make the first name optional rather than the last name, we would need to change the order of parameters in the function, putting the first name last in the list.
+Had we wanted to make the first name optional rather than the last name, we would have had to change the order of parameters in the function, putting the first name last in the list.
 
-In TypeScript, we can also set a value that a parameter will be assigned if the user does not provide one, or if the user passes `undefined` in its place.
+In TypeScript, we can also set a default value that a parameter will be assigned if the user does not provide one, or if the user passes `undefined` in its place.
 These are called default-initialized parameters.
 Let's take the previous example and default the last name to `"Smith"`.
 

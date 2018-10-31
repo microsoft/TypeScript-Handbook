@@ -75,3 +75,8 @@ The nightly build currently does not include the full plugin setup, but we are w
 
 Go to `Preferences` > `Languages & Frameworks` > `TypeScript`:
  > TypeScript Version: If you installed with npm: `/usr/local/lib/node_modules/typescript/lib`
+
+### IntelliJ IDEA (Windows)
+
+Go to `File` > `Settings` > `Languages & Frameworks` > `TypeScript`:
+ > TypeScript Version: If you installed with npm: `C:\Users\USERNAME\AppData\Roaming\npm\node_modules\typescript\lib`

@@ -22,7 +22,7 @@ sym2 === sym3; // false, symbols are unique
 Just like strings, symbols can be used as keys for object properties.
 
 ```ts
-let sym = Symbol();
+const sym = Symbol();
 
 let obj = {
     [sym]: "value"

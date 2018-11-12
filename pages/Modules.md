@@ -827,5 +827,4 @@ From the consumption side, the consumer of any given module gets to pick the nam
 All of the following are red flags for module structuring. Double-check that you're not trying to namespace your external modules if any of these apply to your files:
 
 * A file whose only top-level declaration is `export namespace Foo { ... }` (remove `Foo` and move everything 'up' a level)
-* A file that has a single `export class` or `export function` (consider using `export default`)
 * Multiple files that have the same `export namespace Foo {` at top-level (don't think that these are going to combine into one `Foo`!)

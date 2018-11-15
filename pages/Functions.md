@@ -24,7 +24,7 @@ let myAdd = function(x, y) { return x + y; };
 
 Just as in JavaScript, functions can refer to variables outside of the function body.
 When they do so, they're said to `capture` these variables.
-While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding how this mechanic is an important piece of working with JavaScript and TypeScript.
+While understanding how this works, and the trade-offs when using this technique, are outside of the scope of this article, having a firm understanding of how this mechanism behaves is an important piece of working with JavaScript and TypeScript.
 
 ```ts
 let z = 100;

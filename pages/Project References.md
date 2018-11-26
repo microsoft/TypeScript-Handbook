@@ -139,9 +139,9 @@ Just like `tsc -p`, specifying the config file name itself is unnecessary if it'
 You can specify any number of config files:
 
 ```shell
- > tsc -b                                # Build the tsconfig.json in the current directory
- > tsc -b src                            # Build src/tsconfig.json
- > tsc -b foo/release.tsconfig.json bar  # Build foo/release.tsconfig.json and bar/tsconfig.json
+ > tsc -b                            # Use the tsconfig.json in the current directory
+ > tsc -b src                        # Use src/tsconfig.json
+ > tsc -b foo/prd.tsconfig.json bar  # Use foo/prd.tsconfig.json and bar/tsconfig.json
 ```
 
 Don't worry about ordering the files you pass on the commandline - `tsc` will re-order them if needed so that dependencies are always built first.

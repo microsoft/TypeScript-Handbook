@@ -70,6 +70,7 @@ Option                                         | Type      | Default            
 `--resolveJsonModule`                          | `boolean` | `false`                        | Include modules imported with `.json` extension.
 `--rootDir`                                    | `string`  | *(common root directory is computed from the list of input files)*   | Specifies the root directory of input files. Only use to control the output directory structure with `--outDir`.
 `rootDirs`<sup>[2]</sup>                       | `string[]`|                                | List of <i>root</i> folders whose combined content represent the structure of the project at runtime. See [Module Resolution documentation](./Module Resolution.md#virtual-directories-with-rootdirs) for more details.
+`--showConfig`                                 | `boolean` | `false`                        | Rather than actually execute a build with the other input options and config files, show the final implied config file in the output.
 `--skipDefaultLibCheck`                        | `boolean` | `false`                        | DEPRECATED. Use `--skipLibCheck` instead.<br/>Skip type checking of [default library declaration files](./Triple-Slash Directives.md#-reference-no-default-libtrue).
 `--skipLibCheck`                               | `boolean` | `false`                        | Skip type checking of all declaration files (`*.d.ts`).
 `--sourceMap`                                  | `boolean` | `false`                        | Generates corresponding `.map` file.

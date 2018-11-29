@@ -1,6 +1,4 @@
-# TypeScript 3.2
-
-## `strictBindCallApply`
+# `strictBindCallApply`
 
 TypeScript 3.2 introduces a new `--strictBindCallApply` compiler option (in the `--strict` family of options) with which the `bind`, `call`, and `apply` methods on function objects are strongly typed and strictly checked.
 
@@ -17,14 +15,14 @@ let d = foo.apply(undefined, [10, "hello"]);     // okay! returns a string
 
 This is achieved by introducing two new types, `CallableFunction` and `NewableFunction`, in `lib.d.ts`. These types contain specialized generic method declarations for `bind`, `call`, and `apply` for regular functions and constructor functions, respectively. The declarations use generic rest parameters (see #24897) to capture and reflect parameter lists in a strongly typed manner. In `--strictBindCallApply` mode these declarations are used in place of the (very permissive) declarations provided by type `Function`.
 
-### Caveats
+## Caveats
 
 Since the stricter checks may uncover previously unreported errors, this is a breaking change in `--strict` mode.
 
 Additionally, [another caveat](https://github.com/Microsoft/TypeScript/pull/27028#issuecomment-429334450) of this new functionality is that due to certain limitations, `bind`, `call`, and `apply` can't yet fully model generic functions or functions that have overloads.
 When using these methods on a generic function, type parameters will be substituted with the empty object type (`{}`), and when used on a function with overloads, only the last overload will ever be modeled.
 
-## Generic spread expressions in object literals
+# Generic spread expressions in object literals
 
 In TypeScript 3.2, object literals now allow generic spread expressions which now produce intersection types, similar to the `Object.assign` function and JSX literals. For example:
 
@@ -60,7 +58,7 @@ let b1 = s1.b;  // string
 let b2 = s2.b;  // number & string
 ```
 
-## Generic object rest variables and parameters
+# Generic object rest variables and parameters
 
 TypeScript 3.2 also allows destructuring a rest binding from a generic variable. This is achieved by using the predefined `Pick` and `Exclude` helper types from `lib.d.ts`, and using the generic type in question as well as the names of the other bindings in the destructuring pattern.
 
@@ -74,7 +72,7 @@ const taggedPoint = { x: 10, y: 20, tag: "point" };
 const point = excludeTag(taggedPoint);  // { x: number, y: number }
 ```
 
-## BigInt
+# BigInt
 
 BigInts are part of an upcoming proposal in ECMAScript that allow us to model theoretically arbitrarily large integers.
 TypeScript 3.2 brings type-checking for BigInts, as well as support for emitting BigInt literals when targeting `esnext`.
@@ -137,7 +135,7 @@ function whatKindOfNumberIsIt(x: number | bigint) {
 We'd like to extend a huge thanks to [Caleb Sander](https://github.com/calebsander) for all the work on this feature.
 We're grateful for the contribution, and we're sure our users are too!
 
-### Caveats
+## Caveats
 
 As we mentioned, BigInt support is only available for the `esnext` target.
 It may not be obvious, but because BigInts have different behavior for mathematical operators like `+`, `-`, `*`, etc., providing functionality for older targets where the feature doesn't exist (like `es2017` and below) would involve rewriting each of these operations.
@@ -149,7 +147,7 @@ On the bright side, Node 11 and newer versions of Chrome already support this fe
 Certain targets may include a polyfill or BigInt-like runtime object.
 For those purposes you may want to add `esnext.bigint` to the `lib` setting in your compiler options.
 
-## Non-unit types as union discriminants
+# Non-unit types as union discriminants
 
 TypeScript 3.2 makes narrowing easier by relaxing rules for what it considers a discriminant property.
 Common properties of unions are now considered discriminants as long as they contain *some* singleton type (e.g. a string literal, `null`, or `undefined`), and they contain no generics.
@@ -173,7 +171,7 @@ function unwrap<T>(result: Result<T>) {
 }
 ```
 
-## `tsconfig.json` inheritance via Node.js packages
+# `tsconfig.json` inheritance via Node.js packages
 
 TypeScript 3.2 now resolves `tsconfig.json`s from `node_modules`. When using a bare path for the `"extends"` field in `tsconfig.json`, TypeScript will dive into `node_modules` packages for us.
 
@@ -192,13 +190,13 @@ Here, TypeScript will climb up `node_modules` folders looking for a `@my-team/ts
 
 This feature can be extremely useful for bigger organizations, or projects with lots of distributed dependencies.
 
-## The new `--showConfig` flag
+# The new `--showConfig` flag
 
 `tsc`, the TypeScript compiler, supports a new flag called `--showConfig`.
 When running `tsc --showConfig`, TypeScript will calculate the effective `tsconfig.json` (after calculating options inherited from the `extends` field) and print that out.
 This can be useful for diagnosing configuration issues in general.
 
-## `Object.defineProperty` declarations in JavaScript
+# `Object.defineProperty` declarations in JavaScript
 
 When writing in JavaScript files (using `allowJs`), TypeScript now recognizes declarations that use `Object.defineProperty`.
 This means you'll get better completions, and stronger type-checking when enabling type-checking in JavaScript files (by turning on the `checkJs` option or adding a `// @ts-check` comment to the top of your file).

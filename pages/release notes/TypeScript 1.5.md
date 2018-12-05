@@ -175,7 +175,7 @@ alert(a); // Error: a is not defined in this scope
 
 # for..of support
 
-TypeScript 1.5 adds support to ES6 for..of loops on arrays for ES3/ES5 as well as full support for Iterator interfaces when targetting ES6.
+TypeScript 1.5 adds support to ES6 for..of loops on arrays for ES3/ES5 as well as full support for Iterator interfaces when targeting ES6.
 
 ##### Example
 

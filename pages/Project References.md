@@ -116,7 +116,7 @@ Project references have a few trade-offs you should be aware of.
 Because dependent projects make use of `.d.ts` files that are built from their dependencies, you'll either have to check in certain build outputs *or* build a project after cloning it before you can navigate the project in an editor without seeing spurious errors.
 We're working on a behind-the-scenes .d.ts generation process that should be able to mitigate this, but for now we recommend informing developers that they should build after cloning.
 
-Additionally, to preserve compatability with existing build workflows, `tsc` will *not* automatically build dependencies unless invoked with the `--build` switch.
+Additionally, to preserve compatibility with existing build workflows, `tsc` will *not* automatically build dependencies unless invoked with the `--build` switch.
 Let's learn more about `--build`.
 
 # Build Mode for TypeScript

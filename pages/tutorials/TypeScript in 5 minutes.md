@@ -130,8 +130,8 @@ interface Person {
     lastName: string;
 }
 
-function greeter(person : Person) {
-    return "Hello, " + person.firstName + " " + person.lastName;
+function greeter(student: Student) {
+    return "Hello, " + student.fullName;
 }
 
 let user = new Student("Jane", "M.", "User");

@@ -6,7 +6,7 @@ There are two main ways you can publish your declaration files to npm:
 
 If your package is written in TypeScript then the first approach is favored.
 Use the `--declaration` flag to generate declaration files.
-This way, your declarations and JavaScript always be in sync.
+This way, your declarations and JavaScript will always be in sync.
 
 If your package is not written in TypeScript then the second is the preferred approach.
 

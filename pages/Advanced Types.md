@@ -517,7 +517,7 @@ function createElement(tagName: string): Element {
 TypeScript also has numeric literal types.
 
 ```ts
-function rollDie(): 1 | 2 | 3 | 4 | 5 | 6 {
+function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {
     // ...
 }
 ```

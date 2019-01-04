@@ -773,14 +773,14 @@ let unknown = getProperty(person, 'unknown'); // error, 'unknown' is not in 'nam
 ## Index types and string index signatures
 
 `keyof` and `T[K]` interact with string index signatures.
-If you have a type with a string index signature, `keyof T` will just be `string`.
+If you have a type with a string index signature, `keyof T` will just be `string[]`.
 And `T[string]` is just the type of the index signature:
 
 ```ts
 interface Map<T> {
     [key: string]: T;
 }
-let keys: keyof Map<number>; // string
+let keys: keyof Map<number>; // string[]
 let value: Map<number>['foo']; // number
 ```
 

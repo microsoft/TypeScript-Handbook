@@ -390,7 +390,7 @@ class Handler {
 }
 ```
 
-This works because arrow functions don't capture `this`, so you can always pass them to something that expects `this: void`.
+This works because arrow functions has captured `this`, so you can always pass them to something that expects `this: void`.
 The downside is that one arrow function is created per object of type Handler.
 Methods, on the other hand, are only created once and attached to Handler's prototype.
 They are shared between all objects of type Handler.

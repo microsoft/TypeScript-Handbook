@@ -94,7 +94,7 @@ var fs = require("fs");
 In TypeScript or ES6, the `import` keyword serves the same purpose:
 
 ```ts
-import fs = require("fs");
+import * as fs from "fs";
 ```
 
 You'll typically see modular libraries include one of these lines in their documentation:

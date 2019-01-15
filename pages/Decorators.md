@@ -134,7 +134,7 @@ The expression for the class decorator will be called as a function at runtime, 
 
 If the class decorator returns a value, it will replace the class declaration with the provided constructor function.
 
-> NOTE&nbsp; Should you chose to return a new constructor function, you must take care to maintain the original prototype.
+> NOTE&nbsp; Should you choose to return a new constructor function, you must take care to maintain the original prototype.
 The logic that applies decorators at runtime will **not** do this for you.
 
 The following is an example of a class decorator (`@sealed`) applied to the `Greeter` class:

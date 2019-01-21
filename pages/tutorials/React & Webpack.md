@@ -29,10 +29,7 @@ Any components that we write will go in the `src/components` folder.
 Let's scaffold this out:
 
 ```shell
-mkdir src
-cd src
-mkdir components
-cd ..
+mkdir -p src/components
 ```
 
 Webpack will eventually generate the `dist` directory for us.

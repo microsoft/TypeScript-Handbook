@@ -56,12 +56,13 @@ Project references can solve all of these problems and more.
 }
 ```
 
-The `path` property of each reference can point to a directory containing a `tsconfig.json` file, or to the config file itself (which may have any name).
+Each child of the `references` property requires a `path` property which can point to either: 
+1. a directory containing a `tsconfig.json` file
+2. or, to the config file itself (which may have any name).
 
-When you reference a project, new things happen:
-
-* Importing modules from a referenced project will instead load its *output* declaration file (`.d.ts`)
-* If the referenced project produces an `outFile`, the output file `.d.ts` file's declarations will be visible in this project
+When a project is included to the `references` property, Typescript handles the project differently than other imported projects:
+* Importing modules from a referenced project will load its *output* declaration file (`.d.ts`) instead of the module itself
+* If the referenced project produces an `outFile`, the output file `.d.ts` file's declarations will be accessable to the referencing project
 * Build mode (see below) will automatically build the referenced project if needed
 
 By separating into multiple projects, you can greatly improve the speed of typechecking and compiling, reduce memory usage when using an editor, and improve enforcement of the logical groupings of your program.

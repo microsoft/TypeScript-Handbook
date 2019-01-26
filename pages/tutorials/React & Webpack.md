@@ -125,7 +125,7 @@ export interface HelloProps { compiler: string; framework: string; }
 export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
 ```
 
-Note that while this example uses [stateless functional components](https://reactjs.org/docs/components-and-props.html#functional-and-class-components), we could also make our example a little *classier* as well.
+Note that while this example uses [function components](https://reactjs.org/docs/components-and-props.html#function-and-class-components), we could also make our example a little *classier* as well.
 
 ```ts
 import * as React from "react";

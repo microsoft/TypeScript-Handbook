@@ -205,7 +205,7 @@ function bar(x: string | number) {
 }
 ```
 
-Control flow based type analysis is particuarly relevant in `--strictNullChecks` mode because nullable types are represented using union types:
+Control flow based type analysis is particularly relevant in `--strictNullChecks` mode because nullable types are represented using union types:
 
 ```ts
 function test(x: string | null) {

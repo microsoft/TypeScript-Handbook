@@ -37,7 +37,7 @@ Here, we have a function `readImage` which reads an image in a non-blocking asyn
 In addition to `readImage`, we've provided a convenience function on `readImage` itself called `readImage.sync`.
 
 While ECMAScript exports are often a better way of providing this functionality, this new support allows code written in this style to "just work" TypeScript.
-Additionaly, this approach for property declarations allows us to express common patterns like `defaultProps` and `propTypes` on React stateless function components (SFCs).
+Additionally, this approach for property declarations allows us to express common patterns like `defaultProps` and `propTypes` on React stateless function components (SFCs).
 
 ```ts
 export const FooComponent => ({ name }) => (
@@ -65,8 +65,8 @@ fs.readFile(path, (err, data) => {
 
 # Version selection with `typesVersions`
 
-Feedback from our community, as well as our own experience, has shown us that leveraging the newest TypeScript features while also accomodating users on the older versions are difficult.
-TypeScript introduces a new feature called `typesVersions` to help accomodate these scenarios.
+Feedback from our community, as well as our own experience, has shown us that leveraging the newest TypeScript features while also accommodating users on the older versions are difficult.
+TypeScript introduces a new feature called `typesVersions` to help accommodate these scenarios.
 
 When using Node module resolution in TypeScript 3.1, when TypeScript cracks open a `package.json` file to figure out which files it needs to read, it first looks at a new field called `typesVersions`.
 A `package.json` with a `typesVersions` field might look like this:

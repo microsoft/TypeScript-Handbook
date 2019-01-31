@@ -50,7 +50,7 @@ function fn(x: () => void) {
 }
 ```
 
-*Why*: Using `void` is safer because it prevents you from accidently using the return value of `x` in an unchecked way:
+*Why*: Using `void` is safer because it prevents you from accidentally using the return value of `x` in an unchecked way:
 
 ```ts
 function fn(x: () => void) {

@@ -13,7 +13,7 @@ This avoids confusing new users by overloading them with similarly named terms.
 # First steps
 
 Let's start with the program we'll be using as our example throughout this page.
-We've written a small set of simplistic string validators, as you might write to check a user's input on a form in a webpage or check the format of an externally-provided data file.
+We've written a small set of simplistic string validators, as you might want to check a user's input on a form in a webpage or check the format of an externally-provided data file.
 
 ## Validators in a single file
 

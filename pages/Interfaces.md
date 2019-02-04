@@ -86,7 +86,7 @@ interface SquareConfig {
 function createSquare(config: SquareConfig): { color: string; area: number } {
     let newSquare = {color: "white", area: 100};
     if (config.clor) {
-        // Error: Property 'clor' does not exist on type 'SquareConfig'
+        // Error: Property 'color' does not exist on type 'SquareConfig'
         newSquare.color = config.clor;
     }
     if (config.width) {

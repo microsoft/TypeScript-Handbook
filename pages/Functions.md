@@ -466,7 +466,10 @@ With this change, the overloads now give us type-checked calls to the `pickCard`
 In order for the compiler to pick the correct typecheck, it follows a similar process to the underlying JavaScript.
 It looks at the overload list, and proceeding with the first overload attempts to call the function with the provided parameters.
 If it finds a match, it picks this overload as the correct overload.
+
 For this reason, it's customary to order overloads from most specific to least specific.
 
-Note that the `function pickCard(x): any` piece is not part of the overload list, so it only has two overloads: one that takes an object and one that takes a number.
+Note that the `function pickCard(x): any` piece is not part of the overload list but the function implementation, so it only has two overloads: one that takes an object and one that takes a number.
 Calling `pickCard` with any other parameter types would cause an error.
+
+The function implementation itself (the last `function` line and the function content) must have an interface that matches the lowest common denominator of all of the overload signatures.

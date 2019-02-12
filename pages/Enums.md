@@ -225,7 +225,7 @@ f(E);
 
 ## Enums at compile time
 
-Even thought Enums are real objects that exist at runtime, the `keyof` keyword works differently than you might expect for typical objects. Instead, use `keyof typeof` to get a Type that represens all Enum values as strings.
+Even thought Enums are real objects that exist at runtime, the `keyof` keyword works differently than you might expect for typical objects. Instead, use `keyof typeof` to get a Type that represents all Enum keys as strings.
 
 ```ts
 enum LogLevel {
@@ -238,15 +238,14 @@ enum LogLevel {
  */
 type LogLevelStrings = keyof typeof LogLevel;
 
-function printImportant(str: LogLevelStrings, message: string) {
-    const num = LogLevel[str];
+function printImportant(key: LogLevelStrings, message: string) {
+    const num = LogLevel[key];
     if (num <= LogLevel.WARN) {
-       console.log('Log level string is: ', str);
-       console.log('Log level number is: ', num);
+       console.log('Log level key is: ', key);
+       console.log('Log level value is: ', num);
        console.log('Log level message is: ', message);
     }
 }
-
 printImportant('ERROR', 'This is a message');
 ```
 

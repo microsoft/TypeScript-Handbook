@@ -117,7 +117,7 @@ In the above example, `<foo />` will work fine but `<bar />` will result in an e
 ## Value-based elements
 <b><a href="#table-of-contents">↥ back to top</a></b>
 
-Value based elements are simply looked up by identifiers that are in scope.
+Value-based elements are simply looked up by identifiers that are in scope.
 
 ```ts
 import MyComponent from "./myComponent";
@@ -131,7 +131,7 @@ There are two ways to define a value-based element:
 1. Stateless Functional Component (SFC)
 2. Class Component
 
-Because these two types of value-based elements are indistinguishable from each other in a JSX expression, first TS tries to resolve the expression as Stateless Functional Component using overload resolution. If the process succeeds, then TS finishes resolving the expression to its declaration. If the value fails to resolve as SFC, TS will then try to resolve it as a class component. If that fails, TS will report an error.
+Because these two types of value-based elements are indistinguishable from each other in a JSX expression, first TS tries to resolve the expression as a Stateless Functional Component using overload resolution. If the process succeeds, then TS finishes resolving the expression to its declaration. If the value fails to resolve as an SFC, TS will then try to resolve it as a class component. If that fails, TS will report an error.
 
 ### Stateless Functional Component
 <b><a href="#table-of-contents">↥ back to top</a></b>

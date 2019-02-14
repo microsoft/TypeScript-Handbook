@@ -233,7 +233,7 @@ enum LogLevel {
 }
 
 /**
- * This is equivalen to:
+ * This is equivalent to:
  * type LogLevelStrings = 'ERROR' | 'WARN' | 'INFO' | 'DEBUG';
  */
 type LogLevelStrings = keyof typeof LogLevel;

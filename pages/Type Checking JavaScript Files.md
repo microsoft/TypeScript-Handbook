@@ -469,7 +469,7 @@ import types can also be used in type alias declarations:
 
 ```js
 /**
- * @typedef Pet { import("./a").Pet }
+ * @typedef { import("./a").Pet } Pet
  */
 
 /**

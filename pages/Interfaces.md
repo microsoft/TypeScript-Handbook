@@ -203,6 +203,14 @@ let squareOptions = { colour: "red", width: 100 };
 let mySquare = createSquare(squareOptions);
 ```
 
+The above workaround will work as long as you have a common property between `squareOptions` and `SquareConfig`.
+In this example, it was the property `width`. It will however, fail if the variable does not have any common object property. For example:
+
+```ts
+let squareOptions = { colour: "red" };
+let mySquare = createSquare(squareOptions);
+```
+
 Keep in mind that for simple code like above, you probably shouldn't be trying to "get around" these checks.
 For more complex object literals that have methods and hold state, you might need to keep these techniques in mind, but a majority of excess property errors are actually bugs.
 That means if you're running into excess property checking problems for something like option bags, you might need to revise some of your type declarations.

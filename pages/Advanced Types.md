@@ -829,6 +829,23 @@ type PersonPartial = Partial<Person>;
 type ReadonlyPerson = Readonly<Person>;
 ```
 
+Note that this syntax describes a type rather than a member.
+If you want to add additional members, you can use an intersection type:
+
+```ts
+// Use this:
+type PartialWithNewMember<T> = {
+  [P in keyof T]?: T[P];
+} & { newMember: boolean }
+
+// **Do not** use the following!
+// This is an error!
+type PartialWithNewMember<T> = {
+  [P in keyof T]?: T[P];
+  newMember: boolean;
+}
+```
+
 Let's take a look at the simplest mapped type and its parts:
 
 ```ts

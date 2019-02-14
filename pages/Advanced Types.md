@@ -517,7 +517,7 @@ function createElement(tagName: string): Element {
 TypeScript also has numeric literal types.
 
 ```ts
-function rollDie(): 1 | 2 | 3 | 4 | 5 | 6 {
+function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {
     // ...
 }
 ```
@@ -892,7 +892,7 @@ Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in Typ
 type Pick<T, K extends keyof T> = {
     [P in K]: T[P];
 }
-type Record<K extends string, T> = {
+type Record<K extends keyof any, T> = {
     [P in K]: T;
 }
 ```
@@ -925,3 +925,279 @@ let originalProps = unproxify(proxyProps);
 
 Note that this unwrapping inference only works on homomorphic mapped types.
 If the mapped type is not homomorphic you'll have to give an explicit type parameter to your unwrapping function.
+
+# Conditional Types
+
+TypeScript 2.8 introduces *conditional types* which add the ability to express non-uniform type mappings.
+A conditional type selects one of two possible types based on a condition expressed as a type relationship test:
+
+```ts
+T extends U ? X : Y
+```
+
+The type above means when `T` is assignable to `U` the type is `X`, otherwise the type is `Y`.
+
+A conditional type `T extends U ? X : Y` is either *resolved* to `X` or `Y`, or *deferred* because the condition depends on one or more type variables.
+When `T` or `U` contains type variables, whether to resolve to `X` or `Y`, or to defer, is determined by whether or not a the type system has enough information to conclude that `T` is always assignable to `U`.
+
+As an example of some types that are immediately resolved, we can take a look at the following example:
+
+```ts
+declare function f<T extends boolean>(x: T): T extends true ? string : number;
+
+// Type is 'string | number
+let x = f(Math.random() < 0.5)
+
+```
+
+Another example would be the `TypeName` type alias, which uses nested conditional types:
+
+```ts
+type TypeName<T> =
+    T extends string ? "string" :
+    T extends number ? "number" :
+    T extends boolean ? "boolean" :
+    T extends undefined ? "undefined" :
+    T extends Function ? "function" :
+    "object";
+
+type T0 = TypeName<string>;  // "string"
+type T1 = TypeName<"a">;  // "string"
+type T2 = TypeName<true>;  // "boolean"
+type T3 = TypeName<() => void>;  // "function"
+type T4 = TypeName<string[]>;  // "object"
+```
+
+But as an example of a place where conditonal types are deferred - where they stick around instead of picking a branch - would be in the following:
+
+```ts
+interface Foo {
+    propA: boolean;
+    propB: boolean;
+}
+
+declare function f<T>(x: T): T extends Foo ? string : number;
+
+function foo<U>(x: U) {
+    // Has type 'U extends Foo ? string : number'
+    let a = f(x);
+
+    // This assignment is allowed though!
+    let b: string | number = a;
+}
+```
+
+In the above, the variable `a` has a conditional type that hasn't yet chosen a branch.
+When another piece of code ends up calling `foo`, it will substitute in `U` with some other type, and TypeScript will re-evaluate the conditional type, deciding whether it can actually pick a branch.
+
+In the meantime, we can assign a conditional type to any other target type as long as each branch of the conditional is assignable to that target.
+So in our example above we were able to assign `U extends Foo ? string : number` to `string | number` since no matter what the conditional evaluates to, it's known to be either `string` or `number`.
+
+## Distributive conditional types
+
+Conditional types in which the checked type is a naked type parameter are called *distributive conditional types*.
+Distributive conditional types are automatically distributed over union types during instantiation.
+For example, an instantiation of `T extends U ? X : Y` with the type argument `A | B | C` for `T` is resolved as `(A extends U ? X : Y) | (B extends U ? X : Y) | (C extends U ? X : Y)`.
+
+##### Example
+
+```ts
+type T10 = TypeName<string | (() => void)>;  // "string" | "function"
+type T12 = TypeName<string | string[] | undefined>;  // "string" | "object" | "undefined"
+type T11 = TypeName<string[] | number[]>;  // "object"
+```
+
+In instantiations of a distributive conditional type `T extends U ? X : Y`, references to `T` within the conditional type are resolved to individual constituents of the union type (i.e. `T` refers to the individual constituents *after* the conditional type is distributed over the union type).
+Furthermore, references to `T` within `X` have an additional type parameter constraint `U` (i.e. `T` is considered assignable to `U` within `X`).
+
+##### Example
+
+```ts
+type BoxedValue<T> = { value: T };
+type BoxedArray<T> = { array: T[] };
+type Boxed<T> = T extends any[] ? BoxedArray<T[number]> : BoxedValue<T>;
+
+type T20 = Boxed<string>;  // BoxedValue<string>;
+type T21 = Boxed<number[]>;  // BoxedArray<number>;
+type T22 = Boxed<string | number[]>;  // BoxedValue<string> | BoxedArray<number>;
+```
+
+Notice that `T` has the additional constraint `any[]` within the true branch of `Boxed<T>` and it is therefore possible to refer to the element type of the array as `T[number]`. Also, notice how the conditional type is distributed over the union type in the last example.
+
+The distributive property of conditional types can conveniently be used to *filter* union types:
+
+```ts
+type Diff<T, U> = T extends U ? never : T;  // Remove types from T that are assignable to U
+type Filter<T, U> = T extends U ? T : never;  // Remove types from T that are not assignable to U
+
+type T30 = Diff<"a" | "b" | "c" | "d", "a" | "c" | "f">;  // "b" | "d"
+type T31 = Filter<"a" | "b" | "c" | "d", "a" | "c" | "f">;  // "a" | "c"
+type T32 = Diff<string | number | (() => void), Function>;  // string | number
+type T33 = Filter<string | number | (() => void), Function>;  // () => void
+
+type NonNullable<T> = Diff<T, null | undefined>;  // Remove null and undefined from T
+
+type T34 = NonNullable<string | number | undefined>;  // string | number
+type T35 = NonNullable<string | string[] | null | undefined>;  // string | string[]
+
+function f1<T>(x: T, y: NonNullable<T>) {
+    x = y;  // Ok
+    y = x;  // Error
+}
+
+function f2<T extends string | undefined>(x: T, y: NonNullable<T>) {
+    x = y;  // Ok
+    y = x;  // Error
+    let s1: string = x;  // Error
+    let s2: string = y;  // Ok
+}
+```
+
+Conditional types are particularly useful when combined with mapped types:
+
+```ts
+type FunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
+type FunctionProperties<T> = Pick<T, FunctionPropertyNames<T>>;
+
+type NonFunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
+type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
+
+interface Part {
+    id: number;
+    name: string;
+    subparts: Part[];
+    updatePart(newName: string): void;
+}
+
+type T40 = FunctionPropertyNames<Part>;  // "updatePart"
+type T41 = NonFunctionPropertyNames<Part>;  // "id" | "name" | "subparts"
+type T42 = FunctionProperties<Part>;  // { updatePart(newName: string): void }
+type T43 = NonFunctionProperties<Part>;  // { id: number, name: string, subparts: Part[] }
+```
+
+Similar to union and intersection types, conditional types are not permitted to reference themselves recursively.
+For example the following is an error.
+
+##### Example
+
+```ts
+type ElementType<T> = T extends any[] ? ElementType<T[number]> : T;  // Error
+```
+
+## Type inference in conditional types
+
+Within the `extends` clause of a conditional type, it is now possible to have `infer` declarations that introduce a type variable to be inferred.
+Such inferred type variables may be referenced in the true branch of the conditional type.
+It is possible to have multiple `infer` locations for the same type variable.
+
+For example, the following extracts the return type of a function type:
+
+```ts
+type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
+```
+
+Conditional types can be nested to form a sequence of pattern matches that are evaluated in order:
+
+```ts
+type Unpacked<T> =
+    T extends (infer U)[] ? U :
+    T extends (...args: any[]) => infer U ? U :
+    T extends Promise<infer U> ? U :
+    T;
+
+type T0 = Unpacked<string>;  // string
+type T1 = Unpacked<string[]>;  // string
+type T2 = Unpacked<() => string>;  // string
+type T3 = Unpacked<Promise<string>>;  // string
+type T4 = Unpacked<Promise<string>[]>;  // Promise<string>
+type T5 = Unpacked<Unpacked<Promise<string>[]>>;  // string
+```
+
+The following example demonstrates how multiple candidates for the same type variable in co-variant positions causes a union type to be inferred:
+
+```ts
+type Foo<T> = T extends { a: infer U, b: infer U } ? U : never;
+type T10 = Foo<{ a: string, b: string }>;  // string
+type T11 = Foo<{ a: string, b: number }>;  // string | number
+```
+
+Likewise, multiple candidates for the same type variable in contra-variant positions causes an intersection type to be inferred:
+
+```ts
+type Bar<T> = T extends { a: (x: infer U) => void, b: (x: infer U) => void } ? U : never;
+type T20 = Bar<{ a: (x: string) => void, b: (x: string) => void }>;  // string
+type T21 = Bar<{ a: (x: string) => void, b: (x: number) => void }>;  // string & number
+```
+
+When inferring from a type with multiple call signatures (such as the type of an overloaded function), inferences are made from the *last* signature (which, presumably, is the most permissive catch-all case).
+It is not possible to perform overload resolution based on a list of argument types.
+
+```ts
+declare function foo(x: string): number;
+declare function foo(x: number): string;
+declare function foo(x: string | number): string | number;
+type T30 = ReturnType<typeof foo>;  // string | number
+```
+
+It is not possible to use `infer` declarations in constraint clauses for regular type parameters:
+
+```ts
+type ReturnType<T extends (...args: any[]) => infer R> = R;  // Error, not supported
+```
+
+However, much the same effect can be obtained by erasing the type variables in the constraint and instead specifying a conditional type:
+
+```ts
+type AnyFunction = (...args: any[]) => any;
+type ReturnType<T extends AnyFunction> = T extends (...args: any[]) => infer R ? R : any;
+```
+
+## Predefined conditional types
+
+TypeScript 2.8 adds several predefined conditional types to `lib.d.ts`:
+
+* `Exclude<T, U>` -- Exclude from `T` those types that are assignable to `U`.
+* `Extract<T, U>` -- Extract from `T` those types that are assignable to `U`.
+* `NonNullable<T>` -- Exclude `null` and `undefined` from `T`.
+* `ReturnType<T>` -- Obtain the return type of a function type.
+* `InstanceType<T>` -- Obtain the instance type of a constructor function type.
+
+##### Example
+
+```ts
+type T00 = Exclude<"a" | "b" | "c" | "d", "a" | "c" | "f">;  // "b" | "d"
+type T01 = Extract<"a" | "b" | "c" | "d", "a" | "c" | "f">;  // "a" | "c"
+
+type T02 = Exclude<string | number | (() => void), Function>;  // string | number
+type T03 = Extract<string | number | (() => void), Function>;  // () => void
+
+type T04 = NonNullable<string | number | undefined>;  // string | number
+type T05 = NonNullable<(() => string) | string[] | null | undefined>;  // (() => string) | string[]
+
+function f1(s: string) {
+    return { a: 1, b: s };
+}
+
+class C {
+    x = 0;
+    y = 0;
+}
+
+type T10 = ReturnType<() => string>;  // string
+type T11 = ReturnType<(s: string) => void>;  // void
+type T12 = ReturnType<(<T>() => T)>;  // {}
+type T13 = ReturnType<(<T extends U, U extends number[]>() => T)>;  // number[]
+type T14 = ReturnType<typeof f1>;  // { a: number, b: string }
+type T15 = ReturnType<any>;  // any
+type T16 = ReturnType<never>;  // any
+type T17 = ReturnType<string>;  // Error
+type T18 = ReturnType<Function>;  // Error
+
+type T20 = InstanceType<typeof C>;  // C
+type T21 = InstanceType<any>;  // any
+type T22 = InstanceType<never>;  // any
+type T23 = InstanceType<string>;  // Error
+type T24 = InstanceType<Function>;  // Error
+```
+
+> Note: The `Exclude` type is a proper implementation of the `Diff` type suggested [here](https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458). We've used the name `Exclude` to avoid breaking existing code that defines a `Diff`, plus we feel that name better conveys the semantics of the type. We did not include the `Omit<T, K>` type because it is trivially written as `Pick<T, Exclude<keyof T, K>>`.

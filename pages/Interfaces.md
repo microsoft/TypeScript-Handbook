@@ -413,6 +413,26 @@ let analog = createClock(AnalogClock, 7, 32);
 
 Because `createClock`'s first parameter is of type `ClockConstructor`, in `createClock(AnalogClock, 7, 32)`, it checks that `AnalogClock` has the correct constructor signature.
 
+Another simple way is to use class expressions:
+
+```ts
+interface ClockConstructor {
+  new (hour: number, minute: number);
+}
+
+interface ClockInterface {
+  tick();
+}
+
+const Clock: ClockConstructor = class Clock implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick() {
+      console.log("beep beep");
+  }
+}
+```
+
+
 # Extending Interfaces
 
 Like classes, interfaces can extend each other.

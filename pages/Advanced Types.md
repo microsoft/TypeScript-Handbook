@@ -972,7 +972,7 @@ type T3 = TypeName<() => void>;  // "function"
 type T4 = TypeName<string[]>;  // "object"
 ```
 
-But as an example of a place where conditonal types are deferred - where they stick around instead of picking a branch - would be in the following:
+But as an example of a place where conditional types are deferred - where they stick around instead of picking a branch - would be in the following:
 
 ```ts
 interface Foo {

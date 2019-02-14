@@ -359,7 +359,7 @@ Numeric literals can now be separated into segments using `_`.
 ##### Example
 
 ```ts
-const milion = 1_000_000;
+const million = 1_000_000;
 const phone = 555_734_2231;
 const bytes = 0xFF_0C_00_FF;
 const word = 0b1100_0011_1101_0001;

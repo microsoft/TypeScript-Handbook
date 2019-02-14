@@ -65,8 +65,8 @@ fs.readFile(path, (err, data) => {
 
 # Version selection with `typesVersions`
 
-Feedback from our community, as well as our own experience, has shown us that leveraging the newest TypeScript features while also accomodating users on the older versions are difficult.
-TypeScript introduces a new feature called `typesVersions` to help accomodate these scenarios.
+Feedback from our community, as well as our own experience, has shown us that leveraging the newest TypeScript features while also accommodating users on the older versions are difficult.
+TypeScript introduces a new feature called `typesVersions` to help accommodate these scenarios.
 
 When using Node module resolution in TypeScript 3.1, when TypeScript cracks open a `package.json` file to figure out which files it needs to read, it first looks at a new field called `typesVersions`.
 A `package.json` with a `typesVersions` field might look like this:

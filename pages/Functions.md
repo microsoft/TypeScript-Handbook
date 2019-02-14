@@ -83,7 +83,8 @@ In effect, captured variables are part of the "hidden state" of any function and
 
 ## Inferring the types
 
-In playing with the example, you may notice that the TypeScript compiler can figure out the type if you have types on one side of the equation but not the other:
+In playing with the example, you may notice that the TypeScript compiler can figure out the type even if you only have types on one side of the equation:
+
 
 ```ts
 // myAdd has the full function type

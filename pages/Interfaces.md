@@ -341,7 +341,7 @@ interface ClockInterface {
 }
 
 class Clock implements ClockInterface {
-    currentTime: Date;
+    currentTime: Date = new Date();
     constructor(h: number, m: number) { }
 }
 ```
@@ -351,11 +351,11 @@ You can also describe methods in an interface that are implemented in the class,
 ```ts
 interface ClockInterface {
     currentTime: Date;
-    setTime(d: Date);
+    setTime(d: Date): void;
 }
 
 class Clock implements ClockInterface {
-    currentTime: Date;
+    currentTime: Date = new Date();
     setTime(d: Date) {
         this.currentTime = d;
     }
@@ -394,7 +394,7 @@ interface ClockConstructor {
     new (hour: number, minute: number): ClockInterface;
 }
 interface ClockInterface {
-    tick();
+    tick(): void;
 }
 
 function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
@@ -539,6 +539,7 @@ class TextBox extends Control {
 
 // Error: Property 'state' is missing in type 'Image'.
 class Image implements SelectableControl {
+    private state: any;
     select() { }
 }
 

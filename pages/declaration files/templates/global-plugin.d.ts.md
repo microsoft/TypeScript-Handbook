@@ -6,7 +6,7 @@
 /*~ This template shows how to write a global plugin. */
 
 /*~ Write a declaration for the original type and add new members.
- *~ For example, this adds a 'toBinaryString' method with to overloads to
+ *~ For example, this adds a 'toBinaryString' method with overloads to
  *~ the built-in number type.
  */
 interface Number {

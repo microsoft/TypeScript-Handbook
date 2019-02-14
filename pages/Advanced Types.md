@@ -10,33 +10,37 @@ You will mostly see intersection types used for mixins and other concepts that d
 Here's a simple example that shows how to create a mixin:
 
 ```ts
-function extend<T, U>(first: T, second: U): T & U {
-    let result = <T & U>{};
-    for (let id in first) {
-        (<any>result)[id] = (<any>first)[id];
-    }
-    for (let id in second) {
-        if (!result.hasOwnProperty(id)) {
-            (<any>result)[id] = (<any>second)[id];
+function extend<First, Second>(first: First, second: Second): First & Second {
+    const result: Partial<First & Second> = {};
+    for (const prop in first) {
+        if (first.hasOwnProperty(prop)) {
+            (<First>result)[prop] = first[prop];
         }
     }
-    return result;
+    for (const prop in second) {
+        if (second.hasOwnProperty(prop)) {
+            (<Second>result)[prop] = second[prop];
+        }
+    }
+    return <First & Second>result;
 }
 
 class Person {
     constructor(public name: string) { }
 }
+
 interface Loggable {
-    log(): void;
+    log(name: string): void;
 }
+
 class ConsoleLogger implements Loggable {
-    log() {
-        // ...
+    log(name) {
+        console.log(`Hello, I'm ${name}.`);
     }
 }
-var jim = extend(new Person("Jim"), new ConsoleLogger());
-var n = jim.name;
-jim.log();
+
+const jim = extend(new Person('Jim'), ConsoleLogger.prototype);
+jim.log(jim.name);
 ```
 
 # Union Types
@@ -517,7 +521,7 @@ function createElement(tagName: string): Element {
 TypeScript also has numeric literal types.
 
 ```ts
-function rollDie(): 1 | 2 | 3 | 4 | 5 | 6 {
+function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {
     // ...
 }
 ```
@@ -892,7 +896,7 @@ Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in Typ
 type Pick<T, K extends keyof T> = {
     [P in K]: T[P];
 }
-type Record<K extends string, T> = {
+type Record<K extends keyof any, T> = {
     [P in K]: T;
 }
 ```
@@ -1189,13 +1193,13 @@ type T12 = ReturnType<(<T>() => T)>;  // {}
 type T13 = ReturnType<(<T extends U, U extends number[]>() => T)>;  // number[]
 type T14 = ReturnType<typeof f1>;  // { a: number, b: string }
 type T15 = ReturnType<any>;  // any
-type T16 = ReturnType<never>;  // any
+type T16 = ReturnType<never>;  // never
 type T17 = ReturnType<string>;  // Error
 type T18 = ReturnType<Function>;  // Error
 
 type T20 = InstanceType<typeof C>;  // C
 type T21 = InstanceType<any>;  // any
-type T22 = InstanceType<never>;  // any
+type T22 = InstanceType<never>;  // never
 type T23 = InstanceType<string>;  // Error
 type T24 = InstanceType<Function>;  // Error
 ```

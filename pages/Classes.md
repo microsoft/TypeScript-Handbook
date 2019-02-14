@@ -341,7 +341,7 @@ To prove to ourselves that our accessor is now checking the passcode, we can mod
 A couple of things to note about accessors:
 
 First, accessors require you to set the compiler to output ECMAScript 5 or higher.
-Downlevelling to ECMAScript 3 is not supported.
+Downleveling to ECMAScript 3 is not supported.
 Second, accessors with a `get` and no `set` are automatically inferred to be `readonly`.
 This is helpful when generating a `.d.ts` file from your code, because users of your property can see that they can't change it.
 

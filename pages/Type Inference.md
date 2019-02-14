@@ -43,32 +43,48 @@ let zoo: Animal[] = [new Rhino(), new Elephant(), new Snake()];
 
 When no best common type is found, the resulting inference is the union array type, `(Rhino | Elephant | Snake)[]`.
 
-# Contextual Type
+# Contextual Typing
 
 Type inference also works in "the other direction" in some cases in TypeScript.
 This is known as "contextual typing". Contextual typing occurs when the type of an expression is implied by its location. For example:
 
 ```ts
 window.onmousedown = function(mouseEvent) {
-    console.log(mouseEvent.clickTime);  //<- Error
+    console.log(mouseEvent.button);   //<- OK
+    console.log(mouseEvent.kangaroo); //<- Error!
 };
 ```
 
-For the code above to give the type error, the TypeScript type checker used the type of the `Window.onmousedown` function to infer the type of the function expression on the right hand side of the assignment.
-When it did so, it was able to infer the type of the `mouseEvent` parameter.
-If this function expression were not in a contextually typed position, the `mouseEvent` parameter would have type `any`, and no error would have been issued.
+Here, the Typescript type checker used the type of the `Window.onmousedown` function to infer the type of the function expression on the right hand side of the assignment.
+When it did so, it was able to infer the [type](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) of the `mouseEvent` parameter, which does contain a `button` property, but not a `kangaroo` property.
 
-If the contextually typed expression contains explicit type information, the contextual type is ignored.
-Had we written the above example:
+Typescript is smart enough to infer the type of things in other contexts as well:
 
 ```ts
-window.onmousedown = function(mouseEvent: any) {
-    console.log(mouseEvent.clickTime);  //<- Now, no error is given
+window.onscroll = function(uiEvent) {
+    console.log(uiEvent.button); //<- Error!
+}
+```
+
+Based on the fact that the above function is being assigned to `Window.onscroll`, Typescript knows that `uiEvent` is a [UIEvent](https://developer.mozilla.org/en-US/docs/Web/API/UIEvent), and not a [MouseEvent](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent) like the previous example. `UIEvent` objects contain no `button` property, and so Typescript will throw an error.
+
+If this function were not in a contextually typed position, the function's argument would implicitly have type `any`, and no error would be issued (unless you are using the `--noImplicitAny` option):
+
+```ts
+const handler = function(uiEvent) {
+    console.log(uiEvent.button); //<- OK
+}
+```
+
+We can also explicitly give type information to the function's argument to override any contextual type:
+
+```ts
+window.onscroll = function(uiEvent: any) {
+    console.log(uiEvent.button);  //<- Now, no error is given
 };
 ```
 
-The function expression with an explicit type annotation on the parameter will override the contextual type.
-Once it does so, no error is given as no contextual type applies.
+However, this code will log `undefined`, since `uiEvent` has no property called `button`.
 
 Contextual typing applies in many cases.
 Common cases include arguments to function calls, right hand sides of assignments, type assertions, members of object and array literals, and return statements.

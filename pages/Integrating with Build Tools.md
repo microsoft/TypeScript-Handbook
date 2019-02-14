@@ -1,5 +1,6 @@
 Build tools
 
+* [Babel](#babel)
 * [Browserify](#browserify)
 * [Duo](#duo)
 * [Grunt](#grunt)
@@ -8,6 +9,43 @@ Build tools
 * [Webpack](#webpack)
 * [MSBuild](#msbuild)
 * [NuGet](#nuget)
+
+# Babel
+
+### Install
+
+```sh
+npm install @babel/cli @babel/core @babel/preset-typescript --save-dev
+```
+
+### .babelrc
+
+```js
+{
+  "presets": ["@babel/preset-typescript"]
+}
+```
+### Using Command Line Interface
+```sh
+./node_modules/.bin/babel --out-file bundle.js src/index.ts
+```
+
+
+### package.json
+
+```js
+{
+  "scripts": {
+    "build": "babel --out-file bundle.js main.ts"
+  },
+}
+```
+
+### Execute Babel from the command line
+```sh
+npm run build
+```
+
 
 # Browserify
 
@@ -146,7 +184,28 @@ More details: [TypeScriptSamples/jspm](https://github.com/Microsoft/TypeScriptSa
 npm install ts-loader --save-dev
 ```
 
-### Basic webpack.config.js
+### Basic webpack.config.js when using Webpack 2
+
+```js
+module.exports = {
+    entry: "./src/index.tsx",
+    output: {
+        path: '/',
+        filename: "bundle.js"
+    },
+    resolve: {
+        extensions: [".tsx", ".ts", ".js", ".json"]
+    },
+    module: {
+        rules: [
+            // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
+            { test: /\.tsx?$/, use: ["ts-loader"], exclude: /node_modules/ }
+        ]
+    }
+}
+```
+
+### Basic webpack.config.js when using Webpack 1
 
 ```js
 module.exports = {
@@ -159,7 +218,7 @@ module.exports = {
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
     module: {
-        loaders: [
+        rules: [
             // all files with a '.ts' or '.tsx' extension will be handled by 'ts-loader'
             { test: /\.tsx?$/, loader: "ts-loader" }
         ]

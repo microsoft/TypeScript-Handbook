@@ -1,6 +1,6 @@
 TypeScript 2.3 and later support type-checking and reporting errors in `.js` files with `--checkJs`.
 
-You can skip checking some files by adding `// @ts-nocheck` comment to them; conversely, you can choose to check only a few `.js` files by adding a `// @ts-check` comment to them without setting `--checkJs`.
+You can skip checking some files by adding a `// @ts-nocheck` comment to them; conversely, you can choose to check only a few `.js` files by adding a `// @ts-check` comment to them without setting `--checkJs`.
 You can also ignore errors on specific lines by adding `// @ts-ignore` on the preceding line.
 Note that if you have a `tsconfig.json`, JS checking will respect strict flags like `noImplicitAny`, `strictNullChecks`, etc.
 However, because of the relative looseness of JS checking, combining strict flags with it may be surprising.
@@ -26,13 +26,12 @@ x = false;  // Error: boolean is not assignable to number
 
 You can find the full list of supported JSDoc patterns in the [JSDoc support in JavaScript documentation](https://github.com/Microsoft/TypeScript/wiki/JSDoc-support-in-JavaScript).
 
-
 ## Properties are inferred from assignments in class bodies
 
 ES2015 does not have a means for declaring properties on classes. Properties are dynamically assigned, just like object literals.
 
 In a `.js` file, the compiler infers properties from property assignments inside the class body.
-The type of properties is the type given in the constructor, unless it's not defined there, or the type in the constructor is undefined or null.
+The type of a property is the type given in the constructor, unless it's not defined there, or the type in the constructor is undefined or null.
 In that case, the type is the union of the types of all the right-hand values in these assignments.
 Properties defined in the constructor are always assumed to exist, whereas ones defined just in methods, getters, or setters are considered optional.
 
@@ -45,14 +44,13 @@ class C {
     method() {
         this.constructorOnly = false // error, constructorOnly is a number
         this.constructorUnknown = "plunkbat" // ok, constructorUnknown is string | undefined
-        this.methodOnly = 'ok'  // ok, but y could also be undefined
+        this.methodOnly = 'ok'  // ok, but methodOnly could also be undefined
     }
     method2() {
-        this.methodOnly = true  // also, ok, y's type is string | boolean | undefined
+        this.methodOnly = true  // also, ok, methodOnly's type is string | boolean | undefined
     }
 }
 ```
-
 
 If properties are never set in the class body, they are considered unknown.
 If your class has properties that are only read from, add and then annotate a declaration in the constructor with JSDoc to specify the type.
@@ -67,7 +65,6 @@ class C {
         this.count;
     }
 }
-
 
 let c = new C();
 c.prop = 0;          // OK
@@ -114,7 +111,6 @@ Most combinations of assignments and declarations are supported.
 
 Classes are namespaces in `.js` files.
 This can be used to nest classes, for example:
-
 
 ```js
 class C {
@@ -255,7 +251,7 @@ function sum(/* numbers */) {
 
 Since there is no natural syntax for specifying generic type parameters in Javascript, an unspecified type parameter defaults to `any`.
 
-### In extends clause:
+### In extends clause
 
 For instance, `React.Component` is defined to have two type parameters, `Props` and `State`.
 In a `.js` file, there is no legal way to specify these in the extends clause. By default the type arguments will be `any`:
@@ -295,7 +291,6 @@ var x = [];
 
 x.push(1);        // OK
 x.push("string"); // OK, x is of type Array<any>
-
 
 /** @type{Array.<number>} */
 var y = [];
@@ -531,7 +526,6 @@ function ab(){}
 `@typedef` may be used to define complex types.
 Similar syntax works with `@param`.
 
-
 ```js
 /**
  * @typedef {Object} SpecialType - creates a new type named 'SpecialType'
@@ -560,7 +554,6 @@ var specialTypeObject1;
 
 `@param` allows a similar syntax for one-off type specifications.
 Note that the nested property names must be prefixed with the name of the parameter:
-
 
 ```js
 /**
@@ -690,7 +683,6 @@ class SortableSet extends Set {
 ```
 
 Note that `@extends` only works with classes. Currently, there is no way for a constructor function extend a class.
-
 
 ## `@enum`
 

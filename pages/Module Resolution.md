@@ -126,7 +126,7 @@ You can read more about the process in Node.js documentation on [loading modules
 #### How TypeScript resolves modules
 
 TypeScript will mimic the Node.js run-time resolution strategy in order to locate definition files for modules at compile-time.
-To accomplish this, TypeScript overlays the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) over the Node's resolution logic.
+To accomplish this, TypeScript overlays the TypeScript source file extensions (`.ts`, `.tsx`, and `.d.ts`) over Node's resolution logic.
 TypeScript will also use a field in `package.json` named `"types"` to mirror the purpose of `"main"` - the compiler will use it to find the "main" definition file to consult.
 
 For example, an import statement like `import { b } from "./moduleB"` in  `/root/src/moduleA.ts` would result in attempting the following locations for locating `"./moduleB"`:
@@ -141,34 +141,37 @@ For example, an import statement like `import { b } from "./moduleB"` in  `/root
 
 Recall that Node.js looked for a file named `moduleB.js`, then an applicable `package.json`, and then for an `index.js`.
 
-Similarly a non-relative import will follow the Node.js resolution logic, first looking up a file, then looking up an applicable folder.
+Similarly, a non-relative import will follow the Node.js resolution logic, first looking up a file, then looking up an applicable folder.
 So `import { b } from "moduleB"` in source file `/root/src/moduleA.ts` would result in the following lookups:
 
 1. `/root/src/node_modules/moduleB.ts`
 2. `/root/src/node_modules/moduleB.tsx`
 3. `/root/src/node_modules/moduleB.d.ts`
 4. `/root/src/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
-5. `/root/src/node_modules/moduleB/index.ts`
-6. `/root/src/node_modules/moduleB/index.tsx`
-7. `/root/src/node_modules/moduleB/index.d.ts`
+5. `/root/src/node_modules/@types/moduleB.d.ts`
+6. `/root/src/node_modules/moduleB/index.ts`
+7. `/root/src/node_modules/moduleB/index.tsx`
+8. `/root/src/node_modules/moduleB/index.d.ts`
    <br /><br />
-8. `/root/node_modules/moduleB.ts`
-9. `/root/node_modules/moduleB.tsx`
-10. `/root/node_modules/moduleB.d.ts`
-11. `/root/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
-12. `/root/node_modules/moduleB/index.ts`
-13. `/root/node_modules/moduleB/index.tsx`
-14. `/root/node_modules/moduleB/index.d.ts`
+9. `/root/node_modules/moduleB.ts`
+10. `/root/node_modules/moduleB.tsx`
+11. `/root/node_modules/moduleB.d.ts`
+12. `/root/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
+13. `/root/node_modules/@types/moduleB.d.ts`
+14. `/root/node_modules/moduleB/index.ts`
+15. `/root/node_modules/moduleB/index.tsx`
+16. `/root/node_modules/moduleB/index.d.ts`
     <br /><br />
-15. `/node_modules/moduleB.ts`
-16. `/node_modules/moduleB.tsx`
-17. `/node_modules/moduleB.d.ts`
-18. `/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
-19. `/node_modules/moduleB/index.ts`
-20. `/node_modules/moduleB/index.tsx`
-21. `/node_modules/moduleB/index.d.ts`
+17. `/node_modules/moduleB.ts`
+18. `/node_modules/moduleB.tsx`
+19. `/node_modules/moduleB.d.ts`
+20. `/node_modules/moduleB/package.json` (if it specifies a `"types"` property)
+21. `/node_modules/@types/moduleB.d.ts`
+22. `/node_modules/moduleB/index.ts`
+23. `/node_modules/moduleB/index.tsx`
+24. `/node_modules/moduleB/index.d.ts`
 
-Don't be intimidated by the number of steps here - TypeScript is still only jumping up directories twice at steps (8) and (15).
+Don't be intimidated by the number of steps here - TypeScript is still only jumping up directories twice at steps (9) and (17).
 This is really no more complex than what Node.js itself is doing.
 
 ## Additional module resolution flags

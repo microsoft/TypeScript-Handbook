@@ -194,7 +194,7 @@ The visibility rules for merged members is the same as described in the 'Merging
 The end result is a class managed inside of another class.
 You can also use namespaces to add more static members to an existing class.
 
-In addition to the pattern of inner classes, you may also be familiar with JavaScript practice of creating a function and then extending the function further by adding properties onto the function.
+In addition to the pattern of inner classes, you may also be familiar with the JavaScript practice of creating a function and then extending the function further by adding properties onto the function.
 TypeScript uses declaration merging to build up definitions like this in a type-safe way.
 
 ```ts

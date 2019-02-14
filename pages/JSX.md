@@ -1,4 +1,23 @@
+# Table of contents
+
+[Introduction](#introduction)
+[Basic Usage](#basic-usage)
+[The as operator](#the-as-operator)
+[Type Checking](#type-checking)
+* [Intrinsic elements](#intrinsic-elements)
+* [Value-based elements](#value-based-elements)
+* [Stateless Functional Component](#stateless-functional-component)
+* [Class Component](#class-component)
+* [Attribute type checking](#attribute-type-checking)
+* [Children Type Checking](#children-type-checking)
+
+[The JSX result type](#the-jsx-result-type)
+[Embedding Expressions](#embedding-expressions)
+[React integration](#react-integration)
+[Factory Functions](#factory-functions)
+
 # Introduction
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 [JSX](https://facebook.github.io/jsx/) is an embeddable XML-like syntax.
 It is meant to be transformed into valid JavaScript, though the semantics of that transformation are implementation-specific.
@@ -6,6 +25,7 @@ JSX rose to popularity with the [React](https://reactjs.org/) framework, but has
 TypeScript supports embedding, type checking, and compiling JSX directly to JavaScript.
 
 # Basic usage
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 In order to use JSX you must do two things.
 
@@ -30,6 +50,7 @@ You can specify this mode using either the `--jsx` command line flag or the corr
 > *Note: The identifier `React` is hard-coded, so you must make React available with an uppercase R.*
 
 # The `as` operator
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 Recall how to write a type assertion:
 
@@ -50,6 +71,7 @@ var foo = bar as foo;
 The `as` operator is available in both `.ts` and `.tsx` files, and is identical in behavior to the angle-bracket type assertion style.
 
 # Type Checking
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 In order to understand type checking with JSX, you must first understand the difference between intrinsic elements and value-based elements.
 Given a JSX expression `<expr />`, `expr` may either refer to something intrinsic to the environment (e.g. a `div` or `span` in a DOM environment) or to a custom component that you've created.
@@ -63,6 +85,7 @@ TypeScript uses the [same convention that React does](http://facebook.github.io/
 An intrinsic element always begins with a lowercase letter, and a value-based element always begins with an uppercase letter.
 
 ## Intrinsic elements
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 Intrinsic elements are looked up on the special interface `JSX.IntrinsicElements`.
 By default, if this interface is not specified, then anything goes and intrinsic elements will not be type checked.
@@ -92,8 +115,9 @@ In the above example, `<foo />` will work fine but `<bar />` will result in an e
 >```
 
 ## Value-based elements
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
-Value based elements are simply looked up by identifiers that are in scope.
+Value-based elements are simply looked up by identifiers that are in scope.
 
 ```ts
 import MyComponent from "./myComponent";
@@ -107,11 +131,12 @@ There are two ways to define a value-based element:
 1. Stateless Functional Component (SFC)
 2. Class Component
 
-Because these two types of value-based elements are indistinguishable from each other in a JSX expression, first TS tries to resolve the expression as Stateless Functional Component using overload resolution. If the process succeeds, then TS finishes resolving the expression to its declaration. If the value fails to resolve as SFC, TS will then try to resolve it as a class component. If that fails, TS will report an error.
+Because these two types of value-based elements are indistinguishable from each other in a JSX expression, first TS tries to resolve the expression as a Stateless Functional Component using overload resolution. If the process succeeds, then TS finishes resolving the expression to its declaration. If the value fails to resolve as an SFC, TS will then try to resolve it as a class component. If that fails, TS will report an error.
 
 ### Stateless Functional Component
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
-As the name suggests, the component is defined as JavaScript function where its first argument is a `props` object.
+As the name suggests, the component is defined as a JavaScript function where its first argument is a `props` object.
 TS enforces that its return type must be assignable to `JSX.Element`.
 
 ```ts
@@ -151,6 +176,7 @@ function MainButton(prop: SideProps): JSX.Element {
 ```
 
 ### Class Component
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 It is possible to define the type of a class component.
 However, to do so it is best to understand two new terms: the *element class type* and the *element instance type*.
@@ -217,6 +243,7 @@ function NotAValidFactoryFunction() {
 ```
 
 ## Attribute type checking
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 The first step to type checking attributes is to determine the *element attributes type*.
 This is slightly different between intrinsic and value-based elements.
@@ -292,6 +319,7 @@ var badProps = {};
 ```
 
 ## Children Type Checking
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 In TypeScript 2.3, TS introduced type checking of *children*. *children* is a special property in an *element attributes type* where child *JSXExpression*s are taken to be inserted into the attributes.
 Similar to how TS uses `JSX.ElementAttributesProperty` to determine the name of *props*, TS uses `JSX.ElementChildrenAttribute` to determine the name of *children* within those props.
@@ -315,7 +343,7 @@ declare namespace JSX {
   World
 </div>;
 
-const CustomComp = (props) => <div>props.children</div>
+const CustomComp = (props) => <div>{props.children}</div>
 <CustomComp>
   <div>Hello World</div>
   {"This is just a JS expression..." + 1000}
@@ -359,6 +387,7 @@ class Component extends React.Component<PropsType, {}> {
 ```
 
 # The JSX result type
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 By default the result of a JSX expression is typed as `any`.
 You can customize the type by specifying the `JSX.Element` interface.
@@ -366,6 +395,7 @@ However, it is not possible to retrieve type information about the element, attr
 It is a black box.
 
 # Embedding Expressions
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 JSX allows you to embed expressions between tags by surrounding the expressions with curly braces (`{ }`).
 
@@ -385,6 +415,7 @@ var a = <div>
 ```
 
 # React integration
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 To use JSX with React you should use the [React typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react).
 These typings define the `JSX` namespace appropriately for use with React.
@@ -407,6 +438,7 @@ class MyComponent extends React.Component<Props, {}> {
 ```
 
 # Factory Functions
+<b><a href="#table-of-contents">↥ back to top</a></b>
 
 The exact factory function used by the `jsx: react` compiler option is configurable. It may be set using either the `jsxFactory` command line option, or an inline `@jsx` comment pragma to set it on a per-file basis. For example, if you set `jsxFactory` to `createElement`, `<div />` will emit as `createElement("div")` instead of `React.createElement("div")`.
 

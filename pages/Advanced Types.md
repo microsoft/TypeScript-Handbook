@@ -781,11 +781,11 @@ If you have a type with a string index signature, `keyof T` will just be `string
 And `T[string]` is just the type of the index signature:
 
 ```ts
-interface Map<T> {
+interface Dictionary<T> {
     [key: string]: T;
 }
-let keys: keyof Map<number>; // string
-let value: Map<number>['foo']; // number
+let keys: keyof Dictionary<number>; // string
+let value: Dictionary<number>['foo']; // number
 ```
 
 # Mapped types

@@ -292,7 +292,7 @@ Then the declarations in an augmentation are merged as if they were declared in 
 However, there are two limitations to keep in mind: 
 
 1. You can't declare new top-level declarations in the augmentation -- just patches to existing declarations.
-2. Default exports also cannot be augmented, only named exports (since you need to augment an export by it's exported name, and `default` is a reserved word - see [#14080](https://github.com/Microsoft/TypeScript/issues/14080) for details)
+2. Default exports also cannot be augmented, only named exports (since you need to augment an export by its exported name, and `default` is a reserved word - see [#14080](https://github.com/Microsoft/TypeScript/issues/14080) for details)
 
 ## Global augmentation
 

@@ -517,7 +517,7 @@ function createElement(tagName: string): Element {
 TypeScript also has numeric literal types.
 
 ```ts
-function rollDie(): 1 | 2 | 3 | 4 | 5 | 6 {
+function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {
     // ...
 }
 ```
@@ -892,7 +892,7 @@ Note that `Readonly<T>` and `Partial<T>` are so useful, they are included in Typ
 type Pick<T, K extends keyof T> = {
     [P in K]: T[P];
 }
-type Record<K extends string, T> = {
+type Record<K extends keyof any, T> = {
     [P in K]: T;
 }
 ```

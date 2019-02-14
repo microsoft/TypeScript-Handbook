@@ -77,7 +77,7 @@ If we had just written a command line application and not expected our package t
 ....
 ```
 
-Make sure to revisit the [Consuming dependencies](./Library Structures.md#consuming-dependencies) section for more information.
+Make sure to revisit the [Consuming dependencies](./Library%20Structures.md#consuming-dependencies) section for more information.
 
 ### Packaging dependent declarations
 

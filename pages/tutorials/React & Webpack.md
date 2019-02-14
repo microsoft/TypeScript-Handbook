@@ -101,7 +101,7 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es5",
+        "target": "es6",
         "jsx": "react"
     },
     "include": [

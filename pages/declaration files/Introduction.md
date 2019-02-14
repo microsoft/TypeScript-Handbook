@@ -10,20 +10,20 @@ The guide is broken down into the following sections.
 
 ## Library Structures
 
-The [Library Structures](./Library Structures.md) guide helps you understand common library formats and how to write a correct declaration file for each format.
+The [Library Structures](./Library%20Structures.md) guide helps you understand common library formats and how to write a correct declaration file for each format.
 If you're editing an existing file, you probably don't need to read this section.
 Authors of new declaration files must read this section to properly understand how the format of the library influences the writing of the declaration file.
 
 ## By Example
 
 Many times, we are faced with writing a declaration file when we only have examples of the underlying library to guide us.
-The [By Example](./By Example.md) section shows many common API patterns and how to write declarations for each of them.
+The [By Example](./By%20Example.md) section shows many common API patterns and how to write declarations for each of them.
 This guide is aimed at the TypeScript novice who may not yet be familiar with every language construct in TypeScript.
 
 ## "Do"s and "Don't"s
 
 Many common mistakes in declaration files can be easily avoided.
-The [Do's and Don'ts](./Do's and Don'ts.md) section identifies common errors,
+The [Do's and Don'ts](./Do's%20and%20Don'ts.md) section identifies common errors,
   describes how to detect them,
   and how to fix them.
 Everyone should read this section to help themselves avoid common mistakes.
@@ -31,14 +31,14 @@ Everyone should read this section to help themselves avoid common mistakes.
 ## Deep Dive
 
 For seasoned authors interested in the underlying mechanics of how declaration files work,
-  the [Deep Dive](./Deep Dive.md) section explains many advanced concepts in declaration writing,
+  the [Deep Dive](./Deep%20Dive.md) section explains many advanced concepts in declaration writing,
   and shows how to leverage these concepts to create cleaner and more intuitive declaration files.
 
 ## Templates
 
 In [Templates](./Templates.md) you'll find a number of declaration files that serve as a useful starting point
   when writing a new file.
-Refer to the documentation in [Library Structures](./Library Structures.md) to figure out which template file to use.
+Refer to the documentation in [Library Structures](./Library%20Structures.md) to figure out which template file to use.
 
 ## Publish to npm
 

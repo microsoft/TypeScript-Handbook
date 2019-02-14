@@ -111,7 +111,7 @@ Because these two types of value-based elements are indistinguishable from each 
 
 ### Stateless Functional Component
 
-As the name suggests, the component is defined as JavaScript function where its first argument is a `props` object.
+As the name suggests, the component is defined as a JavaScript function where its first argument is a `props` object.
 TS enforces that its return type must be assignable to `JSX.Element`.
 
 ```ts

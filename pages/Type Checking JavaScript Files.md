@@ -1,6 +1,6 @@
 TypeScript 2.3 and later support type-checking and reporting errors in `.js` files with `--checkJs`.
 
-You can skip checking some files by adding `// @ts-nocheck` comment to them; conversely, you can choose to check only a few `.js` files by adding a `// @ts-check` comment to them without setting `--checkJs`.
+You can skip checking some files by adding a `// @ts-nocheck` comment to them; conversely, you can choose to check only a few `.js` files by adding a `// @ts-check` comment to them without setting `--checkJs`.
 You can also ignore errors on specific lines by adding `// @ts-ignore` on the preceding line.
 Note that if you have a `tsconfig.json`, JS checking will respect strict flags like `noImplicitAny`, `strictNullChecks`, etc.
 However, because of the relative looseness of JS checking, combining strict flags with it may be surprising.
@@ -31,7 +31,7 @@ You can find the full list of supported JSDoc patterns in the [JSDoc support in 
 ES2015 does not have a means for declaring properties on classes. Properties are dynamically assigned, just like object literals.
 
 In a `.js` file, the compiler infers properties from property assignments inside the class body.
-The type of properties is the type given in the constructor, unless it's not defined there, or the type in the constructor is undefined or null.
+The type of a property is the type given in the constructor, unless it's not defined there, or the type in the constructor is undefined or null.
 In that case, the type is the union of the types of all the right-hand values in these assignments.
 Properties defined in the constructor are always assumed to exist, whereas ones defined just in methods, getters, or setters are considered optional.
 

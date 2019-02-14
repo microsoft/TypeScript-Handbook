@@ -959,7 +959,7 @@ T extends U ? X : Y
 The type above means when `T` is assignable to `U` the type is `X`, otherwise the type is `Y`.
 
 A conditional type `T extends U ? X : Y` is either *resolved* to `X` or `Y`, or *deferred* because the condition depends on one or more type variables.
-When `T` or `U` contains type variables, whether to resolve to `X` or `Y`, or to defer, is determined by whether or not a the type system has enough information to conclude that `T` is always assignable to `U`.
+When `T` or `U` contains type variables, whether to resolve to `X` or `Y`, or to defer, is determined by whether or not the type system has enough information to conclude that `T` is always assignable to `U`.
 
 As an example of some types that are immediately resolved, we can take a look at the following example:
 

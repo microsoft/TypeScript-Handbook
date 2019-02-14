@@ -23,8 +23,8 @@ let myAdd = function(x, y) { return x + y; };
 ```
 
 Just as in JavaScript, functions can refer to variables outside of the function body.
-When they do so, they're said to `capture` these variables.
-While understanding how this works and the trade-offs when using this technique are outside of the scope of this article, having a firm understanding of how this mechanic works is an important piece of working with JavaScript and TypeScript.
+When they do so, they're said to *capture* these variables.
+While understanding how this works (and the trade-offs when using this technique) is outside of the scope of this article, having a firm understanding how this mechanic works is an important piece of working with JavaScript and TypeScript.
 
 ```ts
 let z = 100;
@@ -100,7 +100,7 @@ This helps cut down on the amount of effort to keep your program typed.
 # Optional and Default Parameters
 
 In TypeScript, every parameter is assumed to be required by the function.
-This doesn't mean that it can't be given `null` or `undefined`, but rather, when the function is called the compiler will check that the user has provided a value for each parameter.
+This doesn't mean that it can't be given `null` or `undefined`, but rather, when the function is called, the compiler will check that the user has provided a value for each parameter.
 The compiler also assumes that these parameters are the only parameters that will be passed to the function.
 In short, the number of arguments given to a function has to match the number of parameters the function expects.
 
@@ -133,7 +133,7 @@ let result3 = buildName("Bob", "Adams");         // ah, just right
 ```
 
 Any optional parameters must follow required parameters.
-Had we wanted to make the first name optional rather than the last name, we would need to change the order of parameters in the function, putting the first name last in the list.
+Had we wanted to make the first name optional, rather than the last name, we would need to change the order of parameters in the function, putting the first name last in the list.
 
 In TypeScript, we can also set a value that a parameter will be assigned if the user does not provide one, or if the user passes `undefined` in its place.
 These are called default-initialized parameters.
@@ -198,6 +198,7 @@ function buildName(firstName: string, ...restOfName: string[]) {
     return firstName + " " + restOfName.join(" ");
 }
 
+// employeeName will be "Joseph Samuel Lucas MacKinzie"
 let employeeName = buildName("Joseph", "Samuel", "Lucas", "MacKinzie");
 ```
 
@@ -355,7 +356,7 @@ Second, annotate your calling code with `this`:
 class Handler {
     info: string;
     onClickBad(this: Handler, e: Event) {
-        // oops, used this here. using this callback would crash at runtime
+        // oops, used `this` here. using this callback would crash at runtime
         this.info = e.message;
     }
 }
@@ -371,7 +372,7 @@ To fix the error, change the type of `this`:
 class Handler {
     info: string;
     onClickGood(this: void, e: Event) {
-        // can't use this here because it's of type void!
+        // can't use `this` here because it's of type void!
         console.log('clicked!');
     }
 }
@@ -425,7 +426,7 @@ let pickedCard2 = pickCard(15);
 alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 ```
 
-Here the `pickCard` function will return two different things based on what the user has passed in.
+Here, the `pickCard` function will return two different things based on what the user has passed in.
 If the users passes in an object that represents the deck, the function will pick the card.
 If the user picks the card, we tell them which card they've picked.
 But how do we describe this to the type system?
@@ -461,10 +462,10 @@ let pickedCard2 = pickCard(15);
 alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 ```
 
-With this change, the overloads now give us type-checked calls to the `pickCard` function.
+With this change, the overloads now give us type checked calls to the `pickCard` function.
 
-In order for the compiler to pick the correct typecheck, it follows a similar process to the underlying JavaScript.
-It looks at the overload list, and proceeding with the first overload attempts to call the function with the provided parameters.
+In order for the compiler to pick the correct type check, it follows a similar process to the underlying JavaScript.
+It looks at the overload list and, proceeding with the first overload, attempts to call the function with the provided parameters.
 If it finds a match, it picks this overload as the correct overload.
 For this reason, it's customary to order overloads from most specific to least specific.
 

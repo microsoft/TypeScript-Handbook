@@ -1,6 +1,6 @@
 # Introduction
 
-One of TypeScript's core principles is that type-checking focuses on the *shape* that values have.
+One of TypeScript's core principles is that type checking focuses on the *shape* that values have.
 This is sometimes called "duck typing" or "structural subtyping".
 In TypeScript, interfaces fill the role of naming these types, and are a powerful way of defining contracts within your code as well as contracts with code outside of your project.
 
@@ -9,40 +9,40 @@ In TypeScript, interfaces fill the role of naming these types, and are a powerfu
 The easiest way to see how interfaces work is to start with a simple example:
 
 ```ts
-function printLabel(labelledObj: { label: string }) {
-    console.log(labelledObj.label);
+function printLabel(labeledObj: { label: string }) {
+    console.log(labeledObj.label);
 }
 
 let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
-The type-checker checks the call to `printLabel`.
-The `printLabel` function has a single parameter that requires that the object passed in has a property called `label` of type string.
+The type checker checks the call to `printLabel`.
+The `printLabel` function has a single parameter that requires that the object passed in has a property called `label` of type `string`.
 Notice that our object actually has more properties than this, but the compiler only checks that *at least* the ones required are present and match the types required.
 There are some cases where TypeScript isn't as lenient, which we'll cover in a bit.
 
 We can write the same example again, this time using an interface to describe the requirement of having the `label` property that is a string:
 
 ```ts
-interface LabelledValue {
+interface LabeledValue {
     label: string;
 }
 
-function printLabel(labelledObj: LabelledValue) {
-    console.log(labelledObj.label);
+function printLabel(labeledObj: LabeledValue) {
+    console.log(labeledObj.label);
 }
 
 let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
-The interface `LabelledValue` is a name we can now use to describe the requirement in the previous example.
-It still represents having a single property called `label` that is of type string.
+The interface `labeledValue` is a name we can now use to describe the requirement in the previous example.
+It still represents having a single property called `label` that is of type `string`.
 Notice we didn't have to explicitly say that the object we pass to `printLabel` implements this interface like we might have to in other languages.
 Here, it's only the shape that matters. If the object we pass to the function meets the requirements listed, then it's allowed.
 
-It's worth pointing out that the type-checker does not require that these properties come in any sort of order, only that the properties the interface requires are present and have the required type.
+It's worth pointing out that the type checker does not require that these properties come in any sort of order, only that the properties the interface requires are present and have the required type.
 
 # Optional Properties
 
@@ -138,7 +138,7 @@ a = ro as number[];
 
 ## `readonly` vs `const`
 
-The easiest way to remember whether to use readonly or const is to ask whether you're using it on a variable or a property.
+The easiest way to remember whether to use `readonly` or `const` is to ask whether you're using it on a variable or a property.
 Variables use `const` whereas properties use `readonly`.
 
 # Excess Property Checks
@@ -168,7 +168,7 @@ You could argue that this program is correctly typed, since the `width` properti
 
 However, TypeScript takes the stance that there's probably a bug in this code.
 Object literals get special treatment and undergo *excess property checking* when assigning them to other variables, or passing them as arguments.
-If an object literal has any properties that the "target type" doesn't have, you'll get an error.
+If an object literal has any properties that the "target type" doesn't have, you'll get an error:
 
 ```ts
 // error: 'colour' not expected in type 'SquareConfig'
@@ -241,7 +241,7 @@ mySearch = function(source: string, subString: string) {
 }
 ```
 
-For function types to correctly type-check, the names of the parameters do not need to match.
+For function types to correctly type check, the names of the parameters do not need to match.
 We could have, for example, written the above example like this:
 
 ```ts
@@ -255,7 +255,7 @@ mySearch = function(src: string, sub: string): boolean {
 Function parameters are checked one at a time, with the type in each corresponding parameter position checked against each other.
 If you do not want to specify types at all, TypeScript's contextual typing can infer the argument types since the function value is assigned directly to a variable of type `SearchFunc`.
 Here, also, the return type of our function expression is implied by the values it returns (here `false` and `true`).
-Had the function expression returned numbers or strings, the type-checker would have warned us that return type doesn't match the return type described in the `SearchFunc` interface.
+Had the function expression returned numbers or strings, the type checker would have warned us that return type doesn't match the return type described in the `SearchFunc` interface.
 
 ```ts
 let mySearch: SearchFunc;
@@ -307,7 +307,7 @@ interface NotOkay {
 
 While string index signatures are a powerful way to describe the "dictionary" pattern, they also enforce that all properties match their return type.
 This is because a string index declares that `obj.property` is also available as `obj["property"]`.
-In the following example, `name`'s type does not match the string index's type, and the type-checker gives an error:
+In the following example, `name`'s type does not match the string index's type, and the type checker gives an error:
 
 ```ts
 interface NumberDictionary {
@@ -317,7 +317,7 @@ interface NumberDictionary {
 }
 ```
 
-Finally, you can make index signatures readonly in order to prevent assignment to their indices:
+Finally, you can make index signatures `readonly` in order to prevent assignment to their indices:
 
 ```ts
 interface ReadonlyStringArray {
@@ -387,7 +387,7 @@ Since the constructor sits in the static side, it is not included in this check.
 
 Instead, you would need to work with the static side of the class directly.
 In this example, we define two interfaces, `ClockConstructor` for the constructor and `ClockInterface` for the instance methods.
-Then for convenience we define a constructor function `createClock` that creates instances of the type that is passed to it.
+Then, for convenience, we define a constructor function `createClock` that creates instances of the type that is passed to it:
 
 ```ts
 interface ClockConstructor {

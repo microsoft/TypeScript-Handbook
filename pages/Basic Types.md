@@ -142,7 +142,7 @@ console.log(colorName); // Displays 'Green' as its value is 2 above
 
 We may need to describe the type of variables that we do not know when we are writing an application.
 These values may come from dynamic content, e.g. from the user or a 3rd party library.
-In these cases, we want to opt-out of type-checking and let the values pass through compile-time checks.
+In these cases, we want to opt-out of type checking and let the values pass through compile-time checks.
 To do so, we label these with the `any` type:
 
 ```ts
@@ -151,9 +151,9 @@ notSure = "maybe a string instead";
 notSure = false; // okay, definitely a boolean
 ```
 
-The `any` type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type-checking during compilation.
+The `any` type is a powerful way to work with existing JavaScript, allowing you to gradually opt-in and opt-out of type checking during compilation.
 You might expect `Object` to play a similar role, as it does in other languages.
-But variables of type `Object` only allow you to assign any value to them - you can't call arbitrary methods on them, even ones that actually exist:
+However, variables of type `Object` only allow you to assign any value to them. You can't call arbitrary methods on them, even ones that actually exist:
 
 ```ts
 let notSure: any = 4;

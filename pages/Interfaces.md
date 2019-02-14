@@ -454,7 +454,7 @@ interface Square extends Shape {
     sideLength: number;
 }
 
-let square = <Square>{};
+let square = {} as Square;
 square.color = "blue";
 square.sideLength = 10;
 ```
@@ -474,7 +474,7 @@ interface Square extends Shape, PenStroke {
     sideLength: number;
 }
 
-let square = <Square>{};
+let square = {} as Square;
 square.color = "blue";
 square.sideLength = 10;
 square.penWidth = 5.0;
@@ -495,7 +495,7 @@ interface Counter {
 }
 
 function getCounter(): Counter {
-    let counter = <Counter>function (start: number) { };
+    let counter = (function (start: number) { }) as Counter;
     counter.interval = 123;
     counter.reset = function () { };
     return counter;

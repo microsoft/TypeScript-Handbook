@@ -56,7 +56,7 @@ Then install `typescript`, `gulp` and `gulp-typescript` in your project's dev de
 [Gulp-typescript](https://www.npmjs.com/package/gulp-typescript) is a gulp plugin for Typescript.
 
 ```shell
-npm install --save-dev typescript gulp gulp-typescript
+npm install --save-dev typescript gulp@4.0.0 gulp-typescript
 ```
 
 ## Write a simple example
@@ -220,7 +220,7 @@ gulp.task("copy-html", function () {
         .pipe(gulp.dest("dist"));
 });
 
-gulp.task("default", ["copy-html"], function () {
+gulp.task("default", gulp.series(gulp.parallel('copy-html'), function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -232,7 +232,7 @@ gulp.task("default", ["copy-html"], function () {
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(gulp.dest("dist"));
-});
+}));
 ```
 
 This adds the `copy-html` task and adds it as a dependency of `default`.
@@ -268,7 +268,7 @@ Now that we are bundling our code with Browserify and tsify, we can add various 
 We'll start with Watchify to provide background compilation:
 
 ```shell
-npm install --save-dev watchify gulp-util
+npm install --save-dev watchify fancy-log
 ```
 
 Now change your gulpfile to the following:
@@ -279,7 +279,7 @@ var browserify = require("browserify");
 var source = require('vinyl-source-stream');
 var watchify = require("watchify");
 var tsify = require("tsify");
-var gutil = require("gulp-util");
+var fancy_log = require("fancy-log");
 var paths = {
     pages: ['src/*.html']
 };
@@ -304,9 +304,9 @@ function bundle() {
         .pipe(gulp.dest("dist"));
 }
 
-gulp.task("default", ["copy-html"], bundle);
+gulp.task("default", gulp.series(gulp.parallel('copy-html'), bundle));
 watchedBrowserify.on("update", bundle);
-watchedBrowserify.on("log", gutil.log);
+watchedBrowserify.on("log", fancy_log);
 ```
 
 There are basically three changes here, but they require you to refactor your code a bit.
@@ -363,7 +363,7 @@ gulp.task("copy-html", function () {
         .pipe(gulp.dest("dist"));
 });
 
-gulp.task("default", ["copy-html"], function () {
+gulp.task("default", gulp.series(gulp.parallel('copy-html'), function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -379,7 +379,7 @@ gulp.task("default", ["copy-html"], function () {
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest("dist"));
-});
+}));
 ```
 
 Notice that `uglify` itself has just one call &mdash; the calls to `buffer` and `sourcemaps` exist to make sure sourcemaps keep working.
@@ -414,12 +414,12 @@ var paths = {
     pages: ['src/*.html']
 };
 
-gulp.task('copyHtml', function () {
+gulp.task('copy-html', function () {
     return gulp.src(paths.pages)
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('default', ['copyHtml'], function () {
+gulp.task('default', gulp.series(gulp.parallel('copy-html'), function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -438,7 +438,7 @@ gulp.task('default', ['copyHtml'], function () {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('dist'));
-});
+}));
 ```
 
 We also need to have TypeScript target ES2015.

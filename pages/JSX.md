@@ -47,7 +47,7 @@ Mode           | Input     | Output                       | Output File Extensio
 
 You can specify this mode using either the `--jsx` command line flag or the corresponding option in your [tsconfig.json](./tsconfig.json.md) file.
 
-> *Note: The identifier `React` is hard-coded, so you must make React available with an uppercase R.*
+> *Note: You can specify the JSX factory function to use when targeting react JSX emit with `--jsxFactory` option (defaults to `React.createElement`)
 
 # The `as` operator
 <b><a href="#table-of-contents">↥ back to top</a></b>

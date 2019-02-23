@@ -1,3 +1,5 @@
+# Namespaces
+
 # Table of contents
 
 [Introduction](#introduction)

@@ -1,3 +1,5 @@
+# Decorators
+
 # Introduction
 
 With the introduction of Classes in TypeScript and ES6, there now exist certain scenarios that require additional features to support annotating or modifying classes and class members.

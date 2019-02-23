@@ -1,3 +1,5 @@
+# Namespaces and Modules
+
 > **A note about terminology:**
 It's important to note that in TypeScript 1.5, the nomenclature has changed.
 "Internal modules" are now "namespaces".

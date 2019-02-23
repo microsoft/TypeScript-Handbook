@@ -1,3 +1,5 @@
+# Type Checking JavaScript Files
+
 TypeScript 2.3 and later support type-checking and reporting errors in `.js` files with `--checkJs`.
 
 You can skip checking some files by adding a `// @ts-nocheck` comment to them; conversely, you can choose to check only a few `.js` files by adding a `// @ts-check` comment to them without setting `--checkJs`.

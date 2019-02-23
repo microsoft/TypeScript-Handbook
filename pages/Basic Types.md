@@ -1,3 +1,5 @@
+# Basic Types
+
 # Introduction
 
 For programs to be useful, we need to be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.

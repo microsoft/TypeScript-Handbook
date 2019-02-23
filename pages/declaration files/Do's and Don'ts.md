@@ -1,3 +1,5 @@
+# Do's and Don'ts
+
 # General Types
 
 ## `Number`, `String`, `Boolean`, and `Object`

@@ -1,3 +1,5 @@
+# Symbols
+
 # Introduction
 
 Starting with ECMAScript 2015, `symbol` is a primitive data type, just like `number` and `string`.

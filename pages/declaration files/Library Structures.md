@@ -1,3 +1,5 @@
+# Library Structures
+
 # Overview
 
 Broadly speaking, the way you *structure* your declaration file depends on how the library is consumed.

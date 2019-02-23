@@ -1,3 +1,5 @@
+# Introduction
+
 This guide is designed to teach you how to write a high-quality TypeScript Declaration File.
 
 In this guide, we'll assume basic familiarity with the TypeScript language.

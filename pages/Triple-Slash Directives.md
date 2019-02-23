@@ -1,3 +1,5 @@
+# Triple-Slash Directives
+
 Triple-slash directives are single-line comments containing a single XML tag.
 The contents of the comment are used as compiler directives.
 

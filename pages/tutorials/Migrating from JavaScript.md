@@ -1,3 +1,5 @@
+# Migrating from JavaScript
+
 TypeScript doesn't exist in a vacuum.
 It was built with the JavaScript ecosystem in mind, and a lot of JavaScript exists today.
 Converting a JavaScript codebase over to TypeScript is, while somewhat tedious, usually not challenging.

@@ -1,3 +1,5 @@
+# Publishing
+
 Now that you have authored a declaration file following the steps of this guide, it is time to publish it to npm.
 There are two main ways you can publish your declaration files to npm:
 

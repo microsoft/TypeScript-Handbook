@@ -1,3 +1,5 @@
+# Functions
+
 # Introduction
 
 Functions are the fundamental building block of any application in JavaScript.

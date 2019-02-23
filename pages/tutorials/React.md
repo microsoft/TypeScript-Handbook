@@ -1,3 +1,5 @@
+# React
+
 This quick start guide will teach you how to wire up TypeScript with [React](https://reactjs.org/).
 By the end, you'll have
 

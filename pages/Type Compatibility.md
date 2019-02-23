@@ -1,3 +1,5 @@
+# Type Compatibility
+
 # Introduction
 
 Type compatibility in TypeScript is based on structural subtyping.

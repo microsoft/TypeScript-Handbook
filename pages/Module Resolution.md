@@ -1,3 +1,5 @@
+# Module Resolution
+
 > This section assumes some basic knowledge about modules.
 Please see the [Modules](./Modules.md) documentation for more information.
 

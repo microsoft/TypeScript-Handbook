@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Microsoft/TypeScript-Handbook#readme",
   "devDependencies": {
+    "gitbook-cli": "^2.3.2",
     "glob": "7.1.3",
-    "markdownlint": "0.11.0"
+    "markdownlint": "0.11.0",
+    "svgexport": "^0.3.2"
   }
 }

@@ -49,7 +49,7 @@ Option                                         | Type      | Default            
 `--noErrorTruncation`                          | `boolean` | `false`                        | Do not truncate error messages.
 `--noFallthroughCasesInSwitch`                 | `boolean` | `false`                        | Report errors for fallthrough cases in switch statement.
 `--noImplicitAny`                              | `boolean` | `false`                        | Raise error on expressions and declarations with an implied `any` type.
-`--noImplicitReturns`                          | `boolean` | `false`                        | Report error when not all code paths in function return a value.
+`--noImplicitReturns`                          | `boolean` | `false`                        | Report an error when not all code paths in function return a value.
 `--noImplicitThis`                             | `boolean` | `false`                        | Raise error on `this` expressions with an implied `any` type.
 `--noImplicitUseStrict`                        | `boolean` | `false`                        | Do not emit `"use strict"` directives in module output.
 `--noLib`                                      | `boolean` | `false`                        | Do not include the default library file (`lib.d.ts`).

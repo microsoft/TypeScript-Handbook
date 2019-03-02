@@ -39,8 +39,7 @@ If the compiler flag `--noResolve` is specified, triple-slash references are ign
 
 ## `/// <reference types="..." />`
 
-Similar to a `/// <reference path="..." />` directive,  this directive serves as a declaration of *dependency*;
-a `/// <reference types="..." />` directive, however, declares a dependency on a package.
+Similar to a `/// <reference path="..." />` directive, which serves as a declaration of *dependency*, a `/// <reference types="..." />` directive declares a dependency on a package.
 
 The process of resolving these package names is similar to the process of resolving module names in an `import` statement.
 An easy way to think of triple-slash-reference-types directives are as an `import` for declaration packages.

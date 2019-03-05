@@ -86,8 +86,8 @@ x = [10, "hello"]; // Error
 When accessing an element with a known index, the correct type is retrieved:
 
 ```ts
-console.log(x[0].substr(1)); // OK
-console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
+console.log(x[0].substring(1)); // OK
+console.log(x[1].substring(1)); // Error, 'number' does not have 'substring'
 ```
 
 When accessing an element outside the set of known indices, a union type is used instead:

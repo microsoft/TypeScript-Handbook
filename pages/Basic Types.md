@@ -91,6 +91,7 @@ console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
 ```
 
 When accessing an element outside the set of known indices, a union type is used instead:
+> NOTE: this feature has been deprecated in the version 2.7. You can read this [release note](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html) to find more information. You can skip the following `union type` description if your ts is above 2.7.
 
 ```ts
 x[3] = "world"; // OK, 'string' can be assigned to 'string | number'

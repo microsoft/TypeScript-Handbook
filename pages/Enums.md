@@ -200,7 +200,7 @@ function f(x: E) {
 ```
 
 In that example, we first checked whether `x` was *not* `E.Foo`.
-If that check succeeds, then our `||` will short-circuit, and the body of the 'if' will get run.
+If that check succeeds, then our `||` will short-circuit, and the body of the 'if' will run.
 However, if the check didn't succeed, then `x` can *only* be `E.Foo`, so it doesn't make sense to see whether it's equal to `E.Bar`.
 
 ## Enums at runtime

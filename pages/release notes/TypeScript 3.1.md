@@ -40,7 +40,7 @@ While ECMAScript exports are often a better way of providing this functionality,
 Additionally, this approach for property declarations allows us to express common patterns like `defaultProps` and `propTypes` on React stateless function components (SFCs).
 
 ```ts
-export const FooComponent => ({ name }) => (
+export const FooComponent = ({ name }) => (
     <div>Hello! I am {name}</div>
 );
 

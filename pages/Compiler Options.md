@@ -95,5 +95,5 @@ Option                                         | Type      | Default            
 
 ## Related
 
-* Setting compiler options in [`tsconfig.json`](./tsconfig.json.md) files.
+* Setting compiler options in [`tsconfig.json`](./tutorials/tsconfig.json.md) files.
 * Setting compiler options in [MSBuild projects](./Compiler%20Options%20in%20MSBuild.md).

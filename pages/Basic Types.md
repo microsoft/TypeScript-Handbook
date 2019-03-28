@@ -92,17 +92,13 @@ console.log(x[0].substr(1)); // OK
 console.log(x[1].substr(1)); // Error, 'number' type does not have 'substr' method
 ```
 
-When accessing an element outside the set of known indices, a union type is used instead:
+Around Typescript 2.5, Tuple became fixed length. Accessing an element outside the set of known indices is not allowed anymore :
 
 ```ts
-x[3] = "world"; // OK, 'string' can be assigned to 'string | number'
-
-console.log(x[5].toString()); // OK, 'string' and 'number' both have 'toString'
-
-x[6] = true; // Error, 'boolean' isn't 'string | number'
+x[2] = "world"; // Error 
+// The third element is not declared in the tuple declaration above
+// So it is not accessible
 ```
-
-Union types are an advanced topic that we'll cover in a later chapter.
 
 # [Enum](Enum)
 

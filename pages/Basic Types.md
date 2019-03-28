@@ -92,7 +92,7 @@ console.log(x[0].substr(1)); // OK
 console.log(x[1].substr(1)); // Error, 'number' type does not have 'substr' method
 ```
 
-Around Typescript 2.5, Tuple became fixed length. Accessing an element outside the set of known indices is not allowed anymore :
+In Typescript 2.7, Tuple became fixed length. Accessing an element outside the set of known indices is not allowed anymore :
 
 ```ts
 x[2] = "world"; // Error 

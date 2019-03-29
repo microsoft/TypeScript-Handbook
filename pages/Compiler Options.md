@@ -27,6 +27,7 @@ Option                                         | Type      | Default            
 `--forceConsistentCasingInFileNames`           | `boolean` | `false`                        | Disallow inconsistently-cased references to the same file.
 `--help`<br/>`-h`                              |           |                                | Print help message.
 `--importHelpers`                              | `boolean` | `false`                        | Import emit helpers (e.g. `__extends`, `__rest`, etc..) from [`tslib`](https://www.npmjs.com/package/tslib)
+`--incremental`                                | `boolean` | `true` if `composite` is on, `false` otherwise | Enable incremental compilation by reading/writing information from prior compilations to a file on disk. This file is controlled by the `--tsBuildInfoFile` flag.
 `--inlineSourceMap`                            | `boolean` | `false`                        | Emit a single file with source maps instead of having a separate file.
 `--inlineSources`                              | `boolean` | `false`                        | Emit the source alongside the sourcemaps within a single file; requires `--inlineSourceMap` or `--sourceMap` to be set.
 `--init`                                       |           |                                | Initializes a TypeScript project and creates a `tsconfig.json` file.
@@ -85,6 +86,7 @@ Option                                         | Type      | Default            
 `--suppressImplicitAnyIndexErrors`             | `boolean` | `false`                        | Suppress `--noImplicitAny` errors for indexing objects lacking index signatures. See [issue #1232](https://github.com/Microsoft/TypeScript/issues/1232#issuecomment-64510362) for more details.
 `--target`<br/>`-t`                            | `string`  | `"ES3"`                        | Specify ECMAScript target version: `"ES3"` (default), `"ES5"`, `"ES6"`/`"ES2015"`, `"ES2016"`, `"ES2017"` or `"ESNext"`. <br/><br/> Note: `"ESNext"` targets latest supported [ES proposed features](https://github.com/tc39/proposals).
 `--traceResolution`                            | `boolean` | `false`                        | Report module resolution log messages.
+`--tsBuildInfoFile`                            | `string`  | `.tsbuildinfo`                 | Specify what file to store incremental build information in.
 `--types`                                      | `string[]`|                                | List of names of type definitions to include. See [@types, --typeRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
 `--typeRoots`                                  | `string[]`|                                | List of folders to include type definitions from. See [@types, --typeRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version.

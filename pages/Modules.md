@@ -14,7 +14,7 @@ Modules are declarative; the relationships between modules are specified in term
 
 Modules import one another using a module loader.
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
-Well-known module loaders used in JavaScript are Node.js's loader for [CommonJS](https://en.wikipedia.org/wiki/CommonJS) modules and the [require.js](http://requirejs.org/) loader for [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md) modules in Web applications.
+Well-known module loaders used in JavaScript are Node.js's loader for [CommonJS](https://en.wikipedia.org/wiki/CommonJS) modules and the [RequireJS](http://requirejs.org/) loader for [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md) modules in Web applications.
 
 In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 Conversely, a file without any top-level `import` or `export` declarations is treated as a script whose contents are available in the global scope (and therefore to modules as well).

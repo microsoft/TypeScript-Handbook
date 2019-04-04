@@ -473,7 +473,12 @@ On the other hand, if you can't express some shape with an interface and you nee
 
 ## Special string type guards
 
-Another use-case for type guards is special string type guards. For instance, strings that represent an ip address, email address, phone number, etc. When these strings come from a user (via a web-form, external source, etc.), they need to be validated. You want to ensure validation happens consistently through your code, without having to do the (possibly very expensive) validation every time the data is being used. Consider the following snippet:
+Another use-case for type guards is special string type guards.
+For instance, strings that represent an ip address, email address, phone number, etc.
+When these strings come from an external source they need to be validated.
+Validation needs to be consistent in the various places where the data is used and it can be very resource expensive.
+
+Consider the following snippet:
 
 ```ts
 function sendEmail(address: EmailAddress) {
@@ -504,7 +509,9 @@ function isValidEmailAddress(arg: string): arg is EmailAddress {
 
 Note that `export type EmailAddress = string` is not enough, as the type `EmailAddress` is then simply an alias of `string`.
 
-Also note that `myString._isInvalid`, although it is not recommended to use it, it behaves as expected. The property does not exist on the input string. Even in the following statement:
+Also note that `myString._isInvalid`, although it is not recommended to use it, it behaves as expected.
+The property does not exist on the input string.
+Even in the following statement:
 
 ```ts
 const otherString = myString._isInvalid;

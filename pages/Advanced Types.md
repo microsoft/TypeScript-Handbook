@@ -471,6 +471,50 @@ Because [an ideal property of software is being open to extension](https://en.wi
 
 On the other hand, if you can't express some shape with an interface and you need to use a union or tuple type, type aliases are usually the way to go.
 
+## Special string type guards
+
+Another use-case for type guards is special string type guards. For instance, strings that represent an ip address, email address, phone number, etc. When these strings come from a user (via a web-form, external source, etc.), they need to be validated. You want to ensure validation happens consistently through your code, without having to do the (possibly very expensive) validation every time the data is being used. Consider the following snippet:
+
+```ts
+function sendEmail(address: EmailAddress) {
+    // logic to send email without requiring validation
+}
+
+const myString = 'validEmail@validdomain.com';
+// cannot `sendEmail(myString)` here, because this may be an invalid email address:
+// We want a compile error here when it is used without checking.
+if (!isValidEmailAddress(myString)) {
+    throw new Error('invalid email');
+}
+// fine	to use myString as argument for sendEmail here
+sendEmail(myString); 
+
+```
+
+We can leverage type checks for these strings with the following snippet.
+
+```ts
+export type EmailAddress = string & { _isInvalid: EmailAddress | string | undefined };
+
+function isValidEmailAddress(arg: string): arg is EmailAddress {
+    return /*output of some regex magic to check if the given argument is a valid email email address*/ true;
+}
+
+```
+
+Note that `export type EmailAddress = string` is not enough, as the type `EmailAddress` is then simply an alias of `string`.
+
+Also note that `myString._isInvalid`, although it is not recommended to use it, it behaves as expected. The property does not exist on the input string. Even in the following statement:
+
+```ts
+const otherString = myString._isInvalid;
+if (otherString) {
+    // The type of otherString is `EmailAddress | string` here, so the
+    // following would throw a compile time error too:
+    sendEmail(otherString);
+}
+```
+
 # String Literal Types
 
 String literal types allow you to specify the exact value a string must have.

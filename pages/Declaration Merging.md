@@ -250,7 +250,7 @@ Let's look at a toy Observable example:
 
 ```js
 // observable.js
-export class Observable<T> {
+export class Observable {
     // ... implementation left as an exercise for the reader ...
 }
 
@@ -265,7 +265,11 @@ This works fine in TypeScript too, but the compiler doesn't know about `Observab
 You can use module augmentation to tell the compiler about it:
 
 ```ts
-// observable.ts stays the same
+// observable.ts
+export class Observable<T> {
+    // ... implementation left as an exercise for the reader ...
+}
+
 // map.ts
 import { Observable } from "./observable";
 declare module "./observable" {

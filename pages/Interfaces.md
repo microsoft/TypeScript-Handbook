@@ -319,7 +319,7 @@ interface NumberDictionary {
 
 However, properties of different types are acceptable if the index signature is a union of the property types:
 
-``` ts
+```ts
 interface NumberOrStringDictionary {
     [index: string]: number | string;
     length: number;    // ok, length is a number

@@ -317,6 +317,15 @@ interface NumberDictionary {
 }
 ```
 
+However, properties of different types are acceptable if the index signature is a union of the property types:
+
+``` ts
+interface NumberOrStringDictionary {
+    [index: string]: number | string;
+    length: number;    // ok, length is a number
+    name: string;      // ok, name is a string
+```
+
 Finally, you can make index signatures `readonly` in order to prevent assignment to their indices:
 
 ```ts

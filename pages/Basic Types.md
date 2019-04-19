@@ -90,17 +90,33 @@ console.log(x[0].substr(1)); // OK
 console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
 ```
 
-When accessing an element outside the set of known indices, a union type is used instead:
+Elements outside the range of the tuple may not be accessed:
+
+``` ts
+console.log(x[2]); // Error, no element at index 2
+```
+
+When the index is not known, a union type is used instead:
 
 ```ts
-x[3] = "world"; // OK, 'string' can be assigned to 'string | number'
+let i: number = 0 // TypeScript doesn't know that i == 0
 
-console.log(x[5].toString()); // OK, 'string' and 'number' both have 'toString'
+x[i] = "world"; // OK, 'string' can be assigned to 'string | number'
 
-x[6] = true; // Error, 'boolean' isn't 'string | number'
+console.log(x[i].toString()); // OK, 'string' and 'number' both have 'toString'
+
+x[i] = true; // Error, 'boolean' isn't 'string | number'
 ```
 
 Union types are an advanced topic that we'll cover in a later chapter.
+
+When the index is not known, the range of the tuple is not checked:
+
+```ts
+let j: number = 2 // TypeScript doesn't know that j == 2
+
+console.log(x[j]); // OK, but x[j] is undefined
+```
 
 # [Enum](Enum)
 

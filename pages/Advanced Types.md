@@ -710,46 +710,56 @@ With index types, you can get the compiler to check code that uses dynamic prope
 For example, a common Javascript pattern is to pick a subset of properties from an object:
 
 ```js
-function pluck(o, names) {
-    return names.map(n => o[n]);
+function pluck(o, propertyNames) {
+    return propertyNames.map(n => o[n]);
 }
 ```
 
 Here's how you would write and use this function in TypeScript, using the **index type query** and **indexed access** operators:
 
 ```ts
-function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
-  return names.map(n => o[n]);
+function pluck<T, K extends keyof T>(o: T, propertyNames: K[]): T[K][] {
+  return propertyNames.map(n => o[n]);
 }
 
-interface Person {
-    name: string;
-    age: number;
+interface Car {
+    manufacturer: string;
+    model: string;
+    year: number;
 }
-let person: Person = {
-    name: 'Jarid',
-    age: 35
+let taxi: Car = {
+    manufacturer: 'Toyota',
+    model: 'Camry',
+    year: 2014
 };
-let strings: string[] = pluck(person, ['name']); // ok, string[]
+
+// Manufacturer and model are both of type string,
+// so we can pluck them both into a typed string array
+let makeAndModel: string[] = pluck(taxi, ['manufacturer', 'model']);
+
+// If we try to pluck model and year, we get an
+// array of a union type: (string | number)[]
+let modelYear = pluck(taxi, ['model', 'year'])
 ```
 
-The compiler checks that `name` is actually a property on `Person`.
+The compiler checks that `manufactuer` and `model` are actually properties on `Car`.
 The example introduces a couple of new type operators.
 First is `keyof T`, the **index type query operator**.
 For any type `T`, `keyof T` is the union of known, public property names of `T`.
 For example:
 
 ```ts
-let personProps: keyof Person; // 'name' | 'age'
+let carProps: keyof Car; // the union of ('manufactuer' | 'model' | 'year')
 ```
 
-`keyof Person` is completely interchangeable with `'name' | 'age'`.
-The difference is that if you add another property to `Person`, say `address: string`, then `keyof Person` will automatically update to be `'name' | 'age' | 'address'`.
+`keyof Car` is completely interchangeable with `'manufactuer' | 'model' | 'year'`.
+The difference is that if you add another property to `Car`, say `ownersAddress: string`, then `keyof Person` will automatically update to be `'manufactuer' | 'model' | 'year' | ownersAddress`.
 And you can use `keyof` in generic contexts like `pluck`, where you can't possibly know the property names ahead of time.
 That means the compiler will check that you pass the right set of property names to `pluck`:
 
 ```ts
-pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
+// error, 'unknown' is not in 'manufactuer' | 'model' | 'year'
+pluck(taxi, ['year', 'unknown']); /
 ```
 
 The second operator is `T[K]`, the **indexed access operator**.
@@ -760,18 +770,20 @@ You just have to make sure that the type variable `K extends keyof T`.
 Here's another example with a function named `getProperty`.
 
 ```ts
-function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
-    return o[name]; // o[name] is of type T[K]
+function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] {
+    return o[propertyName]; // o[propertyName] is of type T[K]
 }
 ```
 
-In `getProperty`, `o: T` and `name: K`, so that means `o[name]: T[K]`.
+In `getProperty`, `o: T` and `propertyName: K`, so that means `o[propertyName]: T[K]`.
 Once you return the `T[K]` result, the compiler will instantiate the actual type of the key, so the return type of `getProperty` will vary according to which property you request.
 
 ```ts
-let name: string = getProperty(person, 'name');
-let age: number = getProperty(person, 'age');
-let unknown = getProperty(person, 'unknown'); // error, 'unknown' is not in 'name' | 'age'
+let name: string = getProperty(taxi, 'manufactuer');
+let age: number = getProperty(taxi, 'model');
+
+// error, 'unknown' is not in 'manufactuer' | 'model' | 'year'
+let unknown = getProperty(taxi, 'unknown');
 ```
 
 ## Index types and string index signatures

@@ -288,7 +288,7 @@ let strLength: number = (someValue as string).length;
 The two samples are equivalent.
 Using one over the other is mostly a choice of preference; however, when using TypeScript with JSX, only `as`-style assertions are allowed.
 
-# [A note about `let`](#A-note-about-let)
+# [A note about `let`](#a-note-about-let)
 
 You may've noticed that so far, we've been using the `let` keyword instead of JavaScript's `var` keyword which you might be more familiar with.
 The `let` keyword is actually a newer JavaScript construct that TypeScript makes available.

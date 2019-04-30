@@ -3,7 +3,7 @@
 For programs to be useful, we need to be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.
 In TypeScript, we support much the same types as you would expect in JavaScript, with a convenient enumeration type thrown in to help things along.
 
-# [Boolean](Boolean)
+# [Boolean](#Boolean)
 
 The most basic datatype is the simple true/false value, which JavaScript and TypeScript call a `boolean` value.
 
@@ -11,7 +11,7 @@ The most basic datatype is the simple true/false value, which JavaScript and Typ
 let isDone: boolean = false;
 ```
 
-# [Number](Number)
+# [Number](#Number)
 
 As in JavaScript, all numbers in TypeScript are floating point values.
 These floating point numbers get the type `number`.
@@ -24,7 +24,7 @@ let binary: number = 0b1010;
 let octal: number = 0o744;
 ```
 
-# [String](String)
+# [String](#String)
 
 Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data.
 As in other languages, we use the type `string` to refer to these textual datatypes.
@@ -53,7 +53,7 @@ let sentence: string = "Hello, my name is " + fullName + ".\n\n" +
     "I'll be " + (age + 1) + " years old next month.";
 ```
 
-# [Array](Array)
+# [Array](#Array)
 
 TypeScript, like JavaScript, allows you to work with arrays of values.
 Array types can be written in one of two ways.
@@ -69,7 +69,7 @@ The second way uses a generic array type, `Array<elemType>`:
 let list: Array<number> = [1, 2, 3];
 ```
 
-# [Tuple](Tuple)
+# [Tuple](#Tuple)
 
 Tuple types allow you to express an array where the type of a fixed number of elements is known, but need not be the same.
 For example, you may want to represent a value as a pair of a `string` and a `number`:
@@ -102,7 +102,7 @@ x[6] = true; // Error, 'boolean' isn't 'string | number'
 
 Union types are an advanced topic that we'll cover in a later chapter.
 
-# [Enum](Enum)
+# [Enum](#Enum)
 
 A helpful addition to the standard set of datatypes from JavaScript is the `enum`.
 As in languages like C#, an enum is a way of giving more friendly names to sets of numeric values.
@@ -138,7 +138,7 @@ let colorName: string = Color[2];
 console.log(colorName); // Displays 'Green' as its value is 2 above
 ```
 
-# [Any](Any)
+# [Any](#Any)
 
 We may need to describe the type of variables that we do not know when we are writing an application.
 These values may come from dynamic content, e.g. from the user or a 3rd party library.
@@ -173,7 +173,7 @@ let list: any[] = [1, true, "free"];
 list[1] = 100;
 ```
 
-# [Void](Void)
+# [Void](#Void)
 
 `void` is a little like the opposite of `any`: the absence of having any type at all.
 You may commonly see this as the return type of functions that do not return a value:
@@ -190,7 +190,7 @@ Declaring variables of type `void` is not useful because you can only assign `un
 let unusable: void = undefined;
 ```
 
-# [Null and Undefined](Null-and-Undefined)
+# [Null and Undefined](#Null-and-Undefined)
 
 In TypeScript, both `undefined` and `null` actually have their own types named `undefined` and `null` respectively.
 Much like `void`, they're not extremely useful on their own:
@@ -211,7 +211,7 @@ Once again, more on union types later on.
 
 > As a note: we encourage the use of `--strictNullChecks` when possible, but for the purposes of this handbook, we will assume it is turned off.
 
-# [Never](Never)
+# [Never](#Never)
 
 The `never` type represents the type of values that never occur.
 For instance, `never` is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns;
@@ -240,7 +240,7 @@ function infiniteLoop(): never {
 }
 ```
 
-# [Object](Object)
+# [Object](#Object)
 
 `object` is a type that represents the non-primitive type, i.e. anything that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`.
 
@@ -258,7 +258,7 @@ create(false); // Error
 create(undefined); // Error
 ```
 
-# Type assertions
+# [Type assertions](#type-assertions)
 
 Sometimes you'll end up in a situation where you'll know more about a value than TypeScript does.
 Usually this will happen when you know the type of some entity could be more specific than its current type.
@@ -288,7 +288,7 @@ let strLength: number = (someValue as string).length;
 The two samples are equivalent.
 Using one over the other is mostly a choice of preference; however, when using TypeScript with JSX, only `as`-style assertions are allowed.
 
-# A note about `let`
+# [A note about `let`](#A-note-about-let)
 
 You may've noticed that so far, we've been using the `let` keyword instead of JavaScript's `var` keyword which you might be more familiar with.
 The `let` keyword is actually a newer JavaScript construct that TypeScript makes available.

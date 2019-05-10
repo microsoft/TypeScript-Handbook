@@ -106,7 +106,7 @@ class SmartObject {
 interface SmartObject extends Disposable, Activatable {}
 ```
 
-The first thing you may notice in the above is that instead of trying to extend `Disposable` and `Activatable` in `SmartObject` class, we extend them in `SmartObject` interface. `SmartObject` interface will be mixed into the `SmartObject` class due to [declaration merging](./Declaration Merging.md).
+The first thing you may notice in the above is that instead of trying to extend `Disposable` and `Activatable` in `SmartObject` class, we extend them in `SmartObject` interface. `SmartObject` interface will be mixed into the `SmartObject` class due to the [declaration merging](./Declaration%20Merging.md).
 
 This treats the classes as interfaces, and only mixes the types behind Disposable and Activatable into the SmartObject type rather than the implementation. This means that we'll have to provide the implementation in class.
 Except, that's exactly what we want to avoid by using mixins.

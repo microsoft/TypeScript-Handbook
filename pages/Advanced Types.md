@@ -166,6 +166,9 @@ It would be much better if once we performed the check, we could know the type o
 
 It just so happens that TypeScript has something called a *type guard*.
 A type guard is some expression that performs a runtime check that guarantees the type in some scope.
+
+### Using type predicates
+
 To define a type guard, we simply need to define a function whose return type is a *type predicate*:
 
 ```ts
@@ -192,6 +195,21 @@ else {
 
 Notice that TypeScript not only knows that `pet` is a `Fish` in the `if` branch;
 it also knows that in the `else` branch, you *don't* have a `Fish`, so you must have a `Bird`.
+
+### Using the `in` operator
+
+The `in` operator now acts as a narrowing expression for types.
+
+For a `n in x` expression, where `n` is a string literal or string literal type and `x` is a union type, the "true" branch narrows to types which have an optional or required property `n`, and the "false" branch narrows to types which have an optional or missing property `n`.
+
+```ts
+function move(pet: Fish | Bird) {
+    if ("swim" in pet) {
+        return pet.swim();
+    }
+    return pet.fly();
+}
+```
 
 ## `typeof` type guards
 

@@ -307,7 +307,7 @@ When we construct new literal expressions with `const` assertions, we can signal
 - array literals become `readonly` tuples
 
 ```ts
-// Type '"hello"'
+// Type 'readonly "hello"'
 let x = "hello" as const;
 
 // Type 'readonly [10, 20]'
@@ -320,7 +320,7 @@ let z = { text: "hello" } as const;
 Outside of `.tsx` files, the angle bracket assertion syntax can also be used.
 
 ```ts
-// Type '"hello"'
+// Type 'readonly "hello"'
 let x = <const>"hello";
 
 // Type 'readonly [10, 20]'

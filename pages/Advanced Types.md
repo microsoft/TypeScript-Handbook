@@ -1038,7 +1038,7 @@ Conditional types in which the checked type is a naked type parameter are called
 Distributive conditional types are automatically distributed over union types during instantiation.
 For example, an instantiation of `T extends U ? X : Y` with the type argument `A | B | C` for `T` is resolved as `(A extends U ? X : Y) | (B extends U ? X : Y) | (C extends U ? X : Y)`.
 
-##### Example
+### Example
 
 ```ts
 type T10 = TypeName<string | (() => void)>;  // "string" | "function"
@@ -1049,7 +1049,7 @@ type T11 = TypeName<string[] | number[]>;  // "object"
 In instantiations of a distributive conditional type `T extends U ? X : Y`, references to `T` within the conditional type are resolved to individual constituents of the union type (i.e. `T` refers to the individual constituents *after* the conditional type is distributed over the union type).
 Furthermore, references to `T` within `X` have an additional type parameter constraint `U` (i.e. `T` is considered assignable to `U` within `X`).
 
-##### Example
+### Example
 
 ```ts
 type BoxedValue<T> = { value: T };
@@ -1117,7 +1117,7 @@ type T43 = NonFunctionProperties<Part>;  // { id: number, name: string, subparts
 Similar to union and intersection types, conditional types are not permitted to reference themselves recursively.
 For example the following is an error.
 
-##### Example
+### Example
 
 ```ts
 type ElementType<T> = T extends any[] ? ElementType<T[number]> : T;  // Error
@@ -1201,7 +1201,7 @@ TypeScript 2.8 adds several predefined conditional types to `lib.d.ts`:
 * `ReturnType<T>` -- Obtain the return type of a function type.
 * `InstanceType<T>` -- Obtain the instance type of a constructor function type.
 
-##### Example
+### Example
 
 ```ts
 type T00 = Exclude<"a" | "b" | "c" | "d", "a" | "c" | "f">;  // "b" | "d"

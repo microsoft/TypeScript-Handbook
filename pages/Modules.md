@@ -131,19 +131,19 @@ Default exports are marked with the keyword `default`; and there can only be one
 `default` exports are imported using a different import form.
 
 `default` exports are really handy.
-For instance, a library like JQuery might have a default export of `jQuery` or `$`, which we'd probably also import under the name `$` or `jQuery`.
+For instance, a library like jQuery might have a default export of `jQuery` or `$`, which we'd probably also import under the name `$` or `jQuery`.
 
-##### JQuery.d.ts
+##### jQuery.d.ts
 
 ```ts
-declare let $: JQuery;
+declare let $: jQuery;
 export default $;
 ```
 
 ##### App.ts
 
 ```ts
-import $ from "JQuery";
+import $ from "jQuery";
 
 $("button.continue").html( "Next Step..." );
 ```

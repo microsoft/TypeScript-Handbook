@@ -11,6 +11,7 @@
 * [Multi-file namespaces](#multi-file-namespaces)
 
 [Aliases](#aliases)
+
 [Working with Other JavaScript Libraries](#working-with-other-javascript-libraries)
 * [Ambient Namespaces](#ambient-namespaces)
 

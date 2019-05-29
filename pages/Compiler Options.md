@@ -4,6 +4,7 @@ Option                                         | Type      | Default            
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------
 `--allowJs`                                    | `boolean` | `false`                        | Allow JavaScript files to be compiled.
 `--allowSyntheticDefaultImports`               | `boolean` | `module === "system"` or `--esModuleInterop` | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+`--allowUmdGlobalAccess`                       | `boolean` | `false`                        | Allow accessing UMD globals from modules.
 `--allowUnreachableCode`                       | `boolean` | `false`                        | Do not report errors on unreachable code.
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
 `--alwaysStrict`                               | `boolean` | `false`                        | Parse in strict mode and emit `"use strict"` for each source file

@@ -90,17 +90,11 @@ console.log(x[0].substr(1)); // OK
 console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
 ```
 
-When accessing an element outside the set of known indices, a union type is used instead:
+When accessing an element outside the set of known indices, an error will occur:
 
 ```ts
-x[3] = "world"; // OK, 'string' can be assigned to 'string | number'
-
-console.log(x[5].toString()); // OK, 'string' and 'number' both have 'toString'
-
-x[6] = true; // Error, 'boolean' isn't 'string | number'
+x[3] = "world"; // Error, Tuple type '[string, number]' of length '2' has no element at index '3'
 ```
-
-Union types are an advanced topic that we'll cover in a later chapter.
 
 # [Enum](Enum)
 
@@ -207,7 +201,7 @@ That means you can assign `null` and `undefined` to something like `number`.
 However, when using the `--strictNullChecks` flag, `null` and `undefined` are only assignable to `void` and their respective types.
 This helps avoid *many* common errors.
 In cases where you want to pass in either a `string` or `null` or `undefined`, you can use the union type `string | null | undefined`.
-Once again, more on union types later on.
+Union types are an advanced topic that we'll cover in a later chapter.
 
 > As a note: we encourage the use of `--strictNullChecks` when possible, but for the purposes of this handbook, we will assume it is turned off.
 

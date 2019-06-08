@@ -160,7 +160,7 @@ Normally, `tsc` will produce outputs (`.js` and `.d.ts`) in the presence of synt
 Doing this in an incremental build system would be very bad - if one of your out-of-date dependencies had a new error, you'd only see it *once* because a subsequent build would skip building the now up-to-date project.
 For this reason, `tsc -b` effectively acts as if `noEmitOnError` is enabled for all projects.
 
-If you check in any build outputs (`.js`, `.d.ts`, `.d.ts.map`, etc.), you may need to run a `--force` build after certain source control operations depending on whether your source control tool preserves timestmaps between the local copy and the remote copy.
+If you check in any build outputs (`.js`, `.d.ts`, `.d.ts.map`, etc.), you may need to run a `--force` build after certain source control operations depending on whether your source control tool preserves timestamps between the local copy and the remote copy.
 
 # MSBuild
 

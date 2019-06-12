@@ -37,7 +37,7 @@ let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
-The interface `labeledValue` is a name we can now use to describe the requirement in the previous example.
+The interface `LabeledValue` is a name we can now use to describe the requirement in the previous example.
 It still represents having a single property called `label` that is of type `string`.
 Notice we didn't have to explicitly say that the object we pass to `printLabel` implements this interface like we might have to in other languages.
 Here, it's only the shape that matters. If the object we pass to the function meets the requirements listed, then it's allowed.

@@ -136,14 +136,14 @@ For instance, a library like jQuery might have a default export of `jQuery` or `
 ##### jQuery.d.ts
 
 ```ts
-declare let $: jQuery;
+declare let $: JQuery;
 export default $;
 ```
 
 ##### App.ts
 
 ```ts
-import $ from "jQuery";
+import $ from "jquery";
 
 $("button.continue").html( "Next Step..." );
 ```

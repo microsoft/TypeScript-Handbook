@@ -248,6 +248,7 @@ For information on mimicking class merging, see the [Mixins in TypeScript](./Mix
 Although JavaScript modules do not support merging, you can patch existing objects by importing and then updating them.
 Let's look at a toy Observable example:
 
+
 ```ts
 // observable.ts
 export class Observable<T> {
@@ -265,7 +266,11 @@ This works fine in TypeScript too, but the compiler doesn't know about `Observab
 You can use module augmentation to tell the compiler about it:
 
 ```ts
-// observable.ts stays the same
+// observable.ts
+export class Observable<T> {
+    // ... implementation left as an exercise for the reader ...
+}
+
 // map.ts
 import { Observable } from "./observable";
 declare module "./observable" {

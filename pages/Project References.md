@@ -164,7 +164,7 @@ If you check in any build outputs (`.js`, `.d.ts`, `.d.ts.map`, etc.), you may n
 
 # MSBuild
 
-If you have an msbuild project, you can turn enable build mode by adding
+If you have an msbuild project, you can enable build mode by adding
 
 ```xml
     <TypeScriptBuildMode>true</TypeScriptBuildMode>

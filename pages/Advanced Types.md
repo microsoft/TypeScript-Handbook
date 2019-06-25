@@ -742,23 +742,23 @@ let makeAndModel: string[] = pluck(taxi, ['manufacturer', 'model']);
 let modelYear = pluck(taxi, ['model', 'year'])
 ```
 
-The compiler checks that `manufactuer` and `model` are actually properties on `Car`.
+The compiler checks that `manufacturer` and `model` are actually properties on `Car`.
 The example introduces a couple of new type operators.
 First is `keyof T`, the **index type query operator**.
 For any type `T`, `keyof T` is the union of known, public property names of `T`.
 For example:
 
 ```ts
-let carProps: keyof Car; // the union of ('manufactuer' | 'model' | 'year')
+let carProps: keyof Car; // the union of ('manufacturer' | 'model' | 'year')
 ```
 
 `keyof Car` is completely interchangeable with `'manufactuer' | 'model' | 'year'`.
-The difference is that if you add another property to `Car`, say `ownersAddress: string`, then `keyof Person` will automatically update to be `'manufactuer' | 'model' | 'year' | ownersAddress`.
+The difference is that if you add another property to `Car`, say `ownersAddress: string`, then `keyof Person` will automatically update to be `'manufacturer' | 'model' | 'year' | ownersAddress`.
 And you can use `keyof` in generic contexts like `pluck`, where you can't possibly know the property names ahead of time.
 That means the compiler will check that you pass the right set of property names to `pluck`:
 
 ```ts
-// error, 'unknown' is not in 'manufactuer' | 'model' | 'year'
+// error, 'unknown' is not in 'manufacturer' | 'model' | 'year'
 pluck(taxi, ['year', 'unknown']); /
 ```
 
@@ -779,10 +779,10 @@ In `getProperty`, `o: T` and `propertyName: K`, so that means `o[propertyName]: 
 Once you return the `T[K]` result, the compiler will instantiate the actual type of the key, so the return type of `getProperty` will vary according to which property you request.
 
 ```ts
-let name: string = getProperty(taxi, 'manufactuer');
+let name: string = getProperty(taxi, 'manufacturer');
 let age: number = getProperty(taxi, 'model');
 
-// error, 'unknown' is not in 'manufactuer' | 'model' | 'year'
+// error, 'unknown' is not in 'manufacturer' | 'model' | 'year'
 let unknown = getProperty(taxi, 'unknown');
 ```
 

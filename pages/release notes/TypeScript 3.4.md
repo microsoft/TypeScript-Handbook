@@ -6,7 +6,7 @@ The next time TypeScript is invoked with `--incremental`, it will use that infor
 ```json5
 // tsconfig.json
 {
-    "compilerOptions": { 
+    "compilerOptions": {
         "incremental": true,
         "outDir": "./lib"
     },
@@ -124,7 +124,7 @@ During type argument inference in TypeScript 3.4, for a call to a generic functi
 
 In other words, instead of producing the type
 
-```
+```ts
 (arg: {}) => Box<{}[]>
 ```
 
@@ -203,7 +203,7 @@ function foo(pair: readonly [string, string]) {
 }
 ```
 
-The same way that ordinary tuples are types that extend from `Array` - a tuple with elements of type `T`<sub>`1`</sub>, `T`<sub>`2`</sub>, ... `T`<sub>`n`</sub> extends from `Array<` `T`<sub>`1`</sub> | `T`<sub>`2`</sub> | ... `T`<sub>`n`</sub> `>` - `readonly` tuples are types that extend from `ReadonlyArray`. So a `readonly` tuple with elements `T`<sub>`1`</sub>, `T`<sub>`2`</sub>, ... `T`<sub>`n`</sub> extends from `ReadonlyArray<` `T`<sub>`1`</sub> | `T`<sub>`2`</sub> | ... `T`<sub>`n`</sub> `>`.
+The same way that ordinary tuples are types that extend from `Array` - a tuple with elements of type <code>T<sub>1</sub></code>, <code>T<sub>2</sub></code>, ... <code>T<sub>n</sub></code> extends from <code>Array&lt; T<sub>1</sub> \| T<sub>2</sub> \| ... T<sub>n</sub> &gt;</code> - `readonly` tuples are types that extend from `ReadonlyArray`. So a `readonly` tuple with elements <code>T<sub>1</sub></code>, <code>T<sub>2</sub></code>, ... <code>T<sub>n</sub></code> extends from <code>ReadonlyArray< T<sub>1</sub> \| T<sub>2</sub> | ... T<sub>n</sub> ></code>.
 
 ### `readonly` mapped type modifiers and `readonly` arrays
 
@@ -340,7 +340,7 @@ function getShapes() {
         { kind: "circle", radius: 100, },
         { kind: "square", sideLength: 50, },
     ] as const;
-    
+
     return result;
 }
 

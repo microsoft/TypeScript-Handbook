@@ -562,6 +562,7 @@ function keepWholeObject(wholeObject: { a: string, b?: number }) {
 }
 ```
 
+In this example the `b?` indicates that `b` is optional, so it may be `undefined`.
 `keepWholeObject` now has a variable for `wholeObject` as well as the properties `a` and `b`, even if `b` is undefined.
 
 ## Function declarations

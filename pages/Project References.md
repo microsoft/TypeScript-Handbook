@@ -76,7 +76,7 @@ Enabling the `composite` flag changes a few things:
 * All implementation files must be matched by an `include` pattern or listed in the `files` array. If this constraint is violated, `tsc` will inform you which files weren't specified
 * `declaration` must be turned on
 
-# `declarationMaps`
+# `declarationMap`s
 
 We've also added support for [declaration source maps](https://github.com/Microsoft/TypeScript/issues/14479).
 If you enable `--declarationMap`, you'll be able to use editor features like "Go to Definition" and Rename to transparently navigate and edit code across project boundaries in supported editors.

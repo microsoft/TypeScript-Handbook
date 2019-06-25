@@ -166,6 +166,9 @@ It would be much better if once we performed the check, we could know the type o
 
 It just so happens that TypeScript has something called a *type guard*.
 A type guard is some expression that performs a runtime check that guarantees the type in some scope.
+
+### Using type predicates
+
 To define a type guard, we simply need to define a function whose return type is a *type predicate*:
 
 ```ts
@@ -192,6 +195,21 @@ else {
 
 Notice that TypeScript not only knows that `pet` is a `Fish` in the `if` branch;
 it also knows that in the `else` branch, you *don't* have a `Fish`, so you must have a `Bird`.
+
+### Using the `in` operator
+
+The `in` operator now acts as a narrowing expression for types.
+
+For a `n in x` expression, where `n` is a string literal or string literal type and `x` is a union type, the "true" branch narrows to types which have an optional or required property `n`, and the "false" branch narrows to types which have an optional or missing property `n`.
+
+```ts
+function move(pet: Fish | Bird) {
+    if ("swim" in pet) {
+        return pet.swim();
+    }
+    return pet.fly();
+}
+```
 
 ## `typeof` type guards
 
@@ -1020,7 +1038,7 @@ Conditional types in which the checked type is a naked type parameter are called
 Distributive conditional types are automatically distributed over union types during instantiation.
 For example, an instantiation of `T extends U ? X : Y` with the type argument `A | B | C` for `T` is resolved as `(A extends U ? X : Y) | (B extends U ? X : Y) | (C extends U ? X : Y)`.
 
-##### Example
+### Example
 
 ```ts
 type T10 = TypeName<string | (() => void)>;  // "string" | "function"
@@ -1031,7 +1049,7 @@ type T11 = TypeName<string[] | number[]>;  // "object"
 In instantiations of a distributive conditional type `T extends U ? X : Y`, references to `T` within the conditional type are resolved to individual constituents of the union type (i.e. `T` refers to the individual constituents *after* the conditional type is distributed over the union type).
 Furthermore, references to `T` within `X` have an additional type parameter constraint `U` (i.e. `T` is considered assignable to `U` within `X`).
 
-##### Example
+### Example
 
 ```ts
 type BoxedValue<T> = { value: T };
@@ -1099,7 +1117,7 @@ type T43 = NonFunctionProperties<Part>;  // { id: number, name: string, subparts
 Similar to union and intersection types, conditional types are not permitted to reference themselves recursively.
 For example the following is an error.
 
-##### Example
+### Example
 
 ```ts
 type ElementType<T> = T extends any[] ? ElementType<T[number]> : T;  // Error
@@ -1183,7 +1201,7 @@ TypeScript 2.8 adds several predefined conditional types to `lib.d.ts`:
 * `ReturnType<T>` -- Obtain the return type of a function type.
 * `InstanceType<T>` -- Obtain the instance type of a constructor function type.
 
-##### Example
+### Example
 
 ```ts
 type T00 = Exclude<"a" | "b" | "c" | "d", "a" | "c" | "f">;  // "b" | "d"

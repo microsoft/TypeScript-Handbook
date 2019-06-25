@@ -27,7 +27,7 @@ function greeter(person) {
 
 let user = "Jane User";
 
-document.body.innerHTML = greeter(user);
+document.body.textContent = greeter(user);
 ```
 
 ## Compiling your code
@@ -54,7 +54,7 @@ function greeter(person: string) {
 
 let user = "Jane User";
 
-document.body.innerHTML = greeter(user);
+document.body.textContent = greeter(user);
 ```
 
 ## Type annotations
@@ -70,7 +70,7 @@ function greeter(person: string) {
 
 let user = [0, 1, 2];
 
-document.body.innerHTML = greeter(user);
+document.body.textContent = greeter(user);
 ```
 
 Re-compiling, you'll now see an error:
@@ -104,7 +104,7 @@ function greeter(person: Person) {
 
 let user = { firstName: "Jane", lastName: "User" };
 
-document.body.innerHTML = greeter(user);
+document.body.textContent = greeter(user);
 ```
 
 ## Classes
@@ -136,7 +136,7 @@ function greeter(person: Person) {
 
 let user = new Student("Jane", "M.", "User");
 
-document.body.innerHTML = greeter(user);
+document.body.textContent = greeter(user);
 ```
 
 Re-run `tsc greeter.ts` and you'll see the generated JavaScript is the same as the earlier code.

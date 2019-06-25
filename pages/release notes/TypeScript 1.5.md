@@ -89,7 +89,7 @@ A destructuring declaration introduces one or more named variables and initializ
 For example, the following sample declares variables `x`, `y`, and `z`, and initializes them to `getSomeObject().x`, `getSomeObject().y` and `getSomeObject().z` respectively:
 
 ```ts
-var { x, y, z} = getSomeObject();
+var { x, y, z } = getSomeObject();
 ```
 
 Destructuring declarations also works for extracting values from arrays:
@@ -170,7 +170,7 @@ else {
   // use a
 }
 
-alert(a); // Error: a is not defined in this scope
+alert(a); // Error: a is not defined in this scope.
 ```
 
 # for..of support
@@ -215,7 +215,7 @@ This allows the decorator to change the implementation, and in this case, augmen
 class C {
   @readonly
   @enumerable(false)
-  method() { }
+  method() { ... }
 }
 
 function readonly(target, key, descriptor) {
@@ -223,9 +223,9 @@ function readonly(target, key, descriptor) {
 }
 
 function enumerable(value) {
-  return function (target, key, descriptor) {
-     descriptor.enumerable = value;
-  }
+    return function (target, key, descriptor) {
+        descriptor.enumerable = value;
+    };
 }
 ```
 
@@ -235,7 +235,7 @@ Initializing an object with dynamic properties can be a bit of a burden. Take th
 
 ```ts
 type NeighborMap = { [name: string]: Node };
-type Node = { name: string; neighbors: NeighborMap;}
+type Node = { name: string; neighbors: NeighborMap; };
 
 function makeNode(name: string, initialNeighbor: Node): Node {
     var neighbors: NeighborMap = {};
@@ -254,7 +254,7 @@ function makeNode(name: string, initialNeighbor: Node): Node {
         neighbors: {
             [initialNeighbor.name]: initialNeighbor
         }
-    }
+    };
 }
 ```
 
@@ -317,15 +317,15 @@ The new `amd-dependency name` property allows passing an optional name for an am
 
 ```ts
 /// <amd-dependency path="legacy/moduleA" name="moduleA"/>
-declare var moduleA:MyType
-moduleA.callStuff()
+declare var moduleA: MyType;
+moduleA.callStuff();
 ```
 
 Generated JS code:
 
 ```js
 define(["require", "exports", "legacy/moduleA"], function (require, exports, moduleA) {
-    moduleA.callStuff()
+    moduleA.callStuff();
 });
 ```
 
@@ -344,7 +344,7 @@ The tsconfig.json file specifies the root files and the compiler options require
     "compilerOptions": {
         "module": "commonjs",
         "noImplicitAny": true,
-        "sourceMap": true,
+        "sourceMap": true
     }
 }
 ```

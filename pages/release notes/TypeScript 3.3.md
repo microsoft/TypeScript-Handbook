@@ -31,7 +31,7 @@ declare let f: FruitEater | ColorConsumer;
 
 f("orange"); // It works! Returns a 'number | string'.
 
-f("apple");  // error - Argument of type '"red"' is not assignable to parameter of type '"orange"'.
+f("apple");  // error - Argument of type '"apple"' is not assignable to parameter of type '"orange"'.
 
 f("red");    // error - Argument of type '"red"' is not assignable to parameter of type '"orange"'.
 ```

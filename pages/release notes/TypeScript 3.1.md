@@ -37,7 +37,7 @@ Here, we have a function `readImage` which reads an image in a non-blocking asyn
 In addition to `readImage`, we've provided a convenience function on `readImage` itself called `readImage.sync`.
 
 While ECMAScript exports are often a better way of providing this functionality, this new support allows code written in this style to "just work" TypeScript.
-Additionally, this approach for property declarations allows us to express common patterns like `defaultProps` and `propTypes` on React stateless function components (SFCs).
+Additionally, this approach for property declarations allows us to express common patterns like `defaultProps` and `propTypes` on React function components (formerly known as SFCs).
 
 ```ts
 export const FooComponent = ({ name }) => (

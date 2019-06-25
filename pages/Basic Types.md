@@ -71,8 +71,7 @@ let list: Array<number> = [1, 2, 3];
 
 # [Tuple](Tuple)
 
-Tuple types allow you to express an array where the type of a fixed number of elements is known, but need not be the same.
-For example, you may want to represent a value as a pair of a `string` and a `number`:
+Tuple types allow you to express an array with a fixed number of elements whose types are known, but need not be the same. For example, you may want to represent a value as a pair of a `string` and a `number`:
 
 ```ts
 // Declare a tuple type
@@ -90,14 +89,12 @@ console.log(x[0].substr(1)); // OK
 console.log(x[1].substr(1)); // Error, 'number' does not have 'substr'
 ```
 
-When accessing an element outside the set of known indices, a union type is used instead:
+Accessing an element outside the set of known indices fails with an error:
 
 ```ts
-x[3] = "world"; // OK, 'string' can be assigned to 'string | number'
+x[3] = "world"; // Error, Property '3' does not exist on type '[string, number]'.
 
-console.log(x[5].toString()); // OK, 'string' and 'number' both have 'toString'
-
-x[6] = true; // Error, 'boolean' isn't 'string | number'
+console.log(x[5].toString()); // Error, Property '5' does not exist on type '[string, number]'.
 ```
 
 Union types are an advanced topic that we'll cover in a later chapter.
@@ -204,7 +201,7 @@ let n: null = null;
 By default `null` and `undefined` are subtypes of all other types.
 That means you can assign `null` and `undefined` to something like `number`.
 
-However, when using the `--strictNullChecks` flag, `null` and `undefined` are only assignable to `void` and their respective types.
+However, when using the `--strictNullChecks` flag, `null` and `undefined` are only assignable to `any` and their respective types (the one exception being that `undefined` is also assignable to `void`).
 This helps avoid *many* common errors.
 In cases where you want to pass in either a `string` or `null` or `undefined`, you can use the union type `string | null | undefined`.
 Once again, more on union types later on.

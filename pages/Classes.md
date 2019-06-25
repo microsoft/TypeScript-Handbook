@@ -302,14 +302,14 @@ if (employee.fullName) {
 }
 ```
 
-While allowing people to randomly set `fullName` directly is pretty handy, this might get us in trouble if people can change names on a whim.
+While allowing people to randomly set `fullName` directly is pretty handy, we may also want enforce some constraints when `fullName` is set.
 
-In this version, we check to make sure the user has a secret passcode available before we allow them to modify the employee.
-We do this by replacing the direct access to `fullName` with a `set` that will check the passcode.
-We add a corresponding `get` to allow the previous example to continue to work seamlessly.
+In this version, we add a setter that checks the length of the `newName` to make sure it's compatible with the max-length of our backing database field. If it isn't we throw an error notifying client code that something went wrong.
+
+To preserve existing functionality, we also add a simple getter that retrieves `fullName` unmodified.
 
 ```ts
-let passcode = "secret passcode";
+const fullNameMaxLength = 10;
 
 class Employee {
     private _fullName: string;
@@ -319,12 +319,11 @@ class Employee {
     }
 
     set fullName(newName: string) {
-        if (passcode && passcode == "secret passcode") {
-            this._fullName = newName;
+        if (newName && newName.length > fullNameMaxLength) {
+            throw new Error("fullName has a max length of " + fullNameMaxLength);
         }
-        else {
-            console.log("Error: Unauthorized update of employee!");
-        }
+        
+        this._fullName = newName;
     }
 }
 
@@ -335,7 +334,7 @@ if (employee.fullName) {
 }
 ```
 
-To prove to ourselves that our accessor is now checking the passcode, we can modify the passcode and see that when it doesn't match we instead get the message warning us we don't have access to update the employee.
+To prove to ourselves that our accessor is now checking the length of values, we can attempt to assign a name longer than 10 characters and verify that we get an error.
 
 A couple of things to note about accessors:
 

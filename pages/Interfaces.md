@@ -171,7 +171,7 @@ Object literals get special treatment and undergo *excess property checking* whe
 If an object literal has any properties that the "target type" doesn't have, you'll get an error:
 
 ```ts
-// error: 'colour' not expected in type 'SquareConfig'
+// error: Object literal may only specify known properties, but 'colour' does not exist in type 'SquareConfig'. Did you mean to write 'color'?
 let mySquare = createSquare({ colour: "red", width: 100 });
 ```
 

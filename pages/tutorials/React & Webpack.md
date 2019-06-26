@@ -23,16 +23,13 @@ proj/
    └─ components/
 ```
 
-TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.
+TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `main.js` file in `dist`.
 Any components that we write will go in the `src/components` folder.
 
 Let's scaffold this out:
 
 ```shell
-mkdir src
-cd src
-mkdir components
-cd ..
+mkdir -p src/components
 ```
 
 Webpack will eventually generate the `dist` directory for us.
@@ -42,18 +39,17 @@ Webpack will eventually generate the `dist` directory for us.
 Now we'll turn this folder into an npm package.
 
 ```shell
-npm init
+npm init -y
 ```
 
-You'll be given a series of prompts, but you can feel free to use the defaults.
-You can always go back and change these in the `package.json` file that's been generated for you.
+This creates a `package.json` file with default values.
 
 # Install our dependencies
 
-First ensure Webpack is installed globally.
+First ensure Webpack is installed.
 
 ```shell
-npm install -g webpack
+npm install --save-dev webpack webpack-cli
 ```
 
 Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file.
@@ -61,7 +57,8 @@ Webpack is a tool that will bundle your code and optionally all of its dependenc
 Let's now add React and React-DOM, along with their declaration files, as dependencies to your `package.json` file:
 
 ```shell
-npm install --save react react-dom @types/react @types/react-dom
+npm install --save react react-dom
+npm install --save-dev @types/react @types/react-dom
 ```
 
 That `@types/` prefix means that we also want to get the declaration files for React and React-DOM.
@@ -69,20 +66,21 @@ Usually when you import a path like `"react"`, it will look inside of the `react
 however, not all packages include declaration files, so TypeScript also looks in the `@types/react` package as well.
 You'll see that we won't even have to think about this later on.
 
-Next, we'll add development-time dependencies on [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader).
+Next, we'll add development-time dependencies on the [ts-loader](https://www.npmjs.com/package/ts-loader) and [source-map-loader](https://www.npmjs.com/package/source-map-loader).
 
 ```shell
-npm install --save-dev typescript awesome-typescript-loader source-map-loader
+npm install --save-dev typescript ts-loader source-map-loader
 ```
 
 Both of these dependencies will let TypeScript and webpack play well together.
-awesome-typescript-loader helps Webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
+ts-loader helps Webpack compile your TypeScript code using the TypeScript's standard configuration file named `tsconfig.json`.
 source-map-loader uses any sourcemap outputs from TypeScript to inform webpack when generating *its own* sourcemaps.
 This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
 
-Please note that awesome-typescript-loader is not the only loader for typescript.
-You could instead use [ts-loader](https://github.com/TypeStrong/ts-loader).
-Read about the differences between them [here](https://github.com/s-panferov/awesome-typescript-loader#differences-between-ts-loader)
+Please note that ts-loader is not the only loader for typescript.
+You could instead use [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader).
+
+Read about the differences between them [here](https://github.com/s-panferov/awesome-typescript-loader#differences-between-ts-loader).
 
 Notice that we installed TypeScript as a development dependency.
 We could also have linked TypeScript to a global copy with `npm link typescript`, but this is a less common scenario.
@@ -103,10 +101,7 @@ Simply create a new file in your project root named `tsconfig.json` and fill it 
         "module": "commonjs",
         "target": "es6",
         "jsx": "react"
-    },
-    "include": [
-        "./src/**/*"
-    ]
+    }
 }
 ```
 
@@ -177,7 +172,7 @@ Create a file at the root of `proj` named `index.html` with the following conten
         <script src="./node_modules/react-dom/umd/react-dom.development.js"></script>
 
         <!-- Main -->
-        <script src="./dist/bundle.js"></script>
+        <script src="./dist/main.js"></script>
     </body>
 </html>
 ```
@@ -193,27 +188,33 @@ Create a `webpack.config.js` file at the root of the project directory.
 
 ```js
 module.exports = {
-    entry: "./src/index.tsx",
-    output: {
-        filename: "bundle.js",
-        path: __dirname + "/dist"
-    },
+    mode: "production",
 
     // Enable sourcemaps for debugging webpack's output.
     devtool: "source-map",
 
     resolve: {
         // Add '.ts' and '.tsx' as resolvable extensions.
-        extensions: [".ts", ".tsx", ".js", ".json"]
+        extensions: [".ts", ".tsx"]
     },
 
     module: {
         rules: [
-            // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-            { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-
+            {
+                test: /\.ts(x?)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "ts-loader"
+                    }
+                ]
+            },
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-            { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+            {
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
+            }
         ]
     },
 
@@ -243,7 +244,7 @@ You can learn more about configuring webpack [here](https://webpack.js.org/conce
 Just run:
 
 ```shell
-webpack
+npx webpack
 ```
 
 Now open up `index.html` in your favorite browser and everything should be ready to use!

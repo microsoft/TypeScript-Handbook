@@ -37,7 +37,7 @@ let myObj = {size: 10, label: "Size 10 Object"};
 printLabel(myObj);
 ```
 
-The interface `labeledValue` is a name we can now use to describe the requirement in the previous example.
+The interface `LabeledValue` is a name we can now use to describe the requirement in the previous example.
 It still represents having a single property called `label` that is of type `string`.
 Notice we didn't have to explicitly say that the object we pass to `printLabel` implements this interface like we might have to in other languages.
 Here, it's only the shape that matters. If the object we pass to the function meets the requirements listed, then it's allowed.
@@ -171,7 +171,7 @@ Object literals get special treatment and undergo *excess property checking* whe
 If an object literal has any properties that the "target type" doesn't have, you'll get an error:
 
 ```ts
-// error: 'colour' not expected in type 'SquareConfig'
+// error: Object literal may only specify known properties, but 'colour' does not exist in type 'SquareConfig'. Did you mean to write 'color'?
 let mySquare = createSquare({ colour: "red", width: 100 });
 ```
 
@@ -315,6 +315,15 @@ interface NumberDictionary {
     length: number;    // ok, length is a number
     name: string;      // error, the type of 'name' is not a subtype of the indexer
 }
+```
+
+However, properties of different types are acceptable if the index signature is a union of the property types:
+
+```ts
+interface NumberOrStringDictionary {
+    [index: string]: number | string;
+    length: number;    // ok, length is a number
+    name: string;      // ok, name is a string
 ```
 
 Finally, you can make index signatures `readonly` in order to prevent assignment to their indices:

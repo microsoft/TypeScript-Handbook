@@ -68,7 +68,7 @@ In `src`, create the file `main.ts`:
 function hello(compiler: string) {
     console.log(`Hello from ${compiler}`);
 }
-hello("TypeScript");
+hello('TypeScript');
 ```
 
 In the project root, `proj`, create the file `tsconfig.json`:
@@ -90,14 +90,14 @@ In the project root, `proj`, create the file `tsconfig.json`:
 In the project root, create the file `gulpfile.js`:
 
 ```js
-var gulp = require("gulp");
-var ts = require("gulp-typescript");
-var tsProject = ts.createProject("tsconfig.json");
+var gulp = require('gulp');
+var ts = require('gulp-typescript');
+var tsProject = ts.createProject('tsconfig.json');
 
-gulp.task("default", function () {
+gulp.task('default', function () {
     return tsProject.src()
         .pipe(tsProject())
-        .js.pipe(gulp.dest("dist"));
+        .js.pipe(gulp.dest('dist'));
 });
 ```
 
@@ -126,9 +126,9 @@ export function sayHello(name: string) {
 Now change the code in `src/main.ts` to import `sayHello` from `greet.ts`:
 
 ```ts
-import { sayHello } from "./greet";
+import { sayHello } from './greet';
 
-console.log(sayHello("TypeScript"));
+console.log(sayHello('TypeScript'));
 ```
 
 Finally, add `src/greet.ts` to `tsconfig.json`:
@@ -193,34 +193,34 @@ Create a file in `src` named `index.html`:
 Now change `main.ts` to update the page:
 
 ```ts
-import { sayHello } from "./greet";
+import { sayHello } from './greet';
 
 function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName);
     elt.innerText = sayHello(name);
 }
 
-showHello("greeting", "TypeScript");
+showHello('greeting', 'TypeScript');
 ```
 
 Calling `showHello` calls `sayHello` to change the paragraph's text.
 Now change your gulpfile to the following:
 
 ```js
-var gulp = require("gulp");
-var browserify = require("browserify");
+var gulp = require('gulp');
+var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var tsify = require("tsify");
+var tsify = require('tsify');
 var paths = {
     pages: ['src/*.html']
 };
 
-gulp.task("copy-html", function () {
+gulp.task('copy-html', function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest('dist'));
 });
 
-gulp.task("default", gulp.series(gulp.parallel('copy-html'), function () {
+gulp.task('default', gulp.series(gulp.parallel('copy-html'), function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -231,7 +231,7 @@ gulp.task("default", gulp.series(gulp.parallel('copy-html'), function () {
     .plugin(tsify)
     .bundle()
     .pipe(source('bundle.js'))
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest('dist'));
 }));
 ```
 
@@ -274,12 +274,12 @@ npm install --save-dev watchify fancy-log
 Now change your gulpfile to the following:
 
 ```js
-var gulp = require("gulp");
-var browserify = require("browserify");
+var gulp = require('gulp');
+var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var watchify = require("watchify");
-var tsify = require("tsify");
-var fancy_log = require("fancy-log");
+var watchify = require('watchify');
+var tsify = require('tsify');
+var fancy_log = require('fancy-log');
 var paths = {
     pages: ['src/*.html']
 };
@@ -292,28 +292,28 @@ var watchedBrowserify = watchify(browserify({
     packageCache: {}
 }).plugin(tsify));
 
-gulp.task("copy-html", function () {
+gulp.task('copy-html', function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest('dist'));
 });
 
 function bundle() {
     return watchedBrowserify
         .bundle()
         .pipe(source('bundle.js'))
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest('dist'));
 }
 
-gulp.task("default", gulp.series(gulp.parallel('copy-html'), bundle));
-watchedBrowserify.on("update", bundle);
-watchedBrowserify.on("log", fancy_log);
+gulp.task('default', gulp.series(gulp.parallel('copy-html'), bundle));
+watchedBrowserify.on('update', bundle);
+watchedBrowserify.on('log', fancy_log);
 ```
 
 There are basically three changes here, but they require you to refactor your code a bit.
 
 1. We wrapped our `browserify` instance in a call to `watchify`, and then held on to the result.
-2. We called `watchedBrowserify.on("update", bundle);` so that Browserify will run the `bundle` function every time one of your TypeScript files changes.
-3. We called `watchedBrowserify.on("log", gutil.log);` to log to the console.
+2. We called `watchedBrowserify.on('update', bundle);` so that Browserify will run the `bundle` function every time one of your TypeScript files changes.
+3. We called `watchedBrowserify.on('log', gutil.log);` to log to the console.
 
 Together (1) and (2) mean that we have to move our call to `browserify` out of the `default` task.
 And we have to give the function for `default` a name since both Watchify and Gulp need to call it.
@@ -347,10 +347,10 @@ npm install --save-dev gulp-uglify vinyl-buffer gulp-sourcemaps
 Now change your gulpfile to the following:
 
 ```js
-var gulp = require("gulp");
-var browserify = require("browserify");
+var gulp = require('gulp');
+var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var tsify = require("tsify");
+var tsify = require('tsify');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var buffer = require('vinyl-buffer');
@@ -358,12 +358,12 @@ var paths = {
     pages: ['src/*.html']
 };
 
-gulp.task("copy-html", function () {
+gulp.task('copy-html', function () {
     return gulp.src(paths.pages)
-        .pipe(gulp.dest("dist"));
+        .pipe(gulp.dest('dist'));
 });
 
-gulp.task("default", gulp.series(gulp.parallel('copy-html'), function () {
+gulp.task('default', gulp.series(gulp.parallel('copy-html'), function () {
     return browserify({
         basedir: '.',
         debug: true,
@@ -378,7 +378,7 @@ gulp.task("default", gulp.series(gulp.parallel('copy-html'), function () {
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest("dist"));
+    .pipe(gulp.dest('dist'));
 }));
 ```
 

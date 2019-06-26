@@ -1,8 +1,8 @@
 # General Types
 
-## `Number`, `String`, `Boolean`, and `Object`
+## `Number`, `String`, `Boolean`, `Symbol` and `Object`
 
-*Don't* ever use the types `Number`, `String`, `Boolean`, or `Object`.
+*Don't* ever use the types `Number`, `String`, `Boolean`, `Symbol`, or `Object`
 These types refer to non-primitive boxed objects that are almost never used appropriately in JavaScript code.
 
 ```ts
@@ -10,7 +10,7 @@ These types refer to non-primitive boxed objects that are almost never used appr
 function reverse(s: String): String;
 ```
 
-*Do* use the types `number`, `string`, and `boolean`.
+*Do* use the types `number`, `string`, `boolean`, and `symbol`.
 
 ```ts
 /* OK */

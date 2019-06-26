@@ -1,1 +1,1 @@
-> ## This page has been moved to [Publishing](./declaration%20files/Introduction.md)
+> ## This page has been moved to [Introduction](./declaration%20files/Introduction.md)

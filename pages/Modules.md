@@ -14,7 +14,7 @@ Modules are declarative; the relationships between modules are specified in term
 
 Modules import one another using a module loader.
 At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it.
-Well-known modules loaders used in JavaScript are the [CommonJS](https://en.wikipedia.org/wiki/CommonJS) module loader for Node.js and [require.js](http://requirejs.org/) for Web applications.
+Well-known module loaders used in JavaScript are Node.js's loader for [CommonJS](https://en.wikipedia.org/wiki/CommonJS) modules and the [RequireJS](http://requirejs.org/) loader for [AMD](https://github.com/amdjs/amdjs-api/blob/master/AMD.md) modules in Web applications.
 
 In TypeScript, just as in ECMAScript 2015, any file containing a top-level `import` or `export` is considered a module.
 Conversely, a file without any top-level `import` or `export` declarations is treated as a script whose contents are available in the global scope (and therefore to modules as well).
@@ -131,9 +131,9 @@ Default exports are marked with the keyword `default`; and there can only be one
 `default` exports are imported using a different import form.
 
 `default` exports are really handy.
-For instance, a library like JQuery might have a default export of `jQuery` or `$`, which we'd probably also import under the name `$` or `jQuery`.
+For instance, a library like jQuery might have a default export of `jQuery` or `$`, which we'd probably also import under the name `$` or `jQuery`.
 
-##### JQuery.d.ts
+##### jQuery.d.ts
 
 ```ts
 declare let $: JQuery;
@@ -143,7 +143,7 @@ export default $;
 ##### App.ts
 
 ```ts
-import $ from "JQuery";
+import $ from "jquery";
 
 $("button.continue").html( "Next Step..." );
 ```

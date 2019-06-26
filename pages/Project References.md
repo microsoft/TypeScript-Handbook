@@ -76,7 +76,7 @@ Enabling the `composite` flag changes a few things:
 * All implementation files must be matched by an `include` pattern or listed in the `files` array. If this constraint is violated, `tsc` will inform you which files weren't specified
 * `declaration` must be turned on
 
-# `declarationMaps`
+# `declarationMap`s
 
 We've also added support for [declaration source maps](https://github.com/Microsoft/TypeScript/issues/14479).
 If you enable `--declarationMap`, you'll be able to use editor features like "Go to Definition" and Rename to transparently navigate and edit code across project boundaries in supported editors.
@@ -160,11 +160,11 @@ Normally, `tsc` will produce outputs (`.js` and `.d.ts`) in the presence of synt
 Doing this in an incremental build system would be very bad - if one of your out-of-date dependencies had a new error, you'd only see it *once* because a subsequent build would skip building the now up-to-date project.
 For this reason, `tsc -b` effectively acts as if `noEmitOnError` is enabled for all projects.
 
-If you check in any build outputs (`.js`, `.d.ts`, `.d.ts.map`, etc.), you may need to run a `--force` build after certain source control operations depending on whether your source control tool preserves timestmaps between the local copy and the remote copy.
+If you check in any build outputs (`.js`, `.d.ts`, `.d.ts.map`, etc.), you may need to run a `--force` build after certain source control operations depending on whether your source control tool preserves timestamps between the local copy and the remote copy.
 
 # MSBuild
 
-If you have an msbuild project, you can turn enable build mode by adding
+If you have an msbuild project, you can enable build mode by adding
 
 ```xml
     <TypeScriptBuildMode>true</TypeScriptBuildMode>

@@ -10,4 +10,4 @@ For a more formal description of the language, see the [latest TypeScript Langua
 
 ## How To Contribute
 
-TypeScript-Handbook is accepting contributions. If you've submitted a PR for an existing issue, please post a comment in the issue to avoid duplication of effort. See our [CONTRIBTUTING](/CONTRIBUTING.md) file for more information - it also contains guidelines for how to submit a PR.
+TypeScript-Handbook is accepting contributions. If you've submitted a PR for an existing issue, please post a comment in the issue to avoid duplication of effort. See our [CONTRIBUTING](/CONTRIBUTING.md) file for more information - it also contains guidelines for how to submit a PR.

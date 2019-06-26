@@ -133,7 +133,7 @@ Default exports are marked with the keyword `default`; and there can only be one
 `default` exports are really handy.
 For instance, a library like jQuery might have a default export of `jQuery` or `$`, which we'd probably also import under the name `$` or `jQuery`.
 
-##### jQuery.d.ts
+##### [JQuery.d.ts](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/jquery/JQuery.d.ts)
 
 ```ts
 declare let $: JQuery;

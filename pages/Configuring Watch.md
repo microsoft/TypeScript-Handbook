@@ -13,7 +13,7 @@ default (no value specified)                   | If environment variable `TSC_NO
 
 ## Configuring directory watching using environment variable `TSC_WATCHDIRECTORY`
 
-The watching of directory on platforms that dont support recursive directory watching natively in node, is supported through recursively creating directory watcher for the child directories using different options selected by `TSC_WATCHDIRECTORY`. Note that on platforms that support native recursive directory watching (e.g windows) the value of this environment variable is ignored.
+The watching of directory on platforms that don't support recursive directory watching natively in node, is supported through recursively creating directory watcher for the child directories using different options selected by `TSC_WATCHDIRECTORY`. Note that on platforms that support native recursive directory watching (e.g windows) the value of this environment variable is ignored.
 
 Option                                         | Description
 -----------------------------------------------|----------------------------------------------------------------------

@@ -27,11 +27,11 @@ Here is an example that demonstrates this distinction:
 let list = [4, 5, 6];
 
 for (let i in list) {
-   console.log(i); // "0", "1", "2",
+    console.log(i); // "0", "1", "2",
 }
 
 for (let i of list) {
-   console.log(i); // "4", "5", "6"
+    console.log(i); // "4", "5", "6"
 }
 ```
 
@@ -43,7 +43,7 @@ let pets = new Set(["Cat", "Dog", "Hamster"]);
 pets["species"] = "mammals";
 
 for (let pet in pets) {
-   console.log(pet); // "species"
+    console.log(pet); // "species"
 }
 
 for (let pet of pets) {
@@ -55,7 +55,7 @@ for (let pet of pets) {
 
 #### Targeting ES5 and ES3
 
-When targeting an ES5 or ES3, iterators are only allowed on values of `Array` type.
+When targeting an ES5 or ES3-compliant engine, iterators are only allowed on values of `Array` type.
 It is an error to use `for..of` loops on non-Array values, even if these non-Array values implement the `Symbol.iterator` property.
 
 The compiler will generate a simple `for` loop for a `for..of` loop, for instance:

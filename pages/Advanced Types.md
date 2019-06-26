@@ -153,8 +153,7 @@ let pet = getSmallPet();
 
 if ((pet as Fish).swim) {
     (pet as Fish).swim();
-}
-else {
+} else if ((pet as Bird).fly) {
     (pet as Bird).fly();
 }
 ```
@@ -166,6 +165,9 @@ It would be much better if once we performed the check, we could know the type o
 
 It just so happens that TypeScript has something called a *type guard*.
 A type guard is some expression that performs a runtime check that guarantees the type in some scope.
+
+### Using type predicates
+
 To define a type guard, we simply need to define a function whose return type is a *type predicate*:
 
 ```ts
@@ -192,6 +194,21 @@ else {
 
 Notice that TypeScript not only knows that `pet` is a `Fish` in the `if` branch;
 it also knows that in the `else` branch, you *don't* have a `Fish`, so you must have a `Bird`.
+
+### Using the `in` operator
+
+The `in` operator now acts as a narrowing expression for types.
+
+For a `n in x` expression, where `n` is a string literal or string literal type and `x` is a union type, the "true" branch narrows to types which have an optional or required property `n`, and the "false" branch narrows to types which have an optional or missing property `n`.
+
+```ts
+function move(pet: Fish | Bird) {
+    if ("swim" in pet) {
+        return pet.swim();
+    }
+    return pet.fly();
+}
+```
 
 ## `typeof` type guards
 
@@ -710,46 +727,56 @@ With index types, you can get the compiler to check code that uses dynamic prope
 For example, a common Javascript pattern is to pick a subset of properties from an object:
 
 ```js
-function pluck(o, names) {
-    return names.map(n => o[n]);
+function pluck(o, propertyNames) {
+    return propertyNames.map(n => o[n]);
 }
 ```
 
 Here's how you would write and use this function in TypeScript, using the **index type query** and **indexed access** operators:
 
 ```ts
-function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
-  return names.map(n => o[n]);
+function pluck<T, K extends keyof T>(o: T, propertyNames: K[]): T[K][] {
+  return propertyNames.map(n => o[n]);
 }
 
-interface Person {
-    name: string;
-    age: number;
+interface Car {
+    manufacturer: string;
+    model: string;
+    year: number;
 }
-let person: Person = {
-    name: 'Jarid',
-    age: 35
+let taxi: Car = {
+    manufacturer: 'Toyota',
+    model: 'Camry',
+    year: 2014
 };
-let strings: string[] = pluck(person, ['name']); // ok, string[]
+
+// Manufacturer and model are both of type string,
+// so we can pluck them both into a typed string array
+let makeAndModel: string[] = pluck(taxi, ['manufacturer', 'model']);
+
+// If we try to pluck model and year, we get an
+// array of a union type: (string | number)[]
+let modelYear = pluck(taxi, ['model', 'year'])
 ```
 
-The compiler checks that `name` is actually a property on `Person`.
+The compiler checks that `manufacturer` and `model` are actually properties on `Car`.
 The example introduces a couple of new type operators.
 First is `keyof T`, the **index type query operator**.
 For any type `T`, `keyof T` is the union of known, public property names of `T`.
 For example:
 
 ```ts
-let personProps: keyof Person; // 'name' | 'age'
+let carProps: keyof Car; // the union of ('manufacturer' | 'model' | 'year')
 ```
 
-`keyof Person` is completely interchangeable with `'name' | 'age'`.
-The difference is that if you add another property to `Person`, say `address: string`, then `keyof Person` will automatically update to be `'name' | 'age' | 'address'`.
+`keyof Car` is completely interchangeable with `'manufacturer' | 'model' | 'year'`.
+The difference is that if you add another property to `Car`, say `ownersAddress: string`, then `keyof Person` will automatically update to be `'manufacturer' | 'model' | 'year' | ownersAddress`.
 And you can use `keyof` in generic contexts like `pluck`, where you can't possibly know the property names ahead of time.
 That means the compiler will check that you pass the right set of property names to `pluck`:
 
 ```ts
-pluck(person, ['age', 'unknown']); // error, 'unknown' is not in 'name' | 'age'
+// error, 'unknown' is not in 'manufacturer' | 'model' | 'year'
+pluck(taxi, ['year', 'unknown']); /
 ```
 
 The second operator is `T[K]`, the **indexed access operator**.
@@ -760,18 +787,20 @@ You just have to make sure that the type variable `K extends keyof T`.
 Here's another example with a function named `getProperty`.
 
 ```ts
-function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
-    return o[name]; // o[name] is of type T[K]
+function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] {
+    return o[propertyName]; // o[propertyName] is of type T[K]
 }
 ```
 
-In `getProperty`, `o: T` and `name: K`, so that means `o[name]: T[K]`.
+In `getProperty`, `o: T` and `propertyName: K`, so that means `o[propertyName]: T[K]`.
 Once you return the `T[K]` result, the compiler will instantiate the actual type of the key, so the return type of `getProperty` will vary according to which property you request.
 
 ```ts
-let name: string = getProperty(person, 'name');
-let age: number = getProperty(person, 'age');
-let unknown = getProperty(person, 'unknown'); // error, 'unknown' is not in 'name' | 'age'
+let name: string = getProperty(taxi, 'manufacturer');
+let age: number = getProperty(taxi, 'model');
+
+// error, 'unknown' is not in 'manufacturer' | 'model' | 'year'
+let unknown = getProperty(taxi, 'unknown');
 ```
 
 ## Index types and string index signatures
@@ -1020,7 +1049,7 @@ Conditional types in which the checked type is a naked type parameter are called
 Distributive conditional types are automatically distributed over union types during instantiation.
 For example, an instantiation of `T extends U ? X : Y` with the type argument `A | B | C` for `T` is resolved as `(A extends U ? X : Y) | (B extends U ? X : Y) | (C extends U ? X : Y)`.
 
-##### Example
+### Example
 
 ```ts
 type T10 = TypeName<string | (() => void)>;  // "string" | "function"
@@ -1031,7 +1060,7 @@ type T11 = TypeName<string[] | number[]>;  // "object"
 In instantiations of a distributive conditional type `T extends U ? X : Y`, references to `T` within the conditional type are resolved to individual constituents of the union type (i.e. `T` refers to the individual constituents *after* the conditional type is distributed over the union type).
 Furthermore, references to `T` within `X` have an additional type parameter constraint `U` (i.e. `T` is considered assignable to `U` within `X`).
 
-##### Example
+### Example
 
 ```ts
 type BoxedValue<T> = { value: T };
@@ -1099,7 +1128,7 @@ type T43 = NonFunctionProperties<Part>;  // { id: number, name: string, subparts
 Similar to union and intersection types, conditional types are not permitted to reference themselves recursively.
 For example the following is an error.
 
-##### Example
+### Example
 
 ```ts
 type ElementType<T> = T extends any[] ? ElementType<T[number]> : T;  // Error
@@ -1183,7 +1212,7 @@ TypeScript 2.8 adds several predefined conditional types to `lib.d.ts`:
 * `ReturnType<T>` -- Obtain the return type of a function type.
 * `InstanceType<T>` -- Obtain the instance type of a constructor function type.
 
-##### Example
+### Example
 
 ```ts
 type T00 = Exclude<"a" | "b" | "c" | "d", "a" | "c" | "f">;  // "b" | "d"

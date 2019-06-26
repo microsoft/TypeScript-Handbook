@@ -315,7 +315,7 @@ The default-ed properties are inferred from the `defaultProps` property type. If
 
 Use `static defaultProps: Pick<Props, "name">;` as an explicit type annotation instead, or do not add a type annotation as done in the example above.
 
-For stateless function components (SFCs) use ES2015 default initializers for SFCs:
+For function components (formerly known as SFCs) use ES2015 default initializers:
 
 ```tsx
 function Greet({ name = "world" }: Props) {

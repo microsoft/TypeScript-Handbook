@@ -6,7 +6,7 @@
 [Type Checking](#type-checking)
 * [Intrinsic elements](#intrinsic-elements)
 * [Value-based elements](#value-based-elements)
-* [Stateless Functional Component](#stateless-functional-component)
+* [Function Component](#function-component)
 * [Class Component](#class-component)
 * [Attribute type checking](#attribute-type-checking)
 * [Children Type Checking](#children-type-checking)
@@ -129,12 +129,12 @@ import MyComponent from "./myComponent";
 
 There are two ways to define a value-based element:
 
-1. Stateless Functional Component (SFC)
+1. Function Component (FC)
 2. Class Component
 
-Because these two types of value-based elements are indistinguishable from each other in a JSX expression, first TS tries to resolve the expression as a Stateless Functional Component using overload resolution. If the process succeeds, then TS finishes resolving the expression to its declaration. If the value fails to resolve as an SFC, TS will then try to resolve it as a class component. If that fails, TS will report an error.
+Because these two types of value-based elements are indistinguishable from each other in a JSX expression, first TS tries to resolve the expression as a Function Component using overload resolution. If the process succeeds, then TS finishes resolving the expression to its declaration. If the value fails to resolve as a Function Component, TS will then try to resolve it as a class component. If that fails, TS will report an error.
 
-### Stateless Functional Component
+### Function Component
 <b><a href="#table-of-contents">↥ back to top</a></b>
 
 As the name suggests, the component is defined as a JavaScript function where its first argument is a `props` object.
@@ -155,7 +155,7 @@ function ComponentFoo(prop: FooProp) {
 const Button = (prop: {value: string}, context: { color: string }) => <button>
 ```
 
-Because an SFC is simply a JavaScript function, function overloads may be used here as well:
+Because a Function Component is simply a JavaScript function, function overloads may be used here as well:
 
 ```ts
 interface ClickableProps {
@@ -175,6 +175,8 @@ function MainButton(prop: SideProps): JSX.Element {
   ...
 }
 ```
+
+> Note: Function Components were formerly known as Stateless Function Components (SFC). As Function Components can no longer be considered stateless in recent versions of react, the type `SFC` and its alias `StatelessComponent` were deprecated.
 
 ### Class Component
 <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -267,7 +269,7 @@ It is determined by the type of a property on the *element instance type* that w
 Which property to use is determined by `JSX.ElementAttributesProperty`.
 It should be declared with a single property.
 The name of that property is then used.
-As of TypeScript 2.8, if `JSX.ElementAttributesProperty` is not provided, the type of first parameter of the class element's constructor or SFC's call will be used instead.
+As of TypeScript 2.8, if `JSX.ElementAttributesProperty` is not provided, the type of first parameter of the class element's constructor or Function Component's call will be used instead.
 
 ```ts
 declare namespace JSX {
@@ -307,7 +309,7 @@ declare namespace JSX {
 
 > Note: If an attribute name is not a valid JS identifier (like a `data-*` attribute), it is not considered to be an error if it is not found in the element attributes type.
 
-Additionally, the `JSX.IntrinsicAttributes` interface can be used to specify extra properties used by the JSX framework which are not generally used by the components' props or arguments - for instance `key` in React. Specializing further, the generic `JSX.IntrinsicClassAttributes<T>` type may also be used to specify the same kind of extra attributes just for class components (and not SFCs). In this type, the generic parameter corresponds to the class instance type. In React, this is used to allow the `ref` attribute of type `Ref<T>`. Generally speaking, all of the properties on these interfaces should be optional, unless you intend that users of your JSX framework need to provide some attribute on every tag.
+Additionally, the `JSX.IntrinsicAttributes` interface can be used to specify extra properties used by the JSX framework which are not generally used by the components' props or arguments - for instance `key` in React. Specializing further, the generic `JSX.IntrinsicClassAttributes<T>` type may also be used to specify the same kind of extra attributes just for class components (and not Function Components). In this type, the generic parameter corresponds to the class instance type. In React, this is used to allow the `ref` attribute of type `Ref<T>`. Generally speaking, all of the properties on these interfaces should be optional, unless you intend that users of your JSX framework need to provide some attribute on every tag.
 
 The spread operator also works:
 

@@ -142,7 +142,7 @@ function getExclamationMarks(numChars: number) {
 Notice that we defined a type named `Props` that specifies the properties our component will take.
 `name` is a required `string`, and `enthusiasmLevel` is an optional `number` (which you can tell from the `?` that we wrote out after its name).
 
-We also wrote `Hello` as a stateless function component (an SFC).
+We also wrote `Hello` as a function component.
 To be specific, `Hello` is a function that takes a `Props` object, and destructures it.
 If `enthusiasmLevel` isn't given in our `Props` object, it will default to `1`.
 
@@ -170,7 +170,7 @@ class Hello extends React.Component<Props, object> {
 ```
 
 Classes are useful [when our component instances have some state](https://reactjs.org/docs/state-and-lifecycle.html).
-But we don't really need to think about state in this example - in fact, we specified it as `object` in `React.Component<Props, object>`, so writing an SFC tends to be shorter.
+But we don't really need to think about state in this example - in fact, we specified it as `object` in `React.Component<Props, object>`, so writing a function component tends to be shorter.
 Local component state is more useful at the presentational level when creating generic UI elements that can be shared between libraries.
 For our application's lifecycle, we will revisit how applications manage general state with Redux in a bit.
 

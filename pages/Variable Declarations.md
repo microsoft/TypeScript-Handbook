@@ -493,6 +493,38 @@ Or other elements:
 
 ```ts
 let [, second, , fourth] = [1, 2, 3, 4];
+console.log(second); // outputs 2
+console.log(fourth); // outputs 4
+```
+
+## Tuple destructuring
+
+Tuples may be destructured like arrays; the destructuring variables get the types of the corresponding tuple elements:
+
+``` ts
+let tuple: [number, string, boolean] = [7, "hello", true];
+
+let [a, b, c] = tuple; // a: number, b: string, c: boolean
+```
+
+It's an error to destructure a tuple beyond the range of its elements:
+
+``` ts
+let [a, b, c, d] = tuple; // Error, no element at index 3
+```
+
+As with arrays, you can destructure the rest of the tuple with `...`, to get a shorter tuple:
+
+``` ts
+let [a, ...bc] = tuple; // bc: [string, boolean]
+let [a, b, c, ...d] = tuple; // d: [], the empty tuple
+```
+
+Or ignore trailing elements, or other elements:
+
+``` ts
+let [a] = tuple; // a: number
+let [, b] = tuple; // b: string
 ```
 
 ## Object destructuring
@@ -562,6 +594,7 @@ function keepWholeObject(wholeObject: { a: string, b?: number }) {
 }
 ```
 
+In this example the `b?` indicates that `b` is optional, so it may be `undefined`.
 `keepWholeObject` now has a variable for `wholeObject` as well as the properties `a` and `b`, even if `b` is undefined.
 
 ## Function declarations

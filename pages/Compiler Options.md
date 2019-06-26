@@ -4,6 +4,7 @@ Option                                         | Type      | Default            
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------
 `--allowJs`                                    | `boolean` | `false`                        | Allow JavaScript files to be compiled.
 `--allowSyntheticDefaultImports`               | `boolean` | `module === "system"` or `--esModuleInterop` | Allow default imports from modules with no default export. This does not affect code emit, just typechecking.
+`--allowUmdGlobalAccess`                       | `boolean` | `false`                        | Allow accessing UMD globals from modules.
 `--allowUnreachableCode`                       | `boolean` | `false`                        | Do not report errors on unreachable code.
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
 `--alwaysStrict`                               | `boolean` | `false`                        | Parse in strict mode and emit `"use strict"` for each source file
@@ -27,6 +28,7 @@ Option                                         | Type      | Default            
 `--forceConsistentCasingInFileNames`           | `boolean` | `false`                        | Disallow inconsistently-cased references to the same file.
 `--help`<br/>`-h`                              |           |                                | Print help message.
 `--importHelpers`                              | `boolean` | `false`                        | Import emit helpers (e.g. `__extends`, `__rest`, etc..) from [`tslib`](https://www.npmjs.com/package/tslib)
+`--incremental`                                | `boolean` | `true` if `composite` is on, `false` otherwise | Enable incremental compilation by reading/writing information from prior compilations to a file on disk. This file is controlled by the `--tsBuildInfoFile` flag.
 `--inlineSourceMap`                            | `boolean` | `false`                        | Emit a single file with source maps instead of having a separate file.
 `--inlineSources`                              | `boolean` | `false`                        | Emit the source alongside the sourcemaps within a single file; requires `--inlineSourceMap` or `--sourceMap` to be set.
 `--init`                                       |           |                                | Initializes a TypeScript project and creates a `tsconfig.json` file.
@@ -38,7 +40,7 @@ Option                                         | Type      | Default            
 `--listEmittedFiles`                           | `boolean` | `false`                        | Print names of generated files part of the compilation.
 `--listFiles`                                  | `boolean` | `false`                        | Print names of files part of the compilation.
 `--locale`                                     | `string`  | *(platform specific)*          | The locale to use to show error messages, e.g. en-us. <br/>Possible values are:  <br/>► English (US): `en` <br/>► Czech: `cs` <br/>► German: `de` <br/>► Spanish: `es` <br/>► French: `fr` <br/>► Italian: `it` <br/>► Japanese: `ja` <br/>► Korean: `ko` <br/>► Polish: `pl` <br/>► Portuguese(Brazil): `pt-BR` <br/>► Russian: `ru` <br/>► Turkish: `tr` <br/>► Simplified Chinese: `zh-CN`  <br/>► Traditional Chinese: `zh-TW`
-`--mapRoot`                                    | `string`  |                                | Specifies the location where debugger should locate map files instead of generated locations. Use this flag if the .map files will be located at run-time in a different location than the .js files. The location specified will be embedded in the sourceMap to direct the debugger where the map files will be located.
+`--mapRoot`                                    | `string`  |                                | Specifies the location where debugger should locate map files instead of generated locations. Use this flag if the .map files will be located at run-time in a different location than the .js files. The location specified will be embedded in the sourceMap to direct the debugger where the map files will be located. This flag will not create the specified path and generate the map files in that location. Instead, create a post build step that moves the files to the specified path.
 `--maxNodeModuleJsDepth`                       | `number`  | `0`                            | The maximum dependency depth to search under node_modules and load JavaScript files. Only applicable with `--allowJs`.
 `--module`<br/>`-m`                            | `string`  | `target === "ES3" or "ES5" ? "CommonJS" : "ES6"`   | Specify module code generation: `"None"`, `"CommonJS"`, `"AMD"`, `"System"`, `"UMD"`, `"ES6"`, `"ES2015"` or `"ESNext"`.<br/>► Only `"AMD"` and `"System"` can be used in conjunction with `--outFile`.<br/>► `"ES6"` and `"ES2015"` values may be used when targeting `"ES5"` or lower.
 `--moduleResolution`                           | `string`  | `module === "AMD" or "System" or "ES6" ?  "Classic" : "Node"`                    | Determine how modules get resolved. Either `"Node"` for Node.js/io.js style resolution, or `"Classic"`. See [Module Resolution documentation](./Module Resolution.md) for more details.
@@ -49,7 +51,7 @@ Option                                         | Type      | Default            
 `--noErrorTruncation`                          | `boolean` | `false`                        | Do not truncate error messages.
 `--noFallthroughCasesInSwitch`                 | `boolean` | `false`                        | Report errors for fallthrough cases in switch statement.
 `--noImplicitAny`                              | `boolean` | `false`                        | Raise error on expressions and declarations with an implied `any` type.
-`--noImplicitReturns`                          | `boolean` | `false`                        | Report error when not all code paths in function return a value.
+`--noImplicitReturns`                          | `boolean` | `false`                        | Report an error when not all code paths in function return a value.
 `--noImplicitThis`                             | `boolean` | `false`                        | Raise error on `this` expressions with an implied `any` type.
 `--noImplicitUseStrict`                        | `boolean` | `false`                        | Do not emit `"use strict"` directives in module output.
 `--noLib`                                      | `boolean` | `false`                        | Do not include the default library file (`lib.d.ts`).
@@ -77,7 +79,7 @@ Option                                         | Type      | Default            
 `--sourceMap`                                  | `boolean` | `false`                        | Generates corresponding `.map` file.
 `--sourceRoot`                                 | `string`  |                                | Specifies the location where debugger should locate TypeScript files instead of source locations. Use this flag if the sources will be located at run-time in a different location than that at design-time. The location specified will be embedded in the sourceMap to direct the debugger where the source files will be located.
 `--strict`                                     | `boolean` | `false`                        | Enable all strict type checking options. <br/>Enabling `--strict` enables `--noImplicitAny`, `--noImplicitThis`, `--alwaysStrict`, `--strictBindCallApply`, `--strictNullChecks`, `--strictFunctionTypes` and `--strictPropertyInitialization`.
-`--strictBindCallApply`                        | `boolean` | `false`                        | Enable stricter checking of of the `bind`, `call`, and `apply` methods on functions.
+`--strictBindCallApply`                        | `boolean` | `false`                        | Enable stricter checking of the `bind`, `call`, and `apply` methods on functions.
 `--strictFunctionTypes`                        | `boolean` | `false`                        | Disable bivariant parameter checking for function types.
 `--strictPropertyInitialization`               | `boolean` | `false`                        | Ensure non-undefined class properties are initialized in the constructor. This option requires `--strictNullChecks` be enabled in order to take effect.
 `--strictNullChecks`                           | `boolean` | `false`                        | In strict null checking mode, the `null` and `undefined` values are not in the domain of every type and are only assignable to themselves and `any` (the one exception being that `undefined` is also assignable to `void`).
@@ -85,6 +87,7 @@ Option                                         | Type      | Default            
 `--suppressImplicitAnyIndexErrors`             | `boolean` | `false`                        | Suppress `--noImplicitAny` errors for indexing objects lacking index signatures. See [issue #1232](https://github.com/Microsoft/TypeScript/issues/1232#issuecomment-64510362) for more details.
 `--target`<br/>`-t`                            | `string`  | `"ES3"`                        | Specify ECMAScript target version: `"ES3"` (default), `"ES5"`, `"ES6"`/`"ES2015"`, `"ES2016"`, `"ES2017"` or `"ESNext"`. <br/><br/> Note: `"ESNext"` targets latest supported [ES proposed features](https://github.com/tc39/proposals).
 `--traceResolution`                            | `boolean` | `false`                        | Report module resolution log messages.
+`--tsBuildInfoFile`                            | `string`  | `.tsbuildinfo`                 | Specify what file to store incremental build information in.
 `--types`                                      | `string[]`|                                | List of names of type definitions to include. See [@types, --typeRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
 `--typeRoots`                                  | `string[]`|                                | List of folders to include type definitions from. See [@types, --typeRoots and --types](./tsconfig.json.md#types-typeroots-and-types) for more details.
 `--version`<br/>`-v`                           |           |                                | Print the compiler's version.
@@ -95,5 +98,5 @@ Option                                         | Type      | Default            
 
 ## Related
 
-* Setting compiler options in [`tsconfig.json`](./tsconfig.json.md) files.
+* Setting compiler options in [`tsconfig.json`](./tutorials/tsconfig.json.md) files.
 * Setting compiler options in [MSBuild projects](./Compiler%20Options%20in%20MSBuild.md).

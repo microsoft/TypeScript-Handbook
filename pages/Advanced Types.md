@@ -14,15 +14,15 @@ function extend<First, Second>(first: First, second: Second): First & Second {
     const result: Partial<First & Second> = {};
     for (const prop in first) {
         if (first.hasOwnProperty(prop)) {
-            (<First>result)[prop] = first[prop];
+            (result as First)[prop] = first[prop];
         }
     }
     for (const prop in second) {
         if (second.hasOwnProperty(prop)) {
-            (<Second>result)[prop] = second[prop];
+            (result as Second)[prop] = second[prop];
         }
     }
-    return <First & Second>result;
+    return result as First & Second;
 }
 
 class Person {
@@ -151,11 +151,10 @@ To get the same code working, we'll need to use a type assertion:
 ```ts
 let pet = getSmallPet();
 
-if ((<Fish>pet).swim) {
-    (<Fish>pet).swim();
-}
-else if ((<Bird>pet).fly) {
-    (<Bird>pet).fly();
+if ((pet as Fish).swim) {
+    (pet as Fish).swim();
+} else if ((pet as Bird).fly) {
+    (pet as Bird).fly();
 }
 ```
 
@@ -173,7 +172,7 @@ To define a type guard, we simply need to define a function whose return type is
 
 ```ts
 function isFish(pet: Fish | Bird): pet is Fish {
-    return (<Fish>pet).swim !== undefined;
+    return (pet as Fish).swim !== undefined;
 }
 ```
 

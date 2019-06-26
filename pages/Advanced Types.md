@@ -154,7 +154,7 @@ let pet = getSmallPet();
 if ((<Fish>pet).swim) {
     (<Fish>pet).swim();
 }
-else {
+else if ((<Bird>pet).fly) {
     (<Bird>pet).fly();
 }
 ```

@@ -10,18 +10,18 @@ You will mostly see intersection types used for mixins and other concepts that d
 Here's a simple example that shows how to create a mixin:
 
 ```ts
-function extend<First, Second>(first: First, second: Second): First & Second {
+function extend<First extends {}, Second extends {}>(first: First, second: Second): First & Second {
     const result: Partial<First & Second> = {};
     for (const prop in first) {
         if (first.hasOwnProperty(prop)) {
             (result as First)[prop] = first[prop];
         }
     }
-    for (const prop in second) {
-        if (second.hasOwnProperty(prop)) {
-            (result as Second)[prop] = second[prop];
+    Object.getOwnPropertyNames(second).forEach(prop => {
+        if (prop !== 'constructor' && prop in second) {
+            (result as any)[prop] = (second as any)[prop]
         }
-    }
+    })
     return result as First & Second;
 }
 

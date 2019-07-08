@@ -8,6 +8,7 @@ TypeScript provides several utility types to facilitate common type transformati
 * [`Readonly<T>`](#readonlyt)
 * [`Record<K,T>`](#recordkt)
 * [`Pick<T,K>`](#picktk)
+* [`Omit<T,K>`](#omittk)
 * [`Exclude<T,U>`](#excludetu)
 * [`Extract<T,U>`](#extracttu)
 * [`NonNullable<T>`](#nonnullablet)
@@ -102,6 +103,27 @@ interface Todo {
 }
 
 type TodoPreview = Pick<Todo, 'title' | 'completed'>;
+
+const todo: TodoPreview = {
+    title: 'Clean room',
+    completed: false,
+};
+```
+
+# `Omit<T,K>`
+
+Constructs a type by picking all properties from `T` and then removing `K`.
+
+##### Example
+
+```ts
+interface Todo {
+    title: string;
+    description: string;
+    completed: boolean;
+}
+
+type TodoPreview = Omit<Todo, 'description'>;
 
 const todo: TodoPreview = {
     title: 'Clean room',

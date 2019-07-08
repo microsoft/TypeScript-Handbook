@@ -770,7 +770,7 @@ let carProps: keyof Car; // the union of ('manufacturer' | 'model' | 'year')
 ```
 
 `keyof Car` is completely interchangeable with `'manufacturer' | 'model' | 'year'`.
-The difference is that if you add another property to `Car`, say `ownersAddress: string`, then `keyof Person` will automatically update to be `'manufacturer' | 'model' | 'year' | ownersAddress`.
+The difference is that if you add another property to `Car`, say `ownersAddress: string`, then `keyof Person` will automatically update to be `'manufacturer' | 'model' | 'year' | 'ownersAddress'`.
 And you can use `keyof` in generic contexts like `pluck`, where you can't possibly know the property names ahead of time.
 That means the compiler will check that you pass the right set of property names to `pluck`:
 

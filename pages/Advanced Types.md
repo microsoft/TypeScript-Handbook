@@ -859,7 +859,7 @@ type ReadonlyPerson = Readonly<Person>;
 ```
 
 Note that this syntax describes a type rather than a member.
-If you want to add additional members, you can use an intersection type:
+If you want to add members, you can use an intersection type:
 
 ```ts
 // Use this:

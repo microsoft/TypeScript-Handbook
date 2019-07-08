@@ -268,19 +268,20 @@ This tells the compiler for any module import that matches the pattern `"*"` (i.
 
 Following this logic, the compiler will attempt to resolve the two imports as such:
 
-* import 'folder1/file2'
-  1. pattern '*' is matched and wildcard captures the whole module name
-  2. try first substitution in the list: '*' -> `folder1/file2`
-  3. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/folder1/file2.ts`.
-  4. File exists. Done.
-* import 'folder2/file3'
-  1. pattern '*' is matched and wildcard captures the whole module name
-  2. try first substitution in the list: '*' -> `folder2/file3`
-  3. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/folder2/file3.ts`.
-  4. File does not exist, move to the second substitution
-  5. second substitution 'generated/*' -> `generated/folder2/file3`
-  6. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/generated/folder2/file3.ts`.
-  7. File exists. Done.
+import 'folder1/file2':
+ 1. pattern '*' is matched and wildcard captures the whole module name
+ 2. try first substitution in the list: '*' -> `folder1/file2`
+ 3. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/folder1/file2.ts`.
+ 4. File exists. Done.
+
+import 'folder2/file3':
+ 1. pattern '*' is matched and wildcard captures the whole module name
+ 2. try first substitution in the list: '*' -> `folder2/file3`
+ 3. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/folder2/file3.ts`.
+ 4. File does not exist, move to the second substitution
+ 5. second substitution 'generated/*' -> `generated/folder2/file3`
+ 6. result of substitution is non-relative name - combine it with *baseUrl* -> `projectRoot/generated/folder2/file3.ts`.
+ 7. File exists. Done.
 
 ### Virtual Directories with `rootDirs`
 

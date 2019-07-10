@@ -483,7 +483,7 @@ declare function aliased(arg: Alias): Alias;
 declare function interfaced(arg: Interface): Interface;
 ```
 
-Type aliases couldn't be extended or implemented from (nor could they extend/implement other types), in older versions of TypeScript. As of version 2.7, type aliases can be extended. Teams developing React applications sometimes choose to use `Type` aliases over `Interface`.
+in older versions of TypeScript, type aliases couldn't be extended or implemented from (nor could they extend/implement other types). As of version 2.7, type aliases can be extended by creating a new intersection type e.g. `type Cat = Animal & { purrs: true }`.
 
 Because [an ideal property of software is being open to extension](https://en.wikipedia.org/wiki/Open/closed_principle), you should always use an interface over a type alias if possible.
 

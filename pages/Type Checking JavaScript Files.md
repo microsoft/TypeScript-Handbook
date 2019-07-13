@@ -543,10 +543,10 @@ You can use either `object` or `Object` on the first line.
 
 ```js
 /**
- * @typedef {object} SpecialType1 - creates a new type named 'SpecialType'
- * @property {string} prop1 - a string property of SpecialType
- * @property {number} prop2 - a number property of SpecialType
- * @property {number=} prop3 - an optional number property of SpecialType
+ * @typedef {object} SpecialType1 - creates a new type named 'SpecialType1'
+ * @property {string} prop1 - a string property of SpecialType1
+ * @property {number} prop2 - a number property of SpecialType1
+ * @property {number=} prop3 - an optional number property of SpecialType1
  */
 /** @type {SpecialType1} */
 var specialTypeObject1;

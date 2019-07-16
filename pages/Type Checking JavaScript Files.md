@@ -596,7 +596,7 @@ You can declare generic types with the `@template` tag:
 ```js
 /**
  * @template T
- * @param {T} p1 - A generic parameter that flows through to the return type
+ * @param {T} x - A generic parameter that flows through to the return type
  * @return {T}
  */
 function id(x){ return x }

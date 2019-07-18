@@ -25,7 +25,7 @@ Conversely, a file without any top-level `import` or `export` declarations is tr
 
 Any declaration (such as a variable, function, class, type alias, or interface) can be exported by adding the `export` keyword.
 
-##### Validation.ts
+##### StringValidator.ts
 
 ```ts
 export interface StringValidator {
@@ -36,13 +36,14 @@ export interface StringValidator {
 ##### ZipCodeValidator.ts
 
 ```ts
+import { StringValidator } from "./StringValidator";
+
 export const numberRegexp = /^[0-9]+$/;
 
 export class ZipCodeValidator implements StringValidator {
     isAcceptable(s: string) {
         return s.length === 5 && numberRegexp.test(s);
     }
-}
 ```
 
 ## Export statements
@@ -82,9 +83,12 @@ Optionally, a module can wrap one or more modules and combine all their exports 
 ##### AllValidators.ts
 
 ```ts
-export * from "./StringValidator"; // exports interface 'StringValidator'
-export * from "./LettersOnlyValidator"; // exports class 'LettersOnlyValidator'
-export * from "./ZipCodeValidator";  // exports class 'ZipCodeValidator'
+export * from "./StringValidator"; // exports 'StringValidator' interface
+export * from "./ZipCodeValidator";  // exports 'ZipCodeValidator' and const 'numberRegexp' class
+export * from "./ParseIntBasedZipCodeValidator"; //  exports the 'ParseIntBasedZipCodeValidator' class
+                                                 // and re-exports 'RegExpBasedZipCodeValidator' as alias
+                                                 // of the 'ZipCodeValidator' class from 'ZipCodeValidator.ts'
+                                                 // module.
 ```
 
 # Import

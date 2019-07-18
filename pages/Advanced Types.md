@@ -807,14 +807,16 @@ let unknown = getProperty(taxi, 'unknown');
 ## Index types and string index signatures
 
 `keyof` and `T[K]` interact with string index signatures.
-If you have a type with a string index signature, `keyof T` will just be `string`.
+If you have a type with a string index signature, `keyof T` will be `string | number`
+(and not just `string`, since in JavaScript you can access an object property either
+by using strings (`object['42'`]) or numbers (`object[42]`)).
 And `T[string]` is just the type of the index signature:
 
 ```ts
 interface Dictionary<T> {
     [key: string]: T;
 }
-let keys: keyof Dictionary<number>; // string
+let keys: keyof Dictionary<number>; // string | number
 let value: Dictionary<number>['foo']; // number
 ```
 

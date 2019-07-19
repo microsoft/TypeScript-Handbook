@@ -597,6 +597,18 @@ function keepWholeObject(wholeObject: { a: string, b?: number }) {
 In this example the `b?` indicates that `b` is optional, so it may be `undefined`.
 `keepWholeObject` now has a variable for `wholeObject` as well as the properties `a` and `b`, even if `b` is undefined.
 
+### Default values with renamed destructured properties
+
+This is how we can use property renaming and default values together:
+
+```ts
+function keepWholeObject(wholeObject: { a: string, b?: number }) {
+    let { a: foo, b: bar = 1001 } = wholeObject;
+}
+```
+
+`keepWholeObject` now has a variable for `wholeObject` as well as properties `foo` and `bar`, accessing `a` and `b` will result in an error.
+
 ## Function declarations
 
 Destructuring also works in function declarations.

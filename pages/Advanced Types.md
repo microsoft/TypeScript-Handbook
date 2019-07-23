@@ -16,7 +16,7 @@
 * [Type guards and type assertions](#type-guards-and-type-assertions)
 
 [Type Aliases](#type-aliases)
-* [Interfaces vs. Type Aliases](#interfaces-vs.-type-aliases)
+* [Interfaces vs. Type Aliases](#interfaces-vs-type-aliases)
 
 [String Literal Types](#string-literal-types)
 

@@ -13,7 +13,7 @@
 
 [Nullable types](#nullable-types)
 * [Optional parameters and properties](#optional-parameters-and-properties)
-* [Type guards and type assertions](#type-guards-and-type-assertions}
+* [Type guards and type assertions](#type-guards-and-type-assertions)
 
 [Type Aliases](#type-aliases)
 * [Interfaces vs. Type Aliases](#interfaces-vs.-type-aliases)
@@ -30,7 +30,7 @@
 [Polymorphic `this` types](#polymorphic-this-types)
 
 [Index types](#index-types)
-* [Index types and string index signatures](#index-types-and-string-index-signatures}
+* [Index types and string index signatures](#index-types-and-string-index-signatures)
 
 [Mapped types](#mapped-types)
 * [Inference from mapped types](#inference-from-mapped-types)

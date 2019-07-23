@@ -4,41 +4,41 @@
 
 [Union Types](#union-types)
 
-[Type Guards and Differentiating Types](type-guards-and-differentiating-types)
-* [User-Defined Type Guards](user-defined-type-guards)
-  * [Using type predicates](using-type-predicates)
-  * [Using the `in` operator](using-the-in-operator)
-* [`typeof` type guards](typeof-type-guards)
-* [`instanceof` type guards](instanceof-type-guards)
+[Type Guards and Differentiating Types](#type-guards-and-differentiating-types)
+* [User-Defined Type Guards](#user-defined-type-guards)
+  * [Using type predicates](#using-type-predicates)
+  * [Using the `in` operator](#using-the-in-operator)
+* [`typeof` type guards](#typeof-type-guards)
+* [`instanceof` type guards](#instanceof-type-guards)
 
-[Nullable types](nullable-types)
-* [Optional parameters and properties](optional-parameters-and-properties)
-* [Type guards and type assertions](type-guards-and-type-assertions}
+[Nullable types](#nullable-types)
+* [Optional parameters and properties](#optional-parameters-and-properties)
+* [Type guards and type assertions](#type-guards-and-type-assertions}
 
-[Type Aliases](type-aliases)
-* [Interfaces vs. Type Aliases](interfaces-vs.-type-aliases)
+[Type Aliases](#type-aliases)
+* [Interfaces vs. Type Aliases](#interfaces-vs.-type-aliases)
 
-[String Literal Types](string-literal-types)
+[String Literal Types](#string-literal-types)
 
-[Numeric Literal Types](numeric-literal-types)
+[Numeric Literal Types](#numeric-literal-types)
 
-[Enum Member Types](enum-member-types)
+[Enum Member Types](#enum-member-types)
 
-[Discriminated Unions](discriminated-unions)
-* [Exhaustiveness checking](exhaustiveness-checking)
+[Discriminated Unions](#discriminated-unions)
+* [Exhaustiveness checking](#exhaustiveness-checking)
 
-[Polymorphic `this` types](polymorphic-this-types)
+[Polymorphic `this` types](#polymorphic-this-types)
 
-[Index types](index-types)
-* [Index types and string index signatures](index-types-and-string-index-signatures}
+[Index types](#index-types)
+* [Index types and string index signatures](#index-types-and-string-index-signatures}
 
-[Mapped types](mapped-types)
-* [Inference from mapped types](inference-from-mapped-types)
+[Mapped types](#mapped-types)
+* [Inference from mapped types](#inference-from-mapped-types)
 
-[Conditional Types](conditional-types)
-* [Distributive conditional types](distributive-conditional-types)
-* [Type inference in conditional types](type-inference-in-conditional-types)
-* [Predefined conditional types](predefined-conditional-types)
+[Conditional Types](#conditional-types)
+* [Distributive conditional types](#distributive-conditional-types)
+* [Type inference in conditional types](#type-inference-in-conditional-types)
+* [Predefined conditional types](#predefined-conditional-types)
 
 # Intersection Types
 

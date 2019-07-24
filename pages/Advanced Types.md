@@ -30,7 +30,7 @@
 [Polymorphic `this` types](#polymorphic-this-types)
 
 [Index types](#index-types)
-* [Index types and string index signatures](#index-types-and-string-index-signatures)
+* [Index types and index signatures](#index-types-and-index-signatures)
 
 [Mapped types](#mapped-types)
 * [Inference from mapped types](#inference-from-mapped-types)
@@ -846,9 +846,9 @@ let age: number = getProperty(taxi, 'model');
 let unknown = getProperty(taxi, 'unknown');
 ```
 
-## Index types and string index signatures
+## Index types and index signatures
 
-`keyof` and `T[K]` interact with string index signatures.
+`keyof` and `T[K]` interact with index signatures. An index signature parameter type must be 'string' or 'number'.
 If you have a type with a string index signature, `keyof T` will be `string | number`
 (and not just `string`, since in JavaScript you can access an object property either
 by using strings (`object['42'`]) or numbers (`object[42]`)).
@@ -860,6 +860,17 @@ interface Dictionary<T> {
 }
 let keys: keyof Dictionary<number>; // string | number
 let value: Dictionary<number>['foo']; // number
+```
+
+If you have a type with a number index signature, `keyof T` will just be `number`.
+
+```ts
+interface Dictionary<T> {
+    [key: number]: T;
+}
+let keys: keyof Dictionary<number>; // number
+let value: Dictionary<number>['foo']; // Error, Property 'foo' does not exist on type 'Dictionary<number>'.
+let value: Dictionary<number>[42]; // number
 ```
 
 # Mapped types

@@ -24,7 +24,7 @@ x = 0;      // OK
 x = false;  // Error: boolean is not assignable to number
 ```
 
-You can find the full list of supported JSDoc patterns in the [JSDoc support in JavaScript documentation](https://github.com/Microsoft/TypeScript/wiki/JSDoc-support-in-JavaScript).
+You can find the full list of supported JSDoc patterns [below](#supported-jsdoc).
 
 ## Properties are inferred from assignments in class bodies
 

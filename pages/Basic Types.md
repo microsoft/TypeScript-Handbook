@@ -97,8 +97,6 @@ x[3] = "world"; // Error, Property '3' does not exist on type '[string, number]'
 console.log(x[5].toString()); // Error, Property '5' does not exist on type '[string, number]'.
 ```
 
-Union types are an advanced topic that we'll cover in a later chapter.
-
 # Enum
 
 A helpful addition to the standard set of datatypes from JavaScript is the `enum`.

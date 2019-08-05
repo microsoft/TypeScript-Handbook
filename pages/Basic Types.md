@@ -3,7 +3,7 @@
 For programs to be useful, we need to be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.
 In TypeScript, we support much the same types as you would expect in JavaScript, with a convenient enumeration type thrown in to help things along.
 
-# [Boolean](Boolean)
+# Boolean
 
 The most basic datatype is the simple true/false value, which JavaScript and TypeScript call a `boolean` value.
 
@@ -11,7 +11,7 @@ The most basic datatype is the simple true/false value, which JavaScript and Typ
 let isDone: boolean = false;
 ```
 
-# [Number](Number)
+# Number
 
 As in JavaScript, all numbers in TypeScript are floating point values.
 These floating point numbers get the type `number`.
@@ -24,7 +24,7 @@ let binary: number = 0b1010;
 let octal: number = 0o744;
 ```
 
-# [String](String)
+# String
 
 Another fundamental part of creating programs in JavaScript for webpages and servers alike is working with textual data.
 As in other languages, we use the type `string` to refer to these textual datatypes.
@@ -53,7 +53,7 @@ let sentence: string = "Hello, my name is " + fullName + ".\n\n" +
     "I'll be " + (age + 1) + " years old next month.";
 ```
 
-# [Array](Array)
+# Array
 
 TypeScript, like JavaScript, allows you to work with arrays of values.
 Array types can be written in one of two ways.
@@ -69,7 +69,7 @@ The second way uses a generic array type, `Array<elemType>`:
 let list: Array<number> = [1, 2, 3];
 ```
 
-# [Tuple](Tuple)
+# Tuple
 
 Tuple types allow you to express an array with a fixed number of elements whose types are known, but need not be the same. For example, you may want to represent a value as a pair of a `string` and a `number`:
 
@@ -97,9 +97,7 @@ x[3] = "world"; // Error, Property '3' does not exist on type '[string, number]'
 console.log(x[5].toString()); // Error, Property '5' does not exist on type '[string, number]'.
 ```
 
-Union types are an advanced topic that we'll cover in a later chapter.
-
-# [Enum](Enum)
+# Enum
 
 A helpful addition to the standard set of datatypes from JavaScript is the `enum`.
 As in languages like C#, an enum is a way of giving more friendly names to sets of numeric values.
@@ -135,7 +133,7 @@ let colorName: string = Color[2];
 console.log(colorName); // Displays 'Green' as its value is 2 above
 ```
 
-# [Any](Any)
+# Any
 
 We may need to describe the type of variables that we do not know when we are writing an application.
 These values may come from dynamic content, e.g. from the user or a 3rd party library.
@@ -170,7 +168,7 @@ let list: any[] = [1, true, "free"];
 list[1] = 100;
 ```
 
-# [Void](Void)
+# Void
 
 `void` is a little like the opposite of `any`: the absence of having any type at all.
 You may commonly see this as the return type of functions that do not return a value:
@@ -187,7 +185,7 @@ Declaring variables of type `void` is not useful because you can only assign `un
 let unusable: void = undefined;
 ```
 
-# [Null and Undefined](Null-and-Undefined)
+# Null and Undefined
 
 In TypeScript, both `undefined` and `null` actually have their own types named `undefined` and `null` respectively.
 Much like `void`, they're not extremely useful on their own:
@@ -204,11 +202,12 @@ That means you can assign `null` and `undefined` to something like `number`.
 However, when using the `--strictNullChecks` flag, `null` and `undefined` are only assignable to `any` and their respective types (the one exception being that `undefined` is also assignable to `void`).
 This helps avoid *many* common errors.
 In cases where you want to pass in either a `string` or `null` or `undefined`, you can use the union type `string | null | undefined`.
-Once again, more on union types later on.
+
+Union types are an advanced topic that we'll cover in a later chapter.
 
 > As a note: we encourage the use of `--strictNullChecks` when possible, but for the purposes of this handbook, we will assume it is turned off.
 
-# [Never](Never)
+# Never
 
 The `never` type represents the type of values that never occur.
 For instance, `never` is the return type for a function expression or an arrow function expression that always throws an exception or one that never returns;
@@ -237,7 +236,7 @@ function infiniteLoop(): never {
 }
 ```
 
-# [Object](Object)
+# Object
 
 `object` is a type that represents the non-primitive type, i.e. anything that is not `number`, `string`, `boolean`, `symbol`, `null`, or `undefined`.
 

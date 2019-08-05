@@ -44,6 +44,7 @@ export class ZipCodeValidator implements StringValidator {
     isAcceptable(s: string) {
         return s.length === 5 && numberRegexp.test(s);
     }
+}
 ```
 
 ## Export statements
@@ -195,7 +196,7 @@ let strings = ["Hello", "98052", "101"];
 
 // Use function validate
 strings.forEach(s => {
-  console.log(`"${s}" ${validate(s) ? " matches" : " does not match"}`);
+  console.log(`"${s}" ${validate(s) ? "matches" : "does not match"}`);
 });
 ```
 

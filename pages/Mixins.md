@@ -37,7 +37,7 @@ class Activatable {
     }
 }
 
-class SmartObject implements Disposable, Activatable {
+class SmartObject {
     constructor() {
         setInterval(() => console.log(this.isActive + " : " + this.isDisposed), 500);
     }
@@ -45,15 +45,9 @@ class SmartObject implements Disposable, Activatable {
     interact() {
         this.activate();
     }
-
-    // Disposable
-    isDisposed: boolean = false;
-    dispose: () => void;
-    // Activatable
-    isActive: boolean = false;
-    activate: () => void;
-    deactivate: () => void;
 }
+
+interface SmartObject extends Disposable, Activatable {}
 applyMixins(SmartObject, [Disposable, Activatable]);
 
 let smartObj = new SmartObject();
@@ -105,29 +99,19 @@ Next, we'll create the class that will handle the combination of the two mixins.
 Let's look at this in more detail to see how it does this:
 
 ```ts
-class SmartObject implements Disposable, Activatable {
+class SmartObject {
+    ...
+}
+
+interface SmartObject extends Disposable, Activatable {}
 ```
 
-The first thing you may notice in the above is that instead of using `extends`, we use `implements`.
-This treats the classes as interfaces, and only uses the types behind Disposable and Activatable rather than the implementation.
-This means that we'll have to provide the implementation in class.
+The first thing you may notice in the above is that instead of trying to extend `Disposable` and `Activatable` in `SmartObject` class, we extend them in `SmartObject` interface. `SmartObject` interface will be mixed into the `SmartObject` class due to the [declaration merging](./Declaration%20Merging.md).
+
+This treats the classes as interfaces, and only mixes the types behind Disposable and Activatable into the SmartObject type rather than the implementation. This means that we'll have to provide the implementation in class.
 Except, that's exactly what we want to avoid by using mixins.
 
-To satisfy this requirement, we create stand-in properties and their types for the members that will come from our mixins.
-This satisfies the compiler that these members will be available at runtime.
-This lets us still get the benefit of the mixins, albeit with some bookkeeping overhead.
-
-```ts
-// Disposable
-isDisposed: boolean = false;
-dispose: () => void;
-// Activatable
-isActive: boolean = false;
-activate: () => void;
-deactivate: () => void;
-```
-
-Finally, we mix our mixins into the class, creating the full implementation.
+Finally, we mix our mixins into the class implementation.
 
 ```ts
 applyMixins(SmartObject, [Disposable, Activatable]);

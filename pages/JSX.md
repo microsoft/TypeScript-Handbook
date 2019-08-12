@@ -1,8 +1,11 @@
 # Table of contents
 
 [Introduction](#introduction)
+
 [Basic Usage](#basic-usage)
+
 [The as operator](#the-as-operator)
+
 [Type Checking](#type-checking)
 * [Intrinsic elements](#intrinsic-elements)
 * [Value-based elements](#value-based-elements)
@@ -12,8 +15,11 @@
 * [Children Type Checking](#children-type-checking)
 
 [The JSX result type](#the-jsx-result-type)
+
 [Embedding Expressions](#embedding-expressions)
+
 [React integration](#react-integration)
+
 [Factory Functions](#factory-functions)
 
 # Introduction

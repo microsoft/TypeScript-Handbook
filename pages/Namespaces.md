@@ -1,6 +1,7 @@
 # Table of contents
 
 [Introduction](#introduction)
+
 [First steps](#first-steps)
 * [Validators in a single file](#validators-in-a-single-file)
 

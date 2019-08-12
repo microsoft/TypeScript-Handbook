@@ -1,7 +1,9 @@
 # Table of contents
 
 [Introduction](#introduction)
+
 [Mixin sample](#mixin-sample)
+
 [Understanding the sample](#understanding-the-sample)
 
 # Introduction

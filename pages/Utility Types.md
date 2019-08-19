@@ -221,7 +221,7 @@ const obj2: Required<Props> = { a: 5 }; // Error: property 'b' missing
 
 # `ThisType<T>`
 
-This utility does not return a transformed type. Instead, it serves a marker for a contextual `this` type. Note that the `--noImplicitThis` flag must be enabled to use this utility.
+This utility does not return a transformed type. Instead, it serves as a marker for a contextual `this` type. Note that the `--noImplicitThis` flag must be enabled to use this utility.
 
 ##### Example
 

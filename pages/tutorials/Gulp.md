@@ -313,7 +313,7 @@ There are basically three changes here, but they require you to refactor your co
 
 1. We wrapped our `browserify` instance in a call to `watchify`, and then held on to the result.
 2. We called `watchedBrowserify.on('update', bundle);` so that Browserify will run the `bundle` function every time one of your TypeScript files changes.
-3. We called `watchedBrowserify.on('log', gutil.log);` to log to the console.
+3. We called `watchedBrowserify.on('log', fancy_log);` to log to the console.
 
 Together (1) and (2) mean that we have to move our call to `browserify` out of the `default` task.
 And we have to give the function for `default` a name since both Watchify and Gulp need to call it.

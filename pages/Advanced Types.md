@@ -767,7 +767,7 @@ However, with `this` types, `multiply` returns `this`, which is `ScientificCalcu
 # Index types
 
 With index types, you can get the compiler to check code that uses dynamic property names.
-For example, a common Javascript pattern is to pick a subset of properties from an object:
+For example, a common JavaScript pattern is to pick a subset of properties from an object:
 
 ```js
 function pluck(o, propertyNames) {
@@ -893,7 +893,7 @@ interface PersonReadonly {
 }
 ```
 
-This happens often enough in Javascript that TypeScript provides a way to create new types based on old types &mdash; **mapped types**.
+This happens often enough in JavaScript that TypeScript provides a way to create new types based on old types &mdash; **mapped types**.
 In a mapped type, the new type transforms each property in the old type in the same way.
 For example, you can make all properties of a type `readonly` or optional.
 Here are a couple of examples:

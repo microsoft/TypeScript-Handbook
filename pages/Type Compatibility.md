@@ -135,6 +135,8 @@ listenEvent(EventType.Mouse, ((e: MouseEvent) => console.log(e.x + "," + e.y)) a
 listenEvent(EventType.Mouse, (e: number) => console.log(e));
 ```
 
+You can have TypeScript raise errors when this happens via the compiler flag `strictFunctionTypes`.
+
 ## Optional Parameters and Rest Parameters
 
 When comparing functions for compatibility, optional and required parameters are interchangeable.

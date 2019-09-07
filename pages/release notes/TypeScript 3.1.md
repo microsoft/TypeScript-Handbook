@@ -18,7 +18,7 @@ So the resulting type `PromiseCoordinate` ends up with the type `[Promise<number
 
 # Properties declarations on functions
 
-TypeScript 3.1 brings the ability to define properties on function declarations and `const`-declared functons, simply by assigning to properties on these functions in the same scope.
+TypeScript 3.1 brings the ability to define properties on function declarations and `const`-declared functions, simply by assigning to properties on these functions in the same scope.
 This allows us to write canonical JavaScript code without resorting to `namespace` hacks.
 For example:
 

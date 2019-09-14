@@ -840,7 +840,7 @@ Once you return the `T[K]` result, the compiler will instantiate the actual type
 
 ```ts
 let name: string = getProperty(taxi, 'manufacturer');
-let age: number = getProperty(taxi, 'model');
+let year: number = getProperty(taxi, 'year');
 
 // error, 'unknown' is not in 'manufacturer' | 'model' | 'year'
 let unknown = getProperty(taxi, 'unknown');

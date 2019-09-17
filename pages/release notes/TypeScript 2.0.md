@@ -1,4 +1,4 @@
-# Null- and undefined-aware types
+## Null- and undefined-aware types
 
 TypeScript has two special types, Null and Undefined, that have the values `null` and `undefined` respectively.
 Previously it was not possible to explicitly name these types, but `null` and `undefined` may now be used as type names regardless of type checking mode.
@@ -179,7 +179,7 @@ In particular, the `null` and `undefined` types are automatically erased from un
 
 In practical terms, strict null checking mode requires that all files in a compilation are null- and undefined-aware.
 
-# Control flow based type analysis
+## Control flow based type analysis
 
 TypeScript 2.0 implements a control flow-based type analysis for local variables and parameters.
 Previously, the type analysis performed for type guards was limited to `if` statements and `?:` conditional expressions and didn't include effects of assignments and control flow constructs such as `return` and `break` statements.
@@ -232,7 +232,7 @@ function mumble(check: boolean) {
 }
 ```
 
-# Tagged union types
+## Tagged union types
 
 TypeScript 2.0 implements support for tagged (or discriminated) union types.
 Specifically, the TS compiler now support type guards that narrow union types based on tests of a discriminant property and furthermore extend that capability to `switch` statements.
@@ -292,7 +292,7 @@ The discriminant property type guard narrows the type of `x` to those constituen
 Note that we currently only support discriminant properties of string literal types.
 We intend to later add support for boolean and numeric literal types.
 
-# The `never` type
+## The `never` type
 
 TypeScript 2.0 introduces a new primitive type `never`.
 The `never` type represents the type of values that never occur.
@@ -367,7 +367,7 @@ test(() => fail());
 test(() => { throw new Error(); })
 ```
 
-# Read-only properties and index signatures
+## Read-only properties and index signatures
 
 A property or index signature can now be declared with the `readonly` modifier is considered read-only.
 
@@ -417,7 +417,7 @@ b.length = 3;  // Error, length is read-only
 a = b;         // Error, mutating methods are missing
 ```
 
-# Specifying the type of `this` for functions
+## Specifying the type of `this` for functions
 
 Following up on specifying the type of `this` in a class or an interface, functions and methods can now declare the type of `this` they expect.
 
@@ -463,7 +463,7 @@ uiElement.addClickListener(h.onClickBad); // error!
 
 A new flag is also added in TypeScript 2.0 to flag all uses of `this` in functions without an explicit type annotation.
 
-# Glob support in `tsconfig.json`
+## Glob support in `tsconfig.json`
 
 Glob support is here!! Glob support has been [one of the most requested features](https://github.com/Microsoft/TypeScript/issues/1927).
 
@@ -508,7 +508,7 @@ Files included using `"include"` can be filtered using the `"exclude"` property.
 However, files included explicitly using the `"files"` property are always included regardless of `"exclude"`.
 The `"exclude"` property defaults to excluding the `node_modules`, `bower_components`, and `jspm_packages` directories when not specified.
 
-# Module resolution enhancements: BaseUrl, Path mapping, rootDirs and tracing
+## Module resolution enhancements: BaseUrl, Path mapping, rootDirs and tracing
 
 TypeScript 2.0 provides a set of additional module resolution knops to *inform* the compiler where to find declarations for a given module.
 
@@ -605,7 +605,7 @@ So following our example, the `tsconfig.json` file should look like:
 tsc --traceResolution
 ```
 
-# Shorthand ambient module declarations
+## Shorthand ambient module declarations
 
 If you don't want to take the time to write out declarations before using a new module, you can now just use a shorthand declaration to get started quickly.
 
@@ -622,7 +622,7 @@ import x, {y} from "hot-new-module";
 x(y);
 ```
 
-# Wildcard character in module names
+## Wildcard character in module names
 
 Importing none-code resources using module loaders extension (e.g. [AMD](https://github.com/amdjs/amdjs-api/blob/master/LoaderPlugins.md) or [SystemJS](https://github.com/systemjs/systemjs/blob/master/docs/creating-plugins.md)) has not been easy before;
 previously an ambient module declaration had to be defined for each resource.
@@ -670,7 +670,7 @@ import { readFile } from "myLibrary/fileSystem/readFile`;
 readFile(); // readFile is 'any'
 ```
 
-# Support for UMD module definitions
+## Support for UMD module definitions
 
 Some libraries are designed to be used in many module loaders, or with no module loading (global variables).
 These are known as [UMD](https://github.com/umdjs/umd) or [Isomorphic](http://isomorphic.net) modules.
@@ -700,7 +700,7 @@ It can also be used as a global variable, but only inside of a script.
 mathLib.isPrime(2);
 ```
 
-# Optional class properties
+## Optional class properties
 
 Optional properties and methods can now be declared in classes, similar to what is already permitted in interfaces.
 
@@ -735,7 +735,7 @@ function test(x: Bar) {
 }
 ```
 
-# Private and Protected Constructors
+## Private and Protected Constructors
 
 A class constructor may be marked `private` or `protected`.
 A class with private constructor cannot be instantiated outside the class body, and cannot be extended.
@@ -761,7 +761,7 @@ let e = new Singleton(); // Error: constructor of 'Singleton' is private.
 let v = Singleton.getInstance();
 ```
 
-# Abstract properties and accessors
+## Abstract properties and accessors
 
 An abstract class can declare abstract properties and/or accessors.
 Any sub class will need to declare the abstract properties or be marked as abstract.
@@ -784,7 +784,7 @@ class Derived extends Base {
 }
 ```
 
-# Implicit index signatures
+## Implicit index signatures
 
 An object literal type is now assignable to a type with an index signature if all known properties in the object literal are assignable to that index signature. This makes it possible to pass a variable that was initialized with an object literal as parameter to a function that expects a map or dictionary:
 
@@ -799,7 +799,7 @@ httpService("", { "Content-Type": "application/x-www-form-urlencoded" });  // Ok
 httpService("", headers);  // Now ok, previously wasn't
 ```
 
-# Including built-in type declarations with `--lib`
+## Including built-in type declarations with `--lib`
 
 Getting to ES6/ES2015 built-in API declarations were only limited to `target: ES6`.
 Enter `--lib`; with `--lib` you can specify a list of built-in API declaration groups that you can chose to include in your project.
@@ -840,7 +840,7 @@ tsc --target es5 --lib es5,es2015.promise
 }
 ```
 
-# Flag unused declarations with `--noUnusedParameters` and `--noUnusedLocals`
+## Flag unused declarations with `--noUnusedParameters` and `--noUnusedLocals`
 
 TypeScript 2.0 has two new flags to help you maintain a clean code base.
 `--noUnusedParameters` flags any unused function or method parameters errors.
@@ -870,7 +870,7 @@ function returnNull(_a) { // OK
 }
 ```
 
-# Module identifiers allow for `.js` extension
+## Module identifiers allow for `.js` extension
 
 Before TypeScript 2.0, a module identifier was always assumed to be extension-less;
 for instance, given an import as `import d from "./moduleA.js"`, the compiler looked up the definition of `"moduleA.js"` in `./moduleA.js.ts` or `./moduleA.js.d.ts`.
@@ -878,12 +878,12 @@ This made it hard to use bundling/loading tools like [SystemJS](https://github.c
 
 With TypeScript 2.0, the compiler will look up definition of `"moduleA.js"` in  `./moduleA.ts` or `./moduleA.d.t`.
 
-# Support 'target : es5' with 'module: es6'
+## Support 'target : es5' with 'module: es6'
 
 Previously flagged as an invalid flag combination, `target: es5` and 'module: es6' is now supported.
 This should facilitate using ES2015-based tree shakers like [rollup](https://github.com/rollup/rollup).
 
-# Trailing commas in function parameter and argument lists
+## Trailing commas in function parameter and argument lists
 
 Trailing comma in function parameter and argument lists are now allowed.
 This is an implementation for a [Stage-3 ECMAScript proposal](https://jeffmo.github.io/es-trailing-function-commas/) that emits down to valid ES3/ES5/ES6.
@@ -904,7 +904,7 @@ foo(
 );
 ```
 
-# New `--skipLibCheck`
+## New `--skipLibCheck`
 
 TypeScript 2.0 adds a new `--skipLibCheck` compiler option that causes type checking of declaration files (files with extension `.d.ts`) to be skipped.
 When a program includes large declaration files, the compiler spends a lot of time type checking declarations that are already known to not contain errors, and compile times may be significantly shortened by skipping declaration file type checks.
@@ -913,7 +913,7 @@ Since declarations in one file can affect type checking in other files, some err
 For example, if a non-declaration file augments a type declared in a declaration file, errors may result that are only reported when the declaration file is checked.
 However, in practice such situations are rare.
 
-# Allow duplicate identifiers across declarations
+## Allow duplicate identifiers across declarations
 
 This has been one common source of duplicate definition errors.
 Multiple declaration files defining the same members on interfaces.
@@ -938,6 +938,6 @@ interface Error {
 
 ```
 
-# New `--declarationDir`
+## New `--declarationDir`
 
 `--declarationDir` allows for generating declaration files in a different location than JavaScript files.

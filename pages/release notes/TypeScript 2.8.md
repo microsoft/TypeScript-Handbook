@@ -1,4 +1,4 @@
-# Conditional Types
+## Conditional Types
 
 TypeScript 2.8 introduces *conditional types* which add the ability to express non-uniform type mappings.
 A conditional type selects one of two possible types based on a condition expressed as a type relationship test:
@@ -244,7 +244,7 @@ type T24 = InstanceType<Function>;  // Error
 
 > Note: The `Exclude` type is a proper implementation of the `Diff` type suggested [here](https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-307871458). We've used the name `Exclude` to avoid breaking existing code that defines a `Diff`, plus we feel that name better conveys the semantics of the type. We did not include the `Omit<T, K>` type because it is trivially written as `Pick<T, Exclude<keyof T, K>>`.
 
-# Improved control over mapped type modifiers
+## Improved control over mapped type modifiers
 
 Mapped types support adding a `readonly` or `?` modifier to a mapped property, but they did not provide support the ability to *remove* modifiers.
 This matters in [*homomorphic mapped types*](https://github.com/Microsoft/TypeScript/pull/12563) which by default preserve the modifiers of the underlying type.
@@ -283,7 +283,7 @@ type Foo = { a?: string };  // Same as { a?: string | undefined }
 type Bar = Required<Foo>;  // Same as { a: string }
 ```
 
-# Improved `keyof` with intersection types
+## Improved `keyof` with intersection types
 
 With TypeScript 2.8 `keyof` applied to an intersection type is transformed to a union of `keyof` applied to each intersection constituent.
 In other words, types of the form `keyof (A & B)` are transformed to be `keyof A | keyof B`.
@@ -304,7 +304,7 @@ type T6 = T3<B>;  // "a" | "b"
 type T7 = T4<A, B>;  // "a" | "b"
 ```
 
-# Better handling for namespace patterns in `.js` files
+## Better handling for namespace patterns in `.js` files
 
 TypeScript 2.8 adds support for understanding more namespace patterns in `.js` files.
 Empty object literals declarations on top level, just like functions and classes, are now recognized as as namespace declarations in JavaScript.
@@ -375,7 +375,7 @@ var app = window.app || {};
 app.C = class { };
 ```
 
-# Per-file JSX factories
+## Per-file JSX factories
 
 TypeScript 2.8 adds support for a per-file configurable JSX factory name using `@jsx dom` pragma.
 JSX factory can be configured for a compilation using `--jsxFactory` (default is `React.createElement`). With TypeScript 2.8 you can override this on a per-file-basis by adding a comment to the beginning of the file.
@@ -395,7 +395,7 @@ var renderer_1 = require("./renderer");
 renderer_1.dom("h", null);
 ```
 
-# Locally scoped JSX namespaces
+## Locally scoped JSX namespaces
 
 JSX type checking is driven by definitions in a JSX namespace, for instance `JSX.Element` for the type of a JSX element, and `JSX.IntrinsicElements` for built-in elements.
 Before TypeScript 2.8 the `JSX` namespace was expected to be in the global namespace, and thus only allowing one to be defined in a project.
@@ -403,6 +403,6 @@ Starting with TypeScript 2.8 the `JSX` namespace will be looked under the `jsxNa
 For backward compatibility the global `JSX` namespace is used as a fallback if none was defined on the factory function.
 Combined with the per-file `@jsx` pragma, each file can have a different JSX factory.
 
-# New `--emitDeclarationOnly`
+## New `--emitDeclarationOnly`
 
 `--emitDeclarationOnly` allows for *only* generating declaration files; `.js`/`.jsx` output generation will be skipped with this flag. The flag is useful when the `.js` output generation is handled by a different transpiler like Babel.

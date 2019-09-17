@@ -1,4 +1,4 @@
-# Improved behavior for calling union types
+## Improved behavior for calling union types
 
 In prior versions of TypeScript, unions of callable types could *only* be invoked if they had identical parameter lists.
 
@@ -92,7 +92,7 @@ catOrDogArray.forEach((animal: Dog | Cat) => {
 });
 ```
 
-# Incremental file watching for composite projects in `--build --watch`
+## Incremental file watching for composite projects in `--build --watch`
 
 TypeScript 3.0 introduced a new feature for structuring builds called "composite projects".
 Part of the goal here was to ensure users could break up large projects into smaller parts that build quickly and preserve project structure, without compromising the existing TypeScript experience.

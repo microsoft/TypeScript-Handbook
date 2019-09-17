@@ -1,4 +1,4 @@
-# Project References
+## Project References
 
 TypeScript 3.0 introduces a new concept of project references. Project references allow TypeScript projects to depend on other TypeScript projects - specifically, allowing `tsconfig.json` files to reference other `tsconfig.json` files. Specifying these dependencies makes it easier to split your code into smaller projects, since it gives TypeScript (and tools around it) a way to understand build ordering and output structure.
 
@@ -6,7 +6,7 @@ TypeScript 3.0 also introduces a new mode for tsc, the `--build` flag, that work
 
 See [Project References handbook page](../Project%20References.md) for more documentation.
 
-# Tuples in rest parameters and spread expressions
+## Tuples in rest parameters and spread expressions
 
 TypeScript 3.0 adds support to multiple new capabilities to interact with function parameter lists as tuple types.
 TypeScript 3.0 adds support for:
@@ -112,7 +112,7 @@ const t2 = tuple("bar", ...numbers);  // [string, ...number[]]
 
 The type of the `length` property of a tuple type with a rest element is `number`.
 
-# New `unknown` top type
+## New `unknown` top type
 
 TypeScript 3.0 introduces a new top type `unknown`.
 `unknown` is the type-safe counterpart of `any`.
@@ -280,7 +280,7 @@ class C1 {
 }
 ```
 
-# Support for `defaultProps` in JSX
+## Support for `defaultProps` in JSX
 
 TypeScript 2.9 and earlier didn’t leverage [React `defaultProps`](https://reactjs.org/docs/typechecking-with-proptypes.html#default-prop-values) declarations inside JSX components.
 Users would often have to declare properties optional and use non-null assertions inside of `render`, or they'd use type-assertions to fix up the type of the component before exporting it.
@@ -328,7 +328,7 @@ function Greet({ name = "world" }: Props) {
 Corresponding changes to add `LibraryManagedAttributes` definition to the `JSX` namespace in `@types/React` are still needed.
 Keep in mind that there are some limitations.
 
-# `/// <reference lib="..." />` reference directives
+## `/// <reference lib="..." />` reference directives
 
 TypeScript adds a new triple-slash-reference directive (`/// <reference lib="name" />`), allowing a file to explicitly include an existing built-in _lib_ file.
 

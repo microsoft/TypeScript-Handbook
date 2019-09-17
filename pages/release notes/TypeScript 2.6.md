@@ -1,4 +1,4 @@
-# Strict function types
+## Strict function types
 
 TypeScript 2.6 introduces a new strict checking flag, `--strictFunctionTypes`.
 The `--strictFunctionTypes` switch is part of the `--strict` family of switches, meaning that it defaults to on in `--strict` mode.
@@ -80,7 +80,7 @@ let combined = combine(animalFunc, dogFunc);  // (x: Dog) => void
 Above, all inferences for `T` originate in contravariant positions, and we therefore infer the *best common subtype* for `T`.
 This contrasts with inferences from covariant positions, where we infer the *best common supertype*.
 
-# Cache tagged template objects in modules
+## Cache tagged template objects in modules
 
 TypeScript 2.6 fixes the tagged string template emit to align better with the ECMAScript spec.
 As per the [ECMAScript spec](https://tc39.github.io/ecma262/#sec-gettemplateobject), every time a template tag is evaluated, the _same_ template strings object (the same `TemplateStringsArray`) should be passed as the first argument.
@@ -125,7 +125,7 @@ var result = templateObjectFactory() === templateObjectFactory();
 > Note: This change brings a new emit helper, `__makeTemplateObject`;
 if you are using `--importHelpers` with [`tslib`](https://github.com/Microsoft/tslib), an updated to version 1.8 or later.
 
-# Localized diagnostics on the command line
+## Localized diagnostics on the command line
 
 TypeScript 2.6 npm package ships with localized versions of diagnostic messages for 13 languages.
 The localized messages are available when using `--locale` flag on the command line.
@@ -197,7 +197,7 @@ wn' 'es2016.array.include' 'es2017.object' 'es2017.sharedmemory' 'es2017.string'
  @<ファイル>
 ```
 
-# Suppress errors in .ts files using '// @ts-ignore' comments
+## Suppress errors in .ts files using '// @ts-ignore' comments
 
 TypeScript 2.6 support suppressing errors in .js files using `// @ts-ignore` comments placed above the offending lines.
 
@@ -215,7 +215,7 @@ It is recommended practice to have the remainder of the comment following `@ts-i
 
 Please note that this comment only suppresses the error reporting, and we recommend you use this comments _very sparingly_.
 
-# Faster `tsc --watch`
+## Faster `tsc --watch`
 
 TypeScript 2.6 brings a faster `--watch` implementation.
 The new version optimizes code generation and checking for code bases using ES modules.
@@ -225,7 +225,7 @@ Projects with large number of files should reap the most benefit from this chang
 The new implementation also brings performance enhancements to watching in tsserver.
 The watcher logic has been completely rewritten to respond faster to change events.
 
-# Write-only references now flagged as unused
+## Write-only references now flagged as unused
 
 TypeScript 2.6 adds revised implementation  the `--noUnusedLocals` and `--noUnusedParameters` [compiler options](https://www.typescriptlang.org/docs/handbook/compiler-options.html).
 Declarations are only written to but never read from are now flagged as unused.

@@ -32,7 +32,7 @@ Option                                         | Type      | Default            
 `--inlineSourceMap`                            | `boolean` | `false`                        | Emit a single file with source maps instead of having a separate file.
 `--inlineSources`                              | `boolean` | `false`                        | Emit the source alongside the sourcemaps within a single file; requires `--inlineSourceMap` or `--sourceMap` to be set.
 `--init`                                       |           |                                | Initializes a TypeScript project and creates a `tsconfig.json` file.
-`--isolatedModules`                            | `boolean` | `false`                        | Transpile each file as a separate module (similar to "ts.transpileModule").
+`--isolatedModules`                            | `boolean` | `false`                        | Perform additional checks to ensure that separate compilation (such as with [`transpileModule`](https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API#a-simple-transform-function) or [@babel/plugin-transform-typescript](https://babeljs.io/docs/en/babel-plugin-transform-typescript)) would be safe.
 `--jsx`                                        | `string`  | `"preserve"`                   | Support JSX in `.tsx` files: `"react"`, `"preserve"`, `"react-native"`. See [JSX](./JSX.md).
 `--jsxFactory`                                 | `string`  | `"React.createElement"`        | Specify the JSX factory function to use when targeting react JSX emit, e.g. `React.createElement` or `h`.
 `--keyofStringsOnly`                           | `boolean`  | `false`                       | Resolve `keyof` to string valued property names only (no numbers or symbols).

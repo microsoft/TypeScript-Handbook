@@ -1,4 +1,4 @@
-# Support `number` and `symbol` named properties with `keyof` and mapped types
+## Support `number` and `symbol` named properties with `keyof` and mapped types
 
 TypeScript 2.9 adds support for `number` and `symbol` named properties in index types and mapped types.
 Previously, the `keyof` operator and mapped types only supported `string` named properties.
@@ -128,7 +128,7 @@ function useKey<T, K extends keyof T>(o: T, k: K) {
 
 * Otherwise use `--keyofStringsOnly` compiler option to disable the new behavior.
 
-# Generic type arguments in JSX elements
+## Generic type arguments in JSX elements
 
 JSX elements now allow passing type arguments to generic components.
 
@@ -146,7 +146,7 @@ const x = <GenericComponent<Props> a={10} b="hi"/>; // OK
 const y = <GenericComponent<Props> a={10} b={20} />; // Error
 ```
 
-# Generic type arguments in generic tagged templates
+## Generic type arguments in generic tagged templates
 
 Tagged templates are a form of invocation introduced in ECMAScript 2015.
 Like call expressions, generic functions may be used in a tagged template and TypeScript will infer the type arguments utilized.
@@ -175,7 +175,7 @@ declare function tag<T>(strs: TemplateStringsArray, ...args: T[]): T;
 let a = tag<string | number> `${100} ${"hello"}`;
 ```
 
-# `import` types
+## `import` types
 
 Modules can import types declared in other modules. But non-module global scripts cannot access types declared in modules. Enter `import` types.
 
@@ -216,7 +216,7 @@ function walk(p) {
 }
 ```
 
-# Relaxing declaration emit visiblity rules
+## Relaxing declaration emit visiblity rules
 
 With `import` types available, many of the visibility errors reported during declaration file generation can be handled by the compiler without the need to change the input.
 
@@ -236,7 +236,7 @@ With TypeScript 2.9, no errors are reported, and now the generated file looks li
 export declare const hash: import("crypto").Hash;
 ```
 
-# Support for `import.meta`
+## Support for `import.meta`
 
 TypeScript 2.9 introduces support for `import.meta`, a new meta-property as described by the current [TC39 proposal](https://github.com/tc39/proposal-import-meta).
 
@@ -263,7 +263,7 @@ import.meta.__dirname // Has type 'string'
 
 `import.meta` is only allowed when targeting `ESNext` modules and ECMAScript targets.
 
-# New `--resolveJsonModule`
+## New `--resolveJsonModule`
 
 Often in Node.js applications a `.json` is needed. With TypeScript 2.9, `--resolveJsonModule` allows for importing, extracting types from and generating `.json` files.
 
@@ -301,14 +301,14 @@ settings.dry === 2;  // Error: Operator '===' cannot be applied boolean and numb
 }
 ```
 
-# `--pretty` output by default
+## `--pretty` output by default
 
 Starting TypeScript 2.9 errors are displayed under `--pretty` by default if the output device is applicable for colorful text.
 TypeScript will check if the output steam has [`isTty`](https://nodejs.org/api/tty.html) property set.
 
 Use `--pretty false` on the command line or set `"pretty": false` in your `tsconfig.json` to disable `--pretty` output.
 
-# New `--declarationMap`
+## New `--declarationMap`
 
 Enabling `--declarationMap` alongside `--declaration` causes the compiler to emit `.d.ts.map` files alongside the output `.d.ts` files.
 Language Services can also now understand these map files, and uses them to map declaration-file based definition locations to their original source, when available.

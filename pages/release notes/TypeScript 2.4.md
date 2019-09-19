@@ -1,5 +1,3 @@
-# TypeScript 2.4
-
 ## Dynamic Import Expressions
 
 Dynamic `import` expressions are a new feature and part of ECMAScript that allows users to asynchronously request a module at any arbitrary point in your program.

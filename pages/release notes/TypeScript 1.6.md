@@ -1,4 +1,4 @@
-# JSX support
+## JSX support
 
 JSX is an embeddable XML-like syntax.
 It is meant to be transformed into valid JavaScript, but the semantics of that transformation are implementation-specific.
@@ -52,7 +52,7 @@ TypeScript ships with two JSX modes: `preserve` and `react`.
 
 See the [[JSX]] wiki page for more information on using JSX in TypeScript.
 
-# Intersection types
+## Intersection types
 
 TypeScript 1.6 introduces intersection types, the logical complement of union types.
 A union type `A | B` represents an entity that is either of type `A` or type `B`, whereas an intersection type `A & B` represents an entity that is both of type `A` *and* type `B`.
@@ -105,7 +105,7 @@ abc.c = "hello";
 
 See [issue #1256](https://github.com/Microsoft/TypeScript/issues/1256) for more information.
 
-# Local type declarations
+## Local type declarations
 
 Local class, interface, enum, and type alias declarations can now appear inside function declarations. Local types are block scoped, similar to variables declared with `let` and `const`. For example:
 
@@ -165,7 +165,7 @@ function f3() {
 }
 ```
 
-# Class expressions
+## Class expressions
 
 TypeScript 1.6 adds support for ES6 class expressions. In a class expression, the class name is optional and, if specified, is only in scope in the class expression itself. This is similar to the optional name of a function expression. It is not possible to refer to the class instance type of a class expression outside the class expression, but the type can of course be matched structurally. For example:
 
@@ -180,7 +180,7 @@ var p = new Point(3, 4);  // p has anonymous class type
 console.log(p.length());
 ```
 
-# Extending expressions
+## Extending expressions
 
 TypeScript 1.6 adds support for classes extending arbitrary expression that computes a constructor function. This means that built-in types can now be extended in class declarations.
 
@@ -223,7 +223,7 @@ class Test extends getGreeterBase() {
 }
 ```
 
-# `abstract` classes and methods
+## `abstract` classes and methods
 
 TypeScript 1.6 adds support for `abstract` keyword for classes and their methods. An abstract class is allowed to have methods with no implementation, and cannot be constructed.
 
@@ -253,7 +253,7 @@ y.getThing(); // OK
 y.getOtherThing(); // OK
 ```
 
-# Generic type aliases
+## Generic type aliases
 
 With TypeScript 1.6, type aliases can be generic. For example:
 
@@ -272,7 +272,7 @@ interface Tuple<A, B> {
 type Pair<T> = Tuple<T, T>;
 ```
 
-# Stricter object literal assignment checks
+## Stricter object literal assignment checks
 
 TypeScript 1.6 enforces stricter object literal assignment checks for the purpose of catching excess or misspelled properties. Specifically, when a fresh object literal is assigned to a variable or passed as an argument for a non-empty target type, it is an error for the object literal to specify properties that don't exist in the target type.
 
@@ -293,7 +293,7 @@ var x: { foo: number, [x: string]: any };
 x = { foo: 1, baz: 2 };  // Ok, `baz` matched by index signature
 ```
 
-# ES6 generators
+## ES6 generators
 
 TypeScript 1.6 adds support for generators when targeting ES6.
 
@@ -320,7 +320,7 @@ function *g() {
 }
 ```
 
-# Experimental support for `async` functions
+## Experimental support for `async` functions
 
 TypeScript 1.6 introduces experimental support of `async` functions when targeting ES6.
 Async functions are expected to invoke an asynchronous operation and await its result without blocking normal execution of the program.
@@ -358,7 +358,7 @@ class C {
 }
 ```
 
-# Nightly builds
+## Nightly builds
 
 While not strictly a language change, nightly builds are now available by installing with the following command:
 
@@ -366,7 +366,7 @@ While not strictly a language change, nightly builds are now available by instal
 npm install -g typescript@next
 ```
 
-# Adjustments in module resolution logic
+## Adjustments in module resolution logic
 
 Starting from release 1.6 TypeScript compiler will use different set of rules to resolve module names when targeting 'commonjs'.
 These [rules](https://github.com/Microsoft/TypeScript/issues/2338) attempted to model module lookup procedure used by Node.
@@ -376,7 +376,7 @@ User however can override module resolution rules picked by the compiler by usin
 * 'classic' - module resolution rules used by pre 1.6 TypeScript compiler
 * 'node' - node-like module resolution
 
-# Merging ambient class and interface declaration
+## Merging ambient class and interface declaration
 
 The instance side of an ambient class declaration can be extended using an interface declaration The class constructor object is unmodified.
 For example:
@@ -396,7 +396,7 @@ function bar(foo : Foo)  {
 }
 ```
 
-# User-defined type guard functions
+## User-defined type guard functions
 
 TypeScript 1.6 adds a new way to narrow a variable type inside an `if` block, in addition to `typeof` and `instanceof`.
 A user-defined type guard functions is one with a return type annotation of the form `x is T`, where `x` is a declared parameter in the signature, and `T` is any type.
@@ -415,7 +415,7 @@ if(isCat(x)) {
 }
 ```
 
-# `exclude` property support in tsconfig.json
+## `exclude` property support in tsconfig.json
 
 A tsconfig.json file that doesn't specify a files property (and therefore implicitly references all *.ts files in all subdirectories) can now contain an exclude property that specifies a list of files and/or directories to exclude from the compilation.
 The exclude property must be an array of strings that each specify a file or folder name relative to the location of the tsconfig.json file.
@@ -436,7 +436,7 @@ For example:
 
 The `exclude` list does not support wilcards. It must simply be a list of files and/or directories.
 
-# `--init` command line option
+## `--init` command line option
 
 Run `tsc --init` in a directory to create an initial `tsconfig.json` in this directory with preset defaults.
 Optionally pass command line arguments along with `--init` to be stored in your initial tsconfig.json on creation.

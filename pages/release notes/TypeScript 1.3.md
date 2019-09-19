@@ -1,4 +1,4 @@
-# Protected
+## Protected
 
 The new `protected` modifier in classes works like it does in familiar languages like C++, C#, and Java. A `protected` member of a class is visible only inside subclasses of the class in which it is declared:
 
@@ -17,7 +17,7 @@ var t = new MyThing();
 t.doSomething(); // Error, cannot call protected member from outside class
 ```
 
-# Tuple types
+## Tuple types
 
 Tuple types express an array where the type of certain elements is known, but need not be the same. For example, you may want to represent an array with a `string` at position 0 and a `number` at position 1:
 

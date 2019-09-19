@@ -1,4 +1,4 @@
-# `keyof` and Lookup Types
+## `keyof` and Lookup Types
 
 In JavaScript it is fairly common to have APIs that expect property names as parameters, but so far it hasn't been possible to express the type relationships that occur in those APIs.
 
@@ -54,7 +54,7 @@ let oops = getProperty(x, "wargarbl"); // Error! "wargarbl" is not "foo" | "bar"
 setProperty(x, "foo", "string"); // Error!, string expected number
 ```
 
-# Mapped Types
+## Mapped Types
 
 One common task is to take an existing type and make each of its properties entirely optional.
 Let's say we have a `Person`:
@@ -138,7 +138,7 @@ const names = { foo: "hello", bar: "world", baz: "bye" };
 const lengths = mapObject(names, s => s.length);  // { foo: number, bar: number, baz: number }
 ```
 
-# Object Spread and Rest
+## Object Spread and Rest
 
 TypeScript 2.1 brings support for [ESnext Spread and Rest](https://github.com/sebmarkbage/ecmascript-rest-spread).
 
@@ -173,7 +173,7 @@ let { z, ...obj1 } = obj;
 obj1; // {x: number, y:number};
 ```
 
-# Downlevel Async Functions
+## Downlevel Async Functions
 
 This feature was supported before TypeScript 2.1, but only when targeting ES6/ES2015.
 TypeScript 2.1 brings the capability to ES3 and ES5 run-times, meaning you'll be free to take advantage of it no matter what environment you're using.
@@ -219,7 +219,7 @@ dramaticWelcome();
 
 Compiling and running the output should result in the correct behavior on an ES3/ES5 engine.
 
-# Support for external helpers library (`tslib`)
+## Support for external helpers library (`tslib`)
 
 TypeScript injects a handful of helper functions such as `__extends` for inheritance, `__assign` for spread operator in object literals and JSX elements, and `__awaiter` for async functions.
 
@@ -260,7 +260,7 @@ exports.o = { a: 1, name: "o" };
 exports.copy = tslib_1.__assign({}, exports.o);
 ```
 
-# Untyped imports
+## Untyped imports
 
 TypeScript has traditionally been overly strict about how you can import modules.
 This was to avoid typos and prevent users from using modules incorrectly.
@@ -281,7 +281,7 @@ An import to a module with no declaration file will still be flagged as an error
 import { x } from "asdf";
 ```
 
-# Support for `--target ES2016`, `--target ES2017` and `--target ESNext`
+## Support for `--target ES2016`, `--target ES2017` and `--target ESNext`
 
 TypeScript 2.1 supports three new target values `--target ES2016`, `--target ES2017` and `--target ESNext`.
 
@@ -291,7 +291,7 @@ Similarly, `--target ES2017` will instruct the compiler not to transform ES2017-
 
 `--target ESNext` targets latest supported [ES proposed features](https://github.com/tc39/proposals).
 
-# Improved `any` Inference
+## Improved `any` Inference
 
 Previously, if TypeScript couldn't figure out the type of a variable, it would choose the `any` type.
 
@@ -372,7 +372,7 @@ function f3() {
 }
 ```
 
-# Better inference for literal types
+## Better inference for literal types
 
 String, numeric and boolean literal types (e.g. `"abc"`, `1`, and `true`) were previously inferred only in the presence of an explicit type annotation.
 Starting with TypeScript 2.1, literal types are *always* inferred for `const` variables and `readonly` properties.
@@ -411,7 +411,7 @@ const c2: "hello" = "hello";  // Type "hello"
 let v2 = c2;  // Type "hello"
 ```
 
-# Use returned values from super calls as 'this'
+## Use returned values from super calls as 'this'
 
 In ES2015, constructors which return an object implicitly substitute the value of `this` for any callers of `super()`.
 As a result, it is necessary to capture any potential return value of `super()` and replace it with `this`.
@@ -454,7 +454,7 @@ var Derived = (function (_super) {
 
 > This change entails a break in the behavior of extending built-in classes like `Error`, `Array`, `Map`, etc.. Please see the [extending built-ins breaking change documentation](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work) for more details.
 
-# Configuration inheritance
+## Configuration inheritance
 
 Often a project has multiple output targets, e.g. `ES5` and `ES2015`, debug and production or `CommonJS` and `System`;
 Just a few configuration options change between these two targets, and maintaining multiple `tsconfig.json` files can be a hassle.
@@ -504,7 +504,7 @@ TypeScript 2.1 supports inheriting configuration using `extends`, where:
 }
 ```
 
-# New `--alwaysStrict`
+## New `--alwaysStrict`
 
 Invoking the compiler with `--alwaysStrict` causes:
 

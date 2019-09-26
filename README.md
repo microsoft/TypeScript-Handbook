@@ -2,12 +2,12 @@
 
 [![Build Status](https://travis-ci.org/Microsoft/TypeScript-Handbook.svg)](https://travis-ci.org/Microsoft/TypeScript-Handbook)
 
-The TypeScript Handbook is a comprehensive guide to the TypeScript language.
-It is meant to be read online at [the TypeScript website](https://www.typescriptlang.org/docs/home.html) or [directly from this repository](./pages/Basic%20Types.md).
+O TypeScript Handbook é um guia abrangente para o TypeScript.
+Ele pode ser lido no [site do TypeScript](https://www.typescriptlang.org/docs/home.html) ou [diretamente neste repositório repositorio](./pages/Basic%20Types.md).
 
-For a more formal description of the language, see the [latest TypeScript Language Specification](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md).
+Para uma descrição mais formal sobre a liguagem, consulte a [especificação mais recente do TypeScript](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md).
 
 
-## How To Contribute
+## Como Contribuir
 
-TypeScript-Handbook is accepting contributions. If you've submitted a PR for an existing issue, please post a comment in the issue to avoid duplication of effort. See our [CONTRIBUTING](/CONTRIBUTING.md) file for more information - it also contains guidelines for how to submit a PR.
+O TypeScript-Handbook está aceitanco contribuições. Se você enviou PR para uma issue existente, por favor, porte uma comentário na issue para evitar duplicação e retrabalho. Veja nosso [arquivo de contribuição](/CONTRIBUTING.md) para mais informação - ele contém diretrizes de como submeter um PR.

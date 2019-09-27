@@ -26,6 +26,7 @@ Option                                         | Type      | Default            
 `--experimentalDecorators`<sup>[1]</sup>       | `boolean` | `false`                        | Enables experimental support for ES decorators.
 `--extendedDiagnostics`                        | `boolean` | `false`                        | Show verbose diagnostic information
 `--forceConsistentCasingInFileNames`           | `boolean` | `false`                        | Disallow inconsistently-cased references to the same file.
+`--generateCpuProfile`                         | `string`  | `profile.cpuprofile`           | Generates a cpu profile at the given path. Passing an existing directory name instead of a file path will cause a timestamp-named profile to be generated in that directory instead.
 `--help`<br/>`-h`                              |           |                                | Print help message.
 `--importHelpers`                              | `boolean` | `false`                        | Import emit helpers (e.g. `__extends`, `__rest`, etc..) from [`tslib`](https://www.npmjs.com/package/tslib)
 `--incremental`                                | `boolean` | `true` if `composite` is on, `false` otherwise | Enable incremental compilation by reading/writing information from prior compilations to a file on disk. This file is controlled by the `--tsBuildInfoFile` flag.

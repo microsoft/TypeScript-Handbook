@@ -82,7 +82,7 @@ The second assignment is an error, because `y` has a required second parameter t
 
 You may be wondering why we allow 'discarding' parameters like in the example `y = x`.
 The reason for this assignment to be allowed is that ignoring extra function parameters is actually quite common in JavaScript.
-For example, `Array#forEach` provides three parameters to the callback function: the array element, its index, and the containing array.
+For example, `Array.prototype.forEach()` provides three parameters to the callback function: the array element, its index, and the containing array.
 Nevertheless, it's very useful to provide a callback that only uses the first parameter:
 
 ```ts

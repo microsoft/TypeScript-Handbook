@@ -1,3 +1,19 @@
+# Table of Contents
+1. [Introduction](#Introduction)
+2. [Boolean](#Boolean)
+3. [Number](#Number)
+4. [String](#String)
+5. [Array](#Array)
+6. [Tuple](#Tuple)
+7. [Enum](#Enum)
+8. [Any](#Any)
+9. [Void](#Void)
+10. [Null and Undefined](#Null%20and%20Undefined)
+11. [Never](#Never)
+12. [Object](#Object)
+13. [Type assertions](#Type%20assertions)
+14. [A note about 'let'](#A%20note%20about%20`let`)
+
 # Introduction
 
 For programs to be useful, we need to be able to work with some of the simplest units of data: numbers, strings, structures, boolean values, and the like.

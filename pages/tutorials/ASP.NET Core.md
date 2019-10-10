@@ -73,7 +73,7 @@ function sayHello() {
 ```
 ### Set up the build 
 
-*Configure the TypeScript compiler* #
+*Configure the TypeScript compiler*
 
 First we need to tell TypeScript how to build. Right click on `scripts` and click **New Item**. Then choose **TypeScript Configuration File** and use the default name of `tsconfig.json`
 

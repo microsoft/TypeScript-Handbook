@@ -162,7 +162,7 @@ If ‘default’ and ‘clean’ tasks don’t show up, refresh the explorer:
 
 ### Write an HTML page 
 
-Right click on the `wwwroot` folder (if you don't see the folder try building the project) and add a New Item named `index.html` inside . Use the following code for `index.html `
+Right click on the `wwwroot` folder (if you don't see the folder try building the project) and add a New Item named `index.html` inside. Use the following code for `index.html `
 
 ```
 <!DOCTYPE html>

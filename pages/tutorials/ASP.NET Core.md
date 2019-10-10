@@ -160,7 +160,7 @@ If ‘default’ and ‘clean’ tasks don’t show up, refresh the explorer:
 
 ![](../../assets/images/tutorials/aspnet/taskrunnerrefresh.png)
 
-### Write an HTML page 
+### Write a HTML page 
 
 Right click on the `wwwroot` folder (if you don't see the folder try building the project) and add a New Item named `index.html` inside. Use the following code for `index.html `
 

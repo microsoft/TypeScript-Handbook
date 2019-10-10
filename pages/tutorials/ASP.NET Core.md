@@ -45,7 +45,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-You may need to restart VS for the red squiggly lines below `UseDefaultFiles` and `UseStaticFiles` tp disappear.
+You may need to restart VS for the red squiggly lines below `UseDefaultFiles` and `UseStaticFiles` to disappear.
 
 ## Add TypeScript 
 Next we will add a new folder and call it `scripts`.

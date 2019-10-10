@@ -45,7 +45,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-You may need to restart VS for the red squiggly lines below `UseDefaultFiles` and `UseStaticFiles` tp disappear.
+You may need to restart VS for the red squiggly lines below `UseDefaultFiles` and `UseStaticFiles` to disappear.
 
 ## Add TypeScript 
 Next we will add a new folder and call it `scripts`.
@@ -64,7 +64,7 @@ Right click on `scripts` and click **New Item**. Then choose **TypeScript File**
 
 Add the following code to the `app.ts` file.
 
-```
+```ts
 function sayHello() {
     const compiler = (document.getElementById("compiler") as HTMLInputElement).value;
     const framework = (document.getElementById("framework") as HTMLInputElement).value;
@@ -73,7 +73,7 @@ function sayHello() {
 ```
 ### Set up the build 
 
-*Configure the TypeScript compiler* #
+*Configure the TypeScript compiler*
 
 First we need to tell TypeScript how to build. Right click on `scripts` and click **New Item**. Then choose **TypeScript Configuration File** and use the default name of `tsconfig.json`
 
@@ -86,7 +86,7 @@ Replace the contents of the `tsconfig.json` file with:
     "noEmitOnError": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "target": "esnext"
+    "target": "es6"
   },
   "files": [
     "./app.ts"
@@ -128,7 +128,7 @@ After you should see an `npm` folder in your solution explorer
 
 Right click on the project and click **New Item**. Then choose **JavaScript File** and use the name of `gulpfile.js`
 
-```
+```js
 /// <binding AfterBuild='default' Clean='clean' />
 /*
 This file is the main entry point for defining Gulp tasks and using Gulp plugins.
@@ -152,7 +152,7 @@ gulp.task('default', function () {
 ```
 The first line tells Visual Studio to run the task ‘default’ after the build finishes. It will also run the ‘clean’ task when you ask Visual Studio to clean the build.
 
-Now right-click on gulpfile.js and click Task Runner Explorer. 
+Now right-click on `gulpfile.js` and click Task Runner Explorer. 
 
 ![](../../assets/images/tutorials/aspnet/taskrunner.png)
 
@@ -160,9 +160,9 @@ If ‘default’ and ‘clean’ tasks don’t show up, refresh the explorer:
 
 ![](../../assets/images/tutorials/aspnet/taskrunnerrefresh.png)
 
-### Write an HTML page 
+### Write a HTML page 
 
-Right click on the `wwwroot` folder (if you don't see the folder try building the project) and add a New Item named `index.html` inside . Use the following code for `index.html `
+Right click on the `wwwroot` folder (if you don't see the folder try building the project) and add a New Item named `index.html` inside. Use the following code for `index.html `
 
 ```
 <!DOCTYPE html>

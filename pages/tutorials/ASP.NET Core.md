@@ -152,7 +152,7 @@ gulp.task('default', function () {
 ```
 The first line tells Visual Studio to run the task ‘default’ after the build finishes. It will also run the ‘clean’ task when you ask Visual Studio to clean the build.
 
-Now right-click on gulpfile.js and click Task Runner Explorer. 
+Now right-click on `gulpfile.js` and click Task Runner Explorer. 
 
 ![](../../assets/images/tutorials/aspnet/taskrunner.png)
 

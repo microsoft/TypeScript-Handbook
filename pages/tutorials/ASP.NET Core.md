@@ -128,7 +128,7 @@ After you should see an `npm` folder in your solution explorer
 
 Right click on the project and click **New Item**. Then choose **JavaScript File** and use the name of `gulpfile.js`
 
-```
+```js
 /// <binding AfterBuild='default' Clean='clean' />
 /*
 This file is the main entry point for defining Gulp tasks and using Gulp plugins.

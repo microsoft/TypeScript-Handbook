@@ -86,7 +86,7 @@ Replace the contents of the `tsconfig.json` file with:
     "noEmitOnError": true,
     "noImplicitAny": true,
     "sourceMap": true,
-    "target": "esnext"
+    "target": "es6"
   },
   "files": [
     "./app.ts"

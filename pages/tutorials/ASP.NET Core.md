@@ -64,7 +64,7 @@ Right click on `scripts` and click **New Item**. Then choose **TypeScript File**
 
 Add the following code to the `app.ts` file.
 
-```
+```ts
 function sayHello() {
     const compiler = (document.getElementById("compiler") as HTMLInputElement).value;
     const framework = (document.getElementById("framework") as HTMLInputElement).value;

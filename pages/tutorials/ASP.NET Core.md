@@ -14,7 +14,7 @@ Next, if your version of Visual Studio does not already have the latest TypeScri
 
 ![](../../assets/images/tutorials/aspnet/createwebapp.png)
 
-5. Create your project and solution name. After select the *Create* button
+5. Name your project and solution. After select the *Create* button
 
 ![](../../assets/images/tutorials/aspnet/namewebapp.png)
 

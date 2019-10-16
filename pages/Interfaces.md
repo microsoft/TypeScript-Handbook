@@ -235,7 +235,7 @@ Here, we show how you can create a variable of a function type and assign it a f
 
 ```ts
 let mySearch: SearchFunc;
-mySearch = function(source: string, subString: string) {
+mySearch = function(source: string, subString: string): boolean {
     let result = source.search(subString);
     return result > -1;
 }

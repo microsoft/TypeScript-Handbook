@@ -1,18 +1,18 @@
 # Table of Contents
-1. [Introduction](#Introduction)
-2. [Boolean](#Boolean)
-3. [Number](#Number)
-4. [String](#String)
-5. [Array](#Array)
-6. [Tuple](#Tuple)
-7. [Enum](#Enum)
-8. [Any](#Any)
-9. [Void](#Void)
-10. [Null and Undefined](#Null%20and%20Undefined)
-11. [Never](#Never)
-12. [Object](#Object)
-13. [Type assertions](#Type%20assertions)
-14. [A note about 'let'](#A%20note%20about%20`let`)
+1. [Introduction](#introduction)
+2. [Boolean](#boolean)
+3. [Number](#number)
+4. [String](#string)
+5. [Array](#array)
+6. [Tuple](#tuple)
+7. [Enum](#enum)
+8. [Any](#any)
+9. [Void](#void)
+10. [Null and Undefined](#null-and-undefined)
+11. [Never](#never)
+12. [Object](#object)
+13. [Type assertions](#type-assertions)
+14. [A note about 'let'](#a-note-about-let)
 
 # Introduction
 
@@ -174,6 +174,8 @@ notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
 let prettySure: Object = 4;
 prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
 ```
+
+> Note: Avoid using `Object` in favor of the non-primitive `object` type as described in our [Do's and Don'ts](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html#general-types) section.
 
 The `any` type is also handy if you know some part of the type, but perhaps not all of it.
 For example, you may have an array but the array has a mix of different types:

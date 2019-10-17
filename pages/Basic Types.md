@@ -175,7 +175,7 @@ let prettySure: Object = 4;
 prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
 ```
 
-> Note: Avoid using `Object` in favor of the non-primitive `object` type as described in our [Do's and Don'ts](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html#number-string-boolean-symbol-and-object) section.
+> Note: Avoid using `Object` in favor of the non-primitive `object` type as described in our [Do's and Don'ts](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html#general-types) section.
 
 The `any` type is also handy if you know some part of the type, but perhaps not all of it.
 For example, you may have an array but the array has a mix of different types:

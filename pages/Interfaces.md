@@ -255,7 +255,6 @@ mySearch = function(src: string, sub: string): boolean {
 Function parameters are checked one at a time, with the type in each corresponding parameter position checked against each other.
 If you do not want to specify types at all, TypeScript's contextual typing can infer the argument types since the function value is assigned directly to a variable of type `SearchFunc`.
 Here, also, the return type of our function expression is implied by the values it returns (here `false` and `true`).
-Had the function expression returned numbers or strings, the type checker would have warned us that return type doesn't match the return type described in the `SearchFunc` interface.
 
 ```ts
 let mySearch: SearchFunc;
@@ -263,6 +262,19 @@ mySearch = function(src, sub) {
     let result = src.search(sub);
     return result > -1;
 }
+```
+
+Had the function expression returned numbers or strings, the type checker would have made an error that indicates return type doesn't match the return type described in the `SearchFunc` interface.
+
+```ts
+let mySearch: SearchFunc;
+
+// error: Type '(src: string, sub: string) => string' is not assignable to type 'SearchFunc'.
+// Type 'string' is not assignable to type 'boolean'.
+mySearch = function(src, sub) {
+  let result = src.search(sub);
+  return "string";
+};
 ```
 
 # Indexable Types

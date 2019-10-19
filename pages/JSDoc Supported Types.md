@@ -17,6 +17,8 @@ Note any tags which are not explicitly listed below (such as `@async`) are not y
 The meaning is usually the same, or a superset, of the meaning of the tag given at [jsdoc.app](https://jsdoc.app).
 The code below describes the differences and gives some example usage of each tag.
 
+**Note:** You can use [the playground to explore JSDoc support](https://www.typescriptlang.org/play/index.html?useJavaScript=truee=4#example/jsdoc-support).
+
 ## `@type`
 
 You can use the "@type" tag and reference a type name (either primitive, defined in a TypeScript declaration, or in a JSDoc "@typedef" tag).

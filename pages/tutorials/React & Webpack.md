@@ -1,6 +1,6 @@
 This guide will teach you how to wire up TypeScript with [React](https://reactjs.org/) and [webpack](https://webpack.js.org/).
 
-If you're starting a brand new project, take a look at the [React Quick Start guide](/samples/index.html) first.
+If you're starting a brand new project, take a look at the [React Quick Start guide](https://create-react-app.dev/docs/adding-typescript) first.
 
 Otherwise, we assume that you're already using [Node.js](https://nodejs.org/) with [npm](https://www.npmjs.com/).
 

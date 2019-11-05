@@ -370,6 +370,8 @@ sn = undefined; // error, 'undefined' is not assignable to 'string | null'
 Note that TypeScript treats `null` and `undefined` differently in order to match JavaScript semantics.
 `string | null` is a different type than `string | undefined` and `string | undefined | null`.
 
+From TypeScript 3.7 and onwards, you can use [optional chaining](/docs/handbook/release-notes/typescript-3-7.html#optional-chaining) to simplify working with nullable types.
+
 ## Optional parameters and properties
 
 With `--strictNullChecks`, an optional parameter automatically adds `| undefined`:

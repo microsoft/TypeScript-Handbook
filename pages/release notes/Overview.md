@@ -1,23 +1,15 @@
-This page is all of the release notes combined into a single page. It's long, but comprehensive
+This page is all of the release notes combined into a single page. It's long, but comprehensive.
 
 
 ## TypeScript 3.7
 
 ## Optional Chaining
 
-TypeScript 3.7 implements one of the most highly-demanded ECMAScript features yet: optional chaining!
+[Playground](/play/#example/optional-chaining)
 
-Optional chaining is [issue #16](https://github.com/microsoft/TypeScript/issues/16) on our issue tracker.
-For context, there have been over 23,000 issues on the TypeScript issue tracker.
-It was filed over 5 years ago, before it was even a proposal within TC39!
+Optional chaining is [issue #16](https://github.com/microsoft/TypeScript/issues/16) on our issue tracker. For context, there have been over 23,000 issues on the TypeScript issue tracker since then. 
 
-For years, we've been asked to implement the feature, but our stance has long been not to conflict with potential ECMAScript proposals.
-Instead, our team recently took the steps to help drive the proposal to standardization, and ultimately to all JavaScript and TypeScript users.
-In fact, we became involved to the point where we were championing the proposal!
-With its advancement to stage 3, we're comfortable and proud to release it as part of TypeScript 3.7.
-
-So what is optional chaining?
-Well at its core, optional chaining lets us write code where we can immediately stop running some expressions if we run into a `null` or `undefined`.
+At its core, optional chaining lets us write code where TypeScript can immediately stop running some expressions if we run into a `null` or `undefined`.
 The star of the show in optional chaining is the new `?.` operator for *optional property accesses*.
 When we write code like
 
@@ -123,7 +115,9 @@ More more details, you can [read up on the proposal](https://github.com/tc39/pro
 
 ## Nullish Coalescing
 
-The *nullish coalescing operator* is another upcoming ECMAScript feature that goes hand-in-hand with optional chaining, and which our team has been involved with championing.
+[Playground](/play/#example/nullish-coalescing)
+
+The *nullish coalescing operator* is another upcoming ECMAScript feature that goes hand-in-hand with optional chaining, and which our team has been involved with championing in TC39.
 
 You can think of this feature - the `??` operator - as a way to "fall back" to a default value when dealing with `null` or `undefined`.
 When we write code like
@@ -163,6 +157,8 @@ For more details, [check out their pull request](https://github.com/microsoft/Ty
 
 ## Assertion Functions
 
+[Playground](/play/#example/assertion-functions)
+
 There's a specific set of functions that `throw` an error if something unexpected happened.
 They're called "assertion" functions.
 As an example, Node.js has a dedicated function for this called `assert`.
@@ -186,7 +182,7 @@ function multiply(x, y) {
 ```
 
 Unfortunately in TypeScript these checks could never be properly encoded.
-For loosely-typed code this meant TypeScript was checking less, and for slightly conservative code it often forced users to use type assertions..
+For loosely-typed code this meant TypeScript was checking less, and for slightly conservative code it often forced users to use type assertions.
 
 ```ts
 function yell(str) {
@@ -342,6 +338,8 @@ As with assertion functions, you can [read up more at the same pull request](htt
 
 ## (More) Recursive Type Aliases
 
+[Playground](/play/#example/recursive-type-references
+
 Type aliases have always had a limitation in how they could be "recursively" referenced.
 The reason is that any use of a type alias needs to be able to substitute itself with whatever it aliases.
 In some cases, that's not possible, so the compiler rejects certain recursive aliases like the following:
@@ -426,7 +424,7 @@ const myNode: VirtualNode =
 
 For more information, you can [read up on the original pull request](https://github.com/microsoft/TypeScript/pull/33050).
 
-## <a name="--declaration-and--allowjs"></a> `--declaration` and `--allowJs`
+## `--declaration` and `--allowJs`
 
 The `--declaration` flag in TypeScript allows us to generate `.d.ts` files (declaration files) from TypeScript source files (i.e. `.ts` and `.tsx` files).
 These `.d.ts` files are important for a couple of reasons.
@@ -716,6 +714,8 @@ You can [read up more about this change by reading up on its pull request](https
 
 ## Uncalled Function Checks
 
+[Playground](/play/#example/uncalled-function-checks)
+
 A common and dangerous error is to forget to invoke a function, especially if the function has zero arguments or is named in a way that implies it might be a property rather than a function.
 
 ```ts
@@ -790,7 +790,7 @@ TypeScript's built-in formatter now supports semicolon insertion and removal at 
 
 Choosing a value of "insert" or "remove" also affects the format of auto-imports, extracted types, and other generated code provided by TypeScript services. Leaving the setting on its default value of "ignore" makes generated code match the semicolon preference detected in the current file.
 
-## Breaking Changes
+## 3.7 Breaking Changes
 
 ### DOM Changes
 
@@ -848,7 +848,7 @@ The correct fix depends on the original intent of the author and should be addre
 Usually, the naming conflict is unintentional and the best fix is to rename the imported type.
 If the intent was to augment the imported type, a proper module augmentation should be written instead.
 
-### API Changes
+### 3.7 API Changes
 
 To enable the recursive type alias patterns described above, the `typeArguments` property has been removed from the `TypeReference` interface. Users should instead use the `getTypeArguments` function on `TypeChecker` instances.
 
@@ -4057,7 +4057,7 @@ The watcher logic has been completely rewritten to respond faster to change even
 
 ## Write-only references now flagged as unused
 
-TypeScript 2.6 adds revised implementation  the `--noUnusedLocals` and `--noUnusedParameters` [compiler options](https://www.typescriptlang.org/docs/handbook/compiler-options.html).
+TypeScript 2.6 adds revised implementation  the `--noUnusedLocals` and `--noUnusedParameters` [compiler options](/docs/handbook/compiler-options.html).
 Declarations are only written to but never read from are now flagged as unused.
 
 #### Example

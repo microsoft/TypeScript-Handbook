@@ -338,7 +338,7 @@ As with assertion functions, you can [read up more at the same pull request](htt
 
 ## (More) Recursive Type Aliases
 
-[Playground](/play/#example/recursive-type-references
+[Playground](/play/#example/recursive-type-references)
 
 Type aliases have always had a limitation in how they could be "recursively" referenced.
 The reason is that any use of a type alias needs to be able to substitute itself with whatever it aliases.

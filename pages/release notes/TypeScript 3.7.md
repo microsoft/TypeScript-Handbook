@@ -9,7 +9,7 @@
 * [Uncalled Function Checks](#uncalled-function-checks)
 * [`// @ts-nocheck` in TypeScript Files](#ts-nocheck-in-typescript-files)
 * [Semicolon Formatter Option](#semicolon-formatter-option)
-* [Breaking Changes](#breaking-Changes)
+* [Breaking Changes](#37-breaking-changes)
 	* [DOM Changes](#dom-changes)
 	* [Function Truthy Checks](#function-truthy-checks)
 	* [Local and Imported Type Declarations Now Conflict](#local-and-imported-type-declarations-now-conflict)

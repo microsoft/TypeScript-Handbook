@@ -13,7 +13,7 @@
 	* [DOM Changes](#dom-changes)
 	* [Function Truthy Checks](#function-truthy-checks)
 	* [Local and Imported Type Declarations Now Conflict](#local-and-imported-type-declarations-now-conflict)
-    * [API Changes](#api-changes)
+    * [API Changes](#37-api-changes)
 
 
 ## Optional Chaining

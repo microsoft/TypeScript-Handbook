@@ -588,7 +588,7 @@ function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {
 }
 ```
 
-These are seldom written explicitly, they can be useful when narrowing can catch bugs:
+These are seldom written explicitly, but they can be useful when narrowing issues and can catch bugs:
 
 ```ts
 function foo(x: number) {

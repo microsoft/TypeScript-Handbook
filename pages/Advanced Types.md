@@ -1084,7 +1084,7 @@ interface Foo {
     propB: boolean;
 }
 
-declare function f<T>(x: T): T extends Foo ? string : number;
+declare function foo<T>(x: T): T extends Foo ? string : number;
 
 function foo<U>(x: U) {
     // Has type 'U extends Foo ? string : number'

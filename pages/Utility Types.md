@@ -12,6 +12,7 @@ TypeScript provides several utility types to facilitate common type transformati
 * [`Exclude<T,U>`](#excludetu)
 * [`Extract<T,U>`](#extracttu)
 * [`NonNullable<T>`](#nonnullablet)
+* [`Parameters<T>`](#parameterst)
 * [`ReturnType<T>`](#returntypet)
 * [`InstanceType<T>`](#instancetypet)
 * [`Required<T>`](#requiredt)
@@ -165,6 +166,24 @@ type T0 = NonNullable<string | number | undefined>;  // string | number
 type T1 = NonNullable<string[] | null | undefined>;  // string[]
 ```
 
+# `Parameters<T>`
+
+Constructs a tuple type of the types of the parameters of a function type `T`.
+
+##### Example
+
+```ts
+declare function f1(arg: { a: number, b: string }): void
+type T0 = Parameters<() => string>;  // []
+type T1 = Parameters<(s: string) => void>;  // [string]
+type T2 = Parameters<(<T>(arg: T) => T)>;  // [unknown]
+type T4 = Parameters<typeof f1>;  // { a: number, b: string }
+type T5 = Parameters<any>;  // unknown[]
+type T6 = Parameters<never>;  // any
+type T7 = Parameters<string>;  // Error
+type T8 = Parameters<Function>;  // Error
+```
+
 # `ReturnType<T>`
 
 Constructs a type consisting of the return type of function `T`.
@@ -172,6 +191,7 @@ Constructs a type consisting of the return type of function `T`.
 ##### Example
 
 ```ts
+declare function f1(): { a: number, b: string }
 type T0 = ReturnType<() => string>;  // string
 type T1 = ReturnType<(s: string) => void>;  // void
 type T2 = ReturnType<(<T>() => T)>;  // {}

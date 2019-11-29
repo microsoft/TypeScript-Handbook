@@ -144,6 +144,7 @@ A `tsconfig.json` file can inherit configurations from another file using the `e
 
 The `extends` is a top-level property in `tsconfig.json` (alongside `compilerOptions`, `files`, `include`, and `exclude`).
 `extends`' value is a string containing a path to another configuration file to inherit from.
+The path may use Node.js style resolution.
 
 The configuration from the base file are loaded first, then overridden by those  in the inheriting config file.
 If a circularity is encountered, we report an error.

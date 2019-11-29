@@ -17,6 +17,8 @@ TypeScript provides several utility types to facilitate common type transformati
 * [`ReturnType<T>`](#returntypet)
 * [`InstanceType<T>`](#instancetypet)
 * [`Required<T>`](#requiredt)
+* [`ThisParameterType`](#thisparametertype)
+* [`OmitThisParameter`](#omitthisparameter)
 * [`ThisType<T>`](#thistypet)
 
 # `Partial<T>`
@@ -250,6 +252,43 @@ interface Props {
 const obj: Props = { a: 5 }; // OK
 
 const obj2: Required<Props> = { a: 5 }; // Error: property 'b' missing
+```
+
+# `ThisParameterType`
+
+Extracts the type of the `this` parameter of a function type, or `unknown` if the function type has no `this` parameter.
+
+Note: This type only works correctly if `--strictFunctionTypes` is enabled. See [#32964](https://github.com/microsoft/TypeScript/issues/32964).
+
+##### Example
+
+```ts
+function toHex(this: Number) {
+    return this.toString(16);
+}
+
+function numberToString(n: ThisParameterType<typeof toHex>) {
+    return toHex.apply(n);
+}
+```
+
+# `OmitThisParameter`
+
+Removes the 'this' parameter from a function type.
+
+Note: This type only works correctly if `--strictFunctionTypes` is enabled. See [#32964](https://github.com/microsoft/TypeScript/issues/32964).
+
+##### Example
+
+```ts
+function toHex(this: Number) {
+    return this.toString(16);
+}
+
+// The return type of `bind` is already using `OmitThisParameter`, this is just for demonstration.
+const fiveToHex: OmitThisParameter<typeof toHex> = toHex.bind(5);
+
+console.log(fiveToHex());
 ```
 
 # `ThisType<T>`

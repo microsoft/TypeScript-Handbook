@@ -81,9 +81,6 @@ source-map-loader uses any sourcemap outputs from TypeScript to inform webpack w
 This will allow you to debug your final output file as if you were debugging your original TypeScript source code.
 
 Please note that ts-loader is not the only loader for typescript.
-You could instead use [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader).
-
-Read about the differences between them [here](https://github.com/s-panferov/awesome-typescript-loader#differences-between-ts-loader).
 
 Notice that we installed TypeScript as a development dependency.
 We could also have linked TypeScript to a global copy with `npm link typescript`, but this is a less common scenario.

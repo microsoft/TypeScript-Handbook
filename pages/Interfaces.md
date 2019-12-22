@@ -100,7 +100,7 @@ let mySquare = createSquare({color: "black"});
 
 # Readonly properties
 
-Some properties should only be modifiable when an object is first created.
+Some properties should only be unmodifiable when an object is first created.
 You can specify this by putting `readonly` before the name of the property:
 
 ```ts

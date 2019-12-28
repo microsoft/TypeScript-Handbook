@@ -288,7 +288,7 @@ function isString(val: any): val is string {
 
 function yell(str: any) {
     if (isString(str)) {
-        return str.toUppercase();
+        return str.toUpperCase();
     }
     throw "Oops!";
 }

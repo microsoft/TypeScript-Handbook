@@ -449,7 +449,7 @@ greeter = new Greeter("world");
 console.log(greeter.greet());
 ```
 
-Here, when we say `let greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.
+Here, when we say `let greeter: Greeter`, we're using `greeter` as the type of instances of the class `Greeter`.
 This is almost second nature to programmers from other object-oriented languages.
 
 We're also creating another value that we call the *constructor function*.

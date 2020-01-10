@@ -472,7 +472,7 @@ greeter = new Greeter("world");
 console.log(greeter.greet());
 ```
 
-Here, `let Greeter` is going to be assigned the constructor function.
+Here, `let greeter` is going to be assigned the constructor function.
 When we call `new` and run this function, we get an instance of the class.
 The constructor function also contains all of the static members of the class.
 Another way to think of each class is that there is an *instance* side and a *static* side.

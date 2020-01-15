@@ -28,6 +28,8 @@ For example:
 
 Note that the `"typings"` field is synonymous with `"types"`, and could be used as well.
 
+Also note that if your `package.json` includes the `"files"` property the `"types"` property will be ignored. In that case you need to pass your main declaration file to the `"files"` property as well.
+
 Also note that if your main declaration file is named `index.d.ts` and lives at the root of the package (next to `index.js`) you do not need to mark the `"types"` property, though it is advisable to do so.
 
 ## Dependencies

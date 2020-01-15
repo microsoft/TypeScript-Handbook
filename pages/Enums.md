@@ -263,7 +263,7 @@ let a = Enum.A;
 let nameOfA = Enum[a]; // "A"
 ```
 
-TypeScript might compile this down to something like the the following JavaScript:
+TypeScript might compile this down to something like the following JavaScript:
 
 ```js
 var Enum;

@@ -136,9 +136,25 @@ class Animal {
 }
 ```
 
-## Understanding `private`
+## ECMAScript Private Fields
 
-When a member is marked `private`, it cannot be accessed from outside of its containing class. For example:
+With TypeScript 3.8, TypeScript supports the new JavaScript syntax for private fields:
+
+```ts
+class Animal {
+    #name: string;
+    constructor(theName: string) { this.#name = theName; }
+}
+
+new Animal("Cat").#name; // Property '#name' is not accessible outside class 'Animal' because it has a private identifier.
+```
+
+This syntax is built into the JavaScript runtime and can have better guarantees about the isolation of each private field.
+Right now, the best documentation for these private fields is in the TypeScript 3.8 [release notes](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/#type-only-imports-exports).
+
+## Understanding TypeScript's `private`
+
+TypeScript also has it's own way to declare a member as being marked `private`, it cannot be accessed from outside of its containing class. For example:
 
 ```ts
 class Animal {

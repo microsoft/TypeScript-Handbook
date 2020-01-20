@@ -4388,7 +4388,7 @@ As with Generators, Async Generators can only be function declarations, function
 
 #### The `for-await-of` Statement
 
-Finally, ES2015 introduced the `for..of` statement as a means of iterating over an iterable.
+With ES2015, ECMAScript introduced the `for..of` statement as a means of iterating over an iterable.
 Similarly, the Async Iteration proposal introduces the `for..await..of` statement to iterate over an async iterable:
 
 ```ts

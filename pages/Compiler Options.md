@@ -1,4 +1,26 @@
+## Using the CLI
+
+Running `tsc` locally will compile the closest project defined by a `tsconfig.json`, you can compile a set of TypeScript
+files by passing in a glob of files you want.
+
+```sh
+# Run a compile based on a backwards look through the fs for a tsconfig.json
+tsc 
+
+# Transpile just the index.ts with the compiler defaults
+tsc index.ts
+
+# Transpile any .ts files in the folder src, with the default settings
+tsc src/*.ts
+
+# Transpile any .ts files in the folder src, with the compiler settings from tsconfig.json
+tsc --project tsconfig.json src/*.ts
+```
+
 ## Compiler Options
+
+If you're looking for more information about the compiler options in a tsconfig, check out the TSConfig Reference beta
+available in [the v2 site](https://www.typescriptlang.org/v2/en/tsconfig).
 
 Option                                         | Type      | Default                        | Description
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------

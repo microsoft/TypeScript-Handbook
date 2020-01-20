@@ -129,6 +129,22 @@ To import these modules, use:
 import "./my-module.js";
 ```
 
+## Importing Types
+
+Prior to TypeScript 3.8, you can import a type using `import`.
+With TypeScript 3.8, you can import a type using the `import` statement, or using `import type`.
+
+```ts
+// Re-using the same import
+import {APIResponseType} from "./api";
+
+// Explicitly use import type
+import type {APIResponseType} from "./api";
+```
+
+`import type` is always guaranteed to be removed from your JavaScript, and tools like Babel can make better assumptions about your code via the `isolatedModules` compiler flag. 
+You can read more in the [3.8 release notes](https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/#type-only-imports-exports).
+
 # Default exports
 
 Each module can optionally export a `default` export.
@@ -214,6 +230,20 @@ export default "123";
 import num from "./OneTwoThree";
 
 console.log(num); // "123"
+```
+
+## Export all as x
+
+With TypeScript 3.8, you can use `export * as ns` as a shorthand for re-exporting another module with a name:
+
+```ts
+export * as utilities from "./utilities";
+```
+
+This takes all of the dependencies from a module and makes it an exported field, you could import it like this:
+
+```ts
+import { utilities } from "./index";
 ```
 
 # `export =` and `import = require()`

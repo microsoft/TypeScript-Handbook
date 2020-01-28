@@ -462,7 +462,7 @@ class Greeter {
 
 let greeter: Greeter;
 greeter = new Greeter("world");
-console.log(greeter.greet());
+console.log(greeter.greet()); // "Hello, world""
 ```
 
 Here, when we say `let greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.
@@ -485,7 +485,7 @@ let Greeter = (function () {
 
 let greeter;
 greeter = new Greeter("world");
-console.log(greeter.greet());
+console.log(greeter.greet()); // "Hello, world"
 ```
 
 Here, `let Greeter` is going to be assigned the constructor function.
@@ -511,13 +511,13 @@ class Greeter {
 
 let greeter1: Greeter;
 greeter1 = new Greeter();
-console.log(greeter1.greet());
+console.log(greeter1.greet()); // "Hello, there"
 
 let greeterMaker: typeof Greeter = Greeter;
 greeterMaker.standardGreeting = "Hey there!";
 
 let greeter2: Greeter = new greeterMaker();
-console.log(greeter2.greet());
+console.log(greeter2.greet()); // "Hey there!"
 ```
 
 In this example, `greeter1` works similarly to before.

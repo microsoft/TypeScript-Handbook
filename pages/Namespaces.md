@@ -16,18 +16,10 @@
 [Working with Other JavaScript Libraries](#working-with-other-javascript-libraries)
 * [Ambient Namespaces](#ambient-namespaces)
 
-> **A note about terminology:**
-It's important to note that in TypeScript 1.5, the nomenclature has changed.
-"Internal modules" are now "namespaces".
-"External modules" are now simply "modules", as to align with [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
-
 # Introduction
 <b><a href="#table-of-contents">↥ back to top</a></b>
 
-This post outlines the various ways to organize your code using namespaces (previously "internal modules") in TypeScript.
-As we alluded in our note about terminology, "internal modules" are now referred to as "namespaces".
-Additionally, anywhere the `module` keyword was used when declaring an internal module, the `namespace` keyword can and should be used instead.
-This avoids confusing new users by overloading them with similarly named terms.
+This post outlines the various ways to organize your code using namespaces in TypeScript.
 
 # First steps
 <b><a href="#table-of-contents">↥ back to top</a></b>
@@ -36,7 +28,6 @@ Let's start with the program we'll be using as our example throughout this page.
 We've written a small set of simplistic string validators, as you might write to check a user's input on a form in a webpage or check the format of an externally-provided data file.
 
 ## Validators in a single file
-<b><a href="#table-of-contents">↥ back to top</a></b>
 
 ```ts
 interface StringValidator {
@@ -76,7 +67,6 @@ for (let s of strings) {
 ```
 
 # Namespacing
-<b><a href="#table-of-contents">↥ back to top</a></b>
 
 As we add more validators, we're going to want to have some kind of organization scheme so that we can keep track of our types and not worry about name collisions with other objects.
 Instead of putting lots of different names into the global namespace, let's wrap up our objects into a namespace.
@@ -87,7 +77,6 @@ Conversely, the variables `lettersRegexp` and `numberRegexp` are implementation 
 In the test code at the bottom of the file, we now need to qualify the names of the types when used outside the namespace, e.g. `Validation.LettersOnlyValidator`.
 
 ## Namespaced Validators
-<b><a href="#table-of-contents">↥ back to top</a></b>
 
 ```ts
 namespace Validation {

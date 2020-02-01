@@ -1,38 +1,34 @@
-> **A note about terminology:**
-It's important to note that in TypeScript 1.5, the nomenclature has changed.
-"Internal modules" are now "namespaces".
-"External modules" are now simply "modules", as to align with [ECMAScript 2015](http://www.ecma-international.org/ecma-262/6.0/)'s terminology, (namely that `module X {` is equivalent to the now-preferred `namespace X {`).
-
 # Introduction
 
-This post outlines the various ways to organize your code using namespaces and modules in TypeScript.
+This post outlines the various ways to organize your code using modules and namespaces in TypeScript.
 We'll also go over some advanced topics of how to use namespaces and modules, and address some common pitfalls when using them in TypeScript.
 
-See the [Modules](./Modules.md) documentation for more information about modules.
-See the [Namespaces](./Namespaces.md) documentation for more information about namespaces.
+See the [Modules](./Modules.md) documentation for more information about ES Modules.
+See the [Namespaces](./Namespaces.md) documentation for more information about TypeScript namespaces.
 
-# Using Namespaces
-
-Namespaces are simply named JavaScript objects in the global namespace.
-This makes namespaces a very simple construct to use.
-They can span multiple files, and can be concatenated using `--outFile`.
-Namespaces can be a good way to structure your code in a Web Application, with all dependencies included as `<script>` tags in your HTML page.
-
-Just like all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.
+Note: In _very_ old versions of TypeScript namespaces were called 'Internal Modules', these pre-date JavaScript module systems.
 
 # Using Modules
 
-Just like namespaces, modules can contain both code and declarations.
-The main difference is that modules *declare* their dependencies.
+Modules can contain both code and declarations.
 
-Modules also have a dependency on a module loader (such as CommonJs/Require.js).
-For a small JS application this might not be optimal, but for larger applications, the cost comes with long term modularity and maintainability benefits.
+Modules also have a dependency on a module loader (such as CommonJs/Require.js) or a runtime which supports ES Modules.
 Modules provide for better code reuse, stronger isolation and better tooling support for bundling.
 
 It is also worth noting that, for Node.js applications, modules are the default and the recommended approach to structure your code.
 
 Starting with ECMAScript 2015, modules are native part of the language, and should be supported by all compliant engine implementations.
 Thus, for new projects modules would be the recommended code organization mechanism.
+
+# Using Namespaces
+
+Namespaces are a TypeScript-specific way to organize code.  
+Namespaces are simply named JavaScript objects in the global namespace.
+This makes namespaces a very simple construct to use.
+Unlike modules, they can span multiple files, and can be concatenated using `--outFile`.
+Namespaces can be a good way to structure your code in a Web Application, with all dependencies included as `<script>` tags in your HTML page.
+
+Just like all global namespace pollution, it can be hard to identify component dependencies, especially in a large application.
 
 # Pitfalls of Namespaces and Modules
 

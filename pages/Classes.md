@@ -462,7 +462,7 @@ class Greeter {
 
 let greeter: Greeter;
 greeter = new Greeter("world");
-console.log(greeter.greet()); // "Hello, world""
+console.log(greeter.greet()); // "Hello, world"
 ```
 
 Here, when we say `let greeter: Greeter`, we're using `Greeter` as the type of instances of the class `Greeter`.

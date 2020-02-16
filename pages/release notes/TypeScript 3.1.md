@@ -16,6 +16,10 @@ In `[number, number]`, there are two numerically named properties: `0` and `1`.
 When given a tuple like that, `MapToPromise` will create a new tuple where the `0` and `1` properties are `Promise`s of the original type.
 So the resulting type `PromiseCoordinate` ends up with the type `[Promise<number>, Promise<number>]`.
 
+------
+
+<sup id="ts-3-1-only-homomorphic">[1]</sup> More specifically, homomorphic mapped types like in the above form.
+
 ## Properties declarations on functions
 
 TypeScript 3.1 brings the ability to define properties on function declarations and `const`-declared functions, simply by assigning to properties on these functions in the same scope.
@@ -58,10 +62,6 @@ fs.readFile(path, (err, data) => {
         });
     });
 -->
-
-------
-
-<sup id="ts-3-1-only-homomorphic">[1]</sup> More specifically, homomorphic mapped types like in the above form.
 
 ## Version selection with `typesVersions`
 

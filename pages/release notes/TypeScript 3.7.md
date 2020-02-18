@@ -15,7 +15,6 @@
 	* [Local and Imported Type Declarations Now Conflict](#local-and-imported-type-declarations-now-conflict)
     * [API Changes](#37-api-changes)
 
-
 ## Optional Chaining
 
 [Playground](/play/#example/optional-chaining)

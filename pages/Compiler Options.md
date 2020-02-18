@@ -30,6 +30,7 @@ Option                                         | Type      | Default            
 `--allowUnreachableCode`                       | `boolean` | `false`                        | Do not report errors on unreachable code.
 `--allowUnusedLabels`                          | `boolean` | `false`                        | Do not report errors on unused labels.
 `--alwaysStrict`                               | `boolean` | `false`                        | Parse in strict mode and emit `"use strict"` for each source file
+`--assumeChangesOnlyAffectDirectDependencies`  | `boolean` | `false`                        | Have recompiles in '--incremental' and '--watch' assume that changes within a file will only affect files directly depending on it
 `--baseUrl`                                    | `string`  |                                | Base directory to resolve non-relative module names. See [Module Resolution documentation](./Module%20Resolution.md#base-url) for more details.
 `--build`<br/>`-b`                             | `boolean` | `false`                        | Builds this project and all of its dependencies specified by [Project References](./Project%20References.md). Note that this flag is not compatible with others on this page. See more [here](./Project%20References.md)
 `--charset`                                    | `string`  | `"utf8"`                       | The character set of the input files.

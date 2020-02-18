@@ -168,7 +168,7 @@ greet(new MyGreeter());
 You can use a type alias to make a shorthand for a type:
 
 ```ts
-type GreetingLike = string | (() => string) | MyGreeter;
+type GreetingLike = string | (() => string) | Greeter;
 
 declare function greet(g: GreetingLike): void;
 ```

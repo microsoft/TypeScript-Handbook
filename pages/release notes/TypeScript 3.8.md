@@ -3,7 +3,7 @@
 * [`export * as ns` Syntax](#export-star-as-namespace-syntax)
 * [Top-Level `await`](#top-level-await)
 * [JSDoc Property Modifiers](#jsdoc-modifiers)
-* [Better Directory Watching and `watchOptions`](#better-folder-watching)
+* [Better Directory Watching on Linux and `watchOptions`](#better-directory-watching)
 * ["Fast and Loose" Incremental Checking](#assume-direct-dependencies)
 
 ## <span id="type-only-imports-exports" /> Type-Only Imports and Export
@@ -206,8 +206,8 @@ For more information about the implementation, you can [check out the original p
 We've already received many questions on which type of privates you should use as a TypeScript user: most commonly, "should I use the `private` keyword, or ECMAScript's hash/pound (`#`) private fields?"
 It depends!
 
-When it comes to properties, TypeScript's `private` modifiers are fully erased - that means that at runtime, it acts entirely like a normal property, and there's no way to tell that it was declared with a `private modifier.
-When using the `private` keyword, privacy is only enforced at compile-time/design-time, and for JavaScript consumers, it's entirely intent-based.
+When it comes to properties, TypeScript's `private` modifiers are fully erased - that means that at runtime, it acts entirely like a normal property and there's no way to tell that it was declared with a `private modifier.
+When using the `private` keyword, privacy is only enforced at compile-time/design-time, and for JavaScript consumers it's entirely intent-based.
 
 ```ts
 class C {
@@ -226,7 +226,7 @@ console.log(new C().foo);    // prints '10'
 console.log(new C()["foo"]); // prints '10'
 ```
 
-The upside is that this sort of "soft privacy" can help your consumers temporarily work around not having access to some API, it works in any runtime.
+The upside is that this sort of "soft privacy" can help your consumers temporarily work around not having access to some API, and also works in any runtime.
 
 On the other hand, ECMAScript's `#` privates are completely inaccessible outside of the class.
 
@@ -380,7 +380,7 @@ new Foo().stuff++;
 // Cannot assign to 'stuff' because it is a read-only property.
 ```
 
-## <span id="better-directory-watching" /> Better Directory Watching and `watchOptions`
+## <span id="better-directory-watching" /> Better Directory Watching on Linux and `watchOptions`
 
 TypeScript 3.8 ships a new strategy for watching directories, which is crucial for efficiently picking up changes to `node_modules`.
 

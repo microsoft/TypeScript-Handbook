@@ -228,10 +228,6 @@ module.exports = {
 
 See [more details on ts-loader here](https://www.npmjs.com/package/ts-loader).
 
-Alternatives:
-
-* [awesome-typescript-loader](https://www.npmjs.com/package/awesome-typescript-loader)
-
 # MSBuild
 
 Update project file to include locally installed `Microsoft.TypeScript.Default.props` (at the top) and `Microsoft.TypeScript.targets` (at the bottom) files:

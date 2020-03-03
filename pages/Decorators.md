@@ -467,11 +467,11 @@ class Line {
 function validate<T>(target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<T>) {
     let set = descriptor.set;
     descriptor.set = function (value: T) {
-        let type = Reflect.getMetadata("design:type", target, propertyKey);
+        let type = Reflect.getMetadata("design:type", this, propertyKey);
         if (!(value instanceof type)) {
             throw new TypeError("Invalid type.");
         }
-        set.call(target, value);
+        set.call(this, value);
     }
 }
 ```

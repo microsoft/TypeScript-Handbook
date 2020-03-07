@@ -143,7 +143,8 @@ If you use an `import "foo"` statement, for instance, TypeScript may still look 
 
 ## Configuration inheritance with `extends`
 
-A `tsconfig.json` file can inherit configurations from another file using the `extends` property.
+A `tsconfig.json` file can inherit partial configurations from another file using the `extends` property.
+Currently, the only top-level property that is excluded from inheritance is `references`.
 
 The `extends` is a top-level property in `tsconfig.json` (alongside `compilerOptions`, `files`, `include`, and `exclude`).
 `extends`' value is a string containing a path to another configuration file to inherit from.
@@ -154,7 +155,7 @@ If a circularity is encountered, we report an error.
 
 `files`, `include` and `exclude` from the inheriting config file *overwrite* those from the base config file.
 
-All relative paths found in the configuration file will be resolved relative to the configuration file they originated in.
+Properties with relative paths found in the configuration file, which aren't excluded from inheritance, will be resolved relative to the configuration file they originated in.
 
 For example:
 

@@ -248,7 +248,6 @@ For information on mimicking class merging, see the [Mixins in TypeScript](./Mix
 Although JavaScript modules do not support merging, you can patch existing objects by importing and then updating them.
 Let's look at a toy Observable example:
 
-
 ```ts
 // observable.ts
 export class Observable<T> {

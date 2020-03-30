@@ -282,7 +282,6 @@ Observable.prototype.map = function (f) {
     // ... another exercise for the reader
 }
 
-
 // consumer.ts
 import { Observable } from "./observable";
 import "./map";

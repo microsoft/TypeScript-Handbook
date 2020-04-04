@@ -30,7 +30,7 @@ TypeScript's type system allows certain operations that can't be known at compil
 
 # Starting out
 
-The basic rule for TypeScript's structural type system is that `x` is compatible with `y` if `y` has at least the same members as `x`. For example:
+The basic rule for TypeScript's structural type system is that `y` is compatible with `x` if `y` has at least the same members as `x`. For example:
 
 ```ts
 interface Named {

@@ -406,7 +406,7 @@ class Point {
 interface Point {
     distanceFromOrigin(point: Point): number;
 }
-Point.prototype.distanceFromOrigin = function(point: Point) {
+Point.prototype.distanceFromOrigin = function() {
     return this.getDistance({ x: 0, y: 0});
 }
 ```
@@ -417,7 +417,7 @@ When that option is set, TypeScript will issue an error when `this` is used with
 The fix is to use a `this`-parameter to give an explicit type in the interface or in the function itself:
 
 ```ts
-Point.prototype.distanceFromOrigin = function(this: Point, point: Point) {
+Point.prototype.distanceFromOrigin = function(this: Point) {
     return this.getDistance({ x: 0, y: 0});
 }
 ```

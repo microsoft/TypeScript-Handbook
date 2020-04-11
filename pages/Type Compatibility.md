@@ -105,7 +105,7 @@ x = y; // OK
 y = x; // Error, because x() lacks a location property
 ```
 
-The type system enforces that the source function's return type be a subtype of the target type's return type.
+The type system enforces that the target function's return type be a subtype of the source type's return type.
 
 ## Function Parameter Bivariance
 

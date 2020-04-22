@@ -826,7 +826,7 @@ pluck(taxi, ['year', 'unknown']); /
 
 The second operator is `T[K]`, the **indexed access operator**.
 Here, the type syntax reflects the expression syntax.
-That means that `person['name']` has the type `Person['name']` &mdash; which in our example is just `string`.
+That means that `taxi['model']` has the type `Car['model']` &mdash; which in our example is just `string`.
 However, just like index type queries, you can use `T[K]` in a generic context, which is where its real power comes to life.
 You just have to make sure that the type variable `K extends keyof T`.
 Here's another example with a function named `getProperty`.

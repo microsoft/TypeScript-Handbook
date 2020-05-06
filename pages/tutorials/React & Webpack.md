@@ -115,7 +115,7 @@ First, create a file named `Hello.tsx` in `src/components` and write the followi
 ```ts
 import * as React from "react";
 
-export interface HelloProps { compiler: string; framework: string; }
+export interface HelloProps { readonly compiler: string; readonly framework: string; }
 
 export const Hello = (props: HelloProps) => <h1>Hello from {props.compiler} and {props.framework}!</h1>;
 ```
@@ -125,7 +125,7 @@ Note that while this example uses [function components](https://reactjs.org/docs
 ```ts
 import * as React from "react";
 
-export interface HelloProps { compiler: string; framework: string; }
+export interface HelloProps { readonly compiler: string; readonly framework: string; }
 
 // 'HelloProps' describes the shape of props.
 // State is never set so we use the '{}' type.

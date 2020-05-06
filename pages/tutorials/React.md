@@ -112,8 +112,8 @@ We'll write a `Hello.tsx`:
 import * as React from 'react';
 
 export interface Props {
-  name: string;
-  enthusiasmLevel?: number;
+  readonly name: string;
+  readonly enthusiasmLevel?: number;
 }
 
 function Hello({ name, enthusiasmLevel = 1 }: Props) {
@@ -362,8 +362,8 @@ For this, we can create a file called `src/types/index.tsx` which will contain d
 // src/types/index.tsx
 
 export interface StoreState {
-    languageName: string;
-    enthusiasmLevel: number;
+    readonly languageName: string;
+    readonly enthusiasmLevel: number;
 }
 ```
 
@@ -393,11 +393,11 @@ Next, we'll create a set of actions and functions that can create these actions 
 import * as constants from '../constants'
 
 export interface IncrementEnthusiasm {
-    type: constants.INCREMENT_ENTHUSIASM;
+    readonly type: constants.INCREMENT_ENTHUSIASM;
 }
 
 export interface DecrementEnthusiasm {
-    type: constants.DECREMENT_ENTHUSIASM;
+    readonly type: constants.DECREMENT_ENTHUSIASM;
 }
 
 export type EnthusiasmAction = IncrementEnthusiasm | DecrementEnthusiasm;
@@ -468,10 +468,10 @@ We'll add two optional callback properties to `Props` named `onIncrement` and `o
 
 ```ts
 export interface Props {
-  name: string;
-  enthusiasmLevel?: number;
-  onIncrement?: () => void;
-  onDecrement?: () => void;
+  readonly name: string;
+  readonly enthusiasmLevel?: number;
+  readonly onIncrement?: () => void;
+  readonly onDecrement?: () => void;
 }
 ```
 

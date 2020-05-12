@@ -1,15 +1,15 @@
-* [Improvements in Inference and `Promise.all`](#promise-improvements)
+* [Improvements in Inference and `Promise.all`](#improvements-in-inference-and-promiseall)
 * [Speed Improvements](#speed-improvements)
-* [`// @ts-expect-error` Comments](#ts-expect-error-comments)
-* [Uncalled Function Checks in Conditional Expressions](#uncalled-in-conditionals)
+* [`// @ts-expect-error` Comments](#-ts-expect-error-comments)
+* [Uncalled Function Checks in Conditional Expressions](#uncalled-function-checks-in-conditional-expressions)
 * [Editor Improvements](#editor-improvements)
-    * [CommonJS Auto-Imports in JavaScript](#cjs-auto-imports)
-    * [Code Actions Preserve Newlines](#preserve-newlines)
-    * [Quick Fixes for Missing Return Expressions](#missing-returns)
-    * [Support for "Solution Style" `tsconfig.json` Files](#solution-style-tsconfig)
+    * [CommonJS Auto-Imports in JavaScript](#commonjs-auto-imports-in-javascript)
+    * [Code Actions Preserve Newlines](#code-actions-preserve-newlines)
+    * [Quick Fixes for Missing Return Expressions](#quick-fixes-for-missing-return-expressions)
+    * [Support for "Solution Style" `tsconfig.json` Files](#support-for-solution-style-tsconfigjson-files)
 * [Breaking Changes](#breaking-changes)
 
-## <span id=promise-improvements /> Improvements in Inference and `Promise.all`
+## Improvements in Inference and `Promise.all`
 
 Recent versions of TypeScript (around 3.7) have had updates to the declarations of functions like `Promise.all` and `Promise.race`.
 Unfortunately, that introduced a few regressions, especially when mixing in values with `null` or `undefined`.
@@ -47,7 +47,7 @@ We initially anticipated shipping `awaited` in TypeScript 3.9, but as we've run 
 As a result, we've decided to pull the feature out of our main branch until we feel more confident.
 We'll be experimenting more with the feature, but we won't be shipping it as part of this release.
 
-## <span id=speed-improvements /> Speed Improvements
+## Speed Improvements
 
 TypeScript 3.9 ships with many new speed improvements.
 Our team has been focusing on performance after observing extremely poor editing/compilation speed with packages like material-ui and styled-components.
@@ -69,7 +69,7 @@ TypeScript 3.9 addresses this issue by [changing the internals of how the compil
 
 While there's still room for improvement, we hope this work translates to a snappier experience for everyone!
 
-## <span id=ts-expect-error-comments /> `// @ts-expect-error` Comments
+## `// @ts-expect-error` Comments
 
 Imagine that we're writing a library in TypeScript and we're exporting some function called `doStuff` as part of our public API.
 The function's types declare that it takes two `string`s so that other TypeScript users can get type-checking errors, but it also does a runtime check (maybe only in development builds) to give JavaScript users a helpful error.
@@ -127,7 +127,7 @@ Unused '@ts-expect-error' directive.
 We'd like to extend a big thanks to [Josh Goldberg](https://github.com/JoshuaKGoldberg), the contributor who implemented this feature.
 For more information, you can take a look at [the `ts-expect-error` pull request](https://github.com/microsoft/TypeScript/pull/36014).
 
-### <span id=what-about-ts-ignore /> `ts-ignore` or `ts-expect-error`?
+### `ts-ignore` or `ts-expect-error`?
 
 In some ways `// @ts-expect-error` can act as a suppression comment, similar to `// @ts-ignore`.
 The difference is that `// @ts-ignore` will do nothing if the following line is error-free.
@@ -147,7 +147,7 @@ Pick `ts-ignore` if:
 * you are in the middle of an upgrade between two different versions of TypeScript, and a line of code errors in one version but not another.
 * you honestly don't have the time to decide which of these options is better.
 
-## <span id=uncalled-in-conditionals /> Uncalled Function Checks in Conditional Expressions
+## Uncalled Function Checks in Conditional Expressions
 
 In TypeScript 3.7 we introduced *uncalled function checks* to report an error when you've forgotten to call a function.
 
@@ -191,7 +191,7 @@ function getAllFiles(startFileName: string) {
 
 https://github.com/microsoft/TypeScript/issues/36048
 
-## <span id=editor-improvements /> Editor Improvements
+## Editor Improvements
 
 The TypeScript compiler not only powers the TypeScript editing experience in most major editors, it also powers the JavaScript experience in the Visual Studio family of editors and more.
 Using new TypeScript/JavaScript functionality in your editor will differ depending on your editor, but
@@ -200,7 +200,7 @@ Using new TypeScript/JavaScript functionality in your editor will differ dependi
 * Visual Studio 2017/2019 have [the SDK installers above] and [MSBuild installs](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild).
 * Sublime Text 3 supports [selecting different versions of TypeScript](https://github.com/microsoft/TypeScript-Sublime-Plugin#note-using-different-versions-of-typescript)
 
-### <span id=cjs-auto-imports /> CommonJS Auto-Imports in JavaScript
+### CommonJS Auto-Imports in JavaScript
 
 One great new improvement is in auto-imports in JavaScript files using CommonJS modules.
 
@@ -223,7 +223,7 @@ TypeScript now automatically detects the types of imports you're using to keep y
 
 For more details on the change, see [the corresponding pull request](https://github.com/microsoft/TypeScript/pull/37027).
 
-### <span id=preserve-newlines /> Code Actions Preserve Newlines
+### Code Actions Preserve Newlines
 
 TypeScript's refactorings and quick fixes often didn't do a great job of preserving newlines.
 As a really basic example, take the following code.
@@ -284,7 +284,7 @@ function printSquares() {
 
 You can see more about the implementation [in this pull request](https://github.com/microsoft/TypeScript/pull/36688)
 
-### <span id=missing-returns /> Quick Fixes for Missing Return Expressions
+### Quick Fixes for Missing Return Expressions
 
 There are occasions where we might forget to return the value of the last statement in a function, especially when adding curly braces to arrow functions.
 
@@ -300,7 +300,7 @@ Thanks to [a pull request](https://github.com/microsoft/TypeScript/pull/26434) f
 
 ![TypeScript fixing an error where no expression is returned by adding a `return` statement or removing curly braces.](https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2020/04/missingReturnValue-3-9.gif)
 
-### <span id=solution-style-tsconfig /> Support for "Solution Style" `tsconfig.json` Files
+### Support for "Solution Style" `tsconfig.json` Files
 
 Editors need to figure out which configuration file a file belongs to so that it can apply the appropriate options and figure out which other files are included in the current "project".
 By default, editors powered by TypeScript's language server do this by walking up each parent directory to find a `tsconfig.json`.
@@ -325,7 +325,7 @@ Here, none of these `tsconfig.*.json` files get picked up by the server, but we'
 TypeScript 3.9 adds support to editing scenarios for this configuration.
 For more details, take a look at [the pull request that added this functionality](https://github.com/microsoft/TypeScript/pull/37239).
 
-## <span id=breaking-changes /> Breaking Changes
+## Breaking Changes
 
 ### Parsing Differences in Optional Chaining and Non-Null Assertions
 

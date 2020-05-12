@@ -1,4 +1,4 @@
-* [Type-Only Imports and Exports](#type-only-imports-exports)
+* [Type-Only Imports and Exports](#type-only-imports-and-exports)
 * [ECMAScript Private Fields](#ecmascript-private-fields)
 * [`export * as ns` Syntax](#export-star-as-namespace-syntax)
 * [Top-Level `await`](#top-level-await)
@@ -6,7 +6,7 @@
 * [Better Directory Watching on Linux and `watchOptions`](#better-directory-watching)
 * ["Fast and Loose" Incremental Checking](#assume-direct-dependencies)
 
-## <span id="type-only-imports-exports" /> Type-Only Imports and Export
+## Type-Only Imports and Exports
 
 This feature is something most users may never have to think about; however, if you've hit issues under `--isolatedModules`, TypeScript's `transpileModule` API, or Babel, this feature might be relevant.
 
@@ -61,7 +61,7 @@ This flag takes 3 different values:
 
 For more information about the feature, you can [take a look at the pull request](https://github.com/microsoft/TypeScript/pull/35200), and [relevant changes](https://github.com/microsoft/TypeScript/pull/36092/) around broadening where imports from an `import type` declaration can be used.
 
-## <span id="ecmascript-private-fields" /> ECMAScript Private Fields
+## ECMAScript Private Fields
 
 TypeScript 3.8 brings support for ECMAScript's private fields, part of the [stage-3 class fields proposal](https://github.com/tc39/proposal-class-fields/).
 
@@ -262,7 +262,7 @@ A final consideration might be speed: `private` properties are no different from
 In contrast, because `#` private fields are downleveled using `WeakMap`s, they may be slower to use.
 While some runtimes might optimize their actual implementations of `#` private fields, and even have speedy `WeakMap` implementations, that might not be the case in all runtimes.
 
-## <span id="export-star-as-namespace-syntax" /> `export * as ns` Syntax
+## `export * as ns` Syntax
 
 It's often common to have a single entry-point that exposes all the members of another module as a single member.
 
@@ -280,7 +280,7 @@ export * as utilities from "./utilities.js";
 This is a nice quality-of-life improvement to JavaScript, and TypeScript 3.8 implements this syntax.
 When your module target is earlier than `es2020`, TypeScript will output something along the lines of the first code snippet.
 
-## <span id="top-level-await" /> Top-Level `await`
+## Top-Level `await`
 
 TypeScript 3.8 provides support for a handy upcoming ECMAScript feature called "top-level `await`".
 
@@ -318,13 +318,13 @@ Support within several environments and bundlers may be limited or may require e
 
 For more information on our implementation, you can [check out the original pull request](https://github.com/microsoft/TypeScript/pull/35813).
 
-## <span id="es2020-for-target-and-module" /> `es2020` for `target` and `module`
+## `es2020` for `target` and `module`
 
 TypeScript 3.8 supports `es2020` as an option for `module` and `target`.
 This will preserve newer ECMAScript 2020 features like optional chaining, nullish coalescing, `export * as ns`, and dynamic `import(...)` syntax.
 It also means `bigint` literals now have a stable `target` below `esnext`.
 
-## <span id="jsdoc-modifiers" /> JSDoc Property Modifiers
+## JSDoc Property Modifiers
 
 TypeScript 3.8 supports JavaScript files by turning on the `allowJs` flag, and also supports *type-checking* those JavaScript files via the `checkJs` option or by adding a `// @ts-check` comment to the top of your `.js` files.
 
@@ -380,7 +380,7 @@ new Foo().stuff++;
 // Cannot assign to 'stuff' because it is a read-only property.
 ```
 
-## <span id="better-directory-watching" /> Better Directory Watching on Linux and `watchOptions`
+## Better Directory Watching on Linux and `watchOptions`
 
 TypeScript 3.8 ships a new strategy for watching directories, which is crucial for efficiently picking up changes to `node_modules`.
 

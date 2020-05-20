@@ -497,3 +497,39 @@ In previous TypeScript versions, declarations like `export * from "foo"` would b
 This sort of emit is problematic because it's type-directed and can't be emulated by Babel.
 TypeScript 3.9 will always emit these `export *` declarations.
 In practice, we don't expect this to break much existing code.
+
+### More libdom.d.ts refinements
+
+We are continuing to move more of TypeScript's built-in .d.ts library (lib.d.ts and family) to be generated from Web IDL files directly from the DOM specification. 
+As a result some vendor-specific types related to media access have been removed.
+
+Adding this file to an ambient *.d.ts to your project will bring them back:
+
+```ts
+interface HTMLVideoElement {
+  msFrameStep(forward: boolean): void;
+  msInsertVideoEffect(activatableClassId: string, effectRequired: boolean, config?: any): void;
+  msSetVideoRectangle(left: number, top: number, right: number, bottom: number): void;
+  webkitEnterFullScreen(): void;
+  webkitEnterFullscreen(): void;
+  webkitExitFullScreen(): void;
+  webkitExitFullscreen(): void;
+
+  msHorizontalMirror: boolean;
+  readonly msIsLayoutOptimalForPlayback: boolean;
+  readonly msIsStereo3D: boolean;
+  msStereo3DPackingMode: string;
+  msStereo3DRenderMode: string;
+  msZoom: boolean;
+  onMSVideoFormatChanged: ((this: HTMLVideoElement, ev: Event) => any) | null;
+  onMSVideoFrameStepCompleted: ((this: HTMLVideoElement, ev: Event) => any) | null;
+  onMSVideoOptimalLayoutChanged: ((this: HTMLVideoElement, ev: Event) => any) | null;
+  webkitDisplayingFullscreen: boolean;
+  webkitSupportsFullscreen: boolean;
+}
+
+interface MediaError {
+  readonly msExtendedCode: number;
+  readonly MS_MEDIA_ERR_ENCRYPTED: number;
+}
+```

@@ -154,7 +154,7 @@ Right now, the best documentation for these private fields is in the TypeScript 
 
 ## Understanding TypeScript's `private`
 
-TypeScript also has it's own way to declare a member as being marked `private`, it cannot be accessed from outside of its containing class. For example:
+TypeScript also has its own way to declare a member as being marked `private`, it cannot be accessed from outside of its containing class. For example:
 
 ```ts
 class Animal {

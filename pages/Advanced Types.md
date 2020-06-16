@@ -821,7 +821,7 @@ That means the compiler will check that you pass the right set of property names
 
 ```ts
 // error, 'unknown' is not in 'manufacturer' | 'model' | 'year'
-pluck(taxi, ['year', 'unknown']); /
+pluck(taxi, ['year', 'unknown']);
 ```
 
 The second operator is `T[K]`, the **indexed access operator**.
@@ -853,7 +853,7 @@ let unknown = getProperty(taxi, 'unknown');
 `keyof` and `T[K]` interact with index signatures. An index signature parameter type must be 'string' or 'number'.
 If you have a type with a string index signature, `keyof T` will be `string | number`
 (and not just `string`, since in JavaScript you can access an object property either
-by using strings (`object['42'`]) or numbers (`object[42]`)).
+by using strings (`object['42']`) or numbers (`object[42]`)).
 And `T[string]` is just the type of the index signature:
 
 ```ts
@@ -1048,7 +1048,7 @@ The type above means when `T` is assignable to `U` the type is `X`, otherwise th
 A conditional type `T extends U ? X : Y` is either *resolved* to `X` or `Y`, or *deferred* because the condition depends on one or more type variables.
 When `T` or `U` contains type variables, whether to resolve to `X` or `Y`, or to defer, is determined by whether or not the type system has enough information to conclude that `T` is always assignable to `U`.
 
-As an example of some types that are immediately resolved, we can take a look at the following example:
+As an example of some types that are immediately resolved, we can take a look at the following:
 
 ```ts
 declare function f<T extends boolean>(x: T): T extends true ? string : number;
@@ -1076,7 +1076,7 @@ type T3 = TypeName<() => void>;  // "function"
 type T4 = TypeName<string[]>;  // "object"
 ```
 
-But as an example of a place where conditional types are deferred - where they stick around instead of picking a branch - would be in the following:
+But as an example of a place where conditional types are deferred—where they stick around instead of picking a branch—let's look at the following:
 
 ```ts
 interface Foo {

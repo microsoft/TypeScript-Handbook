@@ -20,7 +20,7 @@ tsc --project tsconfig.json src/*.ts
 ## Compiler Options
 
 If you're looking for more information about the compiler options in a tsconfig, check out the TSConfig Reference beta
-available in [the v2 site](https://www.typescriptlang.org/v2/en/tsconfig).
+available in [the v2 site](https://www.staging-typescript.org/tsconfig).
 
 Option                                         | Type      | Default                        | Description
 -----------------------------------------------|-----------|--------------------------------|----------------------------------------------------------------------

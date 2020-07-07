@@ -7,12 +7,13 @@
 6. [Tuple](#tuple)
 7. [Enum](#enum)
 8. [Any](#any)
-9. [Void](#void)
-10. [Null and Undefined](#null-and-undefined)
-11. [Never](#never)
-12. [Object](#object)
-13. [Type assertions](#type-assertions)
-14. [A note about 'let'](#a-note-about-let)
+9. [Unknown](#unknown)
+10. [Void](#void)
+11. [Null and Undefined](#null-and-undefined)
+12. [Never](#never)
+13. [Object](#object)
+14. [Type assertions](#type-assertions)
+15. [A note about 'let'](#a-note-about-let)
 
 # Introduction
 
@@ -185,6 +186,50 @@ let list: any[] = [1, true, "free"];
 
 list[1] = 100;
 ```
+
+# Unknown
+
+`unknown` is the type-safe counterpart of `any`.
+
+Values of any type can be assigned to `unknown`, just like with the `any` type:
+
+```ts
+let unknownValue: unknown;
+unknownValue = 123; // OK
+unknownValue = "hello"; // OK
+unknownValue = null; // OK
+unknownValue = {foo: [true, false]}; // OK
+```
+
+Unlike the `any` type, the `unknown` type prevents you from doing anything with the value that would only work if the value were of a certain type:
+
+```ts
+let unknownValue: unknown;
+console.log("half:", unknownValue / 2); // Error
+```
+
+To use an `unknown` value in a way that only works for certain types, you can use conditionals to narrow the type:
+
+```ts
+let unknownValue: unknown;
+if (typeof unknownValue === "number") {
+    console.log("half:", unknownValue / 2); // OK
+} else {
+    console.log("can’t divide unknownValue; it isn’t a number")
+}
+```
+
+Alternatively, you could narrow the type with a [type assertion](#type-assertions), if you are sure you know the type of the `unknown` value:
+
+```ts
+let unknownValue: unknown = 123;
+console.log((unknownValue as number) / 2); // OK
+```
+
+In short, anything is assignable to `unknown`, but `unknown` isn't assignable to anything but itself and `any` without a type assertion or a control flow based narrowing.
+Likewise, no operations are permitted on an `unknown` without first asserting or narrowing to a more specific type.
+
+For more examples of how `unknown` works, see the description of `unknown` [in the TypeScript 3.0 release notes](/docs/handbook/release-notes/typescript-3-0.html#new-unknown-top-type).
 
 # Void
 

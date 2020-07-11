@@ -46,7 +46,9 @@ Use non-relative paths when importing any of your external dependencies.
 
 There are two possible module resolution strategies: [Node](#node) and [Classic](#classic).
 You can use the `--moduleResolution` flag to specify the module resolution strategy.
-If not specified, the default is [Classic](#classic) for `--module AMD | System | ES2015` or [Node](#node) otherwise.
+If not specified, the default is [Classic](#classic) for `--module es2015` and above (including `esnext`), or [Node](#node) otherwise (including `--module commonjs`). 
+
+> Note: `node` module resolution is now default and recommended. If you are having module resolution problems in TypeScript, try setting `moduleResolution: "node"` to see if it fixes the issue.
 
 ### Classic
 

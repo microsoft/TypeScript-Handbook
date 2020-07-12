@@ -177,7 +177,7 @@ Create a file at the root of `proj` named `index.html` with the following conten
 </html>
 ```
 
-Notice that we're including files from within `node_modules`.
+Notice that we're including files from within `node_modules`. We'll later add these in webpack config to tell webpack we've already included them and webpack doesn't need to bundle them separately.
 React and React-DOM's npm packages include standalone `.js` files that you can include in a web page, and we're referencing them directly to get things moving faster.
 Feel free to copy these files to another directory, or alternatively, host them on a content delivery network (CDN).
 Facebook makes CDN-hosted versions of React available, and you can [read more about that here](http://facebook.github.io/react/downloads.html#development-vs.-production-builds).
@@ -236,6 +236,8 @@ Ideally, we'd just import the React module from within the browser, but most bro
 Instead libraries have traditionally made themselves available using a single global variable like `jQuery` or `_`.
 This is called the "namespace pattern", and webpack allows us to continue leveraging libraries written that way.
 With our entry for `"react": "React"`, webpack will work its magic to make any import of `"react"` load from the `React` variable.
+
+**Note:** Make sure you've added a copy of the library manually to your website when you mention it under webpack config's `externals`. In this example, we added the two dependencies mentioned in the `index.html` file in the previous section.
 
 You can learn more about configuring webpack [here](https://webpack.js.org/concepts).
 

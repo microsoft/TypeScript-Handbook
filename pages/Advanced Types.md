@@ -483,8 +483,8 @@ We can also have a type alias refer to itself in a property:
 ```ts
 type Tree<T> = {
     value: T;
-    left: Tree<T>;
-    right: Tree<T>;
+    left?: Tree<T>;
+    right?: Tree<T>;
 }
 ```
 

@@ -405,7 +405,7 @@ It's not uncommon for a single JavaScript function to return different types of 
 ```ts
 let suits = ["hearts", "spades", "clubs", "diamonds"];
 
-function pickCard(x): any {
+function pickCard(x: any): any {
     // Check to see if we're working with an object/array
     // if so, they gave us the deck and we'll pick the card
     if (typeof x == "object") {
@@ -441,7 +441,7 @@ let suits = ["hearts", "spades", "clubs", "diamonds"];
 
 function pickCard(x: {suit: string; card: number; }[]): number;
 function pickCard(x: number): {suit: string; card: number; };
-function pickCard(x): any {
+function pickCard(x: any): any {
     // Check to see if we're working with an object/array
     // if so, they gave us the deck and we'll pick the card
     if (typeof x == "object") {

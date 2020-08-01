@@ -1,6 +1,6 @@
 # TypeScript-Handbook Repo Deprecated
 
-The handbook has moved into the new TypeScript website repo, you can find the revised and updated handbook pages in [`/packages/handbook-v1`](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/handbook-v1) in that repo.
+The handbook has moved into the new TypeScript website repo, you can find the revised and updated handbook pages in [`/packages/documentation`](https://github.com/microsoft/TypeScript-Website/tree/v2/packages/documentation) in that repo.
 
 ---
 

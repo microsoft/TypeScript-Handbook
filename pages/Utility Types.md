@@ -137,7 +137,7 @@ const todo: TodoPreview = {
 
 # `Exclude<T,U>`
 
-Constructs a type by excluding from `T` all properties that are assignable to `U`.
+Constructs a type by excluding from `T` all types that are assignable to `U`.
 
 ##### Example
 
@@ -149,7 +149,7 @@ type T2 = Exclude<string | number | (() => void), Function>;  // string | number
 
 # `Extract<T,U>`
 
-Constructs a type by extracting from `T` all properties that are assignable to `U`.
+Constructs a type by extracting from `T` all types that are assignable to `U`.
 
 ##### Example
 
